@@ -1,4 +1,4 @@
-<aura:component access:global >
+<aura:component access="global" >
     <!--Attributes: contextUser, userTeam, leadTeam,-->
     <aura:attribute name="contextUser" type="String" />
     <aura:attribute name="userTeam" type="Map" />
