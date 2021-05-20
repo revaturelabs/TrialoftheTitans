@@ -1,26 +1,30 @@
 <aura:component access="global" >
     <!--Attributes: contextUser, userTeam, leadTeam,-->
-    <aura:attribute name="contextUser" type="String" />
-    <aura:attribute name="userTeam" type="Map" />
+    <aura:attribute name="contextInfo" type="Map" default="{}" />
     <aura:attribute name="leadTeam" type="Map"/>
-    <aura:attribute name="teamColors" type="Map"/>
+    <aura:attribute name="teamColors" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <!--Set dynamic colors for teams-->
     <aura:html tag="style">
         :root {
-            --user-team-color: {!userTeam.primary_color__c};
-            --lead-team-color: {!leadTeam.primary_color__c};
+            --user-team-color: {!v.contextInfo.userTeam.primary_color__c};
+            --lead-team-color: {!v.leadTeam.primary_color__c};
             {!v.teamColors}
         }
     </aura:html>
+
     <header>
         <c:AnimatedHeader leadTeam="{!v.leadTeam}"/>
-        <c:Navigation userTeam="{!v.userTeam}"/>
+        <c:Navigation contextInfo="{!v.contextInfo}"/>
     </header>
+    
     <div id="main">
-        <c:MainContainer contextUser="{!v.contextUser}" leadTeam="{!v.leadTeam}"/>
+        <c:MainContainer contextInfo="{!v.contextInfo}" />
     </div>
+
     <footer>
-        <c:Footer leadTeam="{!v.leadTeam}"/>
+        <c:Footer />
     </footer>
+    
 </aura:component>
