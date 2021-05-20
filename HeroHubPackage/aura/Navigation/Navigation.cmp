@@ -1,3 +1,10 @@
 <aura:component>
     <aura:attribute name="contextInfo" type="Map" />
+    <div class="navbar">
+        <ul>
+            <li>{!v.contextInfo.name}</li>
+            <li>{!v.contextInfo.squad.quote}</li>
+            <li>Logout</li>
+        </ul>
+    </div>
 </aura:component>
