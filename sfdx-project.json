@@ -2,14 +2,11 @@
     "packageDirectories": [
         {
             "path": "force-app",
-            "default": true,
-            "package": "CorePackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT"
+            "default": true
         },
         {
             "path": "CorePackage",
-            "package": "CorePackageDataModel",
+            "package": "Core_Package",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": false
@@ -19,8 +16,7 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "51.0",
     "packageAliases": {
-        "CorePackage": "0Ho5e000000CaTSCA0",
-        "CorePackageDataModel": "0Ho5e000000CaTcCAK",
-        "CorePackageDataModel@0.1.0-1": "04t5e000000d08bAAA"
+        "Core_Package": "0Ho5e000000CaTrCAK",
+        "Core_Package@0.1.0-1": "04t5e000000d1YRAAY"
     }
 }
