@@ -9,8 +9,8 @@
                 //User isn't signed in return to login
             }
         });*/
-        component.set("v.contextInfo", {"id":"00273731279", "name":"Gladius Maximus", "squad":"YOU DON'T KNOW ME!!!", "userTeam":{"name":"Amplifire", "primary_color__c":"#EF6363"}});
-        component.set("v.leadTeam", {"name":"Amplife", "primary_color__c":"#EF6363"});
+        component.set("v.contextInfo", {id:"00273731279", name:"Gladius Maximus", squad:"YOU DON'T KNOW ME!!!", userTeam:{name:"Amplifire", primary_color__c:"#EF6363"}});
+        component.set("v.leadTeam", {name:"Amplife", primary_color__c:"#EF6363"});
         component.set("v.teamColors", "")
     }
 })

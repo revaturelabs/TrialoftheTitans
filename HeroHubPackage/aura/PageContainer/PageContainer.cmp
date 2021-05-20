@@ -14,7 +14,7 @@
         }
     </aura:html>
 
-    <header>
+    <header class="header">
         <c:AnimatedHeader leadTeam="{!v.leadTeam}"/>
         <c:Navigation contextInfo="{!v.contextInfo}"/>
     </header>
@@ -26,5 +26,5 @@
     <footer>
         <c:Footer />
     </footer>
-    
+
 </aura:component>
