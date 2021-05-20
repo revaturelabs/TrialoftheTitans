@@ -53,6 +53,11 @@
     animation: collapse-feed forwards 1.5s;
 }
 
+.THIS .feed-initial {
+    max-width: 0;
+    max-height: 0;
+}
+
 .THIS .feed-expanded {
     animation: expand-feed forwards 1.5s;
 }
