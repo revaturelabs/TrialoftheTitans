@@ -20,7 +20,7 @@
     </header>
     
     <div id="main">
-        <c:MainContainer contextInfo="{!v.contextInfo}" />
+        
     </div>
 
     <footer>

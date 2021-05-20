@@ -1,3 +1,0 @@
-<aura:component>
-    <aura:attribute name="contextInfo" type="Map"/>
-</aura:component>
