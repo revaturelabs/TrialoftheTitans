@@ -1,0 +1,22 @@
+{
+    "packageDirectories": [
+        {
+            "path": "force-app",
+            "default": true
+        },
+        {
+            "path": "HeroHubPackage",
+            "package": "HeroHubPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        }
+    ],
+    "namespace": "",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "51.0",
+    "packageAliases": {
+        "HeroHubPackage": "0Ho5e000000oLxlCAE",
+        "HeroHubPackage@0.1.0-1": "04t5e0000005UjhAAE"
+    }
+}
