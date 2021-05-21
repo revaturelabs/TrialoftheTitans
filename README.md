@@ -6,4 +6,4 @@ Manifest includes ONLY the custom fields created by the Exam team. Should be saf
 **Core_Package**: 04t5e000000d1YR
 
 ## Exam package
-**Exam_Package**: 04t5e000000hGewAAE
+**Exam_Package**: 04t5e000000d2q6AAA

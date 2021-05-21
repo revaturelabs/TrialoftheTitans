@@ -41,7 +41,7 @@
         <name>CustomField</name>
     </types>
     <types>
-        <members>Exam_Result__c.Picklist__c</members>
+        <members>Exam_Result__c.Status__c</members>
         <name>CustomField</name>
     </types>
     <types>
