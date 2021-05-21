@@ -5,7 +5,6 @@
       "default": true
     }
   ],
-  "name": "p3-trial0",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "51.0"
