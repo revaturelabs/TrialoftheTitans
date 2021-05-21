@@ -1,23 +1,19 @@
 {
     "packageDirectories": [
         {
-            "path": "force-app",
-            "default": true,
-            "package": "Exam_Package",
+            "path": "ExamPackage",
+            "package": "ExamPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "dependencies": [
-                {
-                    "package": "04t5e000000d1YR"
-                }
-            ]
+            "default": false
         }
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "51.0",
     "packageAliases": {
-        "Exam_Package": "0Ho5e000000CaTwCAK",
-        "Exam_Package@0.1.0-1": "04t5e000000d2q6AAA"
+        "ExamPackage": "0Ho5e00000000IsCAI",
+        "ExamPackage@0.1.0-1": "04t5e000000YrRkAAK",
+        "ExamPackage@0.1.0-2": "04t5e000000YrS4AAK"
     }
 }
