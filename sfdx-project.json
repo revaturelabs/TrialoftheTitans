@@ -1,6 +1,10 @@
 {
     "packageDirectories": [
         {
+            "path": "force-app",
+            "default": true
+        },
+        {
             "path": "ExamPackage",
             "package": "ExamPackage",
             "versionName": "ver 0.1",
