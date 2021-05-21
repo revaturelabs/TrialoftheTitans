@@ -12,7 +12,7 @@
             <span>Chat Feed</span>
         </div>
         <div class = "feed-initial" id = "feed-holder" >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit eu turpis in finibus. Aliquam aliquet scelerisque massa sed porttitor. Mauris condimentum ut sem id condimentum. Quisque sollicitudin, risus volutpat facilisis tristique, arcu velit hendrerit massa, in interdum tortor arcu vel neque. Morbi sagittis diam diam, sed molestie turpis rutrum nec. Nulla posuere urna varius nisi egestas placerat. Duis suscipit metus sed dolor luctus congue. Mauris aliquet dui eget mi lacinia, efficitur scelerisque ante laoreet. In sed faucibus lacus.
+            <c:CommunicationFeedControl />
         </div>
     </div>
 </aura:component>

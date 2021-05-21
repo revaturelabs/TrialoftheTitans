@@ -1,0 +1,16 @@
+.THIS#feed-container {
+    overflow: hidden;
+    background: #d4d5d5;
+}
+
+.THIS #feed-header {
+    padding: 1em 0;
+    background: #302f30;
+    color: #d4d5d5;
+}
+
+.THIS #feed-content {
+    overflow-y: auto;
+    min-width: 100%;
+    color: #302f30;
+}
