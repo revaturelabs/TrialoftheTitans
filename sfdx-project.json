@@ -1,26 +1,20 @@
 {
     "packageDirectories": [
         {
-            "path": "force-app",
-            "default": false
-        },
-        {
             "path": "CorePackage",
-            "package": "Core_Package",
+            "package": "CorePackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": false
+            "default": true
         },
         {
             "path": "ExamPackage",
             "package": "Exam_Package",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true,
+            "default": false,
             "dependencies": [
-                {
-                    "package": "04t5e000000d1YRAAY"
-                }
+                {}
             ]
         }
     ],
@@ -28,8 +22,9 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "51.0",
     "packageAliases": {
-        "Core_Package": "0Ho5e000000CaTrCAK",
-        "Core_Package@0.1.0-1": "04t5e000000d1YRAAY",
+        "CorePackage": "0Ho5e0000008OSgCAM",
+        "CorePackage@0.1.0-1": "04t5e000000phPlAAI",
+        "CorePackage@0.1.0-2": "04t5e000000phPqAAI",
         "Exam_Package": "0Ho5e000000Gn37CAC"
     }
 }
