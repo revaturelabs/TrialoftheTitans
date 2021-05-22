@@ -24,10 +24,7 @@
     "packageAliases": {
         "CorePackage": "0Ho5e0000008OSgCAM",
         "CorePackage@0.1.0-1": "04t5e000000phPlAAI",
-<<<<<<< HEAD
-=======
         "CorePackage@0.1.0-2": "04t5e000000phPqAAI",
->>>>>>> ExamsObjects
         "Exam_Package": "0Ho5e000000Gn37CAC"
     }
 }
