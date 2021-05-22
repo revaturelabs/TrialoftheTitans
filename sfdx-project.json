@@ -2,7 +2,7 @@
     "packageDirectories": [
         {
             "path": "force-app",
-            "default": true
+            "default": false
         },
         {
             "path": "CorePackage",
@@ -10,6 +10,13 @@
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": false
+        },
+        {
+            "path": "ExamPackage",
+            "package": "Exam_Package",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true
         }
     ],
     "namespace": "",
@@ -17,6 +24,7 @@
     "sourceApiVersion": "51.0",
     "packageAliases": {
         "Core_Package": "0Ho5e000000CaTrCAK",
-        "Core_Package@0.1.0-1": "04t5e000000d1YRAAY"
+        "Core_Package@0.1.0-1": "04t5e000000d1YRAAY",
+        "Exam_Package": "0Ho5e000000Gn37CAC"
     }
 }
