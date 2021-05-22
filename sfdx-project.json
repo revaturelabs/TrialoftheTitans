@@ -32,6 +32,8 @@
         "CorePackage": "0Ho5e0000008OSgCAM",
         "CorePackage@0.1.0-1": "04t5e000000phPlAAI",
         "CorePackage@0.1.0-2": "04t5e000000phPqAAI",
-        "Exam_Package": "0Ho5e000000Gn37CAC"
+        "Exam_Package": "0Ho5e000000Gn37CAC",
+        "TitanPagePkg": "0Ho5e000000blcUCAQ",
+        "TitanPagePkg@0.1.0-1": "04t5e000000lU1aAAE"
     }
 }
