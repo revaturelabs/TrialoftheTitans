@@ -10,6 +10,18 @@
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": false
+        },
+        {
+            "path": "ExamPackage",
+            "package": "Exam_Package",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true,
+            "dependencies": [
+                {
+                    
+                }
+            ]
         }
     ],
     "namespace": "",
