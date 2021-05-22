@@ -19,8 +19,7 @@
             "default": true,
             "dependencies": [
                 {
-                    "package": "CorePackage",
-                    "versionNumber": "0.1.0.LATEST"
+                    "package": "04t5e000000d1YRAAY"
                 }
             ]
         }
