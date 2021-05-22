@@ -11,7 +11,7 @@
     list-style-type: none;
     display: flex;
     justify-content: space-between;
-    padding: 1em;
+    padding: var(--padding);
     box-sizing: border-box;
 }
 

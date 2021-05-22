@@ -9,9 +9,8 @@
     --alchemy-secondary: #539951;
     --synergy-primary: #ffdd00;
     --synergy-secondary: #fbb034;
-    --padding: 1em;
+    --padding: .5em;
 }
 .THIS.header {
     width: 100%;
-    padding: var(--padding);
 }
