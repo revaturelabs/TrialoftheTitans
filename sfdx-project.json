@@ -1,26 +1,20 @@
 {
     "packageDirectories": [
         {
-            "path": "force-app",
-            "default": true
-        },
-        {
             "path": "CorePackage",
             "package": "CorePackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": false
+            "default": true
         },
         {
             "path": "ExamPackage",
             "package": "Exam_Package",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true,
+            "default": false,
             "dependencies": [
-                {
-                    
-                }
+                {}
             ]
         }
     ],
@@ -30,6 +24,10 @@
     "packageAliases": {
         "CorePackage": "0Ho5e0000008OSgCAM",
         "CorePackage@0.1.0-1": "04t5e000000phPlAAI",
+<<<<<<< HEAD
+=======
+        "CorePackage@0.1.0-2": "04t5e000000phPqAAI",
+>>>>>>> ExamsObjects
         "Exam_Package": "0Ho5e000000Gn37CAC"
     }
 }
