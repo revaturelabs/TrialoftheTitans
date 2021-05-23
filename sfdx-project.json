@@ -1,12 +1,36 @@
 {
     "packageDirectories": [
         {
+<<<<<<< HEAD
             "path": "force-app",
             "default": true
         },
         {
             "path": "HeroHubPackage",
             "package": "HeroHubPackage",
+=======
+            "path": "CorePackage",
+            "package": "CorePackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true
+        },
+        {
+            "path": "ExamPackage",
+            "package": "Exam_Package",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false,
+            "dependencies": [
+                {
+                    "package": "04t5e000000phPqAAI"
+                }
+            ]
+        },
+        {
+            "path": "TitanPage",
+            "package": "TitanPagePkg",
+>>>>>>> ProjectSetupTest
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": false
@@ -16,7 +40,17 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "51.0",
     "packageAliases": {
+<<<<<<< HEAD
         "HeroHubPackage": "0Ho5e000000oLxlCAE",
         "HeroHubPackage@0.1.0-1": "04t5e0000005UjhAAE"
+=======
+        "CorePackage": "0Ho5e0000008OSgCAM",
+        "CorePackage@0.1.0-1": "04t5e000000phPlAAI",
+        "CorePackage@0.1.0-2": "04t5e000000phPqAAI",
+        "Exam_Package": "0Ho5e000000Gn37CAC",
+        "Exam_Package@0.1.0-1": "04t5e000000xy1lAAA",
+        "TitanPagePkg": "0Ho5e000000blcUCAQ",
+        "TitanPagePkg@0.1.0-1": "04t5e000000lU1aAAE"
+>>>>>>> ProjectSetupTest
     }
 }
