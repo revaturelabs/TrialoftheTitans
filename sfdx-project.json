@@ -20,18 +20,18 @@
             ]
         },
         {
-            "path": "HeroHubPackage",
-            "package": "HeroHubPackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": false
-        },
-        {
             "path": "TitanPage\\Main\\default",
             "package": "TitansPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": true
+        },
+        {
+            "path": "HeroHubPackage",
+            "package": "HeroHubPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
         }
     ],
     "namespace": "",
@@ -46,6 +46,7 @@
         "HeroHubPackage": "0Ho5e000000oLxlCAE",
         "HeroHubPackage@0.1.0-1": "04t5e0000005UjhAAE",
         "TitansPackage": "0Ho5e000000blceCAA",
-        "TitansPackage@0.1.0-1": "04t5e000000lUzKAAU"
+        "TitansPackage@0.1.0-1": "04t5e000000lUzKAAU",
+        "TitansPackage@0.1.0-2": "04t5e000000lV3XAAU"
     }
 }
