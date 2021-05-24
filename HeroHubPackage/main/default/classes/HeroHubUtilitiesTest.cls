@@ -4,13 +4,10 @@ public with sharing class HeroHubUtilitiesTest {
     static void testSetup(){
     
         Account customerAccount = new Account();
-        customerAccount.Name ='customer';
+        customerAccount.Name ='Customer';
         
         Database.insert(customerAccount);
-        
-        
-        
-        Database.update(partnerAccount);
+
         
         Contact partnerContact = new Contact();
         partnerContact.LastName = 'test';
@@ -18,7 +15,7 @@ public with sharing class HeroHubUtilitiesTest {
         
         Database.insert(partnerContact);
         
-        Id partnerProfileId = [SELECT id FROM Profile WHERE name='Asteria Partner' Limit 1].id;
+        Id partnerProfileId = [SELECT id FROM Profile WHERE name='Customer Community Login' Limit 1].id;
         Id partnerRoleId = [Select Id From UserRole Where PortalType = 'None' Limit 1].id;
         
         User partnerUser = new User(
