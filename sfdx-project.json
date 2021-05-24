@@ -1,0 +1,53 @@
+{
+    "packageDirectories": [
+        {
+            "path": "CorePackage",
+            "package": "CorePackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        },
+        {
+            "path": "ExamPackage",
+            "package": "Exam_Package",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true,
+            "dependencies": [
+                {
+                    "package": "04t5e000000phPqAAI"
+                }
+            ]
+        },
+        {
+            "path": "TitanPage\\Main\\default",
+            "package": "TitansPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true
+        },
+        {
+            "path": "HeroHubPackage",
+            "package": "HeroHubPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        }
+    ],
+    "namespace": "",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "51.0",
+    "packageAliases": {
+        "CorePackage": "0Ho5e0000008OSgCAM",
+        "CorePackage@0.1.0-1": "04t5e000000phPlAAI",
+        "CorePackage@0.1.0-2": "04t5e000000phPqAAI",
+        "Exam_Package": "0Ho5e000000Gn37CAC",
+        "Exam_Package@0.1.0-1": "04t5e000000xy1lAAA",
+        "Exam_Package@0.1.0-2": "04t5e000000xyZWAAY",
+        "HeroHubPackage": "0Ho5e000000oLxlCAE",
+        "HeroHubPackage@0.1.0-1": "04t5e0000005UjhAAE",
+        "TitansPackage": "0Ho5e000000blceCAA",
+        "TitansPackage@0.1.0-1": "04t5e000000lUzKAAU",
+        "TitansPackage@0.1.0-2": "04t5e000000lV3XAAU"
+    }
+}
