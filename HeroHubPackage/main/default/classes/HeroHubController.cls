@@ -4,7 +4,7 @@ public with sharing class HeroHubController {
     public static methodName(){
         try {
             userAccount = HeroHubUtilities.getUserAccount();
-            userExams = getUserExams(user)
+            userExams = getUserExams(user);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
