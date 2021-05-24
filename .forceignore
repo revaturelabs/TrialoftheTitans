@@ -2,6 +2,14 @@
 # More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
 #
 
+**profiles
+**layouts
+!**/layouts/Exam__c-Exam Layout.layout-meta.xml
+!**/layouts/Exam_Result__c-Exam Result Layout.layout-meta.xml
+!**/layouts/Exam_Question__c-Exam Question Layout.layout-meta.xml
+!**/layouts/Hero_Answer__c-Hero Answer Layout.layout-meta.xml
+!**/layouts/Question_Pool__c-Question Pool Layout.layout-meta.xml
+
 package.xml
 
 # LWC configuration files
