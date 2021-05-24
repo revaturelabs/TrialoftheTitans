@@ -1,0 +1,11 @@
+<apex:page controller="GIFTParser">
+	<apex:form>
+		<apex:pageMessages />
+		<apex:pageBlock title="GIFT Import">
+			<apex:pageBlockButtons>
+				<apex:commandButton action="{!importGIFTFile}" value="Import" />
+			</apex:pageBlockButtons>
+			<apex:inputFile value="{!giftFileBody}" filename="{!filename}" />
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>
