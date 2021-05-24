@@ -143,7 +143,6 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
     <enableBulkApi>false</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -153,14 +152,14 @@
     <enableSearch>true</enableSearch>
     <enableSharing>false</enableSharing>
     <enableStreamingApi>false</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <label>Question Pool</label>
     <nameField>
         <label>Question Pool Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Question Pools</pluralLabel>
-    <searchLayouts></searchLayouts>
-    <sharingModel>ControlledByParent</sharingModel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

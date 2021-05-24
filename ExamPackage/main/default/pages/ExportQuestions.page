@@ -1,0 +1,7 @@
+<apex:page controller="ExportQuestionsController" sidebar="false"  cache="false" >
+    <!--
+	 contentType="text/plain/#emp.txt"
+     action="formatQuestions"
+     -->
+    <apex:outputText value="{!currentExamQuestion}"/>
+</apex:page>
