@@ -33,7 +33,6 @@
             "versionNumber": "0.1.0.NEXT",
             "default": false
         }
-
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
@@ -44,6 +43,7 @@
         "CorePackage@0.1.0-2": "04t5e000000phPqAAI",
         "Exam_Package": "0Ho5e000000Gn37CAC",
         "Exam_Package@0.1.0-1": "04t5e000000xy1lAAA",
+        "Exam_Package@0.1.0-2": "04t5e000000xyZWAAY",
         "TitanPagePackage": "0Ho5e000000blcZCAQ",
         "TitanPagePackage@0.1.0-1": "04t5e000000lUQqAAM",
         "HeroHubPackage": "0Ho5e000000oLxlCAE",
