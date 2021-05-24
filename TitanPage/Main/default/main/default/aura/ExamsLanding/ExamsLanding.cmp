@@ -1,7 +1,7 @@
 <aura:component>
+    <aura:attribute name="activeTitan" type="Titan__c"/>
     <div>
         <div>
-            
             <!-- Contact information Component, allows the user to view their contact information -->
             <span> <div class="container slds-m-around_large" id="contactinfo">
                 <lightning:card title="Name of Titan" iconName="standard:contact">
@@ -17,4 +17,4 @@
                 </div></span>
         </div>
     </div>
-</aura:component>	
+</aura:component>

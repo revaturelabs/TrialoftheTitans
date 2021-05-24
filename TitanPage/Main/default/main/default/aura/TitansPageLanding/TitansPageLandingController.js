@@ -1,5 +1,5 @@
 ({
-    myAction : function(component, event, helper) {
-
+    cShowTitan : function(component, event, helper) {
+        helper.hShowTitan(component, event);
     }
 })
