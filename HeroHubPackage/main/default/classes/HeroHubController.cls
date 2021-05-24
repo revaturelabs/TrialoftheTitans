@@ -1,10 +1,10 @@
 public with sharing class HeroHubController {
     
     @AuraEnabled
-    public static methodName(){
+    public static UserContextInfo getUserInfo(){
         try {
-            userAccount = HeroHubUtilities.getUserAccount();
-            userExams = getUserExams(user);
+            UserContextInfo user = newUserContextInfo(UserInfo.getUserId())
+            return user; 
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
