@@ -33,7 +33,6 @@
             "versionNumber": "0.1.0.NEXT",
             "default": false
         }
-
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
