@@ -12,7 +12,7 @@
             "package": "Exam_Package",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": false,
+            "default": true,
             "dependencies": [
                 {
                     "package": "04t5e000000phPqAAI"
@@ -43,6 +43,7 @@
         "CorePackage@0.1.0-2": "04t5e000000phPqAAI",
         "Exam_Package": "0Ho5e000000Gn37CAC",
         "Exam_Package@0.1.0-1": "04t5e000000xy1lAAA",
+        "Exam_Package@0.1.0-2": "04t5e000000xyZWAAY",
         "HeroHubPackage": "0Ho5e000000oLxlCAE",
         "HeroHubPackage@0.1.0-1": "04t5e0000005UjhAAE",
         "TitansPackage": "0Ho5e000000blceCAA",
