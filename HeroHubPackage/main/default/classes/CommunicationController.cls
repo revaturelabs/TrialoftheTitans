@@ -54,7 +54,7 @@ public with sharing class CommunicationController {
         
         ConnectAPI.FeedItemInput feedInput = new ConnectAPI.FeedItemInput();
         ConnectAPI.MentionSegmentInput mentionInput = new ConnectAPI.MentionSegmentInput();
-        ConnectAPI.MessageBodyInput messageInput = new ConnectAPI.MesssageBodyInput();
+        ConnectAPI.MessageBodyInput messageInput = new ConnectAPI.MessageBodyInput();
         ConnectAPI.TextSegmentInput textInput = new ConnectAPI.TextSegmentInput();
         
         // Used to store the segments of the message (the mention and the text)
@@ -65,23 +65,22 @@ public with sharing class CommunicationController {
         // for each user, then add those mention segments to messageInput.messageSegments
 
         // Populate the body of the message
-        textSegmentInput.text = message;
-        messageInput.messageSegments.add(textSegmentInput);
+        textInput.text = message;
+        messageInput.messageSegments.add(textInput);
 
         // Attach the input to the feed item and populate type and id fields
         feedInput.body = messageInput;
         feedInput.feedElementType = ConnectAPI.FeedElementType.FEEDITEM;
         feedInput.subjectId = groupId;
 
+        ConnectAPI.FeedElement feedElement = null;
         // Post element
         try {
-            ConnectAPI.ChatterFeeds.postFeedElement( null, feedInput );
+            feedElement = ConnectAPI.ChatterFeeds.postFeedElement( null, feedInput );
         }
         catch (Exception e) {
             throw new AuraHandledException( e.getMessage() );
-            return false;
         }
-
-        return true;
+        return feedElement != null;
     }
 }
