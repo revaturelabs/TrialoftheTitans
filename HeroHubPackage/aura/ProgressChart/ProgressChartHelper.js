@@ -33,19 +33,21 @@
         }
       ]
 
-    var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 460 - margin.left - margin.right,
+    var margin = {top: 30, right: 30, bottom: 30, left: 30},
+    width = 500 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom,
-    innerRadius = 2,
-    outerRadius = Math.min(width, height) / 2;   // the outerRadius goes from the middle of the SVG area to the border
+    innerRadius = 20,
+    outerRadius = (Math.min(width, height) / 2) -40 ;   // The outerRadius goes from the middle of the SVG area to the border
 
-    // append the svg object to the body of the page
+    // Append the svg object to the body of the page
     var svg = d3.select("#progress-chart")
         .append("svg:svg")
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
+          
         .append("g")
-          .attr("transform", "translate(" + width / 2 + "," + height/2 +")"); // Add 100 on Y translation, cause upper bars are longer
+          .attr("transform", "translate(" + width / 2 + "," + height/2 +")")
+          .attr("margin", 100); // Add 100 on Y translation, cause upper bars are longer
 
         console.log(svg)
           
@@ -88,6 +90,43 @@
             .padAngle(0.01)
             .padRadius(innerRadius))
         .attr("stroke", '#ffffff');
+    // Border Rings
+        var label = svg.append("g")
+        .selectAll("g")
+        .data(data)
+        .enter().append("g")
+          .attr("text-anchor", "middle")
+          .attr("transform", function(d) { return "rotate(" + ((x(d.Titan) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")translate(" + outerRadius + ",0)"; });
+    
+      label.append("line") // This line goes down the center of the slice, but probably should be a divider
+          .attr("x2", -outerRadius+innerRadius)
+          .attr()
+          .attr("stroke", "#000");
+    
+      label.append("text") 
+          .attr("transform", function(d) { 
+            // Math is happening 
+            // Send help
+            return (x(d.Titan) + x.bandwidth() / 2 + Math.PI / 2) % 
+            (2 * Math.PI) < Math.PI ? 
+            "rotate(90)translate(0,-16)" : 
+            "rotate(-90)translate(0,25)"; })
+          .text(function(d) { return d.Titan; });
+    
+      var yAxis = svg.append("g")
+          .attr("text-anchor", "middle");
+    
+      var yTick = yAxis
+        .selectAll("g")
+        .data(y.ticks(1).slice(1)) // Set the number of rings
+        .enter().append("g");
+    
+      yTick.append("circle")
+          .attr("fill", "none")
+          .attr("stroke", "#000")
+          .attr("r", y);
+    
+      
 
   }
 })
