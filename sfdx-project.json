@@ -24,7 +24,7 @@
             "package": "TitansPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true
+            "default": false
         },
         {
             "path": "HeroHubPackage",
@@ -44,6 +44,7 @@
         "Exam_Package": "0Ho5e000000Gn37CAC",
         "Exam_Package@0.1.0-1": "04t5e000000xy1lAAA",
         "Exam_Package@0.1.0-2": "04t5e000000xyZWAAY",
+        "Exam_Package@0.1.0-3": "04t5e000000xyyrAAA",
         "HeroHubPackage": "0Ho5e000000oLxlCAE",
         "HeroHubPackage@0.1.0-1": "04t5e0000005UjhAAE",
         "TitansPackage": "0Ho5e000000blceCAA",
