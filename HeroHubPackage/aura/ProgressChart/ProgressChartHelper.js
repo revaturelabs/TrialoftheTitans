@@ -90,6 +90,20 @@
             .padAngle(0.01)
             .padRadius(innerRadius))
         .attr("stroke", '#ffffff');
+
+    svg.append("g")
+      .selectAll("path")
+      .data(data)
+      .enter().append("path")
+        .attr("d", d3.arc()
+            .innerRadius(function(d) { return y(0); })
+            .outerRadius(function(d) { return y(1); })
+            .startAngle(function(data) { return x(data.Titan); })
+            .endAngle(function(data) { return x(data.Titan) + x.bandwidth(); })
+            .padAngle(0.01)
+            .padRadius(innerRadius))
+        .attr("fill", "none")
+        .attr("stroke", '#000000');
     // Border Rings
         var label = svg.append("g")
         .selectAll("g")
@@ -97,11 +111,6 @@
         .enter().append("g")
           .attr("text-anchor", "middle")
           .attr("transform", function(d) { return "rotate(" + ((x(d.Titan) + x.bandwidth() / 2) * 180 / Math.PI - 90) + ")translate(" + outerRadius + ",0)"; });
-    
-      label.append("line") // This line goes down the center of the slice, but probably should be a divider
-          .attr("x2", -outerRadius+innerRadius)
-          .attr()
-          .attr("stroke", "#000");
     
       label.append("text") 
           .attr("transform", function(d) { 
