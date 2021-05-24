@@ -1,8 +1,8 @@
 <aura:component>
     <aura:attribute name="leadTeam" type="Map"/>
-    <div class="animatedHeader">
+    <div class="header-animatedHeader">
         <!--Will Be Added When Finished-->
-    <!--    <h1>Trial of the Titans</h1>
+    <!--<h1>Trial of the Titans</h1>
         <div class="headerAnimation">
             <div class="titanContainer">
                 <div class="cyclopsHead">
@@ -59,5 +59,34 @@
                 <div class="bronze-statue-head"></div>
             </div>
         </div> -->
+        <aura:if isTrue="{!v.leadTeam == 'Alchemy'}">
+            <div class="header-animatedHeader_Alchemy">
+                <div class="header-animatedHeader_Alchemy-Start1"></div>
+                <div class="header-animatedHeader_Alchemy-End"></div>
+            </div>
+            <aura:set attribute="else">
+                <aura:if isTrue="{!v.leadTeam == 'Amplifire'}">
+                    <div class="header-animateHeader_Amplifire">
+                        <div class="header-animatedHeader_Amplifire-Start1"></div>
+                        <div class="header-animatedHeader_Amplifire-End"></div>
+                    </div>
+                    <aura:set attribute="else">
+                        <aura:if isTrue="{!v.leadTeam == 'Synergy'}">
+                            <div class="header-animateHeader_Synergy">
+                                <div class="header-animatedHeader_Synergy-Start1"></div>
+                                <div class="header-animatedHeader_Synergy-End"></div>
+                            </div>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!v.leadTeam == 'Vanquish'}">
+                                    <div class="header-animateHeader_Vanquish">
+                                        <div class="header-animatedHeader_Vanquish-Start1"></div>
+                                        <div class="header-animatedHeader_Vanquish-End"></div>
+                                    </div>
+                                </aura:if>
+                        </aura:if>
+                    </aura:set>
+                </aura:if>
+            </aura:set>
+        </aura:if>
     </div>
 </aura:component>

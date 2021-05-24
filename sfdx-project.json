@@ -21,11 +21,7 @@
         },
         {
             "path": "TitanPage",
-<<<<<<< HEAD
-            "package": "TitanPagePkg",
-=======
             "package": "TitanPagePackage",
->>>>>>> 4c8182b143ff1b5968e06d872da486504f51505c
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": false

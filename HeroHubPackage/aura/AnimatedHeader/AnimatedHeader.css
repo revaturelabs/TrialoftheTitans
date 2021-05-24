@@ -1,9 +1,35 @@
-.THIS.animatedHeader {
+.THIS.header-animatedHeader {
     width: 100%;
     height: 80px;
     background-color: var(--lead-team-color);
     padding: var(--padding); 
 }
+
+.THIS.header-animatedHeader_Alchemy, 
+.THIS.header-animatedHeader_Amplifire, 
+.THIS.header-animatedHeader_Synergy,
+.THIS.header-animatedHeader_Vanquish{
+  width: 100%;
+  height: 100%;
+  position: absolute; 
+}
+
+.THIS.header-animateHeader_Alchemy {
+  background-color: var(--alchemy-primary);
+}
+
+.THIS.header-animatedHeader_Amplifire{
+  background-color: var(--amplifire-primary);
+}
+
+.THIS.header-animatedHeader_Synergy{
+  background-color: var(--synergy-primary);
+}
+
+.THIS.header-animatedHeader_Vanquish{
+  background-color: var(--vanquish-primary);
+}
+
 .THIS .titanContainer{
     position: absolute;
     left: 400px;
