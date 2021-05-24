@@ -1,14 +1,43 @@
+<!--
+    CREATED BY: Jared Longnecker
+    USAGE: Used to control the display of group tabs, message composition, and chatter messages
+-->
+
 <aura:component>
-    <aura:attribute name = "tabs" type = "String" />
+    <aura:attribute name = "tabs" type = "String[]" />
+    <aura:attribute name = "activeTab" type = "String" />
+    <aura:attribute name = "currentContent" type = "String[]" />
 
+    <!-- COMPONENT METHODS -->
+    <aura:method name = "PopulateTabs" action = "{!c.PopulateTabs}" access = "PUBLIC" >
+        <aura:attribute name = "tabList" type = "String[]" />
+    </aura:method>
+    <aura:method name = "SwapTabs" action = "{!c.SwapTabs}" access = "PUBLIC" >
+        <aura:attribute name = "tabContent" type = "String[]" />
+    </aura:method>
+
+    <!-- BEGIN COMPONENT -->
     <div id = "feed-container">
-        <div class = "slds-grid" id = "feed-header">
-            <aura:iteration items = "{!v.tabs}">
 
+        <!-- HEADER -->
+        <div class = "slds-grid" id = "feed-header">
+            <aura:iteration items = "{!v.tabs}" var = "name" >
+                <div class = "slds-col" >
+                    <c:CommunicationFeedTab tabName = "{!name}" />
+                </div>
             </aura:iteration>
         </div>
+
+        <!-- CHATTER MESSAGES -->
         <div id = "feed-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit eu turpis in finibus. Aliquam aliquet scelerisque massa sed porttitor. Mauris condimentum ut sem id condimentum. Quisque sollicitudin, risus volutpat facilisis tristique, arcu velit hendrerit massa, in interdum tortor arcu vel neque. Morbi sagittis diam diam, sed molestie turpis rutrum nec. Nulla posuere urna varius nisi egestas placerat. Duis suscipit metus sed dolor luctus congue. Mauris aliquet dui eget mi lacinia, efficitur scelerisque ante laoreet. In sed faucibus lacus.
+            <aura:iteration items = "{!v.currentContent}" var = "content" >
+                <c:CommunicationFeedItem content = "{!content}" />
+            </aura:iteration>
+        </div>
+
+        <!-- MESSAGE COMPOSITION FIELD -->
+        <div id = "feed-compose">
+            <c:CommunicationFeedCompose />
         </div>
     </div>
     

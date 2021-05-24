@@ -1,0 +1,15 @@
+<!--
+    CREATED BY: Jared Longnecker
+    USAGE: Used to create a text area for the user to input their desired chatter message
+-->
+
+<aura:component>
+    <div class = "slds-grid" id = "compose-holder">
+        <div class = "slds-size_4-of-5" id = "compose-text">
+            <textarea placeholder = "Compose a message" type = "text" id = "message-body" name = "body" />
+        </div>
+        <div class = "slds-size_1-of-5" id = "compose-submit">
+            <span>Submit</span>
+        </div>
+    </div>
+</aura:component>	

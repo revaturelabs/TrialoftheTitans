@@ -1,3 +1,14 @@
-<aura:component>
+<!--
+    CREATED BY: Jared Longnecker
+    USAGE: Used to create tabs containing the groups the context user is a part of
+-->
 
+<aura:component>
+    <aura:attribute name = "tabName" type = "String" default = "No Name" />
+
+    <aura:registerEvent name = "TabSelectEvent" type = "c:TabSelectEvent" />
+
+    <div id = "feed-tab" onclick = "{!c.TabSelected}">
+        {!v.tabName}
+    </div>
 </aura:component>	

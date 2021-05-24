@@ -1,20 +1,87 @@
+/*
+    CREATED BY: Jared Longnecker
+    USAGE: This class is used to interface with the server in order to retrieve chatter posts and create new chatter
+    posts.
+*/
+
 public with sharing class CommunicationController {
 
     public CommunicationController() {
 
     }
 
-    public static List<String> GetFeedTabNames() {
 
+    // DESCRIPTION: Used to get all the chatter groups the context user is a part of
+    @AuraEnabled
+    public static List<CollaborationGroup> GetGroups() {
+
+        // Query for member group list of the context user
         User currentUser = [ SELECT id, name FROM User WHERE Name LIKE '%User%' LIMIT 1 ];
-        List<CollaborationGroupMember> groupMemberList = [  SELECT id, CollaborationGroup.name, collaborationGroupId 
+        List<CollaborationGroupMember> groupMemberList = [  SELECT id, collaborationGroupId 
                                                             FROM CollaborationGroupMember 
                                                             WHERE memberId = :currentUser.id ];
 
-        List<String> groupNames = new List<String>();
+        // Create an ID set to query for just the groups themselves
+        Set<Id> groupIds = new Set<Id>();
         for ( CollaborationGroupMember aGroup : groupMemberList ) {
-            groupNames.add( aGroup.CollaborationGroup.name );
+            groupIds.add( aGroup.collaborationGroupId );
         }
-        return groupNames;
+
+        // Return those groups that the context user is a member of
+        return [    SELECT id, name 
+                    FROM CollaborationGroup
+                    WHERE id IN :groupIds ];
+    }
+
+    // DESCRIPTION: Used to get all chatter messages from an input chatter group
+    // PARAMETERS:  - groupId : the id of the chatter group to pull messages from
+    @AuraEnabled
+    public static List<ConnectAPI.FeedElement> GetGroupContent( String groupId ) {
+        
+        // Retrieve a chatter group feed based off input group ID
+        ConnectAPI.FeedElementPage groupFeed = 
+            ConnectAPI.ChatterFeeds.getFeedElementsFromFeed( null, ConnectAPI.feedType.RECORD, groupId );
+
+        // Return the list of FeedElements from the group
+        return groupFeed.elements;
+    }
+
+    // DESCRIPTION: Used to post a input message to an input chatter group
+    // PARAMATERS:  - groupId : the id of the chatter group to post the message to
+    //              - message : the text to be posted to the group
+    @AuraEnabled
+    public static boolean PostMessageToGroup( String groupId, String message ) {
+        
+        ConnectAPI.FeedItemInput feedInput = new ConnectAPI.FeedItemInput();
+        ConnectAPI.MentionSegmentInput mentionInput = new ConnectAPI.MentionSegmentInput();
+        ConnectAPI.MessageBodyInput messageInput = new ConnectAPI.MesssageBodyInput();
+        ConnectAPI.TextSegmentInput textInput = new ConnectAPI.TextSegmentInput();
+        
+        // Used to store the segments of the message (the mention and the text)
+        messageInput.messageSegments = new List<ConnectAPI.MessageSegmentInput>();
+
+        // FOR FUTURE USE:
+        // If you need to include mentions, find the id's of the users mentioned and add a mention segment
+        // for each user, then add those mention segments to messageInput.messageSegments
+
+        // Populate the body of the message
+        textSegmentInput.text = message;
+        messageInput.messageSegments.add(textSegmentInput);
+
+        // Attach the input to the feed item and populate type and id fields
+        feedInput.body = messageInput;
+        feedInput.feedElementType = ConnectAPI.FeedElementType.FEEDITEM;
+        feedInput.subjectId = groupId;
+
+        // Post element
+        try {
+            ConnectAPI.ChatterFeeds.postFeedElement( null, feedInput );
+        }
+        catch (Exception e) {
+            throw new AuraHandledException( e.getMessage() );
+            return false;
+        }
+
+        return true;
     }
 }

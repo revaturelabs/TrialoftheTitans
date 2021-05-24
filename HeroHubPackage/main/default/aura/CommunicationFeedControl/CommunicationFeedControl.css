@@ -1,16 +1,46 @@
+.THIS #feed-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.THIS #feed-content::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0, 0);
+}
+
+.THIS #feed-content::-webkit-scrollbar-thumb {
+    background: #302f30;
+    border-radius: 30px;
+}
+
+.THIS #feed-content::-webkit-scrollbar-thumb:hover {
+    background: #141414;
+}
+
+
+
 .THIS#feed-container {
     overflow: hidden;
     background: #d4d5d5;
+    width: 100%;
+    height: 45vh;
 }
 
 .THIS #feed-header {
-    padding: 1em 0;
     background: #302f30;
     color: #d4d5d5;
 }
 
 .THIS #feed-content {
     overflow-y: auto;
-    min-width: 100%;
+    min-height: calc(100% - 10em);
+    max-height: calc(100% - 10em);
     color: #302f30;
+}
+
+.THIS #feed-compose {
+    background: #302f30;
+    color: #d4d5d5;
+    padding: 1em;
+    min-height: 7em;
+    max-height: 7em;
+    border-radius: 0 0 5px 5px;
 }
