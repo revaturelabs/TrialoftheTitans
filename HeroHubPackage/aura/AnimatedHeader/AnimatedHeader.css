@@ -1,33 +1,39 @@
 .THIS.header-animatedHeader {
     width: 100%;
     height: 80px;
-    background-color: var(--lead-team-color);
-    padding: var(--padding); 
+    box-sizing: border-box;
 }
 
-.THIS.header-animatedHeader_Alchemy, 
-.THIS.header-animatedHeader_Amplifire, 
-.THIS.header-animatedHeader_Synergy,
-.THIS.header-animatedHeader_Vanquish{
+.THIS .header-animatedHeader_Alchemy, 
+.THIS .header-animatedHeader_Amplifire, 
+.THIS .header-animatedHeader_Synergy,
+.THIS .header-animatedHeader_Vanquish,
+.THIS .header-animatedHeader_normal {
   width: 100%;
   height: 100%;
-  position: absolute; 
+  box-sizing: border-box;
+  padding: var(--padding);
 }
 
-.THIS.header-animateHeader_Alchemy {
+.THIS .header-animateHeader_Alchemy {
   background-color: var(--alchemy-primary);
 }
 
-.THIS.header-animatedHeader_Amplifire{
+.THIS .header-animatedHeader_Amplifire{
   background-color: var(--amplifire-primary);
 }
 
-.THIS.header-animatedHeader_Synergy{
+.THIS .header-animatedHeader_Synergy{
   background-color: var(--synergy-primary);
 }
 
-.THIS.header-animatedHeader_Vanquish{
+.THIS .header-animatedHeader_Vanquish{
   background-color: var(--vanquish-primary);
+}
+
+.THIS .header-animatedHeader_normal {
+  background-color: var(--text-color);
+  color: var(--background-color);
 }
 
 .THIS .titanContainer{

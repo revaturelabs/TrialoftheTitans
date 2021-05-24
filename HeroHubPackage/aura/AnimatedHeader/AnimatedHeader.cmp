@@ -82,7 +82,17 @@
                                         <div class="header-animatedHeader_Vanquish-Start1"></div>
                                         <div class="header-animatedHeader_Vanquish-End"></div>
                                     </div>
+                                    <aura:set attribute="else">
+                                        <div class="header-animatedHeader_normal">
+                                            <h1 class="header-Title">
+                                                Trial Of
+                                                <br/>
+                                                The Titans
+                                            </h1>
+                                        </div>
+                                    </aura:set>
                                 </aura:if>
+                            </aura:set>
                         </aura:if>
                     </aura:set>
                 </aura:if>
