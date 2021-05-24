@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Exam_Question__c</fullName>
+    <fullName>Team__c</fullName>
     <externalId>false</externalId>
-    <label>Exam Question</label>
-    <referenceTo>Exam_Question__c</referenceTo>
-    <relationshipLabel>Question Assignments</relationshipLabel>
-    <relationshipName>Question_Assignments</relationshipName>
+    <label>Team</label>
+    <referenceTo>Team__c</referenceTo>
+    <relationshipLabel>Squads</relationshipLabel>
+    <relationshipName>Squads</relationshipName>
     <relationshipOrder>0</relationshipOrder>
-    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <reparentableMasterDetail>true</reparentableMasterDetail>
     <trackTrending>false</trackTrending>
     <type>MasterDetail</type>
     <writeRequiresMasterRead>false</writeRequiresMasterRead>

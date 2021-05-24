@@ -148,18 +148,18 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
-    <enableReports>false</enableReports>
+    <enableReports>true</enableReports>
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
-    <label>Question Assignment</label>
+    <label>Squad</label>
     <nameField>
-        <label>Question Assignment Name</label>
+        <label>Squad Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Question Assignments</pluralLabel>
-    <searchLayouts></searchLayouts>
+    <pluralLabel>Squads</pluralLabel>
+    <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
