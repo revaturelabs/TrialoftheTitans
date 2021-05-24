@@ -5,7 +5,7 @@
             "package": "CorePackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true
+            "default": false
         },
         {
             "path": "ExamPackage",
@@ -21,11 +21,23 @@
         },
         {
             "path": "TitanPage",
+<<<<<<< HEAD
             "package": "TitanPagePkg",
+=======
+            "package": "TitanPagePackage",
+>>>>>>> 4c8182b143ff1b5968e06d872da486504f51505c
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": false
+        },
+        {
+            "path": "HeroHubPackage",
+            "package": "HeroHubPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true
         }
+
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
@@ -36,7 +48,9 @@
         "CorePackage@0.1.0-2": "04t5e000000phPqAAI",
         "Exam_Package": "0Ho5e000000Gn37CAC",
         "Exam_Package@0.1.0-1": "04t5e000000xy1lAAA",
-        "TitanPagePkg": "0Ho5e000000blcUCAQ",
-        "TitanPagePkg@0.1.0-1": "04t5e000000lU1aAAE"
+        "TitanPagePackage": "0Ho5e000000blcZCAQ",
+        "TitanPagePackage@0.1.0-1": "04t5e000000lUQqAAM",
+        "HeroHubPackage": "0Ho5e000000oLxlCAE",
+        "HeroHubPackage@0.1.0-1": "04t5e0000005UjhAAE"
     }
 }
