@@ -3,5 +3,5 @@
 	 contentType="text/plain/#emp.txt"
      action="formatQuestions"
      -->
-    <apex:outputText value="{!currentExamQuestion}"/>
+    <apex:outputText value="{!formattedQuestion}"/>
 </apex:page>
