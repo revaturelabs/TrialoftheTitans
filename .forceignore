@@ -3,6 +3,7 @@
 #
 
 **profiles
+!**/profiles/Admin.profile-meta.xml
 **layouts
 package.xml
 
@@ -12,3 +13,6 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+
+# personal testing
+**/.planning/**
