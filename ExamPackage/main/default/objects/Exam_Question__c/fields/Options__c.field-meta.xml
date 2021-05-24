@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Options__c</fullName>
-    <deprecated>false</deprecated>
     <externalId>false</externalId>
     <label>Options</label>
-    <length>255</length>
-    <required>false</required>
+    <length>32768</length>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
 </CustomField>
