@@ -20,7 +20,7 @@ public class ExportQuestionsController {
         for(String option : options){
             if(option!= question.Correct_Answer_s__c){
                 incorrectAnswers.add('~'+option);
-            }}
+            }} 
        String incorrectAnswerString = string.join(incorrectAnswers, ' ');
         // GIFT format for MC: ::QuestionName:: QuestionText {= correctAnswer #comment ~incorrectanswers}
         formattedQuestion='::' + question.Name + ':: ' + question.Question_Text__c +' {='+ question.Correct_Answer_s__c
