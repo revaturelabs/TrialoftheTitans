@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Java</fullName>
+        <default>false</default>
+        <label>Java</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce</fullName>
+        <default>false</default>
+        <label>Salesforce</label>
+    </customValue>
+    <description>Technologies in the Trial of The Titans</description>
+    <masterLabel>Technology</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
