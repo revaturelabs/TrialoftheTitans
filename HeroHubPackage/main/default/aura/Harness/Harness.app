@@ -1,3 +1,3 @@
 <aura:application extends = "force:slds">
-    <c:Communication />
+    <c:PageContainer />
 </aura:application>
