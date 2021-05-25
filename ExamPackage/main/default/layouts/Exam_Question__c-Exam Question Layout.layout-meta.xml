@@ -19,6 +19,10 @@
                 <behavior>Edit</behavior>
                 <field>Correct_Answer_s__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Missing_Word__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
