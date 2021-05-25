@@ -1,4 +1,6 @@
 ({
+    // Split each question in text file to its own object and put it in a list.
+    // send the list along with titan and technology to ApexController.
     SplitString : function(component, theString, titan, technology) {
         
         // remove comments
@@ -66,5 +68,6 @@
         // send it to apex.
         console.log('titan:' + titan + ' technology:' + technology);
         console.log(apexObjectList);
+        console.log('Apex Goes Here!');
     }
 })

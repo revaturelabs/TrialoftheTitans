@@ -1,25 +1,25 @@
+<!--
+	Component to take in gift format text file
+-->
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
                 access="global" >
-    
     
     <aura:attribute name="fileType" type="List" default="['.txt']" />
     <aura:attribute name="multiple" type="Boolean" default="true" />
     <aura:attribute name="record" type="String" default="a0AJ000000IQCazMAH"/>
-    
     <aura:attribute name="selectedTitan" type="String" />
     <aura:attribute name="titans" type="List" default="[{'Name' : 'Apex', 'Id' : 12345}, 
                                                        {'Name' : 'Security', 'Id' : 12345}, 
                                                        {'Name' : 'Data Modeling', 'Id' : 12345}]"/>
-    
     <aura:attribute name="selectedTechnology" type="String" />
     <aura:attribute name="technologies" type="List" default="[{'Name' : 'Salesforce', 'Id' : 54321}, 
                                                              {'Name' : 'Web-Development', 'Id' : 54321},
                                                              {'Name' : 'Database', 'Id' : 54321}]"/>
-    
-    
     <aura:attribute name="canUpload" type="Boolean" default="false" />
     <aura:attribute name="fileName" type="String" default="No File Selected.." />
     <aura:attribute name="fileText"  type="String"  /> 
+    
+    
     <!-- body -->
     <div>
         
@@ -78,7 +78,7 @@
                     {!v.fileText} 
                 </div>
                 <!-- upload button -->
-                <lightning:button variant="brand" label="Upload" title="Upload" onclick="{! c.HandleUpload }"/>
+                <lightning:button variant="brand" label="Finished" title="Finished" onclick="{! c.HandleFinished }"/>
                 <!-- /upload button -->
                 
                 

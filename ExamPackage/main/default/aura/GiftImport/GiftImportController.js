@@ -1,4 +1,6 @@
-({
+({	
+    // On file upload it use file reader to get the text file content
+    // Then use helper to parse questions into objects that will be sent toward ApexController
     HandleUploadFile : function(component, event, helper) {
         let fileName = 'No File Selected..';
         let fileContents = '';
@@ -25,11 +27,15 @@
         }
         
     },
+    
+    // Submit handler, send user to upload page.
     HandleSubmission : function(component, event, helper) {
         let iffer = component.get("v.canUpload");
         component.set("v.canUpload", true);
     },
-    HandleUpload : function(component, event, helper) {
+    
+    // Finished button handler, send user back to titan and technology page.
+    HandleFinished : function(component, event, helper) {
         component.set("v.canUpload", false);
     }
 })
