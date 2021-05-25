@@ -1,0 +1,9 @@
+<apex:page controller="ExportQuestionsController" contentType="text/plain/#emp.txt" sidebar="false"  cache="false" >
+    <!--
+     action="formatQuestions"
+     -->
+    <!-- <apex:repeat value="{!allFormattedQuestionsString}" var="question">-->
+    <apex:outputText value="{!allFormattedQuestionsString}"/>
+    <!--{!allFormattedQuestions}-->
+   <!-- </apex:repeat>-->
+</apex:page>
