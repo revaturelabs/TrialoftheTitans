@@ -1,26 +1,40 @@
 public class UserContextInfo {
     
+    //account Info
     @auraEnabled public Account acc{get; set;}
+    
+    //squad Info
     @auraEnabled public Squad__c squad{get; set;}
+    
+    //Team Info
     @auraEnabled public Team__c team{get; set;}
+    
+    //Map of Exam Info by Titan and then Exam Name
     @auraEnabled public Map<String, List<ExamList>> userExams {get; set;} 
 
+    //Constructor when given a userId
     public UserContextInfo( Id userId ){
+
         acc = getUserAccount( userId );
+        
         squad = getSquad( acc.Squad__c );
+        
         team = getTeam( squad.Team__c );
-        system.debug(acc.Curriculum__c);
-        List<Titan__c> titanList = getTitans( acc.Curriculum__c );
-        system.debug(titanList);
-        List<Exam__c> examList = getExams( titanList );
-        userExams = mapTitansToExams( examList, titanList, acc.Id );
+        
+        // Get 
+        List<Exam__c> examList = getExamsWithResults(acc.Id);
+
+        userExams = mapTitansToExams( examList );
     }
 
     private Account getUserAccount(Id userId) {
 
+        // To be added when user is live
         //Id userContactId = [SELECT Id, ContactId FROM USER WHERE Id = :userId].ContactId;
         //Contact userContact = [SELECT Id, AccountId, Name FROM Contact WHERE Id = :userContactId];
-        Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Id = '001S000001NkRuCIAV'];
+        
+        //Hard Coded Account for
+        Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Name = 'User0'];
         return userAccount;
     }
 
@@ -47,31 +61,33 @@ public class UserContextInfo {
 
     }
 
-    private List<Titan__c> getTitans(Id curriculum){
-
-        List<Titan__c> titans = [SELECT Id, Name FROM Titan__c WHERE Curriculum__c = :curriculum];
+    private List<Exam__c> getExamsWithResults(Id accId){
         
-        system.debug(titans);
-        return titans;
-    }
-
-    private List<Exam__c> getExams(List<Titan__c> titanList){
-        
-        List<Exam__c> examList = [SELECT Id, Titan__c, Name FROM Exam__c WHERE Titan__C IN :titanList];
+        List<Exam__c> examList = [SELECT Id, 
+                                    Titan__r.Name, 
+                                    Name, 
+                                    (SELECT Pass__c, 
+                                            Total_Answers__c, 
+                                            Total_Correct__C 
+                                            FROM Exam_Results__r 
+                                            WHERE Account__c = :accId 
+                                            AND Graded__c = true)
+                                    FROM Exam__c];
     
         return examList;
     }
 
-    private Map<String, List<ExamList>> mapTitansToExams(List<Exam__c> exams, List<Titan__C> titans, Id accId){
+    private Map<String, List<ExamList>> mapTitansToExams(List<Exam__c> exams){
 		
-        system.debug(titans);
         Map<String, List<ExamList>> examMap = new Map<String, List<ExamList>>();
         
-        for( Titan__c titan : titans ) {
-            examMap.put(titan.Name, new List<ExamList>());
-            
-            for(Exam__c exam : exams) {
-                examMap.get(titan.Name).add(new ExamList(accId, exam));
+        for(Exam__c exam:exams){
+            if(examMap.containsKey(exam.Titan__r.Name)){
+                examMap.get(exam.Titan__r.Name).add(new ExamList(exam));
+            }
+            else{
+                List<ExamList> newTitanExams = new List<ExamList>{new ExamList(exam)};
+                examMap.put(exam.Titan__r.Name, newTitanExams);
             }
         }
         

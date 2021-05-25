@@ -8,7 +8,8 @@
     <!--Set dynamic colors for teams-->
     <aura:html tag="style">
         :root {
-            --user-team-color: {!v.contextInfo.userTeam.primary_color__c};
+            --user-team-primary: {!v.contextInfo.team.primary_color__c};
+            --user-team-secondary: {!v.contextInfo.team.secondary_color__c};
             --lead-team-color: {!v.leadTeam.primary_color__c};
             {!v.teamColors}
         }
