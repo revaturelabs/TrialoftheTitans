@@ -37,7 +37,7 @@
 
         <!-- MESSAGE COMPOSITION FIELD -->
         <div id = "feed-compose">
-            <c:CommunicationFeedCompose />
+            <c:CommunicationFeedCompose activeTab = "{!v.activeTab}" />
         </div>
     </div>
     

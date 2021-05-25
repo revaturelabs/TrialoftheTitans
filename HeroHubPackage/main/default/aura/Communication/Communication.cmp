@@ -10,6 +10,7 @@
     <!-- HANDLED EVENTS -->
     <aura:handler name="init" value="{!this}" action="{!c.DoInit }" />
     <aura:handler name  = "TabSelectEvent" event = "c:TabSelectEvent" action = "{!c.ChangeTabs}" />
+    <aura:handler name  = "MessageSendEvent" event = "c:MessageSendEvent" action = "{!c.SendMessage}" />
 
     <div class="user-team-color" id = "hidden-chat-btn">
         <div id = "chat-header" onclick = "{!c.OnHeaderClick}" >

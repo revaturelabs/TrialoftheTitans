@@ -30,7 +30,7 @@
         let tabName = event.getParam( "tabName" );
         let groupId = helper.GetGroupIdFromTabName( component, tabName );
 
-        let getGroupContent = component.get("c.GetGroupContent");
+        let getGroupContent = component.get( "c.GetGroupContent" );
         getGroupContent.setParams( { "groupId" : groupId } );
 
         // Call the GetGroupContent method in CommunicationController and populate the feed content
@@ -45,5 +45,20 @@
             }
         } );
         $A.enqueueAction( getGroupContent );
+    },
+
+
+    SendMessage : function ( component, event, helper ) {
+        let message = event.getParam( "message" );
+        let activeGroup = helper.GetGroupIdFromTabName( component, event.getParam( "activeTab" ) );
+        let postMessageToGroup = component.get( "c.PostMessageToGroup" );
+
+        postMessageToGroup.setParams( { "groupId" : activeGroup, "message" : message } );
+        postMessageToGroup.setCallback( this, function ( response ) {
+            if ( response.getState() == "SUCCESS" ) {
+                alert("Success");
+            }
+        } );
+        $A.enqueueAction( postMessageToGroup );
     }
 })

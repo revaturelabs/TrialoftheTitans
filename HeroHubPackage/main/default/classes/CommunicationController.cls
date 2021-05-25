@@ -46,11 +46,11 @@ public with sharing class CommunicationController {
         return groupFeed.elements;
     }
 
-    // DESCRIPTION: Used to post a input message to an input chatter group
+    // DESCRIPTION: Used to post a input message to an input chatter group and return the created element
     // PARAMATERS:  - groupId : the id of the chatter group to post the message to
     //              - message : the text to be posted to the group
     @AuraEnabled
-    public static boolean PostMessageToGroup( String groupId, String message ) {
+    public static ConnectAPI.FeedElement PostMessageToGroup( String groupId, String message ) {
         
         ConnectAPI.FeedItemInput feedInput = new ConnectAPI.FeedItemInput();
         ConnectAPI.MentionSegmentInput mentionInput = new ConnectAPI.MentionSegmentInput();
@@ -81,6 +81,6 @@ public with sharing class CommunicationController {
         catch (Exception e) {
             throw new AuraHandledException( e.getMessage() );
         }
-        return feedElement != null;
+        return feedElement;
     }
 }

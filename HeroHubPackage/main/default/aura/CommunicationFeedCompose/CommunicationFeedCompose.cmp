@@ -4,11 +4,15 @@
 -->
 
 <aura:component>
+    <aura:attribute name = "activeTab" type = "String" />
+
+    <aura:registerEvent name = "MessageSendEvent" type = "c:MessageSendEvent" />
+
     <div class = "slds-grid" id = "compose-holder">
         <div class = "slds-size_4-of-5" id = "compose-text">
             <textarea placeholder = "Compose a message" type = "text" id = "message-body" name = "body" />
         </div>
-        <div class = "slds-size_1-of-5" id = "compose-submit">
+        <div class = "slds-size_1-of-5" id = "compose-submit" onclick = "{!c.SubmitMessage}" >
             <span>Submit</span>
         </div>
     </div>
