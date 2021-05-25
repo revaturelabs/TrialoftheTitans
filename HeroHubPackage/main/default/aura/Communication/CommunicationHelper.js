@@ -2,16 +2,16 @@
     // DESCRIPTION: Swaps the feed classes to expand the feed box
     // PARAMETERS:  - feedBody : the component to expand
     ExpandFeed : function ( feedBody ) {
-        feedBody.classList.remove("feed-collapsed");
-        feedBody.classList.remove("feed-initial");
-        feedBody.classList.add("feed-expanded");
+        feedBody.classList.remove( "feed-collapsed" );
+        feedBody.classList.remove( "feed-initial" );
+        feedBody.classList.add( "feed-expanded" );
     },
 
     // DESCRIPTION: Swaps the feed classes to collapse the feed box
     // PARAMETERS:  - feedBody : the componenet to collapse
     CollapseFeed : function ( feedBody ) {
-        feedBody.classList.remove("feed-expanded");
-        feedBody.classList.add("feed-collapsed");
+        feedBody.classList.remove( "feed-expanded" );
+        feedBody.classList.add( "feed-collapsed" );
     },
 
     // DESCRIPTION: Gets the names of groups from a list of CollaborationGroups and populates tabs with them

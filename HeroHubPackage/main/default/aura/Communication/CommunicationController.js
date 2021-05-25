@@ -47,16 +47,23 @@
         $A.enqueueAction( getGroupContent );
     },
 
-
+    // DESCRIPTION: Handles the MessageSendEvent and posts the message to the active chatter group
+    // PARAMETERS:  - message : the message to post
+    //              - activeTab : the name of the active group
     SendMessage : function ( component, event, helper ) {
         let message = event.getParam( "message" );
         let activeGroup = helper.GetGroupIdFromTabName( component, event.getParam( "activeTab" ) );
         let postMessageToGroup = component.get( "c.PostMessageToGroup" );
 
+        //Call the PostMessageToGroup method in CommunicationController and update the feed content
         postMessageToGroup.setParams( { "groupId" : activeGroup, "message" : message } );
         postMessageToGroup.setCallback( this, function ( response ) {
             if ( response.getState() == "SUCCESS" ) {
-                alert("Success");
+                let newMessage = response.getReturnValue();
+                let feedControl = component.find( "feed" );
+
+                //Append the new message to the curent content
+                feedControl.AddPostedMessage( newMessage );
             }
         } );
         $A.enqueueAction( postMessageToGroup );

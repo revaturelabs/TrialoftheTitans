@@ -13,7 +13,7 @@
             <textarea placeholder = "Compose a message" type = "text" id = "message-body" name = "body" />
         </div>
         <div class = "slds-size_1-of-5" id = "compose-submit" onclick = "{!c.SubmitMessage}" >
-            <span>Submit</span>
+            <p>Submit</p>
         </div>
     </div>
 </aura:component>	

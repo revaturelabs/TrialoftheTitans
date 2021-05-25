@@ -1,3 +1,12 @@
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .THIS #feed-content::-webkit-scrollbar {
     width: 10px;
 }
@@ -15,7 +24,9 @@
     background: #141414;
 }
 
-
+.THIS #feed-header::-webkit-scrollbar {
+    height: 0;
+}
 
 .THIS#feed-container {
     overflow: hidden;
@@ -27,7 +38,9 @@
 .THIS #feed-header {
     background: #302f30;
     color: #d4d5d5;
+    overflow-x: auto;
 }
+
 
 .THIS #feed-content {
     overflow-y: auto;
@@ -43,4 +56,15 @@
     min-height: 7em;
     max-height: 7em;
     border-radius: 0 0 5px 5px;
+}
+
+.THIS #loading {
+    margin: 1em auto;
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    border: .8em solid #302f30;
+    border-top: .8em solid #84b059;
+    border-bottom: .8em solid #84b059;
+    animation: spin 1.5s linear infinite;
 }
