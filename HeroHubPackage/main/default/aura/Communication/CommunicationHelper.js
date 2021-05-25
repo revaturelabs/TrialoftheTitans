@@ -40,5 +40,27 @@
             }
         }
         return "";
+    },
+
+    // DESCRIPTION: Retrieves the content from the input ID and refreshes the content view
+    // PARAMETERS:  - component : the aura component (Communication.cmp)
+    //              - groupId : the ID of the group to get the content from
+    //              - tabName : the name of the active group
+    RefreshFeed : function ( component, groupId, tabName ) {
+        let getGroupContent = component.get( "c.GetGroupContent" );
+        getGroupContent.setParams( { "groupId" : groupId } );
+
+        // Call the GetGroupContent method in CommunicationController and populate the feed content
+        getGroupContent.setCallback( this, function ( response ) {
+            if ( response.getState() == "SUCCESS" ) {
+                let feedControl = component.find( "feed" );
+                let content = response.getReturnValue();
+
+                // Append the new active tab name for the feed control
+                content.push( tabName );
+                feedControl.SwapTabs( content );
+            }
+        } );
+        $A.enqueueAction( getGroupContent );
     }
 })

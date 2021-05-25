@@ -30,21 +30,17 @@
         let tabName = event.getParam( "tabName" );
         let groupId = helper.GetGroupIdFromTabName( component, tabName );
 
-        let getGroupContent = component.get( "c.GetGroupContent" );
-        getGroupContent.setParams( { "groupId" : groupId } );
+        // Clear the previous interval
+        clearInterval( component.get( "v.lastInterval" ) );
 
-        // Call the GetGroupContent method in CommunicationController and populate the feed content
-        getGroupContent.setCallback( this, function ( response ) {
-            if ( response.getState() == "SUCCESS" ) {
-                let feedControl = component.find( "feed" );
-                let content = response.getReturnValue();
+        // Get the content from the initial event request
+        helper.RefreshFeed( component, groupId, tabName );
 
-                // Append the new active tab name for the feed control
-                content.push( tabName );
-                feedControl.SwapTabs( content );
-            }
-        } );
-        $A.enqueueAction( getGroupContent );
+        // Get the content and refresh every minute
+        let interval = setInterval( $A.getCallback( function () {
+            helper.RefreshFeed( component, groupId, tabName );
+        } ), 10000 );
+        component.set( "v.lastInterval", interval);
     },
 
     // DESCRIPTION: Handles the MessageSendEvent and posts the message to the active chatter group
