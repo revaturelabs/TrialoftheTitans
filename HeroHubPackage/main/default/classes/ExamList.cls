@@ -1,17 +1,18 @@
 public class ExamList {
-    public String name;
-    public List<Exam_Result__c> pastResults;
-    public List<Exam_Result__c> currentResults;
-    public Boolean isPassed;
-    public Decimal highScore;
-
+    @auraEnabled public String name{get;set;}
+    @auraEnabled public List<Exam_Result__c> pastResults{get;set;}
+    @auraEnabled public List<Exam_Result__c> currentResults{get;set;}
+    @auraEnabled public Boolean isPassed{get;set;}
+    @auraEnabled public Decimal highScore{get;set;}
+	
     public ExamList( Id AccId, Exam__c exam ) {
 
         name = exam.Name;
         currentResults = getCurrentResults( accId, exam.Id );
         pastResults = getPastResults( accId, exam.Id );
         isPassed = currentResults[0].Pass__C;
-        highScore = currentResults[0].Total_Correct__c/currentResults[0].Total_Answers__c;
+        //highScore = currentResults[0].Total_Correct__c/currentResults[0].Total_Answers__c;
+        highScore = .80;
 
     }
 
