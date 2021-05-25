@@ -1,0 +1,79 @@
+<aura:component >
+    <aura:attribute name="active" type="String"/>
+    <aura:attribute name="exams" type="Map"/>
+    <aura:attribute name="passedExams" type="List"/>
+    <aura:attribute name="contextInfo" type="Map"/>
+    
+  	<aura:handler name="init" value="{!this}" action="{!c.gameInit}"/>
+    
+    <div>
+        <p style="color:white;"> {!v.active}</p>
+        
+        <!-- Start Path -->
+        <div class="path"> 
+        	<div class="minion-center"/>
+            <div class="vertical-line-centered"/>
+        </div>
+        <!-- Start Path end-->
+        
+        
+        <!-- First Center to Left Path -->
+        <div class="path" >
+            <div class="down-left-center-path"/>
+            <div class="vertical-line-short-left"/>
+            <div class="minion-left"/>
+        </div>
+        <!-- First Center to Left Path End -->
+        
+        
+        <aura:iteration items="{!v.exams}" var="exam">
+            <!-- To the Right Path -->
+            <div class="path"> 
+                <div class="down-right-path"/>
+                <div class="vertical-line-short-right"/>
+                <div style="background:pink;" class="minion-right"/>
+            </div>
+            <!--To the Right Path End-->
+            
+            
+            <!-- To the Left Path -->
+            <div class="path">
+                <div class="down-left-path"/>
+                <div class="vertical-line-short-left"/>
+                <div class="minion-left"/>
+            </div>
+            <!-- To the Left Path End-->
+        </aura:iteration>
+        
+        
+        <!-- Display appropriate second to last path dependant on number of exams -->
+        <aura:if isTrue="{!v.exams.length % 2 == 0}">
+            <!-- Down to Center From Right Path -->
+            <div class="path">
+                <div class="down-right-path"/>
+                <div class="vertical-line-short-right"/>
+                <div class="minion-right"/>
+                <div class="down-right-center-path"/>
+            </div>
+            <!-- Down to Center From Right Path End -->
+            
+            <aura:set attribute="else">
+                <!-- Down to Center From Right Path -->
+                <div class="path">
+                    <div class="down-center-final-path"/>
+                </div>
+                <!-- Down to Center From Right Path End -->
+            </aura:set>
+        </aura:if>
+        
+        
+        <!-- Final Challenge -->
+        <div class="path"> 
+            <div class="vertical-line-centered"/>
+            <div class="minion-center-final"/>
+        </div>
+        <!-- Final Challenge End-->
+        
+    </div>
+	
+</aura:component>

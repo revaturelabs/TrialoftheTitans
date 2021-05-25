@@ -1,0 +1,166 @@
+.THIS {
+    background: #29292A;
+	border: 15px solid #8CA7DF;
+    border-radius: 0px 5px 5px 5px;
+    height: auto;
+    margin-right: 15px;
+    min-width: 375px;    
+    padding: 15px 10px 25px 15px;
+    width: 100%;
+}
+
+.THIS .path{
+    margin: auto;
+    max-width: 625px;
+    min-width: 525px;
+}
+
+/* START OF MINIONS */
+
+.THIS .minion{
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid white;
+    transition: .5s;
+}
+
+.THIS .minion-center{
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid white;
+    margin: auto;
+}
+
+.THIS .minion-center-final{
+    width: 120px;
+    height: 120px;
+    border-radius: 150px;
+    border: 5px solid white;
+    margin: auto;
+    transition: .5s;
+}
+
+.THIS .minion-center-final:hover{
+    background: #29292A;
+    border-radius: 150px;
+    border: 5px solid #4B5CBB;
+    cursor: pointer;
+    height: 130px;
+    margin: auto;
+    transform: scale(1.1);
+    transition: .5s;
+    width: 130px;
+}
+
+.THIS .minion-left{
+    background: #29292A;
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid white;
+    transition: .5s;
+}
+
+.THIS .minion-left:hover{
+    border-radius: 150px;
+    border: 5px solid #4B5CBB;
+    cursor: pointer;
+    height: 100px;
+    transform: scale(1.1);
+    transition: .5s;
+    width: 100px;
+}
+
+.THIS .minion-right{
+    border-radius: 150px;
+    border: 5px solid white;
+    width: 100px;
+    height: 100px;
+    margin-left: 80%;
+    transition: .5s;
+}
+
+.THIS .minion-right:hover{
+    border-radius: 150px;
+    border: 5px solid #4B5CBB;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    margin-left: 80%;
+    transform: scale(1.1);
+    transition: .5s;
+}
+
+
+/* END OF MINIONS */
+/* START OF LINES */
+
+
+.THIS .down-left-center-path{
+    border-bottom: 7px dashed white;
+    border-right: 7px dashed white;
+    height: 50px;
+    width: 43%;
+    margin-left: 7.5%; 
+}
+
+.THIS .down-center-final-path{
+    border-bottom: 7px dashed white;
+    border-left: 7px dashed white;
+    height: 50px;
+    width: 43%;
+    margin-left: 7.5%; 
+}
+
+.THIS .down-left-path{
+    height: 50px;
+    width: 81.5%;
+    border-right: 7px dashed white;
+    border-bottom: 7px dashed white;
+    margin-left: 7.5%;
+}
+
+.THIS .down-right-path{
+    height: 100px;
+    width: 81.25%;
+    border-left: 7px dashed white;
+    border-bottom: 7px dashed white;
+    margin-left: 7.5%;
+}
+
+.THIS .down-right-center-path{
+    height: 100px;
+    width: 40%;
+    border-right: 7px dashed white;
+    border-bottom: 7px dashed white;
+    margin-left: 49.5%;
+}
+
+.THIS .vertical-line{
+    height: 50px;
+    width: 1px;
+    border-right: 7px dashed white;
+}
+
+.THIS .vertical-line-centered{
+    height: 50px;
+    width: 1px;
+    border-right: 7px dashed white;
+    margin: auto;
+}
+
+.THIS .vertical-line-short-right{
+    height: 25px;
+    width: 1px;
+    border-right: 7px dashed white;
+    margin-left: 87.5%;
+}
+
+.THIS .vertical-line-short-left{
+    height: 25px;
+    width: 1px;
+    border-right: 7px dashed white;
+    margin-left: 7.5%;
+}

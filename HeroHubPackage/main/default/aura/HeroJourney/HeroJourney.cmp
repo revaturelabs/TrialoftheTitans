@@ -1,0 +1,35 @@
+<aura:component access="global" controller="HeroJourneyAuraController">
+    <aura:handler name="TitanClickedEvent" event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
+    <aura:attribute name="tabs" type="List"/>
+    <aura:attribute name="active" type="String"/>
+    <aura:attribute name="contextInfo" type="Map"/>
+    <!-- user context being passed in includes: id, name, squad, user team, curriculum -->
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div class="slds-grid">
+        
+        <div class="slds-col slds-size_1-of-7">
+            <aura:iteration items="{!v.tabs}" var="titan" indexVar="key">
+                <aura:if isTrue="{!v.active == titan}">
+             
+                    <c:TitanTab name="{!titan}" active="true" />
+                    
+                    <aura:set attribute="else">
+                        <c:TitanTab name="{!titan}" active="false"/>
+                    </aura:set>
+                </aura:if>
+            </aura:iteration>
+        </div>
+        
+        <div class="slds-col slds-size_4-of-7">
+            <c:GamePath active="{!v.active}" contextInfo="{!v.contextInfo}"/>
+        </div>
+        
+        <div class="slds-col slds-size_2-of-7">
+            <c:Metrics/>
+        </div>
+        
+    </div>
+    
+</aura:component>

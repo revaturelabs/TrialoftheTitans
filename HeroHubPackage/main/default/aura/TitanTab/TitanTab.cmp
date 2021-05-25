@@ -1,0 +1,24 @@
+<aura:component >
+    <aura:registerEvent name="TitanClickedEvent" type="c:TitanClickedEvent"/>
+    
+    <aura:attribute name="name" type="String"/>
+    <aura:attribute name="num" type="Integer"/>
+    <aura:attribute name="active" type="Boolean"/>
+    
+    <div onclick="{!c.titanClicked}">
+        <aura:if isTrue="{!v.active}">
+            
+            <div class="activeTab" >
+                <h1>{!v.name}</h1>
+            </div>
+            
+            <aura:set attribute="else">
+                <div class="tab">
+                    <h1>{!v.name}</h1>
+                </div>
+            </aura:set>
+            
+        </aura:if>
+    </div>
+    
+</aura:component>
