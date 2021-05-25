@@ -4,7 +4,7 @@
     <aura:attribute name="passedExams" type="List"/>
     <aura:attribute name="contextInfo" type="Map"/>
     
-  	<aura:handler name="init" value="{!this}" action="{!c.gameInit}"/>
+  	<aura:handler name="init" value="{!this}" action="{!c.GameInit}"/>
     
     <div>
         <p style="color:white;"> {!v.active}</p>

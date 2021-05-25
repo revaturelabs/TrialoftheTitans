@@ -1,5 +1,5 @@
 ({
-	gameInit : function( component, event, helper ) {
+	GameInit : function( component, event, helper ) {
 		helper.handleInit( component, event );
 	}
 })

@@ -22,13 +22,21 @@
             </aura:iteration>
         </div>
         
-        <div class="slds-col slds-size_4-of-7">
-            <c:GamePath active="{!v.active}" contextInfo="{!v.contextInfo}"/>
-        </div>
-        
-        <div class="slds-col slds-size_2-of-7">
-            <c:Metrics/>
-        </div>
+        <aura:if isTrue="{!v.active == 'Overview'}">
+            <div style="background:#8CA7DF; border-radius: 0px 5px 5px 5px; height:700px;" class="slds-col slds-size_6-of-7">
+                Overview
+            </div>
+
+            <aura:set attribute="else">
+                <div class="slds-col slds-size_4-of-7">
+                    <c:GamePath active="{!v.active}" contextInfo="{!v.contextInfo}"/>
+                </div>
+                
+                <div class="slds-col slds-size_2-of-7">
+                    <c:Metrics/>
+                </div>
+            </aura:set>
+        </aura:if>
         
     </div>
     

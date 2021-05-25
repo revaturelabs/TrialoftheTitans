@@ -1,19 +1,24 @@
 ({
 	handleInit : function( component, event ) {
+        console.log("game initialization");
         let exams = component.get("v.contextInfo.userExams");
-        exams = {"titan1": [{ name: "someName", isPassed: true, highScore: 88.8 }],
-                 "titan2" : [{ name: "someName", isPassed: true, highScore: 81.5 }],
-                 "titan3" : [{ name: "someName", isPassed: false, highScore: 42.0 }],
-                 "titan4" : [{ name: "someName", isPassed: false, highScore: 0 }],
-                 "titan5" : [{ name: "someName", isPassed: false, highScore: 0 }]
-                 };
-                
+        let examMap = new Map();
+        examMap.set( "Data Model", [ { name: "ERD", isPassed: true, highScore: 88.8 }, 
+                                    { name: "Communism", isPassed: true, highScore: 88.8 } 
+                                ]);
+        examMap.set( "Security", [ { name: "someName", isPassed: true, highScore: 81.5 } ] );
+        examMap.set( "Triggers" , [ { name: "someName", isPassed: false, highScore: 42.0 } ] );
+         
         
+        exams = examMap.get("Data Model");
+        console.log("exams: " + exams);                 
         let passedExams = [];
         
-        for(let exam in exams){
-            if(exam.isPassed){
-                passedExams.push(exam);
+        for(let i in exams){
+            console.log("exam: " + exams[i]);
+            if(exams[i].isPassed){
+                passedExams.push(exams[i]);
+                console.log(exams[i].name)
             }
         }
         
