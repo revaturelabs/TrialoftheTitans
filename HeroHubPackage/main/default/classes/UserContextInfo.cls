@@ -20,11 +20,13 @@ public class UserContextInfo {
         squad = getSquad( acc.Squad__c );
         
         team = getTeam( squad.Team__c );
+
+        List<Titan__c> allTitans = getAllTitans();
         
         // Get 
         List<Exam__c> examList = getExamsWithResults(acc.Id);
 
-        userExams = mapTitansToExams( examList );
+        userExams = mapTitansToExams( examList, allTitans );
     }
 
     private Account getUserAccount(Id userId) {
@@ -61,6 +63,16 @@ public class UserContextInfo {
 
     }
 
+    
+    private List<Titan__C> getAllTitans(){
+
+        List<Titan__c> allTitans = [SELECT Id, Name FROM Titan__C];
+
+        return allTitans;
+    
+    }
+
+
     private List<Exam__c> getExamsWithResults(Id accId){
         
         List<Exam__c> examList = [SELECT Id, 
@@ -77,11 +89,12 @@ public class UserContextInfo {
         return examList;
     }
 
-    private Map<String, List<ExamList>> mapTitansToExams(List<Exam__c> exams){
+    private Map<String, List<ExamList>> mapTitansToExams(List<Exam__c> exams, List<Titan__c> allTitans){
 		
         Map<String, List<ExamList>> examMap = new Map<String, List<ExamList>>();
         
         for(Exam__c exam:exams){
+
             if(examMap.containsKey(exam.Titan__r.Name)){
                 examMap.get(exam.Titan__r.Name).add(new ExamList(exam));
             }
@@ -89,6 +102,18 @@ public class UserContextInfo {
                 List<ExamList> newTitanExams = new List<ExamList>{new ExamList(exam)};
                 examMap.put(exam.Titan__r.Name, newTitanExams);
             }
+
+        }
+
+        for(Titan__c titan: allTitans){
+
+            if(examMap.containsKey(titan.Name) != true){
+
+                List<ExamList> newTitanExams = new List<ExamList>();
+                examMap.put(titan.Name, newTitanExams);
+            
+            }
+        
         }
         
         system.debug(examMap);
