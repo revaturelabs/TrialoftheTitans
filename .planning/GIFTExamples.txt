@@ -70,7 +70,7 @@
 //***/Missing Word/***/
 
 //*** Short Answer ***/
-::SA1::The Leader of the Animorphs is... {Jake}
+::SA1::The Leader of the Animorphs is...{Jake}
 
 ::SA2::What is Picard's Borg name?{=Locutus =Locutus of Borg}
 

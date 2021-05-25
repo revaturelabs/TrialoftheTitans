@@ -1,28 +1,27 @@
-public with sharing class GIFTParser {
+public class GIFTParser {
     // *** VARIABLES *** //
     public Blob giftFileBody { get; set; }
     public String filename { get; set; }
     public String fileAsString { get; set; }
     public List<String> allQuestions  { get; set; }
-    // public List<String> missingWordQuestions  { get; set; }
-    // public List<String> essayQuestions  { get; set; }
-    // public List<String> numericalQuestions  { get; set; }
-    // public List<String> matchingQuestions  { get; set; }
-    // public List<String> multChoiceQuestions  { get; set; }
-    // public List<String> multChoiceMQuestions  { get; set; }
-    // public List<String> trueFalseQuestions  { get; set; }
-    // public List<String> shortAnswerQuestions  { get; set; }
+    public List<String> questionsToSplit { get; set; }
+    public List<ExamQuestion> examQuestionList { get; set; }
+    public Map<String,List<ExamQuestion>> sortedExamList { get; set; }
     
-    public GIFTParser() {
+    /*public GIFTParser() {
         allQuestions = new List<String>();
-    }
+    }*/
     
     public void importGIFTFile() {
         try {
             fileAsString = giftFileBody.toString();
             allQuestions = fileAsString.split('\r\n\r\n');
             allQuestions = GIFTParser.removeComments(allQuestions);
-            System.debug(allQuestions);
+            questionsToSplit = GIFTParser.handleMissingWord(allQuestions);
+            examQuestionList = GIFTParser.splitParts(questionsToSplit);
+            sortedExamList = GIFTParser.sortQuestions(examQuestionList);
+            system.debug(sortedExamList);
+            
             
         } catch (Exception e) {
             System.debug(e);
@@ -44,7 +43,7 @@ public with sharing class GIFTParser {
                 if ( tempLineList[c].substring(0, 2).equals('//') ) {
                     tempLineList.remove(c);
                 } else if ( tempLineList[c].contains('//') ) {
-                    tempLineList[c] = tempLineList[c].substringBefore('//');
+                    tempLineList[c] = tempLineList[c].substringBefore('//').trim();
                     c++;
                 } else {
                     c++;
@@ -56,11 +55,7 @@ public with sharing class GIFTParser {
                 tempQuestion = tempLineList[0];
             } else { 
                 for ( Integer z = 0; z < tempLineList.size(); z++ ) {
-                    if ( z == tempLineList.size() - 1 ) {
-                        tempQuestion = tempQuestion + tempLineList[z];
-                    } else {
-                        tempQuestion = tempQuestion + tempLineList[z] + '\n';
-                    }
+                    tempQuestion = tempQuestion + tempLineList[z];
                 }
             }
             
@@ -68,5 +63,96 @@ public with sharing class GIFTParser {
             allQuestions[i] = tempQuestion;
         }
         return allQuestions;
+    }
+
+    public static List<String> handleMissingWord(List<String> allQuestions) {
+        List<String> processedQuestionList = new List<String>();
+
+        // Iterate over questions
+        for ( Integer i = 0; i < allQuestions.size(); i++ ) {
+            // Check if missing word
+            if ( allQuestions[i].substring(allQuestions[i].length() - 1).contains('}') ) {
+                processedQuestionList.add(allQuestions[i]);
+            } else {
+                // Extracting answer from text.
+                String beforeAnswer = allQuestions[i].substringBefore('{');
+                String afterAnswer = allQuestions[i].substringAfter('}');
+                String answer = allQuestions[i].substringBetween('{','}');
+                processedQuestionList.add(beforeAnswer + '_____' + afterAnswer + '{' + answer + '}');
+            }
+        }
+        return processedQuestionList;
+        
+    }
+
+    public static List<ExamQuestion> splitParts(List<String> questionsToSplit) {
+        List<ExamQuestion> examQuestionList = new List<ExamQuestion>();
+
+        for ( Integer i = 0; i < questionsToSplit.size(); i ++ ) {
+            ExamQuestion tempQuestion = new ExamQuestion();
+            Integer titleEnd = 0;
+            String withoutTitle = '';
+            String tempAnswer = '';
+
+            // Check if question contains title
+            if ( questionsToSplit[i].substring(0,2).contains('::') ) {
+                titleEnd = questionsToSplit[i].indexOf('::', 2);
+                tempQuestion.title = questionsToSplit[i].substring(2,titleEnd);
+                withoutTitle = questionsToSplit[i].substring(titleEnd + 2);
+            } else {
+                tempQuestion.title = '';
+                withoutTitle = questionsToSplit[i];
+            }
+
+            // Now split text and answer
+            tempQuestion.text = withoutTitle.substringBefore('{');
+            tempAnswer = withoutTitle.substringAfter(tempQuestion.text);
+            tempAnswer = tempAnswer.substring(1,tempAnswer.length() - 1);
+            tempQuestion.answer = tempAnswer;
+            System.debug(tempQuestion);
+            examQuestionList.add(tempQuestion);
+        }
+        return examQuestionList;
+    }
+
+    public static Map<String,List<ExamQuestion>> sortQuestions(List<ExamQuestion> examQuestionList) {
+        Map<String,List<ExamQuestion>> sortedQuestions = new Map<String,List<ExamQuestion>>();
+        List<ExamQuestion> essayQuestions = new List<ExamQuestion>();
+        List<ExamQuestion> numericalQuestions = new List<ExamQuestion>();
+        List<ExamQuestion> matchingQuestions = new List<ExamQuestion>();
+        List<ExamQuestion> multChoiceMAQuestions = new List<ExamQuestion>();
+        List<ExamQuestion> multChoiceQuestions = new List<ExamQuestion>();
+        List<ExamQuestion> shortAnswerQuestions = new List<ExamQuestion>();
+        List<ExamQuestion> trueFalseQuestions = new List<ExamQuestion>();
+
+        for ( Integer i = 0; i < examQuestionList.size(); i++ ) {
+            if ( examQuestionList[i].answer.containsOnly('{}') ) {
+                essayQuestions.add(examQuestionList[i]);
+            } else if ( examQuestionList[i].answer.substring(0,1).contains('#') ) {
+                numericalQuestions.add(examQuestionList[i]);
+            } else if ( examQuestionList[i].answer.contains('->') ) {
+                matchingQuestions.add(examQuestionList[i]);
+            } else if ( examQuestionList[i].answer.contains('~') && examQuestionList[i].answer.countMatches('=') > 1) {
+                multChoiceMAQuestions.add(examQuestionList[i]);
+            } else if ( examQuestionList[i].answer.contains('~') && examQuestionList[i].answer.countMatches('=') == 1) {
+                multChoiceQuestions.add(examQuestionList[i]);
+            } else if ( examQuestionList[i].answer.contains('=') && !examQuestionList[i].answer.contains('~') ) {
+                shortAnswerQuestions.add(examQuestionList[i]);
+            } else if ( examQuestionList[i].answer.toUpperCase().contains('T') || examQuestionList[i].answer.toUpperCase().contains('F') || examQuestionList[i].answer.toUpperCase().contains('TRUE') || examQuestionList[i].answer.toUpperCase().contains('FALSE') ) {
+                trueFalseQuestions.add(examQuestionList[i]);
+            } else {
+                shortAnswerQuestions.add(examQuestionList[i]);
+            }
+            
+        }
+
+        sortedQuestions.put('Essay', essayQuestions);
+        sortedQuestions.put('Numerical', numericalQuestions);
+        sortedQuestions.put('Matching', matchingQuestions);
+        sortedQuestions.put('MCMA', multChoiceMAQuestions);
+        sortedQuestions.put('Multiple Choice', multchoiceQuestions);
+        sortedQuestions.put('Short Answer', shortAnswerQuestions);
+        sortedQuestions.put('True-False', trueFalseQuestions);
+        return sortedQuestions;
     }
 }
