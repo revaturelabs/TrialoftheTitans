@@ -10,10 +10,17 @@ public class ExamList {
         name = exam.Name;
         currentResults = getCurrentResults( accId, exam.Id );
         pastResults = getPastResults( accId, exam.Id );
-        isPassed = currentResults[0].Pass__C;
-        //highScore = currentResults[0].Total_Correct__c/currentResults[0].Total_Answers__c;
-        highScore = .80;
-
+        if(currentResults.size() != 0){
+            isPassed = currentResults[0].Pass__C;
+            
+            if(currentResults[0].Total_Answers__c){
+                //highScore = currentResults[0].Total_Correct__c/currentResults[0].Total_Answers__c;
+                highScore = .80;
+            }
+        }
+        else{
+            isPassed = false;
+        }
     }
 
     private List<Exam_Result__c> getCurrentResults( Id accId, Id examId ){
