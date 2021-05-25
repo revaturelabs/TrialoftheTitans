@@ -6,6 +6,11 @@ public class ExportQuestionsController {
     public Exam_Question__c FIBQuestion{get;set;}
     public Id Essay{get;set;}
     public Exam_Question__c EssayQuestion{get;set;}
+    public Id ShortAnswer{get;set;}
+    public Exam_Question__c SAQuestion{get;set;}
+    public Id Matching{get;set;}
+    public Exam_Question__c MatchingQuestion{get;set;}
+    
     /*-------------------*/
     public Id currentQuestionId{get;set;}
     public Exam_Question__c currentExamQuestion{get;set;}
@@ -20,6 +25,8 @@ public class ExportQuestionsController {
         TF = 'a051F00000AM9zXQAT';
         FIB = 'a051F00000AMBuSQAX';  
         Essay = 'a051F00000AMBucQAH';
+        ShortAnswer = 'a051F00000AMC1hQAH';
+        Matching = 'a051F00000AMCN7QAP';
         currentExamQuestion = [SELECT Answer_Explanation__c, Correct_Answer_s__c, options__c, Question_Text__c, Question_Type__c, Skill__c, Name
                            FROM Exam_Question__c WHERE id =:currentQuestionId LIMIT 1];
         TFQuestion = [SELECT Answer_Explanation__c, Correct_Answer_s__c, options__c, Question_Text__c, Question_Type__c, Skill__c, Name
@@ -28,12 +35,18 @@ public class ExportQuestionsController {
                       FROM Exam_Question__c WHERE id = :FIB LIMIT 1];
         EssayQuestion= [SELECT Answer_Explanation__c, Correct_Answer_s__c, options__c, Question_Text__c, Question_Type__c, Skill__c, Name
                       FROM Exam_Question__c WHERE id = :Essay LIMIT 1];
+        SAQuestion = [SELECT Answer_Explanation__c, Correct_Answer_s__c, options__c, Question_Text__c, Question_Type__c, Skill__c, Name
+                      FROM Exam_Question__c WHERE id = :ShortAnswer LIMIT 1];
+        MatchingQuestion = [SELECT Answer_Explanation__c, Correct_Answer_s__c, options__c, Question_Text__c, Question_Type__c, Skill__c, Name
+                      FROM Exam_Question__c WHERE id = :Matching LIMIT 1];
 		allFormattedQuestions = new List<String>();
 		//System.debug('TF Question: '+ TFQuestion);       
 		formatMultipleChoiceQuestion(currentExamQuestion);
         formatTrueFalseQuestion(TFQuestion);
         formatFillInBlankQuestion(FIBQuestion);
         formatEssayQuestion(EssayQuestion);
+        formatShortAnswerQuestion(SAQuestion);
+        formatMatchingQuestion(MatchingQuestion);
         formatQuestions(allFormattedQuestions);
     }
     /*------------------------------ Multiple Choice Question--------------------------------------------------*/
@@ -46,7 +59,7 @@ public class ExportQuestionsController {
         for(String option : options){ 
             if(option!= question.Correct_Answer_s__c){
                 incorrectAnswers.add('~'+option);
-            }} 
+            }}  
        String incorrectAnswerString = string.join(incorrectAnswers, ' ');
         // GIFT format for MC: ::QuestionName:: QuestionText {= correctAnswer #comment ~incorrectanswers}
         formattedQuestion='::' + question.Name + ':: ' + question.Question_Text__c +' {='+ question.Correct_Answer_s__c
@@ -58,6 +71,23 @@ public class ExportQuestionsController {
   /*------------------------------ True or False Question--------------------------------------------------*/
     public void formatTrueFalseQuestion(Exam_Question__c question){
         formattedQuestion ='::' + question.Name+'::'+ question.Question_Text__c + ' {'+question.Correct_Answer_s__c+'}';
+        allFormattedQuestions.add(formattedQuestion);
+    }
+    /*------------------------------ Matching Questions--------------------------------------------------*/
+    public void formatMatchingQuestion(Exam_Question__c question){
+        List <String> optionList = new List <String>();
+        List <String> answerList = new List <String>();
+        List <String> matchAnswers = new List <String>();
+        //Map <String, String> matchedAnswers = new Map <String,String>();
+        optionList = question.Options__c.split('\\|\\|');
+        answerList = question.Correct_Answer_s__c.split('\\|\\|');
+        for(Integer i=0; i< optionList.size(); i++){
+            matchAnswers.add('=' + optionList[i]);
+            matchAnswers.add('->' + answerList[i]);
+        }
+        //String matchedAnswersString = String.valueOf(matchedAnswers);
+        String matchedAnswersString = string.join(matchAnswers,'');
+        formattedQuestion = '::' + question.Name + '::' + question.Question_Text__c  +'{'+ matchedAnswersString+'}' ;
         allFormattedQuestions.add(formattedQuestion);
     }
   /*------------------------------ Fill in the Blank Question--------------------------------------------------*/
@@ -75,7 +105,19 @@ public class ExportQuestionsController {
         formattedQuestion = '::' + question.Name + '::' + beforeBlank + '{'+ correctAnswersString + '}' + afterBlank;
         allFormattedQuestions.add(formattedQuestion);
     }
-  /*------------------------------ Join List to String--------------------------------------------------*/
+   /*------------------------------ Short Answer Question --------------------------------------------------*/
+    public void formatShortAnswerQuestion(Exam_Question__c question){
+        List <String> correctAnswers = new List<String>();
+        List <String> formattedCorrectAnswers = new List <String>();
+        correctAnswers = question.Correct_Answer_s__c.split('\\|\\|');
+          for (String correctAnswer : correctAnswers){
+           formattedCorrectAnswers.add('='+correctAnswer);
+        }
+        String correctAnswersString = string.join(formattedCorrectAnswers, ' ');
+        formattedQuestion = '::' + question.Name + '::'+question.Question_Text__c + '{'+ correctAnswersString +'}';
+        allFormattedQuestions.add(formattedQuestion);
+    }
+  /*------------------------------ Essay Question --------------------------------------------------*/
     public void formatEssayQuestion(Exam_Question__c question){
         formattedQuestion='::' + question.Name + '::' + question.Question_Text__c+'{}';
         allFormattedQuestions.add(formattedQuestion);
