@@ -1,5 +1,5 @@
 <aura:component>
-    <aura:attribute name="activeTitan" type="Titan__c"/>
+    <aura:attribute name="activeTitan" type="String" default=""/>
     <div>
         <div>
             <!-- Contact information Component, allows the user to view their contact information -->
@@ -7,10 +7,10 @@
                 <lightning:card title="Name of Titan" iconName="standard:contact">
                     <div class="slds-grid">
                         <ul>    
-                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> Exam #1 </li><br/>
-                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> Exam #2 </li><br/>
-                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> Exam #3  </li><br/>
-                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> Exam #4 </li><br/>
+                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> Exam #1 {!v.activeTitan}</li><br/>
+                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> Exam #2 {!v.activeTitan}</li><br/>
+                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> Exam #3 {!v.activeTitan}</li><br/>
+                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> Exam #4 {!v.activeTitan}</li><br/>
                         </ul>
                     </div>
                 </lightning:card>
