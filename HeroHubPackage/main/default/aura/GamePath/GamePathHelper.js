@@ -10,8 +10,18 @@
                                     { name: "Humble", isPassed: false, highScore: 42.0 },
                                     { name: "Iconique", isPassed: false, highScore: null } 
                                 ]);
-        examMap.set( "Security", [ { name: "someName", isPassed: true, highScore: 81.5 } ] );
-        examMap.set( "Triggers" , [ { name: "someName", isPassed: false, highScore: 42.0 } ] );
+
+        examMap.set( "Security", [ { name: "someName", isPassed: true, highScore: 81.5 },
+                                    { name: "someName", isPassed: true, highScore: 81.5 } 
+                                ]);
+
+        examMap.set( "Triggers" , [ { name: "someName", isPassed: false, highScore: 42.0 },
+                                    { name: "someName", isPassed: false, highScore: 42.0 },
+                                    { name: "someName", isPassed: false, highScore: 42.0 },
+                                    { name: "someName", isPassed: false, highScore: 42.0 },
+                                    { name: "someName", isPassed: false, highScore: 42.0 }, 
+                                    { name: "someName", isPassed: false, highScore: 42.0 },
+                                    ]);
          
         
         exams = examMap.get(component.get("v.active"));             
