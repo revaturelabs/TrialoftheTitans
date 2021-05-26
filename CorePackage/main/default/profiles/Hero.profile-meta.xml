@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+<<<<<<< HEAD
     <applicationVisibilities>
         <application>ExamHub</application>
         <default>false</default>
@@ -339,6 +340,8 @@
         <field>Titan__c.Number_of_Skills__c</field>
         <readable>true</readable>
     </fieldPermissions>
+=======
+>>>>>>> c231b11ed8b91b6d3cc7fcfe964f794cd99cbc4f
     <layoutAssignments>
         <layout>Account-Hero Account</layout>
         <recordType>Account.Hero</recordType>
@@ -350,6 +353,7 @@
         <layout>Curriculum__c-Curriculum Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+<<<<<<< HEAD
         <layout>Exam_Question__c-Exam Question Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -362,6 +366,8 @@
         <layout>Question_Pool__c-Question Pool Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+=======
+>>>>>>> c231b11ed8b91b6d3cc7fcfe964f794cd99cbc4f
         <layout>Titan__c-Titan Layout</layout>
     </layoutAssignments>
     <objectPermissions>
@@ -379,6 +385,7 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+<<<<<<< HEAD
         <tab>Exam_Question__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -404,6 +411,25 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Squad__c</tab>
+=======
+        <tab>Cohort__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Curriculum__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Skill__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Team__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Titan__c</tab>
+>>>>>>> c231b11ed8b91b6d3cc7fcfe964f794cd99cbc4f
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
