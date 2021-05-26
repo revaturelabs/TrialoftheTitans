@@ -20,10 +20,14 @@ public class UserAccountSetup {
         Squad__c newSquad = new Squad__c(Name = 'This is Fire', Team__c = newTeam.Id);
         insert newSquad;
         
+       	Curriculum__c newCurriculum = new Curriculum__c(Name='Salesforce');
+        
+        insert newCurriculum;
+        
         List<Account> userAccounts = new List<Account>();
         
         for(Integer i = 0; i < 5; i++){
-            Account newAccount = new Account(name='User'+i, Squad__c = newSquad.Id);
+            Account newAccount = new Account(name='User'+i, Squad__c = newSquad.Id, Team__c = newTeam.Id, Curriculum__C = newCurriculum.Id );
             userAccounts.add(newAccount);
         }
         
@@ -59,10 +63,6 @@ public class UserAccountSetup {
         }
         
         insert users; 
-        
-        Curriculum__c newCurriculum = new Curriculum__c(Name='Salesforce');
-        
-        insert newCurriculum;
         
         List<Titan__c> newTitans = new List<Titan__c>();
         

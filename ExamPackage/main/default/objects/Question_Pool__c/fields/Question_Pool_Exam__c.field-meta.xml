@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Question_Pool_Exam__c</fullName>
-    <deprecated>false</deprecated>
     <externalId>false</externalId>
     <label>Question Pool Exam</label>
     <referenceTo>Exam__c</referenceTo>

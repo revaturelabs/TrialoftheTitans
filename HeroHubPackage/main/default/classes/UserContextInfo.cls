@@ -29,6 +29,8 @@ public class UserContextInfo {
 
         acc = getUserAccount( userId );
         
+        system.debug(acc.Squad__c);
+        
         squad = getSquad( acc.Squad__c );
         
         team = getTeam( squad.Team__c );
@@ -51,6 +53,8 @@ public class UserContextInfo {
             
             //Hard Coded Account for now
         	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Name = 'User0'];
+            
+            system.debug(userAccount);
 			return userAccount;
         }
         catch(Exception e){

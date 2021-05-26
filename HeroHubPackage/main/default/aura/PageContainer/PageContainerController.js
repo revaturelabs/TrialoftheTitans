@@ -2,9 +2,9 @@
     doInit: function( component, event, helper ) {
         const getContextInfo = component.get("c.getUserInfo");
         getContextInfo.setCallback( this, function( response ) {
-            console.log()
+            console.log(response.getState());
             if(response.getState() === "SUCCESS"){
-                const contextinfo = response.getReturnValue;
+                const contextinfo = response.getReturnValue();
                 contextinfo.userExams = Object.entries(contextinfo.userExams);
                 console.log(contextinfo);
                 component.set("v.contextInfo", response.getReturnValue);

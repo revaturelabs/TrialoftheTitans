@@ -3,6 +3,16 @@
     <description>Permissions for the Hero Profile</description>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Curriculum__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Team__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Cohort__c.Curriculum__c</field>
         <readable>true</readable>
     </fieldPermissions>

@@ -159,7 +159,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Question Assignments</pluralLabel>
-    <searchLayouts></searchLayouts>
+    <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
