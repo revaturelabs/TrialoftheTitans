@@ -1,4 +1,4 @@
-<apex:page controller="ExportQuestionsController" contentType="text/plain/#emp.txt" sidebar="false"  cache="false" >
+<apex:page standardController="Exam_Question__c" extensions="ExportQuestionsController" contentType="text/plain/#emp.txt" sidebar="false"  cache="false" >
     <!--
 	 contentType="text/plain/#emp.txt"
      action="formatQuestions"

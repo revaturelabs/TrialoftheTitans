@@ -19,7 +19,8 @@ public class ExportQuestionsController {
     public List<String> allFormattedQuestions{get;set;}
     public String allFormattedQuestionsString{get; set;}
     
-    public ExportQuestionsController(){
+    public ExportQuestionsController(ApexPages.StandardController controller){
+       
        // currentQuestionId = ApexPages.currentPage().getparameters().get('id');
         currentQuestionId = 'a051F00000AM9xTQAT';
         TF = 'a051F00000AM9zXQAT';
