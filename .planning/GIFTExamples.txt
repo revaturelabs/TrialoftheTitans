@@ -10,11 +10,11 @@
 //***/Mult. Choice/***/
 
 //*** Mult. ChoiceMA ***/
-::MCMA1::Who are members of the Animorphs? {=Cassie =Marco =Jake ~David ~Elfangor}
+::MCMA1::Who are members of the Animorphs? {~%33%Cassie ~%33%Marco ~%33%Jake ~David ~Elfangor}
 
-::MCMA2::Which of the following have been Captains of the Enterprise line of starships?{=Jean-Luc Picard =James T. Kirk =Rachel Garrett ~Kathryn Janeway ~Harry Kim}
+::MCMA2::Which of the following have been Captains of the Enterprise line of starships?{~%33%Jean-Luc Picard ~%33%James T. Kirk ~%33%Rachel Garrett ~Kathryn Janeway ~Harry Kim}
 
-::MCMA3::Which of the following orbs has Capt. Sisko encountered?{=Orb of Prophecy =Orb of Time ~Orb of Wisdom ~Orb of Contemplation}
+::MCMA3::Which of the following orbs has Capt. Sisko encountered?{~%50%Orb of Prophecy ~%50%Orb of Time ~Orb of Wisdom ~Orb of Contemplation}
 //***/Mult. ChoiceMA/***/
 
 //*** Matching ***/

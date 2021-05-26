@@ -1,4 +1,19 @@
 ({
+    HandleInit : function(component) {
+        // get initial values from Apex controller
+        let action = component.get("c.HandleInit");
+        action.setCallback(this, function(response) {
+            let state = response.getState();
+            if ( state === "SUCCESS" ) {
+                let valuesMap = response.getReturnValue();
+                component.set("v.technologies",valuesMap["Technologies"]);
+                component.set("v.titans",valuesMap["Titans"]);
+                component.set("v.initMessage", "Ready to import questions.");
+            }
+        });
+        $A.enqueueAction(action);
+    },
+
     // Split each question in text file to its own object and put it in a list.
     // send the list along with titan and technology to ApexController.
     SplitString : function(component, theString) {
@@ -83,16 +98,6 @@
                 console.log("Imported file: " + JSON.stringify(response.getReturnValue()));
                 component.set("v.successMessage", true);
                 // include number of questions imported
-            }
-        });
-        $A.enqueueAction(action);
-    },
-    HandleInit : function(component) {
-        let action = component.get("c.GIFTInit");
-        action.setCallback(this, function(response) {
-            let state = response.getState();
-            if ( state === "SUCCESS" ) {
-                component.set("v.initMessage", response.getReturnValue());
             }
         });
         $A.enqueueAction(action);

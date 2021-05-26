@@ -6,15 +6,11 @@
     <aura:attribute name="initMessage" type="String" default="" />
     <aura:attribute name="fileType" type="List" default="['.txt']" />
     <aura:attribute name="multiple" type="Boolean" default="true" />
-    <aura:attribute name="record" type="String" default="a0AJ000000IQCazMAH"/>
+    <aura:attribute name="record" type="String" default="a0AJ000000IQCazMAH" />
     <aura:attribute name="selectedTitan" type="String" />
-    <aura:attribute name="titans" type="List" default="[{'Name' : 'Apex', 'Id' : 12345}, 
-                                                       {'Name' : 'Security', 'Id' : 12345}, 
-                                                       {'Name' : 'Data Modeling', 'Id' : 12345}]"/>
+    <aura:attribute name="titans" type="List" default="[{'Name': 'Loading...', 'Id': 0}]" />
     <aura:attribute name="selectedTechnology" type="String" />
-    <aura:attribute name="technologies" type="List" default="[{'Name' : 'Salesforce', 'Id' : 54321}, 
-                                                             {'Name' : 'Web-Development', 'Id' : 54321},
-                                                             {'Name' : 'Database', 'Id' : 54321}]"/>
+    <aura:attribute name="technologies" type="List" default="[{'Name': 'Loading...', 'Id': 0}]" />
     <aura:attribute name="canUpload" type="Boolean" default="false" />
     <aura:attribute name="successMessage" type="Boolean" default="false" />
     <aura:attribute name="imported" type="Integer" default="0" />
@@ -34,6 +30,17 @@
                 <i>Imported {!v.imported} questions</i>
             </aura:if>
             
+            <!-- define technology -->
+            <div class="slds-box">
+                <lightning:select name="TechnologyId" label="Select a Technology:" aura:id="TechnologyList" value="{!v.selectedTechnology}">
+                    <aura:iteration items="{!v.technologies}" var="tech">
+                        <option text="{!tech.Name}" value="{!tech.Id}"/>
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+            <!-- /define technology -->
+
+
             <!-- define titan -->
             <div class="slds-box">
                 <lightning:select name="TitanId" label="Select a Titan:" aura:id="TitanList" value="{!v.selectedTitan}">
@@ -45,15 +52,7 @@
             <!-- define titan -->
             
             
-            <!-- define technology -->
-            <div class="slds-box">
-                <lightning:select name="TechnologyId" label="Select a Technology:" aura:id="TechnologyList" value="{!v.selectedTechnology}">
-                    <aura:iteration items="{!v.technologies}" var="tech">
-                        <option text="{!tech.Name}" value="{!tech.Id}"/>
-                    </aura:iteration>
-                </lightning:select>
-            </div>
-            <!-- /define technology -->
+            
             
             
             <!-- submit button -->
