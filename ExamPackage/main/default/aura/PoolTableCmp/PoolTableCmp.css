@@ -1,0 +1,26 @@
+.THIS .body cPoolTableCmp{
+    background-color: lightblue !important; 
+}
+
+.THIS .section1 {
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    width:80%;
+}
+
+.THIS .section2{
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    width:80%;
+}
+
+
+.THIS .table{
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    width:80%;
+    padding-bottom: 10%;
+}
