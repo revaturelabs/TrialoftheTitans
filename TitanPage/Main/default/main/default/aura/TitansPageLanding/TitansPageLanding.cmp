@@ -1,105 +1,124 @@
-<aura:component>
-
-<!-- registerEvents, handlers, attributes go here -->
-<aura:registerEvent name="TitanPageLandingEvent" type="c:TitanPageLandingEvent"/>
-<aura:registerEvent name="RenderSkillsExams" type="c:TitanPageRender"/>
-<aura:handler name="TitanPageLandingEvent" event="c:TitanPageLandingEvent" action="{!c.cNavigate}"/>
+<aura:component controller="TitanPageApexController">
+    
+    <!-- registerEvents, handlers, attributes go here -->
+    <aura:registerEvent name="TitanPageLandingEvent" type="c:TitanPageLandingEvent"/>
+    <aura:registerEvent name="RenderSkillsExams" type="c:TitanPageRender"/>
+    <aura:handler name="TitanPageLandingEvent" event="c:TitanPageLandingEvent" action="{!c.cNavigate}"/>
+    <aura:handler name="ExamsLandingEvent" event="c:ExamsLandingEvent" action="{!c.cSetTitanId}"/>
+    <aura:handler name="LandingSkillsEvent" event="c:LandingSkillsEvent" action="{!c.cSetTitanId}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <!-- 
 <aura:attribute name="UserInfo" type="user"/>
 <aura:attribute name="Titan1" type="Object"/>
 <aura:attribute name="Titan2" type="Object"/>
 <aura:attribute name="Titan3" type="Object"/>
-<aura:attribute name="Titan4" type="Object"/>
-<aura:attribute name="TitanList" type="Object[]"/>
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-
-<!-- Header div -->
-<div class="slds-text-heading_large slds-align_absolute-center">
-<h5> Welcome {!v.UserInfo} </h5>
-</div>
-
-<!-- Primary div  -->
-<div class="slds-grid slds-gutters" aura:id="account-info">
-<div class="slds-col slds-size_12-of-12">
-
-<!-- Contact information Component, allows the user to view their contact information -->
-<span> <div class="container slds-m-around_large" id="contactinfo">
-<lightning:card title="Heroes Name" iconName="standard:contact">
-
-<!-- Buttons select which Titan to display details for  -->
-<div class="slds-grid">
-    <ul>
-        <li class="slds-text-heading_medium slds-col slds-size_12-of-12" onclick="{!c.cShowTitan1}"> 
-            Titan #1
-        </li><br/>   
-        <li class="slds-text-heading_medium slds-col slds-size_12-of-12" onclick="{!c.cShowTitan2}"> 
-            Titan #2
-        </li><br/>
-        <li class="slds-text-heading_medium slds-col slds-size_12-of-12" onclick="{!c.cShowTitan3}"> 
-            Titan #3 
-        </li><br/>
-        <li class="slds-text-heading_medium slds-col slds-size_12-of-12" onclick="{!c.cShowTitan4}"> 
-            Titan #4
-        </li><br/>
-    </ul>
-</div>
-</lightning:card>
-</div></span>
-</div>
-</div>
-
-
-<!-- example Div style: class="slds-col slds-gutters slds-size_6-of-12" -->
-<!-- "toggle-hide" div CANNOT be inside lightning:card -->
-<!-- Uses "toggle-hide" class to switch displayed Titan details -->
-<div class="toggle-hide slds-col slds-gutters" aura:id="titanDiv1">
-<lightning:card>
-<div class="slds-grid">
-    <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-        <c:ExamsLanding activeTitan="{!v.Titan1}"/>
+<aura:attribute name="Titan4" type="Object"/> 
+-->
+    <aura:attribute name="TitanList" type="Object[]"/>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    
+    
+    <!-- Header div -->
+    <div class="slds-text-heading_large slds-align_absolute-center">
+        <h5> Welcome {!v.UserInfo} </h5>
     </div>
-<div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-        <c:LandingSkills activeTitan="{!v.Titan1}"/>
+    
+    <!-- Primary div  -->
+    <div class="slds-grid slds-gutters" aura:id="account-info">
+        <div class="slds-col slds-size_12-of-12">
+            
+            <!-- Contact information Component, allows the user to view their contact information -->
+            <span> <div class="container slds-m-around_large" id="contactinfo">
+                <lightning:card title="Heroes Name" iconName="standard:contact">
+                    
+                    <!-- Aura Iteration displays all Titans  -->
+                    <div class="slds-grid">
+                        <ul>
+                            <aura:iteration items="{!v.TitanList}" var="Titan">
+                                <li class="slds-text-heading_medium slds-col slds-size_12-of-12" onclick="{!c.cNavigate}"> 
+                                    {!Titan.Name}
+                                </li><br/>
+                            </aura:iteration>
+                        </ul>
+                    </div>
+                </lightning:card>
+                </div></span>
+        </div>
+    </div>
+    
+    
+    <!-- example Div style: class="slds-col slds-gutters slds-size_6-of-12" -->
+    <!-- "toggle-hide" div CANNOT be inside lightning:card -->
+    <!-- Uses "toggle-hide" class to switch displayed Titan details -->
+    
+    <lightning:button label="testNavigate" onclick="{!c.cNavigate}"/>
+    
+    <aura:iteration items="{!v.TitanList}" var="Titan" indexVar="titanIndex" aura:id="titanIteration">
+        <div class="slds-col slds-gutters" aura:Id="detailsDiv" data-index="{!titanIndex}">
+            <lightning:card>
+                <div class="slds-grid">
+                    <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
+                        <c:ExamsLanding activeTitan="{!v.Titan}"/>
+                    </div>
+                    <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
+                        <c:LandingSkills activeTitan="{!v.Titan}"/>
+                    </div>
+                </div>
+            </lightning:card>
+        </div>     
+    </aura:iteration>    
+    
+    <!--     
+<div class="toggle-hide slds-col slds-gutters" aura:id="titanDiv1">
+        <lightning:card>
+            <div class="slds-grid">
+                <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
+                    <c:ExamsLanding activeTitan="{!v.TitanList[0]}"/>
+                </div>
+                <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
+                    <c:LandingSkills activeTitan="{!v.TitanList[0]}"/>
+                </div>
+            </div>
+        </lightning:card>
 </div>
-</div>
-</lightning:card>
 
-
-</div>
 <div class="toggle-hide slds-col slds-gutters" aura:id="titanDiv2">
 <lightning:card>
     <div class="slds-grid">
         <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-            <c:ExamsLanding activeTitan="{!v.Titan2}"/>
+            <c:ExamsLanding activeTitan="{!v.TitanList[1]}"/>
         </div>
     <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-            <c:LandingSkills activeTitan="{!v.Titan2}"/>
+            <c:LandingSkills activeTitan="{!v.TitanList[1]}"/>
     </div>
 </div>
 </lightning:card>
-</div>        
+</div>   
+    
 <div class="toggle-hide slds-col slds-gutters" aura:id="titanDiv3">
 <lightning:card>
     <div class="slds-grid">
         <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-            <c:ExamsLanding activeTitan="{!v.Titan3}"/>
+            <c:ExamsLanding activeTitan="{!v.TitanList[2]}"/>
         </div>
     <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-            <c:LandingSkills activeTitan="{!v.Titan3}"/>
+            <c:LandingSkills activeTitan="{!v.TitanList[2]}"/>
     </div>
 </div>
 </lightning:card> 
 </div>
+    
 <div class="toggle-hide slds-col slds-gutters" aura:id="titanDiv4">
 <lightning:card>
     <div class="slds-grid">
         <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-            <c:ExamsLanding activeTitan="{!v.Titan4}"/>
+            <c:ExamsLanding activeTitan="{!v.TitanList[3]}"/>
         </div>
     <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-            <c:LandingSkills activeTitan="{!v.Titan4}"/>
+            <c:LandingSkills activeTitan="{!v.TitanList[3]}"/>
     </div>
 </div>
 </lightning:card>
 </div>
+ -->
 </aura:component>
