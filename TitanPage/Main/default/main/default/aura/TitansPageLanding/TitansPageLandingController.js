@@ -1,4 +1,8 @@
 ({      
+    doInit : function(component, event, helper) {
+        helper.hSetTitans(component, event);
+    },
+    
     cShowTitan1 : function(component, event, helper) {
         helper.hShowTitan1(component, event);
         console.log("cShowTitan1 : hShowTitan1")
@@ -18,6 +22,41 @@
     
     cNavigate : function(component, event, helper) {
         helper.hNavigate(component, event);
-    }
+    },
+    
+    
+    
+    cSetTitanId : function(component,event){
+        var titanId = event.getParam("titanId");
+        component.set("v.activeTitan", titanId);
+    },
+    
+    
+/*   	
+ * this.hideCourseList(component);  
+ * 
+ * 
+ * hideCourseList : function(component){
+		console.log("attempting to hide course list")
+		var displayDiv = component.find("course-list");
+		$A.util.addClass(displayDiv,"toggle-hide");
+	} */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 })

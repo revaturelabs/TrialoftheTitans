@@ -1,26 +1,15 @@
 ({   
-    hSetTitan : function(component, event, helper) {
+    hSetTitans : function(component, event, helper) {
         let titanList = component.get("c.getTitans");
         titanList.setCallback(this, function(response){
             if(response.getState() == "SUCCESS"){
                 component.set("v.TitanList", response.getReturnValue());
-                console.log("Returned Titans")
+                console.log("Returned Titans: ")
                 console.log(response.getReturnValue())
             }
         })
         $A.enqueueAction(titanList);
     },
-
-
-
-
-
-
-
-
-
-
-
 
 //	hShowTitan# : button method that fires event, chooses which Titan to display info for
 
@@ -64,13 +53,17 @@
     
     hNavigate : function(component, event, helper) {
         console.log("hNavigate function");
-        var divList = [
-            component.find("titanDiv1"),
-            component.find("titanDiv2"),
-            component.find("titanDiv3"),
-            component.find("titanDiv4")
-        ];
+        var divList = component.find("detailsDiv"), index = event.target.closest("[data-index]").dataset.index;    
+        divList = divList.length? divList: [divList];
+        $A.util.removeClass(infos[index], 'toggle-hide');
+        console.log(divList);
         
+//          [ component.find("titanDiv1"),
+//            component.find("titanDiv2"),
+//            component.find("titanDiv3"),
+//            component.find("titanDiv4") ];
+
+/*        
         for(let i=0; i<divList.length; i++){
             let displayDiv = divList[i];
             $A.util.addClass(displayDiv,"toggle-hide");
@@ -96,7 +89,7 @@
                 var displayDiv = component.find("titanDiv4");
                 $A.util.removeClass(displayDiv,"toggle-hide");
                 break;
-        }
+        } */
     }
     
 })
