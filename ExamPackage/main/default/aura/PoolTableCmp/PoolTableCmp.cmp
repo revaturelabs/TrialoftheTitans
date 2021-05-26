@@ -29,10 +29,11 @@
         
         <div class="section1">
             <div class="slds-page-header" role="banner">
+                <h2 id="element-with-table-label" class="slds-text-heading_medium slds-m-bottom_xx-small" style='padding-left: 3%;'>Pool Table</h2>
+                
                 <div class="slds-grid">
                     <div class="slds-col">
                         <div class="section2">
-                            
                             <div class="slds-clearfix">
                                 <div class="slds-page-header" role="banner">
                                     <div class="slds-float_none" style='padding-bottom: 10px;'>            
