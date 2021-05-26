@@ -1,8 +1,7 @@
-<aura:component access="global" >
+<aura:component controller="HeroHubController" access="global" >
     <!--Attributes: contextUser, userTeam, leadTeam,-->
     <aura:attribute name="contextInfo" type="Map" default="{}" />
-    <aura:attribute name="leadTeam" type="Map"/>
-    <aura:attribute name="teamColors" type="String"/>
+    <aura:attribute name="leadTeams" type="Map"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <!--Set dynamic colors for teams-->
@@ -10,8 +9,8 @@
         :root {
             --user-team-primary: {!v.contextInfo.team.primary_color__c};
             --user-team-secondary: {!v.contextInfo.team.secondary_color__c};
-            --lead-team-color: {!v.leadTeam.primary_color__c};
-            {!v.teamColors}
+            --lead-team-primary: {!v.leadTeam.primary_color__c};
+        	--lead-team-secondary: {!v.leadTeam.secondary_color__c};
         }
     </aura:html>
 

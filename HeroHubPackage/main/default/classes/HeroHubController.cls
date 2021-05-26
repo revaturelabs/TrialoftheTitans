@@ -12,7 +12,6 @@
 public with sharing class HeroHubController {
     
     @AuraEnabled
-    // Used to return userInfo to component
     public static UserContextInfo getUserInfo(){
         try {
             

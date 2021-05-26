@@ -1,3 +1,3 @@
 <aura:application >
-    <c:HeroHubTest/>
+    <c:PageContainer/>
 </aura:application>

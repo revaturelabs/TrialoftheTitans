@@ -2,5 +2,8 @@
 <PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Permissions for the Admin of the Trial of the Titan</description>
     <label>TrialOfTheTitansAdminPermissions</label>
+    <permissionSets>Core_Admin_Permissions</permissionSets>
+    <permissionSets>TrainerExam</permissionSets>
+    <permissionSets>Trainer_Titans_Page_Permissions</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>

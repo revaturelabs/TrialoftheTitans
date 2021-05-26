@@ -42,14 +42,23 @@ public class UserContextInfo {
     }
 
     private Account getUserAccount(Id userId) {
-
+		
         // To be added when user is live
-        //Id userContactId = [SELECT Id, ContactId FROM USER WHERE Id = :userId].ContactId;
-        //Contact userContact = [SELECT Id, AccountId, Name FROM Contact WHERE Id = :userContactId];
+        try{
+            //User user = [SELECT Id, contactId FROM User WHERE Id = :userId];
+        	//Contact userContact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.ContactId];
+        	//Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Id = :userContact.AccountId];
+            
+            //Hard Coded Account for now
+        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Name = 'User0'];
+			return userAccount;
+        }
+        catch(Exception e){
+           return null;
+        }
         
-        //Hard Coded Account for now
-        Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Name = 'User0'];
-        return userAccount;
+
+        
     }
 
     private Squad__c getSquad(Id squadId){
@@ -75,7 +84,7 @@ public class UserContextInfo {
 
     }
 
-    
+    @testVisible
     private List<Titan__C> getAllTitans(){
 
         List<Titan__c> allTitans = [SELECT Id, Name FROM Titan__C];
@@ -85,6 +94,7 @@ public class UserContextInfo {
     }
 
     // Returns a list of exams with a nest list of results
+    @testVisible
     private List<Exam__c> getExamsWithResults(Id accId){
         
         List<Exam__c> examList = [SELECT Id, 

@@ -1,16 +1,16 @@
 ({
     doInit: function( component, event, helper ) {
-        /*getContextInfo = component.get("!c.getContextInfo");
-        getcontextInfo.setCallback( this, function( response ) {
+        const getContextInfo = component.get("c.getUserInfo");
+        getContextInfo.setCallback( this, function( response ) {
             if(response.getState() === "SUCCESS"){
-                //set contextInfo
+                console.log(response.getReturnValue);
+                component.set("v.contextInfo", response.getReturnValue);
             }
             else {
                 //User isn't signed in return to login
             }
-        });*/
-        component.set("v.contextInfo", {id:"00273731279", name:"Gladius Maximus", squad:{name:"YOU DON'T KNOW ME!!!", quote:"This is a quote"}, team:{name:"Amplifire", primary_color__c:"#EF6363"}});
+        });
+        $A.enqueueAction(getContextInfo);
         component.set("v.leadTeam", {name:"Amplife", primary_color__c:"#EF6363"});
-        component.set("v.teamColors", "")
     }
 })
