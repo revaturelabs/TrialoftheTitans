@@ -180,12 +180,6 @@
         <layout>Curriculum__c-Curriculum Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Skill__c-Skill Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Technology__c-Technology Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Titan__c-Titan Layout</layout>
     </layoutAssignments>
     <objectPermissions>
@@ -202,6 +196,14 @@
         <recordType>Account.Hero</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <tabVisibilities>
+        <tab>Question_Assignment__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Question_Pool__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Account</tab>
         <visibility>DefaultOn</visibility>
