@@ -4,7 +4,7 @@
 <!-- The components will display table of question records and will allow users
   to add questions to the existing pools--> 
 
-<aura:component controller="QuestionTableApexController" implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForRecordHome" access="public"> 
+<aura:component controller="QuestionTableApexController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"   access="global"> 
     <!--Declaring values-->
     <aura:attribute name="objectApi" type="String" default="Question_Assignment__c" />
     <aura:attribute name="mydata" type="object"/>

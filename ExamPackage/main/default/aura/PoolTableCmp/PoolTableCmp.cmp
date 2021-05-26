@@ -4,7 +4,7 @@
 <!-- The components will display table of pool records and will allow users
   to see the questions they have added--> 
 
-<aura:component controller="PoolTableApexController" implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForRecordHome" access="public"> 
+<aura:component controller="PoolTableApexController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"  access="global"> 
     <!--Declaring values-->
     <aura:attribute name="mydata" type="object"/>
     <aura:attribute name="pools" type="object"/>
