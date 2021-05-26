@@ -1,0 +1,23 @@
+.THIS.tab {
+    background: #302f30;
+    border-bottom: 2px solid #302f30;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: .5em 0;
+}
+
+.THIS.tab:hover {
+    background: #141414;
+    border-bottom: 2px solid #84b059;
+    color: #84b059;
+    cursor: pointer;
+}
+
+.THIS.active-tab {
+    background: #141414;
+    border-bottom: 2px solid #84b059;
+    color: #84b059;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: .5em 0;
+}
