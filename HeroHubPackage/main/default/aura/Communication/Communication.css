@@ -71,7 +71,7 @@
     color: #302f30;
     min-width: 20%;
     padding: 1em;
-    position: absolute;
+    position: fixed;
     right: 0;
     text-align: center;
 }
