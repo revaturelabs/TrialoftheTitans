@@ -20,7 +20,7 @@
     </header>
     
     <div id="main">
-        <!--Titan Slayer component goes here-->
+        <c:TitanSlayer leadTeam="{!v.leadTeam}" />
         <!--main body goes here-->
     </div>
 

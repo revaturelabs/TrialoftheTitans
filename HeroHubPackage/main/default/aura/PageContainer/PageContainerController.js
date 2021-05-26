@@ -2,6 +2,7 @@
     doInit: function( component, event, helper ) {
         const getContextInfo = component.get("c.getUserInfo");
         getContextInfo.setCallback( this, function( response ) {
+            console.log()
             if(response.getState() === "SUCCESS"){
                 console.log(response.getReturnValue);
                 component.set("v.contextInfo", response.getReturnValue);
