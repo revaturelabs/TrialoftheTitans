@@ -1,5 +1,27 @@
 ({   
-    
+    hSetTitan : function(component, event, helper) {
+        let titanList = component.get("c.getTitans");
+        titanList.setCallback(this, function(response){
+            if(response.getState() == "SUCCESS"){
+                component.set("v.TitanList", response.getReturnValue());
+                console.log("Returned Titans")
+                console.log(response.getReturnValue())
+            }
+        })
+        $A.enqueueAction(titanList);
+    },
+
+
+
+
+
+
+
+
+
+
+
+
 //	hShowTitan# : button method that fires event, chooses which Titan to display info for
 
     hShowTitan1 : function(component, event, helper) {
