@@ -1,5 +1,12 @@
 ({
   ProgressChart : function(component, data) {   
+    
+    var userColors ={
+      "Amplifire":["#ef6363","#c24747"],
+      "Alchemy":["#84b059","#539951"],
+      "Synergy":["#ffdd00","#fbb034"],
+      "Vanquish":["#7aa7e9","#5f70b0"],
+    };
     var data = [
         {
           "Titan": "Data Model",
@@ -33,21 +40,22 @@
         }
       ]
 
-    var margin = {top: 30, right: 30, bottom: 30, left: 30},
+    var margin = {top: 60, right: 60, bottom: 60, left: 60},
     width = 500 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom,
+    height = 500 - margin.top - margin.bottom,
     innerRadius = 20,
     outerRadius = (Math.min(width, height) / 2) -40 ;   // The outerRadius goes from the middle of the SVG area to the border
 
     // Append the svg object to the body of the page
     var svg = d3.select("#progress-chart")
         .append("svg:svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
+          .attr("viewBox", `0 0 ${width} ${height}`)
+          .attr("margin", "30px")
+          // .attr("height", height + margin.top + margin.bottom)
           
         .append("g")
           .attr("transform", "translate(" + width / 2 + "," + height/2 +")")
-          .attr("margin", 100); // Add 100 on Y translation, cause upper bars are longer
+          
 
         console.log(svg)
           
@@ -67,30 +75,44 @@
         .domain([0, 1]); // Domain of Y is from 0 to the max seen in the data
 
     var z = d3.scaleOrdinal()
-        .range(["#98abc5", "#8a89a6"]) // Range of Z is the colors each section or the arc will be assigned
+        .range(userColors.Vanquish) // Range of Z is the colors each section or the arc will be assigned
         .domain(["Value", "RecentProgress"]); // Domain of Z is the data key of the sections each arc is divided into
-
+    
     console.log(data.map(function(d){return [d.Value, d.RecentProgress]}))
-
-
+    
+    svg.append("circle")
+          .attr("fill", "#29292A")
+          .attr("stroke-width", "2%")
+          .attr("r", y);
+    
     // Add bars
     svg.append("g")
       .selectAll("g")
       .data(d3.stack().keys(["Value", "RecentProgress"])(data))
       .enter().append("g")
+        .attr("background-color", "#29292A")
         .attr("fill", function(d) { return z(d.key); })
+        .attr("class", function(d) { 
+          var color = z(d.key);
+          return (color == "#98abc5") ? "progress-slice" 
+          : "recent-slice" })
       .selectAll("path")
       .data(function(d) { return d; })
       .enter().append("path")
         .attr("d", d3.arc()
-            .innerRadius(function(d) { return y(d[0]); })
+            .innerRadius(function(d) { console.log(data.indexOf(d.data)); return y(d[0]); })
             .outerRadius(function(d) { return y(d[1]); })
             .startAngle(function(d) { return x(d.data.Titan); })
             .endAngle(function(d) { return x(d.data.Titan) + x.bandwidth(); })
             .padAngle(0.01)
             .padRadius(innerRadius))
-        .attr("stroke", '#ffffff');
-
+          .attr("id", function(d){
+            return "chart-section-" + data.indexOf(d.data)})
+          .attr("style", function(d){
+              return "animation-delay: " + (data.indexOf(d.data)*0.1)+ "s"});
+        // .attr("stroke", '#ffffff');
+    
+    // Add slice borders
     svg.append("g")
       .selectAll("path")
       .data(data)
@@ -103,7 +125,9 @@
             .padAngle(0.01)
             .padRadius(innerRadius))
         .attr("fill", "none")
-        .attr("stroke", '#000000');
+        .attr("stroke", "#d4d5d5")
+        .attr("stroke-width", "1%");
+        
     // Border Rings
         var label = svg.append("g")
         .selectAll("g")
@@ -132,7 +156,8 @@
     
       yTick.append("circle")
           .attr("fill", "none")
-          .attr("stroke", "#000")
+          .attr("stroke", "#d4d5d5")
+          .attr("stroke-width", "1%")
           .attr("r", y);
     
       
