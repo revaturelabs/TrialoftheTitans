@@ -143,6 +143,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
     <enableBulkApi>false</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -156,11 +157,11 @@
     <label>Exam Result</label>
     <nameField>
         <displayFormat>ExamResult-{0000}</displayFormat>
-        <label>Exam Result Number</label>
+        <label>Exam Result Numer</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Exam Results</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

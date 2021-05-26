@@ -143,6 +143,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
     <enableBulkApi>false</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -155,11 +156,11 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Exam Question</label>
     <nameField>
-        <label>Question Title</label>
+        <label>Exam Question Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Exam Questions</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
