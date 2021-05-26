@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pass__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( ISBLANK( Passing_Grade_Override__c ), ( Total_Correct__c / Total_Answers__c ) &gt;=  Exam__r.Default_Passing_Grade__c, ( Total_Correct__c / Total_Answers__c ) &gt;=  Passing_Grade_Override__c )</formula>
+    <label>Pass</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
