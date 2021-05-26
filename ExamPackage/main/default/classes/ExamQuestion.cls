@@ -1,5 +1,8 @@
 public class ExamQuestion {
-    public String title { get; set; }
-    public String text { get; set; }
-    public String answer { get; set; }
+    @AuraEnabled
+    public String qTitle { get; set; }
+    @AuraEnabled
+    public String qText { get; set; }
+    @AuraEnabled
+    public String qAnswer { get; set; }
 }

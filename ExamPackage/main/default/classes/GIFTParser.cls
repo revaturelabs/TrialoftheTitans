@@ -97,18 +97,18 @@ public class GIFTParser {
             // Check if question contains title
             if ( questionsToSplit[i].substring(0,2).contains('::') ) {
                 titleEnd = questionsToSplit[i].indexOf('::', 2);
-                tempQuestion.title = questionsToSplit[i].substring(2,titleEnd);
+                tempQuestion.qTitle = questionsToSplit[i].substring(2,titleEnd);
                 withoutTitle = questionsToSplit[i].substring(titleEnd + 2);
             } else {
-                tempQuestion.title = '';
+                tempQuestion.qTitle = '';
                 withoutTitle = questionsToSplit[i];
             }
 
             // Now split text and answer
-            tempQuestion.text = withoutTitle.substringBefore('{');
-            tempAnswer = withoutTitle.substringAfter(tempQuestion.text);
+            tempQuestion.qText = withoutTitle.substringBefore('{');
+            tempAnswer = withoutTitle.substringAfter(tempQuestion.qText);
             tempAnswer = tempAnswer.substring(1,tempAnswer.length() - 1);
-            tempQuestion.answer = tempAnswer;
+            tempQuestion.qAnswer = tempAnswer;
             System.debug(tempQuestion);
             examQuestionList.add(tempQuestion);
         }
@@ -125,20 +125,21 @@ public class GIFTParser {
         List<ExamQuestion> shortAnswerQuestions = new List<ExamQuestion>();
         List<ExamQuestion> trueFalseQuestions = new List<ExamQuestion>();
 
+        // Check for question characteristics and sort into lists
         for ( Integer i = 0; i < examQuestionList.size(); i++ ) {
-            if ( examQuestionList[i].answer.containsOnly('{}') ) {
+            if ( examQuestionList[i].qAnswer.containsOnly('{}') ) {
                 essayQuestions.add(examQuestionList[i]);
-            } else if ( examQuestionList[i].answer.substring(0,1).contains('#') ) {
+            } else if ( examQuestionList[i].qAnswer.substring(0,1).contains('#') ) {
                 numericalQuestions.add(examQuestionList[i]);
-            } else if ( examQuestionList[i].answer.contains('->') ) {
+            } else if ( examQuestionList[i].qAnswer.contains('->') ) {
                 matchingQuestions.add(examQuestionList[i]);
-            } else if ( examQuestionList[i].answer.contains('~') && examQuestionList[i].answer.countMatches('=') > 1) {
+            } else if ( examQuestionList[i].qAnswer.contains('~') && examQuestionList[i].qAnswer.countMatches('=') > 1) {
                 multChoiceMAQuestions.add(examQuestionList[i]);
-            } else if ( examQuestionList[i].answer.contains('~') && examQuestionList[i].answer.countMatches('=') == 1) {
+            } else if ( examQuestionList[i].qAnswer.contains('~') && examQuestionList[i].qAnswer.countMatches('=') == 1) {
                 multChoiceQuestions.add(examQuestionList[i]);
-            } else if ( examQuestionList[i].answer.contains('=') && !examQuestionList[i].answer.contains('~') ) {
+            } else if ( examQuestionList[i].qAnswer.contains('=') && !examQuestionList[i].qAnswer.contains('~') ) {
                 shortAnswerQuestions.add(examQuestionList[i]);
-            } else if ( examQuestionList[i].answer.toUpperCase().contains('T') || examQuestionList[i].answer.toUpperCase().contains('F') || examQuestionList[i].answer.toUpperCase().contains('TRUE') || examQuestionList[i].answer.toUpperCase().contains('FALSE') ) {
+            } else if ( examQuestionList[i].qAnswer.toUpperCase().contains('T') || examQuestionList[i].qAnswer.toUpperCase().contains('F') || examQuestionList[i].qAnswer.toUpperCase().contains('TRUE') || examQuestionList[i].qAnswer.toUpperCase().contains('FALSE') ) {
                 trueFalseQuestions.add(examQuestionList[i]);
             } else {
                 shortAnswerQuestions.add(examQuestionList[i]);
@@ -146,6 +147,7 @@ public class GIFTParser {
             
         }
 
+        // Put lists into map
         sortedQuestions.put('Essay', essayQuestions);
         sortedQuestions.put('Numerical', numericalQuestions);
         sortedQuestions.put('Matching', matchingQuestions);
@@ -155,4 +157,5 @@ public class GIFTParser {
         sortedQuestions.put('True-False', trueFalseQuestions);
         return sortedQuestions;
     }
+
 }

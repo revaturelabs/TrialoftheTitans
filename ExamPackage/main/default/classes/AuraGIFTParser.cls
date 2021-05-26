@@ -1,18 +1,24 @@
 public class AuraGIFTParser {
     // *** VARIABLES *** //
-    public List<ExamQuestion> allQuestions  { get; set; }
-    // public List<String> missingWordQuestions  { get; set; }
-    // public List<String> essayQuestions  { get; set; }
-    // public List<String> numericalQuestions  { get; set; }
-    // public List<String> matchingQuestions  { get; set; }
-    // public List<String> multChoiceQuestions  { get; set; }
-    // public List<String> multChoiceMQuestions  { get; set; }
-    // public List<String> trueFalseQuestions  { get; set; }
-    // public List<String> shortAnswerQuestions  { get; set; }
+    // public Map<String,List<ExamQuestion>> sortedExamList { get; set; }
     
     // Aura
     @AuraEnabled
-    public static void parseFile(List<ExamQuestion> questionList) {
-
+    public static List<ExamQuestion> ImportFile(List<ExamQuestion> questionList) {
+        List<ExamQuestion> allQuestions = questionList;
+        System.debug(questionList);
+        System.debug(allQuestions);
+        // AuraGIFTParser.sortQuestions
+        // AuraGIFTParser.createRecords
+        
+        return questionList;      
+    }
+    
+    
+    
+    @AuraEnabled
+    public static String GIFTInit() {
+        String initMessage = 'Ready to import questions.';
+        return initMessage;
     }
 }

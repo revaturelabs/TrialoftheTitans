@@ -1,9 +1,9 @@
 <!--
-	Component to take in gift format text file
+ Component to take in gift format text file
 -->
-<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
-                access="global" >
-    
+<aura:component controller="AuraGIFTParser" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                access="global">
+    <aura:attribute name="initMessage" type="String" default="" />
     <aura:attribute name="fileType" type="List" default="['.txt']" />
     <aura:attribute name="multiple" type="Boolean" default="true" />
     <aura:attribute name="record" type="String" default="a0AJ000000IQCazMAH"/>
@@ -16,9 +16,11 @@
                                                              {'Name' : 'Web-Development', 'Id' : 54321},
                                                              {'Name' : 'Database', 'Id' : 54321}]"/>
     <aura:attribute name="canUpload" type="Boolean" default="false" />
-    <aura:attribute name="fileName" type="String" default="No File Selected.." />
+    <aura:attribute name="successMessage" type="Boolean" default="false" />
+    <aura:attribute name="imported" type="Integer" default="0" />
+    <aura:attribute name="fileName" type="String" default="No File Selected..." />
     <aura:attribute name="fileText"  type="String"  /> 
-    
+    <aura:handler name="init" value="{!this}" action="{!c.DoInit}" />
     
     <!-- body -->
     <div>
@@ -26,7 +28,11 @@
         
         <!-- create record -->
         <aura:if isTrue="{! equals(v.canUpload, false)}">
-            
+            <b>{!v.initMessage}</b><br />
+            <aura:if isTrue="{!v.successMessage}" >
+                <b>File successfully imported!</b><br />
+                <i>Imported {!v.imported} questions</i>
+            </aura:if>
             
             <!-- define titan -->
             <div class="slds-box">
@@ -52,7 +58,7 @@
             
             <!-- submit button -->
             <div class="slds-box">
-                <lightning:button variant="brand" label="Submit" title="Submit" onclick="{! c.HandleSubmission }"/>
+                <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.HandleNext }"/>
             </div>
             <!-- /submit button -->
             
@@ -66,10 +72,20 @@
             
             <div class="slds-box">
                 
-                
-                <!-- file uploader -->
-                <lightning:input aura:id="fileupload" type="file" lable="Upload Text Document" multiple="false" accept='.txt' onchange="{! c.HandleUploadFile}"/>
-                <!-- /file uploader -->
+                <table>
+                    <tr>
+                        <td>
+                            <!-- file uploader -->
+                            <lightning:input aura:id="fileupload" type="file" lable="Upload Text Document" multiple="false" accept='.txt' onchange="{! c.HandleUploadFile}"/>
+                            <!-- /file uploader -->
+                        </td>
+                        <td>
+                            <!-- submit button -->
+                            <lightning:button variant="brand" label="Submit" title="Submit" onclick="{! c.HandleSubmit }"/>
+                            <!-- /submit button -->
+                        </td>
+                    </tr>
+                </table>
                 <div class="slds-text-body_small slds-text-color_black" style="white-space: pre-line;">
                     
                     {!v.fileName} 
@@ -77,9 +93,7 @@
                     FILE TEXT:
                     {!v.fileText} 
                 </div>
-                <!-- upload button -->
-                <lightning:button variant="brand" label="Finished" title="Finished" onclick="{! c.HandleFinished }"/>
-                <!-- /upload button -->
+                
                 
                 
             </div>
