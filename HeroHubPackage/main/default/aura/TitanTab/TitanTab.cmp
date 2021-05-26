@@ -1,5 +1,5 @@
 <aura:component >
-    <aura:registerEvent name="TitanClickedEvent" type="c:TitanClickedEvent"/>
+    <aura:registerEvent type="c:TitanClickedEvent" name="TitanClickedEvent"/>
     
     <aura:attribute name="name" type="String"/>
     <aura:attribute name="num" type="Integer"/>

@@ -8,6 +8,7 @@
     <aura:attribute name="contextInfo" type="Map"/>
     
   	<aura:handler name="init" value="{!this}" action="{!c.GameInit}"/>
+    <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
     
     <div>
         <p style="color:white;"> {!v.active}</p>
@@ -112,12 +113,6 @@
         </aura:if>
         
         
-
-
-
-
-
-
 
 
 

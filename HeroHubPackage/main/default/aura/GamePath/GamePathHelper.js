@@ -23,7 +23,7 @@
                                     { name: "someName", isPassed: false, highScore: 42.0 },
                                     ]);
          
-        
+        console.log("updated active:" + component.get("v.active"));
         exams = examMap.get(component.get("v.active"));             
         let passedExams = [];
         let failedExams = [];
@@ -83,6 +83,8 @@
 	},
 
     handleGameChange : function( component, event){
-
+        let method = component.get("c.GameInit");
+        method.setParams({"component" : component, "event" : event});
+        $A.enqueueAction(method);
     }
 })

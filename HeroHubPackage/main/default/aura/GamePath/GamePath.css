@@ -4,9 +4,11 @@
     border-radius: 0px 5px 5px 5px;
     height: auto;
     margin-right: 15px;
-    min-width: 375px;    
+    min-width: 375px;
+    min-height: 700px;    
     padding: 15px 10px 25px 15px;
     width: 100%;
+    transition: .5s;
 }
 
 .THIS h1{
