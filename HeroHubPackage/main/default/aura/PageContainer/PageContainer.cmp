@@ -28,4 +28,5 @@
         <c:Footer />
     </footer>
 
+    <c:Communication />
 </aura:component>

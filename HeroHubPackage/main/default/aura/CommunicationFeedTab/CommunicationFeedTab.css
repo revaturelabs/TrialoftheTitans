@@ -8,15 +8,15 @@
 
 .THIS.tab:hover {
     background: #141414;
-    border-bottom: 2px solid #84b059;
-    color: #84b059;
+    border-bottom: 2px solid var(--amplifire-primary);
+    color: var(--amplifire-primary);
     cursor: pointer;
 }
 
 .THIS.active-tab {
     background: #141414;
-    border-bottom: 2px solid #84b059;
-    color: #84b059;
+    border-bottom: 2px solid var(--amplifire-primary);
+    color: var(--amplifire-primary);
     font-size: 1.2em;
     font-weight: bold;
     padding: .5em 0;
