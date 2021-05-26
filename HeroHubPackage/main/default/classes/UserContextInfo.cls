@@ -1,3 +1,15 @@
+/////////////////////////////////////////////////////
+//
+//  Name: UserContextInfo
+//  Author: Josh Miccolo
+//  Created: 5/24/2021
+//  Updated: 5/25/2021
+//  Description: User Context to be return to JavaScript
+//  controller in the PageContainer
+// 
+//
+///////////////////////////////////////////////////
+
 public class UserContextInfo {
     
     //account Info
@@ -12,7 +24,7 @@ public class UserContextInfo {
     //Map of Exam Info by Titan and then Exam Name
     @auraEnabled public Map<String, List<ExamList>> userExams {get; set;} 
 
-    //Constructor when given a userId
+    //Constructor
     public UserContextInfo( Id userId ){
 
         acc = getUserAccount( userId );
@@ -35,7 +47,7 @@ public class UserContextInfo {
         //Id userContactId = [SELECT Id, ContactId FROM USER WHERE Id = :userId].ContactId;
         //Contact userContact = [SELECT Id, AccountId, Name FROM Contact WHERE Id = :userContactId];
         
-        //Hard Coded Account for
+        //Hard Coded Account for now
         Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Name = 'User0'];
         return userAccount;
     }
@@ -72,7 +84,7 @@ public class UserContextInfo {
     
     }
 
-
+    // Returns a list of exams with a nest list of results
     private List<Exam__c> getExamsWithResults(Id accId){
         
         List<Exam__c> examList = [SELECT Id, 
@@ -89,8 +101,10 @@ public class UserContextInfo {
         return examList;
     }
 
+    //Maps the Exam Results and other fields to a Titan by Exam Name
     private Map<String, List<ExamList>> mapTitansToExams(List<Exam__c> exams, List<Titan__c> allTitans){
 		
+        // Custom DataType to mape names, lists, and numbers in one object
         Map<String, List<ExamList>> examMap = new Map<String, List<ExamList>>();
         
         for(Exam__c exam:exams){
@@ -105,6 +119,7 @@ public class UserContextInfo {
 
         }
 
+        // Map titans with no exams after those with exams.
         for(Titan__c titan: allTitans){
 
             if(examMap.containsKey(titan.Name) != true){
@@ -116,7 +131,6 @@ public class UserContextInfo {
         
         }
         
-        system.debug(examMap);
         return examMap;
     }
 }

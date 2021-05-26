@@ -1,6 +1,18 @@
+/////////////////////////////////////////////////////
+//
+//  Name: HeroHubController
+//  Author: Josh Miccolo
+//  Created: 5/23/2021
+//  Updated: 5/25/2021
+//  Description: Hero Hub Main Page Component Controller
+//  sends User context, and team scores.
+//  
+//
+///////////////////////////////////////////////////
 public with sharing class HeroHubController {
     
     @AuraEnabled
+    // Used to return userInfo to component
     public static UserContextInfo getUserInfo(){
         try {
             

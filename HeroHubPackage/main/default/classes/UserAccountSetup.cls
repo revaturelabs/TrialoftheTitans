@@ -1,4 +1,17 @@
+/////////////////////////////////////////////////////
+//
+//  Name: UserAccountSetup
+//  Author: Josh Miccolo
+//  Created: 5/24/2021
+//  Updated: 5/25/2021
+//  Description: Utility class to create new data for
+//  the Hero Hub and Titan Page team.
+//
+///////////////////////////////////////////////////
+
 public class UserAccountSetup {
+
+    //Creates users and accounts for setup. 
     public static void UserSetUp(){
         
         Team__c newTeam = new Team__C(Name='Amplifire');

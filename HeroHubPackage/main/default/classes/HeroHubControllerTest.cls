@@ -1,37 +1,169 @@
+/////////////////////////////////////////////////////
+//
+//  Name: HeroHubController Test
+//  Author: Josh Miccolo
+//  Created: 5/24/2021
+//  Updated: 5/25/2021
+//  Description: Tests for the Hero Hub controller.
+//  
+//
+///////////////////////////////////////////////////
 @isTest
 public class HeroHubControllerTest {
     
     @TestSetup
     static void testSetup(){
-    
-        Account customerAccount = new Account();
-        customerAccount.Name ='Customer';
-        
-        Database.insert(customerAccount);
 
-        Contact customerContact = new Contact();
-        customerContact.LastName = 'test';
-        customerContact.AccountId = customerAccount.Id;
+        //Create Team and Squad for Account
+    
+        Team__c newTeam = new Team__C(Name='Amplifire');
+        insert newTeam;
+
+        Squad__c newSquad = new Squad__c(Name = 'This is Fire', Team__c = newTeam.Id);
+        insert newSquad;
+    
+        // Create multiple accounts to test
+        List<Account> userAccounts = new List<Account>();
         
-        Database.insert(customerContact);
+        for(Integer i = 0; i < 5; i++){
+            Account newAccount = new Account(name='User'+i, Squad__c = newSquad.Id);
+            userAccounts.add(newAccount);
+        }
         
-        Id customerProfileId = [SELECT id FROM Profile WHERE name='Customer Community Login' LIMIT 1].id;
-        Id customerRoleId = [SELECT Id FROM UserRole WHERE PortalType = 'None' LIMIT 1].id;
+        insert userAccounts;
         
-        User customerUser = new User(
-            ProfileId = customerProfileId,
-            Username = System.now().millisecond() + 'test42@test.com',
-            Alias = 'Hath',
-            Email='Hath.Annaway@mgail.com',
-            EmailEncodingKey='UTF-8',
-            Firstname='Hath',
-            Lastname='Annaway',
-            LanguageLocaleKey='en_US',
-            LocaleSidKey='en_US',
-            TimeZoneSidKey='America/Chicago',
-            ContactId = customerContact.id
-        );
+        // Create multiple contacts for users
+        List<Contact> userContacts = new List<Contact>();
         
-        Database.insert(customerUser);
+        for(Integer i = 0; i < 5; i++){
+            Contact newContact = new Contact(lastName='User'+i, AccountId=userAccounts[i].id);
+            userContacts.add(newContact);
+        }
+        
+        insert userContacts;
+        
+        // Get Hero profile from database to use for Users
+        Profile heroProfile = [SELECT Id FROM Profile WHERE Name = 'Hero' LIMIT 1];
+        
+        //Create multiple users
+        List<User> users = new List<User>();
+        
+        for(Integer i = 0; i < 5; i++){
+            
+			User newUser = new User(profileId = heroProfile.id,
+						   			username = userContacts[i].lastName + Crypto.getRandomInteger() + '@yahoo.com',
+						   			email = 'test'+ i +'@test.com',
+									emailencodingkey = 'UTF-8',
+									localesidkey = 'en_US',
+									languagelocalekey = 'en_US',
+									timezonesidkey = 'America/Los_Angeles',
+									alias='test' + i,
+									lastname=userContacts[i].lastName,
+									contactId = userContacts[i].id
+									);
+            users.add(newUser);
+        }
+        
+        insert users; 
+        
+        // Create curriculum and Titans for Exams
+        Curriculum__c newCurriculum = new Curriculum__c(Name='Salesforce');
+        
+        insert newCurriculum;
+        
+        List<Titan__c> newTitans = new List<Titan__c>();
+        
+        List<String> titanNames = new List<String>{'Process Automation', 'Data Modeling', 'Apex'};
+        
+        for(String name : titanNames){
+        	
+            Titan__c newTitan = new Titan__c(Name = name, Technology__c = newCurriculum.Name,  Curriculum__c = newCurriculum.Id);
+            
+            newTitans.add(newTitan);
+            
+        }
+        
+        insert newTitans;
+        
+
+        // Create exams for each Titan
+        List<Exam__c> newExams = new List<Exam__c>();
+        
+        for(Titan__c titan : newTitans){
+            
+            for(Integer i = 0; i < 3; i++){
+                
+                Exam__C newExam = new Exam__c( Name='testExam'+ i, Default_Passing_Grade__c = 65.0, Titan__c = titan.Id );
+            	
+                newExams.add(newExam);
+            
+            }    
+        
+        }
+        
+        insert newExams;
+        
+        // Create multiple questions for each exam
+        List<Exam_Question__c> newQuestions = new List<Exam_Question__C>();
+        
+        for(Exam__c exam: newExams){
+            
+            for(Integer i = 0; i < 5; i++){
+                
+                Exam_Question__C newQuestion = new Exam_Question__c( Name = 'Test' + i );
+            	
+                newQuestions.add(newQuestion);
+            
+            }
+        }
+        
+        insert newQuestions;
+        
+
+        // Create results to tie hero answers to
+        List<Exam_Result__c> newResults = new List<Exam_Result__c>();
+        
+        for(Exam__c exam: newExams){
+            for(Account acc: userAccounts){
+                Exam_Result__c newResult = new Exam_Result__c(Exam__c = exam.Id, Account__c = acc.Id);
+                
+                if(Math.round(Math.random()) == 1){
+                    newResult.Graded__c = true;
+                }
+
+                newResults.add(newResult);
+            }
+        }
+        
+        insert newResults;
+
+        
+        // Create Answers for the Questions
+       	List<Hero_Answer__c> newAnswers = new List<Hero_Answer__c>();
+        
+        for(Exam_Question__c question : newQuestions){
+            
+            for(Exam_Result__c result : newResults){
+            	
+            	Hero_Answer__c newAnswer = new Hero_Answer__c(Exam_Question__c = question.id, Exam_Result__c = result.id);
+                if(Math.round(Math.random()) == 1){
+                    
+                    newAnswer.Correct__c = true;
+                
+                }
+                else{
+                	
+                	newAnswer.Correct__c = false;
+                    
+                }
+                
+                newAnswers.add(newAnswer);
+            }
+        
+        }
+        
+        insert newAnswers;
+        
     }
 }
+
