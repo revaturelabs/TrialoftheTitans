@@ -17,7 +17,7 @@ public class TestQuestionTableApexController {
         // Pools
         List <Question_Pool__c> testPool = new List <Question_Pool__c> ();
         for(Integer i = 0; i < 5; i++){
-        	testPool.add(new Question_Pool__c(Name='apexPool'+i, Question_Pool_Exam__c = myExam.Id));
+        	testPool.add(new Question_Pool__c(Name='apexPool'+i));
         }
        	insert testPool;
         
