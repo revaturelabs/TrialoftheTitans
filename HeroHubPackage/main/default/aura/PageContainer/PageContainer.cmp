@@ -25,7 +25,6 @@
         <!--main body goes here-->
     </div>
 
-    <c:Communication />
     <footer>
         <c:Footer />
     </footer>
