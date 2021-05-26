@@ -1,12 +1,12 @@
 ({
     HandleInit : function( component ) {
 		let method = component.get("c.getTitans");
-        method.setCallback(this, function(respone){
-            if(method.getState() == "SUCCESS"){
+        method.setCallback(this, function(response){
+            if(response.getState() == "SUCCESS"){
                 let tabs = [];
                 tabs.push('Overview');
                 
-                let titans = method.getReturnValue();
+                let titans = response.getReturnValue();
                 for(let titan in titans){
                     tabs.push(titans[titan]);
                 }
