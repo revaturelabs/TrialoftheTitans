@@ -4,10 +4,7 @@
     <layoutAssignments>
         <layout>Account-Account Layout</layout>
     </layoutAssignments>
-    <layoutAssignments>
-        <layout>Account-Hero Account</layout>
-        <recordType>Account.Hero</recordType>
-    </layoutAssignments>
+
     <layoutAssignments>
         <layout>Cohort__c-Cohort Layout</layout>
     </layoutAssignments>
