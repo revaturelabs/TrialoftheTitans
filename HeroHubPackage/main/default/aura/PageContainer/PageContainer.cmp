@@ -1,6 +1,6 @@
 <aura:component controller="HeroHubController" access="global" >
     <!--Attributes: contextUser, userTeam, leadTeam,-->
-    <aura:attribute name="contextInfo" type="Map" default="{}" />
+    <aura:attribute name="contextInfo" type="UserContextInfo" />
     <aura:attribute name="leadTeams" type="Map"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
@@ -21,7 +21,7 @@
     
     <div id="main">
         <c:TitanSlayer leadTeam="{!v.leadTeam}" />
-        <!--main body goes here-->
+        <c:HeroJourney contextInfo="{!v.contextInfo}"/>
     </div>
 
     <footer>

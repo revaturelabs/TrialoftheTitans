@@ -2,7 +2,7 @@
     <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
     <aura:attribute name="tabs" type="List"/>
     <aura:attribute name="active" type="String"/>
-    <aura:attribute name="contextInfo" type="Map"/>
+    <aura:attribute name="contextInfo" type="UserContextInfo"/>
     <!-- user context being passed in includes: id, name, squad, user team, curriculum -->
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>

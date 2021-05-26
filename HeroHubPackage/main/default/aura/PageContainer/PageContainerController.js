@@ -4,7 +4,9 @@
         getContextInfo.setCallback( this, function( response ) {
             console.log()
             if(response.getState() === "SUCCESS"){
-                console.log(response.getReturnValue);
+                const contextinfo = response.getReturnValue;
+                contextinfo.userExams = Object.entries(contextinfo.userExams);
+                console.log(contextinfo);
                 component.set("v.contextInfo", response.getReturnValue);
             }
             else {
