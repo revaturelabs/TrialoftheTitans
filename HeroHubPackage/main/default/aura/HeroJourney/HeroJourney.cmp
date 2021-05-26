@@ -25,6 +25,7 @@
         <aura:if isTrue="{!v.active == 'Overview'}">
             <div style="background:#8CA7DF; border-radius: 0px 5px 5px 5px; height:700px;" class="slds-col slds-size_6-of-7">
                 Overview
+                <c:ProgressChart/>
             </div>
 
             <aura:set attribute="else">

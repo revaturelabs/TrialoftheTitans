@@ -1,2 +1,20 @@
-.THIS {
+.THIS path[id^="chart-section-"]{
+  animation: createSvg .5s;
+  animation-fill-mode: both;
 }
+@keyframes createSvg {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  @keyframes recentSvg {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }

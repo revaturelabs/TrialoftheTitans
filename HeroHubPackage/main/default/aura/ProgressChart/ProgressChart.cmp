@@ -1,4 +1,4 @@
-<aura:component controller="ProgressChartController">
+<aura:component>
     <ltng:require
                   scripts="{!$Resource.d3 + '/d3.js'}"
                   afterScriptsLoaded="{!c.GenerateCircleBar}" />
