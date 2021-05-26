@@ -9,6 +9,15 @@
     width: 100%;
 }
 
+.THIS h1{
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
 .THIS .path{
     margin: auto;
     max-width: 625px;
@@ -73,6 +82,15 @@
     width: 100px;
 }
 
+.THIS .minion-left-completed{
+    background: #5A714F;
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    transition: .5s;
+}
+
 .THIS .minion-right{
     border-radius: 150px;
     border: 5px solid white;
@@ -101,6 +119,14 @@
 .THIS .down-left-center-path{
     border-bottom: 7px dashed white;
     border-right: 7px dashed white;
+    height: 50px;
+    width: 43%;
+    margin-left: 7.5%; 
+}
+
+.THIS .down-left-center-path-completed{
+    border-bottom: 7px dashed #8CA7DF!important;
+    border-right: 7px dashed #8CA7DF!important;
     height: 50px;
     width: 43%;
     margin-left: 7.5%; 
@@ -151,6 +177,20 @@
     margin: auto;
 }
 
+.THIS .vertical-line-centered{
+    height: 50px;
+    width: 1px;
+    border-right: 7px dashed white;
+    margin: auto;
+}
+
+.THIS .vertical-line-centered-completed{
+    height: 50px;
+    width: 1px;
+    border-right: 7px dashed #8CA7DF;
+    margin: auto;
+}
+
 .THIS .vertical-line-short-right{
     height: 25px;
     width: 1px;
@@ -162,5 +202,12 @@
     height: 25px;
     width: 1px;
     border-right: 7px dashed white;
+    margin-left: 7.5%;
+}
+
+.THIS .vertical-line-short-left-completed{
+    height: 25px;
+    width: 1px;
+    border-right: 7px dashed #8CA7DF;
     margin-left: 7.5%;
 }
