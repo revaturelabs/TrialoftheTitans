@@ -6,20 +6,16 @@
 
 public with sharing class CommunicationController {
 
-    public CommunicationController() {
-
-    }
-
 
     // DESCRIPTION: Used to get all the chatter groups the context user is a part of
     @AuraEnabled
     public static List<CollaborationGroup> GetGroups() {
 
         // Query for member group list of the context user
-        User currentUser = [ SELECT id, name FROM User WHERE Name LIKE '%User%' LIMIT 1 ];
+        Id currentUserId = GetContextUserId();
         List<CollaborationGroupMember> groupMemberList = [  SELECT id, collaborationGroupId 
                                                             FROM CollaborationGroupMember 
-                                                            WHERE memberId = :currentUser.id ];
+                                                            WHERE memberId = :currentUserId ];
 
         // Create an ID set to query for just the groups themselves
         Set<Id> groupIds = new Set<Id>();
@@ -79,13 +75,25 @@ public with sharing class CommunicationController {
         feedInput.subjectId = groupId;
 
         ConnectAPI.FeedElement feedElement = null;
+
         // Post element
-        try {
-            feedElement = ConnectAPI.ChatterFeeds.postFeedElement( null, feedInput );
+        // NOTE: Testing most ConnectAPI methods requires SeeAllData, so instead we skip this line in tests and create dummy data
+        if ( !Test.isRunningTest()) { feedElement = ConnectAPI.ChatterFeeds.postFeedElement( null, feedInput ); }
+
+        /* THIS ELSE STATEMENT IS ONLY FOR TESTS DO NOT REMOVE UNLESS YOU KNOW WHAT YOU'RE DOING */ 
+        else {
+             feedElement = new ConnectAPI.FeedItem(); 
+             feedElement.body = new ConnectAPI.FeedBody();
+             feedElement.body.text = message; 
         }
-        catch (Exception e) {
-            throw new AuraHandledException( e.getMessage() );
-        }
+        /* THIS ELSE STATEMENT IS ONLY FOR TESTS DO NOT REMOVE UNLESS YOU KNOW WHAT YOU'RE DOING */
+
         return feedElement;
+    }
+
+    @testVisible
+    private static Id GetContextUserId() {
+        Id contextUser = UserInfo.getUserId();
+        return contextUser;
     }
 }
