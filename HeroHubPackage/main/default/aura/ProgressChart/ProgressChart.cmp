@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<aura:component >
-=======
 <aura:component>
->>>>>>> 65822d4dbb87985828392da8cae228a647adece3
     <ltng:require
                   scripts="{!$Resource.d3 + '/d3.js'}"
                   afterScriptsLoaded="{!c.GenerateCircleBar}" />
