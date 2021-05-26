@@ -1,7 +1,7 @@
 ({
     getData : function(searchKeyword,component) {
         component.set('v.mycolumns', [
-            { label: 'Question Name', fieldName: 'Name', type: 'text'},      
+            { label: 'Question Title', fieldName: 'Name', type: 'text'},      
             { label: 'Question Text', fieldName: 'Question_Text', type: 'text'},
             { label: 'Question Type', fieldName: 'Question_Type', type: 'text'}
         ]);

@@ -31,7 +31,8 @@
         <div class="section1">
             <div class="slds-page-header" role="banner">
                 <div class="slds-grid">
-                    <div class="slds-col"> <div class="section2">
+                    <div class="slds-col">
+                        <div class="section2">
                     
                     <div class="slds-clearfix">
                         <div class="slds-page-header" role="banner">
@@ -66,7 +67,13 @@
                     </div>
                 </div>
                 
-                <lightning:notificationsLibrary aura:id="notifLib"/></div>
+                <lightning:notificationsLibrary aura:id="notifLib"/>
+                    
+                    </div>
+                    
+                    
+                    
+                    
                     <div class="slds-col"> 
                         <div class="row">
                     <p class="title">Multiple Selection Pools to be added</p>
