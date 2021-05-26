@@ -18,7 +18,8 @@ public class UserAccountSetup {
         insert newTeam;
 
         Squad__c newSquad = new Squad__c(Name = 'This is Fire', Team__c = newTeam.Id);
-    
+        insert newSquad;
+        
         List<Account> userAccounts = new List<Account>();
         
         for(Integer i = 0; i < 5; i++){
