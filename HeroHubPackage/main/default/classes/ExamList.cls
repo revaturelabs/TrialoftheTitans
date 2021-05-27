@@ -13,6 +13,12 @@ public class ExamList {
 
     //Exam Name
     @auraEnabled public String name{get;set;}
+    
+    //Next Exam
+    @auraEnabled public Id nextExam{get;set;}
+    
+    //Assigned Exam
+    @auraEnabled public Boolean assigned{get; set;}
 
     //Past Exam Results
     @auraEnabled public List<Exam_Result__c> pastResults{get;set;}
@@ -26,29 +32,28 @@ public class ExamList {
     public ExamList( Exam__c exam ) {
 
         name = exam.Name;
+        nextExam = exam.Next_Exam__c;
         currentResults = exam.Exam_Results__r;
         pastResults = getPastResults( currentResults );
-
-        // If no results isPassed is false
-        if(currentResults.size() != 0){
-            isPassed = currentResults[0].Pass__C;
-
-            // If no answers highScore is null
-            if(currentResults[0].Total_Answers__c != 0){
+        isPassed = currentResults[0].Pass__C;
+        // If no answers highScore is null
+        if(currentResults[0].Total_Answers__c != 0){
                 
-                highScore = currentResults[0].Total_Correct__c/currentResults[0].Total_Answers__c;
+        	highScore = currentResults[0].Total_Correct__c/currentResults[0].Total_Answers__c;
+            highScore = highScore.setScale(2);
             
-            }
-            else{
-                
-                highScore = null;
-            
-            }
         }
         else{
+                
+            highScore = null;
             
-            isPassed = false;
+        }
         
+        if(currentResults[0].Status__c == 'Assigned' || currentResults[0].Status__c == 'Completed'){
+            assigned = true;
+        }
+        else{
+            assigned = false;
         }
     }
 

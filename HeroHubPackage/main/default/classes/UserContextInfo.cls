@@ -39,23 +39,23 @@ public class UserContextInfo {
 
         List<Titan__c> allTitans = getAllTitans();
         
-        // Get 
-        List<Exam__c> examList = getExamsWithResults(acc.Id);
+        List<Exam__c> examList = getExamsWithResults( acc.Id );
 
         Map<String, List<Exam__c>> sortedExams = sortExams( examList, allTitans );
         
+        userExams = createExamLists( sortedExams );
     }
 
     private Account getUserAccount(Id userId) {
 		
         // To be added when user is live
         try{
-            User user = [SELECT Id, contactId FROM User WHERE Id = :userId];
-        	Contact userContact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.ContactId];
-        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Id = :userContact.AccountId];
+            //User user = [SELECT Id, contactId FROM User WHERE Id = :userId];
+        	//Contact userContact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.ContactId];
+        	//Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Id = :userContact.AccountId];
             
             //Hard Coded Account for now
-        	//Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Name = 'User0'];
+        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Name = 'User0'];
             
             system.debug(userAccount);
 			return userAccount;
@@ -110,19 +110,21 @@ public class UserContextInfo {
         
         List<Exam__c> examsList = [SELECT Id, 
                                     Titan__r.Name, 
-                                    Name, 
+                                    Name,
+                                    Next_Exam__c,
                                     (SELECT Pass__c, 
                                             Total_Answers__c, 
-                                            Total_Correct__C 
+                                            Total_Correct__C,
+                                     		Status__c
                                             FROM Exam_Results__r 
                                             WHERE Account__c = :accId 
-                                            AND Graded__c = true)
+                                            )
                                     FROM Exam__c];
     
         return examsList;
     }
 
-    //Maps the Exam Results and other fields to a Titan by Exam Name
+    //Maps the Exam Results and other fields to a Titan by Exam Name and sort by prerequisites. 
     private Map<String, List<Exam__c>> sortExams(List<Exam__c> exams, List<Titan__c> allTitans){
 		
         // Custom DataType to mape names, lists, and numbers in one object
@@ -166,5 +168,25 @@ public class UserContextInfo {
         
         
         return examMap;
+    }
+    
+    private Map<String, List<ExamList>> createExamLists(Map<String, List<Exam__c>> titanExams){
+        
+        Map<String, List<ExamList>> examList = new Map<String, List<ExamList>>();
+        
+        for( String key: titanExams.keySet()){
+            
+            examList.put(key, new List<ExamList>());
+            List<ExamList> titanExamList = examList.get(key);
+            List<Exam__C> exams = titanExams.get(key);
+            
+            for(Exam__C exam: exams){
+                
+               titanExamList.add(new ExamList(exam));
+                
+            }
+        }
+        
+        return examList;
     }
 }

@@ -5,6 +5,15 @@
     <description>The next Exam for a titan. Used to tell if prerequisites have been obtained.</description>
     <externalId>false</externalId>
     <label>Next Exam</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>$Source.Titan__c</field>
+            <operation>equals</operation>
+            <valueField>Exam__c.Titan__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Exam__c</referenceTo>
     <relationshipLabel>Exams</relationshipLabel>
     <relationshipName>Exams</relationshipName>
