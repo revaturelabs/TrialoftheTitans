@@ -4,7 +4,7 @@
 <!-- The components will display table of pool records and will allow users
   to see the questions they have added--> 
 
-<aura:component controller="PoolTableApexController" implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForRecordHome" access="public"> 
+<aura:component controller="PoolTableApexController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"  access="global"> 
     <!--Declaring values-->
     <aura:attribute name="mydata" type="object"/>
     <aura:attribute name="pools" type="object"/>
@@ -29,10 +29,11 @@
         
         <div class="section1">
             <div class="slds-page-header" role="banner">
+                <h2 id="element-with-table-label" class="slds-text-heading_medium slds-m-bottom_xx-small" style='padding-left: 3%;'>Pool Table</h2>
+                
                 <div class="slds-grid">
                     <div class="slds-col">
                         <div class="section2">
-                            
                             <div class="slds-clearfix">
                                 <div class="slds-page-header" role="banner">
                                     <div class="slds-float_none" style='padding-bottom: 10px;'>            
