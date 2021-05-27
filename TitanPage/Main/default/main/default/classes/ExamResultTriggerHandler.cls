@@ -1,45 +1,51 @@
-//Abdulloh Yoldoshev
+/*
+Abdulloh Yoldoshev
+Handler for Exam Result Trigger
+Determines if Exam result is a pass and the corresponding exam was a final exam of a titan
+then sends a chatter message announcing it to a chatter group.
+Updated May27th, 2021
+*/
+
 public class ExamResultTriggerHandler {
 
-public static list<ConnectAPI.feedElement> sendChatterMessageForTitanCompletion(List<Exam_Result__c> listOfExamResults){
+//Main method to get mapping from exam results to users, exams, and titans then send chatter message
+public static List<ConnectAPI.feedElement> sendChatterMessageForTitanCompletion(List<Exam_Result__c> listOfExamResults){
     
-    Map<Exam_Result__c, user> mapToHeros = mapResultsToHeros(listOfExamResults);
-    Map<Exam_Result__c, exam__c> mapToExams = mapResultsToExams(listOfExamResults);
+    //get mapping from exam results to users, exams, and titans
+    Map<Exam_Result__c, User> mapToHeros = mapResultsToHeros(listOfExamResults);
+    Map<Exam_Result__c, Exam__c> mapToExams = mapResultsToExams(listOfExamResults);
     Map<Exam_Result__c, Titan__c> mapToTitans = mapResultsToTitans(listOfExamResults);
     List<ConnectAPI.FeedElement> listFeedElement = new List<ConnectAPI.FeedElement>();
 
     CollaborationGroup chatterGroup = [SELECT ID FROM CollaborationGroup WHERE name = 'Titan Slayers' LIMIT 1];
     String hurrayMessage = '';
 
-
     for(Exam_Result__c er : listOfExamResults){
-      
+    
+    //if the exam is not a final exam or the exam wasnt passed, skip this exam result
     if(mapToExams.get(er).Next_Exam__c != null || !(er.Pass__c)){
         continue;
     }
 
+    //get corresponding hero and titan
     User examTaker = maptoHeros.get(er);
-    Titan__c titanOfExam = maptoTitans.get(er);
-
+    Titan__c titanOfExam = mapToTitans.get(er);
     hurrayMessage = examTaker.name + ' just conquered the '+ titanOfExam.name +' Titan!';
 
+    
+    //build message for chatter message and send message
     ConnectAPI.FeedItemInput feedInput = new ConnectAPI.FeedItemInput();
     ConnectAPI.MentionSegmentInput mentionInput = new ConnectAPI.MentionSegmentInput();
     ConnectAPI.MessageBodyInput bodyInput = new ConnectAPI.MessageBodyInput();
     ConnectAPI.TextSegmentInput textInput = new ConnectAPI.TextSegmentInput();
 
     bodyInput.messageSegments = new List<ConnectAPI.MessageSegmentInput>();
-
     textInput.text = hurrayMessage;
-
     bodyInput.messageSegments.add(textInput);
-
     feedInput.body = bodyInput;
-
     feedInput.feedElementType = ConnectAPI.FeedElementType.feedItem;
-
     feedInput.subjectID = chatterGroup.ID;
-
+   
     ConnectAPI.feedElement feedElement;
     if(!Test.IsrunningTest()) {feedElement = ConnectAPI.chatterFeeds.postFeedElement(null, feedInput);}
     else {
@@ -53,21 +59,22 @@ public static list<ConnectAPI.feedElement> sendChatterMessageForTitanCompletion(
     return listFeedElement;
 }
 
+//method to create map from exam results to users
 private static Map<Exam_Result__c, User> mapResultstoHeros (List<Exam_Result__c> listOfExamResults){
-    Map<Exam_Result__c, account> mapResultsToAccount = mapResultsToAccount(listOfExamResults);
+    Map<Exam_Result__c, Account> mapResultsToAccount = mapResultsToAccount(listOfExamResults);
 
     Set<String> accountNames = new Set<String>();
 
         for(Exam_Result__c er: listOfExamResults){
         accountNames.add(mapResultsToAccount.get(er).name);
         }
-        List<User> nameOfPossibleUsers = [SELECT name FROM User Where name IN :accountNames];
+        List<User> nameOfPossibleUsers = [SELECT name FROM User WHERE name IN :accountNames];
         
         Map<Exam_Result__c, User> resultMap = new Map<Exam_Result__c, User>();
 
         for(Exam_Result__c er: listOfExamResults){
             for(User u: nameOfPossibleUsers){
-                if(mapResultsToAccount.get(er).name==u.Name){
+                if(mapResultsToAccount.get(er).name==u.name){
                 resultMap.put(er, u);
                 break;
                 }
@@ -76,6 +83,7 @@ private static Map<Exam_Result__c, User> mapResultstoHeros (List<Exam_Result__c>
         return resultMap;
 }
 
+//method to create map from exam results to Titans
 private static Map<Exam_Result__c, Titan__c> mapResultstoTitans (List<Exam_Result__c> listOfExamResults){
     Map<Exam_Result__c, Exam__c> mapResultsToExams = mapResultsToExams(listOfExamResults);
 
@@ -84,7 +92,7 @@ private static Map<Exam_Result__c, Titan__c> mapResultstoTitans (List<Exam_Resul
         for(Exam_Result__c er: listOfExamResults){
         titanIDs.add(mapResultsToExams.get(er).Titan__c);
         }
-        List<Titan__c> nameOfPossibleTitans = [SELECT name FROM titan__c Where ID IN :titanIDs];
+        List<Titan__c> nameOfPossibleTitans = [SELECT name FROM Titan__c Where ID IN :titanIDs];
         
         Map<Exam_Result__c, Titan__c> resultMap = new Map<Exam_Result__c, Titan__c>();
 
@@ -99,8 +107,9 @@ private static Map<Exam_Result__c, Titan__c> mapResultstoTitans (List<Exam_Resul
         return resultMap;
 }
 
+//method to create map from exam results to exams
 private static Map<Exam_Result__c, Exam__c> mapResultstoExams (List<Exam_Result__c> listOfExamResults){
-    set<ID> ExamIDs = new Set<ID>();
+    Set<ID> ExamIDs = new Set<ID>();
 
     for(Exam_Result__c er: listOfExamResults){
         examIDs.add(er.Exam__c);
@@ -120,8 +129,9 @@ private static Map<Exam_Result__c, Exam__c> mapResultstoExams (List<Exam_Result_
     return resultMap;
 }
 
+//method to create map from exam results to Accounts
 private static Map<Exam_Result__c, Account> mapResultsToAccount (List<Exam_Result__c> listOfExamResults){
-    set<ID> accountIDs = new Set<ID>();
+    Set<ID> accountIDs = new Set<ID>();
 
     for(Exam_Result__c er: listOfExamResults){
         accountIDs.add(er.Account__c);
