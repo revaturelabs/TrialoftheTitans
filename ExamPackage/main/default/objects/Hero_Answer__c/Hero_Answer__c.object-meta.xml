@@ -143,7 +143,6 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <deprecated>false</deprecated>
     <enableActivities>false</enableActivities>
     <enableBulkApi>false</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -156,11 +155,12 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Hero Answer</label>
     <nameField>
-        <label>Hero Answer Name</label>
-        <type>Text</type>
+        <displayFormat>HA-{0}</displayFormat>
+        <label>Hero Answer Number</label>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Hero Answers</pluralLabel>
-    <searchLayouts></searchLayouts>
+    <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
