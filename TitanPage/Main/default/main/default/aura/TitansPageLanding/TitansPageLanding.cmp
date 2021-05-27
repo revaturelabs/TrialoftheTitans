@@ -7,14 +7,7 @@
     <aura:handler name="ExamsLandingEvent" event="c:ExamsLandingEvent" action="{!c.cSetTitanId}"/>
     <aura:handler name="LandingSkillsEvent" event="c:LandingSkillsEvent" action="{!c.cSetTitanId}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <!-- 
-<aura:attribute name="UserInfo" type="user"/>
-<aura:attribute name="Titan1" type="Object"/>
-<aura:attribute name="Titan2" type="Object"/>
-<aura:attribute name="Titan3" type="Object"/>
-<aura:attribute name="Titan4" type="Object"/> 
--->
-    <aura:attribute name="TitanList" type="Object[]"/>
+    <aura:attribute name="TitanList" type="Titan__c[]"/>
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     
     
@@ -31,11 +24,12 @@
             <span> <div class="container slds-m-around_large" id="contactinfo">
                 <lightning:card title="Heroes Name" iconName="standard:contact">
                     
-                    <!-- Aura Iteration displays all Titans  -->
+                    <!-- Aura Iteration displays all Titans -->
                     <div class="slds-grid">
                         <ul>
-                            <aura:iteration items="{!v.TitanList}" var="Titan">
-                                <li class="slds-text-heading_medium slds-col slds-size_12-of-12" onclick="{!c.cNavigate}"> 
+                            <aura:iteration items="{!v.TitanList}" var="Titan" indexVar="titanIndex">
+                                <li class="slds-text-heading_medium slds-col slds-size_12-of-12" 
+                                    onclick="{!c.cNavigate}" data-titan="{!Titan.Id}">
                                     {!Titan.Name}
                                 </li><br/>
                             </aura:iteration>
@@ -45,30 +39,27 @@
                 </div></span>
         </div>
     </div>
-    
-    
+
     <!-- example Div style: class="slds-col slds-gutters slds-size_6-of-12" -->
     <!-- "toggle-hide" div CANNOT be inside lightning:card -->
     <!-- Uses "toggle-hide" class to switch displayed Titan details -->
-    
-    <lightning:button label="testNavigate" onclick="{!c.cNavigate}"/>
-    
+
     <aura:iteration items="{!v.TitanList}" var="Titan" indexVar="titanIndex" aura:id="titanIteration">
-        <div class="slds-col slds-gutters" aura:Id="detailsDiv" data-index="{!titanIndex}">
+        <div class="toggle-hide titanDiv slds-col slds-gutters" Id="{!Titan.Id}"> <!-- Id="{!'titanDiv-' + titanIndex}" -->
             <lightning:card>
                 <div class="slds-grid">
                     <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-                        <c:ExamsLanding activeTitan="{!v.Titan}"/>
+                        <c:ExamsLanding activeTitan="{!Titan}"/>
                     </div>
                     <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-                        <c:LandingSkills activeTitan="{!v.Titan}"/>
+                        <c:LandingSkills activeTitan="{!Titan}"/>
                     </div>
                 </div>
             </lightning:card>
         </div>     
-    </aura:iteration>    
+    </aura:iteration>     
     
-    <!--     
+<!-- 
 <div class="toggle-hide slds-col slds-gutters" aura:id="titanDiv1">
         <lightning:card>
             <div class="slds-grid">
