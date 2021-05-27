@@ -23,6 +23,10 @@
                 <behavior>Edit</behavior>
                 <field>Next_Exam__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>First_Exam__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
