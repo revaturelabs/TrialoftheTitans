@@ -3,11 +3,6 @@
     <description>Permissions for the Administrator of The Trial of The Titans</description>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Curriculum__c.Technology__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Titan__c.Curriculum__c</field>
         <readable>true</readable>
     </fieldPermissions>
