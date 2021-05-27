@@ -1,24 +1,35 @@
-public class ExportQuestionsController {
-    public Id currentQuestionId{get;set;}
-    public Exam_Question__c currentExamQuestion{get;set;}
+public class ExportQuestionPoolController {
+  
+    public Id currentQuestionPoolId{get;set;}
+    public List <Question_Assignment__c> examQuestionAssignments {get;set;}
+    public List <Exam_Question__c> currentExamQuestions{get;set;}
+    public Set <Id> currentExamQuestionIds{get;set;}
+    public Question_Assignment__c questionAssignment{get;set;}
     public String formattedQuestion{get;set;}
     public List<String> allFormattedQuestions{get;set;}
     public String allFormattedQuestionsString{get; set;}
     
-    public ExportQuestionsController(ApexPages.StandardController controller){
-       	currentQuestionId = ApexPages.currentPage().getparameters().get('id');
-        currentExamQuestion = [SELECT Missing_Word__c, Answer_Explanation__c, Correct_Answer_s__c, options__c, Question_Text__c, Question_Type__c, Name
-	                           FROM Exam_Question__c WHERE id =:currentQuestionId LIMIT 1];
-        //this.currentExamQuestion = (Exam_Question__c)controller.getRecord();
-        system.debug(currentExamQuestion);
-        formattedQuestion ='';
+    public ExportQuestionPoolController(ApexPages.StandardController controller){
+       	currentQuestionPoolId = ApexPages.currentPage().getparameters().get('id');
+        //currentQuestionPoolId ='a0A1F000005izbeUAA';
+        currentExamQuestionIds = new Set <Id>();
+        questionAssignment = [SELECT id FROM Question_Assignment__c WHERE Question_Pool__c = :currentQuestionPoolId LIMIT 1];
+        examQuestionAssignments=[SELECT Id, Exam_Question__c FROM Question_Assignment__c WHERE Question_Pool__c = :currentQuestionPoolId];
+        for(Question_Assignment__c QA: examQuestionAssignments){
+            currentExamQuestionIds.add(QA.Exam_Question__c);
+        }
+        
+        currentExamQuestions = [SELECT Missing_Word__c, Answer_Explanation__c, Correct_Answer_s__c, options__c, Question_Text__c, Question_Type__c, Skill__c, Name
+	                            FROM Exam_Question__c WHERE id in :currentExamQuestionIds];
+        formattedQuestion =''; 
 		allFormattedQuestions = new List<String>();
-        export(currentExamQuestion);
+        allFormattedQuestionsString ='';
+        export(currentExamQuestions);
         formatQuestions(allFormattedQuestions);
-        //returnToRecordPage();
     }
    
-    public void export(Exam_Question__c currentExamQuestion){
+    public void export(List<Exam_Question__c> currentExamQuestions){
+        for(Exam_Question__c currentExamQuestion : currentExamQuestions){
         if(currentExamQuestion.Missing_Word__c == TRUE){
             String delimeter ='_____';
             String beforeSubstring = currentExamQuestion.Question_Text__c.substringBefore(delimeter);
@@ -44,12 +55,8 @@ public class ExportQuestionsController {
                 }
                 when 'Essay'{
                     formatEssayQuestionMW(currentExamQuestion, beforeSubstring, afterSubstring);
-                }
-            
-                
-                
-            }
-                
+                } 
+            }   
             }
         else{
             switch on currentExamQuestion.Question_Type__c{
@@ -76,6 +83,7 @@ public class ExportQuestionsController {
                 }
             }
         }
+        }
     }
         
     /*------------------------------ Multiple Choice Question--------------------------------------------------*/
@@ -87,15 +95,14 @@ public class ExportQuestionsController {
     }
     
     
-    public String formatMultipleChoiceQuestion(Exam_Question__c question){
+    public void formatMultipleChoiceQuestion(Exam_Question__c question){
         String incorrectAnswerString = getIncorrectAnswers(question);
         // GIFT format for MC: ::QuestionName:: QuestionText {= correctAnswer #comment ~incorrectanswers}
         formattedQuestion='::' + question.Name + '::' + question.Question_Text__c +'{='+ question.Correct_Answer_s__c
             + incorrectAnswerString +getCorrectAnswer(question)+ '}' ;
         allFormattedQuestions.add(formattedQuestion);
-        return formattedQuestion;
-        //system.debug('Formatted Question: '+ formattedQuestion);
-        //system.debug('all formatted questions: ' + allFormattedQuestions);
+        system.debug('Formatted Question: '+ formattedQuestion);
+        system.debug('all formatted questions: ' + allFormattedQuestions);
     }
     
     /************************* Multiple Choice Multi-Select Question *****************************/
@@ -113,12 +120,12 @@ public class ExportQuestionsController {
         allFormattedQuestions.add(formattedQuestion);
     }
     /*--------------------------- Get Answers Functions -------------------------------------------*/
-     /*public String getCorrectAnswers (Exam_Question__c question){
+     public String getCorrectAnswers (Exam_Question__c question){
         List <String> correctAnswers = new List <String>();
         correctAnswers = question.Correct_Answer_s__c.split('\\|\\|'); 
        String correctAnswerString = string.join(correctAnswers, '');
         return correctAnswerString;
-    }*/
+    }
     public String getIncorrectAnswers (Exam_Question__c question){
         List <String> options = new List <String>();
         options = question.Options__c.split('\\|\\|');
@@ -257,10 +264,5 @@ public class ExportQuestionsController {
         }
         return res;
     }
-    /*
-    public PageReference returnToRecordPage(){
-        PageReference recordPage = new ApexPages.StandardController(currentExamQuestion).view();
-        recordPage.setRedirect(true);
-        return recordPage;
-    }*/
+    
 }

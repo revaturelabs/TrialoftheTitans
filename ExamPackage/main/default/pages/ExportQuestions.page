@@ -1,10 +1,1 @@
-<apex:page standardController="Exam_Question__c" extensions="ExportQuestionsController"  sidebar="false"  cache="false" >
-    <!--
-	 contentType="text/plain/#emp.txt"
-     action="formatQuestions"
-     --> 
-    <!-- <apex:repeat value="{!allFormattedQuestionsString}" var="question">-->
-    <apex:outputText value="{!allFormattedQuestionsString}"/>
-    <!--{!allFormattedQuestions}-->
-   <!-- </apex:repeat>-->
-</apex:page> 
+<apex:page standardController="Exam_Question__c" extensions="ExportQuestionsController" contentType="text/plain/#emp.txt" sidebar="false"  cache="false" >{!allFormattedQuestionsString}</apex:page>
