@@ -1,10 +1,31 @@
 ({
+    HandleInit : function(component) {
+        // get initial values from Apex controller
+        let action = component.get("c.HandleInit");
+        action.setCallback(this, function(response) {
+            let state = response.getState();
+            if ( state === "SUCCESS" ) {
+                let valuesMap = response.getReturnValue();
+                /*component.set("v.technologies",valuesMap["Technologies"]);
+                component.set("v.selectedTechnology",valuesMap["Technologies"][0]["Id"]);
+                console.log("Default technology: " + component.get("v.selectedTechnology"));*/
+                component.set("v.titans",valuesMap["Titans"]);
+                component.set("v.selectedTitan",valuesMap["Titans"][0]["Id"]);
+                console.log("Default titan: " + component.get("v.selectedTitan"));
+                component.set("v.initMessage", "Ready to import questions.");
+            }
+        });
+        $A.enqueueAction(action);
+    },
+
     // Split each question in text file to its own object and put it in a list.
     // send the list along with titan and technology to ApexController.
-    SplitString : function(component, theString, titan, technology) {
-        
+    SplitString : function(component, theString) {
         // remove comments
-        theString = theString.replace(/^.*\/\/.*$/mg, '\n');
+        theString = theString.replace(/\/\/.*$/mg, '\n');
+        
+        // remove tabs
+        theString = theString.replace(/\t/g, '\n');
         
         // split up each question and answer
         let theSplitString = theString.split(/\r\n\r\n/);
@@ -21,10 +42,10 @@
             
             if(theSplitString[i].lastIndexOf("}") < theSplitString[i].length-1){
                 // get text between ::, if none then it just give back blank
-                let questionTitle = theSplitString[i].substring(0, theSplitString[i].lastIndexOf("::")+2).replace(/\r?\n|\r/g, '').trim();
+                let questionTitle = theSplitString[i].substring(theSplitString[i].indexOf(":") + 2, theSplitString[i].lastIndexOf("::")).replace(/\r?\n|\r/g, '').trim();
                 
                 // get everything from inside {}
-                let questionAnswer = theSplitString[i].substring(theSplitString[i].indexOf("{"), theSplitString[i].indexOf("}")+1).replace(/\r?\n|\r/g, '').trim();
+                let questionAnswer = theSplitString[i].substring(theSplitString[i].indexOf("{") + 1, theSplitString[i].indexOf("}")).replace(/\r?\n|\r/g, '').trim();
                 
                 // get everything include the answer after the ::
                 let questionText = theSplitString[i].substring(theSplitString[i].lastIndexOf("::")+2).replace(/\r?\n|\r/g, '').trim();
@@ -38,20 +59,20 @@
                     qText: questionText, 
                     qAnswer: questionAnswer
                 };
-                
+
                 // put the object in the list
                 apexObjectList.push(current);
                 
             }else{
                 
                 // get text between ::, if none then it just give back blank
-                let questionTitle = theSplitString[i].substring(0, theSplitString[i].lastIndexOf("::")+2).replace(/\r?\n|\r/g, '').trim();
+                let questionTitle = theSplitString[i].substring(theSplitString[i].indexOf(":") + 2, theSplitString[i].lastIndexOf("::")).replace(/\r?\n|\r/g, '').trim();
                 
                 // get text between the last :: and starting {
                 let questionText = theSplitString[i].substring(theSplitString[i].lastIndexOf("::")+2, theSplitString[i].lastIndexOf("{")).replace(/\r?\n|\r/g, '').trim();
                 
                 // get everything from inside {}
-                let questionAnswer = theSplitString[i].substring(theSplitString[i].indexOf("{")).replace(/\r?\n|\r/g, '').trim();
+                let questionAnswer = theSplitString[i].substring(theSplitString[i].indexOf("{") + 1, theSplitString[i].indexOf("}")).replace(/\r?\n|\r/g, '').trim();
                 
                 // put all the properties in the object
                 let current = {
@@ -59,15 +80,27 @@
                     qText: questionText, 
                     qAnswer: questionAnswer
                 };
-                
+
                 // put the object in the list
                 apexObjectList.push(current);
             }
         }
         
-        // send it to apex.
-        console.log('titan:' + titan + ' technology:' + technology);
         console.log(apexObjectList);
-        console.log('Apex Goes Here!');
+        return apexObjectList;
+    },
+    SubmitQuestionList : function(component, questions, titan, technology) {
+        let action = component.get("c.ImportFile");
+        action.setParams({questionList:questions,technology:technology,titan:titan});
+        action.setCallback(this, function(response) {
+            let state = response.getState();
+            console.log("state: " + state);
+            if ( state === "SUCCESS" ) {
+                console.log("Imported file: " + JSON.stringify(response.getReturnValue()));
+                component.set("v.successMessage", true);
+                // include number of questions imported
+            }
+        });
+        $A.enqueueAction(action);
     }
 })
