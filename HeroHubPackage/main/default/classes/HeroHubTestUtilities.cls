@@ -1,6 +1,13 @@
 @isTest
 public class HeroHubTestUtilities {
     
+    public static Id testAccount;
+    public static Id testContact;
+    public static Id testProfile;
+    public static Id testTeam;
+    public static Id testSquad;
+    
+    
     @isTest
     public static void fullSetup(){
         
@@ -13,25 +20,32 @@ public class HeroHubTestUtilities {
         createAnswers();
         
     }
-	
+    
+    
     @isTest
     public static void createRightUser(){
         
         Team__c newTeam = new Team__C(Name='Amplifire');
         insert newTeam;
+        testTeam = newTeam.Id;
 
         Squad__c newSquad = new Squad__c(Name = 'This is Fire', Team__c = newTeam.Id);
         insert newSquad;
+        system.debug(newSquad);
+        testSquad = newSquad.Id;
         
         Account newAccount = new Account(name='User', Squad__c = newSquad.Id);
-        insert newAccount;
+        insert newAccount;       
+        testAccount = newAccount.Id;
      
         Contact newContact = new Contact(lastName='User', AccountId = newAccount.id);
         insert newContact;
+        testContact = newContact.Id;
         
         // Get Hero profile from database to use for Users
         Profile heroProfile = [SELECT Id FROM Profile WHERE Name = 'Hero' LIMIT 1];
-            
+        testProfile = heroProfile.Id;
+        
 		User newUser = new User( profileId = heroProfile.id,
 						   		 username = newContact.lastName + Crypto.getRandomInteger() + '@yahoo.com',
 						   		 email = 'test@test.com',
@@ -42,8 +56,15 @@ public class HeroHubTestUtilities {
 								 alias = 'testUser',
 								 lastname = newContact.lastName,
 								 contactId = newContact.id
-								 );
-        insert newUser; 
+                               );
+            
+            system.debug(userInfo.getUserRoleId());
+        	insert newUser;
+        	
+        	//Id groupID = [SELECT Id FROM PermissionSetGroup WHERE DeveloperName = 'TrialOfTheTitansHeroPermissions' Limit 1].Id;
+        	//PermissionSetAssignment assignment = new PermissionSetAssignment(PermissionSetGroupId = groupId, AssigneeId = newUser.Id);
+
+			//Database.insert(assignment);
         
     }
     
@@ -157,27 +178,16 @@ public class HeroHubTestUtilities {
         List<Exam_Result__c> newResults = [SELECT Id from Exam_Result__c];
         List<Hero_Answer__c> newAnswers = new List<Hero_Answer__c>();
         
+        
         for(Exam_Question__c question : newQuestions){
             
-            Integer i = 0; 
             for(Exam_Result__c result : newResults){
             	
-            	Hero_Answer__c newAnswer = new Hero_Answer__c(Exam_Question__c = question.id, Exam_Result__c = result.id);
-                if(Math.mod(i, 2) == 0){
-                    
-                    newAnswer.Correct__c = true;
-                
-                }
-                else{
-                	
-                	newAnswer.Correct__c = false;
-                    
-                }
-                
+            	Hero_Answer__c newAnswer = new Hero_Answer__c(Exam_Question__c = question.id, Exam_Result__c = result.id, Correct__c = true);
                 newAnswers.add(newAnswer);
-            }
-        
-        }
+                
+            }	
+       	}
         
         insert newAnswers;
         
