@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Parse_Multi_Select</name>
         <label>Parse Multi Select</label>
-        <locationX>1055</locationX>
-        <locationY>178</locationY>
+        <locationX>1026</locationX>
+        <locationY>324</locationY>
         <actionName>MultiSelectFlowValues</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -25,8 +25,8 @@
     <actionCalls>
         <name>RemoveEndingBars</name>
         <label>RemoveEndingBars</label>
-        <locationX>1138</locationX>
-        <locationY>286</locationY>
+        <locationX>1178</locationX>
+        <locationY>434</locationY>
         <actionName>RemoveMultiselectBars</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -48,8 +48,8 @@
     <assignments>
         <name>additionaloptions</name>
         <label>Additional options</label>
-        <locationX>663</locationX>
-        <locationY>55</locationY>
+        <locationX>738</locationX>
+        <locationY>82</locationY>
         <assignmentItems>
             <assignToReference>FinalOptions</assignToReference>
             <operator>Add</operator>
@@ -72,14 +72,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>New_Option_For_Picklist</targetReference>
+            <targetReference>Skip_Record_Creation_Multiple_Choice</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Correct_Answer</name>
         <label>Assign Correct Answer</label>
-        <locationX>346</locationX>
-        <locationY>752</locationY>
+        <locationX>416</locationX>
+        <locationY>897</locationY>
         <assignmentItems>
             <assignToReference>FinalCorrectAnswers</assignToReference>
             <operator>Add</operator>
@@ -101,8 +101,8 @@
     <assignments>
         <name>Assign_Final_Correct_Answer</name>
         <label>Assign Final Correct Answer</label>
-        <locationX>783</locationX>
-        <locationY>764</locationY>
+        <locationX>838</locationX>
+        <locationY>915</locationY>
         <assignmentItems>
             <assignToReference>FinalCorrectAnswers</assignToReference>
             <operator>Add</operator>
@@ -115,10 +115,26 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Assign_Names</name>
+        <label>Assign Names</label>
+        <locationX>618</locationX>
+        <locationY>378</locationY>
+        <assignmentItems>
+            <assignToReference>Collection_Of_Helpers</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>HelperAssignmentLoop.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>HelperAssignmentLoop</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Title_and_Body</name>
         <label>Assign Title and Body</label>
-        <locationX>1293</locationX>
-        <locationY>682</locationY>
+        <locationX>1448</locationX>
+        <locationY>669</locationY>
         <assignmentItems>
             <assignToReference>FinalQuestionText</assignToReference>
             <operator>Assign</operator>
@@ -147,8 +163,8 @@
     <assignments>
         <name>Assign_to_Question_Fields</name>
         <label>Assign to Question Fields</label>
-        <locationX>1390</locationX>
-        <locationY>677</locationY>
+        <locationX>1445</locationX>
+        <locationY>828</locationY>
         <assignmentItems>
             <assignToReference>FinalQuestion.Options__c</assignToReference>
             <operator>Assign</operator>
@@ -178,13 +194,6 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>FinalQuestion.Skill__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>FinalSkill</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>FinalQuestion.Name</assignToReference>
             <operator>Assign</operator>
             <value>
@@ -205,6 +214,13 @@
                 <elementReference>FinalType</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Final_Is_Fill_In_Blank</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Missing_Word_Question</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Create_Question</targetReference>
         </connector>
@@ -212,8 +228,8 @@
     <assignments>
         <name>Last_Option</name>
         <label>Last Option</label>
-        <locationX>810</locationX>
-        <locationY>132</locationY>
+        <locationX>910</locationX>
+        <locationY>235</locationY>
         <assignmentItems>
             <assignToReference>FinalOptions</assignToReference>
             <operator>Add</operator>
@@ -222,14 +238,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Last_Multiple_Choice_Option</targetReference>
+            <targetReference>Skip_Final_Record</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Matching_Final_Assignment</name>
         <label>Matching Final Assignment</label>
-        <locationX>938</locationX>
-        <locationY>566</locationY>
+        <locationX>993</locationX>
+        <locationY>717</locationY>
         <assignmentItems>
             <assignToReference>FinalCorrectAnswers</assignToReference>
             <operator>Add</operator>
@@ -251,8 +267,8 @@
     <assignments>
         <name>Matching_New_Option</name>
         <label>Matching New Option</label>
-        <locationX>751</locationX>
-        <locationY>491</locationY>
+        <locationX>806</locationX>
+        <locationY>642</locationY>
         <assignmentItems>
             <assignToReference>FinalOptions</assignToReference>
             <operator>Add</operator>
@@ -288,8 +304,8 @@
     <assignments>
         <name>Mulit_Select_Answer_Assignment</name>
         <label>Mulit Select Answer Assignment</label>
-        <locationX>1304</locationX>
-        <locationY>175</locationY>
+        <locationX>1351</locationX>
+        <locationY>324</locationY>
         <assignmentItems>
             <assignToReference>FinalCorrectAnswers</assignToReference>
             <operator>Add</operator>
@@ -311,8 +327,8 @@
     <assignments>
         <name>Multiple_Choice_Correct_Answer_Assignment</name>
         <label>Multiple Choice Correct Answer Assignment</label>
-        <locationX>1415</locationX>
-        <locationY>218</locationY>
+        <locationX>1469</locationX>
+        <locationY>395</locationY>
         <assignmentItems>
             <assignToReference>FinalCorrectAnswers</assignToReference>
             <operator>Assign</operator>
@@ -327,8 +343,8 @@
     <assignments>
         <name>Numerical_Answer_Assignmet</name>
         <label>Numerical Answer Assignmet</label>
-        <locationX>815</locationX>
-        <locationY>905</locationY>
+        <locationX>865</locationX>
+        <locationY>1051</locationY>
         <assignmentItems>
             <assignToReference>FinalCorrectAnswers</assignToReference>
             <operator>Assign</operator>
@@ -343,8 +359,8 @@
     <assignments>
         <name>True_False_Final_assignment</name>
         <label>True False Final assignment</label>
-        <locationX>777</locationX>
-        <locationY>340</locationY>
+        <locationX>832</locationX>
+        <locationY>491</locationY>
         <assignmentItems>
             <assignToReference>FinalCorrectAnswers</assignToReference>
             <operator>Assign</operator>
@@ -359,8 +375,8 @@
     <decisions>
         <name>Additional_Option_Selected</name>
         <label>Additional Option Selected</label>
-        <locationX>647</locationX>
-        <locationY>234</locationY>
+        <locationX>746</locationX>
+        <locationY>250</locationY>
         <defaultConnector>
             <targetReference>Last_Option</targetReference>
         </defaultConnector>
@@ -384,8 +400,8 @@
     <decisions>
         <name>Matching_Add_Option</name>
         <label>Matching Add Option</label>
-        <locationX>746</locationX>
-        <locationY>623</locationY>
+        <locationX>835</locationX>
+        <locationY>771</locationY>
         <defaultConnector>
             <targetReference>Matching_Final_Assignment</targetReference>
         </defaultConnector>
@@ -409,8 +425,8 @@
     <decisions>
         <name>Multi_Choice_or_not</name>
         <label>Multi Choice or not</label>
-        <locationX>1092</locationX>
-        <locationY>59</locationY>
+        <locationX>1217</locationX>
+        <locationY>205</locationY>
         <defaultConnectorLabel>Error</defaultConnectorLabel>
         <rules>
             <name>Single_Answer</name>
@@ -446,8 +462,8 @@
     <decisions>
         <name>Pick_Screen_From_Type</name>
         <label>Pick Screen From Type</label>
-        <locationX>266</locationX>
-        <locationY>450</locationY>
+        <locationX>324</locationX>
+        <locationY>585</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Multiple_choice</name>
@@ -542,7 +558,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Answer_Explanation</targetReference>
+                <targetReference>Assign_Title_and_Body</targetReference>
             </connector>
             <label>Essay</label>
         </rules>
@@ -550,8 +566,8 @@
     <decisions>
         <name>Short_Answer_More_Correct</name>
         <label>Short Answer More Correct</label>
-        <locationX>558</locationX>
-        <locationY>758</locationY>
+        <locationX>617</locationX>
+        <locationY>885</locationY>
         <defaultConnector>
             <targetReference>Assign_Final_Correct_Answer</targetReference>
         </defaultConnector>
@@ -572,10 +588,68 @@
             <label>Addition Correct Answer</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Skip_Final_Record</name>
+        <label>Skip Final Record?</label>
+        <locationX>902</locationX>
+        <locationY>77</locationY>
+        <defaultConnector>
+            <targetReference>Last_Multiple_Choice_Option</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No, Don&apos;t</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Skip</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Collection_Of_Helpers</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>Option</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Multi_Choice_or_not</targetReference>
+            </connector>
+            <label>Yes, Skip</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Skip_Record_Creation_Multiple_Choice</name>
+        <label>Skip Record Creation Multiple Choice</label>
+        <locationX>619</locationX>
+        <locationY>75</locationY>
+        <defaultConnector>
+            <targetReference>New_Option_For_Picklist</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Create Record</defaultConnectorLabel>
+        <rules>
+            <name>Skip_Record_Creation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Collection_Of_Helpers</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>Option</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Multiple_Choice_Screen</targetReference>
+            </connector>
+            <label>Skip Record Creation</label>
+        </rules>
+    </decisions>
     <dynamicChoiceSets>
         <name>Multiple_Choice_Options</name>
         <dataType>String</dataType>
         <displayField>Name</displayField>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CreatedById</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </filters>
         <object>Question_Flow_Helper__c</object>
         <valueField>Name</valueField>
     </dynamicChoiceSets>
@@ -590,10 +664,24 @@
     <interviewLabel>Question Builder Wizard {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Question Builder Wizard</label>
     <loops>
+        <name>HelperAssignmentLoop</name>
+        <label>Helper Assignment Loop</label>
+        <locationX>616</locationX>
+        <locationY>245</locationY>
+        <collectionReference>Our_Helper_Records</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Names</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Additional_Option_Selected</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
         <name>Multi_Select_Loop</name>
         <label>Multi Select Loop</label>
-        <locationX>1150</locationX>
-        <locationY>174</locationY>
+        <locationX>1180</locationX>
+        <locationY>324</locationY>
         <collectionReference>Multi_Select_Answer_Collection</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -625,35 +713,18 @@
     <recordCreates>
         <name>Create_Question</name>
         <label>Create Question</label>
-        <locationX>1501</locationX>
-        <locationY>678</locationY>
+        <locationX>1556</locationX>
+        <locationY>828</locationY>
         <connector>
-            <targetReference>Extra_Helper_for_so_no_empty_Deletion</targetReference>
+            <targetReference>Delete_Helpers</targetReference>
         </connector>
         <inputReference>FinalQuestion</inputReference>
     </recordCreates>
     <recordCreates>
-        <name>Extra_Helper_for_so_no_empty_Deletion</name>
-        <label>Extra Helper for so no empty Deletion</label>
-        <locationX>1604</locationX>
-        <locationY>677</locationY>
-        <connector>
-            <targetReference>Delete_Helpers</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>Name</field>
-            <value>
-                <stringValue>extra</stringValue>
-            </value>
-        </inputAssignments>
-        <object>Question_Flow_Helper__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordCreates>
-    <recordCreates>
         <name>Last_Multiple_Choice_Option</name>
         <label>Last Multiple Choice Option</label>
-        <locationX>829</locationX>
-        <locationY>12</locationY>
+        <locationX>1226</locationX>
+        <locationY>69</locationY>
         <connector>
             <targetReference>Multi_Choice_or_not</targetReference>
         </connector>
@@ -669,8 +740,8 @@
     <recordCreates>
         <name>New_Option_For_Picklist</name>
         <label>New Option</label>
-        <locationX>534</locationX>
-        <locationY>85</locationY>
+        <locationX>415</locationX>
+        <locationY>70</locationY>
         <connector>
             <targetReference>Multiple_Choice_Screen</targetReference>
         </connector>
@@ -684,13 +755,17 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordDeletes>
-        <name>Delete_Helpers</name>
-        <label>Delete Helpers</label>
-        <locationX>1698</locationX>
-        <locationY>673</locationY>
+        <description>If the last flow exited with an error or was exited early, the flow needs to delete all the old helpers, and the init is there so there isn&apos;t an empty deletion</description>
+        <name>Clear_init_and_old_Helpers</name>
+        <label>Clear old Helpers</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
         <connector>
-            <targetReference>Exit_Screen</targetReference>
+            <targetReference>Question_Welcome</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Question_Welcome</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>CreatedById</field>
@@ -701,11 +776,46 @@
         </filters>
         <object>Question_Flow_Helper__c</object>
     </recordDeletes>
+    <recordDeletes>
+        <name>Delete_Helpers</name>
+        <label>Delete Helpers</label>
+        <locationX>1674</locationX>
+        <locationY>829</locationY>
+        <connector>
+            <targetReference>Exit_Screen</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Exit_Screen</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CreatedById</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </filters>
+        <object>Question_Flow_Helper__c</object>
+    </recordDeletes>
+    <recordLookups>
+        <name>Get_all_our_records</name>
+        <label>Get all our records</label>
+        <locationX>515</locationX>
+        <locationY>245</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>HelperAssignmentLoop</targetReference>
+        </connector>
+        <object>Question_Flow_Helper__c</object>
+        <outputReference>Our_Helper_Records</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+    </recordLookups>
     <screens>
         <name>Answer_Explanation</name>
         <label>Answer Explanation</label>
-        <locationX>1313</locationX>
-        <locationY>478</locationY>
+        <locationX>1178</locationX>
+        <locationY>856</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -725,8 +835,8 @@
     <screens>
         <name>Correct_Answer</name>
         <label>Correct Answer</label>
-        <locationX>1414</locationX>
-        <locationY>54</locationY>
+        <locationX>1469</locationX>
+        <locationY>205</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -752,9 +862,9 @@
     <screens>
         <name>Exit_Screen</name>
         <label>Exit Screen</label>
-        <locationX>1795</locationX>
-        <locationY>674</locationY>
-        <allowBack>true</allowBack>
+        <locationX>1837</locationX>
+        <locationY>828</locationY>
+        <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
@@ -768,8 +878,8 @@
     <screens>
         <name>Matching_Question_Screen</name>
         <label>Matching Question Screen</label>
-        <locationX>587</locationX>
-        <locationY>550</locationY>
+        <locationX>642</locationX>
+        <locationY>701</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -808,8 +918,8 @@
     <screens>
         <name>Multi_Select_Answer_Screen</name>
         <label>Multi Select Answer Screen</label>
-        <locationX>928</locationX>
-        <locationY>170</locationY>
+        <locationX>1025</locationX>
+        <locationY>220</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -830,20 +940,20 @@
     <screens>
         <name>Multiple_Choice_Screen</name>
         <label>Multiple Choice Screen</label>
-        <locationX>403</locationX>
-        <locationY>167</locationY>
+        <locationX>425</locationX>
+        <locationY>215</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Additional_Option_Selected</targetReference>
+            <targetReference>Get_all_our_records</targetReference>
         </connector>
         <fields>
             <name>Option</name>
             <dataType>String</dataType>
             <fieldText>Option</fieldText>
             <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>Add_Option</name>
@@ -858,8 +968,8 @@
     <screens>
         <name>Numerical_Question</name>
         <label>Numerical Question</label>
-        <locationX>221</locationX>
-        <locationY>900</locationY>
+        <locationX>276</locationX>
+        <locationY>1051</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -880,8 +990,8 @@
     <screens>
         <name>Question_Welcome</name>
         <label>Question Welcome</label>
-        <locationX>170</locationX>
-        <locationY>368</locationY>
+        <locationX>179</locationX>
+        <locationY>583</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -919,30 +1029,33 @@
             </validationRule>
         </fields>
         <fields>
-            <name>LookupSkill</name>
+            <name>LookupTitan</name>
             <extensionName>flowruntime:lookup</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
                 <name>fieldApiName</name>
                 <value>
-                    <stringValue>Name</stringValue>
+                    <stringValue>Titan__c</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
                 <name>label</name>
                 <value>
-                    <stringValue>Skill</stringValue>
+                    <stringValue>Titan</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
                 <name>objectApiName</name>
                 <value>
-                    <stringValue>Skill__c</stringValue>
+                    <stringValue>Exam_Question__c</stringValue>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <outputParameters>
+                <assignToReference>FinalQuestion.Titan__c</assignToReference>
+                <name>recordId</name>
+            </outputParameters>
         </fields>
         <fields>
             <name>Missing_Word_Question</name>
@@ -957,8 +1070,8 @@
     <screens>
         <name>Short_Answer_Screen</name>
         <label>Short Answer Screen</label>
-        <locationX>362</locationX>
-        <locationY>609</locationY>
+        <locationX>417</locationX>
+        <locationY>760</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -985,8 +1098,8 @@
     <screens>
         <name>True_or_False_Screen</name>
         <label>True or False Screen</label>
-        <locationX>612</locationX>
-        <locationY>349</locationY>
+        <locationX>673</locationX>
+        <locationY>491</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1007,13 +1120,27 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>43</locationX>
-        <locationY>146</locationY>
+        <locationX>50</locationX>
+        <locationY>295</locationY>
         <connector>
-            <targetReference>Question_Welcome</targetReference>
+            <targetReference>Clear_init_and_old_Helpers</targetReference>
         </connector>
     </start>
     <status>Draft</status>
+    <variables>
+        <name>Collection_Of_Helpers</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Final_Is_Fill_In_Blank</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
     <variables>
         <name>FinalCorrectAnswers</name>
         <dataType>String</dataType>
@@ -1072,10 +1199,25 @@
         <isOutput>true</isOutput>
     </variables>
     <variables>
+        <name>NewPicklist</name>
+        <dataType>Picklist</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
         <name>Option_Picklist</name>
         <dataType>Picklist</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Our_Helper_Records</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Question_Flow_Helper__c</objectType>
     </variables>
 </Flow>
