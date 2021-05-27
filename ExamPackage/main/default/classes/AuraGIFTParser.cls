@@ -5,6 +5,7 @@ public class AuraGIFTParser {
     // Aura
     @AuraEnabled
     public static Map<String,List<ExamQuestion>> ImportFile(List<ExamQuestion> questionList, String technology, String titan) {
+        // effectively you don't need Technology!!
         try {
             List<ExamQuestion> allQuestions = questionList;
             Map<String,List<ExamQuestion>> sortedQuestions = AuraGIFTParser.SortQuestions(allQuestions);
