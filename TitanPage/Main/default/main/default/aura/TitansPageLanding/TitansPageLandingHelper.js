@@ -11,6 +11,20 @@
         $A.enqueueAction(titanList);
     },
     
+    
+    hSetExams : function(component, event, helper) {
+        let activeTitan = component.get("v.activeTitan.Id");
+        let examsList = component.get("c.getExams");
+        examsList.setParams({titanId : activeTitan});
+        titanList.setCallback(this, function(response){
+            if(response.getState() == "SUCCESS"){
+                component.set("v.examList", response.getReturnValue());
+                console.log("Returned Exams: ");
+                console.log(response.getReturnValue());
+            }
+        })
+        $A.enqueueAction(examsList);
+    },
     //	hShowTitan# : button method that fires event, chooses which Titan to display info for 
     hShowTitan1 : function(component, event, helper) {
         var TitanPageLandingEvent = component.getEvent("TitanPageLandingEvent");
