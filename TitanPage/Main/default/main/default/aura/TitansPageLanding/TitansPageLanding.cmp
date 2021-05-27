@@ -45,30 +45,29 @@
                 </div></span>
         </div>
     </div>
-    
-    
+
     <!-- example Div style: class="slds-col slds-gutters slds-size_6-of-12" -->
     <!-- "toggle-hide" div CANNOT be inside lightning:card -->
     <!-- Uses "toggle-hide" class to switch displayed Titan details -->
     
-    <lightning:button label="testNavigate" onclick="{!c.cNavigate}"/>
-    
+    <lightning:button label="Test Navigate" onclick="{!c.cNavigate}"/>
+         
     <aura:iteration items="{!v.TitanList}" var="Titan" indexVar="titanIndex" aura:id="titanIteration">
-        <div class="slds-col slds-gutters" aura:Id="detailsDiv" data-index="{!titanIndex}">
+        <div class="titanDiv toggle-hide slds-col slds-gutters" Id="{!'titanDiv-' + titanIndex}">
             <lightning:card>
                 <div class="slds-grid">
                     <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-                        <c:ExamsLanding activeTitan="{!v.Titan}"/>
+                        <c:ExamsLanding activeTitan="{!Titan}"/>
                     </div>
                     <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-                        <c:LandingSkills activeTitan="{!v.Titan}"/>
+                        <c:LandingSkills activeTitan="{!Titan}"/>
                     </div>
                 </div>
             </lightning:card>
         </div>     
-    </aura:iteration>    
+    </aura:iteration>     
     
-    <!--     
+<!-- 
 <div class="toggle-hide slds-col slds-gutters" aura:id="titanDiv1">
         <lightning:card>
             <div class="slds-grid">
