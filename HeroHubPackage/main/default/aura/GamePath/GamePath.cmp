@@ -2,9 +2,8 @@
     <aura:attribute name="active" type="String"/>
     <aura:attribute name="exams" type="Map"/>
     <aura:attribute name="firstExam" type="Map"/>
-    <aura:attribute name="lastExam" type="Map"/>
-    <aura:attribute name="passedExams" type="List"/>
-    <aura:attribute name="failedExams" type="List"/>
+    <aura:attribute name="finalExam" type="Map"/>
+    <aura:attribute name="iterableExams" type="List"/>
     <aura:attribute name="contextInfo" type="Map"/>
     
   	<aura:handler name="init" value="{!this}" action="{!c.GameInit}"/>
@@ -33,105 +32,133 @@
 
 
 
-        <aura:if isTrue="{!and(v.firstExam != null, v.exams.length > 1)}">
+        <aura:if isTrue="{!v.exams.length == 2}">
+        <p style="color:white;">two exams</p>
+        </aura:if>
 
-            <!-- Start Path Completed-->
-            <div class="path"> 
-                <div class="minion-center"/>
-                <div class="vertical-line-centered-completed"/>
-            </div>
-            <!-- Start Path Completed end -->
-            <!-- First Center to Left Completed Path -->
-            <div class="path" >
-                <div class="down-left-center-path-completed"/>
-                <div class="vertical-line-short-left-completed"/>
-                <div class="minion-left-completed">
-                    <h1>{!v.firstExam.highScore}%</h1>
+
+
+
+
+        <!-- STARTING FRESH BEGINNING-->
+
+        <!-- more than 2 exams available -->
+        <aura:if isTrue="{!v.exams.length > 2}">
+            <p style="color:white;">two+ exams</p>
+
+            <!-- FIRST EXAM PASSED CHECK-->
+            <aura:if isTrue="{!v.firstExam.isPassed}">
+                <!-- Start Path Completed-->
+                <div class="path"> 
+                    <div class="minion-center"/>
+                    <div class="vertical-line-centered-completed"/>
                 </div>
-            </div>
-            <!-- First Center to Left Completed Path End -->
+                <!-- Start Path Completed end -->
+                <!-- First Center to Left Completed Path -->
+                <div class="path" >
+                    <div class="down-left-center-path-completed"/>
+                    <div class="vertical-line-short-left-completed"/>
+                    <div class="minion-left-completed">
+                        <h1>{!v.firstExam.highScore}%</h1>
+                    </div>
+                    <p>{!v.firstExam.name}</p>
+                </div>
+                <!-- First Center to Left Completed Path End -->
 
                 <aura:set attribute="else">
-                    <aura:if isTrue="{!v.exams.length > 1}">
-                        <!-- Start Path -->
-                        <div class="path"> 
-                            <div class="minion-center"/>
-                            <div class="vertical-line-centered"/>
-                        </div>
-                        <!-- Start Path end-->
-                        <!-- First Center to Left Path -->
-                        <div class="path" >
-                            <div class="down-left-center-path"/>
-                            <div class="vertical-line-short-left"/>
-                            <div class="minion-left"/>
-                        </div>
-                        <!-- First Center to Left Path End -->
-                    </aura:if>
-                </aura:set>
-        </aura:if>
-        
-        <aura:if isTrue="{!v.passedExams.length != 0}">
-            <aura:iteration items="{!v.passedExams}" var="exam">
-                <!-- To the Right Path -->
-                <div class="path"> 
-                    <div class="down-right-path"/>
-                    <div class="vertical-line-short-right"/>
-                    <div style="background:pink;" class="minion-right"/>
-                </div>
-                <!--To the Right Path End-->
-                
-                
-                <!-- To the Left Path -->
-                <div class="path">
-                    <div class="down-left-path"/>
-                    <div class="vertical-line-short-left"/>
-                    <div class="minion-left"/>
-                </div>
-                <!-- To the Left Path End-->
-            </aura:iteration>
-
-            <aura:set attribute="else">
-                <aura:iteration items="{!v.failedExams}" var="exam">
-                    <!-- To the Right Path -->
+                    <!-- Start Path -->
                     <div class="path"> 
-                        <div class="down-right-path"/>
-                        <div class="vertical-line-short-right"/>
-                        <div style="background:pink;" class="minion-right"/>
+                        <div class="minion-center"/>
+                        <div class="vertical-line-centered"/>
                     </div>
-                    <!--To the Right Path End-->
-                    
-                    
-                    <!-- To the Left Path -->
-                    <div class="path">
-                        <div class="down-left-path"/>
+                    <!-- Start Path end-->
+                    <!-- First Center to Left Path -->
+                    <div class="path" >
+                        <div class="down-left-center-path"/>
                         <div class="vertical-line-short-left"/>
                         <div class="minion-left"/>
+                        <p>{!v.firstExam.name}</p>
                     </div>
-                    <!-- To the Left Path End-->
+                    <!-- First Center to Left Path End -->
+                </aura:set>
+            </aura:if>
+            <!-- FIRST EXAM PASSED CHECK-->
+
+
+         
+
+                <aura:iteration items="{!v.iterableExams}" var="exam" indexVar="index">
+
+                    <!-- DECIDE WHETHER LEFT PATH OR RIGHT PATH DISPLAY-->
+                    <aura:if isTrue="{!index % 2 == 0}">
+
+                        <!-- CHECK EXAM IS PASSD-->
+                        <aura:if isTrue="{!exam.isPassed}">
+                                <!-- To the Right Completed Path -->
+                                <div class="path"> 
+                                    <div class="down-right-path-completed"/>
+                                    <div class="vertical-line-short-right-completed"/>
+                                    <div class="minion-right-completed">
+                                        <h1>{!exam.highScore}%</h1>
+                                    </div>
+                                    <p style="margin-left: 80%;">{!exam.name}</p>
+                                </div>
+                                <!--To the Right Completed Path End-->
+
+                            <aura:set attribute="else">
+                                <!-- To the Right Path -->
+                                <div class="path"> 
+                                    <div class="down-right-path"/>
+                                    <div class="vertical-line-short-right"/>
+                                    <div class="minion-right"/>
+                                    <p style="margin-left: 80%;">{!exam.name}</p>
+                                </div>
+                                <!--To the Right Path End-->
+                            </aura:set>
+                        </aura:if>
+                        
+                        <aura:set attribute="else">
+                            <aura:if isTrue="{!exam.isPassed}">
+                            <!-- To the Left Completed Path -->
+                            <div class="path">
+                                <div class="down-left-path-completed"/>
+                                <div class="vertical-line-short-left-completed"/>
+                                <div class="minion-left-completed">
+                                    <h1>{!exam.highScore}%</h1>
+                                </div>
+                                <p>{!exam.name}</p>
+                            </div>
+                            <!-- To the Left Completed Path End-->
+                        
+                            <aura:set attribute="else">
+                                <!-- To the Left Path -->
+                                <div class="path">
+                                    <div class="down-left-path"/>
+                                    <div class="vertical-line-short-left"/>
+                                    <div class="minion-left"/>
+                                    <p>{!exam.name}</p>
+                                </div>
+                                <!-- To the Left Path End-->
+                            </aura:set>
+                        </aura:if>
+                        </aura:set>
+                    </aura:if>
+
                 </aura:iteration>
-            </aura:set>
-        </aura:if>
-        
-        
 
 
-
-        <aura:if isTrue="{!v.finalExam != null}">
+            <aura:if isTrue="{!v.finalExam != null}">
             <!-- Display appropriate second to last path dependant on number of exams -->
             <aura:if isTrue="{!v.exams.length % 2 == 0}">
-                <!-- Down to Center From Right Path -->
-                <div class="path">
-                    <div class="down-right-path"/>
-                    <div class="vertical-line-short-right"/>
-                    <div class="minion-right"/>
-                    <div class="down-right-center-path"/>
-                </div>
-                <!-- Down to Center From Right Path End -->
-                
-                <aura:set attribute="else">
                     <!-- Down to Center From Right Path -->
                     <div class="path">
                         <div class="down-center-final-path"/>
+                    </div>
+                    <!-- Down to Center From Right Path End -->
+                <aura:set attribute="else">
+                    <!-- Down to Center From Right Path -->
+                    <div class="path">
+                        <div class="down-right-center-path"/>
                     </div>
                     <!-- Down to Center From Right Path End -->
                 </aura:set>
@@ -142,9 +169,19 @@
             <div class="path"> 
                 <div class="vertical-line-centered"/>
                 <div class="minion-center-final"/>
+                <p>{!v.finalExam.name}</p>
             </div>
             <!-- Final Challenge End-->
         </aura:if> 
+
+
+        </aura:if>
+            <!-- TOTAL EXAMS EVEN OR ODD CHECK-->
+
+        <!-- STARTING FRESH END -->
+
+
+        
     </div>
 	
 </aura:component>

@@ -20,6 +20,12 @@
     margin-top: 25px;
 }
 
+.THIS p{
+    color: white;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
 .THIS .path{
     margin: auto;
     max-width: 625px;
@@ -42,6 +48,8 @@
     border-radius: 150px;
     border: 5px solid white;
     margin: auto;
+    background: url(/resource/vanquishhero) no-repeat center;
+    background-size: 70%;
 }
 
 .THIS .minion-center-final{
@@ -113,6 +121,15 @@
     transition: .5s;
 }
 
+.THIS .minion-right-completed{
+    background: #5A714F;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    width: 100px;
+    height: 100px;
+    margin-left: 80%;
+    transition: .5s;
+}
 
 /* END OF MINIONS */
 /* START OF LINES */
@@ -150,11 +167,27 @@
     margin-left: 7.5%;
 }
 
+.THIS .down-left-path-completed{
+    height: 50px;
+    width: 81.5%;
+    border-right: 7px dashed #8CA7DF;
+    border-bottom: 7px dashed #8CA7DF;
+    margin-left: 7.5%;
+}
+
 .THIS .down-right-path{
     height: 100px;
     width: 81.25%;
     border-left: 7px dashed white;
     border-bottom: 7px dashed white;
+    margin-left: 7.5%;
+}
+
+.THIS .down-right-path-completed{
+    height: 100px;
+    width: 81.25%;
+    border-left: 7px dashed #8CA7DF;
+    border-bottom: 7px dashed #8CA7DF;
     margin-left: 7.5%;
 }
 
@@ -196,7 +229,14 @@
 .THIS .vertical-line-short-right{
     height: 25px;
     width: 1px;
-    border-right: 7px dashed white;
+    border-right: 7px dashed white!important;
+    margin-left: 87.5%;
+}
+
+.THIS .vertical-line-short-right-completed{
+    height: 25px;
+    width: 1px;
+    border-right: 7px dashed #8CA7DF;
     margin-left: 87.5%;
 }
 
