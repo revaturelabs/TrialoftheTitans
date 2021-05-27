@@ -11,16 +11,18 @@
             --user-team-secondary: {!v.contextInfo.team.secondary_color__c};
             --lead-team-primary: {!v.leadTeam.primary_color__c};
         	--lead-team-secondary: {!v.leadTeam.secondary_color__c};
+
+            background-color: ##3f3f3f;
         }
     </aura:html>
 
     <header class="header">
-        <c:AnimatedHeader leadTeam="{!v.leadTeam}"/>
+        <c:AnimatedHeader leadTeams="{!v.leadTeams}"/>
         <c:Navigation contextInfo="{!v.contextInfo}"/>
     </header>
     
     <div id="main">
-        <c:TitanSlayer leadTeam="{!v.leadTeam}" />
+        <c:TitanSlayer leadTeams="{!v.leadTeams}" />
         <c:HeroJourney contextInfo="{!v.contextInfo}"/>
     </div>
 

@@ -31,6 +31,14 @@
   background-color: var(--vanquish-primary);
 }
 
+.THIS .Vanquish-title {
+  width: 100%;
+  font-size: 25px;
+  font-weight: bold; 
+  position: absolute;
+  text-align: center;
+}
+
 .THIS .header-animatedHeader_normal {
   background-color: var(--text-color);
   color: var(--background-color);

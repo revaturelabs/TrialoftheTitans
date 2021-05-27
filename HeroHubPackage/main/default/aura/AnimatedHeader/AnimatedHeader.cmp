@@ -1,5 +1,5 @@
 <aura:component>
-    <aura:attribute name="leadTeam" type="Map"/>
+    <aura:attribute name="leadTeams" type="Map"/>
     <div class="header-animatedHeader">
         <!--Will Be Added When Finished-->
     <!--<h1>Trial of the Titans</h1>
@@ -59,27 +59,28 @@
                 <div class="bronze-statue-head"></div>
             </div>
         </div> -->
-        <aura:if isTrue="{!v.leadTeam == 'Alchemy'}">
+        <aura:if isTrue="{!false}">
             <div class="header-animatedHeader_Alchemy">
                 <div class="header-animatedHeader_Alchemy-Start1"></div>
                 <div class="header-animatedHeader_Alchemy-End"></div>
             </div>
             <aura:set attribute="else">
-                <aura:if isTrue="{!v.leadTeam == 'Amplifire'}">
+                <aura:if isTrue="{!false}">
                     <div class="header-animateHeader_Amplifire">
                         <div class="header-animatedHeader_Amplifire-Start1"></div>
                         <div class="header-animatedHeader_Amplifire-End"></div>
                     </div>
                     <aura:set attribute="else">
-                        <aura:if isTrue="{!v.leadTeam == 'Synergy'}">
+                        <aura:if isTrue="{!false}">
                             <div class="header-animateHeader_Synergy">
                                 <div class="header-animatedHeader_Synergy-Start1"></div>
                                 <div class="header-animatedHeader_Synergy-End"></div>
                             </div>
                             <aura:set attribute="else">
-                                <aura:if isTrue="{!v.leadTeam == 'Vanquish'}">
+                                <aura:if isTrue="{!true}">
                                     <div class="header-animateHeader_Vanquish">
                                         <div class="header-animatedHeader_Vanquish-Start1"></div>
+                                            <h1 class="Vanquish-title">Trial Of <br/>The Titans</h1>
                                         <div class="header-animatedHeader_Vanquish-End"></div>
                                     </div>
                                     <aura:set attribute="else">
