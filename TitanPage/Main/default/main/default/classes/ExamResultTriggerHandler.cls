@@ -1,10 +1,12 @@
+//Abdulloh Yoldoshev
 public class ExamResultTriggerHandler {
 
-public static void sendChatterMessageForTitanCompletion(List<Exam_Result__c> listOfExamResults){
+public static list<ConnectAPI.feedElement> sendChatterMessageForTitanCompletion(List<Exam_Result__c> listOfExamResults){
     
     Map<Exam_Result__c, user> mapToHeros = mapResultsToHeros(listOfExamResults);
     Map<Exam_Result__c, exam__c> mapToExams = mapResultsToExams(listOfExamResults);
     Map<Exam_Result__c, Titan__c> mapToTitans = mapResultsToTitans(listOfExamResults);
+    List<ConnectAPI.FeedElement> listFeedElement = new List<ConnectAPI.FeedElement>();
 
     CollaborationGroup chatterGroup = [SELECT ID FROM CollaborationGroup WHERE name = 'Titan Slayers' LIMIT 1];
     String hurrayMessage = '';
@@ -38,35 +40,17 @@ public static void sendChatterMessageForTitanCompletion(List<Exam_Result__c> lis
 
     feedInput.subjectID = chatterGroup.ID;
 
-    ConnectAPI.chatterFeeds.postFeedElement(null, feedInput);
-
-
-
-
-        //get the exam the exam result is coming from
-        // Exam__c exam = [SELECT Prerequisite_For__c FROM Exam__c WHERE ID = er.exam__c.ID].exam__c;
-        
-        //Titan__c titan = er.exam__c.titan__c;
-        //get the user who the exam result belongs to 
-        
-        //get the squad and team of the user from the exam result
-        
-        //get the cohort of the user from the exam result
-        
-        //get the titan that the exam comes from looks up to
-
-        //if exam result is for final exam in titan
-        
-
-
-            //Send chatter message to appropriate team 
-            //(user.name + " has just conquered the "+titan.name" Titan!")
-            
-            //send chatter message to appropriate cohort
-            //(user.name + " has just conquered the "+titan.name" Titan!") 
-            
-        
+    ConnectAPI.feedElement feedElement;
+    if(!Test.IsrunningTest()) {feedElement = ConnectAPI.chatterFeeds.postFeedElement(null, feedInput);}
+    else {
+        feedElement = new ConnectAPI.FeedItem();
+        feedElement.body = new ConnectAPI.FeedBody();
+        feedElement.body.text = hurrayMessage;
     }
+    listFeedElement.add(feedElement);
+   
+    }
+    return listFeedElement;
 }
 
 private static Map<Exam_Result__c, User> mapResultstoHeros (List<Exam_Result__c> listOfExamResults){
@@ -122,7 +106,7 @@ private static Map<Exam_Result__c, Exam__c> mapResultstoExams (List<Exam_Result_
         examIDs.add(er.Exam__c);
     }
 
-    List<Exam__c> listOfPossibleExams = [SELECT ID FROM Exam__c WHERE ID in :examIDs];
+    List<Exam__c> listOfPossibleExams = [SELECT ID, Next_Exam__c, Titan__C FROM Exam__c WHERE ID in :examIDs];
 
     Map<Exam_Result__c, Exam__c> resultMap = new Map<Exam_Result__c, Exam__c>();
     for(Exam_Result__c er: listOfExamResults){
@@ -143,7 +127,7 @@ private static Map<Exam_Result__c, Account> mapResultsToAccount (List<Exam_Resul
         accountIDs.add(er.Account__c);
     }
 
-    List<Account> listOfPossibleAccounts = [SELECT ID FROM Account WHERE ID in :accountIDs];
+    List<Account> listOfPossibleAccounts = [SELECT ID, name FROM Account WHERE ID in :accountIDs];
 
     Map<Exam_Result__c, Account> resultMap = new Map<Exam_Result__c, Account>();
     for(Exam_Result__c er: listOfExamResults){
