@@ -1,0 +1,11 @@
+<aura:component access="global">
+    <aura:attribute name="leadTeam" type="Map" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <div class="titanSlayer">
+    	<div class="titanSlayer-Alchemy"></div>
+        <div class="titanSlayer-Amplifire"></div>
+        <div class="titanSlayer-Synergy"></div>
+        <div class="titanSlayer-Vanquish"></div>
+    </div>
+</aura:component>
