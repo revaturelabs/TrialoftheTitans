@@ -6,11 +6,11 @@
 
 ::MC2::What type of Android is Data?{~A cool one =Noonian-type ~Confused-type ~Tarellian}
 
-::MC3::What is the name of Voyager's EMH?{~He never chose one =Joe ~Da Vinci ~Schweizer}
+::MC3::What is the name of Voyager's EMH?{~He never chose one =Joe #hecc yuss ~Da Vinci ~Schweizer}
 //***/Mult. Choice/***/
 
 //*** Mult. ChoiceMA ***/
-::MCMA1::Who are members of the Animorphs? {~%33%Cassie ~%33%Marco ~%33%Jake ~David ~Elfangor}
+::MCMA1::Who are members of the Animorphs? {~%33%Cassie #Yep! ~%33%Marco ~%33%Jake #Yep! ~David #Kinda...but he's condemned to suffer now. ~Elfangor}
 
 ::MCMA2::Which of the following have been Captains of the Enterprise line of starships?{~%33%Jean-Luc Picard ~%33%James T. Kirk ~%33%Rachel Garrett ~Kathryn Janeway ~Harry Kim}
 
@@ -19,10 +19,10 @@
 
 //*** Matching ***/
 ::Mtch1::Match the following terms with their definition.{
-	=Nothlit -> Someone stuck in morph for more than two hours.
-	=Andalite -> A noble (read: arrogant) alien warrior race.
-	=Taxxon -> A race of giant centipede-like cannibals.
-	=Hork-Bajir -> A peaceful race of tree-dwelling creatures taken over by the Yeerks.
+	=Nothlit -> Someone stuck in morph for more than two hours. #Such a dark fate.
+	=Andalite -> A noble (read: arrogant) alien warrior race. #Haha, they eat with their feet.
+	=Taxxon -> A race of giant centipede-like cannibals. #Ew.
+	=Hork-Bajir -> A peaceful race of tree-dwelling creatures taken over by the Yeerks. #Aww, dang.
 	}
 
 ::Mtch2::Match the captains with their starship/base.{
@@ -42,7 +42,7 @@
 //***/Matching/***/
 
 //*** True-False ***/
-::TF1::Tobias is stuck in morph as a red-chested grossbeak.{F}
+::TF1::Tobias is stuck in morph as a red-chested grossbeak.{F#He is stuck in morph as a red-tailed hawk.}
 
 ::TF2::Harry Kim is captain of the USS Voyager.{False}
 
@@ -50,9 +50,9 @@
 //***/True-False/***/
 
 //*** Numerical ***/
-::N1::How many minutes can someone stay in Morph?{#120}
+::N1::How many minutes can someone stay in Morph?{#120#Only two hours!!}
 
-::N2::How many Enterprise (NCC-1701) ships have existed?{#5}
+::N2::How many Enterprise (NCC-1701) ships have existed?{#=5 =6 #Yes, if counting Enterprise NX-01}
 
 ::N3::How many years did Voyager spend in the Delta quadrant (our timeline)?{#7}
 //***/Numerical/***/
@@ -72,7 +72,7 @@
 //*** Short Answer ***/
 ::SA1::The Leader of the Animorphs is...{Jake}
 
-::SA2::What is Picard's Borg name?{=Locutus =Locutus of Borg}
+::SA2::What is Picard's Borg name?{=Locutus #Good enough! =Locutus of Borg #Very good!}
 
 ::SA3::What is the intermingling of many Changelings called?{=The Link =The Great Link}
 //***/Short Answer/***/

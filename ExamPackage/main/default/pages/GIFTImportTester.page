@@ -3,7 +3,7 @@
         <apex:pageMessages />
         <apex:pageBlock title="GIFT Import">
             <apex:pageBlockButtons >
-                <apex:commandButton action="{!importGIFTFile}" value="Import" />
+                <apex:commandButton action="{!ImportGIFTFile}" value="Import" />
             </apex:pageBlockButtons>
             <apex:inputFile value="{!giftFileBody}" filename="{!filename}" /><br />
             <apex:repeat value="{!sortedExamList}" var="examKey">

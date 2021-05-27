@@ -7,10 +7,8 @@ public class AuraGIFTParser {
     public static Map<String,List<ExamQuestion>> ImportFile(List<ExamQuestion> questionList) {
         try {
             List<ExamQuestion> allQuestions = questionList;
-            System.debug(questionList);
-            System.debug(allQuestions);
-            Map<String,List<ExamQuestion>> sortedQuestions = AuraGIFTParser.sortQuestions(allQuestions);
-            // AuraGIFTParser.createRecords
+            Map<String,List<ExamQuestion>> sortedQuestions = AuraGIFTParser.SortQuestions(allQuestions);
+            AuraGIFTParser.CreateRecords(sortedQuestions);
             
             return sortedQuestions;    
         } catch (Exception e) {
@@ -18,8 +16,8 @@ public class AuraGIFTParser {
         }
         
     }
-    // essay, numerical, matching, multChoiceMA, multChoice, shortAnswer, trueFalse
-    public static Map<String,List<ExamQuestion>> sortQuestions(List<ExamQuestion> examQuestionList) {
+    
+    public static Map<String,List<ExamQuestion>> SortQuestions(List<ExamQuestion> examQuestionList) {
         Map<String,List<ExamQuestion>> sortedQuestions = new Map<String,List<ExamQuestion>>();
         List<ExamQuestion> essayQuestions = new List<ExamQuestion>();
         List<ExamQuestion> numericalQuestions = new List<ExamQuestion>();
@@ -43,9 +41,17 @@ public class AuraGIFTParser {
                 multChoiceQuestions.add(examQuestionList[i]);
             } else if ( examQuestionList[i].qAnswer.contains('=') && !examQuestionList[i].qAnswer.contains('~') ) {
                 shortAnswerQuestions.add(examQuestionList[i]);
-            } else if ( examQuestionList[i].qAnswer.toUpperCase().contains('T') || examQuestionList[i].qAnswer.toUpperCase().contains('F') || examQuestionList[i].qAnswer.toUpperCase().contains('TRUE') || examQuestionList[i].qAnswer.toUpperCase().contains('FALSE') ) {
+            } else if ( examQuestionList[i].qAnswer.length() == 1 && (examQuestionList[i].qAnswer.substring(0).toUpperCase().contains('T') || examQuestionList[i].qAnswer.substring(0).toUpperCase().contains('F'))) {
                 trueFalseQuestions.add(examQuestionList[i]);
-            } else {
+            } else if (examQuestionList[i].qAnswer.length() >= 5) {
+                if (examQuestionList[i].qAnswer.substring(0,5).toUpperCase().contains('FALSE') || examQuestionList[i].qAnswer.substring(0,2).toUpperCase().contains('F#')) {
+                    trueFalseQuestions.add(examQuestionList[i]);
+                } 
+            } else if (examQuestionList[i].qAnswer.length() >= 4) {
+                if (examQuestionList[i].qAnswer.substring(0,4).toUpperCase().contains('TRUE')  || examQuestionList[i].qAnswer.substring(0,2).toUpperCase().contains('T#')) {
+                    trueFalseQuestions.add(examQuestionList[i]);
+                } 
+            }  else {
                 shortAnswerQuestions.add(examQuestionList[i]);
             }
             
@@ -61,7 +67,150 @@ public class AuraGIFTParser {
         sortedQuestions.put('True-False', trueFalseQuestions);
         return sortedQuestions;
     }
-        
+    
+    // essay, numerical, matching, multChoiceMA, multChoice, shortAnswer, trueFalse
+    public static void CreateRecords(Map<String,List<ExamQuestion>> sortedQuestions) {
+        List<Exam_Question__c> upsertList = new List<Exam_Question__c>();
+
+        // handle essays
+        for (ExamQuestion eq: sortedQuestions.get('Essay')) {
+            Exam_Question__c eqc = new Exam_Question__c();
+            
+            eqc.Question_Type__c = 'Essay';
+            eqc.Name = eq.qTitle;
+            eqc.Question_Text__c = eq.qText;
+            if ( eq.qText.contains('_____') ) {
+                eqc.Missing_Word__c = True;    
+            } else {
+                eqc.Missing_Word__c = False;
+            }
+
+            upsertList.add(eqc);
+        } 
+        Integer z = 1;
+        // handle numerical
+        for (ExamQuestion eq: sortedQuestions.get('Numerical')) {
+            Exam_Question__c eqc = new Exam_Question__c();
+            System.debug('Processing numerical #' + z + '...');
+            
+            eqc.Question_Type__c = 'Numerical';
+            eqc.Name = eq.qTitle;
+            eqc.Question_Text__c = eq.qText;
+            if ( eq.qText.contains('_____') ) {
+                eqc.Missing_Word__c = True;    
+            } else {
+                eqc.Missing_Word__c = False;
+            }
+
+            //*** convert answer ***//
+            // check if has multiple answers first
+            if ( eq.qAnswer.contains('=') ) {
+                List<String> tempAnswers = eq.qAnswer.substringAfter('#').trim().split('=');
+
+                // remove any null entries
+                Integer i = 0;
+                while ( i < tempAnswers.size() ) {
+                    if ( String.isBlank(tempAnswers.get(i)) ) {
+                        tempAnswers.remove(i);
+                    } else {
+                        i++;
+                    }
+                }
+                System.debug('tempAnswers: ' + tempAnswers);
+                
+                for ( String ans: tempAnswers) {
+                    if (eqc.Answer_Explanation__c == null) {
+                        if ( ans.contains('#') ) {
+                            eqc.Answer_Explanation__c = ans.substringAfter('#').trim() + '||';
+                        } else {
+                            eqc.Answer_Explanation__c = '||';
+                        }    
+                    } else {
+                        if ( ans.contains('#') ) {
+                            eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + ans.substringAfter('#').trim() + '||';
+                        } else {
+                            eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + '||';
+                        }
+                    }
+                    if (eqc.Correct_Answer_s__c == null) {
+                        if ( ans.contains('#') ) {
+                            eqc.Correct_Answer_s__c = ans.substringBefore('#').trim() + '||';
+                        } else {
+                            eqc.Correct_Answer_s__c = ans.trim() + '||';
+                        }    
+                    } else {
+                        if ( ans.contains('#') ) {
+                            eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c + ans.substringBefore('#').trim() + '||';
+                        } else {
+                            eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c + ans.trim() + '||';
+                        }
+                    } 
+                }
+            } else {
+                if ( eq.qAnswer.substring(1).contains('#') ) {
+                    // check if has feedback
+                    eqc.Answer_Explanation__c = eq.qAnswer.substringAfterLast('#').trim();
+                    eqc.Correct_Answer_s__c = eq.qAnswer.substringBetween('#').trim();
+                } else {
+                    eqc.Correct_Answer_s__c = eq.qAnswer.substringAfter('#').trim();
+                }
+            }
+            //***/convert answer/***//
+
+            System.debug(eqc.Answer_Explanation__c);
+            System.debug(eqc.Correct_Answer_s__c);
+            // check if both end in ||
+            if ( !String.isBlank(eqc.Answer_Explanation__c) && eqc.Answer_Explanation__c.endsWith('||') ) { 
+                eqc.Answer_Explanation__c = eqc.Answer_Explanation__c.removeEnd('||'); 
+            }
+            if ( !String.isBlank(eqc.Correct_Answer_s__c) && eqc.Correct_Answer_s__c.endsWith('||') ) { 
+                eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c.removeEnd('||'); 
+            }
+            
+            System.debug(eqc.Answer_Explanation__c);
+            System.debug(eqc.Correct_Answer_s__c);
+            upsertList.add(eqc);
+            System.debug('I inserted numerical #' + z);
+            z++;
+        } 
+
+        // handle matching
+
+        // handle mcma
+
+        // handle mult choice
+
+        // handle short answer
+
+        // handle truefalse
+        for (ExamQuestion eq: sortedQuestions.get('True-False')) {
+            Exam_Question__c eqc = new Exam_Question__c();
+            
+            eqc.Question_Type__c = 'True-false';
+            eqc.Name = eq.qTitle;
+            eqc.Question_Text__c = eq.qText;
+            if ( eq.qText.contains('_____') ) {
+                eqc.Missing_Word__c = True;    
+            } else {
+                eqc.Missing_Word__c = False;
+            }
+            if (eq.qAnswer.contains('#')) {
+                eqc.Answer_Explanation__c = eq.qAnswer.substringAfter('#');
+            }
+
+            // convert the answer
+            if ( eq.qAnswer.substring(0,1).toUpperCase().contains('T') || eq.qAnswer.substring(0,4).toUpperCase().contains('TRUE') ) {
+                eqc.Correct_Answer_s__c = 'TRUE';   
+            } else {
+                eqc.Correct_Answer_s__c = 'FALSE';
+            }
+
+            upsertList.add(eqc);
+        } 
+		System.debug(upsertList);
+        upsert upsertList;
+    }
+
     @AuraEnabled
     public static Map<String,List<Map<String,String>>> HandleInit() {
         try {

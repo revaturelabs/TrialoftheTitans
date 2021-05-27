@@ -12,14 +12,14 @@ public class GIFTParser {
         allQuestions = new List<String>();
     }*/
     
-    public void importGIFTFile() {
+    public void ImportGIFTFile() {
         try {
             fileAsString = giftFileBody.toString();
             allQuestions = fileAsString.split('\r\n\r\n');
-            allQuestions = GIFTParser.removeComments(allQuestions);
-            questionsToSplit = GIFTParser.handleMissingWord(allQuestions);
-            examQuestionList = GIFTParser.splitParts(questionsToSplit);
-            sortedExamList = GIFTParser.sortQuestions(examQuestionList);
+            allQuestions = GIFTParser.RemoveComments(allQuestions);
+            questionsToSplit = GIFTParser.HandleMissingWord(allQuestions);
+            examQuestionList = GIFTParser.SplitParts(questionsToSplit);
+            sortedExamList = GIFTParser.SortQuestions(examQuestionList);
             system.debug(sortedExamList);
             
             
@@ -30,7 +30,7 @@ public class GIFTParser {
         }
     }
     
-    public static List<String> removeComments(List<String> allQuestions) {
+    public static List<String> RemoveComments(List<String> allQuestions) {
         // Iterate over questions
         for ( Integer i = 0; i < allQuestions.size(); i++ ) {
             // Split allQuestion[i] lines
@@ -65,7 +65,7 @@ public class GIFTParser {
         return allQuestions;
     }
 
-    public static List<String> handleMissingWord(List<String> allQuestions) {
+    public static List<String> HandleMissingWord(List<String> allQuestions) {
         List<String> processedQuestionList = new List<String>();
 
         // Iterate over questions
@@ -85,7 +85,7 @@ public class GIFTParser {
         
     }
 
-    public static List<ExamQuestion> splitParts(List<String> questionsToSplit) {
+    public static List<ExamQuestion> SplitParts(List<String> questionsToSplit) {
         List<ExamQuestion> examQuestionList = new List<ExamQuestion>();
 
         for ( Integer i = 0; i < questionsToSplit.size(); i ++ ) {
@@ -115,7 +115,7 @@ public class GIFTParser {
         return examQuestionList;
     }
 
-    public static Map<String,List<ExamQuestion>> sortQuestions(List<ExamQuestion> examQuestionList) {
+    public static Map<String,List<ExamQuestion>> SortQuestions(List<ExamQuestion> examQuestionList) {
         Map<String,List<ExamQuestion>> sortedQuestions = new Map<String,List<ExamQuestion>>();
         List<ExamQuestion> essayQuestions = new List<ExamQuestion>();
         List<ExamQuestion> numericalQuestions = new List<ExamQuestion>();
