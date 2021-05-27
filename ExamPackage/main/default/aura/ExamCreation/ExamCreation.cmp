@@ -1,0 +1,114 @@
+<!--
+ Component for exam creation.
+ Only for creation as of the current version.
+ can be updated to allow for editing by giving lightning recordForm an id.
+-->
+<aura:component controller="ExamCreationAuraController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    
+    <!-- remember to comment out all toast if testing in preview environment -->
+    <lightning:notificationsLibrary aura:id = " notifLib"/>
+    
+    <aura:attribute name="examId" type="String"/>
+    
+    <aura:attribute name="numberToPull" type="Integer[]"/>
+    
+    <aura:attribute name="questionPoolMap" type="Map"/>
+    <aura:attribute name="questionPool" type="List"/>
+    
+    <aura:attribute name="currentPage" type="Integer" default="1"/>
+    <aura:attribute name="isLastPage" type="Boolean"/>
+    
+    <aura:attribute name="selectedRows" type="List"/>
+    <aura:attribute name="poolDataColumns" type="List" />
+    
+    <aura:attribute name="questionShow" type="List"/>
+    <aura:attribute name="questionDataColumns" type="List" />
+    
+    <aura:attribute name="draftValues" type="List"/>
+    <aura:attribute name="draftValuesMap" type="Map" default="{}" />
+    
+    <aura:attribute name="examCreated" type="Boolean" default="false"/>    
+    
+    <div class=" body ">
+        
+        
+        <!-- Exam Creation Section -->
+        <div class="recordFormSection">
+            <aura:if isTrue = "{! equals(v.examCreated, false) }">
+                <div>
+                    <lightning:recordForm objectApiName="Exam__c" 
+                                          layoutType="Full"
+                                          columns="1"
+                                          onsuccess="{!c.handleSuccess}"/>
+                </div>
+            </aura:if>
+        </div>
+        <!-- /Exam Creation Section -->
+        
+        
+        <!-- Relating Pool To Exam Section -->
+        <div class="tableSection">
+            <aura:if isTrue="{!v.examCreated}">
+                
+                <lightning:layout horizontalAlign="spread" multipleRows="true">
+                    
+                    <lightning:layoutItem size='6' flexibility="auto">
+                        <div class="tableRight">
+                            <lightning:datatable data="{! v.questionPool }"
+                                                 columns="{! v.poolDataColumns }"
+                                                 keyField="poolId"
+                                                 hideCheckboxColumn="true"
+                                                 draftValues="{!v.draftValues}"
+                                                 onrowaction="{! c.showQuestionInPool }"
+                                                 oncellchange="{! c.updateQuestionQuantity}"
+                                                 suppressBottomBar="true"/>
+                        </div>
+                    </lightning:layoutItem>
+                    
+                    <lightning:layoutItem size='6' flexibility="auto">
+                        <div class="tableLeft">
+                            <lightning:datatable data="{! v.questionShow }"
+                                                 columns="{! v.questionDataColumns }"
+                                                 keyField="Name"
+                                                 hideCheckboxColumn="true"/>
+                        </div>
+                    </lightning:layoutItem>
+                    
+                    <lightning:layoutItem size='6' flexibility="auto">
+                        
+                        
+                        <!-- Next & Prev section -->
+                        <lightning:layout >
+                            
+                            <lightning:layoutItem size='3' flexibility="auto" padding="horizontal-medium" class="slds-align_absolute-center">
+                                <lightning:button label="Prev" iconName="utility:chevronleft" iconPosition="left"
+                                                  onclick="{!c.handlePrev}" disabled="{! v.currentPage == 1}"/>
+                            </lightning:layoutItem>
+                            
+                            <lightning:layoutItem size='6' flexibility="auto" padding="horizontal-medium" class="slds-align_absolute-center">
+                                <h1>{!v.currentPage} </h1>
+                            </lightning:layoutItem>
+                            
+                            <lightning:layoutItem size='3' flexibility="auto" padding="horizontal-medium" class="slds-align_absolute-center">
+                                <lightning:button label="Next" iconName="utility:chevronright" iconPosition="right"
+                                                  onclick="{!c.handleNext}" disabled="{! v.isLastPage}"/>
+                            </lightning:layoutItem>
+                            
+                        </lightning:layout>
+                        <!-- Next & Prev section -->
+                        
+                        
+                    </lightning:layoutItem>
+                    
+                </lightning:layout>
+                
+                <lightning:button variant="brand" label="Create" title="Primary Action" onclick="{!c.handleCreation}"/>
+            </aura:if>
+        </div>
+        <!-- Relating Pool To Exam Section -->
+        
+        
+    </div>
+</aura:component>

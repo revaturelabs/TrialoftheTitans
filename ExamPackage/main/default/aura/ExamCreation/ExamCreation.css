@@ -1,0 +1,21 @@
+.THIS .tables{
+    height:500px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.THIS ::-webkit-scrollbar {
+    width: 20px;
+}
+.THIS ::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.THIS ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+.THIS ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}
