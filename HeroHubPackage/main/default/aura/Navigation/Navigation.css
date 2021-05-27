@@ -1,0 +1,21 @@
+.THIS.navbar{
+    width: 100%;
+    background-color: var(--text-color);
+    color:white;
+    margin: 0;
+}
+
+.THIS.navbar ul {
+    margin: 0;
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    padding: var(--padding);
+    box-sizing: border-box;
+}
+
+.THIS li.navbar-quote {
+    justify-self: center;
+}
+
