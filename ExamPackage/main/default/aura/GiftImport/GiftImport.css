@@ -19,5 +19,10 @@
     padding: 4px;
 }
 .THIS table#import td:first-child, .THIS table#import th:first-child {
-    border-left:none;
+    border-left: none;
+}
+.THIS .errorText {
+    color: red;
+    font-style: italic;
+    font-weight: bold;
 }
