@@ -6,9 +6,9 @@
             let state = response.getState();
             if ( state === "SUCCESS" ) {
                 let valuesMap = response.getReturnValue();
-                component.set("v.technologies",valuesMap["Technologies"]);
+                /*component.set("v.technologies",valuesMap["Technologies"]);
                 component.set("v.selectedTechnology",valuesMap["Technologies"][0]["Id"]);
-                console.log("Default technology: " + component.get("v.selectedTechnology"));
+                console.log("Default technology: " + component.get("v.selectedTechnology"));*/
                 component.set("v.titans",valuesMap["Titans"]);
                 component.set("v.selectedTitan",valuesMap["Titans"][0]["Id"]);
                 console.log("Default titan: " + component.get("v.selectedTitan"));

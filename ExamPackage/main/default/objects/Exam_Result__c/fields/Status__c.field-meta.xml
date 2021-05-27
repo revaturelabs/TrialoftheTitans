@@ -23,7 +23,7 @@
             <value>
                 <fullName>Unassigned</fullName>
                 <default>false</default>
-                <label>Assigned</label>
+                <label>Unassigned</label>
             </value>
         </valueSetDefinition>
     </valueSet>

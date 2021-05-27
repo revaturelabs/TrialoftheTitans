@@ -209,46 +209,42 @@ public class AuraGIFTParser {
     public static Map<String,List<Map<String,String>>> HandleInit() {
         try {
             Map<String,List<Map<String,String>>> initialValueMap = new Map<String,List<Map<String,String>>>();
-            List<Technology__c> technologyList = [SELECT Name, Id FROM Technology__c];
+            // List<Technology__c> technologyList = [SELECT Name, Id FROM Technology__c];
             List<Titan__c> titanList = [SELECT Name, Id FROM Titan__c];
 
             // create technology + titan name + id lists
-            List<String> technologyNameList = new List<String>();
-            List<String> technologyIdList = new List<String>();
+            // List<String> technologyNameList = new List<String>();
+            // List<String> technologyIdList = new List<String>();
             List<String> titanNameList = new List<String>();
             List<String> titanIdList = new List<String>();
 
-            for ( Technology__c t: technologyList ) {
-                technologyNameList.add(t.Name);
-                technologyIdList.add(t.Id);
-            }
             for ( Titan__c t: titanList ) {
                 titanNameList.add(t.Name);
                 titanIdList.add(t.Id);
             }
 
-            System.debug(technologyNameList);
-            System.debug(technologyIdList);
+            //System.debug(technologyNameList);
+            //System.debug(technologyIdList);
             System.debug(titanNameList);
             System.debug(titanIdList);
 
             // create maps
-            List<Map<String,String>> technologyMapList = new List<Map<String,String>>();
+            //List<Map<String,String>> technologyMapList = new List<Map<String,String>>();
             List<Map<String,String>> titanMapList = new List<Map<String,String>>();
 
-            for ( Integer i = 0; i < technologyList.size(); i++ ) {
+            /*for ( Integer i = 0; i < technologyList.size(); i++ ) {
                 Map<String,String> tempMap = new Map<String,String>();
                 tempMap.put('Name',technologyNameList[i]);
                 tempMap.put('Id',technologyIdList[i]);
                 technologyMapList.add(tempMap);
-            }
+            }*/
             for ( Integer j = 0; j < titanList.size(); j++ ) {
                 Map<String,String> tempMap = new Map<String,String>();
                 tempMap.put('Name',titanNameList[j]);
                 tempMap.put('Id',titanIdList[j]);
                 titanMapList.add(tempMap);
             }
-            initialValueMap.put('Technologies',technologyMapList);
+            //initialValueMap.put('Technologies',technologyMapList);
             initialValueMap.put('Titans',titanMapList);
 
             return initialValueMap;
