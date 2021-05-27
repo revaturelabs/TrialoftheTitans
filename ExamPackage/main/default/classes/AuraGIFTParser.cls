@@ -4,7 +4,7 @@ public class AuraGIFTParser {
     
     // Aura
     @AuraEnabled
-    public static Map<String,List<ExamQuestion>> ImportFile(List<ExamQuestion> questionList) {
+    public static Map<String,List<ExamQuestion>> ImportFile(List<ExamQuestion> questionList, String technology, String titan) {
         try {
             List<ExamQuestion> allQuestions = questionList;
             Map<String,List<ExamQuestion>> sortedQuestions = AuraGIFTParser.SortQuestions(allQuestions);
@@ -14,7 +14,6 @@ public class AuraGIFTParser {
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
-        
     }
     
     public static Map<String,List<ExamQuestion>> SortQuestions(List<ExamQuestion> examQuestionList) {
@@ -48,7 +47,7 @@ public class AuraGIFTParser {
                     trueFalseQuestions.add(examQuestionList[i]);
                 } 
             } else if (examQuestionList[i].qAnswer.length() >= 4) {
-                if (examQuestionList[i].qAnswer.substring(0,4).toUpperCase().contains('TRUE')  || examQuestionList[i].qAnswer.substring(0,2).toUpperCase().contains('T#')) {
+                if (examQuestionList[i].qAnswer.substring(0,4).toUpperCase().contains('TRUE') || examQuestionList[i].qAnswer.substring(0,2).toUpperCase().contains('T#')) {
                     trueFalseQuestions.add(examQuestionList[i]);
                 } 
             }  else {
@@ -87,11 +86,10 @@ public class AuraGIFTParser {
 
             upsertList.add(eqc);
         } 
-        Integer z = 1;
+
         // handle numerical
         for (ExamQuestion eq: sortedQuestions.get('Numerical')) {
             Exam_Question__c eqc = new Exam_Question__c();
-            System.debug('Processing numerical #' + z + '...');
             
             eqc.Question_Type__c = 'Numerical';
             eqc.Name = eq.qTitle;
@@ -167,11 +165,7 @@ public class AuraGIFTParser {
                 eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c.removeEnd('||'); 
             }
             
-            System.debug(eqc.Answer_Explanation__c);
-            System.debug(eqc.Correct_Answer_s__c);
             upsertList.add(eqc);
-            System.debug('I inserted numerical #' + z);
-            z++;
         } 
 
         // handle matching

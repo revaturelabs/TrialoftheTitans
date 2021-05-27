@@ -13,9 +13,11 @@
     <aura:attribute name="technologies" type="List" default="[{'Name': 'Loading...', 'Id': 0}]" />
     <aura:attribute name="canUpload" type="Boolean" default="false" />
     <aura:attribute name="successMessage" type="Boolean" default="false" />
+    <aura:attribute name="toImport" type="Integer" default="0" />
     <aura:attribute name="imported" type="Integer" default="0" />
     <aura:attribute name="fileName" type="String" default="No File Selected..." />
-    <aura:attribute name="fileText"  type="String"  /> 
+    <aura:attribute name="displayList"  type="List"  /> 
+    <aura:attribute name="submitList" type="List" />
     <aura:handler name="init" value="{!this}" action="{!c.DoInit}" />
     
     <!-- body -->
@@ -32,7 +34,7 @@
             
             <!-- define technology -->
             <div class="slds-box">
-                <lightning:select name="TechnologyId" label="Select a Technology:" aura:id="TechnologyList" value="{!v.selectedTechnology}">
+                <lightning:select name="TechnologyId" label="Select a Technology:" aura:id="technologyList" value="{!v.selectedTechnology}" disabled="True">
                     <aura:iteration items="{!v.technologies}" var="tech">
                         <option text="{!tech.Name}" value="{!tech.Id}"/>
                     </aura:iteration>
@@ -43,7 +45,7 @@
 
             <!-- define titan -->
             <div class="slds-box">
-                <lightning:select name="TitanId" label="Select a Titan:" aura:id="TitanList" value="{!v.selectedTitan}">
+                <lightning:select name="TitanId" label="Select a Titan:" aura:id="titanList" value="{!v.selectedTitan}" onchange="{!c.HandleChange}">
                     <aura:iteration items="{!v.titans}" var="titan">
                         <option text="{!titan.Name}" value="{!titan.Id}"/>
                     </aura:iteration>
@@ -87,10 +89,30 @@
                 </table>
                 <div class="slds-text-body_small slds-text-color_black" style="white-space: pre-line;">
                     
-                    {!v.fileName} 
+                    <b>File to Import:</b>&nbsp;{!v.fileName}<br />
+                    <b>Number of questions: {!v.toImport}</b><br />
+                    <center><b>Questions to Import:</b></center>
+                    <table id="import">
+                        <tr>
+                            <th width="20%">Question Title</th>
+                            <th width="40%">Question Text</th>
+                            <th width="40%">Question Answer</th>
+                        </tr>
+                        <aura:iteration items="{!v.submitList}" var="q">
+                            <tr>
+                                <td>
+                                    {!q.qTitle}
+                                </td>
+                                <td>
+                                    {!q.qText}
+                                </td>
+                                <td>
+                                    {!q.qAnswer}
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </table>
                     
-                    FILE TEXT:
-                    {!v.fileText} 
                 </div>
                 
                 

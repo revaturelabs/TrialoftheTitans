@@ -26,7 +26,7 @@
 	}
 
 ::Mtch2::Match the captains with their starship/base.{
-	=Captain Benjamin Sisko -> Deep Space 9
+	=Captain Benjamin Sisko -> Deep Space 9 // aw heck I'm a comment
 	=Captain Jean-Luc Picard -> USS Enterprise D
 	=Captain Kathryn Janeway -> USS Voyager
 	=Captain Jonathan Archer -> Enterprise NX-01
@@ -52,7 +52,7 @@
 //*** Numerical ***/
 ::N1::How many minutes can someone stay in Morph?{#120#Only two hours!!}
 
-::N2::How many Enterprise (NCC-1701) ships have existed?{#=5 =6 #Yes, if counting Enterprise NX-01}
+::N2::How many Enterprise ships have existed?{#=5 =6 #Yes, if counting Enterprise NX-01}
 
 ::N3::How many years did Voyager spend in the Delta quadrant (our timeline)?{#7}
 //***/Numerical/***/
@@ -67,6 +67,8 @@
 ::MW2::Captain {=Janeway =Kathryn Janeway} is captain of the Voyager crew.
 
 ::MW3::{=Quark} is the main bartender on Deep Space 9.
+
+::MW4::There are {#=6#Correct!=5#Technically correct, if you don't count Aximili} members of the Animorphs.
 //***/Missing Word/***/
 
 //*** Short Answer ***/

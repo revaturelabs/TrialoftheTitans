@@ -7,7 +7,11 @@
             if ( state === "SUCCESS" ) {
                 let valuesMap = response.getReturnValue();
                 component.set("v.technologies",valuesMap["Technologies"]);
+                component.set("v.selectedTechnology",valuesMap["Technologies"][0]["Id"]);
+                console.log("Default technology: " + component.get("v.selectedTechnology"));
                 component.set("v.titans",valuesMap["Titans"]);
+                component.set("v.selectedTitan",valuesMap["Titans"][0]["Id"]);
+                console.log("Default titan: " + component.get("v.selectedTitan"));
                 component.set("v.initMessage", "Ready to import questions.");
             }
         });
@@ -17,7 +21,6 @@
     // Split each question in text file to its own object and put it in a list.
     // send the list along with titan and technology to ApexController.
     SplitString : function(component, theString) {
-        
         // remove comments
         theString = theString.replace(/\/\/.*$/mg, '\n');
         
@@ -56,7 +59,7 @@
                     qText: questionText, 
                     qAnswer: questionAnswer
                 };
-                
+
                 // put the object in the list
                 apexObjectList.push(current);
                 
@@ -77,20 +80,18 @@
                     qText: questionText, 
                     qAnswer: questionAnswer
                 };
-                
+
                 // put the object in the list
                 apexObjectList.push(current);
             }
         }
         
-        // send it to apex.
         console.log(apexObjectList);
         return apexObjectList;
-        //this.SubmitQuestionList(component, apexObjectList, titan, technology);
     },
     SubmitQuestionList : function(component, questions, titan, technology) {
         let action = component.get("c.ImportFile");
-        action.setParams({questionList:questions});
+        action.setParams({questionList:questions,technology:technology,titan:titan});
         action.setCallback(this, function(response) {
             let state = response.getState();
             console.log("state: " + state);
