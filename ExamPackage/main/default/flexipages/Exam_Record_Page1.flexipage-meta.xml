@@ -32,25 +32,20 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>PoolTableCmp</componentName>
+                <componentName>force:detailPanel</componentName>
             </componentInstance>
         </itemInstances>
-        <name>leftcol</name>
+        <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>QuestionTableCmp</componentName>
-            </componentInstance>
-        </itemInstances>
-        <name>rightcol</name>
+        <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>Exam Record Page</masterLabel>
     <sobjectType>Exam__c</sobjectType>
     <template>
-        <name>flexipage:recordHomeTwoColEqualHeaderTemplateDesktop</name>
+        <name>flexipage:recordHomeTemplateDesktop</name>
     </template>
     <type>RecordPage</type>
 </FlexiPage>

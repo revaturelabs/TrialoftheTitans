@@ -6,17 +6,89 @@
                 <componentName>PoolTableCmp</componentName>
             </componentInstance>
         </itemInstances>
+        <name>Facet-e8ad908c-011f-4143-9ba5-75ce6e367c7a</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentName>QuestionTableCmp</componentName>
             </componentInstance>
         </itemInstances>
-        <name>main</name>
+        <name>Facet-6c5fca7b-3370-4cd7-89f2-5ccee2a4658e</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-e8ad908c-011f-4143-9ba5-75ce6e367c7a</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Pool</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-6c5fca7b-3370-4cd7-89f2-5ccee2a4658e</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Question</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-0f48ce45-eebb-43d2-88d9-eb778cfb8897</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>tabs</name>
+                    <value>Facet-0f48ce45-eebb-43d2-88d9-eb778cfb8897</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tabset</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>top</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>flowLayout</name>
+                    <value>oneColumn</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowName</name>
+                    <value>Pool_Creation</value>
+                </componentInstanceProperties>
+                <componentName>flowruntime:interview</componentName>
+            </componentInstance>
+        </itemInstances>
+        <name>left</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>middle</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>right</name>
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>Home Page Default</masterLabel>
     <template>
-        <name>runtime_commerce_oci:homeTemplateOneRegion</name>
+        <name>home:desktopTemplateHeaderThreeColumns</name>
     </template>
     <type>HomePage</type>
 </FlexiPage>
