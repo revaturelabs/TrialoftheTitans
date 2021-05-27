@@ -1,9 +1,10 @@
 <aura:component>
     <aura:attribute name="contextInfo" type="UserContextInfo"/>
-    
+
+    <aura:handler name="change" value="{!v.contextInfo}" action="{!c.GenerateCircleBar}"/>
+
     <ltng:require
-                  scripts="{!$Resource.d3 + '/d3.js'}"
-                  afterScriptsLoaded="{!c.GenerateCircleBar}" />
+                  scripts="{!$Resource.d3 + '/d3.js'}"/>
 
     <div id="progress-chart">
 
