@@ -1,5 +1,5 @@
 ({
-    myAction : function(component, event, helper) {
-
+    cRenderExams : function(component, event, helper) {
+		helper.hRenderExams(component, event);
     }
 })
