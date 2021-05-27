@@ -337,8 +337,4 @@
         <object>Titan__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <recordTypeVisibilities>
-        <recordType>Account.Hero</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
 </PermissionSet>

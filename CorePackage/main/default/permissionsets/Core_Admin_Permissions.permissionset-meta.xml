@@ -1230,10 +1230,6 @@
         <object>WorkTypeGroup</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <recordTypeVisibilities>
-        <recordType>Account.Hero</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
     <userPermissions>
         <enabled>true</enabled>
         <name>AssignTopics</name>

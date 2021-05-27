@@ -1,4 +1,6 @@
 <aura:component>
+    <aura:attribute name="contextInfo" type="UserContextInfo"/>
+    
     <ltng:require
                   scripts="{!$Resource.d3 + '/d3.js'}"
                   afterScriptsLoaded="{!c.GenerateCircleBar}" />
