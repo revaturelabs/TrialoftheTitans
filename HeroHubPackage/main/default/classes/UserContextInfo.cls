@@ -46,7 +46,7 @@ public class UserContextInfo {
         userExams = createExamLists( sortedExams );
     }
 
-    private Account getUserAccount(Id userId) {
+   	public static Account getUserAccount(Id userId) {
 		
         // To be added when user is live
         try{
@@ -55,7 +55,7 @@ public class UserContextInfo {
         	//Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Id = :userContact.AccountId];
             
             //Hard Coded Account for now
-        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Name = 'User0'];
+        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c, Cohort__c, Team__c FROM Account WHERE Name = 'User0'];
             
             system.debug(userAccount);
 			return userAccount;
