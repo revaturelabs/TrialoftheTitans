@@ -6,6 +6,11 @@
     </applicationVisibilities>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Exam_Pool_Assignment__c.Number_to_pull__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Exam_Question__c.Answer_Explanation__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -111,11 +116,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Exam__c.First_Exam__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Exam__c.Next_Exam__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -130,8 +130,23 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Question_Pool__c.Number_Of_Questions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
-        <field>Question_Pool__c.Questions_to_Pull__c</field>
+        <field>Titan__c.Curriculum__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Titan__c.First_Exam__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Titan__c.Number_of_Skills__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>

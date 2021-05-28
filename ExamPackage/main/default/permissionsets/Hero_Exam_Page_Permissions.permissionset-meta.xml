@@ -96,12 +96,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Exam__c.First_Exam__c</field>
+        <field>Hero_Answer__c.Correct__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Hero_Answer__c.Correct__c</field>
+        <field>Titan__c.First_Exam__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
