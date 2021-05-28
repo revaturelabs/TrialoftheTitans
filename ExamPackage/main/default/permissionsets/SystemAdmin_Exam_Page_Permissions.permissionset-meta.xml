@@ -217,6 +217,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Import_Questions</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Question_Assignment__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
