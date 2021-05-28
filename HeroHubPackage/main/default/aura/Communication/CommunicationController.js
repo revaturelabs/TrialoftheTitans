@@ -24,7 +24,7 @@
         helper.CollapseFeed( feedBody );
     },
 
-    // DESCRIPTION: Handles the tab selected event and populates the chatter messages with the new tab group
+    // DESCRIPTION: Handles the TabSelectEvent and populates the chatter messages with the new tab group
     // PARAMETERS:  - tabName : The name of the selected tab
     ChangeTabs : function ( component, event, helper ) {
         let tabName = event.getParam( "tabName" );
