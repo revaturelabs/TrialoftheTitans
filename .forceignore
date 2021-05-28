@@ -25,6 +25,3 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
-
-# personal testing
-**/.planning/**

@@ -36,6 +36,11 @@
                 <label>Numerical</label>
             </value>
             <value>
+                <fullName>Missing word</fullName>
+                <default>false</default>
+                <label>Missing word</label>
+            </value>
+            <value>
                 <fullName>Short answer</fullName>
                 <default>false</default>
                 <label>Short answer</label>
@@ -44,12 +49,6 @@
                 <fullName>Essay</fullName>
                 <default>false</default>
                 <label>Essay</label>
-            </value>
-            <value>
-                <fullName>Missing word</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Missing word</label>
             </value>
         </valueSetDefinition>
     </valueSet>
