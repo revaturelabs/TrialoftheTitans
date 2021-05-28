@@ -3,24 +3,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>flowArguments</name>
-                    <value>[]</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>flowLayout</name>
-                    <value>oneColumn</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>flowName</name>
-                    <value>Question_Builder_Wizard</value>
-                </componentInstanceProperties>
-                <componentName>flowruntime:interview</componentName>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>home:heroChart</componentName>
+                <componentName>QuestionTableCmp</componentName>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -60,7 +43,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>home:assistant</componentName>
+                <componentName>PoolTableCmp</componentName>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>

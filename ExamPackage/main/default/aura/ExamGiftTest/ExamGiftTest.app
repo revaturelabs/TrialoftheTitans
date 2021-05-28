@@ -1,3 +1,3 @@
 <aura:application extends="force:slds">
-    <c:GiftImport/>
+    <c:GiftImport />
 </aura:application>

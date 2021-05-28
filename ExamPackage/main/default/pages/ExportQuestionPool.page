@@ -1,0 +1,1 @@
+<apex:page standardController="Question_Pool__c" extensions="ExportQuestionPoolController" contentType="text/plain/#emp.txt" sidebar="false"  cache="false" >{!allFormattedQuestionsString}</apex:page>

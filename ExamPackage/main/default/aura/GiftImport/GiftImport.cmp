@@ -1,94 +1,94 @@
 <!--
- Component to take in gift format text file
+////////////////////////////////////////////////////
+//
+// Name: Trial of the Titans - GIFT Parser
+// Author: Danny Tran, David J. Sellinger
+// Created: 2021-05-24
+// Updated: 2021-05-28
+// Description: Component to take in gift format text
+//              file
+//
+////////////////////////////////////////////////////
 -->
+
 <aura:component controller="AuraGIFTParser" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
                 access="global">
+    <!-- INIT ATTRIBUTES -->
     <aura:attribute name="initMessage" type="String" default="" />
-    <aura:attribute name="fileType" type="List" default="['.txt']" />
-    <aura:attribute name="multiple" type="Boolean" default="true" />
-    <aura:attribute name="record" type="String" default="a0AJ000000IQCazMAH" />
-    <aura:attribute name="selectedTitan" type="String" />
     <aura:attribute name="titans" type="List" default="[{'Name': 'Loading...', 'Id': 0}]" />
+    <aura:attribute name="selectedTitan" type="String" />
+    <aura:attribute name="technologies" type="List" default="[{'TechnologyName': 'Loading...', 'TitanId': 0}]" />
     <aura:attribute name="selectedTechnology" type="String" />
-    <aura:attribute name="technologies" type="List" default="[{'Name': 'Loading...', 'Id': 0}]" />
+    <!-- UPLOAD ATTRIBUTES -->
     <aura:attribute name="canUpload" type="Boolean" default="false" />
-    <aura:attribute name="successMessage" type="Boolean" default="false" />
-    <aura:attribute name="toImport" type="Integer" default="0" />
-    <aura:attribute name="imported" type="Integer" default="0" />
     <aura:attribute name="fileName" type="String" default="No File Selected..." />
-    <aura:attribute name="displayList"  type="List"  /> 
-    <aura:attribute name="submitList" type="List" />
+    <aura:attribute name="displayList"  type="List" default="[]" /> 
+    <aura:attribute name="toImport" type="Integer" default="0" />
+    <!-- SUBMISSION ATTRIBUTES -->
+    <aura:attribute name="submitList" type="List" default="[]" />
+    <aura:attribute name="submitError" type="String" default="" />
+    <aura:attribute name="successMessage" type="Boolean" default="false" />
+    <aura:attribute name="imported" type="Integer" default="0" />
+    <aura:attribute name="updated" type="Integer" default="0" />
+    <!-- EVENTS/HANDLERS -->
     <aura:handler name="init" value="{!this}" action="{!c.DoInit}" />
-    
+    <!-- /ATTRIBUTES -->
     <!-- body -->
     <div>
-        
-        
         <!-- create record -->
         <aura:if isTrue="{! equals(v.canUpload, false)}">
-            <b>{!v.initMessage}</b><br />
-            <aura:if isTrue="{!v.successMessage}" >
-                <b>File successfully imported!</b><br />
-                <i>Imported {!v.imported} questions</i>
-            </aura:if>
-            
+            <lightning:icon iconName="standard:circle" alternativeText="Event" title="Event" />
+            <div class="messages">
+                <i>{!v.initMessage}</i><br />
+                <aura:if isTrue="{!v.successMessage}" >
+                    <b>File successfully imported!</b><br />
+                    <i>Imported {!v.imported} questions—Updated {!v.updated} questions</i>
+                </aura:if>
+            </div>
             <!-- define technology -->
             <div class="slds-box">
                 <lightning:select name="TechnologyId" label="Select a Technology:" aura:id="technologyList" value="{!v.selectedTechnology}" disabled="True">
                     <aura:iteration items="{!v.technologies}" var="tech">
-                        <option text="{!tech.Name}" value="{!tech.Id}"/>
+                        <option text="{!tech.TechnologyName}" value="{!tech.TitanId}" />
                     </aura:iteration>
                 </lightning:select>
             </div>
             <!-- /define technology -->
-
-
             <!-- define titan -->
             <div class="slds-box">
                 <lightning:select name="TitanId" label="Select a Titan:" aura:id="titanList" value="{!v.selectedTitan}" onchange="{!c.HandleChange}">
                     <aura:iteration items="{!v.titans}" var="titan">
-                        <option text="{!titan.Name}" value="{!titan.Id}"/>
+                        <option text="{!titan.Name}" value="{!titan.Id}" />
                     </aura:iteration>
                 </lightning:select>
             </div>
             <!-- define titan -->
-            
-            
-            
-            
-            
             <!-- submit button -->
             <div class="slds-box">
-                <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.HandleNext }"/>
+                <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.HandleNext }" />
             </div>
             <!-- /submit button -->
-            
-            
         </aura:if>
         <!-- /create record -->
-        
-        
         <!-- upload component -->
         <aura:if isTrue="{!v.canUpload}">
-            
             <div class="slds-box">
-                
                 <table>
                     <tr>
                         <td>
                             <!-- file uploader -->
-                            <lightning:input aura:id="fileupload" type="file" lable="Upload Text Document" multiple="false" accept='.txt' onchange="{! c.HandleUploadFile}"/>
+                            <lightning:input aura:id="fileupload" type="file" lablel="Upload Text Document" multiple="false" accept='.txt' onchange="{! c.HandleUploadFile}" />
                             <!-- /file uploader -->
                         </td>
                         <td>
                             <!-- submit button -->
-                            <lightning:button variant="brand" label="Submit" title="Submit" onclick="{! c.HandleSubmit }"/>
+                            <lightning:button variant="brand" label="Submit" title="Submit" onclick="{! c.HandleSubmit }" />
                             <!-- /submit button -->
                         </td>
                     </tr>
                 </table>
+                <span class="errorText">{!v.submitError}</span>
                 <div class="slds-text-body_small slds-text-color_black" style="white-space: pre-line;">
-                    
                     <b>File to Import:</b>&nbsp;{!v.fileName}<br />
                     <b>Number of questions: {!v.toImport}</b><br />
                     <center><b>Questions to Import:</b></center>
@@ -114,17 +114,9 @@
                     </table>
                     
                 </div>
-                
-                
-                
             </div>
         </aura:if>
         <!-- /upload component -->
-        
-        
-        
     </div>
     <!-- /body -->
-    
-    
 </aura:component>

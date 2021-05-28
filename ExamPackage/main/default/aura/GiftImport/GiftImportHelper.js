@@ -6,12 +6,12 @@
             let state = response.getState();
             if ( state === "SUCCESS" ) {
                 let valuesMap = response.getReturnValue();
-                /*component.set("v.technologies",valuesMap["Technologies"]);
-                component.set("v.selectedTechnology",valuesMap["Technologies"][0]["Id"]);
-                console.log("Default technology: " + component.get("v.selectedTechnology"));*/
+                component.set("v.technologies", valuesMap["Technologies"]);
+                component.set("v.selectedTechnology", valuesMap["Technologies"][0]["TitanId"]);
+                // console.log("Default technology: " + component.get("v.selectedTechnology"));
                 component.set("v.titans",valuesMap["Titans"]);
-                component.set("v.selectedTitan",valuesMap["Titans"][0]["Id"]);
-                console.log("Default titan: " + component.get("v.selectedTitan"));
+                component.set("v.selectedTitan", valuesMap["Titans"][0]["Id"]);
+                // console.log("Default titan: " + component.get("v.selectedTitan"));
                 component.set("v.initMessage", "Ready to import questions.");
             }
         });
@@ -86,19 +86,45 @@
             }
         }
         
-        console.log(apexObjectList);
+        // console.log(apexObjectList);
         return apexObjectList;
     },
-    SubmitQuestionList : function(component, questions, titan, technology) {
+
+    // Submit button handler, submit the file, clear the text and send user back to first page of wizard.
+    // Then use helper to parse questions into objects that will be sent toward ApexController
+    SubmitClick : function(component, helper) {
+        if ( component.get("v.submitList").length > 0 ) {
+            // change view back to first view
+            component.set("v.submitError", "");
+            component.set("v.canUpload", false);
+            
+            // submit the question list
+            let titan = component.get("v.selectedTitan");
+            let questionList = component.get("v.submitList");
+            // console.log("titan:" + titan);
+            helper.SubmitQuestionList(component, questionList, titan);
+            
+            // empty the displayed file
+            component.set("v.displayList", []);
+            component.set("v.submitList", []);
+            component.set("v.toImport", 0);
+        } else {
+            component.set("v.submitError", "You must select a file to upload!");
+        }
+    },
+
+    SubmitQuestionList : function(component, questions, titan) {
         let action = component.get("c.ImportFile");
-        action.setParams({questionList:questions,technology:technology,titan:titan});
+        action.setParams({questionList:questions,titan:titan});
         action.setCallback(this, function(response) {
             let state = response.getState();
             console.log("state: " + state);
             if ( state === "SUCCESS" ) {
-                console.log("Imported file: " + JSON.stringify(response.getReturnValue()));
+                // console.log("Imported file: " + JSON.stringify(response.getReturnValue()));
+                let userFeedback = response.getReturnValue();
                 component.set("v.successMessage", true);
-                // include number of questions imported
+                component.set("v.imported", userFeedback[0]);
+                component.set("v.updated",userFeedback[1]);
             }
         });
         $A.enqueueAction(action);
