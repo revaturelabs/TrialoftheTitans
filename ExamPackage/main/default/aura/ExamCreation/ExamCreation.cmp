@@ -7,8 +7,6 @@
     
     <aura:handler name="init" value="{! this }" action="{! c.init }"/>
     <aura:attribute name="searchKeyword" type="String" />
-    <!-- remember to comment out all toast if testing in preview environment -->
-    <lightning:notificationsLibrary aura:id = " notifLib"/>
     
     <aura:attribute name="examId" type="String"/>
     
@@ -29,7 +27,7 @@
     <aura:attribute name="draftValues" type="List"/>
     <aura:attribute name="draftValuesMap" type="Map" default="{}" />
     
-    <aura:attribute name="examCreated" type="Boolean" default="true"/>    
+    <aura:attribute name="examCreated" type="Boolean" default="false"/>    
     
     <div class=" body ">
         
