@@ -91,6 +91,37 @@
         teamColors.set('Alchemy', '#84C247');
         teamColors.set('Vanquish', '#475BC2');
         teamColors.set('Avg', 'black');
+        let userTeam = 'Synergy';
+
+        for (let exams in titans) { 
+           let total = 0;
+           let currHighScore =0;
+            trackLabels.push(exams);
+           titans[exams].forEach( exam => {
+            let examScore = exam.highScore;
+            total += examScore;
+            if(examScore > currHighScore) {
+                currHighScore = examScore;
+            }
+           });
+           currHighScores.push(currHighScore);
+           let titanAverageScore = total / titans[exams].length;
+           trackExamAverage.push(titanAverageScore);
+           currKey++;
+        }
+        //adding last element to list to make a full radial circle
+        let lastScore = trackExamAverage[0];
+        trackExamAverage.push(lastScore);
+        sourceData = {
+            "name" : "averages",
+            "averages": trackExamAverage
+        };
+        let lastHighScore = currHighScores[0];
+        currHighScores.push(lastHighScore);
+        let highScoreData = {
+            "name" : "highscores",
+            "averages": currHighScores
+       };      
 
     }
 })
