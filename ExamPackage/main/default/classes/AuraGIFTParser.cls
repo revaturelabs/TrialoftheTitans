@@ -1,3 +1,15 @@
+////////////////////////////////////////////////////
+//
+// Name: Trial of the Titans - GIFT Parser
+// Author: David J. Sellinger
+// Created: 2021-05-24
+// Updated: 2021-05-28
+// Description: Server-side controller for parsing
+//              questions listed in GIFT format and
+//              inserting them into the database.
+//
+////////////////////////////////////////////////////
+
 public class AuraGIFTParser {
     
     @AuraEnabled

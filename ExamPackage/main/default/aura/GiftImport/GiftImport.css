@@ -1,3 +1,9 @@
+.THIS {
+    background-color: #FAFAF9;
+}
+.THIS .messages {
+    padding:4px;
+}
 .THIS table#import {
     border-collapse: separate;
     border-radius: 6px;
