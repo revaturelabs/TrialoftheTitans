@@ -1,13 +1,13 @@
 public class AuraGIFTParser {
     
     @AuraEnabled
-    public static Map<String,List<ExamQuestion>> ImportFile(List<ExamQuestion> questionList, String titan) {
+    public static List<ExamQuestion> ImportFile(List<ExamQuestion> questionList, String titan) {
         try {
             List<ExamQuestion> allQuestions = questionList;
             Map<String,List<ExamQuestion>> sortedQuestions = AuraGIFTParser.SortQuestions(allQuestions);
             AuraGIFTParser.CreateRecords(sortedQuestions, titan);
             
-            return sortedQuestions;    
+            return allQuestions;    
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -25,7 +25,7 @@ public class AuraGIFTParser {
 
         // Check for question characteristics and sort into lists
         for ( Integer i = 0; i < examQuestionList.size(); i++ ) {
-            if ( examQuestionList[i].qAnswer.containsOnly('{}') ) {
+            if ( String.isBlank(examQuestionList[i].qAnswer) ) {
                 essayQuestions.add(examQuestionList[i]);
             } else if ( examQuestionList[i].qAnswer.substring(0,1).contains('#') ) {
                 numericalQuestions.add(examQuestionList[i]);
@@ -42,14 +42,16 @@ public class AuraGIFTParser {
             } else if (examQuestionList[i].qAnswer.length() >= 5) {
                 if (examQuestionList[i].qAnswer.substring(0,5).toUpperCase().contains('FALSE') || examQuestionList[i].qAnswer.substring(0,2).toUpperCase().contains('F#')) {
                     trueFalseQuestions.add(examQuestionList[i]);
-                } 
+                } else {
+                    shortAnswerQuestions.add(examQuestionList[i]);
+                }
             } else if (examQuestionList[i].qAnswer.length() >= 4) {
                 if (examQuestionList[i].qAnswer.substring(0,4).toUpperCase().contains('TRUE') || examQuestionList[i].qAnswer.substring(0,2).toUpperCase().contains('T#')) {
                     trueFalseQuestions.add(examQuestionList[i]);
-                } 
-            }  else {
-                shortAnswerQuestions.add(examQuestionList[i]);
-            }
+                } else {
+                    shortAnswerQuestions.add(examQuestionList[i]);
+                }
+            }  
             
         }
 
@@ -240,6 +242,9 @@ public class AuraGIFTParser {
             // check if both end in ||
             if ( !String.isBlank(eqc.Answer_Explanation__c) && eqc.Answer_Explanation__c.endsWith('||') ) { 
                 eqc.Answer_Explanation__c = eqc.Answer_Explanation__c.removeEnd('||'); 
+            }
+            if ( !String.isBlank(eqc.Answer_Explanation__c) && eqc.Answer_Explanation__c.containsOnly('||') ) { 
+                eqc.Answer_Explanation__c = ''; 
             }
             if ( !String.isBlank(eqc.Correct_Answer_s__c) && eqc.Correct_Answer_s__c.endsWith('||') ) { 
                 eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c.removeEnd('||'); 
