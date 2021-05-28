@@ -64,7 +64,7 @@
 }
 
 .THIS#hidden-chat-btn {
-    background: var(--amplifire-primary);
+    background: var(--user-team-primary);
     border-radius: 5px 0 0 0;
     bottom: 0;
     box-shadow: 0 0 4px 3px rgb(0, 0, 0, .75);

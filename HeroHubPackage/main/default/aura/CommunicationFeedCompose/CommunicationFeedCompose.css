@@ -22,12 +22,12 @@
 }
 
 .THIS #compose-text input:active {
-    border: 1px solid var(--amplifire-primary);
-    outline-color: var(--amplifire-primary);
+    border: 1px solid var(--user-team-primary);
+    outline-color: var(--user-team-primary);
 }
 
 .THIS #compose-submit {
-    background: var(--amplifire-primary);
+    background: var(--user-team-primary);
     min-height: 100%;
     padding: auto;
     color: #302f30;
@@ -37,7 +37,7 @@
 }
 
 .THIS #compose-submit:hover {
-    background: var(--amplifire-secondary);
+    background: var(--user-team-secondary);
     color: #302f30;
     cursor: pointer;
 }
