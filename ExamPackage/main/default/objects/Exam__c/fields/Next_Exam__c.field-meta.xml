@@ -6,10 +6,16 @@
     <label>Next Exam</label>
     <lookupFilter>
         <active>true</active>
+        <errorMessage>The next exam must be within the same Titan!</errorMessage>
         <filterItems>
-            <field>$Source.Titan__c</field>
+            <field>Exam__c.Titan__c</field>
             <operation>equals</operation>
-            <valueField>Exam__c.Titan__c</valueField>
+            <valueField>$Source.Titan__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Exam__c.Id</field>
+            <operation>notEqual</operation>
+            <valueField>$Source.Id</valueField>
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>
