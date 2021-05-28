@@ -1,8 +1,14 @@
-<aura:component access="global">
+<aura:component access="global" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" >
     <aura:attribute name="contextInfo" type="UserContextInfo" default=""></aura:attribute>
-    <aura:handler name="init" value="{!this}" action="{!c.drawRadialChart}"></aura:handler>
     
-    <div aura:id="mydthree" >
+    <aura:attribute name="scriptsLoaded" type="Boolean" default="False"/>
+
+    <aura:handler name="change" value="{!v.contextInfo}" action="{!c.drawRadialChart}"/>
+    <aura:handler name="change" value="{!v.scriptsLoaded}" action="{!c.drawRadialChart}"/>
+
+    <ltng:require scripts="{!$Resource.dthree}" afterScriptsLoaded="{!c.ScriptsLoaded}" />
+
+    <div id="mydthree"  >
         
     </div>
 </aura:component>	

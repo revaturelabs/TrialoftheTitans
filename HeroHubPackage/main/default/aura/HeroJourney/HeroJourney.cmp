@@ -3,6 +3,8 @@
     <aura:attribute name="tabs" type="List"/>
     <aura:attribute name="active" type="String" default="Overview"/>
     <aura:attribute name="contextInfo" type="UserContextInfo"/>
+    <aura:attribute name="isD3Available" type="boolean" default="false"></aura:attribute>
+    <ltng:require scripts="{!$Resource.dthree}" afterScriptsLoaded="{!c.d3IsReady}" />
     <!-- user context being passed in includes: id, name, squad, user team, curriculum -->
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -23,8 +25,9 @@
         </div>
         
         <aura:if isTrue="{!v.active == 'Overview'}">
-            <div style="background:#8CA7DF; border-radius: 0px 5px 5px 5px; height:700px;" class="slds-col slds-size_6-of-7">
-                <c:TitanProgressRadialChart userContext="{!v.contextInfo}"></c:TitanProgressRadialChart>
+
+            <div style="background:#8CA7DF; border-radius: 0px 5px 5px 5px; height:auto;" class="slds-col slds-size_6-of-7">
+                <c:RadialChart contextInfo="{!v.userContext}"></c:RadialChart>
                <!-- <c:ProgressChart/> -->
             </div>
 
