@@ -24,7 +24,7 @@
         
         <aura:if isTrue="{!v.active == 'Overview'}">
             <div style="background:#8CA7DF; border-radius: 0px 5px 5px 5px; height:700px;" class="slds-col slds-size_6-of-7">
-                <c:RadialChart contextInfo="{!v.contextInfo}"></c:RadialChart>
+                <c:TitanProgressRadialChart userContext="{!v.contextInfo}"></c:TitanProgressRadialChart>
                <!-- <c:ProgressChart/> -->
             </div>
 

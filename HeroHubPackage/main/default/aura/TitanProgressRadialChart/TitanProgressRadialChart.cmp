@@ -1,10 +1,10 @@
 <aura:component access="global">
     <aura:attribute name="userContext" type="UserContextInfo" default=""></aura:attribute>
     <aura:attribute name="isD3Available" type="boolean" default="false"></aura:attribute>
-    <ltng:require scripts="{!$Resource.d3}" afterScriptsLoaded="{!c.d3IsReady}" />
+    <ltng:require scripts="{!$Resource.dthree}" afterScriptsLoaded="{!c.d3IsReady}" />
     
     <aura:if isTrue="{!v.isD3Available}">
-        <c:RadialChart userData="{!v.userContext}"></c:RadialChart>
+        <c:RadialChart contextInfo="{!v.userContext}"></c:RadialChart>
         <aura:set attribute="else">
             <span>LOADING </span>
         </aura:set>
