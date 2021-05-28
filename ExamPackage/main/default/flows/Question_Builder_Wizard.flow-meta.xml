@@ -215,7 +215,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Final_Is_Fill_In_Blank</assignToReference>
+            <assignToReference>FinalQuestion.Missing_Word__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Missing_Word_Question</elementReference>
@@ -638,6 +638,7 @@
             <label>Skip Record Creation</label>
         </rules>
     </decisions>
+    <description>Fixed Is missing word? checkbox</description>
     <dynamicChoiceSets>
         <name>Multiple_Choice_Options</name>
         <dataType>String</dataType>
