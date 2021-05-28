@@ -152,14 +152,14 @@
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
-    <label>Skill</label>
+    <externalSharingModel>Private</externalSharingModel>
+    <label>Question Flow Helper</label>
     <nameField>
-        <label>Skill Name</label>
+        <label>Flow Helper Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Skills</pluralLabel>
+    <pluralLabel>Question Flow Helpers</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

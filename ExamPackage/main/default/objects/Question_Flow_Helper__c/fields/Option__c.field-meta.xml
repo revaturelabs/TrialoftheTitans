@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Missing_Word__c</fullName>
-    <defaultValue>false</defaultValue>
+    <fullName>Option__c</fullName>
     <externalId>false</externalId>
-    <label>Missing Word?</label>
+    <label>Option</label>
+    <length>255</length>
+    <required>false</required>
     <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
+    <type>Text</type>
+    <unique>false</unique>
 </CustomField>
