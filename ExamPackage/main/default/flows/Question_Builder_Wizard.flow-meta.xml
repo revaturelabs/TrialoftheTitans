@@ -1126,7 +1126,7 @@
             <targetReference>Clear_init_and_old_Helpers</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>Collection_Of_Helpers</name>
         <dataType>String</dataType>
