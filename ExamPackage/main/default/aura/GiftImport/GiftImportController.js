@@ -20,6 +20,7 @@
                 let helperResult = helper.SplitString(component, fileContents)
                 component.set("v.submitList", helperResult);
                 component.set("v.displayList", helperResult);
+                component.set("v.showQuestions", true);
                 component.set("v.toImport", helperResult.length);
                 // console.log(fileContents);
             }
@@ -28,7 +29,6 @@
             reader.readAsText(file);
             let test = reader;
         }
-        
     },
     // Next handler, send user to upload page.
     HandleNext : function(component, event, helper) {
@@ -44,6 +44,7 @@
     HandleCancel : function(component, event, helper) {
         // change view back to first view
         component.set("v.canUpload", false);
+        component.set("v.showQuestions", false);
         
         // empty the displayed file
         component.set("v.displayList", []);

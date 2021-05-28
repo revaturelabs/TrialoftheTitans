@@ -97,6 +97,7 @@
             // change view back to first view
             component.set("v.submitError", "");
             component.set("v.canUpload", false);
+            component.set("v.showQuestions", false);
             
             // submit the question list
             let titan = component.get("v.selectedTitan");

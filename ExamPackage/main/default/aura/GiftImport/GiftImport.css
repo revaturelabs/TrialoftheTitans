@@ -3,9 +3,18 @@
 }
 .THIS h1 {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
+}
+.THIS h2 {
+    font-weight: bold;
+    text-align:center;
+    font-size: 16px;
 }
 .THIS .messages {
+    padding:4px;
+    color: #494;
+}
+.THIS .title {
     padding:4px;
 }
 .THIS table#import {
