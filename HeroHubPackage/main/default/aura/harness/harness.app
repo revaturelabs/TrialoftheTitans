@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-<aura:application extends = "force:slds">
-    <c:PageContainer />
-    <c:Communication />
-=======
 <aura:application extends="force:slds">
     <header style="background:#7aa7e9; height:100px;"></header>
     <div style="background:#29292A; height: 30px; width: 100%;"></div>
@@ -12,5 +7,4 @@
     <div style="margin: 2% 5% 0% 5%;">
         <c:HeroJourney/>
     </div>
->>>>>>> david
 </aura:application>
