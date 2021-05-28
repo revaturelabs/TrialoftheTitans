@@ -1,64 +1,6 @@
 <aura:component>
     <aura:attribute name="leadTeams" type="Map"/>
     <div class="header-animatedHeader">
-        <!--Will Be Added When Finished-->
-    <!--<h1>Trial of the Titans</h1>
-        <div class="headerAnimation">
-            <div class="titanContainer">
-                <div class="cyclopsHead">
-                    <div class="cyclopsFace"></div>
-                    <div class="cyclopsOuterEye"></div>
-                    <div class="cyclopsInnerEye"></div>
-                    <div class="cyclopsEyelid"></div>
-                    <div class="cyclopsTopLip"></div>
-                    <div class="cyclopsmouth"></div>
-                    <div class="cyclopsBottomLip"></div>
-                    <div class="cyclopsTooth"></div>
-                    <div class="cyclopsBeard"></div>
-                    <div class="cyclopsTooth"></div>
-                </div>
-
-                <div class="ice-giant-head">
-                    <div class="iceGiantFace"></div>
-                    <div class="iceGiantRightEye"></div>
-                    <div class="iceGiantLeftEye"></div>
-                    <div class="iceGiantMouth"></div>
-                    <div class="toothWrapper">
-                        <div class="iceGiantTooth tooth1"></div>
-                    </div>
-                    <div class="toothWrapper">
-                        <div class="iceGiantTooth tooth2"></div>
-                    </div>
-                    <div class="toothWrapper">
-                       <div class="iceGiantTooth tooth3"></div>
-                    </div>
-                    <div class="toothWrapper">
-                        <div class="iceGiantTooth tooth4"></div>
-                    </div>
-                    <div class="toothWrapper">
-                        <div class="iceGiantTooth tooth5"></div>
-                    </div>
-                    <div class="toothWrapper">
-                        <div class="iceGiantTooth tooth6"></div>
-                    </div>
-                    <div class="toothWrapper">
-                        <div class="iceGiantTooth tooth7"></div>
-                    </div>
-                    <div class="toothWrapper">
-                        <div class="iceGiantTooth tooth8"></div>
-                    </div>
-                    <div class="toothWrapper">
-                        <div class="iceGiantTooth tooth9"></div>
-                    </div>
-                    <div class="iceGiantJaw">
-                      <div class="IGJawBottom"></div>
-                      <div class="IGJawRight"></div>
-                    </div>
-                    <div class="IGmouthextended"></div>
-                </div>
-                <div class="bronze-statue-head"></div>
-            </div>
-        </div> -->
         <aura:if isTrue="{!false}">
             <div class="header-animatedHeader_Alchemy">
                 <div class="header-animatedHeader_Alchemy-Start1"></div>

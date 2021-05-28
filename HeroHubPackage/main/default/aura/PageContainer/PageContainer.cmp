@@ -2,6 +2,8 @@
     <!--Attributes: contextUser, userTeam, leadTeam,-->
     <aura:attribute name="contextInfo" type="UserContextInfo" />
     <aura:attribute name="leadTeams" type="Map"/>
+    <aura:attribute name="navigate" type="String" default="" />
+    <aura:handler name="navigatePage" event="c:MainPageNavigation" action="{!c.navigate}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <!--Set dynamic colors for teams-->
@@ -18,12 +20,17 @@
 
     <header class="header">
         <c:AnimatedHeader leadTeams="{!v.leadTeams}"/>
-        <c:Navigation contextInfo="{!v.contextInfo}"/>
+        <c:Navigation contextInfo="{!v.contextInfo}" navigate="{!v.navigate}"/>
     </header>
     
     <div id="main">
-        <c:TitanSlayer leadTeams="{!v.leadTeams}" />
-        <c:HeroJourney contextInfo="{!v.contextInfo}"/>
+            <aura:if isTrue="{!v.navigate == 'Titan'}" >
+                    <!--Insert Titan Page Here-->
+                <aura:set attribute="else">
+                    <c:TitanSlayer leadTeams="{!v.leadTeams}" />
+                    <c:HeroJourney contextInfo="{!v.contextInfo}"/>
+                </aura:set>
+            </aura:if>    
     </div>
 
     <footer>
