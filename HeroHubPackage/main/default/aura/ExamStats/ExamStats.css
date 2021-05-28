@@ -1,0 +1,59 @@
+.THIS {
+    width: 95%; 
+    margin: 5% 0% 0% 5%;  
+    background: #29292A; 
+    border: 10px solid #84a7e4; 
+    height: auto;
+    border-radius: 5px;
+    color: white;
+    padding: 20px;
+}
+
+.THIS h1{
+    font-size: 1.7em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.THIS h2{
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.THIS h3{
+    font-size: 1.1em;
+}
+
+.THIS .number{
+    font-weight: bold;
+}
+
+.THIS .line{
+    width: 50%;
+    height: 1px;
+    margin: auto;
+    background: white;
+}
+
+.THIS .btn{
+    background: #84a7e4;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: auto;
+    padding: 5px;
+    transition: .5s;
+    width: 120px;
+}
+
+.THIS .btn:hover{
+    background: #475BC2;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: auto;
+    padding: 5px;
+    transition: .5s;
+    width: 120px;
+}
+
