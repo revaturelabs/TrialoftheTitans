@@ -97,17 +97,17 @@
                                 <b>File to Import:</b>&nbsp;{!v.fileName}<br />
                                 <b>Number of questions: {!v.toImport}</b><br />
                             </td>
-                            <td style="width:74%;text-align:center;">
+                            <td class="td__upload">
                                 <!-- file uploader -->
                                 <lightning:input aura:id="fileupload" type="file" lablel="Upload Text Document" multiple="false" accept='.txt' onchange="{! c.HandleUploadFile}" />
                                 <!-- /file uploader -->
                             </td>
-                            <td style="width:0;padding:2px;">
+                            <td class="td__buttons">
                                 <!-- cancel button -->
                                 <lightning:button variant="neutral" label="Cancel" title="Cancel" onclick="{! c.HandleCancel }" />
                                 <!-- /cancel button -->
                             </td>
-                            <td style="width:0;padding:2px;">
+                            <td class="td__buttons">
                                 <!-- submit button -->
                                 <lightning:button variant="brand" label="Submit" title="Submit" onclick="{! c.HandleSubmit }" />
                                 <!-- /submit button -->
