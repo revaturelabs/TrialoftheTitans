@@ -34,6 +34,7 @@
     <tabs>Hero_Answer__c</tabs>
     <tabs>Question_Assignment__c</tabs>
     <tabs>Question_Pool__c</tabs>
+    <tabs>Import_Questions</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>ExamHub_UtilityBar</utilityBar>
 </CustomApplication>

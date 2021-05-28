@@ -21,7 +21,7 @@
                 component.set("v.submitList", helperResult);
                 component.set("v.displayList", helperResult);
                 component.set("v.toImport", helperResult.length);
-                console.log(fileContents);
+                // console.log(fileContents);
             }
             
             // allow the file content to be turn into text
