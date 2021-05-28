@@ -7,10 +7,10 @@ public class ExportQuestionPoolTest {
         
         Question_Pool__c questionPool = new Question_Pool__c ();
         questionPool.name = 'Question Pool Test';
-        questionPool.Question_Pool_Exam__c = exam.id;
+       // questionPool.Question_Pool_Exam__c = exam.id;
         insert questionPool;
         
-      //
+     
       //    system.debug(questionPool);
         Exam_Question__c MCquestion = new Exam_Question__c();
         MCquestion.Name = 'MC Question';
