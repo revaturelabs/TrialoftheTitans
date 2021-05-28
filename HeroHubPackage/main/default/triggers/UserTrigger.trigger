@@ -13,7 +13,7 @@ trigger UserTrigger on User (before insert, after insert, before update, after u
             UserTriggerHandler.AssignExams( trigger.new );
         }
         when AFTER_UPDATE {
-            UserTriggerHandler.AssignExams( trigger.new );
+            
         }
         when AFTER_DELETE {
             
