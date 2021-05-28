@@ -1,4 +1,6 @@
 ({
+    // HandleInit(): Handle init. Get technology and titan values for the picklists.
+
     HandleInit : function(component) {
         // get initial values from Apex controller
         let action = component.get("c.HandleInit");
@@ -18,8 +20,9 @@
         $A.enqueueAction(action);
     },
 
-    // Split each question in text file to its own object and put it in a list.
+    // SplistString(): Split each question in text file to its own object and put it in a list.
     // send the list along with titan and technology to ApexController.
+
     SplitString : function(component, theString) {
         // remove comments
         theString = theString.replace(/\/\/.*$/mg, '\n');
@@ -94,15 +97,16 @@
     // Then use helper to parse questions into objects that will be sent toward ApexController
     SubmitClick : function(component, helper) {
         if ( component.get("v.submitList").length > 0 ) {
+            let titan = component.get("v.selectedTitan");
+            let questionList = component.get("v.submitList");
+            // console.log("titan:" + titan);
+
             // change view back to first view
             component.set("v.submitError", "");
             component.set("v.canUpload", false);
             component.set("v.showQuestions", false);
             
             // submit the question list
-            let titan = component.get("v.selectedTitan");
-            let questionList = component.get("v.submitList");
-            // console.log("titan:" + titan);
             helper.SubmitQuestionList(component, questionList, titan);
             
             // empty the displayed file
