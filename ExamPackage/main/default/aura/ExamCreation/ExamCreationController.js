@@ -2,9 +2,8 @@
     // get questions pools and set the columns of the two datatable
     init : function(component, event, helper){
         component.set("v.poolDataColumns",
-                      [
+                      [	  {label: 'Pool Name', fieldName: 'poolName', type: 'text'},
                           {label: 'Amount Question Add', fieldName: 'quantity', type: 'number', editable: true},
-                          {label: 'Pool Name', fieldName: 'poolName', type: 'text'},
                           {label: 'Amount Of Questions', fieldName: 'poolQuestionAmount', type: 'number'},
                           {type : 'button', label: 'Preview Questions',
                            typeAttributes: {

@@ -6,7 +6,7 @@
 <aura:component controller="ExamCreationAuraController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
     
     <aura:handler name="init" value="{! this }" action="{! c.init }"/>
-    
+    <aura:attribute name="searchKeyword" type="String" />
     <!-- remember to comment out all toast if testing in preview environment -->
     <lightning:notificationsLibrary aura:id = " notifLib"/>
     
@@ -29,7 +29,7 @@
     <aura:attribute name="draftValues" type="List"/>
     <aura:attribute name="draftValuesMap" type="Map" default="{}" />
     
-    <aura:attribute name="examCreated" type="Boolean" default="false"/>    
+    <aura:attribute name="examCreated" type="Boolean" default="true"/>    
     
     <div class=" body ">
         
@@ -51,7 +51,14 @@
         <!-- Relating Pool To Exam Section -->
         <div class="tableSection">
             <aura:if isTrue="{!v.examCreated}">
-                
+                                            <!-- Search box -->
+                            <div class="inputsection" style="width:16%">  
+                                <lightning:input aura:id="searchField"              
+                                                 value="{!v.searchKeyword}"          
+                                                 placeholder="Search Exam Title"
+                                                 onchange = "{!c.init}"/>     
+                            </div>
+                        
                 <lightning:layout horizontalAlign="spread" multipleRows="true">
                     
                     <lightning:layoutItem size='6' flexibility="auto">
