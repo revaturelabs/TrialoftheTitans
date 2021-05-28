@@ -1,7 +1,7 @@
 <aura:component access="global" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes"  >
     <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
     <aura:attribute name="tabs" type="List"/>
-    <aura:attribute name="active" type="String"/>
+    <aura:attribute name="active" type="String" default="Overview"/>
     <aura:attribute name="contextInfo" type="UserContextInfo"/>
     <!-- user context being passed in includes: id, name, squad, user team, curriculum -->
     
@@ -24,8 +24,8 @@
         
         <aura:if isTrue="{!v.active == 'Overview'}">
             <div style="background:#8CA7DF; border-radius: 0px 5px 5px 5px; height:700px;" class="slds-col slds-size_6-of-7">
-                Overview
-                <c:ProgressChart/>
+                <c:RadialChart contextInfo="{!v.contextInfo}"></c:RadialChart>
+               <!-- <c:ProgressChart/> -->
             </div>
 
             <aura:set attribute="else">
