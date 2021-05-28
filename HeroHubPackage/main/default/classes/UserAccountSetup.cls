@@ -132,7 +132,7 @@ public class UserAccountSetup {
             for(Exam_Result__c result : newResults){
             	
             	Hero_Answer__c newAnswer = new Hero_Answer__c(Exam_Question__c = question.id, Exam_Result__c = result.id);
-                if(Math.round(Math.random()) == 1){
+                if(Math.random() < .85){
                     
                     newAnswer.Correct__c = true;
                 
