@@ -2,5 +2,5 @@
     <aura:attribute name="datad3" type="string" default=""></aura:attribute>
     <aura:attribute name="d3Available" type="boolean" default="false"></aura:attribute>
     
-    
+    <ltng:require scripts="{!$Resource.d3}" afterScriptsLoaded="{!c.startD3}" />
 </aura:component>	
