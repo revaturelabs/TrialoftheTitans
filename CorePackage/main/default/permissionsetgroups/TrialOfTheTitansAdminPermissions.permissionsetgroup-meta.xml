@@ -3,13 +3,5 @@
     <description>Permissions for the Admin of the Trial of the Titan</description>
     <label>TrialOfTheTitansAdminPermissions</label>
     <permissionSets>Core_Admin_Permissions</permissionSets>
-    <permissionSets>Core_Hero_Permissions</permissionSets>
-    <permissionSets>Core_Trainer_Permissions</permissionSets>
-    <permissionSets>HeroExam</permissionSets>
-    <permissionSets>Hero_Hero_Hub_Permissions</permissionSets>
-    <permissionSets>Hero_Titans_Page_Permissions</permissionSets>
-    <permissionSets>SystemAdminExam</permissionSets>
-    <permissionSets>TrainerExam</permissionSets>
-    <permissionSets>Trainer_Titans_Page_Permissions</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>
