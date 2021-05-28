@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+<<<<<<< HEAD
+=======
+    <custom>true</custom>
+>>>>>>> 9f78d7b66362c4eb33f0854e776b38f36a535ab1
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
