@@ -55,7 +55,7 @@
                             <div class="inputsection" style="width:16%">  
                                 <lightning:input aura:id="searchField"              
                                                  value="{!v.searchKeyword}"          
-                                                 placeholder="Search Exam Title"
+                                                 placeholder="Search Pool Title"
                                                  onchange = "{!c.init}"/>     
                             </div>
                         
