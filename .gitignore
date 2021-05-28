@@ -40,5 +40,7 @@ $RECYCLE.BIN/
 
 .vscode
 .vim-force.com
+./ExamPackage/main/default/objects/Question_Assignment__c
+
 
 

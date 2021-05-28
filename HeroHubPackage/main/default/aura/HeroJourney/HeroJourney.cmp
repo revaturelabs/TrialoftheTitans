@@ -1,8 +1,17 @@
+<<<<<<< HEAD
 <aura:component access="global" >
     <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
     <aura:attribute name="tabs" type="List"/>
     <aura:attribute name="active" type="String"/>
     <aura:attribute name="contextInfo" type="UserContextInfo"/>
+=======
+<aura:component access="global" controller="HeroJourneyAuraController">
+    <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
+    <aura:attribute name="tabs" type="List"/>
+    <aura:attribute name="active" type="String"/>
+    <aura:attribute name="contextInfo" type="Map"/>
+    <aura:attribute name="currentExam" type="ExamList"/>
+>>>>>>> david
     <!-- user context being passed in includes: id, name, squad, user team, curriculum -->
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -25,7 +34,10 @@
         <aura:if isTrue="{!v.active == 'Overview'}">
             <div style="background:#8CA7DF; border-radius: 0px 5px 5px 5px; height:700px;" class="slds-col slds-size_6-of-7">
                 Overview
+<<<<<<< HEAD
                 <c:ProgressChart/>
+=======
+>>>>>>> david
             </div>
 
             <aura:set attribute="else">

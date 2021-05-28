@@ -12,12 +12,26 @@
 }
 
 .THIS h1{
+<<<<<<< HEAD
     text-align: center;
     vertical-align: middle;
     color: white;
     font-size: 1.8em;
     font-weight: bold;
     margin-top: 25px;
+=======
+    color: white;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.THIS p{
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+>>>>>>> david
 }
 
 .THIS .path{
@@ -39,9 +53,17 @@
 .THIS .minion-center{
     width: 100px;
     height: 100px;
+<<<<<<< HEAD
     border-radius: 150px;
     border: 5px solid white;
     margin: auto;
+=======
+    border-radius: 10px;
+    border-bottom: 5px solid #8CA7DF;
+    margin: auto;
+    background: url(/resource/vanquishhero) no-repeat center;
+    background-size: 70%;
+>>>>>>> david
 }
 
 .THIS .minion-center-final{
@@ -91,6 +113,44 @@
     border-radius: 150px;
     border: 5px solid #84C962;
     transition: .5s;
+<<<<<<< HEAD
+=======
+    vertical-align: middle;
+}
+
+.THIS .minion-left-completed:hover{
+    background: #5A714F;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    transform: scale(1.1);
+    transition: .5s;
+    vertical-align: middle;
+}
+
+.THIS .minion-failed{
+    background: #845555;
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid #c32828;
+    transition: .5s;
+    vertical-align: middle;
+}
+
+.THIS .minion-failed:hover{
+    background: #845555;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid #c32828;
+    transform: scale(1.1);
+    transition: .5s;
+    vertical-align: middle;
+>>>>>>> david
 }
 
 .THIS .minion-right{
@@ -98,7 +158,11 @@
     border: 5px solid white;
     width: 100px;
     height: 100px;
+<<<<<<< HEAD
     margin-left: 80%;
+=======
+ 
+>>>>>>> david
     transition: .5s;
 }
 
@@ -108,11 +172,57 @@
     cursor: pointer;
     width: 100px;
     height: 100px;
+<<<<<<< HEAD
     margin-left: 80%;
+=======
+
+>>>>>>> david
     transform: scale(1.1);
     transition: .5s;
 }
 
+<<<<<<< HEAD
+=======
+.THIS .minion-right-completed{
+    background: #5A714F;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+    transition: .5s;
+}
+
+.THIS .minion-right-completed:hover{
+    background: #5A714F;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+    transform: scale(1.1);
+    transition: .5s;
+}
+
+.THIS .minion-wrapper-left{
+    text-align: center;
+    width: 105px;
+}
+
+.THIS .minion-wrapper-center{
+    text-align: center;
+    width: 105px;
+    margin: auto;
+}
+
+.THIS .minion-wrapper-right{
+    text-align: center;
+    width: 105px;
+    margin-left: 80%;
+}
+
+>>>>>>> david
 
 /* END OF MINIONS */
 /* START OF LINES */
@@ -150,6 +260,17 @@
     margin-left: 7.5%;
 }
 
+<<<<<<< HEAD
+=======
+.THIS .down-left-path-completed{
+    height: 50px;
+    width: 81.5%;
+    border-right: 7px dashed #8CA7DF;
+    border-bottom: 7px dashed #8CA7DF;
+    margin-left: 7.5%;
+}
+
+>>>>>>> david
 .THIS .down-right-path{
     height: 100px;
     width: 81.25%;
@@ -158,6 +279,17 @@
     margin-left: 7.5%;
 }
 
+<<<<<<< HEAD
+=======
+.THIS .down-right-path-completed{
+    height: 100px;
+    width: 81.25%;
+    border-left: 7px dashed #8CA7DF;
+    border-bottom: 7px dashed #8CA7DF;
+    margin-left: 7.5%;
+}
+
+>>>>>>> david
 .THIS .down-right-center-path{
     height: 100px;
     width: 40%;
@@ -196,7 +328,18 @@
 .THIS .vertical-line-short-right{
     height: 25px;
     width: 1px;
+<<<<<<< HEAD
     border-right: 7px dashed white;
+=======
+    border-right: 7px dashed white!important;
+    margin-left: 87.5%;
+}
+
+.THIS .vertical-line-short-right-completed{
+    height: 25px;
+    width: 1px;
+    border-right: 7px dashed #8CA7DF;
+>>>>>>> david
     margin-left: 87.5%;
 }
 
