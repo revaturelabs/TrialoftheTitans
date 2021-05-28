@@ -1,6 +1,10 @@
 .THIS {
     background-color: #FAFAF9;
 }
+.THIS h1 {
+    font-weight: bold;
+    font-size: 18px;
+}
 .THIS .messages {
     padding:4px;
 }

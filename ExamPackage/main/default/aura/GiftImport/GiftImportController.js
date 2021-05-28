@@ -40,6 +40,16 @@
     HandleSubmit : function(component, event, helper) {
         helper.SubmitClick(component, helper);  
     },
+    // Cancel handler, cancel file submission
+    HandleCancel : function(component, event, helper) {
+        // change view back to first view
+        component.set("v.canUpload", false);
+        
+        // empty the displayed file
+        component.set("v.displayList", []);
+        component.set("v.submitList", []);
+        component.set("v.toImport", 0);
+    },
     // Handle the change of selectedTechnology option
     HandleChange : function(component, event, helper) {
         // change v.selectedTechnology to have it line up with titan
