@@ -46,10 +46,11 @@ public class ExamCreationAuraControllerTest {
     public static void testPositive(){
         
         // First method
-        Map<Integer, List<ExamCreationAuraController.QuestionPoolWrapper>> getReturn = ExamCreationAuraController.getQuestionPool();
-        
+        Map<Integer, List<ExamCreationAuraController.QuestionPoolWrapper>> getReturn = ExamCreationAuraController.getQuestionPool('');
+        Map<Integer, List<ExamCreationAuraController.QuestionPoolWrapper>> getReturn2 = ExamCreationAuraController.getQuestionPool('questionPool 5');
         // since there are 20 pools, so 2 key so calling size() on map should give us back 2
         System.assert(getReturn.size() == 2);
+        System.assert(getReturn2.size() == 1);
         List<Question_Pool__c> poolWithQuestions = [SELECT Id, Name, Number_Of_Questions__c FROM Question_Pool__c WHERE Number_Of_Questions__c > 0 ORDER BY Name];
         
         // check if the return map have the correct value

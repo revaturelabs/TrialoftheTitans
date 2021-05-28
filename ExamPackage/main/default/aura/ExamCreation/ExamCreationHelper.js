@@ -4,6 +4,10 @@
     // need some search or filter functionality.
     getQuestionPools : function(component) {
         let action = component.get("c.getQuestionPool");
+        let searchKeyword = component.get("v.searchKeyword");
+        action.setParams({
+            'searchKeyword' :   searchKeyword});
+        
         action.setCallback(this, function(response){
             let state = response.getState();
             if(state = 'SUCCESS'){

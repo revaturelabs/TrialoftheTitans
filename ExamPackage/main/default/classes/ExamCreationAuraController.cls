@@ -18,12 +18,15 @@ public class ExamCreationAuraController {
         }
     }
     @AuraEnabled
-    public static Map<Integer, List<QuestionPoolWrapper>> getQuestionPool(){
+    public static Map<Integer, List<QuestionPoolWrapper>> getQuestionPool(String searchKeyword){
+        // Searchkey is null
+        String searchkey= String.isBlank (searchKeyword) ? '%%' : '%'+searchKeyword+'%';
+        
         Map<Integer,List<QuestionPoolWrapper>> qpm = new Map<Integer, List<QuestionPoolWrapper>>();
         List<QuestionPoolWrapper> qpw = new List<QuestionPoolWrapper>();
         Integer counter = 1;
         Integer pageNumber = 1;
-        for(Question_Pool__c qp: [SELECT Id, Name, Number_Of_Questions__c FROM Question_Pool__c]){
+        for(Question_Pool__c qp: [SELECT Id, Name, Number_Of_Questions__c FROM Question_Pool__c WHERE Name LIKE : searchkey]){
             qpw.add(new QuestionPoolWrapper(qp.Id, qp.Name, qp.Number_Of_Questions__c));
             if(counter == 10){
                 qpm.put(pageNumber, qpw);
