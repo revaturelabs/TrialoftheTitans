@@ -3,11 +3,11 @@
     <aura:attribute name="isD3Available" type="boolean" default="false"></aura:attribute>
     
     <aura:if isTrue="{!v.isD3Available}">
-        <c:DThree datad3="{!v.userContext}"></c:DThree>
+        <c:RadialChart userData="{!v.userContext}"></c:DThree>
         <aura:set attribute="else">
             <span>LOADING </span>
         </aura:set>
     </aura:if>
 
-    <ltng:require scripts="{!$Resource.d3}" afterScriptsLoaded="{!c.drawRadialChart}" />
+    <ltng:require scripts="{!$Resource.d3}" afterScriptsLoaded="{!c.d3IsReady}" />
 </aura:component>	

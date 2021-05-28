@@ -1,5 +1,5 @@
 ({
-    drawRadialChart : function(component, event, helper) {
-        helper.drawChart(component, event);
+    d3IsReady : function(component, event, helper) {
+        component.set('v.isD3Available', true);
     }
 })

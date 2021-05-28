@@ -1,0 +1,7 @@
+<aura:component>
+    <aura:attribute name="userData" type="string" default=""></aura:attribute>
+    <aura:handler name="init" value="{!this}" action="{!c.drawRadialChart}"></aura:handler>
+    <div aura:id="mydthree" >
+        
+    </div>
+</aura:component>	
