@@ -20,9 +20,8 @@ public class ExamResultTriggerHandler {
         for(Exam_Result__c nr: newResults){
             for(Exam_Result__c ar: allResults){
                 if((nr.Account__c == ar.Account__c) && (nr.Exam__c == ar.Exam__c) && (nr.Status__c == 'Assigned') && (ar.Status__c == 'Assigned') && (ar.Id != nr.Id)){
-                    //If a new exam has already been assigned, throw an error
-                    
-                    nr.addError('Exam has already been assigned to that hero.');
+                    //If a new exam has already been assigned, set its status to unassigned
+                    nr.Status__c = 'Unassigned';
                 }
             }
         }

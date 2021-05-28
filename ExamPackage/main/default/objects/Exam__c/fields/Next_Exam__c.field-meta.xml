@@ -4,6 +4,15 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Next Exam</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>$Source.Titan__c</field>
+            <operation>equals</operation>
+            <valueField>Exam__c.Titan__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Exam__c</referenceTo>
     <relationshipLabel>Next Exam</relationshipLabel>
     <relationshipName>Next_Exam</relationshipName>
