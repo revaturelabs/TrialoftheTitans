@@ -4,12 +4,8 @@
         getContextInfo.setCallback( this, function( response ) {
             if( response.getState() === "SUCCESS" ){
                 const contextinfo = response.getReturnValue();
-<<<<<<< HEAD
-                component.set( "v.contextInfo", contextinfo )
-=======
                 console.log(  contextinfo );
                 component.set( "v.contextInfo", contextinfo);
->>>>>>> Josh
             }
             else {
                 //User isn't signed in return to login
