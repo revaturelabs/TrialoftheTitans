@@ -1,0 +1,6 @@
+<aura:component>
+    <aura:attribute name="datad3" type="string" default=""></aura:attribute>
+    <aura:attribute name="d3Available" type="boolean" default="false"></aura:attribute>
+    
+    
+</aura:component>	

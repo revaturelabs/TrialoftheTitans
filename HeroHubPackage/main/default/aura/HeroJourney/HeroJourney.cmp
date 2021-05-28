@@ -1,4 +1,4 @@
-<aura:component access="global" >
+<aura:component access="global" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes"  >
     <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
     <aura:attribute name="tabs" type="List"/>
     <aura:attribute name="active" type="String"/>

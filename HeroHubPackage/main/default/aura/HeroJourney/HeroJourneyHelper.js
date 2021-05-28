@@ -1,5 +1,8 @@
 ({
     HandleInit : function( component ) {
+        let data = component.get("v.contextInfo");
+        console.log("data " );
+        console.log(data);
 		/*let method = component.get("c.getTitans");
         method.setCallback(this, function(response){
             if(response.getState() == "SUCCESS"){
