@@ -1,16 +1,19 @@
-<aura:component>
-    <aura:attribute name="activeTitan" type="String" default=""/>
+<aura:component controller="TitanPageApexController">
+    <aura:registerEvent name="ExamsLandingEvent" type="c:ExamsLandingEvent"/>
+    <aura:attribute name="activeTitan" type="Titan__c" default=""/>
+    <aura:attribute name="examsList" type="Exam__c[]" default=""/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <div>
         <div>
             <!-- Contact information Component, allows the user to view their contact information -->
             <span> <div class="container slds-m-around_large" id="contactinfo">
-                <lightning:card title="Name of Titan" iconName="standard:contact">
+                <lightning:card title="{!v.activeTitan.Name + ' Exams'}" iconName="standard:contact">
                     <div class="slds-grid">
                         <ul>    
-                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> Exam #1 {!v.activeTitan}</li><br/>
-                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> Exam #2 {!v.activeTitan}</li><br/>
-                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> Exam #3 {!v.activeTitan}</li><br/>
-                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> Exam #4 {!v.activeTitan}</li><br/>
+                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> {!v.examsList[0].Name} <br/> Grade: {!v.examsList[0].Default_Passing_Grade__c} </li><br/>
+                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> {!v.examsList[1].Name} </li><br/>
+                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> {!v.examsList[2].Name} </li><br/>
+                            <li class=" slds-text-heading_medium slds-col slds-size_12-of-12"> {!v.examsList[3].Name} </li><br/>
                         </ul>
                     </div>
                 </lightning:card>

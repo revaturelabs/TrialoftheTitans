@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Next_Exam__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Next Exam</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>The next exam must be within the same Titan!</errorMessage>
+        <filterItems>
+            <field>Exam__c.Titan__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Titan__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Exam__c.Id</field>
+            <operation>notEqual</operation>
+            <valueField>$Source.Id</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Exam__c</referenceTo>
+    <relationshipLabel>Next Exam</relationshipLabel>
+    <relationshipName>Next_Exam</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

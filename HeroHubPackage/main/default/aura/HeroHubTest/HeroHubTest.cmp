@@ -1,0 +1,23 @@
+<aura:component controller="HeroHubController" access="global">
+    <aura:attribute name="userinfo" type="UserContextInfo"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <h1>
+    	user's Name = {!v.userinfo.acc.Name}
+        <br/>
+        user's Team = {!v.userinfo.team.Name}
+        <br/>
+        user's Squad = {!v.userinfo.squad.Name}
+        <br/>
+        User's Exams 
+        <br/>
+        <aura:iteration items="{!v.userinfo.userExams}" var="titan" >
+        	Titan = {!titan[0]}
+            <br/>
+            <aura:iteration items="{!titan[1]}" var="exam">
+           	Exam = {!exam.name}
+                <br/>
+            Passed = {!exam.isPassed}
+            </aura:iteration>
+        </aura:iteration>
+    </h1>
+</aura:component>
