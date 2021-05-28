@@ -13,10 +13,7 @@
                 </div>
                 <div class="Synergy-results">
                     <h3>Team Scores</h3>
-                    <aura:iteration items="{!v.teamLeads.Team}" var="team">
-                        <label>{!team[0]}</label>
-                        <meter value="{!team[1]}" />
-                    </aura:iteration> 
+                    <h3>{!v.leadTeams.Team[0][0]}</h3>
                 </div>
             </div>
         </div>
