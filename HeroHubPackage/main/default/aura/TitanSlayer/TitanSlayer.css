@@ -97,7 +97,7 @@ div.THIS .titanSlayer-Synergy-body {
     display: block;
 }
 
-.THIS.hide {
+.THIS.hide > .titanSlayer-Synergy{
     transform-origin: center center;
     transform: scale(0);
 }
@@ -149,11 +149,7 @@ div.THIS .titanSlayer-Synergy-body {
     background: var(--synergy-secondary);
 }
 
-@keyframes typeOut {
-    to{
-        width: 12ch;
-    }
-}
+
 
 @keyframes Blink {
 

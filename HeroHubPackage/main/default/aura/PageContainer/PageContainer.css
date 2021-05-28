@@ -58,3 +58,9 @@
     background-color: var(--background-color);
 
 }
+
+@keyframes typeOut {
+    to{
+        width: 14ch;
+    }
+}
