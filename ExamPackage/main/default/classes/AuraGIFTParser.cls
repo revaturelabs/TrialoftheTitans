@@ -1,15 +1,11 @@
 public class AuraGIFTParser {
-    // *** VARIABLES *** //
-    // public Map<String,List<ExamQuestion>> sortedExamList { get; set; }
     
-    // Aura
     @AuraEnabled
-    public static Map<String,List<ExamQuestion>> ImportFile(List<ExamQuestion> questionList, String technology, String titan) {
-        // effectively you don't need Technology!!
+    public static Map<String,List<ExamQuestion>> ImportFile(List<ExamQuestion> questionList, String titan) {
         try {
             List<ExamQuestion> allQuestions = questionList;
             Map<String,List<ExamQuestion>> sortedQuestions = AuraGIFTParser.SortQuestions(allQuestions);
-            AuraGIFTParser.CreateRecords(sortedQuestions);
+            AuraGIFTParser.CreateRecords(sortedQuestions, titan);
             
             return sortedQuestions;    
         } catch (Exception e) {
@@ -69,7 +65,7 @@ public class AuraGIFTParser {
     }
     
     // essay, numerical, matching, multChoiceMA, multChoice, shortAnswer, trueFalse
-    public static void CreateRecords(Map<String,List<ExamQuestion>> sortedQuestions) {
+    public static void CreateRecords(Map<String,List<ExamQuestion>> sortedQuestions, String titan) {
         List<Exam_Question__c> upsertList = new List<Exam_Question__c>();
 
         // handle essays
@@ -78,6 +74,7 @@ public class AuraGIFTParser {
             
             eqc.Question_Type__c = 'Essay';
             eqc.Name = eq.qTitle;
+            eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
             if ( eq.qText.contains('_____') ) {
                 eqc.Missing_Word__c = True;    
@@ -94,6 +91,7 @@ public class AuraGIFTParser {
             
             eqc.Question_Type__c = 'Numerical';
             eqc.Name = eq.qTitle;
+            eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
             if ( eq.qText.contains('_____') ) {
                 eqc.Missing_Word__c = True;    
@@ -156,8 +154,6 @@ public class AuraGIFTParser {
             }
             //***/convert answer/***//
 
-            System.debug(eqc.Answer_Explanation__c);
-            System.debug(eqc.Correct_Answer_s__c);
             // check if both end in ||
             if ( !String.isBlank(eqc.Answer_Explanation__c) && eqc.Answer_Explanation__c.endsWith('||') ) { 
                 eqc.Answer_Explanation__c = eqc.Answer_Explanation__c.removeEnd('||'); 
@@ -176,6 +172,81 @@ public class AuraGIFTParser {
         // handle mult choice
 
         // handle short answer
+        for (ExamQuestion eq: sortedQuestions.get('Short Answer')) {
+            Exam_Question__c eqc = new Exam_Question__c();
+            
+            eqc.Question_Type__c = 'Short answer';
+            eqc.Name = eq.qTitle;
+            eqc.Titan__c = titan;
+            eqc.Question_Text__c = eq.qText;
+            if ( eq.qText.contains('_____') ) {
+                eqc.Missing_Word__c = True;    
+            } else {
+                eqc.Missing_Word__c = False;
+            }
+
+            //*** Handle Answer ***//
+            if ( eq.qAnswer.contains('=') ) {
+                List<String> tempAnswers = eq.qAnswer.trim().split('=');
+
+                // remove any null entries
+                Integer i = 0;
+                while ( i < tempAnswers.size() ) {
+                    if ( String.isBlank(tempAnswers.get(i)) ) {
+                        tempAnswers.remove(i);
+                    } else {
+                        i++;
+                    }
+                }
+                
+                for ( String ans: tempAnswers) {
+                    if (eqc.Answer_Explanation__c == null) {
+                        if ( ans.contains('#') ) {
+                            eqc.Answer_Explanation__c = ans.substringAfter('#').trim() + '||';
+                        } else {
+                            eqc.Answer_Explanation__c = '||';
+                        }    
+                    } else {
+                        if ( ans.contains('#') ) {
+                            eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + ans.substringAfter('#').trim() + '||';
+                        } else {
+                            eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + '||';
+                        }
+                    }
+                    if (eqc.Correct_Answer_s__c == null) {
+                        if ( ans.contains('#') ) {
+                            eqc.Correct_Answer_s__c = ans.substringBefore('#').trim() + '||';
+                        } else {
+                            eqc.Correct_Answer_s__c = ans.trim() + '||';
+                        }    
+                    } else {
+                        if ( ans.contains('#') ) {
+                            eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c + ans.substringBefore('#').trim() + '||';
+                        } else {
+                            eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c + ans.trim() + '||';
+                        }
+                    }
+                }
+            } else {
+                if ( eq.qAnswer.contains('#') ) {
+                    eqc.Correct_Answer_s__c = eq.qAnswer.substringBefore('#');
+                    eqc.Answer_Explanation__c = eq.qAnswer.substringAfter('#');
+                } else {
+                    eqc.Correct_Answer_s__c = eq.qAnswer;
+                }
+            }
+            //***/Handle Answer/***//
+
+            // check if both end in ||
+            if ( !String.isBlank(eqc.Answer_Explanation__c) && eqc.Answer_Explanation__c.endsWith('||') ) { 
+                eqc.Answer_Explanation__c = eqc.Answer_Explanation__c.removeEnd('||'); 
+            }
+            if ( !String.isBlank(eqc.Correct_Answer_s__c) && eqc.Correct_Answer_s__c.endsWith('||') ) { 
+                eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c.removeEnd('||'); 
+            }
+
+            upsertList.add(eqc);
+        } 
 
         // handle truefalse
         for (ExamQuestion eq: sortedQuestions.get('True-False')) {
@@ -183,6 +254,7 @@ public class AuraGIFTParser {
             
             eqc.Question_Type__c = 'True-false';
             eqc.Name = eq.qTitle;
+            eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
             if ( eq.qText.contains('_____') ) {
                 eqc.Missing_Word__c = True;    
@@ -210,42 +282,36 @@ public class AuraGIFTParser {
     public static Map<String,List<Map<String,String>>> HandleInit() {
         try {
             Map<String,List<Map<String,String>>> initialValueMap = new Map<String,List<Map<String,String>>>();
-            // List<Technology__c> technologyList = [SELECT Name, Id FROM Technology__c];
-            List<Titan__c> titanList = [SELECT Name, Id FROM Titan__c];
+            List<Titan__c> titanList = [SELECT Name, Id, Technology__c FROM Titan__c];
 
-            // create technology + titan name + id lists
-            // List<String> technologyNameList = new List<String>();
-            // List<String> technologyIdList = new List<String>();
+            // create titan name + id lists, plus technology list
             List<String> titanNameList = new List<String>();
             List<String> titanIdList = new List<String>();
+            List<String> titanTechnologyList = new List<String>();
 
             for ( Titan__c t: titanList ) {
                 titanNameList.add(t.Name);
                 titanIdList.add(t.Id);
+                titanTechnologyList.add(t.Technology__c);
             }
 
-            //System.debug(technologyNameList);
-            //System.debug(technologyIdList);
-            System.debug(titanNameList);
-            System.debug(titanIdList);
-
             // create maps
-            //List<Map<String,String>> technologyMapList = new List<Map<String,String>>();
+            List<Map<String,String>> technologyMapList = new List<Map<String,String>>();
             List<Map<String,String>> titanMapList = new List<Map<String,String>>();
 
-            /*for ( Integer i = 0; i < technologyList.size(); i++ ) {
+            for ( Integer i = 0; i < titanTechnologyList.size(); i++ ) {
                 Map<String,String> tempMap = new Map<String,String>();
-                tempMap.put('Name',technologyNameList[i]);
-                tempMap.put('Id',technologyIdList[i]);
+                tempMap.put('TitanId',titanIdList[i]);
+                tempMap.put('TechnologyName',titanTechnologyList[i]);
                 technologyMapList.add(tempMap);
-            }*/
+            }
             for ( Integer j = 0; j < titanList.size(); j++ ) {
                 Map<String,String> tempMap = new Map<String,String>();
                 tempMap.put('Name',titanNameList[j]);
                 tempMap.put('Id',titanIdList[j]);
                 titanMapList.add(tempMap);
             }
-            //initialValueMap.put('Technologies',technologyMapList);
+            initialValueMap.put('Technologies',technologyMapList);
             initialValueMap.put('Titans',titanMapList);
 
             return initialValueMap;

@@ -120,12 +120,12 @@ public class ExportQuestionPoolController {
         allFormattedQuestions.add(formattedQuestion);
     }
     /*--------------------------- Get Answers Functions -------------------------------------------*/
-     public String getCorrectAnswers (Exam_Question__c question){
+     /**public String getCorrectAnswers (Exam_Question__c question){
         List <String> correctAnswers = new List <String>();
         correctAnswers = question.Correct_Answer_s__c.split('\\|\\|'); 
        String correctAnswerString = string.join(correctAnswers, '');
         return correctAnswerString;
-    }
+    }**/
     public String getIncorrectAnswers (Exam_Question__c question){
         List <String> options = new List <String>();
         options = question.Options__c.split('\\|\\|');

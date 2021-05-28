@@ -6,11 +6,11 @@
             let state = response.getState();
             if ( state === "SUCCESS" ) {
                 let valuesMap = response.getReturnValue();
-                /*component.set("v.technologies",valuesMap["Technologies"]);
-                component.set("v.selectedTechnology",valuesMap["Technologies"][0]["Id"]);
-                console.log("Default technology: " + component.get("v.selectedTechnology"));*/
+                component.set("v.technologies", valuesMap["Technologies"]);
+                component.set("v.selectedTechnology", valuesMap["Technologies"][0]["TitanId"]);
+                console.log("Default technology: " + component.get("v.selectedTechnology"));
                 component.set("v.titans",valuesMap["Titans"]);
-                component.set("v.selectedTitan",valuesMap["Titans"][0]["Id"]);
+                component.set("v.selectedTitan", valuesMap["Titans"][0]["Id"]);
                 console.log("Default titan: " + component.get("v.selectedTitan"));
                 component.set("v.initMessage", "Ready to import questions.");
             }
@@ -89,6 +89,30 @@
         console.log(apexObjectList);
         return apexObjectList;
     },
+
+    // Submit button handler, submit the file, clear the text and send user back to first page of wizard.
+    // Then use helper to parse questions into objects that will be sent toward ApexController
+    SubmitClick : function(component, helper) {
+        if ( component.get("v.submitList").length > 0 ) {
+            // change view back to first view
+            component.set("v.submitError", "");
+            component.set("v.canUpload", false);
+            
+            // submit the question list
+            let titan = component.get("v.selectedTitan");
+            let questionList = component.get("v.submitList");
+            console.log("titan:" + titan);
+            helper.SubmitQuestionList(component, questionList, titan);
+            
+            // empty the displayed file
+            component.set("v.displayList", []);
+            component.set("v.submitList", []);
+            component.set("v.toImport", 0);
+        } else {
+            component.set("v.submitError", "You must select a file to upload!");
+        }
+    },
+
     SubmitQuestionList : function(component, questions, titan, technology) {
         let action = component.get("c.ImportFile");
         action.setParams({questionList:questions,technology:technology,titan:titan});
