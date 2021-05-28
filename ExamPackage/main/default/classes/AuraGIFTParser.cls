@@ -1,13 +1,23 @@
 public class AuraGIFTParser {
     
     @AuraEnabled
-    public static List<ExamQuestion> ImportFile(List<ExamQuestion> questionList, String titan) {
+    public static List<Integer> ImportFile(List<ExamQuestion> questionList, String titan) {
         try {
             List<ExamQuestion> allQuestions = questionList;
+            List<Exam_Question__c> existingQuestions = [SELECT Name, Id FROM Exam_Question__c];
+
+            for ( Exam_Question__c eqc: existingQuestions ) {
+                for ( Integer i = 0; i < allQuestions.size(); i++ ) {
+                    if ( allQuestions[i].qTitle.equals(eqc.Name) ) {
+                        allQuestions[i].qId = eqc.Id;
+                    }
+                }
+            }
+            System.debug(allQuestions);
+
             Map<String,List<ExamQuestion>> sortedQuestions = AuraGIFTParser.SortQuestions(allQuestions);
-            AuraGIFTParser.CreateRecords(sortedQuestions, titan);
             
-            return allQuestions;    
+            return AuraGIFTParser.CreateRecords(sortedQuestions, titan);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -67,7 +77,7 @@ public class AuraGIFTParser {
     }
     
     // essay, numerical, matching, multChoiceMA, multChoice, shortAnswer, trueFalse
-    public static void CreateRecords(Map<String,List<ExamQuestion>> sortedQuestions, String titan) {
+    public static List<Integer> CreateRecords(Map<String,List<ExamQuestion>> sortedQuestions, String titan) {
         List<Exam_Question__c> upsertList = new List<Exam_Question__c>();
 
         // handle essays
@@ -75,6 +85,9 @@ public class AuraGIFTParser {
             Exam_Question__c eqc = new Exam_Question__c();
             
             eqc.Question_Type__c = 'Essay';
+            if ( eq.qId != null ) {
+                eqc.Id = eq.qId;
+            }
             eqc.Name = eq.qTitle;
             eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
@@ -92,6 +105,9 @@ public class AuraGIFTParser {
             Exam_Question__c eqc = new Exam_Question__c();
             
             eqc.Question_Type__c = 'Numerical';
+            if ( eq.qId != null ) {
+                eqc.Id = eq.qId;
+            }
             eqc.Name = eq.qTitle;
             eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
@@ -118,7 +134,7 @@ public class AuraGIFTParser {
                 System.debug('tempAnswers: ' + tempAnswers);
                 
                 for ( String ans: tempAnswers) {
-                    if (eqc.Answer_Explanation__c == null) {
+                    if ( eqc.Answer_Explanation__c == null ) {
                         if ( ans.contains('#') ) {
                             eqc.Answer_Explanation__c = ans.substringAfter('#').trim() + '||';
                         } else {
@@ -131,7 +147,7 @@ public class AuraGIFTParser {
                             eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + '||';
                         }
                     }
-                    if (eqc.Correct_Answer_s__c == null) {
+                    if ( eqc.Correct_Answer_s__c == null ) {
                         if ( ans.contains('#') ) {
                             eqc.Correct_Answer_s__c = ans.substringBefore('#').trim() + '||';
                         } else {
@@ -168,16 +184,333 @@ public class AuraGIFTParser {
         } 
 
         // handle matching
+        for (ExamQuestion eq: sortedQuestions.get('Matching')) {
+            Exam_Question__c eqc = new Exam_Question__c();
+            
+            eqc.Question_Type__c = 'Matching';
+            if ( eq.qId != null ) {
+                eqc.Id = eq.qId;
+            }
+            eqc.Name = eq.qTitle;
+            eqc.Titan__c = titan;
+            eqc.Question_Text__c = eq.qText;
+            if ( eq.qText.contains('_____') ) {
+                eqc.Missing_Word__c = True;
+            } else {
+                eqc.Missing_Word__c = False;
+            }
+
+            //*** Handle Answer ***//
+            List<String> tempAnswers = eq.qAnswer.split('=');
+            
+            // remove any null entries
+            Integer i = 0;
+            while ( i < tempAnswers.size() ) {
+                if ( String.isBlank(tempAnswers.get(i)) ) {
+                    tempAnswers.remove(i);
+                } else {
+                    i++;
+                }
+            }
+
+            for ( String ans: tempAnswers ) {
+                if ( eqc.Correct_Answer_s__c == null ) {
+                    eqc.Correct_Answer_s__c = ans.substringBefore('-').trim() + '||';
+                } else {
+                    eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c + ans.substringBefore('-').trim() + '||';
+                }
+                if ( eqc.Answer_Explanation__c == null ) {
+                    if ( ans.contains('#') ) {
+                        eqc.Answer_Explanation__c = ans.substringAfter('#').trim() + '||';
+                    } else {
+                        eqc.Answer_Explanation__c = '||';
+                    }    
+                } else {
+                    if ( ans.contains('#') ) {
+                        eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + ans.substringAfter('#').trim() + '||';
+                    } else {
+                        eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + '||';
+                    }
+                }
+                if ( eqc.Options__c == null ) {
+                    if ( ans.contains('#') ) {
+                        eqc.Options__c = ans.substringBetween('>', '#').trim() + '||';
+                    } else {
+                        eqc.Options__c = ans.substringAfter('>').trim() + '||';
+                    }    
+                } else {
+                    if ( ans.contains('#') ) {
+                        eqc.Options__c = eqc.Options__c + ans.substringBetween('>', '#').trim() + '||';
+                    } else {
+                        eqc.Options__c = eqc.Options__c + ans.substringAfter('>').trim() + '||';
+                    }
+                } 
+            }
+            //***/Handle Answer/***//
+
+            // check if both end in ||
+            if ( !String.isBlank(eqc.Answer_Explanation__c) && eqc.Answer_Explanation__c.endsWith('||') ) { 
+                eqc.Answer_Explanation__c = eqc.Answer_Explanation__c.removeEnd('||');
+            }
+            if ( !String.isBlank(eqc.Answer_Explanation__c) && eqc.Answer_Explanation__c.containsOnly('||') ) { 
+                eqc.Answer_Explanation__c = ''; 
+            }
+            if ( !String.isBlank(eqc.Correct_Answer_s__c) && eqc.Correct_Answer_s__c.endsWith('||') ) { 
+                eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c.removeEnd('||'); 
+            }
+            if ( !String.isBlank(eqc.Options__c) && eqc.Options__c.endsWith('||') ) { 
+                eqc.Options__c = eqc.Options__c.removeEnd('||'); 
+            }
+
+            upsertList.add(eqc);
+        }
 
         // handle mcma
+        for (ExamQuestion eq: sortedQuestions.get('MCMA')) {
+            Exam_Question__c eqc = new Exam_Question__c();
+            
+            eqc.Question_Type__c = 'Multiple Choice - multiple answers';
+            if ( eq.qId != null ) {
+                eqc.Id = eq.qId;
+            }
+            eqc.Name = eq.qTitle;
+            eqc.Titan__c = titan;
+            eqc.Question_Text__c = eq.qText;
+            if ( eq.qText.contains('_____') ) {
+                eqc.Missing_Word__c = True;
+            } else {
+                eqc.Missing_Word__c = False;
+            }
+
+            //*** Handle Answer ***//
+            List<String> allAnswers = eq.qAnswer.trim().split('~');
+            List<String> tempAnswers = new List<String>();
+            for ( String tA: allAnswers ) {
+                if ( tA.contains('%') ) {
+                    tempAnswers.add(tA.replaceAll('(%.{1,3}%)',''));
+                }
+            }
+
+            eq.qAnswer = eq.qAnswer.replaceAll('(%.{1,3}%)','');
+            List<String> tempOptions = eq.qAnswer.trim().split('~');
+
+            // remove any null entries
+            Integer i = 0;
+            while ( i < tempAnswers.size() ) {
+                if ( String.isBlank(tempAnswers.get(i)) ) {
+                    tempAnswers.remove(i);
+                } else {
+                    i++;
+                }
+            }
+
+            Integer j = 0;
+            while ( j < tempOptions.size() ) {
+                if ( String.isBlank(tempOptions.get(j)) ) {
+                    tempOptions.remove(j);
+                } else {
+                    j++;
+                }
+            }
+            
+            // handle correct answers
+            for ( String ans: tempAnswers) {
+                if ( eqc.Correct_Answer_s__c == null ) {
+                    if ( ans.contains('#') ) {
+                        eqc.Correct_Answer_s__c = ans.substringBefore('#').trim() + '||';
+                    } else {
+                        eqc.Correct_Answer_s__c = ans.trim() + '||';
+                    }    
+                } else {
+                    if ( ans.contains('#') ) {
+                        eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c + ans.substringBefore('#').trim() + '||';
+                    } else {
+                        eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c + ans.trim() + '||';
+                    }
+                }
+            }
+
+            // handle options and answer explanations
+            for ( String opt: tempOptions) {
+                if ( eqc.Answer_Explanation__c == null ) {
+                    if ( opt.contains('#') ) {
+                        eqc.Answer_Explanation__c = opt.substringAfter('#').trim() + '||';
+                    } else {
+                        eqc.Answer_Explanation__c = '||';
+                    }    
+                } else {
+                    if ( opt.contains('#') ) {
+                        eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + opt.substringAfter('#').trim() + '||';
+                    } else {
+                        eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + '||';
+                    }
+                }
+                if (eqc.Options__c == null) {
+                    if ( opt.contains('#') ) {
+                        eqc.Options__c = opt.substringBefore('#').trim() + '||';
+                    } else {
+                        eqc.Options__c = opt.trim() + '||';
+                    }    
+                } else {
+                    if ( opt.contains('#') ) {
+                        eqc.Options__c = eqc.Options__c + opt.substringBefore('#').trim() + '||';
+                    } else {
+                        eqc.Options__c = eqc.Options__c + opt.trim() + '||';
+                    }
+                }
+            }
+            
+            //***/Handle Answer/***//
+
+            // check if both end in ||
+            if ( !String.isBlank(eqc.Answer_Explanation__c) && eqc.Answer_Explanation__c.endsWith('||') ) { 
+                eqc.Answer_Explanation__c = eqc.Answer_Explanation__c.removeEnd('||');
+            }
+            if ( !String.isBlank(eqc.Answer_Explanation__c) && eqc.Answer_Explanation__c.containsOnly('||') ) { 
+                eqc.Answer_Explanation__c = ''; 
+            }
+            if ( !String.isBlank(eqc.Correct_Answer_s__c) && eqc.Correct_Answer_s__c.endsWith('||') ) { 
+                eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c.removeEnd('||'); 
+            }
+            if ( !String.isBlank(eqc.Options__c) && eqc.Options__c.endsWith('||') ) { 
+                eqc.Options__c = eqc.Options__c.removeEnd('||'); 
+            }
+
+            upsertList.add(eqc);
+        }
 
         // handle mult choice
+        for (ExamQuestion eq: sortedQuestions.get('Multiple Choice')) {
+            Exam_Question__c eqc = new Exam_Question__c();
+            
+            eqc.Question_Type__c = 'Multiple Choice';
+            if ( eq.qId != null ) {
+                eqc.Id = eq.qId;
+            }
+            eqc.Name = eq.qTitle;
+            eqc.Titan__c = titan;
+            eqc.Question_Text__c = eq.qText;
+            if ( eq.qText.contains('_____') ) {
+                eqc.Missing_Word__c = True;
+            } else {
+                eqc.Missing_Word__c = False;
+            }
+
+            //*** Handle Answer ***//
+            // change delimiter to \n
+            eq.qAnswer = eq.qAnswer.replaceAll('[=]','\n=');
+            eq.qAnswer = eq.qAnswer.replaceAll('[~]','\n~');
+
+            // split at \n
+            List<String> tempAnswers = eq.qAnswer.split('\n');
+            
+            // remove any null entries
+            Integer i = 0;
+            while ( i < tempAnswers.size() ) {
+                if ( String.isBlank(tempAnswers.get(i)) ) {
+                    tempAnswers.remove(i);
+                } else {
+                    i++;
+                }
+            }
+
+            for ( String ans: tempAnswers ) {
+                if ( ans.substring(0,1).contains('=') ) {
+                    if ( eqc.Correct_Answer_s__c == null ) {
+                        if ( ans.contains('#') ) {
+                            eqc.Correct_Answer_s__c = ans.substringBetween('=', '#').trim() + '||';
+                        } else {
+                            eqc.Correct_Answer_s__c = ans.substringAfter('=').trim() + '||';
+                        }    
+                    } else {
+                        if ( ans.contains('#') ) {
+                            eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c + ans.substringBetween('=', '#').trim() + '||';
+                        } else {
+                            eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c + ans.substringAfter('=').trim() + '||';
+                        }
+                    }
+                    if ( eqc.Answer_Explanation__c == null ) {
+                        if ( ans.contains('#') ) {
+                            eqc.Answer_Explanation__c = ans.substringAfter('#').trim() + '||';
+                        } else {
+                            eqc.Answer_Explanation__c = '||';
+                        }    
+                    } else {
+                        if ( ans.contains('#') ) {
+                            eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + ans.substringAfter('#').trim() + '||';
+                        } else {
+                            eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + '||';
+                        }
+                    }
+                    if ( eqc.Options__c == null ) {
+                        if ( ans.contains('#') ) {
+                            eqc.Options__c = ans.substringBetween('=', '#').trim() + '||';
+                        } else {
+                            eqc.Options__c = ans.substringAfter('=').trim() + '||';
+                        }    
+                    } else {
+                        if ( ans.contains('#') ) {
+                            eqc.Options__c = eqc.Options__c + ans.substringBetween('=', '#').trim() + '||';
+                        } else {
+                            eqc.Options__c = eqc.Options__c + ans.substringAfter('=').trim() + '||';
+                        }
+                    } 
+                } else {
+                    if ( eqc.Answer_Explanation__c == null ) {
+                        if ( ans.contains('#') ) {
+                            eqc.Answer_Explanation__c = ans.substringAfter('#').trim() + '||';
+                        } else {
+                            eqc.Answer_Explanation__c = '||';
+                        }    
+                    } else {
+                        if ( ans.contains('#') ) {
+                            eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + ans.substringAfter('#').trim() + '||';
+                        } else {
+                            eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + '||';
+                        }
+                    }
+                    if ( eqc.Options__c == null ) {
+                        if ( ans.contains('#') ) {
+                            eqc.Options__c = ans.substringBetween('~', '#').trim() + '||';
+                        } else {
+                            eqc.Options__c = ans.substringAfter('~').trim() + '||';
+                        }    
+                    } else {
+                        if ( ans.contains('#') ) {
+                            eqc.Options__c = eqc.Options__c + ans.substringBetween('~', '#').trim() + '||';
+                        } else {
+                            eqc.Options__c = eqc.Options__c + ans.substringAfter('~').trim() + '||';
+                        }
+                    }
+                }
+            }
+            //***/Handle Answer/***//
+
+            // check if both end in ||
+            if ( !String.isBlank(eqc.Answer_Explanation__c) && eqc.Answer_Explanation__c.endsWith('||') ) { 
+                eqc.Answer_Explanation__c = eqc.Answer_Explanation__c.removeEnd('||');
+            }
+            if ( !String.isBlank(eqc.Answer_Explanation__c) && eqc.Answer_Explanation__c.containsOnly('||') ) { 
+                eqc.Answer_Explanation__c = ''; 
+            }
+            if ( !String.isBlank(eqc.Correct_Answer_s__c) && eqc.Correct_Answer_s__c.endsWith('||') ) { 
+                eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c.removeEnd('||'); 
+            }
+            if ( !String.isBlank(eqc.Options__c) && eqc.Options__c.endsWith('||') ) { 
+                eqc.Options__c = eqc.Options__c.removeEnd('||'); 
+            }
+
+            upsertList.add(eqc);
+        }
 
         // handle short answer
         for (ExamQuestion eq: sortedQuestions.get('Short Answer')) {
             Exam_Question__c eqc = new Exam_Question__c();
             
             eqc.Question_Type__c = 'Short answer';
+            if ( eq.qId != null ) {
+                eqc.Id = eq.qId;
+            }
             eqc.Name = eq.qTitle;
             eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
@@ -202,7 +535,7 @@ public class AuraGIFTParser {
                 }
                 
                 for ( String ans: tempAnswers) {
-                    if (eqc.Answer_Explanation__c == null) {
+                    if ( eqc.Answer_Explanation__c == null ) {
                         if ( ans.contains('#') ) {
                             eqc.Answer_Explanation__c = ans.substringAfter('#').trim() + '||';
                         } else {
@@ -215,7 +548,7 @@ public class AuraGIFTParser {
                             eqc.Answer_Explanation__c = eqc.Answer_Explanation__c + '||';
                         }
                     }
-                    if (eqc.Correct_Answer_s__c == null) {
+                    if ( eqc.Correct_Answer_s__c == null ) {
                         if ( ans.contains('#') ) {
                             eqc.Correct_Answer_s__c = ans.substringBefore('#').trim() + '||';
                         } else {
@@ -258,6 +591,9 @@ public class AuraGIFTParser {
             Exam_Question__c eqc = new Exam_Question__c();
             
             eqc.Question_Type__c = 'True-false';
+            if ( eq.qId != null ) {
+                eqc.Id = eq.qId;
+            }
             eqc.Name = eq.qTitle;
             eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
@@ -279,8 +615,25 @@ public class AuraGIFTParser {
 
             upsertList.add(eqc);
         } 
-		System.debug(upsertList);
-        upsert upsertList;
+		// System.debug(upsertList);
+        List<Database.UpsertResult> uResult = Database.upsert(upsertList);
+
+        // User security!
+        Integer createCount = 0;
+        Integer successCount = 0;
+        for ( Database.UpsertResult res: uResult  ) {
+            if (res.isCreated()) {
+                createCount++;
+            }
+            if (res.isSuccess()) {
+                successCount++;
+            }
+        }
+
+        Integer updateCount = successCount - createCount;
+        List<Integer> userFeedback = new List<Integer>{createCount,updateCount};
+
+        return userFeedback;
     }
 
     @AuraEnabled

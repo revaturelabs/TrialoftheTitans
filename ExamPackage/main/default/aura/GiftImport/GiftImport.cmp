@@ -4,9 +4,9 @@
 <aura:component controller="AuraGIFTParser" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
                 access="global">
     <aura:attribute name="initMessage" type="String" default="" />
-    <aura:attribute name="fileType" type="List" default="['.txt']" />
+    <!--<aura:attribute name="fileType" type="List" default="['.txt']" />
     <aura:attribute name="multiple" type="Boolean" default="true" />
-    <aura:attribute name="record" type="String" default="a0AJ000000IQCazMAH" />
+    <aura:attribute name="record" type="String" default="a0AJ000000IQCazMAH" />-->
     <aura:attribute name="selectedTitan" type="String" />
     <aura:attribute name="titans" type="List" default="[{'Name': 'Loading...', 'Id': 0}]" />
     <aura:attribute name="selectedTechnology" type="String" />
@@ -15,6 +15,7 @@
     <aura:attribute name="successMessage" type="Boolean" default="false" />
     <aura:attribute name="toImport" type="Integer" default="0" />
     <aura:attribute name="imported" type="Integer" default="0" />
+    <aura:attribute name="updated" type="Integer" default="0" />
     <aura:attribute name="fileName" type="String" default="No File Selected..." />
     <aura:attribute name="submitError" type="String" default="" />
     <aura:attribute name="displayList"  type="List" default="[]" /> 
@@ -30,7 +31,7 @@
             <i>{!v.initMessage}</i><br />
             <aura:if isTrue="{!v.successMessage}" >
                 <b>File successfully imported!</b><br />
-                <i>Imported {!v.imported} questions</i>
+                <i>Imported {!v.imported} questions—Updated {!v.updated} questions</i>
             </aura:if>
             
             <!-- define technology -->
@@ -78,7 +79,7 @@
                     <tr>
                         <td>
                             <!-- file uploader -->
-                            <lightning:input aura:id="fileupload" type="file" lable="Upload Text Document" multiple="false" accept='.txt' onchange="{! c.HandleUploadFile}" />
+                            <lightning:input aura:id="fileupload" type="file" lablel="Upload Text Document" multiple="false" accept='.txt' onchange="{! c.HandleUploadFile}" />
                             <!-- /file uploader -->
                         </td>
                         <td>
