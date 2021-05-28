@@ -15,6 +15,10 @@
                 <behavior>Edit</behavior>
                 <field>Titan__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Next_Exam__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -55,7 +59,11 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Exam_Result__c.Exam__c</relatedList>
+        <relatedList>Exam__c.Next_Exam__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Titan__c.First_Exam__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
