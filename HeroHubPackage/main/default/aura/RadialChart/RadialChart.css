@@ -8,3 +8,6 @@
 .THIS .tick rect {
     fill: white;
 }
+
+.THIS .blank text{ display:none;}
+.THIS tick:first-of-type{ display:none;}
