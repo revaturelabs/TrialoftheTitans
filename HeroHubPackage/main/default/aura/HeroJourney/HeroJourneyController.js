@@ -9,18 +9,15 @@
 ///////////////////////////////////////////////////
 
 ({
-    doInit : function(component, event, helper) {
-	  	//helper.HandleInit( component );
-    },
-
     // TitanClicked(): calls HandleGameChange method in helper class
-    //  
 
     TitanClicked : function(component, event, helper){
         helper.HandleGameChange( component, event );
     },
 
-    ContextChange : function(component, event, helper){
+    // ContextChange(): gets called when UserContextInfo data gets passed in
+    
+    ContextChange : function(component, helper){
       helper.InitializeTabs( component );
   }
 })

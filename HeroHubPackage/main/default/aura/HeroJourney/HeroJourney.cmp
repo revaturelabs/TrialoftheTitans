@@ -1,3 +1,16 @@
+<!--
+/////////////////////////////////////////////////////
+//
+//  Name: HeroJourneyHelper.cmp
+//  Author: David Serrano
+//  Created: 5/13/2021
+//  Updated: 5/25/2021
+//  Description: HeroJourney puts together the interface for the Titan tabs, the appropriate gamepath reflecting the
+//  current user's progress, an overview of their strengths, and exam information.
+//
+///////////////////////////////////////////////////
+-->
+
 <aura:component access="global" controller="HeroJourneyAuraController">
     <aura:attribute name="tabs" type="List"/>
     <aura:attribute name="active" type="String" default="Overview"/>
@@ -6,7 +19,6 @@
 
     <aura:handler name="change" value="{!v.contextInfo}" action="{!c.ContextChange}"/>
     <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
-    <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>-->
     
     <div class="slds-grid">
         

@@ -1,3 +1,16 @@
+<!--
+/////////////////////////////////////////////////////
+//
+//  Name: ExamStats.cmp
+//  Author: David Serrano
+//  Created: 5/13/2021
+//  Updated: 5/25/2021
+//  Description: ExamStats helps display information on the exam depending on whether the exam has been attempted,
+//  assigned, or unavailable to take yet.
+//
+///////////////////////////////////////////////////
+-->
+
 <aura:component>
     <aura:attribute name="exam" type="String"/>
     <aura:attribute name="totalAnswers" type="Integer"/>
@@ -11,17 +24,24 @@
 
     <aura:if isTrue="{!v.display}">
         <div>
+
+            <!-- Display for attempting to access exam not yet assigned -->
             <aura:if isTrue="{!and(v.assigned == false, v.attempted == false)}">
-                    <h1> Slow your pegasus! </h1>
+                    <h1>Slow your pegasus! </h1>
                     <h1>You still have some minions to get through first! </h1>
             </aura:if>
-        
+            <!-- Display for attempting to access exam not yet assigned -->
 
+
+            <!-- Display for an exam that has yet to be attempted -->
             <aura:if isTrue="{!and(v.assigned, v.attempted == false)}">
                     <h1> Ready to take on the {!v.exam} minion? </h1>
                     <button class="btn">Take Exam!</button>
             </aura:if>
+            <!-- Display for an exam that has yet to be attempted -->
 
+
+            <!-- Display that shows the results of the "most recent" exam having been taken -->
             <aura:if isTrue="{!and(v.attempted, v.assigned)}">
                     <h1> {!v.exam} Results </h1>
                     <div class="line"/>
@@ -35,6 +55,8 @@
                     <br/>
                     <button class="btn">Retake Exam</button>
             </aura:if>
+            <!-- Display that shows the results of the "most recent" exam having been taken -->
+
         </div>
     </aura:if>
 </aura:component>	

@@ -9,11 +9,11 @@
 //
 ///////////////////////////////////////////////////
 
-({
-    HandleInit : function( component ) {
+({  
+    // HandleGameChange(): handles the event of a different Titan tab being clicked
+    // component: passes in the component where the event gets sent
+    // event: passes in the event occurring
 
-    },
-    
     HandleGameChange : function( component, event){
         let currentTitan = event.getParam("titan")
         let titanMap = Object.entries(component.get("v.contextInfo").userExams);
@@ -21,10 +21,9 @@
 
         for(let titan in titanMap){
             if( titanMap[titan][0] == currentTitan){
-                console.log("titan found: " + titanMap[titan][0]);
-                console.log(titanMap[titan]);
-
                 let titanExams = titanMap[titan][1];
+                //console.log("titan found: " + titanMap[titan][0]);
+                //console.log(titanMap[titan]);
 
                 for(let exam in titanExams){
                     console.log("exam "+exam+": "+JSON.stringify(titanExams[exam]));
@@ -45,19 +44,22 @@
 
     },
 
+    // InitializeTabs(): gets called when the User's ContextInfo is fully loaded in
+        // always initializes an 'Overview' tab and pulls the user's assigned Titan's from the ContextInfo to create the
+    // component: passes in the component from where the data is being sent to
+
     InitializeTabs : function( component ){
         let contextInfo = component.get("v.contextInfo");
-        console.log("journey context info: ");
-        console.log(contextInfo.userExams);
-
         let tabs = [];
         tabs.push("Overview");
-        console.log(Object.keys(contextInfo.userExams))
+        // console.log("journey context info: ");
+        // console.log(contextInfo.userExams);
+        // console.log(Object.keys(contextInfo.userExams))
        
-           
         let titans = Object.keys(contextInfo.userExams);
         for(let titan in titans){
             tabs.push(titans[titan]);
+
         }
 
         component.set( "v.active", 'Overview');                

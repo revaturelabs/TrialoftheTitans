@@ -28,13 +28,6 @@
     font-weight: bold;
 }
 
-.THIS .line{
-    width: 50%;
-    height: 1px;
-    margin: auto;
-    background: white;
-}
-
 .THIS .btn{
     background: #84a7e4;
     border: none;
@@ -55,5 +48,12 @@
     padding: 5px;
     transition: .5s;
     width: 120px;
+}
+
+.THIS .line{
+    width: 50%;
+    height: 1px;
+    margin: auto;
+    background: white;
 }
 
