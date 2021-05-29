@@ -23,8 +23,24 @@
                 console.log(response.getReturnValue());
             }
         })
+        
+        
+        
         $A.enqueueAction(examsList);
     },
+    
+     hSetName : function(component, event, helper) {
+        let userName = component.get("c.fetchUser");
+        userName.setCallback(this, function(response){
+            if(response.getState() == "SUCCESS"){
+                component.set("v.AccountInfo", response.getReturnValue());
+                console.log(response.getReturnValue());
+            }
+            
+        })
+        $A.enqueueAction(userName);
+    },
+    
     //	hShowTitan# : button method that fires event, chooses which Titan to display info for 
     hShowTitan1 : function(component, event, helper) {
         var TitanPageLandingEvent = component.getEvent("TitanPageLandingEvent");

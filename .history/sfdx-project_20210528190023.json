@@ -12,7 +12,7 @@
             "package": "Exam_Package",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": false,
+            "default": true,
             "dependencies": [
                 {
                     "package": "04t5e000000phPqAAI"

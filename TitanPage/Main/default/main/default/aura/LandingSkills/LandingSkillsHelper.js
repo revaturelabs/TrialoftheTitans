@@ -12,6 +12,7 @@
         let skillsList = component.get("c.getSkills");
         skillsList.setParams({titanId : activeTitan});
         skillsList.setCallback(this, function(response){
+            console.log(response.getState());
             if(response.getState() == "SUCCESS"){
                 component.set("v.skillsList", response.getReturnValue());
                 console.log("Returned Skills: ");
