@@ -6,7 +6,7 @@
             if( response.getState() === "SUCCESS" ){
                 const contextinfo = response.getReturnValue();
                 console.log( contextinfo );
-                component.set( "v.contextInfo", response.getReturnValue );
+                component.set( "v.contextInfo", contextinfo );
             }
             else {
                 //User isn't signed in return to login

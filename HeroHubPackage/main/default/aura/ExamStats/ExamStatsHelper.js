@@ -1,8 +1,8 @@
 ({
     DisplayStats : function( component, event) {
-        console.log("displayresults:" + JSON.stringify(event.getParam("exam")));
+        console.log("displayresults: " + JSON.stringify(event.getParam("exam")));
         let exam = event.getParam("exam");
-
+        console.log("exam assigned? " + exam.assigned);
         component.set("v.exam", exam.name);
 
         if(exam.assigned == false){
@@ -21,6 +21,7 @@
                 console.log("total: " + total);
 
                 let score = (correct/total) * 100;
+                score.toFixed(1);
                 console.log("score: " + score);
     
                 component.set("v.correctAnswers", correct);

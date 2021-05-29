@@ -3,17 +3,38 @@
  
 	},
 
-    handleGameChange : function( component, event){
+    HandleGameChange : function( component, event){
         let examMap = new Map();
 
         // creating mock data
-        examMap.set( "Data Model", [{ name: "Objects", isPassed: true, highScore: 88.8, assigned: true}, 
-                                    { name: "ERD", isPassed: true, highScore: 78.8, assigned: true,
-                                    currentResults: [{Total_Answers__c: 50, Total_Correct__c: 49},
-                                                    {Total_Answers__c: 50, Total_Correct__c: 40}] },
-                                    { name: "Security", isPassed: true, highScore: 99.8, assigned: true },
-                                    { name: "Yes", isPassed: false, highScore: null, assigned: true },
-                                    { name: "Exam", isPassed: false, highScore: null, assigned: false } 
+        examMap.set( "Data Model", [{ name: "Objects", 
+                                      isPassed: true, 
+                                      highScore: 88.8, 
+                                      assigned: true}, 
+
+                                    { name: "ERD", 
+                                      isPassed: true, 
+                                      highScore: 78.8, 
+                                      assigned: true,
+                                      currentResults: [{Total_Answers__c: 50, 
+                                                        Total_Correct__c: 49},
+                                    ] },
+
+                                    { name: "Security", 
+                                      isPassed: true, 
+                                      highScore: 99.8, 
+                                      assigned: true 
+                                    },
+
+                                    { name: "Yes", 
+                                      isPassed: false, 
+                                      highScore: null, 
+                                      assigned: true },
+
+                                    { name: "Exam", 
+                                      isPassed: false, 
+                                      highScore: null, 
+                                      assigned: false } 
                                 ]);
 
         examMap.set( "Security", [ { name: "someName", isPassed: true, highScore: 81.5, assigned: true },
@@ -32,9 +53,13 @@
                                     ]);
          
         console.log("updated active: " + component.get("v.active"));
+
+        
         if(component.get("v.active") != "Overview"){
             
-        let exams = examMap.get(component.get("v.active"));             
+        //let exams = examMap.get(component.get("v.active"));     
+        
+        let exams = component.get("v.currentExams");   
         let iterableExams = [];
 
         let firstExam = exams[0];
@@ -44,6 +69,7 @@
             if(exam == 0 || exam == (exams.length - 1)){
 
             }else{
+
                 iterableExams.push(exams[exam]);
             }
         }
@@ -62,7 +88,7 @@
         }
     },
     
-    handleExamClick : function( component, event ){
+    HandleExamClick : function( component, event ){
 		console.log("handling click");
         let clickEvent =  $A.get("e.c:ExamClickedEvent");
         let exams =  component.get("v.exams");

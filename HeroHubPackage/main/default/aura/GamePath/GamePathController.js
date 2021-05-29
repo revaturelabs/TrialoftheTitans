@@ -4,11 +4,11 @@
 	},
 
 	TitanClicked : function( component, event, helper ){
-		helper.handleGameChange( component, event );
+		helper.HandleGameChange( component, event );
 	},
 	
 	ExamClicked : function ( component, event, helper ){
-		helper.handleExamClick( component, event );
+		helper.HandleExamClick( component, event );
 	}
 
 })

@@ -5,10 +5,11 @@
     <aura:attribute name="finalExam" type="Map"/>
     <aura:attribute name="iterableExams" type="List"/>
     <aura:attribute name="contextInfo" type="Map"/>
+    <aura:attribute name="currentExams" type="List"/>
     
-  	<aura:handler name="init" value="{!this}" action="{!c.GameInit}"/>
+  	<!--<aura:handler name="init" value="{!this}" action="{!c.GameInit}"/>-->
     <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
-    <aura:registerEvent  name="ExamClickedEvent" type="c:ExamClickedEvent"/>
+    <aura:registerEvent name="ExamClickedEvent" type="c:ExamClickedEvent"/>
     
     <div>
         <p style="color:white;"> {!v.active}</p>
@@ -84,7 +85,7 @@
                         <div class="path" >
                             <div class="down-left-center-path-completed"/>
                             <div class="vertical-line-short-left-completed"/>
-                            <div class="minion-wrapper-left">
+                            <div class="minion-wrapper-left" onclick="{!c.ExamClicked}" data-value="first">
                                 <div class="minion-failed">
                                     <h1>{!v.firstExam.highScore}%</h1>
                                 </div>
@@ -105,7 +106,7 @@
                             <div class="path" >
                                 <div class="down-left-center-path"/>
                                 <div class="vertical-line-short-left"/>
-                                <div class="minion-wrapper-left">
+                                <div class="minion-wrapper-left" onclick="{!c.ExamClicked}" data-value="first">
                                     <div class="minion-left"/>
                                     <p>{!v.firstExam.name}</p>
                                 </div>
@@ -231,7 +232,7 @@
                                 <div class="path"> 
                                     <div class="down-left-path-completed"/>
                                     <div class="vertical-line-short-left-completed"/>
-                                    <div class="minion-wrapper-left">
+                                    <div class="minion-wrapper-left" onclick="{!c.ExamClicked}" data-value="{!index}">
                                         <div class="minion-failed">
                                             <h1>{!exam.highScore}%</h1>
                                         </div>
@@ -285,77 +286,155 @@
             </aura:iteration>
 
 
-
-            <aura:if isTrue="{!v.finalExam != null}">
-                <!-- CHECK IF ASSIGNED -->
-                <aura:if isTrue="{!v.finalExam.assigned}">
-
-                    <!-- Display appropriate second to last path dependant on number of exams -->
-                    <aura:if isTrue="{!v.exams.length % 2 == 0}">
-                            <!-- Down to Center From Right Path -->
-                            <div class="path">
-                                <div class="down-center-final-path"/>
-                            </div>
-                            <!-- Down to Center From Right Path End -->
-                        <aura:set attribute="else">
-                            <!-- Down to Center From Right Path -->
-                            <div class="path">
-                                <div class="down-right-center-path"/>
-                            </div>
-                            <!-- Down to Center From Right Path End -->
-                        </aura:set>
-                    </aura:if>
             
+            <aura:if isTrue="{!v.finalExam != null}">
 
-                    <!-- Final Challenge -->
-                    <div class="path"> 
-                        <div class="vertical-line-centered"/>
-                        <div class="minion-wrapper-center">
-                            <div class="minion-center-final"/>
-                            <p>{!v.finalExam.name}</p>
+
+                <!-- CHECK IF PASSED-->
+                <aura:if isTrue="{!v.finalExam.isPassed}">
+                    <!-- DISPLAY COMPLETED FINAL-->
+
+                    <!-- Display appropriate second to last completed path dependant on number of exams -->
+                    <aura:if isTrue="{!v.exams.length % 2 == 0}">
+                        <!-- Down to Center From Right Completed Path -->
+                        <div class="path">
+                            <div class="down-center-final-path-completed"/>
                         </div>
+                        <!-- Down to Center From Right Completed Path End -->
+                    <aura:set attribute="else">
+                        <!-- Down to Center From Right Completed Path -->
+                        <div class="path">
+                            <div class="down-right-center-path-completed"/>
+                        </div>
+                        <!-- Down to Center From Right Completed Path End -->
+                    </aura:set>
+                </aura:if>
+        
+                <!-- Final Completed Challenge -->
+                <div class="path"> 
+                    <div class="vertical-line-centered"/>
+                    <div class="minion-wrapper-center" onclick="{!c.ExamClicked}" data-value="final">
+                        <div class="minion-center-final-completed"/>
+                        <p>{!v.finalExam.name}</p>
                     </div>
-                    <!-- Final Challenge End-->
+                </div>
+                <!-- Final Completed Challenge End-->
+                <!-- END OF PASSED CHECK -->
+
 
                     <aura:set attribute="else">
-                        <!-- DISPLAY "UNASSIGNED" FINAL EXAM-->
-                        <!-- Display appropriate second to last path dependant on number of exams -->
-                        <aura:if isTrue="{!v.exams.length % 2 == 0}">
-                                <!-- Down to Center From Right Path -->
-                                <div class="path" style="opacity:.5;">
-                                    <div class="down-center-final-path"/>
+
+
+                    <!-- CHECK IF ATTEMPTED BUT FAILED-->
+                        <aura:if isTrue="{!and(v.finalExam.isPassed == false, v.finalExam.assigned == true)}">
+                            <!-- DISPLAY FAILED FINAL-->
+
+                            <!-- Display appropriate second to last completed path dependant on number of exams -->
+                            <aura:if isTrue="{!v.exams.length % 2 == 0}">
+                                <!-- Down to Center From Right Completed Path -->
+                                <div class="path">
+                                    <div class="down-center-final-path-completed"/>
                                 </div>
-                                <!-- Down to Center From Right Path End -->
+                                <!-- Down to Center From Right Completed Path End -->
                             <aura:set attribute="else">
-                                <!-- Down to Center From Right Path -->
-                                <div class="path" style="opacity:.5;">
-                                    <div class="down-right-center-path"/>
+                                <!-- Down to Center From Right Completed Path -->
+                                <div class="path">
+                                    <div class="down-right-center-path-completed"/>
                                 </div>
-                                <!-- Down to Center From Right Path End -->
+                                <!-- Down to Center From Right Completed Path End -->
                             </aura:set>
                         </aura:if>
                 
 
-                        <!-- Final Challenge -->
-                        <div class="path" style="opacity:.5;"> 
+                        <!-- Final Failed Challenge -->
+                        <div class="path"> 
                             <div class="vertical-line-centered"/>
                             <div class="minion-wrapper-center" onclick="{!c.ExamClicked}" data-value="final">
-                                <div class="minion-center-final"/>
+                                <div class="minion-center-final-failed"/>
                                 <p>{!v.finalExam.name}</p>
                             </div>
                         </div>
-                        <!-- Final Challenge End-->
-                     
+                        <!-- Final Failed Challenge End-->
+                    <!-- END OF CHECK FAILED ATTEMPT CHECK-->
+
+
+                            <aura:set attribute="else">
+
+
+                                <!-- CHECK IF ASSIGNED -->
+
+                                
+                                <aura:if isTrue="{!v.finalExam.assigned}">
+                                    <!-- Display appropriate second to last path dependant on number of exams -->
+                                    <aura:if isTrue="{!v.exams.length % 2 == 0}">
+                                        <!-- Down to Center From Right Path -->
+                                        <div class="path">
+                                            <div class="down-center-final-path"/>
+                                        </div>
+                                        <!-- Down to Center From Right Path End -->
+                                    <aura:set attribute="else">
+                                        <!-- Down to Center From Right Path -->
+                                        <div class="path">
+                                            <div class="down-right-center-path"/>
+                                        </div>
+                                        <!-- Down to Center From Right Path End -->
+                                    </aura:set>
+                                </aura:if>
+                        
+                                <!-- Final Challenge -->
+                                <div class="path"> 
+                                    <div class="vertical-line-centered"/>
+                                    <div class="minion-wrapper-center" onclick="{!c.ExamClicked}" data-value="final">
+                                        <div class="minion-center-final"/>
+                                        <p>{!v.finalExam.name}</p>
+                                    </div>
+                                </div>
+                                <!-- Final Challenge End-->
+                                <!-- END OF ASSIGNED CHECK -->
+
+
+                                    <aura:set attribute="else">
+                                    <!-- DISPLAY DEFAULT UNASSIGNED PATH -->
+                                        <!-- Display appropriate second to last path dependant on number of exams -->
+                                        <aura:if isTrue="{!v.exams.length % 2 == 0}">
+                                            <!-- Down to Center From Right Path -->
+                                            <div class="path" style="opacity:.9;">
+                                                <div class="down-center-final-path"/>
+                                            </div>
+                                            <!-- Down to Center From Right Path End -->
+                                            <aura:set attribute="else">
+                                                <!-- Down to Center From Right Path -->
+                                                <div class="path" style="opacity:.9;">
+                                                    <div class="down-right-center-path"/>
+                                                </div>
+                                                <!-- Down to Center From Right Path End -->
+                                            </aura:set>
+                                        </aura:if>
+                            
+                                        <!-- Final Challenge -->
+                                        <div class="path" style="opacity:.9;"> 
+                                            <div class="vertical-line-centered"/>
+                                            <div class="minion-wrapper-center" onclick="{!c.ExamClicked}" data-value="final">
+                                                <div class="minion-center-final"/>
+                                                <p>{!v.finalExam.name}</p>
+                                            </div>
+                                        </div>
+                                        <!-- Final Challenge End-->
+                                    <!-- END OF DEFAULT UNASSIGNED DISPLAY-->
+                                    </aura:set>
+
+                                </aura:if>
+                            </aura:set>
+                        </aura:if>
                     </aura:set>
 
                 </aura:if>
+
 
             </aura:if>
 
         </aura:if>
         <!-- TOTAL EXAMS EVEN OR ODD CHECK-->
-
-        <!-- STARTING FRESH END -->
         
     </div>
 	

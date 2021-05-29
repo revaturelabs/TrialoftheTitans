@@ -72,6 +72,49 @@
     width: 130px;
 }
 
+.THIS .minion-center-final-completed{
+    background: #5A714F;
+    width: 120px;
+    height: 120px;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    margin: auto;
+    transition: .5s;
+}
+
+.THIS .minion-center-final-completed:hover{
+    background: #5A714F;
+    width: 120px;
+    height: 120px;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    margin: auto;
+    transition: .5s;
+    transform: scale(1.1);
+}
+
+.THIS .minion-center-final-failed{
+    background: #845555;
+    width: 120px;
+    height: 120px;
+    border-radius: 150px;
+    border: 5px solid #c32828;
+    margin: auto;
+    transition: .5s;
+}
+
+.THIS .minion-center-final-failed:hover{
+    background: #845555;
+    width: 120px;
+    height: 120px;
+    border-radius: 150px;
+    border: 5px solid #c32828;
+    margin: auto;
+    transition: .5s;
+    transform: scale(1.1);
+}
+
+
 .THIS .minion-left{
     background: #29292A;
     width: 100px;
@@ -222,6 +265,14 @@
     margin-left: 7.5%; 
 }
 
+.THIS .down-center-final-path-completed{
+    border-bottom: 7px dashed #8CA7DF;
+    border-left: 7px dashed #8CA7DF;
+    height: 50px;
+    width: 43%;
+    margin-left: 7.5%; 
+}
+
 .THIS .down-left-path{
     height: 50px;
     width: 81.5%;
@@ -259,6 +310,14 @@
     width: 40%;
     border-right: 7px dashed white;
     border-bottom: 7px dashed white;
+    margin-left: 49.5%;
+}
+
+.THIS .down-right-center-path-completed{
+    height: 100px;
+    width: 40%;
+    border-right: 7px dashed #8CA7DF;
+    border-bottom: 7px dashed #8CA7DF;
     margin-left: 49.5%;
 }
 
