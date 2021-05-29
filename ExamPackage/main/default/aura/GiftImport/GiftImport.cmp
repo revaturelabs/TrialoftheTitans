@@ -22,8 +22,9 @@
     <!-- UPLOAD ATTRIBUTES -->
     <aura:attribute name="canUpload" type="Boolean" default="false" />
     <aura:attribute name="fileName" type="String" default="No File Selected..." />
-    <aura:attribute name="displayList"  type="List" default="[]" /> 
     <aura:attribute name="toImport" type="Integer" default="0" />
+    <aura:attribute name="showQuestions" type="Boolean" default="false" />
+    <aura:attribute name="displayList"  type="List" default="[]" /> 
     <!-- SUBMISSION ATTRIBUTES -->
     <aura:attribute name="submitList" type="List" default="[]" />
     <aura:attribute name="submitError" type="String" default="" />
@@ -37,7 +38,14 @@
     <div>
         <!-- create record -->
         <aura:if isTrue="{! equals(v.canUpload, false)}">
-            <lightning:icon iconName="standard:circle" alternativeText="Event" title="Event" />
+            <div class="title">
+                <table>
+                    <tr>
+                        <td width="1%"><lightning:icon iconName="utility:database" alternativeText="Event" title="Event" /></td>
+                        <td><h1>Import GIFT-Formatted Questions</h1></td>
+                    </tr>
+                </table>
+            </div>
             <div class="messages">
                 <i>{!v.initMessage}</i><br />
                 <aura:if isTrue="{!v.successMessage}" >
@@ -45,15 +53,6 @@
                     <i>Imported {!v.imported} questions—Updated {!v.updated} questions</i>
                 </aura:if>
             </div>
-            <!-- define technology -->
-            <div class="slds-box">
-                <lightning:select name="TechnologyId" label="Select a Technology:" aura:id="technologyList" value="{!v.selectedTechnology}" disabled="True">
-                    <aura:iteration items="{!v.technologies}" var="tech">
-                        <option text="{!tech.TechnologyName}" value="{!tech.TitanId}" />
-                    </aura:iteration>
-                </lightning:select>
-            </div>
-            <!-- /define technology -->
             <!-- define titan -->
             <div class="slds-box">
                 <lightning:select name="TitanId" label="Select a Titan:" aura:id="titanList" value="{!v.selectedTitan}" onchange="{!c.HandleChange}">
@@ -62,7 +61,16 @@
                     </aura:iteration>
                 </lightning:select>
             </div>
-            <!-- define titan -->
+            <!-- /define titan -->
+            <!-- define technology -->
+            <div class="slds-box">
+                <lightning:select name="TechnologyId" label="Titan's Technology:" aura:id="technologyList" value="{!v.selectedTechnology}" disabled="True">
+                    <aura:iteration items="{!v.technologies}" var="tech">
+                        <option text="{!tech.TechnologyName}" value="{!tech.TitanId}" />
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+            <!-- /define technology -->
             <!-- submit button -->
             <div class="slds-box">
                 <lightning:button variant="brand" label="Next" title="Next" onclick="{! c.HandleNext }" />
@@ -72,47 +80,63 @@
         <!-- /create record -->
         <!-- upload component -->
         <aura:if isTrue="{!v.canUpload}">
-            <div class="slds-box">
-                <table>
+            <div class="title">
+                <table style="margin-bottom:28px">
                     <tr>
-                        <td>
-                            <!-- file uploader -->
-                            <lightning:input aura:id="fileupload" type="file" lablel="Upload Text Document" multiple="false" accept='.txt' onchange="{! c.HandleUploadFile}" />
-                            <!-- /file uploader -->
-                        </td>
-                        <td>
-                            <!-- submit button -->
-                            <lightning:button variant="brand" label="Submit" title="Submit" onclick="{! c.HandleSubmit }" />
-                            <!-- /submit button -->
-                        </td>
+                        <td width="1%"><lightning:icon iconName="doctype:txt" alternativeText="Event" title="Event" /></td>
+                        <td><h1>File Submission</h1></td>
                     </tr>
                 </table>
+            </div>
+            <div class="slds-box">
                 <span class="errorText">{!v.submitError}</span>
                 <div class="slds-text-body_small slds-text-color_black" style="white-space: pre-line;">
-                    <b>File to Import:</b>&nbsp;{!v.fileName}<br />
-                    <b>Number of questions: {!v.toImport}</b><br />
-                    <center><b>Questions to Import:</b></center>
-                    <table id="import">
+                    <table style="max-width:80%;margin:25px auto;">
                         <tr>
-                            <th width="20%">Question Title</th>
-                            <th width="40%">Question Text</th>
-                            <th width="40%">Question Answer</th>
+                            <td width="20%">
+                                <b>File to Import:</b>&nbsp;{!v.fileName}<br />
+                                <b>Number of questions: {!v.toImport}</b><br />
+                            </td>
+                            <td class="td__upload">
+                                <!-- file uploader -->
+                                <lightning:input aura:id="fileupload" type="file" lablel="Upload Text Document" multiple="false" accept='.txt' onchange="{! c.HandleUploadFile}" />
+                                <!-- /file uploader -->
+                            </td>
+                            <td class="td__buttons">
+                                <!-- cancel button -->
+                                <lightning:button variant="neutral" label="Cancel" title="Cancel" onclick="{! c.HandleCancel }" />
+                                <!-- /cancel button -->
+                            </td>
+                            <td class="td__buttons">
+                                <!-- submit button -->
+                                <lightning:button variant="brand" label="Submit" title="Submit" onclick="{! c.HandleSubmit }" />
+                                <!-- /submit button -->
+                            </td>
                         </tr>
-                        <aura:iteration items="{!v.submitList}" var="q">
-                            <tr>
-                                <td>
-                                    {!q.qTitle}
-                                </td>
-                                <td>
-                                    {!q.qText}
-                                </td>
-                                <td>
-                                    {!q.qAnswer}
-                                </td>
-                            </tr>
-                        </aura:iteration>
                     </table>
-                    
+                    <aura:if isTrue="{!v.showQuestions}">
+                        <h2>Questions to Import:</h2>
+                        <table id="import">
+                            <tr>
+                                <th width="20%">Question Title</th>
+                                <th width="40%">Question Text</th>
+                                <th width="40%">Question Answer</th>
+                            </tr>
+                            <aura:iteration items="{!v.submitList}" var="q">
+                                <tr>
+                                    <td>
+                                        {!q.qTitle}
+                                    </td>
+                                    <td>
+                                        {!q.qText}
+                                    </td>
+                                    <td>
+                                        {!q.qAnswer}
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                        </table>
+                    </aura:if>
                 </div>
             </div>
         </aura:if>

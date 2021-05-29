@@ -23,7 +23,7 @@ public class ExportQuestionsController {
 		allFormattedQuestions = new List<String>();
         export(currentExamQuestion);
         formatQuestions(allFormattedQuestions);
-       	//returnToRecordPage();
+       // returnToRecordPage();
     }
    //export: takes the current Exam Question and checks whether it is a Missing Word Question or Not and calls the methods accordingly
    //param: Exam_Question__c 

@@ -1,5 +1,12 @@
 public class ExportQuestionPoolController {
-  
+  //Properties
+    //currentQuestionPoolId: the ID of the Question Pool that is being exported
+    //examQuestionAssignments: List of all question assignments associated with the question pool
+    //currentExamQuestions: List of Exam Question Objects that holds the fields of the Exam Objects from the query 
+    //currentExamQuestionIds: Set of Exam Question IDs associated with the question assignments of this question pool 
+    //formattedQuestion: current Exam Question after being translated to GIFT format
+    //allFormattedQuestions: Used to include more than one question, adds all GIFT formatted questions to a list
+    //allFormattedQuestionsString: casts list of formatted questions to a string to display on the visualforce page
     public Id currentQuestionPoolId{get;set;}
     public List <Question_Assignment__c> examQuestionAssignments {get;set;}
     public List <Exam_Question__c> currentExamQuestions{get;set;}
@@ -8,6 +15,9 @@ public class ExportQuestionPoolController {
     public String formattedQuestion{get;set;}
     public List<String> allFormattedQuestions{get;set;}
     public String allFormattedQuestionsString{get; set;}
+    
+    //Constructor:
+    //Standard Controller for Question_Pool__c
     
     public ExportQuestionPoolController(ApexPages.StandardController controller){
        	currentQuestionPoolId = ApexPages.currentPage().getparameters().get('id');
@@ -27,7 +37,11 @@ public class ExportQuestionPoolController {
         export(currentExamQuestions);
         formatQuestions(allFormattedQuestions);
     }
-   
+   //export: takes the current Question Pool and selects all Exam Questions associated with it and checks whether it is a Missing Word Question or Not and calls the methods accordingly
+   //param: currentExamQuestions is a list of Exam Question Objects that are associated with the question pool 
+   //delimeter: all the mising word questions' fill in the blank area is indicated with five underscores
+   //beforeSubstring: obtains the question text before the delimeter
+   //afterSubstring: obtains the question text after the delimeter
     public void export(List<Exam_Question__c> currentExamQuestions){
         for(Exam_Question__c currentExamQuestion : currentExamQuestions){
         if(currentExamQuestion.Missing_Word__c == TRUE){
@@ -87,6 +101,12 @@ public class ExportQuestionPoolController {
     }
         
     /*------------------------------ Multiple Choice Question--------------------------------------------------*/
+     //formats Multiple Choice and Missing Word questions 
+    //params-
+    //question: the exam question being formatted
+    //beforeSubstring: substring before the delimeter 
+    //afterSubstring: substring after the delimeter
+    
     public String formatMultipleChoiceQuestionMW(Exam_Question__c question, String beforeSubstring, String afterSubstring){
         String incorrectAnswerString = getIncorrectAnswers(question);
         formattedQuestion = '::' + question.Name + '::' + beforeSubstring + '{='+ question.Correct_Answer_s__c+ incorrectAnswerString +getCorrectAnswer(question)+ '}' + afterSubstring;
@@ -94,6 +114,10 @@ public class ExportQuestionPoolController {
         return formattedQuestion;
     }
     
+    //formats Multiple Choice questions 
+    //GIFT format for MC: ::QuestionName:: QuestionText {= correctAnswer #comment ~incorrectanswers}
+    //params-
+    //question: the exam question being formatted
     
     public void formatMultipleChoiceQuestion(Exam_Question__c question){
         String incorrectAnswerString = getIncorrectAnswers(question);
@@ -106,6 +130,9 @@ public class ExportQuestionPoolController {
     }
     
     /************************* Multiple Choice Multi-Select Question *****************************/
+   //formats Multiple Choice with Multiple Answers and Missing Word questions 
+    //params-
+    //question: the exam question being formatted
     public void formatMultipleChoiceQuestionMultipleAnswers(Exam_Question__c question){
         String incorrectAnswerString = getIncorrectAnswersMultiSelect(question);
         String correctAnswerString = getCorrectAnswersMultiSelect(question);
@@ -113,6 +140,10 @@ public class ExportQuestionPoolController {
         allFormattedQuestions.add(formattedQuestion);
         
     }
+    
+    //formats Multiple Choice with Multiple Answers and Missing Word questions 
+    //params-
+    //question: the exam question being formatted
     public void formatMultipleChoiceQuestionMultipleAnswersMW(Exam_Question__c question, String beforeSubstring, String afterSubstring){
         String incorrectAnswerString = getIncorrectAnswersMultiSelect(question);
         String correctAnswerString = getCorrectAnswersMultiSelect(question);
@@ -126,6 +157,10 @@ public class ExportQuestionPoolController {
        String correctAnswerString = string.join(correctAnswers, '');
         return correctAnswerString;
     }**/
+    
+    // Gets the incorrect answers and formats them to match GIFT format for incorrect answers
+    // params-
+    // question: current Exam Question 
     public String getIncorrectAnswers (Exam_Question__c question){
         List <String> options = new List <String>();
         options = question.Options__c.split('\\|\\|');
@@ -139,6 +174,10 @@ public class ExportQuestionPoolController {
         return incorrectAnswerString;
     }
     
+    //Gets the correct Answers from a Multi Select Question and inputs the percentage each question is worth and formats incorrect answers 
+    //params-
+    //question: current Exam Question 
+    //
       public String getCorrectAnswersMultiSelect (Exam_Question__c question){
         List <String> correctAnswers = new List <String>();
         List<String> res = new List <String>();
@@ -152,6 +191,10 @@ public class ExportQuestionPoolController {
        	String correctAnswerString = string.join(res, '');
         return correctAnswerString;
     }
+    
+    //Gets incorrect answers from multi select multiple choice questions and formats them
+    //params-
+    //question: current Exam Question
     public String getIncorrectAnswersMultiSelect (Exam_Question__c question){
         List <String> options = new List <String>();
         options = question.Options__c.split('\\|\\|');
@@ -167,16 +210,25 @@ public class ExportQuestionPoolController {
     
     
   /*------------------------------ True or False Question--------------------------------------------------*/
+    //Formats True-False Questions 
+    //params-
+    //question: current Exam Question
     public void formatTrueFalseQuestion(Exam_Question__c question){
         formattedQuestion ='::' + question.Name+'::'+ question.Question_Text__c + '{'+question.Correct_Answer_s__c+getCorrectAnswer(question)+'}';
         allFormattedQuestions.add(formattedQuestion);
     }
     
+    //Formats True-False Questions with Missing Word
+    //params-
+    //question: current Exam Question
     public void formatTrueFalseQuestionMW (Exam_Question__c question, String beforeSubstring, String afterSubstring){
         formattedQuestion = '::' + question.Name + '::' + beforeSubstring + '{'+ question.Correct_Answer_s__c +getCorrectAnswer(question)+ '}' + afterSubstring;
         allFormattedQuestions.add(formattedQuestion);
     }
     /*------------------------------ Matching Questions--------------------------------------------------*/
+    //Formats Matching Questions to GIFT format
+    //params-
+    //question: current Exam Question
     public void formatMatchingQuestion(Exam_Question__c question){
         List <String> optionList = new List <String>();
         List <String> answerList = new List <String>();
@@ -194,6 +246,9 @@ public class ExportQuestionPoolController {
         allFormattedQuestions.add(formattedQuestion);
     }
     
+    //Formats Matching Questions with Missing Word to GIFT format
+    //params-
+    //question: current Exam Question
     public void formatMatchingQuestionMW (Exam_Question__c question, String beforeSubstring, String afterSubstring){
         List <String> optionList = new List <String>();
         List <String> answerList = new List <String>();
@@ -211,6 +266,9 @@ public class ExportQuestionPoolController {
         allFormattedQuestions.add(formattedQuestion);
     }
   /*------------------------------ Fill in the Blank Question--------------------------------------------------*/
+    //formats the short answer questions with Missing Word
+    //params-
+    //question: current Exam Question
     public void formatShortAnswerQuestionMW(Exam_Question__c question, String beforeSubstring, String afterSubstring){
         List <String> correctAnswers = new List <String> ();
         List <String> formattedCorrectAnswers = new List <String>();
@@ -223,16 +281,25 @@ public class ExportQuestionPoolController {
         allFormattedQuestions.add(formattedQuestion);
     }
      /*------------------------------ Numerical Question --------------------------------------------------*/
+     //Formats Numerical Questions
+    //params-
+    //question: current Exam Question
     public void formatNumericalQuestion(Exam_Question__c question){
         formattedQuestion = '::' + question.Name + '::'+question.Question_Text__c + '{#' + question.Correct_Answer_s__c + ':0'+getCorrectAnswer(question)+'}';
         allFormattedQuestions.add(formattedQuestion);
     }
+     //Formats Numerical Questions with Missing Word
+    //params-
+    //question: current Exam Question
     public void formatNumericalQuestionMW(Exam_Question__c question, String beforeSubstring, String afterSubstring){
         formattedQuestion = '::' + question.Name + '::'+ beforeSubstring + '{#' + question.Correct_Answer_s__c + ':0' +getCorrectAnswer(question)+'}' + afterSubstring;
         allFormattedQuestions.add(formattedQuestion);
     }
     
    /*------------------------------ Short Answer Question --------------------------------------------------*/
+    //formats the short answer questions
+    //params-
+    //question: current Exam Question
     public void formatShortAnswerQuestion(Exam_Question__c question){
         List <String> correctAnswers = new List<String>();
         List <String> formattedCorrectAnswers = new List <String>();
@@ -245,18 +312,26 @@ public class ExportQuestionPoolController {
         allFormattedQuestions.add(formattedQuestion);
     }
   /*------------------------------ Essay Question --------------------------------------------------*/
+    //formats Essay Question 
+    //params-
+    //question: current Exam Question
     public void formatEssayQuestion(Exam_Question__c question){
         formattedQuestion='::' + question.Name + '::' + question.Question_Text__c+'{}';
         allFormattedQuestions.add(formattedQuestion);
     }
+    //formats Essay Question with Missing Word
+    //params-
+    //question: current Exam Question
     public void formatEssayQuestionMW(Exam_Question__c question, String beforeSubstring, String afterSubstring){
         formattedQuestion='::' + question.Name + '::' + beforeSubstring+'{}'+afterSubstring;
         allFormattedQuestions.add(formattedQuestion);
     }
   /*------------------------------ Join List to String--------------------------------------------------*/    
+    //Casts the list of questions to a string 
     public void formatQuestions(List <String> questions){ 
     	allFormattedQuestionsString = string.join(questions, '\r\n\r\n');
     }
+    //gets the Answer Explanation and pre-pends a # to match GIFT format
     public String getCorrectAnswer(Exam_Question__c question){
         String res = '';
         if(question.Answer_Explanation__c != null){
