@@ -1,4 +1,6 @@
 ({
+    // HandleInit(): Handle init. Get technology and titan values for the picklists.
+
     HandleInit : function(component) {
         // get initial values from Apex controller
         let action = component.get("c.HandleInit");
@@ -18,8 +20,11 @@
         $A.enqueueAction(action);
     },
 
-    // Split each question in text file to its own object and put it in a list.
+    // SplistString(): Split each question in text file to its own object and put it in a list.
     // send the list along with titan and technology to ApexController.
+    // theString: the uploaded file in string form
+    // return: array of objects built from questions split into title, text and answer
+
     SplitString : function(component, theString) {
         // remove comments
         theString = theString.replace(/\/\/.*$/mg, '\n');
@@ -90,18 +95,22 @@
         return apexObjectList;
     },
 
-    // Submit button handler, submit the file, clear the text and send user back to first page of wizard.
+
+    // SubmitClick(): Submit button handler, submit the file, clear the text and send user back to first page of wizard.
     // Then use helper to parse questions into objects that will be sent toward ApexController
+
     SubmitClick : function(component, helper) {
         if ( component.get("v.submitList").length > 0 ) {
-            // change view back to first view
-            component.set("v.submitError", "");
-            component.set("v.canUpload", false);
-            
-            // submit the question list
             let titan = component.get("v.selectedTitan");
             let questionList = component.get("v.submitList");
             // console.log("titan:" + titan);
+
+            // change view back to first view
+            component.set("v.submitError", "");
+            component.set("v.canUpload", false);
+            component.set("v.showQuestions", false);
+            
+            // submit the question list
             helper.SubmitQuestionList(component, questionList, titan);
             
             // empty the displayed file
@@ -112,6 +121,11 @@
             component.set("v.submitError", "You must select a file to upload!");
         }
     },
+
+    // SubmitQuestionList(): Takes the list of questions and titan and passes it to the Apex
+    // controller for parsing.
+    // questions: question list from uploaded file
+    // titan: the titan selected by the user on the first screen of wizard
 
     SubmitQuestionList : function(component, questions, titan) {
         let action = component.get("c.ImportFile");
