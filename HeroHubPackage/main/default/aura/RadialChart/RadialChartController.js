@@ -85,7 +85,7 @@
                     }]
         };
 
-        /* ------------------------------ CODE STARTS ------------------------------------------------------------*/
+        /* ------------------------------ D3 CODE STARTS ------------------------------------------------------------*/
         const MARGIN = { TOP: 20, BOTTOM: 30, RIGHT: 10, LEFT: 90}
         const WIDTH = 880 - MARGIN.LEFT - MARGIN.RIGHT;
         const HEIGHT = 880 - MARGIN.TOP - MARGIN.BOTTOM;
@@ -132,19 +132,25 @@
         let highScoreData = {
             "name" : "highscores",
             "averages": currHighScores
-       };      
+        };      
+            
         const colorScale = d3.scaleSequential(d3.interpolateSpectral)
                              .domain([0,sourceData.length]);
         const scaleRadius = d3.scaleLinear()
-                              .domain([0, 1])
+                              .domain([0, 100])
                               .range([0, WIDTH/2 - MARGIN.TOP]);
         const spiral = d3.areaRadial()
                          .angle((d,i) =>  i/4 * Math.PI * 2)
-                         .outerRadius(d => scaleRadius(d));
+                         .outerRadius(d => scaleRadius(d * 100));
         const axis = d3.axisBottom(scaleRadius)
                        .ticks(6)
                        .tickSize(0);
-
+               /*        
+                .ticks(10)
+                .tickSize(0)       // will be controlled in SVG and CSS
+                .tickPadding(0)
+                .tickSizeOuter(0); // removes edge lines from domain
+                */
         const comp = d3.select("#mydthree");
         const svg = comp.append("svg")
                         .attr("viewBox", `0 0 ${WIDTH + MARGIN.LEFT + MARGIN.RIGHT} ${HEIGHT + MARGIN.TOP + MARGIN.BOTTOM}`);
@@ -155,7 +161,35 @@
         inputData.push(sourceData);
         inputData.push(highScoreData);
         let avgFlag = false;
+        let lineCount = inputData[0].averages.length - 1;
+         /*-----------------------------------DRAW RADIAL CHART GRID---------------------------------------------------------*/
+        // A radial scale with 12 angular axes
+        const angularData = d3.range(0,lineCount,1);
+        const radialData  = d3.range(0,100,10); // 10 positions
+        const scaleGridRadius = d3.scaleLinear()
+            .domain(d3.extent(radialData))
+            .range([0, WIDTH/2 - MARGIN]);
+        // place in middle of viewport and rotate
 
+        // renders the radial grid
+        g.selectAll("circle.circle-grid")
+                .data(radialData).join("circle").attr("class", "circle-grid")
+                .attr("r", scaleRadius);
+
+        // backdrop
+        d3.select(".axis") // selects only first axis
+                .selectAll(".tick")
+                .insert("rect", ".tick text")
+                .attr("x", -8)
+                .attr("width", 16).attr("height", 16);
+
+        // moves tick lines to center of domain
+        d3.selectAll(".tick text").attr("y", 4)
+        .attr("transform", "rotate(90)");
+        d3.selectAll(".tick rect").attr("y", -8);
+        /*--------------------------------------END------------------------------------------------------------------------*/
+
+        /*------------------------------------DRAW RADIAL CHART--------------------------------------------------------------*/
         const radialLines =  g.selectAll("path").data(inputData).join("path")
                               .attr("class", "radials")
                               .attr("d", (d, i) => spiral(d.averages))
@@ -164,13 +198,15 @@
                               .style("stroke-width", (d, i) => i==0 ? 8 : 2)
                               .style("fill", (d,i) => teamColors.get(userTeam));
 
-        const axisLines = g.selectAll("g.axis")
+        const axisLines = g.selectAll("g.axis")  // renders the angular axes
                            .data(inputData[0].averages).join("g")
                            .attr("class", "axis")
                            .classed("blank",(d,i) => i != 0)
                            .call(axis)
                            .transition().delay(3000).duration(2000)
-                           .attr("transform", (d,i) => `rotate(${(i * 360/(4))})`);
+                           .attr("transform", (d,i) => `rotate(${(i * 360/(lineCount))})`);
+        // moves tick lines to center of domain
+        d3.selectAll(".tick line").attr("y1", -3).attr("y2", 4);
 
         const axisLabels =  g.selectAll("g.axis").data(inputData[0].averages)
                              .append("text").style("fill", "black").style("text-anchor", "middle")
