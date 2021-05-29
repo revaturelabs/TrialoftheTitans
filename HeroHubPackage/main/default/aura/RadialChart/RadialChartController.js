@@ -13,22 +13,7 @@
 	},
     drawRadialChart : function(component, event, helper) {
         let data = component.get('v.contextInfo');
-        console.log("made it to helper ");
-        console.log(data);
-        
-        const MARGIN = { TOP: 20, BOTTOM: 30, RIGHT: 10, LEFT: 90}
-        const WIDTH = 880 - MARGIN.LEFT - MARGIN.RIGHT;
-        const HEIGHT = 880 - MARGIN.TOP - MARGIN.BOTTOM;
        
-
-        // document.getElementById("#mydthree");
-        
-        //let cmp =component.find('mydthree').getElement();
-
-
-
-        console.log("checking ");
-       // console.log(cmp);
         let titans = {
             "Apex": [
                 {
@@ -99,8 +84,11 @@
                         "pastResult": []
                     }]
         };
-        console.log("loaded data " + titans);
+
         /* ------------------------------ CODE STARTS ------------------------------------------------------------*/
+        const MARGIN = { TOP: 20, BOTTOM: 30, RIGHT: 10, LEFT: 90}
+        const WIDTH = 880 - MARGIN.LEFT - MARGIN.RIGHT;
+        const HEIGHT = 880 - MARGIN.TOP - MARGIN.BOTTOM;
         let currKey = 0;
         let sourceData = {};
         let trackExamAverage = [];
@@ -117,19 +105,21 @@
         for (let exams in titans) { 
            let total = 0;
            let currHighScore =0;
-            trackLabels.push(exams);
+           trackLabels.push(exams);
+
            titans[exams].forEach( exam => {
-            let examScore = exam.highScore;
-            total += examScore;
-            if(examScore > currHighScore) {
-                currHighScore = examScore;
-            }
+                let examScore = exam.highScore;
+                total += examScore;
+                if(examScore > currHighScore) {
+                        currHighScore = examScore;
+                }
            });
            currHighScores.push(currHighScore);
            let titanAverageScore = total / titans[exams].length;
            trackExamAverage.push(titanAverageScore);
            currKey++;
         }
+
         //adding last element to list to make a full radial circle
         let lastScore = trackExamAverage[0];
         trackExamAverage.push(lastScore);
@@ -143,81 +133,50 @@
             "name" : "highscores",
             "averages": currHighScores
        };      
-       const colorScale = d3.scaleSequential(d3.interpolateSpectral)
-                         .domain([0,sourceData.length]);
+        const colorScale = d3.scaleSequential(d3.interpolateSpectral)
+                             .domain([0,sourceData.length]);
         const scaleRadius = d3.scaleLinear()
-                        .domain([0, 1])
-                        .range([0, WIDTH/2 - MARGIN.TOP]);
-
+                              .domain([0, 1])
+                              .range([0, WIDTH/2 - MARGIN.TOP]);
         const spiral = d3.areaRadial()
-                        .angle((d,i) =>  i/4 * Math.PI * 2)
-                        .outerRadius(d => scaleRadius(d));
+                         .angle((d,i) =>  i/4 * Math.PI * 2)
+                         .outerRadius(d => scaleRadius(d));
         const axis = d3.axisBottom(scaleRadius)
-                         .ticks(6)
-                        .tickSize(0);
+                       .ticks(6)
+                       .tickSize(0);
 
         const comp = d3.select("#mydthree");
-
-        const svg = comp
-                    .append("svg")
-                    .attr("viewBox", `0 0 ${WIDTH + MARGIN.LEFT + MARGIN.RIGHT} ${HEIGHT + MARGIN.TOP + MARGIN.BOTTOM}`);
-
-       console.log("checcking sleection");
-       console.log(svg);
+        const svg = comp.append("svg")
+                        .attr("viewBox", `0 0 ${WIDTH + MARGIN.LEFT + MARGIN.RIGHT} ${HEIGHT + MARGIN.TOP + MARGIN.BOTTOM}`);
         const g = svg.append("g")
-            .attr("transform",`translate(${HEIGHT/2}, ${WIDTH/2})`);
+                     .attr("transform",`translate(${HEIGHT/2}, ${WIDTH/2})`);
 
         let inputData = [];
         inputData.push(sourceData);
         inputData.push(highScoreData);
         let avgFlag = false;
 
-        const averageRadial =  g.selectAll("path").data(inputData).join("path")
-            .attr("d", (d, i) => spiral(d.averages))
-             .style("fill-opacity", .1)
-             .style("stroke", (d,i) => i == 0 ? teamColors.get(userTeam) : teamColors.get('Avg'))
-             .style("stroke-width", (d, i) => i==0 ? 8 : 2)
-             .style("fill", (d,i) => teamColors.get(userTeam));
+        const radialLines =  g.selectAll("path").data(inputData).join("path")
+                              .attr("class", "radials")
+                              .attr("d", (d, i) => spiral(d.averages))
+                              .style("fill-opacity", .1)
+                              .style("stroke", (d,i) => i == 0 ? teamColors.get(userTeam) : teamColors.get('Avg'))
+                              .style("stroke-width", (d, i) => i==0 ? 8 : 2)
+                              .style("fill", (d,i) => teamColors.get(userTeam));
 
-        const max = d3.max(inputData[0].averages, d => d);
+        const axisLines = g.selectAll("g.axis")
+                           .data(inputData[0].averages).join("g")
+                           .attr("class", "axis")
+                           .classed("blank",(d,i) => i != 0)
+                           .call(axis)
+                           .transition().delay(3000).duration(2000)
+                           .attr("transform", (d,i) => `rotate(${(i * 360/(4))})`);
 
-        g.selectAll("g.axis")
-                 .data(inputData[0].averages).join("g")
-                 .attr("class", "axis")
-                  .classed("blank",(d,i) => i != 0)
-                  .call(axis)
-                .transition().delay(3000).duration(2000)
-                  .attr("transform", (d,i) => `rotate(${(i * 360/(4))})`);
-
-        g.selectAll("g.axis").data(inputData[0].averages)
-                  .append("text").style("fill", "black").style("text-anchor", "middle")
-                 .text((d,i) => trackLabels[i])
-                 .attr("transform", d => `translate(0, ${scaleRadius(1) + 40})`);
-
-                 const scaleRadius0 = d3.scaleLinear()
-                 .domain([0, 1])
-                 .range([0, WIDTH/2 - MARGIN.TOP]);
-                 const spiral0 = d3.areaRadial()
-                 .angle((d,i) =>  i/4 * Math.PI * 2)
-                 .outerRadius(d => scaleRadius0(d));
-                 
-
-       averageRadial.selectAll("path").exit().transition().delay(2000).duration(2000).remove();
-       
-       g.selectAll("path").data(inputData).join("path").transition().delay(2000).duration(2000)
-       .attr("d", (d, i) => spiral(d.averages))
-        .style("fill-opacity", .1)
-        .style("stroke", (d,i) => i == 0 ? teamColors.get(userTeam) : teamColors.get('Avg'))
-        .style("stroke-width", (d, i) => i==0 ? 8 : 2)
-        .style("fill", (d,i) => teamColors.get(userTeam));
-
-        g.selectAll("g.axis")
-                 .data(inputData[0].averages).join("g")
-                 .attr("class", "axis")
-                  .classed("blank",(d,i) => i != 0)
-                  .call(axis)
-                .transition().delay(3000).duration(2000)
-                  .attr("transform", (d,i) => `rotate(${(i * 360/(4))})`);
+        const axisLabels =  g.selectAll("g.axis").data(inputData[0].averages)
+                             .append("text").style("fill", "black").style("text-anchor", "middle")
+                             .text((d,i) => trackLabels[i])
+                             .attr("transform", d => `translate(0, ${scaleRadius(1) + 40})`);        
+                       
       /*----------------------------------------CODE ENDS --------------------------------------------------------------*/
     }
 })
