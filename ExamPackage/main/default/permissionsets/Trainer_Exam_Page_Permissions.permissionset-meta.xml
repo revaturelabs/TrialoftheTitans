@@ -17,10 +17,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ExamList</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>ExamQuestion</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -53,10 +49,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>HeroHubController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>MultiSelectFlowValues</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -86,14 +78,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>TestQuestionTableApexController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>UserAccountSetup</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>UserContextInfo</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <fieldPermissions>
