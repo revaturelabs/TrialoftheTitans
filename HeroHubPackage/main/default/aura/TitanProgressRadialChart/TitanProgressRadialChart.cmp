@@ -1,7 +1,7 @@
 <aura:component access="global" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" >
     <aura:attribute name="userContext" type="UserContextInfo" default=""></aura:attribute>
     <aura:attribute name="isD3Available" type="boolean" default="false"></aura:attribute>
-    <ltng:require scripts="{!$Resource.dthree}" afterScriptsLoaded="{!c.d3IsReady}" />
+    <ltng:require scripts="{!$Resource.d3}" afterScriptsLoaded="{!c.d3IsReady}" />
     
     <aura:if isTrue="{!v.isD3Available}">
         <c:RadialChart contextInfo="{!v.userContext}"></c:RadialChart>
