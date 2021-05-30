@@ -87,7 +87,7 @@
     // renders the radial grid
     g.selectAll("circle.circle-grid")
             .data(radialData).join("circle").attr("class", "circle-grid")
-            .transition().delay(600).duration(3000)
+            .transition().delay(600).duration(3000).ease(d3.easeElastic)
             .attr("r", scaleRadius);
 
     // backdrop
