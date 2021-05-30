@@ -12,7 +12,6 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: var(--padding);
 }
 
 .THIS .header-animateHeader_Alchemy {
@@ -24,279 +23,55 @@
 }
 
 .THIS .header-animatedHeader_Synergy{
-  background-color: var(--synergy-primary);
+  background-color: #000;
+  overflow: hidden;
+  height: 80px;
+  width: 100%;
+}
+.THIS .header-animatedHeader_Synergy-title {
+  font-size: 50px;
+  color: #000;
+  font-family:'PressStart';
+  z-index: 1000;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.THIS .Synergy-codeText {
+  width: 0;
+  display: block;
+  color: var(--synergy-primary);
+  font-size: 4px;
+  overflow:hidden;
+  white-space: nowrap;
+  animation: 3s steps(100, end) 500ms forwards typeOutFull;
+}
+.THIS .Synergy-codeText:nth-of-type(even){
+  float: right;
 }
 
 .THIS .header-animatedHeader_Vanquish{
   background-color: var(--vanquish-primary);
 }
 
+.THIS .Vanquish-title {
+  width: 100%;
+  font-size: 25px;
+  font-weight: bold; 
+  position: absolute;
+  text-align: center;
+}
+
+
+
 .THIS .header-animatedHeader_normal {
-  background-color: var(--text-color);
+  background-color: var(--light-text);
   color: var(--background-color);
 }
 
-.THIS .titanContainer{
-    position: absolute;
-    left: 400px;
-    height: 20vh;
-    z-index: 100;
-} 
-.THIS .cyclops-head {
-    position: relative;
-    z-index: 100;
-    transform: scale(25%);
-  }
-.THIS .cyclopsFace {
-    position: relative;
-    top: 20px;
-    border-radius:75px 75px;
-    background-color: #eebb99;
-    width: 150px;
-    height: 200px;
-    transform: rotate(15deg);
-  }
-.THIS .cyclopsInnerEye {
-    background-color: black;
-    position: relative;
-    border-radius:100px 100px;
-    top: -180px;
-    left: 50px;
-    z-index: 100;
-    height: 30px;
-    width: 30px;
-    animation: moveEye 5000ms alternate infinite;
-  }
-.THIS .cyclopsOuterEye {
-    background-color: white;
-    position: relative;
-    border-radius:100px 100px;
-    top: -130px;
-    left: 40px;
-    transform: rotate(15deg);
-    z-index: 100;
-    height: 75px;
-    width: 75px;
-  }
- .THIS .cyclopsEyelid {
-    background-color: #ffad60;
-    position: relative;
-    border-radius:100px 100px 0 0;
-    top: -235px;
-    left: 45px;
-    transform: rotate(15deg);
-    z-index: 100;
-    height: 33px;
-    width: 75px;
-  }
-.THIS .cyclopsTopLip {
-    background-color: red;
-    border-radius: 500px 500px 0 0;
-    width: 50px;
-    height: 10px;
-    position: relative;
-    top: -180px;
-    left: 40px;
-    transform: rotate(15deg);
-    z-index: 502;
-  }
-.THIS .cyclopsmouth {
-    background-color: black;
-    width: 50px;
-    height: 10px;
-    position: relative;
-    top: -181px;
-    left: 37px;
-    transform: rotate(15deg);
-    z-index: 500;
-  }
-.THIS .cyclopsBottomLip {
-    background-color: red;
-    border-radius: 0 0 500px 500px;
-    width: 50px;
-    height: 10px;
-    position: relative;
-    top: -182px;
-    left: 34px;
-    transform: rotate(15deg);
-    z-index: 502;
-  }
-  
-.THIS .cyclopsTooth {
-    background-color: white;
-    width: 5px;
-    height: 10px;
-    transform: rotate(15deg);
-    position: relative;
-    z-index: 500;
-    top: -208px;
-    left: 50px;
-  }
-  
-.THIS .cyclopsBeard {
-    position: relative;
-    border-radius:0 0 75px 75px;
-    background-color: #555555;
-    opacity: 75%;
-    width: 150px;
-    height: 75px;
-    transform: rotate(15deg);
-    z-index: 499;
-    top: -235px;
-    left:-16px;
-  }
-  
-.THIS .ice-giant-head {
-    position: absolute;
-    left: 125px;
-    top: 0;
-    z-index:-1;
-}
-
-.THIS .iceGiantFace {
-    width: 175px;
-    height: 200px;
-    position: relative;
-    background-image: linear-gradient(to bottom right, transparent 0%, transparent 10%, #99ccFF 11%, #99ccFF 90%, transparent 91%, transparent 100%);
-    z-index: -3;
-}
-  
-.THIS .iceGiantRightEye{
-    position:relative;
-    top: -135px;
-    width: 75px;
-    height: 50px;
-    background-image: linear-gradient(to bottom right, transparent 0%, transparent 10%, #112255 11%, #112255 90%, transparent 91%, transparent 100%) 
-}
-
-.THIS .iceGiantLeftEye{
-    position: relative;
-    top: -185px;
-    left: 80px;
-    width: 75px;
-    height: 50px;
-    background-image: linear-gradient(to bottom right, transparent 0%, transparent 10%, #112255 11%, #112255 90%, transparent 91%, transparent 100%) 
-}
-.THIS .toothWrapper {
-    animation: moveJaw 1000ms alternate infinite;
-}
-.THIS .iceGiantMouth {
-    width: 135px;
-    height: 65px;
-    border-radius: 0 0 50px 50px;
-    background-color: black;
-    position: relative;
-    top: -175px;
-}
-.THIS .IGmouthextended {
-    position: relative;
-    top:-1555px;
-    left: 125px;
-    z-index: -1;
-    width:0;
-    height: 0;
-    border-top: 25px solid black;
-    border-left: 35px solid black;
-    border-bottom: 35px solid transparent;
-}
-
-.THIS .iceGiantTooth {
-    width:0;
-    height: 100px;
-    border-right: 10px solid transparent;
-    border-left: 10px solid transparent;
-    border-bottom: 40px solid #bbbbff;
-    z-index: 2;
-}
-    
-.THIS .tooth1 {
-    position: relative;
-    top: -320px;
-    left: 18px;
-}
-.THIS .tooth2 {
-    position: relative;
-    top: -455px;
-    left: 30px;
-    transform: rotate(10deg);
-}
-  
-.THIS .tooth3 {
-    position: relative;
-    top: -592px;
-    left: 43px;
-    transform:rotate(5deg);
-  }
-.THIS .tooth4 {
-    position: relative;
-    top: -732px;
-    left: 57px;
-    transform:rotate(0deg);
-  }
-.THIS .tooth5 {
-    position: relative;
-    top: -872px;
-    left: 73px;
-    transform: rotate(-5deg);
-  }
-.THIS .tooth6 {
-    position: relative;
-    top: -1015px;
-    left: 85px;
-    transform: rotate(-10deg);
-  }
-.THIS .tooth7 {
-    position: relative;
-    top: -1155px;
-    left: 83px;
-    transform: rotate(-30deg);
-  }
-.THIS .tooth8 {
-    position: relative;
-    top: -1305px;
-    left: 95px;
-    transform:rotate(-35deg);
-  }
-.THIS .tooth9 {
-    position: relative;
-    top: -1460px;
-    left: 120px;
-    transform: rotate(-30deg);
-  }
-.THIS .iceGiantJaw{
-    animation: moveJaw 1000ms alternate infinite;
-  }
-.THIS .IGJawBottom {
-    position: relative;
-    height: 25px;
-    width: 150px;
-    background-color: #99ccFF;
-    top:-1450px;
-    z-index: 5;
-  }
-.THIS .IGJawRight {  
-    position: relative;
-    height: 30px;
-    width: 55px;
-    background-color: #99ccFF;
-    top:-1496px;
-    left: 130px;
-    transform: rotate(-48deg);
-    z-index: 5;
-  }
-  @keyframes moveEye {
-    0%{
+@keyframes typeOutFull {
+    to{
+        width: 100%;
     }
-    100%{
-        transform:translate(15px, 15px);
-      }
-    }
-  
-  @keyframes moveJaw{
-    0%{
-      
-    }
-    100%{
-      transform: translate(0, 5px);
-    }
-  }
+}
