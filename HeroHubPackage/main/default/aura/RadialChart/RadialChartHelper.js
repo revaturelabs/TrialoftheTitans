@@ -23,7 +23,7 @@
         teamColors.set('Avg', 'purple');
         let userTeam = 'Synergy';
 
-        this.findHighAvgScores(titans, trackLabels, trackExamAverage, currHighScores, currKey);
+        this.FindHighAvgScores(titans, trackLabels, trackExamAverage, currHighScores, currKey);
     
         //adding last element to list to make a full radial circle
         let lastScore = trackExamAverage[0];
@@ -125,7 +125,7 @@
         d3.selectAll(".tick rect")
             .attr("y", -8);
     },
-    findHighAvgScores : function (titans, trackLabels, trackExamAverage, currHighScores, currKey) {
+    FindHighAvgScores : function (titans, trackLabels, trackExamAverage, currHighScores, currKey) {
         for (let exams in titans) { 
             let total = 0;
             let currHighScore =0;
