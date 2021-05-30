@@ -3,6 +3,11 @@
     <description>Permissions for the Administrator of The Trial of The Titans</description>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Cohort__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Curriculum__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1230,10 +1235,6 @@
         <object>WorkTypeGroup</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <recordTypeVisibilities>
-        <recordType>Account.Hero</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
     <userPermissions>
         <enabled>true</enabled>
         <name>AssignTopics</name>

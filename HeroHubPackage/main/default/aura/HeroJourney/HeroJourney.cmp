@@ -21,7 +21,6 @@
     <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
     
     <div class="slds-grid">
-        
         <div class="slds-col slds-size_1-of-7">
             <aura:iteration items="{!v.tabs}" var="titan" indexVar="key">
                 <aura:if isTrue="{!v.active == titan}">
@@ -37,7 +36,8 @@
         
         <aura:if isTrue="{!v.active == 'Overview'}">
             <div style="background:#8CA7DF; border-radius: 0px 5px 5px 5px; height:700px;" class="slds-col slds-size_6-of-7">
-                <c:ProgressChart/>
+                Overview
+                <c:ProgressChart contextInfo="{!v.contextInfo}"/>
             </div>
 
             <aura:set attribute="else">

@@ -1,11 +1,126 @@
 <aura:component access="global">
-    <aura:attribute name="leadTeam" type="Map" />
+    <aura:attribute name="leadTeams" type="Map" />
+    <aura:attribute name="setIntervalId" type="Integer"/>
+    <aura:attribute name="setTimeoutId" type="Integer"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="aura:locationChange" action="{!c.handleClear}"/>
     
     <div class="titanSlayer">
-    	<div class="titanSlayer-Alchemy"></div>
-        <div class="titanSlayer-Amplifire"></div>
-        <div class="titanSlayer-Synergy"></div>
-        <div class="titanSlayer-Vanquish"></div>
+        <aura:if isTrue="{!v.leadTeams.Team[0][0] == 'Alchemy'}">
+            <div class="titanSlayer-Alchemy"></div>
+            <aura:set attribute="else">
+                <aura:if isTrue="false">
+                    <div class="titanSlayer-Amplifire">
+                        <div class="titanSlayer-Amplifire-body">
+                            <div class="Marquee-Bar titanSlayer-Amplifire-title">
+                                <h2>Titan Slayers</h2>
+                            </div>
+                            <div class="Marquee-Bar"></div>
+                            <div class="Marquee-Bar">
+                                <h3>Team Scores</h3>
+                                <h3>Cohort Scores</h3>
+                            </div>
+                            <div class="Marquee-Bar"></div>
+                            <div class="progressBars">
+                                <aura:iteration items="{!v.leadTeams.Team}" var="team">
+                                    <div class="{!'Amplifire-Scores ' + team[0]}">
+                                        <h3>{!team[0]}</h3>
+                                        <div class="Amplifire-starOverlay"></div>
+                                        <progress class="{!team[0]}" value="{!team[1]}" max="100">{!team[1]}%</progress>
+                                        <h3>{!team[1]}%</h3>
+                                    </div>
+                                </aura:iteration>
+                            </div>
+                            <div class="progressBars">
+                                <aura:iteration items="{!v.leadTeams.Cohort}" var="cohort">
+                                    <div class="{!'Amplifire-Scores ' + cohort[0]}">
+                                        <h3>{!cohort[0]}</h3>
+                                        <div class="Amplifire-starOverlay-container"><div class="Amplifire-starOverlay"/><progress class="{!cohort[0]}" value="{!cohort[1]}" max="100">{!cohort[1]}%</progress></div>
+                                        <h3>{!cohort[1]}%</h3>
+                                    </div>
+                                </aura:iteration>
+                            </div>  
+                        </div>
+                        <div class="titanSlayer-Amplifire-body2">
+                            <div class="titanSlayer-Amplifire-title">
+                                <h2>Squad Leaderboard</h2>
+                            </div>
+                            <div class="Amplifire-results">
+                                <div class="scoreWrapper">
+                                    <div class="progressBars">
+                                        <aura:iteration items="{!v.leadTeams.Squad}" indexVar="no" var="squad">
+                                            <div class="Amplifire-Scores">
+                                                <h3>{!(no+1) + '. ' + squad[0]}</h3>
+                                                <progress class="{!squad[0]}" value="{!squad[1]}" max="100">{!squad[1]}%</progress>
+                                                <h3>{!squad[1]}%</h3>
+                                            </div>
+                                        </aura:iteration>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <aura:set attribute="else" >
+                        <aura:if isTrue="true">
+                            <div class="titanSlayer-Synergy">
+                                <div class="Synergy-topBar"><h6>Titan Slayer</h6><span>x</span></div>
+                                <div class="titanSlayer-Synergy-body">
+                                    <div class="titanSlayer-Synergy-title">
+                                        <h2>Titan Slayers</h2>
+                                    </div>
+                                    <div class="Synergy-results">
+                                        <div class="scoreWrapper">
+                                            <h3>Team Scores</h3>
+                                            <div class="progressBars">
+                                                <aura:iteration items="{!v.leadTeams.Team}" var="team">
+                                                    <div class="{!'Synergy-Scores ' + team[0]}">
+                                                        <h3>{!team[0]}</h3>
+                                                        <progress class="{!team[0]}" value="{!team[1]}" max="100">{!team[1]}%</progress>
+                                                        <h3>{!team[1]}%</h3>
+                                                    </div>
+                                                </aura:iteration>
+                                            </div>
+                                        </div>
+                                        <div class="scoreWrapper">
+                                            <h3>Cohort Scores</h3>
+                                            <div class="progressBars">
+                                                <aura:iteration items="{!v.leadTeams.Cohort}" var="cohort">
+                                                    <div class="{!'Synergy-Scores ' + cohort[0]}">
+                                                        <h3>{!cohort[0]}</h3>
+                                                        <progress class="{!cohort[0]}" value="{!cohort[1]}" max="100">{!cohort[1]}%</progress>
+                                                        <h3>{!cohort[1]}%</h3>
+                                                    </div>
+                                                </aura:iteration>
+                                            </div>
+                                        </div>  
+                                    </div>
+                                </div>
+                                <div class="titanSlayer-Synergy-body2">
+                                    <div class="titanSlayer-Synergy-title">
+                                        <h2>Squad Leaderboard</h2>
+                                    </div>
+                                    <div class="Synergy-results">
+                                        <div class="scoreWrapper">
+                                            <div class="progressBars">
+                                                <aura:iteration items="{!v.leadTeams.Squad}" indexVar="no" var="squad">
+                                                    <div class="Synergy-Scores">
+                                                        <h3>{!(no+1) + '. ' + squad[0]}</h3>
+                                                        <progress class="{!squad[0]}" value="{!squad[1]}" max="100">{!squad[1]}%</progress>
+                                                        <h3>{!squad[1]}%</h3>
+                                                    </div>
+                                                </aura:iteration>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <aura:set attribute="else">
+                                <div class="titanSlayer-Vanquish"></div>
+                            </aura:set>
+                        </aura:if>
+                    </aura:set>
+                </aura:if>
+            </aura:set>
+        </aura:if>
     </div>
 </aura:component>
