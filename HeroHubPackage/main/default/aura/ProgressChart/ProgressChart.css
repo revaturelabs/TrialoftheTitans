@@ -1,3 +1,17 @@
+#progress-chart.THIS  {
+  box-sizing:border-box;
+  flex: 1 1 80%;
+  transform: scale(1);
+}
+
+#progress-chart.THIS .shrunk-chart{
+  width:20%;
+}
+
+#progress-chart.THIS  svg {
+  transform-origin:top left;
+  transition: transform 750ms ease-in; 
+}
 .THIS path[id^="chart-section-"]{
   animation: createSvg .5s;
   animation-fill-mode: both;

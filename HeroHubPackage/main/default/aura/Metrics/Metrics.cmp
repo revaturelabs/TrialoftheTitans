@@ -1,7 +1,7 @@
 <aura:component >
 	<div>
         <div style="width:95%; margin-left:5%; background:#29292A; border:10px solid #84a7e4; height:200px; border-radius:5px;">
-            <h1 style="color:white; font-size:1.5em;">spider chart</h1>
+            <c:RadialChart contextInfo="{!v.contextInfo}"/>
         </div>
 
         <c:ExamStats/>

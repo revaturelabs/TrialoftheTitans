@@ -11,6 +11,7 @@
                   />
 
         <div id="progress-chart" class="inactive-chart">
+            <h3>Titan Progress</h3>
         </div>
   
 </aura:component>

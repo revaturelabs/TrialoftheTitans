@@ -17,6 +17,8 @@
     
     // ContextChange(): gets called when UserContextInfo data gets passed in
     ContextChange : function(component, event, helper){
-      helper.InitializeTabs(component);
+      if(component.get("v.contextInfo")){
+        helper.InitializeTabs(component);
+      }
   }
 })

@@ -10,12 +10,12 @@
     <!--Set dynamic colors for teams-->
     <aura:html tag="style">
         :root {
-            --user-team-primary: {!v.contextInfo.team.primary_color__c};
-            --user-team-secondary: {!v.contextInfo.team.secondary_color__c};
-            --lead-team-primary: {!v.leadTeam.primary_color__c};
-        	--lead-team-secondary: {!v.leadTeam.secondary_color__c};
+            --user-team-primary: {!v.contextInfo.team.Primary_Color__c};
+            --user-team-secondary: {!v.contextInfo.team.Secondary_Color__c};
+            --lead-team-primary: {!v.leadTeams.team[0].primary_color__c};
+        	--lead-team-secondary: {!v.leadTeams.team[0].secondary_color__c};
 
-            background-color: ##3f3f3f;
+            background-color: #3f3f3f;
         }
     </aura:html>
 

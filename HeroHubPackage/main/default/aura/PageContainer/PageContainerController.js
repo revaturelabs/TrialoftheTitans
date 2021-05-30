@@ -4,6 +4,7 @@
         getContextInfo.setCallback( this, function( response ) {
             if( response.getState() === "SUCCESS" ){
                 const contextinfo = response.getReturnValue();
+                console.log("Getting User Context", contextinfo);
                 component.set( "v.contextInfo", contextinfo );
             }
             else {

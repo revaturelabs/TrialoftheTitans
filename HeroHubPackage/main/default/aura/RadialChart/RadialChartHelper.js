@@ -69,7 +69,7 @@
             .tickSizeOuter(0); // removes edge lines from domain
             */
     const comp = d3.select("#mydthree");
-    const svg = comp.append("svg")
+    const svg = comp.append("svg:svg")
                     .attr("viewBox", `0 0 ${WIDTH + MARGIN.LEFT + MARGIN.RIGHT} ${HEIGHT + MARGIN.TOP + MARGIN.BOTTOM}`);
     const g = svg.append("g")
                 .attr("transform",`translate(${HEIGHT/2}, ${WIDTH/2})`);

@@ -3,12 +3,13 @@
     
     <aura:attribute name="scriptsLoaded" type="Boolean" default="False"/>
 
-    <aura:handler name="change" value="{!v.contextInfo}" action="{!c.drawRadialChart}"/>
-    <aura:handler name="change" value="{!v.scriptsLoaded}" action="{!c.drawRadialChart}"/>
+    <aura:handler name="change" value="{!v.contextInfo}" action="{!c.GenerateRadialChart}"/>
+    <aura:handler name="change" value="{!v.scriptsLoaded}" action="{!c.GenerateRadialChart}"/>
 
-    <ltng:require scripts="{!$Resource.d3}" afterScriptsLoaded="{!c.ScriptsLoaded}" />
+    <ltng:require scripts="{!$Resource.d3 + '/d3.js'}" afterScriptsLoaded="{!c.ScriptsLoaded}" />
 
-    <div id="mydthree"  >
+    <div id="mydthree" class="shrunk-chart" >
+        <h3>Titan Performance</h3>
         
     </div>
 </aura:component>	
