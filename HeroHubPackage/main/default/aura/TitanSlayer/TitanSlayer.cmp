@@ -12,13 +12,13 @@
                 <aura:if isTrue="true">
                     <div class="titanSlayer-Amplifire">
                                 <div class="titanSlayer-Amplifire-body">
-                                    <div class="Marquee-Bar titanSlayer-Amplifire-title">
-                                        <h2>Titan Slayers</h2>
+                                    <div class="Marquee-Bar Marquee-Bar-title titanSlayer-Amplifire-title">
+                                        <h2><span>T</span><span>I</span><span>T</span><span>A</span><span>N</span> <span>S</span><span>L</span><span>A</span><span>Y</span><span>E</span><span>R</span><span>S</span></h2>
                                     </div>
                                     <div class="Marquee-Bar"></div>
                                     <div class="Marquee-Bar">
-                                        <h3>Team Scores</h3>
-                                        <h3>Cohort Scores</h3>
+                                        <h3>TEAM SCORES</h3>
+                                        <h3>COHORT SCORES</h3>
                                     </div>
                                     <div class="Marquee-Bar"></div>
                                     <div class="progressBars">
@@ -40,8 +40,7 @@
                                                 <h3>{!cohort[1]}%</h3>
                                             </div>
                                         </aura:iteration>
-                                    </div>  
-                                </div>
+                                    </div>
                             </div>
                             <div class="titanSlayer-Amplifire-body2">
                                 <div class="titanSlayer-Amplifire-title">
@@ -61,7 +60,6 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
                     <aura:set attribute="else" >
                         <aura:if isTrue="false">
                             <div class="titanSlayer-Synergy">

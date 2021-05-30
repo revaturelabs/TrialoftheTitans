@@ -149,7 +149,35 @@ div.THIS .titanSlayer-Synergy-body {
     background: var(--synergy-secondary);
 }
 
+.THIS .titanSlayer-Amplifire {
+    font-family: 'AlfaSlab';
+}
 
+.THIS .titanSlayer-Amplifire-body{
+    border: 2px solid var(--text-color);
+}
+
+.THIS .Marquee-Bar {
+    width: 100%;
+    background: var(--light-text);
+    color: var(--text-color);
+    font-size: 30px;
+    text-transform:capitalize;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 2px 2px 4px var(--text-color) inset;
+}
+
+.THIS .Marquee-Bar-title > h2 {
+    position: relative;
+}
+.THIS .Marquee-Bar-title span {
+    margin: 3px;
+    position:relative;
+    transform-origin: center;
+    animation: 1s cubic-bezier(.59,-0.06,.41,1.62) SpinText;
+
+}
 
 @keyframes Blink {
 
@@ -169,4 +197,19 @@ div.THIS .titanSlayer-Synergy-body {
     to{
         transform:scaleX(1);
     }
+}
+
+@keyframes SpinText {
+    0%{
+        transform: rotateX(0);
+    }
+
+    50% {
+        transform: rotateX(180deg);
+    }
+
+    100%{
+        transform: rotateX(0);
+    }
+
 }

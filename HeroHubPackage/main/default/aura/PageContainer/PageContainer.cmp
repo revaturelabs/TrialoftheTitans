@@ -1,4 +1,5 @@
 <aura:component controller="HeroHubController" access="global" >
+    
     <!--Attributes: contextUser, userTeam, leadTeam,-->
     <aura:attribute name="contextInfo" type="UserContextInfo" />
     <aura:attribute name="leadTeams" type="Map"/>
