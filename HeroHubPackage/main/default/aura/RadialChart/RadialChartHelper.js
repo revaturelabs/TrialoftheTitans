@@ -110,7 +110,7 @@
 
     const radialLines =  g.selectAll("path").data(inputData).join("path")
                         .attr("class", "radials").attr("d", (d, i) => spiralAt0(d.averages));
-          radialLines.transition().delay(2000)
+          radialLines.transition().delay(600)
                      .duration(3000).ease(d3.easeElastic)
                      .attr("d", (d, i) => spiral(d.averages))
                      .attr("stroke", (d,i) => i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  )
@@ -127,7 +127,7 @@
     d3.selectAll(".tick line").attr("y1", -3).attr("y2", 4);
 
     const axisLabels =  g.selectAll("g.axis").data(inputData[0].averages)
-                        .append("text").transition().delay(2001).duration(1000)
+                        .append("text").transition().delay(301).duration(1000)
                         .attr("fill", "black").attr("text-anchor", "middle")
                         .text((d,i) => trackLabels[i]).style("display", "inline")
                         .attr("transform", d => `translate(0, ${scaleRadius(100) + 19})`);        
