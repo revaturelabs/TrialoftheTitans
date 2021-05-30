@@ -129,7 +129,6 @@
 
     const axisLabels =  g.selectAll("g.axis").data(inputData[0].averages)
                         .append("text").transition().delay(2001).duration(1000)
-                        .attr("id", "#label-show")
                         .style("fill", "black").style("text-anchor", "middle")
                         .text((d,i) => trackLabels[i]).style("display", "inline")
                         .attr("transform", d => `translate(0, ${scaleRadius(100) + 19})`);        
