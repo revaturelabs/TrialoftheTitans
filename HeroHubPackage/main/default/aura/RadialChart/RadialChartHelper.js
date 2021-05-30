@@ -103,26 +103,27 @@
                 .attr("fill", "black").attr("text-anchor", "middle")
                 .text((d,i) => trackLabels[i]).style("display", "inline")
                 .attr("transform", d => `translate(0, ${scaleRadius(100) + 19})`);        
-
     },
     GenerateGrid : function (g, scaleRadius, radialData) {
-        
         // place in middle of viewport and rotate
         // renders the radial grid
         g.selectAll("circle.circle-grid")
-                .data(radialData).join("circle").attr("class", "circle-grid")
-                .transition().delay(600).duration(3000).ease(d3.easeElastic)
-                .attr("r", scaleRadius);
+            .data(radialData).join("circle")
+            .attr("class", "circle-grid")
+            .transition().delay(600).duration(3000).ease(d3.easeElastic)
+            .attr("r", scaleRadius);
         // backdrop
         d3.select(".axis") // selects only first axis
-                .selectAll(".tick")
-                .insert("rect", ".tick text")
-                .attr("x", -8)
-                .attr("width", 16).attr("height", 16);
+            .selectAll(".tick")
+            .insert("rect", ".tick text")
+            .attr("x", -8)
+            .attr("width", 16).attr("height", 16);
         // moves tick lines to center of domain
-        d3.selectAll(".tick text").attr("y", 4)
-        .attr("transform", "rotate(90)");
-        d3.selectAll(".tick rect").attr("y", -8);
+        d3.selectAll(".tick text")
+            .attr("y", 4)
+            .attr("transform", "rotate(90)");
+        d3.selectAll(".tick rect")
+            .attr("y", -8);
     },
     findHighAvgScores : function (titans, trackLabels, trackExamAverage, currHighScores, currKey) {
         for (let exams in titans) { 
