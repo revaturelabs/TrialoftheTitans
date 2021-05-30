@@ -99,10 +99,16 @@
         d3.selectAll(".tick line").attr("y1", -3).attr("y2", 4);
 
         const axisLabels =  g.selectAll("g.axis").data(inputData[0].averages)
-                .append("text").transition().delay(301).duration(1000)
+                .append("text").transition().delay(301).duration(1000).attr("class", "titan-labels")
                 .attr("fill", "black").attr("text-anchor", "middle")
                 .text((d,i) => trackLabels[i]).style("display", "inline")
-                .attr("transform", d => `translate(0, ${scaleRadius(100) + 19})`);        
+                .attr("transform", d =>{
+                    console.log("checking value ");
+                    console.log(scaleRadius(100));
+                    return `translate(0, ${scaleRadius(100) + 19}) rotate(0)`
+                }); 
+
+      
     },
     GenerateGrid : function (g, scaleRadius, radialData) {
         // place in middle of viewport and rotate
