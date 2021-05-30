@@ -90,7 +90,7 @@
 
     // renders the radial grid
     g.selectAll("circle.circle-grid")
-            .data(radialData).join("circle").attr("class", "circle-grid")
+            .data(radialData).join("circle").attr("class", "circle-grid").transition().delay(1000).duration(1000)
             .attr("r", scaleRadius);
 
     // backdrop
@@ -108,9 +108,9 @@
 
     /*------------------------------------DRAW RADIAL CHART--------------------------------------------------------------*/
     const radialLines =  g.selectAll("path").data(inputData).join("path")
-                        .attr("class", "radials")
+                        .attr("class", "radials").style("fill-opacity", .1)
+                        .transition().delay(3500).duration(3000)
                         .attr("d", (d, i) => spiral(d.averages))
-                        .style("fill-opacity", .1)
                         .style("stroke", (d,i) => i == 0 ? teamColors.get(userTeam) : teamColors.get('Avg'))
                         .style("stroke-width", (d, i) => i==0 ? 8 : 2)
                         .style("fill", (d,i) => teamColors.get(userTeam));
@@ -120,15 +120,16 @@
                         .attr("class", "axis")
                         .classed("blank",(d,i) => i != 0)
                         .call(axis)
-                        .transition().delay(3000).duration(2000)
+                        .transition().delay(2000).duration(3000)
                         .attr("transform", (d,i) => `rotate(${(i * 360/(lineCount))})`);
     // moves tick lines to center of domain
     d3.selectAll(".tick line").attr("y1", -3).attr("y2", 4);
 
-    const axisLabels =  g.selectAll("g.axis").data(inputData[0].averages)
-                        .append("text").style("fill", "black").style("text-anchor", "middle")
+    const axisLabels =  g.selectAll("g.axis").data(inputData[0].averages).attr("class", "labels")
+                        .append("text").transition().delay(3501).duration(500)
+                        .style("fill", "black").style("text-anchor", "middle")
                         .text((d,i) => trackLabels[i])
-                        .attr("transform", d => `translate(0, ${scaleRadius(1) + 40})`);        
+                        .attr("transform", d => `translate(0, ${scaleRadius(100) + 19})`);        
                     
     /*----------------------------------------CODE ENDS --------------------------------------------------------------*/                                      
             
