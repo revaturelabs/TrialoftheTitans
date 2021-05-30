@@ -7,7 +7,6 @@
 */
 ({  
     SetUpChart : function(component, event, titans) {
-    /* ------------------------------ D3 CODE STARTS ------------------------------------------------------------*/
     const MARGIN = { TOP: 20, BOTTOM: 30, RIGHT: 10, LEFT: 90}
     const WIDTH = 490 - MARGIN.LEFT - MARGIN.RIGHT;
     const HEIGHT = 490 - MARGIN.TOP - MARGIN.BOTTOM;
