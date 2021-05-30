@@ -104,7 +104,6 @@
                 .text((d,i) => trackLabels[i]).style("display", "inline")
                 .attr("transform", (d, i) =>{
                     let angle = i * 360/(lineCount);
-                    console.log(angle);
                     return `translate(0, ${scaleRadius(100) + 12}) rotate(${ angle < 180 ? 0 : 180})`
                 }); 
 
