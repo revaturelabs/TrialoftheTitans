@@ -16,7 +16,6 @@
     <aura:attribute name="active" type="String" default="Overview"/>
     <aura:attribute name="contextInfo" type="UserContextInfo"/>
     <aura:attribute name="currentTitanExams" type="List"/>
-
     <aura:handler name="change" value="{!v.contextInfo}" action="{!c.ContextChange}"/>
     <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
     

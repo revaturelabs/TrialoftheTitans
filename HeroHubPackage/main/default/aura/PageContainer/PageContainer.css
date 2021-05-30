@@ -1,4 +1,4 @@
-/*@font-face {
+@font-face {
     font-family: "AlfaSlab";
     src: url(/resource/AlfaSlab);
 }
@@ -12,22 +12,17 @@
     src: url(/resource/Cinzel);
 }
 
-*/
 @font-face {
     font-family: "PressStart";
     src: url(/resource/PressStart);
 }
-/*
+
 @font-face {
     font-family: "Slaytanic";
     src: url(/resource/Slaytanic);
 }
 
-@font-face {
-    font-family: "AlfaSlab";
-    src: url(/resource/AlfaSlab);
-}*/
-:root.THIS  {
+.THIS :root {
     background-color: #3f3f3f;
 }
 .THIS {

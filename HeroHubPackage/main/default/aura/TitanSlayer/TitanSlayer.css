@@ -97,7 +97,7 @@ div.THIS .titanSlayer-Synergy-body {
     display: block;
 }
 
-.THIS.hide > .titanSlayer-Synergy{
+.THIS.hide .titanSlayer-Synergy{
     transform-origin: center center;
     transform: scale(0);
 }

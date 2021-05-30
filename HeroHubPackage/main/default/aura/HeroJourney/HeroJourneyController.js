@@ -9,19 +9,13 @@
 ///////////////////////////////////////////////////
 
 ({
-    doInit : function(component, event, helper) {
-		// helper.HandleInit( component );
-    var context = component.get("v.contextInfo")
-    console.log("Hero Journey checking in...")
-    console.log(context)
-    },
-    
+    // TitanClicked(): calls HandleGameChange method in helper class
+
     TitanClicked : function(component, event, helper){
         helper.HandleGameChange( component, event );
     },
-
-    // ContextChange(): gets called when UserContextInfo data gets passed in
     
+    // ContextChange(): gets called when UserContextInfo data gets passed in
     ContextChange : function(component, event, helper){
       helper.InitializeTabs(component);
   }
