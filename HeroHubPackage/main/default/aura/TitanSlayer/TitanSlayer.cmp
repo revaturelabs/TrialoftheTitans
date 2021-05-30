@@ -81,35 +81,35 @@
                                                 </aura:iteration>
                                             </div>
                                         </div>
+                                        <div class="scoreWrapper">
+                                            <h3>Cohort Scores</h3>
+                                            <div class="progressBars">
+                                                <aura:iteration items="{!v.leadTeams.Cohort}" var="cohort">
+                                                    <div class="{!'Synergy-Scores ' + cohort[0]}">
+                                                        <h3>{!cohort[0]}</h3>
+                                                        <progress class="{!cohort[0]}" value="{!cohort[1]}" max="100">{!cohort[1]}%</progress>
+                                                        <h3>{!cohort[1]}%</h3>
+                                                    </div>
+                                                </aura:iteration>
+                                            </div>
+                                        </div>  
                                     </div>
-                                    <div class="scoreWrapper">
-                                        <h3>Cohort Scores</h3>
-                                        <div class="progressBars">
-                                            <aura:iteration items="{!v.leadTeams.Cohort}" var="cohort">
-                                                <div class="{!'Synergy-Scores ' + cohort[0]}">
-                                                    <h3>{!cohort[0]}</h3>
-                                                    <progress class="{!cohort[0]}" value="{!cohort[1]}" max="100">{!cohort[1]}%</progress>
-                                                    <h3>{!cohort[1]}%</h3>
-                                                </div>
-                                            </aura:iteration>
-                                        </div>
-                                    </div>  
                                 </div>
-                            </div>
-                            <div class="titanSlayer-Synergy-body2">
-                                <div class="titanSlayer-Synergy-title">
-                                    <h2>Squad Leaderboard</h2>
-                                </div>
-                                <div class="Synergy-results">
-                                    <div class="scoreWrapper">
-                                        <div class="progressBars">
-                                            <aura:iteration items="{!v.leadTeams.Squad}" indexVar="no" var="squad">
-                                                <div class="Synergy-Scores">
-                                                    <h3>{!(no+1) + '. ' + squad[0]}</h3>
-                                                    <progress class="{!squad[0]}" value="{!squad[1]}" max="100">{!squad[1]}%</progress>
-                                                    <h3>{!squad[1]}%</h3>
-                                                </div>
-                                            </aura:iteration>
+                                <div class="titanSlayer-Synergy-body2">
+                                    <div class="titanSlayer-Synergy-title">
+                                        <h2>Squad Leaderboard</h2>
+                                    </div>
+                                    <div class="Synergy-results">
+                                        <div class="scoreWrapper">
+                                            <div class="progressBars">
+                                                <aura:iteration items="{!v.leadTeams.Squad}" indexVar="no" var="squad">
+                                                    <div class="Synergy-Scores">
+                                                        <h3>{!(no+1) + '. ' + squad[0]}</h3>
+                                                        <progress class="{!squad[0]}" value="{!squad[1]}" max="100">{!squad[1]}%</progress>
+                                                        <h3>{!squad[1]}%</h3>
+                                                    </div>
+                                                </aura:iteration>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

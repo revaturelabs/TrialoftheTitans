@@ -25,17 +25,25 @@
 .THIS .header-animatedHeader_Synergy{
   background-color: #000;
   overflow: hidden;
+  position: relative;
   height: 80px;
   width: 100%;
 }
 .THIS .header-animatedHeader_Synergy-title {
   font-size: 50px;
   color: #000;
+  height: 80px;
+  line-height: 80px;
   font-family:'PressStart';
   z-index: 1000;
   position: absolute;
   width: 100%;
   text-align: center;
+}
+
+.THIS .Synergy-codeText-wrapper {
+  width: 100%;
+  display: flex;
 }
 
 .THIS .Synergy-codeText {
@@ -47,8 +55,8 @@
   white-space: nowrap;
   animation: 3s steps(100, end) 500ms forwards typeOutFull;
 }
-.THIS .Synergy-codeText:nth-of-type(even){
-  float: right;
+.THIS .Synergy-codeText-wrapper:nth-of-type(even){
+  justify-content: flex-end;
 }
 
 .THIS .header-animatedHeader_Vanquish{
@@ -70,6 +78,14 @@
   color: var(--background-color);
 }
 
+
+@media only screen and (max-width:1000px){
+
+  .THIS .header-animatedHeader_Synergy-title {
+    font-size: 30px;
+    
+  }
+}
 @keyframes typeOutFull {
     to{
         width: 100%;
