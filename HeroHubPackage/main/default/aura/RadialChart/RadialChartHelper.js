@@ -7,73 +7,73 @@
 */
 ({  
     SetUpChart : function(component, event, titans) {
-    const MARGIN = { TOP: 20, BOTTOM: 30, RIGHT: 10, LEFT: 90}
-    const WIDTH = 490 - MARGIN.LEFT - MARGIN.RIGHT;
-    const HEIGHT = 490 - MARGIN.TOP - MARGIN.BOTTOM;
-    let currKey = 0;
-    let sourceData = {};
-    let trackExamAverage = [];
-    let trackLabels = [];
-    let currHighScores = [];
-    let teamColors = new Map();
-    teamColors.set('Amplifire', '#C24747');
-    teamColors.set('Synergy', '#F4CF38');
-    teamColors.set('Alchemy', '#84C247');
-    teamColors.set('Vanquish', '#475BC2');
-    teamColors.set('Avg', 'purple');
-    let userTeam = 'Synergy';
+        const MARGIN = { TOP: 20, BOTTOM: 30, RIGHT: 10, LEFT: 90}
+        const WIDTH = 490 - MARGIN.LEFT - MARGIN.RIGHT;
+        const HEIGHT = 490 - MARGIN.TOP - MARGIN.BOTTOM;
+        let currKey = 0;
+        let sourceData = {};
+        let trackExamAverage = [];
+        let trackLabels = [];
+        let currHighScores = [];
+        let teamColors = new Map();
+        teamColors.set('Amplifire', '#C24747');
+        teamColors.set('Synergy', '#F4CF38');
+        teamColors.set('Alchemy', '#84C247');
+        teamColors.set('Vanquish', '#475BC2');
+        teamColors.set('Avg', 'purple');
+        let userTeam = 'Synergy';
 
-    this.findHighAvgScores(titans, trackLabels, trackExamAverage, currHighScores, currKey);
-  
-    //adding last element to list to make a full radial circle
-    let lastScore = trackExamAverage[0];
-    trackExamAverage.push(lastScore);
-    sourceData = {
-        "name" : "averages",
-        "averages": trackExamAverage
-    };
-    let lastHighScore = currHighScores[0];
-    currHighScores.push(lastHighScore);
-    let highScoreData = {
-        "name" : "highscores",
-        "averages": currHighScores
-    };      
-        
-    const colorScale = d3.scaleSequential(d3.interpolateSpectral)
-                        .domain([0,sourceData.length]);
-    const scaleRadius = d3.scaleLinear()
-                        .domain([0, 100])
-                        .range([0, WIDTH/2 - MARGIN.TOP]);
-    const spiral = d3.areaRadial()
-                    .angle((d,i) =>  i/4 * Math.PI * 2)
-                    .outerRadius(d => scaleRadius(d * 100));
-    const axis = d3.axisBottom(scaleRadius)
-                    .ticks(6)
-                    .tickSize(0);
-            /*        
-            .ticks(10)
-            .tickSize(0)       // will be controlled in SVG and CSS
-            .tickPadding(0)
-            .tickSizeOuter(0); // removes edge lines from domain
-            */
-    const comp = d3.select("#mydthree");
-    const svg = comp.append("svg")
-                    .attr("viewBox", `0 0 ${WIDTH + MARGIN.LEFT + MARGIN.RIGHT} ${HEIGHT + MARGIN.TOP + MARGIN.BOTTOM}`);
-    const g = svg.append("g")
-                .attr("transform",`translate(${HEIGHT/2}, ${WIDTH/2})`);
-
-    let inputData = [];
-    inputData.push(sourceData);
-    inputData.push(highScoreData);
-    let avgFlag = false;
-    let lineCount = inputData[0].averages.length - 1;
-    const radialData  = d3.range(0,110,10); // 10 positions
-
-    this.GenerateGrid(g, scaleRadius, radialData);
+        this.findHighAvgScores(titans, trackLabels, trackExamAverage, currHighScores, currKey);
     
-    this.GenerateRadialGraph(g, scaleRadius, spiral,
-                             axis, lineCount, inputData,
-                             teamColors, userTeam, trackLabels);    
+        //adding last element to list to make a full radial circle
+        let lastScore = trackExamAverage[0];
+        trackExamAverage.push(lastScore);
+        sourceData = {
+            "name" : "averages",
+            "averages": trackExamAverage
+        };
+        let lastHighScore = currHighScores[0];
+        currHighScores.push(lastHighScore);
+        let highScoreData = {
+            "name" : "highscores",
+            "averages": currHighScores
+        };      
+            
+        const colorScale = d3.scaleSequential(d3.interpolateSpectral)
+                            .domain([0,sourceData.length]);
+        const scaleRadius = d3.scaleLinear()
+                            .domain([0, 100])
+                            .range([0, WIDTH/2 - MARGIN.TOP]);
+        const spiral = d3.areaRadial()
+                        .angle((d,i) =>  i/4 * Math.PI * 2)
+                        .outerRadius(d => scaleRadius(d * 100));
+        const axis = d3.axisBottom(scaleRadius)
+                        .ticks(6)
+                        .tickSize(0);
+                /*        
+                .ticks(10)
+                .tickSize(0)       // will be controlled in SVG and CSS
+                .tickPadding(0)
+                .tickSizeOuter(0); // removes edge lines from domain
+                */
+        const comp = d3.select("#mydthree");
+        const svg = comp.append("svg")
+                        .attr("viewBox", `0 0 ${WIDTH + MARGIN.LEFT + MARGIN.RIGHT} ${HEIGHT + MARGIN.TOP + MARGIN.BOTTOM}`);
+        const g = svg.append("g")
+                    .attr("transform",`translate(${HEIGHT/2}, ${WIDTH/2})`);
+
+        let inputData = [];
+        inputData.push(sourceData);
+        inputData.push(highScoreData);
+        let avgFlag = false;
+        let lineCount = inputData[0].averages.length - 1;
+        const radialData  = d3.range(0,110,10); // 10 positions
+
+        this.GenerateGrid(g, scaleRadius, radialData);
+        
+        this.GenerateRadialGraph(g, scaleRadius, spiral,
+                                axis, lineCount, inputData,
+                                teamColors, userTeam, trackLabels);    
     },
     GenerateRadialGraph : function (g, scaleRadius, spiral, axis, lineCount, inputData, teamColors, userTeam, trackLabels) {
         const spiralAt0 = d3.areaRadial()
