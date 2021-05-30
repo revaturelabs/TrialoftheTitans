@@ -11,12 +11,9 @@
 		if(component.get( "v.scriptsLoaded" ) && component.get( "v.contextInfo" ) ){
 		helper.ProgressChart( component, event );	
 		}
-		
 	},
     ScriptsLoaded : function(component, event, helper){
 		component.set( "v.scriptsLoaded" , true )
-		console.log( "Scripts Loaded" )
-		console.log( component.get( "v.scriptsLoaded" ) )
 	},
     DrawRadialChart : function(component, event, helper) {
         let data = component.get('v.contextInfo');
@@ -92,6 +89,6 @@
                     }]
         };
 
-        helper.DrawChart(component, event, titans);
+        helper.SetUpChart(component, event, titans);
     }
 })

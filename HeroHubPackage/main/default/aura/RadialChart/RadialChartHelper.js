@@ -6,7 +6,7 @@
 //Description: This Component will have halper methods to generate the radial chart based on overall titan progress. 
 */
 ({  
-    DrawChart : function(component, event, titans) {
+    SetUpChart : function(component, event, titans) {
     /* ------------------------------ D3 CODE STARTS ------------------------------------------------------------*/
     const MARGIN = { TOP: 20, BOTTOM: 30, RIGHT: 10, LEFT: 90}
     const WIDTH = 490 - MARGIN.LEFT - MARGIN.RIGHT;
