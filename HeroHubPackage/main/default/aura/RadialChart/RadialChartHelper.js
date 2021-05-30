@@ -4,8 +4,8 @@
         
     /* ------------------------------ D3 CODE STARTS ------------------------------------------------------------*/
     const MARGIN = { TOP: 20, BOTTOM: 30, RIGHT: 10, LEFT: 90}
-    const WIDTH = 880 - MARGIN.LEFT - MARGIN.RIGHT;
-    const HEIGHT = 880 - MARGIN.TOP - MARGIN.BOTTOM;
+    const WIDTH = 490 - MARGIN.LEFT - MARGIN.RIGHT;
+    const HEIGHT = 490 - MARGIN.TOP - MARGIN.BOTTOM;
     let currKey = 0;
     let sourceData = {};
     let trackExamAverage = [];
@@ -80,23 +80,19 @@
     let avgFlag = false;
     let lineCount = inputData[0].averages.length - 1;
     /*-----------------------------------DRAW RADIAL CHART GRID---------------------------------------------------------*/
-  
     const radialData  = d3.range(0,110,10); // 10 positions
     // place in middle of viewport and rotate
-
     // renders the radial grid
     g.selectAll("circle.circle-grid")
             .data(radialData).join("circle").attr("class", "circle-grid")
             .transition().delay(600).duration(3000).ease(d3.easeElastic)
             .attr("r", scaleRadius);
-
     // backdrop
     d3.select(".axis") // selects only first axis
             .selectAll(".tick")
             .insert("rect", ".tick text")
             .attr("x", -8)
             .attr("width", 16).attr("height", 16);
-
     // moves tick lines to center of domain
     d3.selectAll(".tick text").attr("y", 4)
     .attr("transform", "rotate(90)");
@@ -132,8 +128,6 @@
                         .text((d,i) => trackLabels[i]).style("display", "inline")
                         .attr("transform", d => `translate(0, ${scaleRadius(100) + 19})`);        
     
-    /*----------------------------------------CODE ENDS --------------------------------------------------------------*/                                      
-            
-
+    /*----------------------------------------CODE ENDS --------------------------------------------------------------*/   
     }
 })
