@@ -2,21 +2,26 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Next_Exam__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <description>The next Exam for a titan. Used to tell if prerequisites have been obtained.</description>
     <externalId>false</externalId>
     <label>Next Exam</label>
     <lookupFilter>
         <active>true</active>
+        <errorMessage>The next exam must be within the same Titan!</errorMessage>
         <filterItems>
-            <field>$Source.Titan__c</field>
+            <field>Exam__c.Titan__c</field>
             <operation>equals</operation>
-            <valueField>Exam__c.Titan__c</valueField>
+            <valueField>$Source.Titan__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Exam__c.Id</field>
+            <operation>notEqual</operation>
+            <valueField>$Source.Id</valueField>
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>
     <referenceTo>Exam__c</referenceTo>
-    <relationshipLabel>Exams</relationshipLabel>
-    <relationshipName>Exams</relationshipName>
+    <relationshipLabel>Next Exam</relationshipLabel>
+    <relationshipName>Next_Exam</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

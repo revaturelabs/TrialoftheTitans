@@ -3,6 +3,5 @@
     <description>Permissions for the Admin of the Trial of the Titan</description>
     <label>TrialOfTheTitansAdminPermissions</label>
     <permissionSets>Core_Admin_Permissions</permissionSets>
-    
     <status>Updated</status>
 </PermissionSetGroup>
