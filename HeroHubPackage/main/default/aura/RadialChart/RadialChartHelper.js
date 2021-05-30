@@ -50,12 +50,6 @@
         const axis = d3.axisBottom(scaleRadius)
                         .ticks(6)
                         .tickSize(0);
-                /*        
-                .ticks(10)
-                .tickSize(0)       // will be controlled in SVG and CSS
-                .tickPadding(0)
-                .tickSizeOuter(0); // removes edge lines from domain
-                */
         const comp = d3.select("#mydthree");
         const svg = comp.append("svg")
                         .attr("viewBox", `0 0 ${WIDTH + MARGIN.LEFT + MARGIN.RIGHT} ${HEIGHT + MARGIN.TOP + MARGIN.BOTTOM}`);
@@ -106,8 +100,6 @@
                     let angle = i * 360/(lineCount);
                     return `translate(0, ${scaleRadius(100) + 12}) rotate(${ angle < 180 ? 0 : 180})`
                 }); 
-
-      
     },
     GenerateGrid : function (g, scaleRadius, radialData) {
         // place in middle of viewport and rotate
