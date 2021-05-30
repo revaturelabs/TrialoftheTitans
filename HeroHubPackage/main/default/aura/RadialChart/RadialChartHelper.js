@@ -125,12 +125,13 @@
     // moves tick lines to center of domain
     d3.selectAll(".tick line").attr("y1", -3).attr("y2", 4);
 
-    const axisLabels =  g.selectAll("g.axis").data(inputData[0].averages).attr("class", "labels")
+    const axisLabels =  g.selectAll("g.axis").data(inputData[0].averages)
                         .append("text").transition().delay(3501).duration(500)
+                        .attr("id", "#label-show")
                         .style("fill", "black").style("text-anchor", "middle")
-                        .text((d,i) => trackLabels[i])
+                        .text((d,i) => trackLabels[i]).style("display", "inline")
                         .attr("transform", d => `translate(0, ${scaleRadius(100) + 19})`);        
-                    
+    
     /*----------------------------------------CODE ENDS --------------------------------------------------------------*/                                      
             
 
