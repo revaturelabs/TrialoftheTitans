@@ -20,9 +20,8 @@ public class ExportQuestionTest {
         ExportQuestionsController controller = new ExportQuestionsController (sc);
        
        // controller.currentQuestionId=question.id;
-        String testRes = controller.formatMultipleChoiceQuestion(question);
-        system.debug(testRes);
-        System.assertEquals('::MC Question::What is Apex?{=programming language~scripting language~foreign language}', testRes);
+       
+        System.assertEquals('::MC Question::What is Apex?{=programming language~scripting language~foreign language}', controller.formattedQuestion);
     }
 	@isTest
     static void formatMCMW(){
@@ -62,7 +61,7 @@ public class ExportQuestionTest {
         Test.setCurrentPage(pageRef);
         ExportQuestionsController controller = new ExportQuestionsController (sc);
 		system.debug('MCMA: '+ controller.formattedQuestion);
-        System.assertEquals('::MCMA Question::Apex is what type of language?{~%50%programming~%50%strongly-typed~%-100%programming~%-100%scripting~%-100%foreign~%-100%strongly-typed}', controller.formattedQuestion);
+        System.assertEquals('::MCMA Question::Apex is what type of language?{~%50%programming~%100%scripting~%100%foreign~%50%strongly-typed}', controller.formattedQuestion);
     }
 @isTest
     static void formatMCMWMA(){
@@ -72,7 +71,7 @@ public class ExportQuestionTest {
         question.Question_Text__c='Apex is a _____ language';
         question.Options__c ='programming||scripting||foreign||strongly-typed';
         question.Correct_Answer_s__c = 'programming||strongly-typed';
-        question.Answer_Explanation__c = 'explanation';
+        question.Answer_Explanation__c = '||||||explanation';
         question.Missing_Word__c = TRUE;
         insert question;        
 		
@@ -82,7 +81,7 @@ public class ExportQuestionTest {
         Test.setCurrentPage(pageRef);
         ExportQuestionsController controller = new ExportQuestionsController (sc);
 		system.debug('MCMWMA: '+ controller.formattedQuestion);
-        System.assertEquals('::MCMWMA Question::Apex is a {~%50%programming~%50%strongly-typed~%-100%programming~%-100%scripting~%-100%foreign~%-100%strongly-typed#explanation} language', controller.formattedQuestion);
+        System.assertEquals('::MCMWMA Question::Apex is a {~%50%programming~%100%scripting~%100%foreign~%50%strongly-typed#explanation} language', controller.formattedQuestion);
     }
     @isTest
     static void formatTF(){
@@ -200,7 +199,7 @@ public class ExportQuestionTest {
        	pageRef.getParameters().put('id', question.id);
         Test.setCurrentPage(pageRef);
         ExportQuestionsController controller = new ExportQuestionsController (sc);
-		system.debug(controller.formattedQuestion);
+		system.debug('ShortAnswer: '+controller.formattedQuestion);
         System.assertEquals('::SAMW Question::Apex is {=programming language}:', controller.formattedQuestion);
     }
    	@isTest
