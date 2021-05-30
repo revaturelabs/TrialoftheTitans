@@ -4,7 +4,6 @@
     <aura:attribute name="active" type="String" default="Overview"/>
     <aura:attribute name="contextInfo" type="UserContextInfo"/>
     <aura:attribute name="isD3Available" type="boolean" default="false"></aura:attribute>
-    <ltng:require scripts="{!$Resource.dthree}" afterScriptsLoaded="{!c.d3IsReady}" />
     <!-- user context being passed in includes: id, name, squad, user team, curriculum -->
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
