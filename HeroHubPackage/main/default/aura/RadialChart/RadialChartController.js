@@ -77,7 +77,7 @@
                     },
                     {
                         "currentResults": [],
-                        "highScore": .69,
+                        "highScore": .09,
                         "isPassed": false,
                         "name": "ello",
                         "nextExam": "asdfasdf",

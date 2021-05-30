@@ -11,3 +11,7 @@
 
 .THIS .blank text{ display:none;}
 .THIS tick:first-of-type{ display:none;}
+.THIS .radials {
+    fill-opacity: .1;
+    stroke-width: 2;
+}

@@ -16,7 +16,7 @@
     teamColors.set('Synergy', '#F4CF38');
     teamColors.set('Alchemy', '#84C247');
     teamColors.set('Vanquish', '#475BC2');
-    teamColors.set('Avg', 'black');
+    teamColors.set('Avg', 'purple');
     let userTeam = 'Synergy';
 
     for (let exams in titans) { 
@@ -80,12 +80,8 @@
     let avgFlag = false;
     let lineCount = inputData[0].averages.length - 1;
     /*-----------------------------------DRAW RADIAL CHART GRID---------------------------------------------------------*/
-    // A radial scale with 12 angular axes
-    const angularData = d3.range(0,lineCount,1);
+  
     const radialData  = d3.range(0,110,10); // 10 positions
-    const scaleGridRadius = d3.scaleLinear()
-        .domain(d3.extent(radialData))
-        .range([0, WIDTH/2 - MARGIN]);
     // place in middle of viewport and rotate
 
     // renders the radial grid
@@ -112,10 +108,9 @@
                         .attr("class", "radials")
                         .transition().delay(2000).duration(3000)
                         .attr("d", (d, i) => spiral(d.averages))
-                        .attr("fill-opacity", .1)
-                        .attr("stroke", (d,i) => i == 0 ? teamColors.get(userTeam) : teamColors.get('Avg'))
-                        .attr("stroke-width", (d, i) => i==0 ? 8 : 2)
-                        .attr("fill", (d,i) => teamColors.get(userTeam));
+                        .attr("stroke", (d,i) => i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  )
+                        .attr("fill", (d,i) =>  i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  )
+                        .attr("fill-rule", "nonzero");
 
     const axisLines = g.selectAll("g.axis")  // renders the angular axes
                         .data(inputData[0].averages).join("g")
@@ -129,7 +124,7 @@
 
     const axisLabels =  g.selectAll("g.axis").data(inputData[0].averages)
                         .append("text").transition().delay(2001).duration(1000)
-                        .style("fill", "black").style("text-anchor", "middle")
+                        .attr("fill", "black").attr("text-anchor", "middle")
                         .text((d,i) => trackLabels[i]).style("display", "inline")
                         .attr("transform", d => `translate(0, ${scaleRadius(100) + 19})`);        
     
