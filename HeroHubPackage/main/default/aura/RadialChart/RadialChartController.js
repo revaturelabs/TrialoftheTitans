@@ -1,3 +1,10 @@
+/*
+//Name: RadialChart Component Controller
+//Author: Andreology
+//Created: 05/19/2021
+//Updated: 05/30/2021
+//Description: This Component will hold basic chart data validation and call the draw chart helper method. 
+*/
 ({
     GenerateCircleBar : function(component, event, helper) {
 		// Only render chart if we have both d3.js and data loaded
@@ -11,7 +18,7 @@
 		console.log( "Scripts Loaded" )
 		console.log( component.get( "v.scriptsLoaded" ) )
 	},
-    drawRadialChart : function(component, event, helper) {
+    DrawRadialChart : function(component, event, helper) {
         let data = component.get('v.contextInfo');
        
         let titans = {
@@ -85,6 +92,6 @@
                     }]
         };
 
-        helper.drawChart(component, event, titans);
+        helper.DrawChart(component, event, titans);
     }
 })
