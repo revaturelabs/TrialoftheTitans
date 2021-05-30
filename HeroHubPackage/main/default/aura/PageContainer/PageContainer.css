@@ -10,15 +10,28 @@
     font-family: "Cinzel";
     src: url(/resource/Cinzel);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ce061ccdf1ed6ae28e9f4763ff45d8802a49ff36
 @font-face {
     font-family: "PressStart";
     src: url(/resource/PressStart);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ce061ccdf1ed6ae28e9f4763ff45d8802a49ff36
 @font-face {
     font-family: "Slaytanic";
     src: url(/resource/Slaytanic);
 }
+<<<<<<< HEAD
 :root.THIS  {
+=======
+
+.THIS :root {
+>>>>>>> ce061ccdf1ed6ae28e9f4763ff45d8802a49ff36
     background-color: #3f3f3f;
 }
 .THIS {

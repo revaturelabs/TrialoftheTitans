@@ -188,15 +188,6 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
-        <object>Question_Assignment__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
         <object>Question_Pool__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -214,10 +205,6 @@
     </tabSettings>
     <tabSettings>
         <tab>Hero_Answer__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Question_Assignment__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>

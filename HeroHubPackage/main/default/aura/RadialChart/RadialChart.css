@@ -1,0 +1,13 @@
+.THIS .circle-grid{
+    fill: transparent;
+    stroke: grey;
+    stroke-width: .5;
+    stroke-dasharray: 5 5;
+}
+
+.THIS .tick rect {
+    fill: white;
+}
+
+.THIS .blank text{ display:none;}
+.THIS tick:first-of-type{ display:none;}

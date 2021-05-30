@@ -1,14 +1,25 @@
-<aura:component access="global" >
-    <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
+<!--
+/////////////////////////////////////////////////////
+//
+//  Name: HeroJourneyHelper.cmp
+//  Author: David Serrano
+//  Created: 5/13/2021
+//  Updated: 5/25/2021
+//  Description: HeroJourney puts together the interface for the Titan tabs, the appropriate gamepath reflecting the
+//  current user's progress, an overview of their strengths, and exam information.
+//
+///////////////////////////////////////////////////
+-->
+
+<aura:component access="global">
     <aura:attribute name="tabs" type="List"/>
-    <aura:attribute name="active" type="String"/>
+    <aura:attribute name="active" type="String" default="Overview"/>
     <aura:attribute name="contextInfo" type="UserContextInfo"/>
-    <!-- user context being passed in includes: id, name, squad, user team, curriculum -->
-    
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="currentTitanExams" type="List"/>
+    <aura:handler name="change" value="{!v.contextInfo}" action="{!c.ContextChange}"/>
+    <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
     
     <div class="slds-grid">
-        
         <div class="slds-col slds-size_1-of-7">
             <aura:iteration items="{!v.tabs}" var="titan" indexVar="key">
                 <aura:if isTrue="{!v.active == titan}">
@@ -25,12 +36,12 @@
         <aura:if isTrue="{!v.active == 'Overview'}">
             <div style="background:#8CA7DF; border-radius: 0px 5px 5px 5px; height:700px;" class="slds-col slds-size_6-of-7">
                 Overview
-                <c:ProgressChart/>
+                <c:ProgressChart contextInfo="{!v.contextInfo}"/>
             </div>
 
             <aura:set attribute="else">
                 <div class="slds-col slds-size_4-of-7">
-                    <c:GamePath active="{!v.active}" contextInfo="{!v.contextInfo}"/>
+                    <c:GamePath active="{!v.active}" contextInfo="{!v.contextInfo}" currentExams="{!v.currentTitanExams}"/>
                 </div>
                 
                 <div class="slds-col slds-size_2-of-7">

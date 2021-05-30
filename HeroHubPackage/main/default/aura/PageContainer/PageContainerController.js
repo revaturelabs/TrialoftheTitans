@@ -2,11 +2,9 @@
     doInit: function( component, event, helper ) {
         const getContextInfo = component.get( "c.getUserInfo" );
         getContextInfo.setCallback( this, function( response ) {
-            console.log(response.getState());
             if( response.getState() === "SUCCESS" ){
                 const contextinfo = response.getReturnValue();
-                console.log(  contextinfo );
-                component.set( "v.contextInfo", contextinfo);
+                component.set( "v.contextInfo", contextinfo );
             }
             else {
                 //User isn't signed in return to login
