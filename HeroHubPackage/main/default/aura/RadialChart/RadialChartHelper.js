@@ -6,36 +6,6 @@
 //Description: This Component will have halper methods to generate the radial chart based on overall titan progress. 
 */
 ({  
-    GenerateRadialGraph : function (g, scaleRadius, spiral, axis, lineCount, inputData, teamColors, userTeam, trackLabels) {
-        const spiralAt0 = d3.areaRadial()
-        .angle((d,i) =>  0)
-        .outerRadius(d => 0);
-
-        const radialLines =  g.selectAll("path").data(inputData).join("path")
-                .attr("class", "radials").attr("d", (d, i) => spiralAt0(d.averages));
-        radialLines.transition().delay(600)
-            .duration(3000).ease(d3.easeElastic)
-            .attr("d", (d, i) => spiral(d.averages))
-            .attr("stroke", (d,i) => i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  )
-            .attr("fill", (d,i) =>  i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  );
-
-        const axisLines = g.selectAll("g.axis")  // renders the angular axes
-                .data(inputData[0].averages).join("g")
-                .attr("class", "axis")
-                .classed("blank",(d,i) => i != 0)
-                .call(axis)
-                .transition().delay(1500).duration(1000)
-                .attr("transform", (d,i) => `rotate(${(i * 360/(lineCount))})`);
-        // moves tick lines to center of domain
-        d3.selectAll(".tick line").attr("y1", -3).attr("y2", 4);
-
-        const axisLabels =  g.selectAll("g.axis").data(inputData[0].averages)
-                .append("text").transition().delay(301).duration(1000)
-                .attr("fill", "black").attr("text-anchor", "middle")
-                .text((d,i) => trackLabels[i]).style("display", "inline")
-                .attr("transform", d => `translate(0, ${scaleRadius(100) + 19})`);        
-
-    },
     DrawChart : function(component, event, titans) {
     /* ------------------------------ D3 CODE STARTS ------------------------------------------------------------*/
     const MARGIN = { TOP: 20, BOTTOM: 30, RIGHT: 10, LEFT: 90}
@@ -137,6 +107,36 @@
     */
 
      
+    },
+    GenerateRadialGraph : function (g, scaleRadius, spiral, axis, lineCount, inputData, teamColors, userTeam, trackLabels) {
+        const spiralAt0 = d3.areaRadial()
+        .angle((d,i) =>  0)
+        .outerRadius(d => 0);
+
+        const radialLines =  g.selectAll("path").data(inputData).join("path")
+                .attr("class", "radials").attr("d", (d, i) => spiralAt0(d.averages));
+        radialLines.transition().delay(600)
+            .duration(3000).ease(d3.easeElastic)
+            .attr("d", (d, i) => spiral(d.averages))
+            .attr("stroke", (d,i) => i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  )
+            .attr("fill", (d,i) =>  i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  );
+
+        const axisLines = g.selectAll("g.axis")  // renders the angular axes
+                .data(inputData[0].averages).join("g")
+                .attr("class", "axis")
+                .classed("blank",(d,i) => i != 0)
+                .call(axis)
+                .transition().delay(1500).duration(1000)
+                .attr("transform", (d,i) => `rotate(${(i * 360/(lineCount))})`);
+        // moves tick lines to center of domain
+        d3.selectAll(".tick line").attr("y1", -3).attr("y2", 4);
+
+        const axisLabels =  g.selectAll("g.axis").data(inputData[0].averages)
+                .append("text").transition().delay(301).duration(1000)
+                .attr("fill", "black").attr("text-anchor", "middle")
+                .text((d,i) => trackLabels[i]).style("display", "inline")
+                .attr("transform", d => `translate(0, ${scaleRadius(100) + 19})`);        
+
     },
     GenerateGrid : function (g, scaleRadius, radialData) {
         
