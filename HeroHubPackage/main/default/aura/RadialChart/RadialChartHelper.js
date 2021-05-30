@@ -1,7 +1,6 @@
 ({
-
+    ,
     drawChart : function(component, event, titans) {
-        
     /* ------------------------------ D3 CODE STARTS ------------------------------------------------------------*/
     const MARGIN = { TOP: 20, BOTTOM: 30, RIGHT: 10, LEFT: 90}
     const WIDTH = 490 - MARGIN.LEFT - MARGIN.RIGHT;
@@ -19,24 +18,8 @@
     teamColors.set('Avg', 'purple');
     let userTeam = 'Synergy';
 
-    for (let exams in titans) { 
-        let total = 0;
-        let currHighScore =0;
-        trackLabels.push(exams);
-
-        titans[exams].forEach( exam => {
-            let examScore = exam.highScore;
-            total += examScore;
-            if(examScore > currHighScore) {
-                    currHighScore = examScore;
-            }
-        });
-        currHighScores.push(currHighScore);
-        let titanAverageScore = total / titans[exams].length;
-        trackExamAverage.push(titanAverageScore);
-        currKey++;
-    }
-
+    this.findHighAvgScores(titans, trackLabels, trackExamAverage, currHighScores, currKey);
+  
     //adding last element to list to make a full radial circle
     let lastScore = trackExamAverage[0];
     trackExamAverage.push(lastScore);
@@ -129,5 +112,24 @@
                         .attr("transform", d => `translate(0, ${scaleRadius(100) + 19})`);        
     
     /*----------------------------------------CODE ENDS --------------------------------------------------------------*/   
+    },
+    findHighAvgScores : function (titans, trackLabels, trackExamAverage, currHighScores, currKey) {
+        for (let exams in titans) { 
+            let total = 0;
+            let currHighScore =0;
+            trackLabels.push(exams);
+    
+            titans[exams].forEach( exam => {
+                let examScore = exam.highScore;
+                total += examScore;
+                if(examScore > currHighScore) {
+                        currHighScore = examScore;
+                }
+            });
+            currHighScores.push(currHighScore);
+            let titanAverageScore = total / titans[exams].length;
+            trackExamAverage.push(titanAverageScore);
+            currKey++;
+        }
     }
 })
