@@ -104,13 +104,13 @@
     /*--------------------------------------END------------------------------------------------------------------------*/
 
     /*------------------------------------DRAW RADIAL CHART--------------------------------------------------------------*/
-    const radialLines =  g.selectAll("path").data(inputData).join("path")
-                        .attr("class", "radials")
-                        .transition().delay(2000).duration(3000)
-                        .attr("d", (d, i) => spiral(d.averages))
-                        .attr("stroke", (d,i) => i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  )
-                        .attr("fill", (d,i) =>  i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  )
-                        .attr("fill-rule", "nonzero");
+    const radialLines =  g.selectAll("path").data(inputData).enter()
+                        .attr("class", "radials");
+          radialLines.transition()
+                     .delay(2000).duration(3000).append("path")
+                     .attr("d", (d, i) => spiral(d.averages))
+                     .attr("stroke", (d,i) => i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  )
+                     .attr("fill", (d,i) =>  i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  );
 
     const axisLines = g.selectAll("g.axis")  // renders the angular axes
                         .data(inputData[0].averages).join("g")
