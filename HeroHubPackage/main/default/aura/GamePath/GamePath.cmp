@@ -287,8 +287,10 @@
 
 
             
-            <aura:if isTrue="{!v.finalExam != null}">
 
+
+
+            <aura:if isTrue="{!v.finalExam != null}">
 
                 <!-- CHECK IF PASSED-->
                 <aura:if isTrue="{!v.finalExam.isPassed}">
@@ -364,7 +366,7 @@
                                 <!-- CHECK IF ASSIGNED -->
 
                                 
-                                <aura:if isTrue="{!v.finalExam.assigned}">
+                                <aura:if isTrue="{!and(v.finalExam.isPassed == false, v.finalExam.highScore != null)}">
                                     <!-- Display appropriate second to last path dependant on number of exams -->
                                     <aura:if isTrue="{!v.exams.length % 2 == 0}">
                                         <!-- Down to Center From Right Path -->

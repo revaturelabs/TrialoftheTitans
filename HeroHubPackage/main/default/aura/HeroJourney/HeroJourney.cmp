@@ -11,7 +11,7 @@
 ///////////////////////////////////////////////////
 -->
 
-<aura:component access="global" controller="HeroJourneyAuraController">
+<aura:component access="global">
     <aura:attribute name="tabs" type="List"/>
     <aura:attribute name="active" type="String" default="Overview"/>
     <aura:attribute name="contextInfo" type="UserContextInfo"/>

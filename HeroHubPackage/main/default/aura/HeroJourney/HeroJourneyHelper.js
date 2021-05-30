@@ -44,11 +44,7 @@
 
     },
 
-    // InitializeTabs(): gets called when the User's ContextInfo is fully loaded in
-        // always initializes an 'Overview' tab and pulls the user's assigned Titan's from the ContextInfo to create the
-    // component: passes in the component from where the data is being sent to
-
-    InitializeTabs : function( component ){
+    InitializeTabs : function(component){
         let contextInfo = component.get("v.contextInfo");
         let tabs = [];
         tabs.push("Overview");
@@ -65,4 +61,5 @@
         component.set( "v.active", 'Overview');                
         component.set( "v.tabs", tabs);
     }
+    
 })
