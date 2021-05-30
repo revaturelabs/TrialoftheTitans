@@ -110,7 +110,7 @@
 
     const radialLines =  g.selectAll("path").data(inputData).join("path")
                         .attr("class", "radials").attr("d", (d, i) => spiralAt0(d.averages));
-          radialLines.transition()
+          radialLines.transition().delay(2000)
                      .duration(3000).ease(d3.easeElastic)
                      .attr("d", (d, i) => spiral(d.averages))
                      .attr("stroke", (d,i) => i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  )
