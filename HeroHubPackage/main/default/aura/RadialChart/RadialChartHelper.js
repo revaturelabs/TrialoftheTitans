@@ -104,10 +104,14 @@
     /*--------------------------------------END------------------------------------------------------------------------*/
 
     /*------------------------------------DRAW RADIAL CHART--------------------------------------------------------------*/
-    const radialLines =  g.selectAll("path").data(inputData).enter()
-                        .attr("class", "radials");
+    const spiralAt0 = d3.areaRadial()
+                    .angle((d,i) =>  0)
+                    .outerRadius(d => 0);
+
+    const radialLines =  g.selectAll("path").data(inputData).join("path")
+                        .attr("class", "radials").attr("d", (d, i) => spiralAt0(d.averages));
           radialLines.transition()
-                     .delay(2000).duration(3000).append("path")
+                     .duration(3000).ease(d3.easeElastic)
                      .attr("d", (d, i) => spiral(d.averages))
                      .attr("stroke", (d,i) => i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  )
                      .attr("fill", (d,i) =>  i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  );
