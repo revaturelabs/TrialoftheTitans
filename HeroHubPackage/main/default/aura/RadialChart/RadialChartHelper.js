@@ -87,14 +87,14 @@
             .attr("d", (d, i) => spiral(d.averages))
             .attr("stroke", (d,i) => i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  )
             .attr("fill", (d,i) =>  i == 0 ? teamColors.get('Avg') : teamColors.get(userTeam)  );
-
+        
         const axisLines = g.selectAll("g.axis")  // renders the angular axes
                 .data(inputData[0].averages).join("g")
                 .attr("class", "axis")
                 .classed("blank",(d,i) => i != 0)
                 .call(axis)
                 .transition().delay(1500).duration(1000)
-                .attr("transform", (d,i) => `rotate(${(i * 360/(lineCount))})`);
+                .attr("transform", (d,i) => `rotate(${i * 360/(lineCount)})`);
         // moves tick lines to center of domain
         d3.selectAll(".tick line").attr("y1", -3).attr("y2", 4);
 
@@ -102,10 +102,10 @@
                 .append("text").transition().delay(301).duration(1000).attr("class", "titan-labels")
                 .attr("fill", "black").attr("text-anchor", "middle")
                 .text((d,i) => trackLabels[i]).style("display", "inline")
-                .attr("transform", d =>{
-                    console.log("checking value ");
-                    console.log(scaleRadius(100));
-                    return `translate(0, ${scaleRadius(100) + 19}) rotate(0)`
+                .attr("transform", (d, i) =>{
+                    let angle = i * 360/(lineCount);
+                    console.log(angle);
+                    return `translate(0, ${scaleRadius(100) + 17}) rotate(${ angle < 180 ? 0 : 180})`
                 }); 
 
       
