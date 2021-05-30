@@ -64,7 +64,7 @@
     height: 4em;
     border-radius: 50%;
     border: .8em solid #302f30;
-    border-top: .8em solid #84b059;
-    border-bottom: .8em solid #84b059;
+    border-top: .8em solid var(--user-team-primary);
+    border-bottom: .8em solid var(--user-team-primary);
     animation: spin 1.5s linear infinite;
 }

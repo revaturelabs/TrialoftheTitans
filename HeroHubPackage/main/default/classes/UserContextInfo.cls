@@ -115,7 +115,8 @@ public class UserContextInfo {
                                     (SELECT Pass__c, 
                                             Total_Answers__c, 
                                             Total_Correct__C,
-                                     		Status__c
+                                     		Status__c,
+                                            CreatedDate
                                             FROM Exam_Results__r 
                                             WHERE Account__c = :accId 
                                             )

@@ -1,6 +1,39 @@
+/*@font-face {
+    font-family: "AlfaSlab";
+    src: url(/resource/AlfaSlab);
+}
+
+@font-face {
+    font-family: "BeyondWonderland";
+    src: url(/resource/BeyondWonderland);
+}
+@font-face {
+    font-family: "Cinzel";
+    src: url(/resource/Cinzel);
+}
+
+*/
+@font-face {
+    font-family: "PressStart";
+    src: url(/resource/PressStart);
+}
+/*
+@font-face {
+    font-family: "Slaytanic";
+    src: url(/resource/Slaytanic);
+}
+
+@font-face {
+    font-family: "AlfaSlab";
+    src: url(/resource/AlfaSlab);
+}*/
+:root.THIS  {
+    background-color: #3f3f3f;
+}
 .THIS {
-    --background-color: #d4d5d5;
     --text-color: #302f30;
+    --light-text: #D3d4d4;
+    --background-color: #3f3f3f;
     --vanquish-primary: #7aa7e9;
     --vanquish-secondary: #5f70b0;
     --amplifire-primary: #ef6363;
@@ -10,10 +43,24 @@
     --synergy-primary: #ffdd00;
     --synergy-secondary: #fbb034;
     --padding: .5em;
+
+    background-color: var(--background-color);
+
 }
 .THIS.header {
     width: 100%;
 }
+
+
 #main.THIS {
-	margin: 0% 5%;        
+
+	padding: 2.5% 5% 0% 2.5%;
+    background-color: var(--background-color);
+
+}
+
+@keyframes typeOut {
+    to{
+        width: 14ch;
+    }
 }
