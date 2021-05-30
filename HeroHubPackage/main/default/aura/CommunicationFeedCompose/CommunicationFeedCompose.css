@@ -12,7 +12,7 @@
     height: 100%;
     width: 100%;
     text-align: left;
-    background: #d4d5d5;
+    background: rgb(0, 0, 0, 0);
     color: #302f30;
     border: 0;
     outline: none;
@@ -22,12 +22,12 @@
 }
 
 .THIS #compose-text input:active {
-    border: 1px solid #84b059;
-    outline-color: #84b059;
+    border: 1px solid var(--user-team-primary);
+    outline-color: var(--user-team-primary);
 }
 
 .THIS #compose-submit {
-    background: #84b059;
+    background: var(--user-team-primary);
     min-height: 100%;
     padding: auto;
     color: #302f30;
@@ -37,7 +37,7 @@
 }
 
 .THIS #compose-submit:hover {
-    background: #539951;
+    background: var(--user-team-secondary);
     color: #302f30;
     cursor: pointer;
 }

@@ -20,6 +20,11 @@
                 <default>false</default>
                 <label>Completed</label>
             </value>
+            <value>
+                <fullName>Unassigned</fullName>
+                <default>false</default>
+                <label>Unassigned</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
