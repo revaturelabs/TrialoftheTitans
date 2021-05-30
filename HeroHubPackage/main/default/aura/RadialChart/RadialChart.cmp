@@ -2,7 +2,7 @@
     <aura:attribute name="contextInfo" type="UserContextInfo" default=""></aura:attribute>
     
     <aura:attribute name="scriptsLoaded" type="Boolean" default="False"/>
-
+    <aura:handler name="init" value="{!this}" action="{!c.GenerateRadialChart}"/>
     <aura:handler name="change" value="{!v.contextInfo}" action="{!c.GenerateRadialChart}"/>
     <aura:handler name="change" value="{!v.scriptsLoaded}" action="{!c.GenerateRadialChart}"/>
 
