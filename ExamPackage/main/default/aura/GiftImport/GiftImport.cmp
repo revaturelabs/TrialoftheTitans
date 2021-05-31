@@ -4,14 +4,14 @@
 // Name: Trial of the Titans - GIFT Parser
 // Author: Danny Tran, David J. Sellinger
 // Created: 2021-05-24
-// Updated: 2021-05-28
+// Updated: 2021-05-31
 // Description: Component to take in gift format text
 //              file
 //
 ////////////////////////////////////////////////////
 -->
 
-<aura:component controller="AuraGIFTParser" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+<aura:component controller="AuraGIFTImportController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
                 access="global">
     <!-- INIT ATTRIBUTES -->
     <aura:attribute name="initMessage" type="String" default="" />
@@ -81,7 +81,7 @@
         <!-- upload component -->
         <aura:if isTrue="{!v.canUpload}">
             <div class="title">
-                <table style="margin-bottom:28px">
+                <table id="title__table">
                     <tr>
                         <td width="1%"><lightning:icon iconName="doctype:txt" alternativeText="Event" title="Event" /></td>
                         <td><h1>File Submission</h1></td>

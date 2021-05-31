@@ -5,7 +5,7 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>AuraGIFTParser</apexClass>
+        <apexClass>AuraGIFTImportController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
