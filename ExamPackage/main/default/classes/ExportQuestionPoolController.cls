@@ -108,8 +108,8 @@ public class ExportQuestionPoolController {
     //afterSubstring: substring after the delimeter
     
     public String formatMultipleChoiceQuestionMW(Exam_Question__c question, String beforeSubstring, String afterSubstring){
-        String incorrectAnswerString = getIncorrectAnswers(question);
-        formattedQuestion = '::' + question.Name + '::' + beforeSubstring + '{='+ question.Correct_Answer_s__c+ incorrectAnswerString +getCorrectAnswer(question)+ '}' + afterSubstring;
+
+        formattedQuestion = '::' + question.Name + '::' + beforeSubstring + '{'+ getAnswerFormat(question)+'}'+afterSubstring;
         allFormattedQuestions.add(formattedQuestion);
         return formattedQuestion;
     }
@@ -120,10 +120,9 @@ public class ExportQuestionPoolController {
     //question: the exam question being formatted
     
     public void formatMultipleChoiceQuestion(Exam_Question__c question){
-        String incorrectAnswerString = getIncorrectAnswers(question);
+        
         // GIFT format for MC: ::QuestionName:: QuestionText {= correctAnswer #comment ~incorrectanswers}
-        formattedQuestion='::' + question.Name + '::' + question.Question_Text__c +'{='+ question.Correct_Answer_s__c
-            + incorrectAnswerString +getCorrectAnswer(question)+ '}' ;
+        formattedQuestion='::' + question.Name + '::' + question.Question_Text__c +'{'+getAnswerFormat(question)+ '}' ;
         allFormattedQuestions.add(formattedQuestion);
         system.debug('Formatted Question: '+ formattedQuestion);
         system.debug('all formatted questions: ' + allFormattedQuestions);
@@ -134,9 +133,7 @@ public class ExportQuestionPoolController {
     //params-
     //question: the exam question being formatted
     public void formatMultipleChoiceQuestionMultipleAnswers(Exam_Question__c question){
-        String incorrectAnswerString = getIncorrectAnswersMultiSelect(question);
-        String correctAnswerString = getCorrectAnswersMultiSelect(question);
-        formattedQuestion = '::' + question.Name + '::' + question.Question_Text__c + '{' + correctAnswerString + incorrectAnswerString +getCorrectAnswer(question)+ '}';
+        formattedQuestion = '::' + question.Name + '::' + question.Question_Text__c + '{'+getAnswersMultiSelect(question)+ '}';
         allFormattedQuestions.add(formattedQuestion);
         
     }
@@ -145,51 +142,140 @@ public class ExportQuestionPoolController {
     //params-
     //question: the exam question being formatted
     public void formatMultipleChoiceQuestionMultipleAnswersMW(Exam_Question__c question, String beforeSubstring, String afterSubstring){
-        String incorrectAnswerString = getIncorrectAnswersMultiSelect(question);
-        String correctAnswerString = getCorrectAnswersMultiSelect(question);
-        formattedQuestion = '::' + question.Name + '::' + beforeSubstring + '{' + correctAnswerString + incorrectAnswerString +getCorrectAnswer(question)+ '}' + afterSubstring;
+        formattedQuestion = '::' + question.Name + '::' + beforeSubstring + '{'+ getAnswersMultiSelect(question)+'}' + afterSubstring;
         allFormattedQuestions.add(formattedQuestion);
     }
     /*--------------------------- Get Answers Functions -------------------------------------------*/
-     /**public String getCorrectAnswers (Exam_Question__c question){
-        List <String> correctAnswers = new List <String>();
-        correctAnswers = question.Correct_Answer_s__c.split('\\|\\|'); 
-       String correctAnswerString = string.join(correctAnswers, '');
-        return correctAnswerString;
-    }**/
     
+    public String getCorrectAnswers(Exam_Question__c question){
+   		List <String> correctAnswers = new List<String>();
+        List <String> answerExplanations = new List <String>();
+        List <String> allAnswers = new List <String>();
+        if(correctAnswers.contains('|')==false){
+            if(question.Answer_Explanation__c != null){
+                return '='+question.Correct_Answer_s__c+'#'+question.Answer_Explanation__c;
+            }
+            else{
+                return '='+question.Correct_Answer_s__c;
+            }
+        }
+        correctAnswers = question.Correct_Answer_s__c.split('\\|\\|');
+        if(question.Answer_Explanation__c !=null){
+        answerExplanations = question.Answer_Explanation__c.split('\\|\\|');
+            if(question.Answer_Explanation__c.subString(question.Answer_Explanation__c.length()-1) == '|'){
+                answerExplanations.add('');
+            }
+            system.debug(answerExplanations);
+        }
+
+        for (Integer i =0; i<correctAnswers.size();i++){
+            
+                if ( question.Answer_Explanation__c ==null) {
+                    allAnswers.add('='+ correctAnswers[i]);
+                } 
+                else if(String.isBlank(answerExplanations[i])){
+                    allAnswers.add('='+ correctAnswers[i]);
+                }
+                    
+                    else {
+                    allAnswers.add('='+ correctAnswers[i] + '#'+answerExplanations[i]);
+                }
+            
+        }
+       String allAnswersString = string.join(allAnswers, '');
+        return allAnswersString;
+    }
     // Gets the incorrect answers and formats them to match GIFT format for incorrect answers
     // params-
     // question: current Exam Question 
-    public String getIncorrectAnswers (Exam_Question__c question){
+    public String getAnswerFormat (Exam_Question__c question){
         List <String> options = new List <String>();
+        List <String> answerExplanations = new List <String>();
+        List <String> allAnswers = new List <String>();
         options = question.Options__c.split('\\|\\|');
-        system.debug('options: ' + options);
-        List<String> incorrectAnswers = new List<String>();
-        for(String option : options){ 
-            if(option!= question.Correct_Answer_s__c){
-                incorrectAnswers.add('~'+option);
-            }}  
-       String incorrectAnswerString = string.join(incorrectAnswers, '');
-        return incorrectAnswerString;
+        if(question.Answer_Explanation__c !=null){
+        answerExplanations = question.Answer_Explanation__c.split('\\|\\|');
+            if(question.Answer_Explanation__c.subString(question.Answer_Explanation__c.length()-1) == '|'){
+                answerExplanations.add('');
+            }
+            system.debug(answerExplanations);
+        }
+
+        for (Integer i =0; i<options.size();i++){
+            if(question.Correct_Answer_s__c.contains(options[i])){
+                if ( question.Answer_Explanation__c ==null) {
+                    allAnswers.add('='+ options[i]);
+                } 
+                else if(String.isBlank(answerExplanations[i])){
+                    allAnswers.add('='+ options[i]);
+                }
+                    
+                    else {
+                    allAnswers.add('='+ options[i] + '#'+answerExplanations[i]);
+                }
+            } else {
+                if ( question.Answer_Explanation__c ==null) {
+                    allAnswers.add('~'+ options[i]);
+                } 
+                else if(String.isBlank(answerExplanations[i])){
+                    allAnswers.add('~'+ options[i]);
+                } else {
+                    allAnswers.add('~'+ options[i] + '#'+answerExplanations[i]);
+                }
+            }
+        }
+       String allAnswersString = string.join(allAnswers, '');
+        return allAnswersString;
     }
     
     //Gets the correct Answers from a Multi Select Question and inputs the percentage each question is worth and formats incorrect answers 
     //params-
     //question: current Exam Question 
     //
-      public String getCorrectAnswersMultiSelect (Exam_Question__c question){
+      public String getAnswersMultiSelect (Exam_Question__c question){
+        List <String> options = new List <String>();
         List <String> correctAnswers = new List <String>();
-        List<String> res = new List <String>();
-        correctAnswers = question.Correct_Answer_s__c.split('\\|\\|'); 
-        Integer numCorrectAnswers = correctAnswers.size();
+        List <String> answerExplanations = new List <String>();
+        List <String> allAnswers = new List <String>();
+        options = question.Options__c.split('\\|\\|');
+         if(question.Answer_Explanation__c !=null){
+        answerExplanations = question.Answer_Explanation__c.split('\\|\\|');
+             if(question.Answer_Explanation__c.subString(question.Answer_Explanation__c.length()-1) == '|'){
+                answerExplanations.add('');
+            }
+            system.debug(answerExplanations);
+       
+        }
+        correctAnswers = question.Correct_Answer_s__c.split('\\|\\|');
+          Integer numCorrectAnswers = correctAnswers.size();
           Integer percentQuestion = 100/numCorrectAnswers;
           String correctAnswerPercent = String.valueOf(percentQuestion);
-          for(String correctAnswer: correctAnswers){
-              res.add('~%' + correctAnswerPercent + '%' + correctAnswer);
-          }
-       	String correctAnswerString = string.join(res, '');
-        return correctAnswerString;
+        for (Integer i =0; i<options.size();i++){
+            if(question.Correct_Answer_s__c.contains(options[i])){
+                if ( question.Answer_Explanation__c ==null) {
+                    allAnswers.add('~%' + correctAnswerPercent + '%'+ options[i]);
+                } 
+                else if(String.isBlank(answerExplanations[i])){
+                    allAnswers.add('~%' + correctAnswerPercent + '%'+ options[i]);
+                }
+              else {
+                    allAnswers.add('~%' + correctAnswerPercent + '%'+ options[i] + '#'+answerExplanations[i]);
+                }
+            } else {
+                   if ( question.Answer_Explanation__c ==null) {
+                    allAnswers.add('~%100%'+ options[i]);
+                } 
+                else if(String.isBlank(answerExplanations[i])){
+                    allAnswers.add('~%100%'+ options[i]);
+                }
+                 else {
+                    allAnswers.add('~%-100%'+ options[i] + '#'+answerExplanations[i]);
+                }
+            }
+        }
+       String allAnswersString = string.join(allAnswers, '');
+        return allAnswersString;   
+         
     }
     
     //Gets incorrect answers from multi select multiple choice questions and formats them
@@ -222,7 +308,7 @@ public class ExportQuestionPoolController {
     //params-
     //question: current Exam Question
     public void formatTrueFalseQuestionMW (Exam_Question__c question, String beforeSubstring, String afterSubstring){
-        formattedQuestion = '::' + question.Name + '::' + beforeSubstring + '{'+ question.Correct_Answer_s__c +getCorrectAnswer(question)+ '}' + afterSubstring;
+        formattedQuestion = '::' + question.Name + '::' + beforeSubstring + '{'+ question.Correct_Answer_s__c+getCorrectAnswer(question)+ '}' + afterSubstring;
         allFormattedQuestions.add(formattedQuestion);
     }
     /*------------------------------ Matching Questions--------------------------------------------------*/
@@ -270,14 +356,8 @@ public class ExportQuestionPoolController {
     //params-
     //question: current Exam Question
     public void formatShortAnswerQuestionMW(Exam_Question__c question, String beforeSubstring, String afterSubstring){
-        List <String> correctAnswers = new List <String> ();
-        List <String> formattedCorrectAnswers = new List <String>();
-		correctAnswers = question.Correct_Answer_s__c.split('\\|\\|');
-        for (String correctAnswer : correctAnswers){
-           formattedCorrectAnswers.add('='+correctAnswer);
-        }
-        String correctAnswersString = string.join(formattedCorrectAnswers, '');
-        formattedQuestion = '::' + question.Name + '::' + beforeSubstring + '{'+ correctAnswersString +getCorrectAnswer(question)+ '}' + afterSubstring;
+      
+        formattedQuestion = '::' + question.Name + '::' + beforeSubstring + '{'+ getCorrectAnswers(question)+ '}' + afterSubstring;
         allFormattedQuestions.add(formattedQuestion);
     }
      /*------------------------------ Numerical Question --------------------------------------------------*/
@@ -308,7 +388,7 @@ public class ExportQuestionPoolController {
            formattedCorrectAnswers.add('='+correctAnswer);
         }
         String correctAnswersString = string.join(formattedCorrectAnswers, '');
-        formattedQuestion = '::' + question.Name + '::'+question.Question_Text__c + '{'+ correctAnswersString+ getCorrectAnswer(question) +'}';
+        formattedQuestion = '::' + question.Name + '::'+question.Question_Text__c + '{'+ getCorrectAnswers(question) +'}';
         allFormattedQuestions.add(formattedQuestion);
     }
   /*------------------------------ Essay Question --------------------------------------------------*/
@@ -328,8 +408,9 @@ public class ExportQuestionPoolController {
     }
   /*------------------------------ Join List to String--------------------------------------------------*/    
     //Casts the list of questions to a string 
-    public void formatQuestions(List <String> questions){ 
+    public String formatQuestions(List <String> questions){ 
     	allFormattedQuestionsString = string.join(questions, '\r\n\r\n');
+        return allFormattedQuestionsString;
     }
     //gets the Answer Explanation and pre-pends a # to match GIFT format
     public String getCorrectAnswer(Exam_Question__c question){
@@ -338,6 +419,15 @@ public class ExportQuestionPoolController {
             res= '#'+question.Answer_Explanation__c;
         }
         return res;
+    }
+    
+     public void createFile(){
+        ContentVersion conVer = new ContentVersion();
+        conVer.ContentLocation = 'S'; // S specify this document is in SF, use E for external files
+        conVer.PathOnClient = 'GIFT-'+System.now()+'.txt'; // The files name, extension is very important here which will help the file in preview.
+        conVer.Title = 'GIFT-' +System.now(); // Display name of the files
+        conVer.VersionData = Blob.valueOf(allFormattedQuestionsString); // converting your binary string to Blog
+        insert conVer;
     }
     
 }

@@ -1,1 +1,7 @@
-<apex:page standardController="Question_Pool__c" extensions="ExportQuestionPoolController" contentType="text/plain/#emp.txt" sidebar="false"  cache="false" >{!allFormattedQuestionsString}</apex:page>
+<apex:page standardController="Question_Pool__c" extensions="ExportQuestionPoolController" action="{!createFile}" sidebar="false"  cache="false" >
+     <h1>
+		Your Question Pool has been sucessfully exported in GIFT format!
+       	Check the files list in your user record under the 'People' tab to view
+    </h1> 
+
+</apex:page>
