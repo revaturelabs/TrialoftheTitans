@@ -1,13 +1,27 @@
+////////////////////////////////////////////////////
+//
+// Name: Trial of the Titans - GIFT Import
+//					 			Apex Controller Test
+// Author: David J. Sellinger
+// Created: 2021-05-28
+// Updated: 2021-05-31
+// Description: Test for the Server-side controller for 
+//              for parsing questions listed in GIFT 
+//              format and inserting them into the 
+//              database.
+//
+////////////////////////////////////////////////////
+
 @IsTest
-public class AuraGIFTParserTest {
+public class AuraGIFTImportControllerTest {
 
     @IsTest
     static void TestNegative() {
-        AuraGIFTParser.HandleInit();
+        AuraGIFTImportController.HandleInit();
         List<ExamQuestion> questionList = new List<ExamQuestion>();
         questionList.add(new ExamQuestion('','Empty Title Test',''));
         questionList.add(new ExamQuestion('','Empty Title Test',''));
-        AuraGIFTParser.ImportFile(questionList, '\n');
+        AuraGIFTImportController.ImportFile(questionList, '\n');
     }
 
     @IsTest
@@ -16,7 +30,7 @@ public class AuraGIFTParserTest {
         Titan__c newTitan = new Titan__c(Name='Apex', Technology__c='Salesforce');
         insert newTitan;
         Id titan = newTitan.Id;
-        Map<String,List<Map<String,String>>> initialValueMap = AuraGIFTParser.HandleInit();
+        Map<String,List<Map<String,String>>> initialValueMap = AuraGIFTImportController.HandleInit();
         System.debug(initialValueMap);
 
         // Test data
@@ -53,13 +67,13 @@ public class AuraGIFTParserTest {
         questionList.add(new ExamQuestion('TF7','TF _____ Test','True'));
         questionList.add(new ExamQuestion('TF8','TF _____ Test','False'));
 
-        List<Integer> success1 = AuraGIFTParser.ImportFile(questionList, titan);
+        List<Integer> success1 = AuraGIFTImportController.ImportFile(questionList, titan);
         List<Integer> eSuccess1 = new List<Integer>{31,0};
         System.assertEquals(eSuccess1, success1);
         System.debug(eSuccess1);
         System.debug(success1);
         System.debug(eSuccess1 == success1);
-        List<Integer> success2 = AuraGIFTParser.ImportFile(questionList, titan);
+        List<Integer> success2 = AuraGIFTImportController.ImportFile(questionList, titan);
         List<Integer> eSuccess2 = new List<Integer>{0,31};
         System.assertEquals(eSuccess2, success2);
         System.debug(eSuccess2);
