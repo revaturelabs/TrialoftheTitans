@@ -1,7 +1,7 @@
 ({
     // get questions pools from server
     // currently getting all of them
-    // need some search or filter functionality.
+    // unless searchbar is triggered
     getQuestionPools : function(component) {
         let action = component.get("c.getQuestionPool");
         let searchKeyword = component.get("v.searchKeyword");
@@ -49,7 +49,7 @@
         });
        	$A.enqueueAction(action);
     },
-    // just send the information to the server for insert
+    // Send the information to the server for insert
     // poolAndNumber is a map
     createExamAssignment : function(component, poolAndNumber, examId){
         let action = component.get("c.createExamAssignment");
