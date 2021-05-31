@@ -1,1 +1,7 @@
-<apex:page standardController="Exam_Question__c" extensions="ExportQuestionsController" contentType="text/plain/#emp.txt" sidebar="false"  cache="false" >{!allFormattedQuestionsString}</apex:page>
+<apex:page standardController="Exam_Question__c" extensions="ExportQuestionsController" action="{!createFile}" sidebar="false"  cache="false" >
+   <h1>
+		Your question has been sucessfully exported in GIFT format!
+       	Check the files list in your user record under the 'People' tab to view
+    </h1> 
+
+</apex:page>

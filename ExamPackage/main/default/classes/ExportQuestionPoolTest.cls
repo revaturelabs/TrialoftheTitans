@@ -50,7 +50,7 @@ public class ExportQuestionPoolTest {
         MCMWMAquestion.Question_Text__c='Apex is a _____ language';
         MCMWMAquestion.Options__c ='programming||scripting||foreign||strongly-typed';
         MCMWMAquestion.Correct_Answer_s__c = 'programming||strongly-typed';
-        MCMWMAquestion.Answer_Explanation__c = 'explanation';
+        MCMWMAquestion.Answer_Explanation__c = '||||||explanation';
         MCMWMAquestion.Missing_Word__c = TRUE;
         insert MCMWMAquestion;  
         
