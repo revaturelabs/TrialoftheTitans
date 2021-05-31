@@ -41,10 +41,6 @@
         console.log(examId);
         component.set("v.examId", examId);
         component.set("v.examCreated", true);
-        component.find('notifLib').showToast({
-            "title": "Success!",
-            "message": "The Exam has been inserted successfully."
-        });
     },
     // send all modified question pool to be add to question assignment.
     handleCreation : function(component, event, helper){

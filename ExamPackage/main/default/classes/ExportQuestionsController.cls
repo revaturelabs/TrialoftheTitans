@@ -327,9 +327,10 @@ public class ExportQuestionsController {
     }
     /*
     public PageReference returnToRecordPage(){
-        PageReference exportedPage = new PageReference(pageURL);
+        PageReference exportedPage = new PageReference('/r/User/' + UserInfo.getUserId());
         //PageReference exportedPage = Page.ExportedTextFile;
         exportedPage.setRedirect(true);
         return exportedPage;
-    }*/
+    }
+*/
 }

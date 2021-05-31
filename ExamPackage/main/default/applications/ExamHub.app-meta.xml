@@ -18,6 +18,14 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Question_Pool__c</pageOrSobjectType>
     </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>Exam_Home</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
@@ -28,6 +36,7 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>ExamHub</label>
     <navType>Standard</navType>
+    <tabs>standard-home</tabs>
     <tabs>Exam_Question__c</tabs>
     <tabs>Exam_Result__c</tabs>
     <tabs>Exam__c</tabs>
@@ -35,6 +44,7 @@
     <tabs>Question_Assignment__c</tabs>
     <tabs>Question_Pool__c</tabs>
     <tabs>Import_Questions</tabs>
+    <tabs>Exam_Pool_Assignment__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>ExamHub_UtilityBar</utilityBar>
 </CustomApplication>
