@@ -1,7 +1,8 @@
 <!--
- Component for exam creation.
- Only for creation as of the current version.
- can be updated to allow for editing by giving lightning recordForm an id.
+ Author: Danny Tran
+ Usage: Component for exam creation.
+ Notes: 
+ -Only for creation as of the current version; need to create exam to add pool to exam.
 -->
 <aura:component controller="ExamCreationAuraController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
     
