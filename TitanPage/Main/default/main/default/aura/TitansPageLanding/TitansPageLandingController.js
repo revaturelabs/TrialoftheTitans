@@ -1,6 +1,7 @@
 ({      
     doInit : function(component, event, helper) {
         helper.hSetTitans(component, event);
+        helper.hSetName(component, event);
     },
     
     cNavigate : function(component, event, helper) {
@@ -14,7 +15,7 @@
     
       cSetExams : function(component, event, helper) {
         helper.hSetExams(component, event);
-    },
+    }
 
 
     

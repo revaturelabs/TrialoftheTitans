@@ -8,12 +8,13 @@
     <aura:handler name="LandingSkillsEvent" event="c:LandingSkillsEvent" action="{!c.cSetTitanId}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name="TitanList" type="Titan__c[]"/>
+    <aura:attribute name="AccountInfo" type="String"/>
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     
     
     <!-- Header div -->
     <div class="slds-text-heading_large slds-align_absolute-center">
-        <h5> Welcome {!v.UserInfo} </h5>
+        <h5> Welcome {!v.AccountInfo} </h5>
     </div>
     
     <!-- Primary div  -->
@@ -57,59 +58,5 @@
                 </div>
             </lightning:card>
         </div>     
-    </aura:iteration>     
-    
-<!-- 
-<div class="toggle-hide slds-col slds-gutters" aura:id="titanDiv1">
-        <lightning:card>
-            <div class="slds-grid">
-                <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-                    <c:ExamsLanding activeTitan="{!v.TitanList[0]}"/>
-                </div>
-                <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-                    <c:LandingSkills activeTitan="{!v.TitanList[0]}"/>
-                </div>
-            </div>
-        </lightning:card>
-</div>
-
-<div class="toggle-hide slds-col slds-gutters" aura:id="titanDiv2">
-<lightning:card>
-    <div class="slds-grid">
-        <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-            <c:ExamsLanding activeTitan="{!v.TitanList[1]}"/>
-        </div>
-    <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-            <c:LandingSkills activeTitan="{!v.TitanList[1]}"/>
-    </div>
-</div>
-</lightning:card>
-</div>   
-    
-<div class="toggle-hide slds-col slds-gutters" aura:id="titanDiv3">
-<lightning:card>
-    <div class="slds-grid">
-        <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-            <c:ExamsLanding activeTitan="{!v.TitanList[2]}"/>
-        </div>
-    <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-            <c:LandingSkills activeTitan="{!v.TitanList[2]}"/>
-    </div>
-</div>
-</lightning:card> 
-</div>
-    
-<div class="toggle-hide slds-col slds-gutters" aura:id="titanDiv4">
-<lightning:card>
-    <div class="slds-grid">
-        <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-            <c:ExamsLanding activeTitan="{!v.TitanList[3]}"/>
-        </div>
-    <div class="slds-col_bump-left slds-gutters slds-size_4-of-12">
-            <c:LandingSkills activeTitan="{!v.TitanList[3]}"/>
-    </div>
-</div>
-</lightning:card>
-</div>
- -->
+    </aura:iteration>
 </aura:component>
