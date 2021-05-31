@@ -11,7 +11,7 @@
         action.setCallback(this, function(response){
             let state = response.getState();
             if(state = 'SUCCESS'){
-                
+                console.log('Success!');
                 let x = response.getReturnValue();
                 component.set("v.questionPoolMap", x);
                 
@@ -24,10 +24,7 @@
                 }
                 
             }else{
-                component.find('notifLib').showToast({
-                    "title": "Error.",
-                    "message": "Was not able to retrieve question pools."
-                });
+                console.log('Error!');
             }
             
         });
@@ -46,10 +43,7 @@
                 let x = response.getReturnValue();
                 component.set("v.questionShow", x);
             }else{
-                component.find('notifLib').showToast({
-                    "title": "Error.",
-                    "message": "Was not able to retrieve questions."
-                });
+                console.log('Error!');
             }
             
         });
@@ -66,15 +60,9 @@
         action.setCallback(this, function(response){
             let state = response.getState();
             if(state = 'SUCCESS'){
-                component.find('notifLib').showToast({
-                    "title": "Success!",
-                    "message": "The record has been updated successfully."
-                });
+                console.log('Success!');
             }else{
-                component.find('notifLib').showToast({
-                    "title": "Error.",
-                    "message": "The record was not updated."
-                });
+                console.log('Error!');
             }
         });
        	$A.enqueueAction(action);
