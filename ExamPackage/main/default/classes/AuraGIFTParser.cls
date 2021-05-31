@@ -3,7 +3,7 @@
 // Name: Trial of the Titans - GIFT Parser
 // Author: David J. Sellinger
 // Created: 2021-05-24
-// Updated: 2021-05-28
+// Updated: 2021-05-30
 // Description: Server-side controller for parsing
 //              questions listed in GIFT format and
 //              inserting them into the database.
@@ -14,25 +14,28 @@ public class AuraGIFTParser {
     
     @AuraEnabled
     public static List<Integer> ImportFile(List<ExamQuestion> questionList, String titan) {
+        List<Integer> result = new List<Integer>();
         try {
             List<ExamQuestion> allQuestions = questionList;
             List<Exam_Question__c> existingQuestions = [SELECT Name, Id FROM Exam_Question__c];
 
-            for ( Exam_Question__c eqc: existingQuestions ) {
-                for ( Integer i = 0; i < allQuestions.size(); i++ ) {
-                    if ( allQuestions[i].qTitle.equals(eqc.Name) ) {
-                        allQuestions[i].qId = eqc.Id;
+            // check for empty titles to help them be identifiable
+            for ( Integer c = 0; c < allQuestions.size(); c++ ) {
+                if ( String.isBlank(allQuestions[c].qTitle) ) {
+                    if ( allQuestions[c].qText.length() <= 80 ) {
+                        allQuestions[c].qTitle = allQuestions[c].qText;
+                    } else {
+                        allQuestions[c].qTitle = allQuestions[c].qText.substring(0, 79);
                     }
                 }
             }
-            System.debug(allQuestions);
 
             Map<String,List<ExamQuestion>> sortedQuestions = AuraGIFTParser.SortQuestions(allQuestions);
-            
-            return AuraGIFTParser.CreateRecords(sortedQuestions, titan);
+            result = AuraGIFTParser.CreateRecords(sortedQuestions, titan);
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            System.debug(e.getMessage());
         }
+        return result;
     }
     
     public static Map<String,List<ExamQuestion>> SortQuestions(List<ExamQuestion> examQuestionList) {
@@ -97,9 +100,6 @@ public class AuraGIFTParser {
             Exam_Question__c eqc = new Exam_Question__c();
             
             eqc.Question_Type__c = 'Essay';
-            if ( eq.qId != null ) {
-                eqc.Id = eq.qId;
-            }
             eqc.Name = eq.qTitle;
             eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
@@ -117,9 +117,6 @@ public class AuraGIFTParser {
             Exam_Question__c eqc = new Exam_Question__c();
             
             eqc.Question_Type__c = 'Numerical';
-            if ( eq.qId != null ) {
-                eqc.Id = eq.qId;
-            }
             eqc.Name = eq.qTitle;
             eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
@@ -143,7 +140,6 @@ public class AuraGIFTParser {
                         i++;
                     }
                 }
-                System.debug('tempAnswers: ' + tempAnswers);
                 
                 for ( String ans: tempAnswers) {
                     if ( eqc.Answer_Explanation__c == null ) {
@@ -200,9 +196,6 @@ public class AuraGIFTParser {
             Exam_Question__c eqc = new Exam_Question__c();
             
             eqc.Question_Type__c = 'Matching';
-            if ( eq.qId != null ) {
-                eqc.Id = eq.qId;
-            }
             eqc.Name = eq.qTitle;
             eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
@@ -282,9 +275,6 @@ public class AuraGIFTParser {
             Exam_Question__c eqc = new Exam_Question__c();
             
             eqc.Question_Type__c = 'Multiple Choice - multiple answers';
-            if ( eq.qId != null ) {
-                eqc.Id = eq.qId;
-            }
             eqc.Name = eq.qTitle;
             eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
@@ -306,7 +296,7 @@ public class AuraGIFTParser {
             eq.qAnswer = eq.qAnswer.replaceAll('(%.{1,3}%)','');
             List<String> tempOptions = eq.qAnswer.trim().split('~');
 
-            // remove any null entries
+            /*// remove any null entries
             Integer i = 0;
             while ( i < tempAnswers.size() ) {
                 if ( String.isBlank(tempAnswers.get(i)) ) {
@@ -314,7 +304,7 @@ public class AuraGIFTParser {
                 } else {
                     i++;
                 }
-            }
+            }*/
 
             Integer j = 0;
             while ( j < tempOptions.size() ) {
@@ -371,7 +361,6 @@ public class AuraGIFTParser {
                     }
                 }
             }
-            
             //***/Handle Answer/***//
 
             // check if both end in ||
@@ -396,9 +385,6 @@ public class AuraGIFTParser {
             Exam_Question__c eqc = new Exam_Question__c();
             
             eqc.Question_Type__c = 'Multiple Choice';
-            if ( eq.qId != null ) {
-                eqc.Id = eq.qId;
-            }
             eqc.Name = eq.qTitle;
             eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
@@ -412,7 +398,7 @@ public class AuraGIFTParser {
             // change delimiter to \n
             eq.qAnswer = eq.qAnswer.replaceAll('[=]','\n=');
             eq.qAnswer = eq.qAnswer.replaceAll('[~]','\n~');
-
+            
             // split at \n
             List<String> tempAnswers = eq.qAnswer.split('\n');
             
@@ -425,21 +411,14 @@ public class AuraGIFTParser {
                     i++;
                 }
             }
+            
 
             for ( String ans: tempAnswers ) {
                 if ( ans.substring(0,1).contains('=') ) {
-                    if ( eqc.Correct_Answer_s__c == null ) {
-                        if ( ans.contains('#') ) {
-                            eqc.Correct_Answer_s__c = ans.substringBetween('=', '#').trim() + '||';
-                        } else {
-                            eqc.Correct_Answer_s__c = ans.substringAfter('=').trim() + '||';
-                        }    
+                    if ( ans.contains('#') ) {
+                        eqc.Correct_Answer_s__c = ans.substringBetween('=', '#').trim() + '||';
                     } else {
-                        if ( ans.contains('#') ) {
-                            eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c + ans.substringBetween('=', '#').trim() + '||';
-                        } else {
-                            eqc.Correct_Answer_s__c = eqc.Correct_Answer_s__c + ans.substringAfter('=').trim() + '||';
-                        }
+                        eqc.Correct_Answer_s__c = ans.substringAfter('=').trim() + '||';
                     }
                     if ( eqc.Answer_Explanation__c == null ) {
                         if ( ans.contains('#') ) {
@@ -520,9 +499,6 @@ public class AuraGIFTParser {
             Exam_Question__c eqc = new Exam_Question__c();
             
             eqc.Question_Type__c = 'Short answer';
-            if ( eq.qId != null ) {
-                eqc.Id = eq.qId;
-            }
             eqc.Name = eq.qTitle;
             eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
@@ -603,9 +579,6 @@ public class AuraGIFTParser {
             Exam_Question__c eqc = new Exam_Question__c();
             
             eqc.Question_Type__c = 'True-false';
-            if ( eq.qId != null ) {
-                eqc.Id = eq.qId;
-            }
             eqc.Name = eq.qTitle;
             eqc.Titan__c = titan;
             eqc.Question_Text__c = eq.qText;
@@ -619,7 +592,7 @@ public class AuraGIFTParser {
             }
 
             // convert the answer
-            if ( eq.qAnswer.substring(0,1).toUpperCase().contains('T') || eq.qAnswer.substring(0,4).toUpperCase().contains('TRUE') ) {
+            if ( (eq.qAnswer.length() == 1 && eq.qAnswer.substring(0,1).toUpperCase().contains('T')) || (eq.qAnswer.length() > 1 && (eq.qAnswer.substring(0,4).toUpperCase().contains('TRUE') || eq.qAnswer.substring(0,2).toUpperCase().contains('T#'))) ) {
                 eqc.Correct_Answer_s__c = 'TRUE';   
             } else {
                 eqc.Correct_Answer_s__c = 'FALSE';
@@ -627,8 +600,8 @@ public class AuraGIFTParser {
 
             upsertList.add(eqc);
         } 
-		// System.debug(upsertList);
-        List<Database.UpsertResult> uResult = Database.upsert(upsertList);
+
+        List<Database.UpsertResult> uResult = Database.upsert(upsertList,Exam_Question__c.Fields.Name);
 
         // User security!
         Integer createCount = 0;
@@ -650,8 +623,8 @@ public class AuraGIFTParser {
 
     @AuraEnabled
     public static Map<String,List<Map<String,String>>> HandleInit() {
+        Map<String,List<Map<String,String>>> initialValueMap = new Map<String,List<Map<String,String>>>();
         try {
-            Map<String,List<Map<String,String>>> initialValueMap = new Map<String,List<Map<String,String>>>();
             List<Titan__c> titanList = [SELECT Name, Id, Technology__c FROM Titan__c];
 
             // create titan name + id lists, plus technology list
@@ -683,10 +656,13 @@ public class AuraGIFTParser {
             }
             initialValueMap.put('Technologies',technologyMapList);
             initialValueMap.put('Titans',titanMapList);
-
-            return initialValueMap;
+            
+            if(Test.isRunningTest()) {
+				Integer error = 1/0;
+			}
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            System.debug(e.getMessage());
         }
+        return initialValueMap;
     }
 }

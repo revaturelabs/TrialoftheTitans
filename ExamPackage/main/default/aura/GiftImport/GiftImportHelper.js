@@ -47,13 +47,21 @@
             
             if(theSplitString[i].lastIndexOf("}") < theSplitString[i].length-1){
                 // get text between ::, if none then it just give back blank
-                let questionTitle = theSplitString[i].substring(theSplitString[i].indexOf(":") + 2, theSplitString[i].lastIndexOf("::")).replace(/\r?\n|\r/g, '').trim();
+                if (theSplitString[i].includes("::")) {
+                    var questionTitle = theSplitString[i].substring(theSplitString[i].indexOf(":") + 2, theSplitString[i].lastIndexOf("::")).replace(/\r?\n|\r/g, '').trim();
+                } else {
+                    var questionTitle = '';
+                }
                 
                 // get everything from inside {}
                 let questionAnswer = theSplitString[i].substring(theSplitString[i].indexOf("{") + 1, theSplitString[i].indexOf("}")).replace(/\r?\n|\r/g, '').trim();
                 
                 // get everything include the answer after the ::
-                let questionText = theSplitString[i].substring(theSplitString[i].lastIndexOf("::")+2).replace(/\r?\n|\r/g, '').trim();
+                if (theSplitString[i].includes("::")) {
+                    var questionText = theSplitString[i].substring(theSplitString[i].lastIndexOf("::")+2, theSplitString[i].lastIndexOf("{")).replace(/\r?\n|\r/g, '').trim();
+                } else {
+                    var questionText = theSplitString[i].substring(0, theSplitString[i].lastIndexOf("{")).replace(/\r?\n|\r/g, '').trim();
+                }
                 
                 // get rid of the answer part and replace it with 5 underscores
                 questionText = questionText.replace(/{.*}/, '_____');
@@ -68,14 +76,21 @@
                 // put the object in the list
                 apexObjectList.push(current);
                 
-            }else{
-                
+            } else {
                 // get text between ::, if none then it just give back blank
-                let questionTitle = theSplitString[i].substring(theSplitString[i].indexOf(":") + 2, theSplitString[i].lastIndexOf("::")).replace(/\r?\n|\r/g, '').trim();
+                if (theSplitString[i].includes("::")) {
+                    var questionTitle = theSplitString[i].substring(theSplitString[i].indexOf(":") + 2, theSplitString[i].lastIndexOf("::")).replace(/\r?\n|\r/g, '').trim();
+                } else {
+                    var questionTitle = '';
+                }
                 
                 // get text between the last :: and starting {
-                let questionText = theSplitString[i].substring(theSplitString[i].lastIndexOf("::")+2, theSplitString[i].lastIndexOf("{")).replace(/\r?\n|\r/g, '').trim();
-                
+                if (theSplitString[i].includes("::")) {
+                    var questionText = theSplitString[i].substring(theSplitString[i].lastIndexOf("::")+2, theSplitString[i].lastIndexOf("{")).replace(/\r?\n|\r/g, '').trim();
+                } else {
+                    var questionText = theSplitString[i].substring(0, theSplitString[i].lastIndexOf("{")).replace(/\r?\n|\r/g, '').trim();
+                }
+
                 // get everything from inside {}
                 let questionAnswer = theSplitString[i].substring(theSplitString[i].indexOf("{") + 1, theSplitString[i].indexOf("}")).replace(/\r?\n|\r/g, '').trim();
                 
