@@ -10,7 +10,10 @@
 ///////////////////////////////////////////////////
 @isTest
 public class HeroHubControllerTest {
-    
+    @testSetup
+    static void heroTestSetup(){
+        HeroHubTestUtilities.createUsers();
+    }
    	@isTest
     static void testContextInfoRightUser(){
     	HeroHubTestUtilities.fullSetup();
@@ -24,16 +27,16 @@ public class HeroHubControllerTest {
             info = HeroHubController.getUserInfo();
             
     	}
+        Account useracct = [SELECT Id, Team__c, Squad__c FROM Account WHERE name = 'User'];
         
-        system.AssertEquals(HeroHubTestUtilities.testAccount, info.acc.Id);
-        system.AssertEquals(HeroHubTestUtilities.testSquad, info.squad.Id);
-        system.AssertEquals(HeroHubTestUtilities.testTeam, info.team.Id);
-        Contact userContact = [SELECT Id FROM Contact Where AccountId = :info.acc.Id Limit 1];
-        system.AssertEquals(HeroHubTestUtilities.testContact, userContact.Id);
+        system.AssertEquals(useracct.Id, info.acc.Id);
+        system.AssertEquals(useracct.Squad__c, info.squad.Id);
+        system.AssertEquals(useracct.Team__c, info.team.Id);
+  
         
         system.AssertEquals(3, info.userExams.size());
         system.AssertEquals(3, info.userExams.get('Apex').size());
-        system.AssertEquals(1, info.userExams.get('Apex')[0].currentResults.size());
+        system.AssertEquals(2, info.userExams.get('Apex')[0].currentResults.size());
        	system.AssertEquals(true, info.userExams.get('Apex')[0].isPassed);
     	system.debug(info);
     }

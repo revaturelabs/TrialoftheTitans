@@ -16,7 +16,13 @@
 	},
 
 	handleClear : function(component, event, helper) {
+		console.log('from handleclear');
 		 window.clearInterval(component.get("v.setIntervalId"));
+		 component.set("v.setIntervalId", null);
 		 window.clearTimeout(component.get('v.setTimeoutId'));
+		 component.set("v.setTimeoutId", null);
+	},
+	logInterval : function(component){
+		console.log(component.get("v.setIntervalId"));
 	}
 })

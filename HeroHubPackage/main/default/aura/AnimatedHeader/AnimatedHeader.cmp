@@ -7,13 +7,14 @@
                 <div class="header-animatedHeader_Alchemy-End"></div>
             </div>
             <aura:set attribute="else">
-                <aura:if isTrue="{!false}">
+                <aura:if isTrue="false">
                     <div class="header-animateHeader_Amplifire">
-                        <div class="header-animatedHeader_Amplifire-Start1"></div>
-                        <div class="header-animatedHeader_Amplifire-End"></div>
+                        <div class="amps left"></div>
+                        <h1>Trial Of The Titans</h1>
+                        <div class="amps right"></div>
                     </div>
                     <aura:set attribute="else">
-                        <aura:if isTrue="true">
+                        <aura:if isTrue="false">
                             <div class="header-animatedHeader_Synergy">
                                 <h1 class='header-animatedHeader_Synergy-title'>TRIAL OF THE TITANS</h1>
                                 <div class="Synergy-codeText-wrapper">
@@ -66,11 +67,9 @@
                                 </div>
                             </div>
                             <aura:set attribute="else">
-                                <aura:if isTrue="false">
+                                <aura:if isTrue="true">
                                     <div class="header-animateHeader_Vanquish">
-                                        <div class="header-animatedHeader_Vanquish-Start1"></div>
                                             <h1 class="Vanquish-title">Trial Of <br/>The Titans</h1>
-                                        <div class="header-animatedHeader_Vanquish-End"></div>
                                     </div>
                                     <aura:set attribute="else">
                                         <div class="header-animatedHeader_normal">

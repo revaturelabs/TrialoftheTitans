@@ -50,12 +50,12 @@ public class UserContextInfo {
 		
         // To be added when user is live
         try{
-            //User user = [SELECT Id, contactId FROM User WHERE Id = :userId];
-        	//Contact userContact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.ContactId];
-        	//Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Id = :userContact.AccountId];
+            User user = [SELECT Id, contactId FROM User WHERE Id = :userId];
+        	Contact userContact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.ContactId];
+        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Id = :userContact.AccountId];
             
             //Hard Coded Account for now
-        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c, Cohort__c, Team__c FROM Account WHERE Name = 'User0'];
+        	//Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c, Cohort__c, Team__c FROM Account WHERE Name = 'User0'];
             
             system.debug(userAccount);
 			return userAccount;
@@ -72,7 +72,7 @@ public class UserContextInfo {
         
         system.debug(squadId);
 
-        Squad__c userSquad = [SELECT Id, Name, Team__c FROM Squad__c LIMIT 1];
+        Squad__c userSquad = [SELECT Id, Name, Team__c FROM Squad__c WHERE id = :squadId LIMIT 1];
         
         system.debug(userSquad);
 

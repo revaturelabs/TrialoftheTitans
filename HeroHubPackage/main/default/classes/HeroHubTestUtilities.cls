@@ -1,18 +1,10 @@
 @isTest
 public class HeroHubTestUtilities {
     
-    public static Id testAccount;
-    public static Id testContact;
-    public static Id testProfile;
-    public static Id testTeam;
-    public static Id testSquad;
-    
     
     @isTest
     public static void fullSetup(){
         
-        createRightUser();
-        createWrongUser();
         createTitans();
         createExams();
         createQuestions();
@@ -21,32 +13,45 @@ public class HeroHubTestUtilities {
         
     }
     
-    
     @isTest
-    public static void createRightUser(){
+    public static void createUsers(){
         
-        Team__c newTeam = new Team__C(Name='Amplifire');
-        insert newTeam;
-        testTeam = newTeam.Id;
-
-        Squad__c newSquad = new Squad__c(Name = 'This is Fire', Team__c = newTeam.Id);
-        insert newSquad;
-        system.debug(newSquad);
-        testSquad = newSquad.Id;
+        Profile adminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1];
         
-        Account newAccount = new Account(name='User', Squad__c = newSquad.Id);
-        insert newAccount;       
-        testAccount = newAccount.Id;
+        UserRole customerManager = [SELECT Id FROM UserRole WHERE Name = 'Customer Manager' LIMIT 1];
+        
+		User adminUser = new User( profileId = adminProfile.Id,
+						   		 username = 'admin' + Crypto.getRandomInteger() + '@yahoo.com',
+						   		 email = 'test@test.com',
+								 emailencodingkey = 'UTF-8',
+								 localesidkey = 'en_US',
+								 languagelocalekey = 'en_US',
+								 timezonesidkey = 'America/Los_Angeles',
+								 alias = 'testAd',
+								 lastname = 'testAdmin',
+                                 userRoleId = customerManager.Id
+                               );
+            
+        database.insert(adminUser);
+        
+        System.runAs(adminUser){
+        
+        Team__c newTeam = new Team__c(Name = 'TestTeam');
+        database.insert(newTeam);
+         
+        Squad__c newSquad = new Squad__c(Name = 'TestSquad', Team__c = newTeam.Id);
+        database.insert(newSquad);
+            
+        Account newAccount = new Account(name='User', Team__c = newTeam.Id, Squad__c = newSquad.Id);
+        database.insert(newAccount);       
      
         Contact newContact = new Contact(lastName='User', AccountId = newAccount.id);
-        insert newContact;
-        testContact = newContact.Id;
+        database.insert(newContact);
         
         // Get Hero profile from database to use for Users
         Profile heroProfile = [SELECT Id FROM Profile WHERE Name = 'Hero' LIMIT 1];
-        testProfile = heroProfile.Id;
         
-		User newUser = new User( profileId = heroProfile.id,
+		User testUser = new User( profileId = heroProfile.id,
 						   		 username = newContact.lastName + Crypto.getRandomInteger() + '@yahoo.com',
 						   		 email = 'test@test.com',
 								 emailencodingkey = 'UTF-8',
@@ -57,15 +62,16 @@ public class HeroHubTestUtilities {
 								 lastname = newContact.lastName,
 								 contactId = newContact.id
                                );
-            
-            system.debug(userInfo.getUserRoleId());
-        	insert newUser;
-        	
-        	//Id groupID = [SELECT Id FROM PermissionSetGroup WHERE DeveloperName = 'TrialOfTheTitansHeroPermissions' Limit 1].Id;
-        	//PermissionSetAssignment assignment = new PermissionSetAssignment(PermissionSetGroupId = groupId, AssigneeId = newUser.Id);
-
-			//Database.insert(assignment);
+   
+        database.insert(testUser);
         
+        Id groupID = [SELECT Id FROM PermissionSetGroup WHERE DeveloperName = 'TrialOfTheTitansHeroPermissions' Limit 1].Id;
+       	PermissionSetAssignment assignment = new PermissionSetAssignment(PermissionSetGroupId = groupId, AssigneeId = testUser.Id);
+
+		Database.insert(assignment);
+        
+        }
+        	
     }
     
     @isTest
@@ -169,6 +175,8 @@ public class HeroHubTestUtilities {
         }
     
         insert newResults;
+        
+        system.debug(newResults);
     }
     
     @isTest
