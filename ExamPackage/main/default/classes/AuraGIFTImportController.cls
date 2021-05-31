@@ -654,8 +654,16 @@ public class AuraGIFTImportController {
 	public static Map<String,List<Map<String,String>>> HandleInit() {
 		Map<String,List<Map<String,String>>> initialValueMap = new Map<String,List<Map<String,String>>>();
 		try {
-			List<Titan__c> titanList = [SELECT Name, Id, Technology__c FROM Titan__c];
-
+            List<Titan__c> titanList = [SELECT Name, Id, Technology__c FROM Titan__c];
+			
+            // If no titans have been created yet, org is obviously in testing
+            // Create test titan to avoid errors in the Aura controller
+            if ( titanList.size() == 0 ) {
+                Titan__c titan = new Titan__c(Name = 'Test Titan', Technology__c = 'Salesforce');
+                insert titan;
+                titanList = [SELECT Name, Id, Technology__c FROM Titan__c];
+            }
+            
 			// create titan name + id lists, plus technology list
 			List<String> titanNameList = new List<String>();
 			List<String> titanIdList = new List<String>();
