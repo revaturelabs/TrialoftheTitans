@@ -37,6 +37,7 @@
     --padding: .5em;
 
     background-color: var(--background-color);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 }
 .THIS.header {
