@@ -63,7 +63,7 @@ public class UserContextInfo {
 			return userAccount;
         }
         catch(Exception e){
-           return null;
+           return [SELECT Id, Name, Curriculum__c, Squad__c, Cohort__c, Team__c FROM Account WHERE Name = 'User0'];
         }
         
 
