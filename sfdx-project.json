@@ -3,8 +3,8 @@
         {
             "path": "CorePackage",
             "package": "CorePackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
+            "versionName": "ver 1.1",
+            "versionNumber": "1.1.0.NEXT",
             "default": true
         },
         {
@@ -49,6 +49,7 @@
         "HeroHubPackage@0.1.0-1": "04t5e0000005UjhAAE",
         "TitansPackage": "0Ho5e000000blceCAA",
         "TitansPackage@0.1.0-1": "04t5e000000lUzKAAU",
-        "TitansPackage@0.1.0-2": "04t5e000000lV3XAAU"
+        "TitansPackage@0.1.0-2": "04t5e000000lV3XAAU",
+        "CorePackage@1.1.0-1": "04t5e000000pplKAAQ"
     }
 }
