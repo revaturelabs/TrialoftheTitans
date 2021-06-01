@@ -20,8 +20,8 @@
         $A.enqueueAction( action );
     },
 
-    // SplistString(): Split each question in text file to its own object and put it in a list.
-    // send the list along with titan and technology to ApexController.
+    // SplitString(): Split each question in text file to its own object and put it in a list.
+    //          Send the list along with titan and technology to ApexController.
     // theString: the uploaded file in string form
     // returns apexObjectList: array of objects built from questions split into title, text and answer
 
@@ -112,7 +112,7 @@
 
 
     // SubmitClick(): Submit button handler, submit the file, clear the text and send user back to first page of wizard.
-    // Then use helper to parse questions into objects that will be sent toward ApexController
+    //      Then use helper to parse questions into objects that will be sent toward ApexController
 
     SubmitClick : function( component, helper ) {
         if ( component.get( "v.submitList" ).length > 0 ) {
@@ -138,7 +138,7 @@
     },
 
     // SubmitQuestionList(): Takes the list of questions and titan and passes it to the Apex
-    // controller for parsing.
+    //      controller for parsing.
     // questions: question list from uploaded file
     // titan: the titan selected by the user on the first screen of wizard
 

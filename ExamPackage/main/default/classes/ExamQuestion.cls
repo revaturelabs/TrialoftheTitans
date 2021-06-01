@@ -16,10 +16,7 @@ public class ExamQuestion {
     @AuraEnabled
     public String qText { get; set; }
     @AuraEnabled
-    public String qAnswer { get; set; }
-    @AuraEnabled
-    public String qId { get; set; }
-    
+    public String qAnswer { get; set; } 
 
     public ExamQuestion() {
     }
