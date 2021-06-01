@@ -3,13 +3,27 @@
 //
 // Name: Trial of the Titans - GIFT Parser
 // Author: Danny Tran, David J. Sellinger
-// Created: 2021-05-24
-// Updated: 2021-05-31
-// Description: Component to take in gift format text
-//              file
+// Description: Component to take in gift format text file.
+// - ATTRIBUTES
+// - initMessage: Message shown when initial values on picklists have been set and ready to import.
+// - titans: Holds the Name and Ids of Titans.
+// - selectedTitan: Holds the Id of the selected Titan.
+// - technologies: Holds the Name and Ids of Technologies.
+// - selectedTechnology: Holds the Id of the selected Titan.
+// - canUpload: Boolean used to show next page in wizard.
+// - fileName: Name of file uploaded by the user.
+// - toImport: The number of questions in the file uploaded by the user.
+// - showQuestions: Used to show the questions table.
+// - submitList: Used to hold the questions to be submitted split into parts.
+// - submitError: Displays error message if the user does not select file to upload.
+// - imported: Number of questions imported.
+// - updated: Number of questions updated.
+// - HANDLERS
+// - init: Handles initialization of picklist values.
 //
 ////////////////////////////////////////////////////
 -->
+
 
 <aura:component controller="AuraGIFTImportController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
                 access="global">
