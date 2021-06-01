@@ -1,3 +1,6 @@
+// Phong Nguyen
+// 5/28/2021
+// Test for Pool Table component
 @isTest
 public class TestPoolTableApexController {
     @isTest(SeeAllData=false)
@@ -17,7 +20,7 @@ public class TestPoolTableApexController {
         // Pools
         List <Question_Pool__c> testPool = new List <Question_Pool__c> ();
         for(Integer i = 0; i < 1; i++){
-        	testPool.add(new Question_Pool__c(Name='apexPool'+i, Question_Pool_Exam__c = myExam.Id));
+        	testPool.add(new Question_Pool__c(Name='apexPool'+i));
         }
        	insert testPool;
         

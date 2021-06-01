@@ -5,13 +5,15 @@
   to see the questions they have added--> 
 
 <aura:component controller="PoolTableApexController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"  access="global"> 
-    <!--Declaring values-->
+<!--Set enableToast to False when preview with HarnessAPP. enableToast=True should work in Lightning Experience-->    
+    <aura:attribute name="enableToast" type="Boolean" default="true"/>    
+<!--Declaring values-->
     <aura:attribute name="mydata" type="object"/>
     <aura:attribute name="pools" type="object"/>
     <aura:attribute name="mycolumns" type="List"/>
     <aura:attribute name="selectedPools" type="List"/>
     <aura:attribute name="selectedRows" type="List"/>
-    <aura:attribute name="enableToast" type="Boolean" default="true"/>
+    
     
     <aura:handler name="init" value="{! this }" action="{! c.init }"/>
     <aura:attribute name="searchKeyword" type="String" />
