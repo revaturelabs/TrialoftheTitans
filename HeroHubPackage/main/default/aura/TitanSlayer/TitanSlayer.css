@@ -23,24 +23,59 @@
 .THIS .titanSlayer-Alchemy-title{
     font-size: 40px;
     line-height: 40px;
+    opacity: 0;
+    animation: fadeIn 1.5s 500ms ease-in-out forwards;
 }
 
 .THIS .Alchemy-results .scoreWrapper > h3{
-    text-decoration: underline;
+    opacity: 0;
+    animation: fadeIn 1.5s 750ms forwards;
 }
 .THIS .Alchemy-results .Alchemy-Scores{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    opacity:0;
+    animation: fadeIn 1.5s forwards;
+}
+.THIS.hide .titanSlayer-Alchemy-body, .THIS.hide .titanSlayer-Alchemy-body2 {
+    opacity: 0;
+}
+.THIS .titanSlayer-Alchemy-body {
+    transition: opacity 1s ease-in-out;
+}
+.THIS .titanSlayer-Alchemy-body2 {
+    display: none;
+}
+
+.THIS.switch .titanSlayer-Alchemy-body {
+    display: none;
+}
+
+.THIS.switch .titanSlayer-Alchemy-body2 {
+    transition: opacity 1s ease-in-out;
+    display: block;
 }
 
 .THIS .Alchemy-Scores progress[value]{
     -webkit-appearance: none;
+    background-color: var(--alchemy-secondary);
     appearance: none;
     border-radius: none;
-    filter:blur(5px);
+    filter:blur(1px);
     width: 50%;
     height: 20px;
+    opacity:0;
+    animation: fadeIn 1.5s forwards;
+}
+
+.THIS .Alchemy-Scores progress::-webkit-progress-bar {
+    background: none;
+    padding: 2px;
+}
+
+.THIS .Alchemy-Scores progress::-webkit-progress-value{
+    background-color: var(--synergy-primary);
 }
 
 .THIS .Alchemy-Scores.Amplifire progress::-webkit-progress-value{
@@ -207,13 +242,32 @@ div.THIS .titanSlayer-Synergy-body {
 
 .THIS .titanSlayer-Amplifire {
     font-family: 'AlfaSlab';
-}
-
-.THIS .titanSlayer-Amplifire-body{
-    border: 2px solid var(--text-color);
+    display: flex;
+    flex-wrap: nowrap;
     overflow-x: hidden;
 }
 
+.THIS .titanSlayer-Amplifire-body{
+    overflow-x: hidden;
+    transform-origin: left;
+    width: 100%;
+    transition: width 1s ease-in-out;
+    display: inline-block;
+}
+.THIS.switch .titanSlayer-Amplifire-body{
+    width: 0%;
+}
+.THIS .titanSlayer-Amplifire-body2 {
+    overflow-x: hidden;
+    display: inline-block;
+    transform-origin: right;
+    transition: width 1s ease-in-out;
+    width: 0%;
+}
+
+.THIS.switch .titanSlayer-Amplifire-body2{
+    width: 100%;
+}
 .THIS .lightBar {
     width: 100%;
     height: 40px;
@@ -233,6 +287,7 @@ div.THIS .titanSlayer-Synergy-body {
     display: flex;
     justify-content: space-around;
     border: 2px solid var(--text-color);
+    overflow-x: hidden;
 }
 
 .THIS .titanSlayer-Amplifire-title > h2 {
@@ -244,14 +299,7 @@ div.THIS .titanSlayer-Synergy-body {
     animation: slideRight 2s cubic-bezier(.59,-0.06,.44,1.3) 500ms forwards;
 }
 
-.THIS.hide .titanSlayer-Amplifire-title > h2 {
-    opacity: 0;
-}
-
 .THIS .Amplifire-secondTitle {
-    display: none;
-}
-.THIS.switch .Amplifire-firstTitle {
     display: none;
 }
 .THIS.switch .Amplifire-secondTitle {
@@ -259,19 +307,12 @@ div.THIS .titanSlayer-Synergy-body {
 }
 .THIS .Amplifire-secondary-title h3 {
     position: relative;
-    transform: translateX(2000px);
+    transform: translatex(2000px);
     animation: slideRight 2s cubic-bezier(.59,-0.06,.44,1.3) 500ms forwards;
-}
-
-.THIS.hide .Amplifire-secondary-title h3{
-    transition: opacity 500ms;
-    opacity: 0;
-}
-.THIS.switch .Amplifire-secondary-title {
-    display: none;
 }
 .THIS .progress-Wrapper {
     display: flex;
+    overflow-x: hidden;
 }
 .THIS .overlay-wrapper {
     position:relative;
@@ -303,7 +344,6 @@ div.THIS .titanSlayer-Synergy-body {
     color: var(--text-color);
     font-size: 20px;
     justify-content: space-around;
-
 }
 .THIS .titanSlayer-Amplifire .progressBars:nth-of-type(1){
     border-right: none;
@@ -313,6 +353,8 @@ div.THIS .titanSlayer-Synergy-body {
 }
 .THIS .Amplifire-Scores {
     display: flex;
+    overflow-y: hidden;
+    overflow-x: hidden;
     justify-content: space-between;
     box-sizing: border-box;
     align-items: center;
@@ -348,39 +390,18 @@ div.THIS .titanSlayer-Synergy-body {
     position: absolute;
 }
 
-.THIS .progressBars:nth-of-type(1) .Amplifire-Scores  {
-    transform: translate(-1000px);
-    animation: slideRight 2s ease-in-out 500ms forwards;
+.THIS .progressBars-squads {
+    width: 80%;
+    background: var(--light-text);
+    color: var(--text-color);
+    font-size: 20px;
+    justify-content: space-around;
 }
 
-
-.THIS .progressBars:nth-of-type(2) .Amplifire-Scores {
-    transform: translate(1000px);
-    animation: slideRight 2s ease-in-out 500ms forwards;
-}
-
-.THIS.hide .progressBars .Amplifire-Scores{
-    transition:opacity 500ms;
-    opacity: 0;
-}
-
-.THIS.switch .progressBars .Amplifire-Scores {
-    display: none;
-}
-
-.THIS.switch .Amplifire-secondary-title > h3 {
-    display: none;
-}
-
-.THIS .progressBars.squads {
-    display: none;
+.THIS.switch .progressBars-squads {
+    display: block;
     width: 100%;
 }
-
-div.THIS.switch .Amplifire-Scores.squads {
-    display:block;   
-}
-
 .THIS .titanSlayer-Vanquish {
     background-image:url(/resource/VanquishBG);
     background-size: cover;
@@ -423,8 +444,6 @@ div.THIS.switch .Amplifire-Scores.squads {
     filter:drop-shadow(2px 2px 4px var(--text-color));
 }
 
-.THIS .titanSlayer-Vanquish-body {
-}
 .THIS .Vanquish-results {
     display: flex;
     width: 100%;
@@ -533,5 +552,11 @@ div.THIS.switch .Amplifire-Scores.squads {
 @keyframes dropFlags{
     to{
         transform:scaleY(1);
+    }
+}
+
+@keyframes fadeIn {
+    to{
+        opacity: 1;
     }
 }

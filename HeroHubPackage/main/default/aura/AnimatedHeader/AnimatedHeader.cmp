@@ -1,19 +1,23 @@
 <aura:component>
     <aura:attribute name="leadTeams" type="Map"/>
+    <!-- Container to house all versions -->
     <div class="header-animatedHeader">
-        <aura:if isTrue="false">
+        <!-- Green Smoke and glowing title -->
+        <aura:if isTrue="{!v.leadTeams.Team[0][0] == 'Alchemy'}">
             <div class="header-animatedHeader_Alchemy">
                 <h1>Trial Of The Titans</h1>
             </div>
             <aura:set attribute="else">
-                <aura:if isTrue="false">
+                <!-- Fire and Amps -->
+                <aura:if isTrue="{!v.leadTeams.Team[0][0] == 'Amplifire'}">
                     <div class="header-animateHeader_Amplifire">
                         <div class="amps left"></div>
                         <h1>Trial Of The Titans</h1>
                         <div class="amps right"></div>
                     </div>
                     <aura:set attribute="else">
-                        <aura:if isTrue="true">
+                        <!-- Scrolling code exposing title -->
+                        <aura:if isTrue="{!v.leadTeams.Team[0][0] == 'Synergy'}">
                             <div class="header-animatedHeader_Synergy">
                                 <h1 class='header-animatedHeader_Synergy-title'>TRIAL OF THE TITANS</h1>
                                 <div class="Synergy-codeText-wrapper">
@@ -66,20 +70,10 @@
                                 </div>
                             </div>
                             <aura:set attribute="else">
-                                <aura:if isTrue="false">
+                                <!-- Sword flies in -->
                                     <div class="header-animateHeader_Vanquish">
                                             <h1 class="Vanquish-title">Trial Of <br/>The Titans</h1>
                                     </div>
-                                    <aura:set attribute="else">
-                                        <div class="header-animatedHeader_normal">
-                                            <h1 class="header-Title">
-                                                Trial Of
-                                                <br/>
-                                                The Titans
-                                            </h1>
-                                        </div>
-                                    </aura:set>
-                                </aura:if>
                             </aura:set>
                         </aura:if>
                     </aura:set>

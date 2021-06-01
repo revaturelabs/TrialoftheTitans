@@ -19,11 +19,13 @@
         }
     </aura:html>
 
+    <!-- Animated Header and Navigation goes here -->
     <header class="header">
         <c:AnimatedHeader leadTeams="{!v.leadTeams}"/>
         <c:Navigation contextInfo="{!v.contextInfo}" navigate="{!v.navigate}"/>
     </header>
     
+    <!-- Main page with Titan Page or Titan Slayer and Hero Journey -->
     <div id="main">
             <aura:if isTrue="{!v.navigate == 'Titan'}" >
                     <!--Insert Titan Page Here-->

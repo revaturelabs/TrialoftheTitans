@@ -1,3 +1,4 @@
+<!-- Test Application to see data -->
 <aura:application extends = "force:slds">
-    <c:PageContainer/>
+    <c:HeroHubTest/>
 </aura:application>
