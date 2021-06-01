@@ -27,7 +27,7 @@ public class AuraGIFTImportController {
 		List<Integer> result = new List<Integer>();
 		try {
 			List<ExamQuestion> allQuestions = questionList;
-			List<Exam_Question__c> existingQuestions = [SELECT Name, Id FROM Exam_Question__c];
+			// List<Exam_Question__c> existingQuestions = [SELECT Name, Id FROM Exam_Question__c];
 
 			// check for empty titles to help them be identifiable
 			for ( Integer c = 0; c < allQuestions.size(); c++ ) {
