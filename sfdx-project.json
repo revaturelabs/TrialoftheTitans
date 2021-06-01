@@ -36,7 +36,7 @@
             "package": "HeroHubPackage",
             "versionName": "ver 1.0",
             "versionNumber": "1.0.0.NEXT",
-            "default": true,
+            "default": false,
             "dependencies": [
                 {
                     "package": "CorePackage@0.1.0-2"
@@ -66,6 +66,7 @@
         "TitansPackage": "0Ho5e000000blceCAA",
         "TitansPackage@0.1.0-1": "04t5e000000lUzKAAU",
         "TitansPackage@0.1.0-2": "04t5e000000lV3XAAU",
-        "CorePackage@1.1.0-1": "04t5e000000pplKAAQ"
+        "CorePackage@1.1.0-1": "04t5e000000pplKAAQ",
+        "Exam_Package@1.1.0-1": "04t5e000000y6a2AAA"
     }
 }

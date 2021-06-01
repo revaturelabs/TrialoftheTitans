@@ -132,11 +132,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Question_Pool__c.Questions_to_Pull__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Titan__c.First_Exam__c</field>
         <readable>true</readable>
     </fieldPermissions>
