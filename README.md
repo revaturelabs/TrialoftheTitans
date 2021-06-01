@@ -17,10 +17,10 @@ Technologies used for this project include: **Salesforce, Apex, Lightning Aura C
 
 ## Packages
 ### Prerequisites
-**Core_Package**: 04t5e000000d1YR
+**Core_Package**: 
 
 ### Exam package
-**Exam_Package**: 04t5e000000d2q6AAA
+**Exam_Package**: 
 
 ## Product Spec
 ### User Epics and User Stories
