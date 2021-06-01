@@ -3,8 +3,8 @@
 #
 
 **profiles
-#!**/profiles/Hero.profile-meta.xml
-#!**/profiles/TitanTrainer.profile-meta.xml
+**/profiles/Hero.profile-meta.xml
+**/profiles/TitanTrainer.profile-meta.xml
 **layouts
 !**/layouts/Exam__c-Exam Layout.layout-meta.xml
 !**/layouts/Exam_Result__c-Exam Result Layout.layout-meta.xml
@@ -14,9 +14,9 @@
 !**/layouts/Account-Hero Account.layout-meta.xml
 !**/layouts/Cohort__c-Cohort Layout.layout-meta.xml
 !**/layouts/Curriculum__c-Curriculum Layout.layout-meta.xml
-!**/layouts/Skill__c-Skill Layout.layout-meta.xml
-!**/layouts/Team__c-Team Layout.layout-meta.xml
-!**/layouts/Titan__c-Titan Layout.layout-meta.xml
+**/layouts/Titan__c-Titan Layout.layout-meta.xml
+**/permissionsetgroups
+**/ExamPackage/main/default/appMenus/AppSwitcher.appMenu-meta.xml 
 
 package.xml
 
@@ -26,6 +26,3 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
-
-# personal testing
-**/.planning/**

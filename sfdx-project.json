@@ -12,7 +12,7 @@
             "package": "Exam_Package",
             "versionName": "ver 1.1",
             "versionNumber": "1.1.0.NEXT",
-            "default": true,
+            "default": false,
             "dependencies": [
                 {
                     "package": "CorePackage@1.1.0-1"
@@ -22,12 +22,15 @@
         {
             "path": "TitanPage\\Main\\default",
             "package": "TitansPackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": false,
+            "versionName": "ver 1.1",
+            "versionNumber": "1.1.0.NEXT",
+            "default": true,
             "dependencies": [
                 {
-                    "package": "04t5e000000xyyrAAA"
+                    "package": "CorePackage@1.1.0-1"
+                },
+                {
+                    "package": "Exam_Package@1.1.0-2"
                 }
             ]
         },
@@ -68,6 +71,7 @@
         "TitansPackage@0.1.0-2": "04t5e000000lV3XAAU",
         "CorePackage@1.1.0-1": "04t5e000000pplKAAQ",
         "Exam_Package@1.1.0-1": "04t5e000000y6a2AAA",
-        "Exam_Package@1.1.0-2": "04t5e000000y6iSAAQ"
+        "Exam_Package@1.1.0-2": "04t5e000000y6iSAAQ",
+        "TitansPackage@1.1.0-1": "04t5e000000lchhAAA"
     }
 }
