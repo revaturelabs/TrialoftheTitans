@@ -6,8 +6,11 @@
     <!-- <aura:handler event="aura:locationChange" action="{!c.handleClear}"/> -->
     <aura:handler name="change" value="{!v.setIntervalId}" action="{!c.logInterval}"/>
     
+    <!-- container for all themes -->
     <div class="titanSlayer">
-        <aura:if isTrue="false">
+
+        <!-- Magical text disapppears and returns -->
+        <aura:if isTrue="{!v.leadTeams.Team[0][0] == 'Alchemy'}">
             <div class="titanSlayer-Alchemy">
                 <div class="titanSlayer-Alchemy-body">
                     <div class="titanSlayer-Alchemy-title">
@@ -60,7 +63,9 @@
                 </div>
             </div>
             <aura:set attribute="else">
-                <aura:if isTrue="true">
+
+            <!-- Concert Marquee scrolls side to side -->
+                <aura:if isTrue="{!v.leadTeams.Team[0][0] == 'Amplifire'}">
                     <div class="titanSlayer-Amplifire">
                         <div class="titanSlayer-Amplifire-body">
                             <div class="lightBar"/>
@@ -121,7 +126,9 @@
                         </div>
                     </div>
                     <aura:set attribute="else" >
-                        <aura:if isTrue="false">
+
+                        <!-- Computer screen closes and opens -->
+                        <aura:if isTrue="{!v.leadTeams.Team[0][0] == 'Synergy'}">
                             <div class="titanSlayer-Synergy">
                                 <div class="Synergy-topBar"><h6>Titan Slayer</h6><span>x</span></div>
                                 <div class="titanSlayer-Synergy-body">
@@ -175,6 +182,8 @@
                                 </div>
                             </div>
                             <aura:set attribute="else">
+                                
+                                <!-- Flags with shield component -->
                                 <div class="titanSlayer-Vanquish">
                                     <div class="titanSlayer-Vanquish-body">
                                         <div class="titanSlayer-Vanquish-title">

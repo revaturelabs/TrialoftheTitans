@@ -1,3 +1,4 @@
+/* Define header/Slayer Fonts */
 @font-face {
     font-family: "AlfaSlab";
     src: url(/resource/AlfaSlab);
@@ -22,6 +23,7 @@
 .THIS :root {
     background-color: #3f3f3f;
 }
+/* root variables accessible from any part of application */
 .THIS {
     --text-color: #302f30;
     --light-text: #D3d4d4;
@@ -52,6 +54,7 @@
 
 }
 
+/* Global animation for typing out header captions */
 @keyframes typeOut {
     to{
         width: 14ch;
