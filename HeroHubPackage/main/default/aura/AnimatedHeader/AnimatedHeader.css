@@ -1,7 +1,15 @@
+/*
+
+  Name: AnimatedHeader
+  Author: Some Author
+  Description: Animated Header with multiple 
+
+  */
+
 .THIS.header-animatedHeader {
-    width: 100%;
-    height: 80px;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  height: 80px;
+  width: 100%;
 }
 
 .THIS .header-animatedHeader_Alchemy, 
@@ -9,52 +17,52 @@
 .THIS .header-animatedHeader_Synergy,
 .THIS .header-animatedHeader_Vanquish,
 .THIS .header-animatedHeader_normal {
-  width: 100%;
-  height: 100%;
   box-sizing: border-box;
+  height: 100%;
+  width: 100%;
 }
 
 .THIS .header-animatedHeader_Alchemy {
+  background-color: var(--text-color);
   background-image: url(/resource/AlchemySmoke);
   background-size: cover;
-  background-color: var(--text-color);
   height: 100%;
   width: 100%;
 }
 
 .THIS .header-animatedHeader_Alchemy h1 {
-  font-family: 'BeyondWonderland';
-  color: var(--alchemy-primary);
-  opacity: 0;
-  filter:blur(10px);
   animation: Glowing 10s 2s infinite alternate;
+  color: var(--alchemy-primary);
+  filter:blur(10px);
+  font-family: 'BeyondWonderland';
   font-size: 70px;
   line-height: 70px;
-  width: 100%; 
+  opacity: 0;
   text-align: center;
+  width: 100%; 
 }
 
 .THIS .header-animatedHeader_Amplifire{
   background-color: var(--amplifire-primary);
 }
 
-.THIS .header-animatedHeader_Synergy{
+.THIS .header-animatedHeader_Synergy {
   background-color: #000;
+  height: 80px;
   overflow: hidden;
   position: relative;
-  height: 80px;
   width: 100%;
 }
 .THIS .header-animatedHeader_Synergy-title {
-  font-size: 50px;
   color: #000;
+  font-family:'PressStart';
+  font-size: 50px;
   height: 80px;
   line-height: 80px;
-  font-family:'PressStart';
-  z-index: 1000;
   position: absolute;
-  width: 100%;
   text-align: center;
+  width: 100%;
+  z-index: 1000;
 }
 
 .THIS .Synergy-codeText-wrapper {
