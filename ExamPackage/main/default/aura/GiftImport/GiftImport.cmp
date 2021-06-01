@@ -38,7 +38,6 @@
     <aura:attribute name="fileName" type="String" default="No File Selected..." />
     <aura:attribute name="toImport" type="Integer" default="0" />
     <aura:attribute name="showQuestions" type="Boolean" default="false" />
-    <aura:attribute name="displayList"  type="List" default="[]" /> 
     <!-- SUBMISSION ATTRIBUTES -->
     <aura:attribute name="submitList" type="List" default="[]" />
     <aura:attribute name="submitError" type="String" default="" />
