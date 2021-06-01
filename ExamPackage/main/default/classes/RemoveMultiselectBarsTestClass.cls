@@ -12,4 +12,12 @@ public class RemoveMultiselectBarsTestClass {
         expectedResult.add('OurStringWithBars');
         System.assertEquals(expectedResult, actualResult);
     }
+
+    //Testing the negative Case
+
+    @isTest
+    static void NegativeCase(){
+        List<string> tempList = new list<string>();
+        RemoveMultiselectBars.RemoveBars(tempList);
+    }
 }
