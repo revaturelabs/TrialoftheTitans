@@ -77,6 +77,7 @@
         <fields>NAME</fields>
         <fields>Question_Pool__c.Number_Of_Questions__c</fields>
         <fields>Question_Pool__c.NAME</fields>
+        <fields>Number_to_pull__c</fields>
         <relatedList>Exam_Pool_Assignment__c.Exam__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -85,7 +86,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h0R000004GIR3</masterLabel>
+        <masterLabel>00h54000004Ia3v</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
