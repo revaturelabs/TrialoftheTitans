@@ -314,9 +314,11 @@
         
                 <!-- Final Completed Challenge -->
                 <div class="path"> 
-                    <div class="vertical-line-centered"/>
+                    <div class="vertical-line-centered-completed"/>
                     <div class="minion-wrapper-center" onclick="{!c.ExamClicked}" data-value="final">
-                        <div class="minion-center-final-completed"/>
+                        <div class="minion-center-final-completed">
+                            <h1>{!exam.highScore}%</h1>
+                        </div>
                         <p>{!v.finalExam.name}</p>
                     </div>
                 </div>
@@ -350,9 +352,11 @@
 
                         <!-- Final Failed Challenge -->
                         <div class="path"> 
-                            <div class="vertical-line-centered"/>
+                            <div class="vertical-line-centered-completed"/>
                             <div class="minion-wrapper-center" onclick="{!c.ExamClicked}" data-value="final">
-                                <div class="minion-center-final-failed"/>
+                                <div class="minion-center-final-failed">
+                                    <h1>{!exam.highScore}%</h1>
+                                </div>
                                 <p>{!v.finalExam.name}</p>
                             </div>
                         </div>

@@ -47,7 +47,7 @@
     border-radius: 10px;
     border-bottom: 5px solid var(--user-team-primary);
     margin: auto;
-    background: url(/resource/vanquishhero) no-repeat center;
+    background: url(/resource/hero) no-repeat center;
     background-size: 70%;
 }
 
@@ -250,8 +250,13 @@
 }
 
 .THIS .down-left-center-path-completed{
+<<<<<<< HEAD
     border-bottom: 7px dashed var(--user-team-primary)!important;
     border-right: 7px dashed var(--user-team-primary)!important;
+=======
+    border-bottom: 7px dashed var(--user-team-primary) !important;
+    border-right: 7px dashed var(--user-team-primary) !important;
+>>>>>>> 0b544e037a273c2abb752c210c02c39e90a39ba5
     height: 50px;
     width: 43%;
     margin-left: 7.5%; 
