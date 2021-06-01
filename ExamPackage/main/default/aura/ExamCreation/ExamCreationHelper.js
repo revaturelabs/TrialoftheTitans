@@ -1,9 +1,9 @@
 ({
-    // get questions pools from server
+    // get question pools from server
     // currently getting all of them
     // unless searchbar is triggered
-    getQuestionPools : function(component) {
-        let action = component.get("c.getQuestionPool");
+    GetQuestionPools : function(component) {
+        let action = component.get("c.GetQuestionPool");
         let searchKeyword = component.get("v.searchKeyword");
         action.setParams({
             'searchKeyword' :   searchKeyword});
@@ -34,8 +34,8 @@
     // current have no pagination whatsoever
     // honestly the ability to view question from a pool is kinda pointless.
     // so might just remove it entirely.
-    showQuestions : function(component, poolId){
-        let action = component.get("c.getExamQuestions");
+    ShowQuestions : function(component, poolId){
+        let action = component.get("c.GetExamQuestions");
         action.setParams({'poolId': poolId});
         action.setCallback(this, function(response){
             let state = response.getState();
@@ -51,8 +51,8 @@
     },
     // Send the information to the server for insert
     // poolAndNumber is a map
-    createExamAssignment : function(component, poolAndNumber, examId){
-        let action = component.get("c.createExamAssignment");
+    CreateExamAssignment : function(component, poolAndNumber, examId){
+        let action = component.get("c.CreateExamAssignment");
         action.setParams({
             'examId': examId,
             'poolAndNumber': poolAndNumber
