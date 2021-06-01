@@ -16,10 +16,6 @@
         <apexClass>UserContextInfo</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>UserTriggerHandler</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AccountNumber</field>
