@@ -3,8 +3,5 @@
     <description>Permissions for the Hero User of Trial of The Titans.</description>
     <label>TrialOfTheTitansHeroPermissions</label>
     <permissionSets>Core_Hero_Permissions</permissionSets>
-    <permissionSets>Hero_Exam_Page_Permissions</permissionSets>
-    <permissionSets>Hero_Hero_Hub_Permissions</permissionSets>
-    <permissionSets>Hero_Titans_Page_Permissions</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>
