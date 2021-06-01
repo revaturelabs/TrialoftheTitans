@@ -26,7 +26,7 @@ Manifest includes ONLY the custom fields created by the Exam team. Should be saf
 **Exam_Package**: 04t5e000000d2q6AAA
 
 ## Product Spec
-### 1. User Epics and User Stories
+### User Epics and User Stories
 
 - [ ] Hero Epic
   - [x] User will have access to the Hero Hub
@@ -65,7 +65,7 @@ Manifest includes ONLY the custom fields created by the Exam team. Should be saf
 - [ ] God (Employer) Epic  
   - [ ] Employers will have read-only access to the Portfolio Hub 
 
-### 3. Screen Archetypes
+## Screen Archetypes
 
 * Hero Hub Page
 * Titan Page
@@ -75,7 +75,7 @@ Manifest includes ONLY the custom fields created by the Exam team. Should be saf
 * Portfolio Hub
 * QC Hub
 
-### 4. Wireframes
+## Wireframes
 | Screen | Wireframes |
 | --- | --- |
 | Hero Hub | <img src="https://i.imgur.com/zhWEmks.png" width=400><img src="https://i.imgur.com/TvDw62J.png" width=400><img src="https://i.imgur.com/O8BF9JW.png" width=400><img src="https://i.imgur.com/Ir5lYbk.png" width=400> |
