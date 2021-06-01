@@ -1,4 +1,4 @@
-  /////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 //
 //  Name: HeroHubController
 //  Author: Josh Miccolo
@@ -36,24 +36,37 @@ public with sharing class HeroHubController {
         
         Map<String, Map<String, Decimal>> scores = new Map<String, Map<String, Decimal>>();
         
-        List<AggregateResult> teamScores = [SELECT SUM(Total_Answers__C) answers, SUM(Total_Correct__C) correct, Account__r.Team__r.Name teamName FROM Exam_Result__c GROUP BY Account__r.Team__r.Name];
+        Map<String, Decimal> teamScores = getScoresByTeam();
+        
+        scores.put('Team', teamScores);
+        
+        Map<String, Decimal> cohortScores = getScoresByCohort( userAcc );
+         
+        scores.put('Cohort', cohortScores);
+        
+        Map<String, Decimal> squadScores = getScoresBySquad( userAcc );
+        
+        scores.put('Squad', squadScores);
+        
+        return scores;
+    }
+    
+    public static Map<String, Decimal> getScoresByTeam(){
+        List<AggregateResult> teamScores = [SELECT SUM(Total_Answers__C) answers, SUM(Total_Correct__C) correct, AVG(Score__c) score, Account__r.Team__r.Name teamName FROM Exam_Result__c WHERE Graded__c=true GROUP BY Account__r.Team__r.Name ORDER BY AVG(Score__c) DESC];
         
         Map<String, Decimal> scoresByTeam = new Map<String, Decimal>();
         
         for(AggregateResult score: teamScores){
             
-            Decimal correct = (Decimal)score.get('correct');
-            Decimal answers = (Decimal)score.get('answers');
-            
-            scoresByTeam.put((String)score.get('teamName'), ((Decimal)(correct/answers)).setScale(2));
+            scoresByTeam.put((String)score.get('teamName'), ((Decimal)score.get('score')).setScale(0));
             
         }
         
-        scores.put('Team', scoresByTeam);
-        
-        List<AggregateResult> cohortScores = [SELECT SUM(Total_Answers__C) answers, SUM(Total_Correct__C) correct, Account__r.Team__R.Name teamName, Account__r.Cohort__c FROM Exam_Result__c WHERE Account__r.Cohort__c = :userAcc.Cohort__c GROUP BY Account__r.Cohort__c, Account__r.Team__r.Name];
-        
-        system.debug(cohortScores);
+        return scoresByTeam;
+    }
+    
+    public static Map<String, Decimal> getScoresByCohort(Account userAcc){
+        List<AggregateResult> cohortScores = [SELECT SUM(Total_Answers__C) answers, SUM(Total_Correct__C) correct, AVG(Score__c) score, Account__r.Team__R.Name teamName, Account__r.Cohort__c FROM Exam_Result__c WHERE Account__r.Cohort__c = :userAcc.Cohort__c AND Graded__c = true GROUP BY Account__r.Cohort__c, Account__r.Team__r.Name ORDER BY AVG(Score__c) DESC];
         
         Map<String, Decimal> scoresByCohort = new Map<String, Decimal>();
         
@@ -62,14 +75,16 @@ public with sharing class HeroHubController {
             Decimal correct = (Decimal)score.get('correct');
             Decimal answers = (Decimal)score.get('answers');
             
-            scoresByCohort.put((String)score.get('teamName'), ((Decimal)(correct/answers)).setScale(2));
+            scoresByCohort.put((String)score.get('teamName'), ((Decimal)score.get('score')).setScale(0));
             
         }
         
-        scores.put('Cohort', scoresByCohort);
+        return scoresByCohort;
+    }
+    
+    public static Map<String, Decimal> getScoresBySquad( Account userAcc ){
         
-        
-        List<AggregateResult> squadScores = [SELECT SUM(Total_Answers__C) answers, SUM(Total_Correct__C) correct, Account__r.Squad__r.Name squadName, Account__r.Team__c FROM Exam_Result__c WHERE Account__r.Team__c = :userAcc.Team__c GROUP BY Account__r.Team__c, Account__r.Squad__r.Name];
+        List<AggregateResult> squadScores = [SELECT SUM(Total_Answers__C) answers, SUM(Total_Correct__C) correct, AVG(Score__C) score, Account__r.Squad__r.Name squadName, Account__r.Team__c FROM Exam_Result__c WHERE Account__r.Team__c = :userAcc.Team__c AND Graded__c = true GROUP BY Account__r.Team__c, Account__r.Squad__r.Name ORDER BY AVG(Score__c) DESC LIMIT 4 ];
         
         system.debug('Squad Scores: ' + squadScores);
         
@@ -77,15 +92,12 @@ public with sharing class HeroHubController {
         
         for(AggregateResult score: squadScores){
             
-            Decimal correct = (Decimal)score.get('correct');
-            Decimal answers = (Decimal)score.get('answers');
+            Decimal squadScore = ((Decimal)score.get('score')).setScale(0);
            	String name = (String)score.get('squadName');
-            scoresBySquad.put(name, ((Decimal)(correct/answers)).setScale(2));
+            scoresBySquad.put(name, squadScore);
             
         }
         
-        scores.put('Squad', scoresBySquad);
-        system.debug(scores);
-        return scores;
+        return scoresBySquad;
     }
 }

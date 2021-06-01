@@ -4,7 +4,7 @@ public class HeroHubTestUtilities {
     
     @isTest
     public static void fullSetup(){
-        
+
         createTitans();
         createExams();
         createQuestions();
@@ -42,7 +42,10 @@ public class HeroHubTestUtilities {
         Squad__c newSquad = new Squad__c(Name = 'TestSquad', Team__c = newTeam.Id);
         database.insert(newSquad);
             
-        Account newAccount = new Account(name='User', Team__c = newTeam.Id, Squad__c = newSquad.Id);
+        Cohort__c newcohort = new Cohort__c(Name = 'Testcohort');
+        database.insert(newcohort);
+            
+        Account newAccount = new Account(name='User', Team__c = newTeam.Id, Squad__c = newSquad.Id, Cohort__c = newCohort.Id);
         database.insert(newAccount);       
      
         Contact newContact = new Contact(lastName='User', AccountId = newAccount.id);
@@ -114,7 +117,7 @@ public class HeroHubTestUtilities {
             
         }
         
-        insert newTitans;
+        database.insert(newTitans);
     }
     
     @isTest
@@ -133,7 +136,7 @@ public class HeroHubTestUtilities {
         
         }
         
-        insert newExams;
+        database.insert(newExams);
     }
     
     @isTest
@@ -148,7 +151,7 @@ public class HeroHubTestUtilities {
             
         }
         
-        insert newQuestions;
+        database.insert(newQuestions);
     }
      
     @isTest
@@ -174,10 +177,11 @@ public class HeroHubTestUtilities {
             
         }
     
-        insert newResults;
+        database.insert(newResults);
         
         system.debug(newResults);
     }
+    
     
     @isTest
     public static void createAnswers(){
@@ -197,7 +201,51 @@ public class HeroHubTestUtilities {
             }	
        	}
         
-        insert newAnswers;
+        database.insert(newAnswers);
         
+    }
+    
+    @isTest
+    public static void createTeams(){
+        List<Team__c> teamList = new List<Team__c>();
+        
+        Team__c Amplifire = new Team__c(Name='Amplifire', Slogan__c = 'Who\'s ready to rock?!?!?!', Primary_Color__c = '#ef6363', Secondary_Color__c = '#c324747');
+        Team__c Alchemy = new Team__c(Name='Alchemy', Slogan__c = 'Wizards Unite!', Primary_Color__c = '#84b059', Secondary_Color__c = '#539951');
+        Team__c Synergy = new Team__c(Name='Synergy', Slogan__c = 'Code Like a Boss', Primary_Color__c = '#ffdd00', Secondary_Color__c = '#fbb034');
+        Team__c Vanquish = new Team__c(Name='Vanquish', Slogan__c = 'Be a Hero!', Primary_Color__c = '#7aa7e9', Secondary_Color__c = '#5f70b0');
+        
+        teamList.add(Amplifire);
+        teamList.add(Alchemy);
+        teamList.add(Synergy);
+        teamList.add(Vanquish);
+        
+        database.insert(teamList);
+        
+    }
+    
+    @isTest
+    public static void createSquads(){
+        List<Squad__c> squadList = new List<Squad__c>();
+        List<Team__c> teamList = [SELECT Id, Name FROM Team__c];
+        
+        for(Team__c team: teamList){
+            if(team.Name == 'Synergy'){
+                squadList.add(new Squad__C(Name='TPS Reports', Team__c = team.Id));
+            }
+            if(team.Name == 'Amplifire'){
+                squadList.add(new Squad__C(Name='This is Fire', Team__c = team.Id));
+                squadList.add(new Squad__C(Name='Fire is This', Team__c = team.Id));
+                squadList.add(new Squad__C(Name='Fire Fire Fire', Team__c = team.Id));
+                squadList.add(new Squad__C(Name='FIRE sale', Team__c = team.Id));
+            }
+            if(team.Name == 'Alchemy'){
+                squadList.add(new Squad__C(Name='Wizard_People', Team__c = team.Id));
+            }
+            if(team.Name == 'Synergy'){
+                squadList.add(new Squad__C(Name='Angry Aardvarks', Team__c = team.Id));
+            }
+        }
+        
+        database.insert( squadList );
     }
 }

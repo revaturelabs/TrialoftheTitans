@@ -4,6 +4,60 @@
     transition: transform 750ms ease-in-out;
 }
 
+.THIS .titanSlayer-Alchemy {
+    background-image: url(/resource/AlchemyParchment);
+    background-size: cover;
+    color: var(--text-color);
+    font-family: 'BeyondWonderland';
+    height: 250px;
+    font-size: 35px;
+    line-height: 35px;
+    text-align: center;
+    padding: 5px 2.5%; 
+}
+
+.THIS .Alchemy-results {
+    display: flex;
+}
+
+.THIS .titanSlayer-Alchemy-title{
+    font-size: 40px;
+    line-height: 40px;
+}
+
+.THIS .Alchemy-results .scoreWrapper > h3{
+    text-decoration: underline;
+}
+.THIS .Alchemy-results .Alchemy-Scores{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.THIS .Alchemy-Scores progress[value]{
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: none;
+    filter:blur(5px);
+    width: 50%;
+    height: 20px;
+}
+
+.THIS .Alchemy-Scores.Amplifire progress::-webkit-progress-value{
+    background: var(--amplifire-primary);
+}
+
+.THIS .Alchemy-Scores.Vanquish progress::-webkit-progress-value{
+    background: var(--vanquish-primary);
+}
+
+.THIS .Alchemy-Scores.Alchemy progress::-webkit-progress-value{
+    background: var(--alchemy-primary);
+}
+
+.THIS .Alchemy-Scores progress::-webkit-progress-value{
+    background: var(--synergy-primary);
+}
 .THIS.titanSlayer .titanSlayer-Synergy{
     background: #030303;
     border: 2px solid grey;
@@ -121,6 +175,10 @@ div.THIS .titanSlayer-Synergy-body {
 
 .THIS .Synergy-Scores.Amplifire progress::-webkit-progress-value{
     background: var(--amplifire-secondary);
+}
+
+.THIS .Synergy-Scores.Amplifire h3{
+    color: var(--amplifire-primary);
 }
 
 .THIS .Synergy-Scores.Vanquish h3 {

@@ -20,5 +20,12 @@
       if(component.get("v.contextInfo")){
         helper.InitializeTabs(component);
       }
-  }
+    },
+
+    changeChart : function(component, event, helper){
+
+      console.log('from changeChart');
+      component.set('v.currentChart', event.getParam('chartType'));
+    
+    }
 })

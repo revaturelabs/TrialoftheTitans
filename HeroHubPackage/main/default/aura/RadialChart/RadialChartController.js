@@ -88,5 +88,20 @@
         };
 
         helper.drawChart(component, event, titans);
+    },
+
+    handleClick : function ( component, event, helper){
+        $A.util.toggleClass(event.currentTarget, 'shrunk-chart');
+		$A.util.toggleClass(document.getElementById('progress-chart'), 'shrunk-chart');
+        const currentChart = component.get('v.currentChart');
+        const chartEvent = component.getEvent('changeChart');
+        if(currentChart === 'Titan Performance'){
+            chartEvent.setParam('chartType', 'Titan Progress');
+            chartEvent.fire();
+        }
+        else{
+            chartEvent.setParam('chartType', 'Titan Performance');
+            chartEvent.fire();
+        }
     }
 })

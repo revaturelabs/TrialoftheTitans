@@ -16,6 +16,8 @@
     <aura:attribute name="active" type="String" default="Overview"/>
     <aura:attribute name="contextInfo" type="UserContextInfo"/>
     <aura:attribute name="currentTitanExams" type="List"/>
+    <aura:attribute name="currentChart" type="String" default="Titan Progress" />
+    <aura:handler name="changeChart" event="c:changeChartEvent" action="{!c.changeChart}" />
     <aura:handler name="init" value="{!this}" action="{!c.ContextChange}"/>
     <aura:handler name="change" value="{!v.contextInfo}" action="{!c.ContextChange}"/>
     <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
@@ -36,9 +38,10 @@
         
         <aura:if isTrue="{!v.active == 'Overview'}">
             <div style="background:#8CA7DF; border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                <h3 class="chart-title">{!v.currentChart}</h3>
                 <div class="chartBox">
-                    <c:ProgressChart contextInfo="{!v.contextInfo}"/>
-                    <c:RadialChart contextInfo="{!v.contextInfo}"/>
+                    <c:ProgressChart currentChart="{!v.currentChart}" contextInfo="{!v.contextInfo}"/>
+                    <c:RadialChart currentChart="{!v.currentChart}" contextInfo="{!v.contextInfo}"/>
                 </div>
             </div>
 

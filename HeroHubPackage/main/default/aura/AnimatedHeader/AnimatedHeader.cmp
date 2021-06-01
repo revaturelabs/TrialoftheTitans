@@ -1,10 +1,9 @@
 <aura:component>
     <aura:attribute name="leadTeams" type="Map"/>
     <div class="header-animatedHeader">
-        <aura:if isTrue="{!false}">
+        <aura:if isTrue="false">
             <div class="header-animatedHeader_Alchemy">
-                <div class="header-animatedHeader_Alchemy-Start1"></div>
-                <div class="header-animatedHeader_Alchemy-End"></div>
+                <h1>Trial Of The Titans</h1>
             </div>
             <aura:set attribute="else">
                 <aura:if isTrue="false">
@@ -14,7 +13,7 @@
                         <div class="amps right"></div>
                     </div>
                     <aura:set attribute="else">
-                        <aura:if isTrue="false">
+                        <aura:if isTrue="true">
                             <div class="header-animatedHeader_Synergy">
                                 <h1 class='header-animatedHeader_Synergy-title'>TRIAL OF THE TITANS</h1>
                                 <div class="Synergy-codeText-wrapper">
@@ -67,7 +66,7 @@
                                 </div>
                             </div>
                             <aura:set attribute="else">
-                                <aura:if isTrue="true">
+                                <aura:if isTrue="false">
                                     <div class="header-animateHeader_Vanquish">
                                             <h1 class="Vanquish-title">Trial Of <br/>The Titans</h1>
                                     </div>

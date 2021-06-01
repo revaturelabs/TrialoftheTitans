@@ -14,8 +14,24 @@
   box-sizing: border-box;
 }
 
-.THIS .header-animateHeader_Alchemy {
-  background-color: var(--alchemy-primary);
+.THIS .header-animatedHeader_Alchemy {
+  background-image: url(/resource/AlchemySmoke);
+  background-size: cover;
+  background-color: var(--text-color);
+  height: 100%;
+  width: 100%;
+}
+
+.THIS .header-animatedHeader_Alchemy h1 {
+  font-family: 'BeyondWonderland';
+  color: var(--alchemy-primary);
+  opacity: 0;
+  filter:blur(10px);
+  animation: Glowing 10s 2s infinite alternate;
+  font-size: 70px;
+  line-height: 70px;
+  width: 100%; 
+  text-align: center;
 }
 
 .THIS .header-animatedHeader_Amplifire{
@@ -135,5 +151,29 @@
 @keyframes swordIn {
   to {
     background-position: 45%, center;
+  }
+}
+
+@keyframes Glowing {
+  from {
+    opacity:0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+@keyframes Smoky {
+  0% {
+    background-position: 0 0;
+    
+  }
+  50% {
+    background-position: 0 -500px;
+    
+  }
+  100%{
+    background-position: 0 500px;
   }
 }

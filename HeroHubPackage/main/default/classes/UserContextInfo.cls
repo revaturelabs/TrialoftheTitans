@@ -21,10 +21,12 @@ public class UserContextInfo {
     public Squad__c squad{get; set;}
     
     //Team Info
-    @auraEnabled public Team__c team{get; set;}
+    @auraEnabled 
+    public Team__c team{get; set;}
     
     //Map of Exam Info by Titan and then Exam Name
-    @auraEnabled public Map<String, List<ExamList>> userExams {get; set;} 
+    @auraEnabled 
+    public Map<String, List<ExamList>> userExams {get; set;} 
 
     //Constructor
     public UserContextInfo( Id userId ){
@@ -150,7 +152,7 @@ public class UserContextInfo {
             List<Exam__c> examsToSort = examMap.get(key);
             
             Boolean isSorted = false;
-            while(isSorted = false){
+            while(isSorted == true){
                 Integer moves = 0;
                 Exam__C temp;
                 for(Integer i = 0; i < examsToSort.size()-1; i++){

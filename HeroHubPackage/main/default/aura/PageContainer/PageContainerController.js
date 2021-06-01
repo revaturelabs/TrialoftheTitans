@@ -19,13 +19,8 @@
             if( response.getState() === "SUCCESS"){
                 let teamScores = response.getReturnValue();
                 Object.keys(teamScores).forEach(category =>{
-                    teamScores[category] = Object.entries(teamScores[category]).sort((a,b) => {
-                    return a[1] < b[1]? 1 : -1;
+                    teamScores[category] = Object.entries(teamScores[category])
                 });
-                });
-                for(let key in teamScores){
-                    teamScores[key].map(val=> val[1] = Math.floor(val[1]*100));
-                }
                 console.log(teamScores);
                 component.set('v.leadTeams', teamScores);
            }

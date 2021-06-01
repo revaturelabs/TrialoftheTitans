@@ -4,3 +4,9 @@
     display: flex;
     padding: 0 10%;
 }
+
+.THIS .chart-title {
+    font-size: 24px;
+    width: 100%;
+    text-align: center;
+}
