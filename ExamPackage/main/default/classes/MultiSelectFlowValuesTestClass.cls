@@ -1,5 +1,8 @@
 @isTest
-public class MultiSelectFlowValuesTestClass{    
+public class MultiSelectFlowValuesTestClass{   
+    
+    //Testing the parser, it should separate out the list
+    
     @isTest
     static void MultiSelectFlowValuesTest(){ 
         List<string> tempLst = new list<string>();
