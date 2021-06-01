@@ -2,5 +2,4 @@
     
 	<c:TitansPageLanding/>
 
-
 </aura:application>

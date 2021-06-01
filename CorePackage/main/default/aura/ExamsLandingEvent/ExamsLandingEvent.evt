@@ -1,3 +1,3 @@
 <aura:event type="COMPONENT">
-  <aura:attribute name="titanId" type="Id"/>
+
 </aura:event>

@@ -3,10 +3,10 @@
 }
 .THIS {
        color: white;
+    background-color:#302f30;
     --background-color:#302f30;
 }
 .THIS.bannerDiv {
-  background-image: url('/resource/TitanResources/GodsBanner.png');
   background-repeat: repeat-y;
 }
 .THIS#div{
@@ -18,12 +18,13 @@
 
 .THIS#Header {
     background-color:var(--background-color);
-    color:white;
 }
 .THIS.card{
         background-color: var(--background-color);
 }
-
+.THIS#Margin{
+        background-color: var(--background-color);
+}
 .THIS.slds-card{
     background-color: var(--background-color);
 
@@ -32,8 +33,6 @@
 .THIS.slds-media_center{
     background-color: var(--background-color);
     
-}
-.THIS.slds-m-around_large{
 }
 .THIS.slds-card_boundary{
     background-color: var(--background-color);
@@ -83,7 +82,12 @@
 .THIS .slds-card__footer{
         background-color: var(--background-color);
 }
-
+.THIS#Span  {
+        background-color: var(--background-color);
+}                                                                                                                                                 
+.THIS .slds-media{
+        background-color: var(--background-color);
+}
 .THIS#contactinfo {
     position: relative;
 }

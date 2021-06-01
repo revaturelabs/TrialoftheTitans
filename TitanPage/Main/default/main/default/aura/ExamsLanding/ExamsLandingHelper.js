@@ -1,15 +1,8 @@
 ({
-    hRenderExams : function(component,event) {
-        var renderExams = component.getEvent("ExamsLandingEvent");
-        renderExams.setParams({
-            "titanId" : component.get("{!v.activeTitan}")
-        });
-        renderExams.fire();
-    },
     
-      hSetExams : function(component, event, helper) {
+    hSetExams : function(component, event, helper) {
         let activeTitan = component.get("v.activeTitan.Id");
-          console.log("Active Titan Id: " + activeTitan);
+        console.log("Active Titan Id: " + activeTitan);
         let examsList = component.get("c.getExams");
         examsList.setParams({titanId : activeTitan});
         examsList.setCallback(this, function(response){

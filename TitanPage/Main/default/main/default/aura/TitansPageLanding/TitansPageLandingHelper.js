@@ -11,7 +11,6 @@
         $A.enqueueAction(titanList);
     },
     
-    
     hSetExams : function(component, event, helper) {
         let activeTitan = component.get("v.activeTitan.Id");
         let examsList = component.get("c.getExams");
@@ -24,12 +23,10 @@
             }
         })
         
-        
-        
         $A.enqueueAction(examsList);
     },
     
-     hSetName : function(component, event, helper) {
+    hSetName : function(component, event, helper) {
         let userName = component.get("c.fetchUser");
         userName.setCallback(this, function(response){
             if(response.getState() == "SUCCESS"){
@@ -39,16 +36,6 @@
             
         })
         $A.enqueueAction(userName);
-    },
-    
-    //	hShowTitan# : button method that fires event, chooses which Titan to display info for 
-    hShowTitan1 : function(component, event, helper) {
-        var TitanPageLandingEvent = component.getEvent("TitanPageLandingEvent");
-        TitanPageLandingEvent.setParams({
-            "activeTitan" : "titanDiv1",
-        });
-        TitanPageLandingEvent.fire();
-        console.log("TitanPageLandingEvent fired: titanDiv1")
     },
     
     //	hNavigate : uses switch statement to show the Titan according to hShowTitan# method
@@ -67,30 +54,7 @@
         let titanId = event.currentTarget.dataset.titan;
         console.log('Current Titan Id:' + titanId);
         let titanDiv = document.querySelector("#" + titanId);
-		$A.util.removeClass(titanDiv, "toggle-hide");
-        /*
-            var evt = component.getEvent("TitanPageLandingEvent");
-            evt.setParams({ "eCandidateID" : hCandidateID
-                          });
-            evt.fire(); 
-            */
-        
-        //          for(let i=0; i<divList.length; i++){
-        //                let displayDiv = divList[i];                
-        //            };
-        
-        /*
-            var navTo = event.getParam("activeTitan");
-            console.log("Event Received");
-            
-            console.log('this function should fire event with the id of the div to be displayed');
-            console.log('the receiving function should get that id and remove hiding');
-            
-            var displayDiv = component.find("titanDiv1");
-            $A.util.removeClass(displayDiv,"toggle-hide");
-            */
-        
-        
+        $A.util.removeClass(titanDiv, "toggle-hide");
         
     }
 })

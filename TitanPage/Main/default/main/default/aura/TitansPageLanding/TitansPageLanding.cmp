@@ -2,11 +2,8 @@
     
     <!-- aura:registerEvent-->
     <aura:registerEvent name="TitanPageLandingEvent" type="c:TitanPageLandingEvent"/>
-    <aura:registerEvent name="RenderSkillsExams" type="c:TitanPageRender"/>
     <!-- aura:handler -->
     <aura:handler name="TitanPageLandingEvent" event="c:TitanPageLandingEvent" action="{!c.cNavigate}"/>
-    <aura:handler name="ExamsLandingEvent" event="c:ExamsLandingEvent" action="{!c.cSetTitanId}"/>
-    <aura:handler name="LandingSkillsEvent" event="c:LandingSkillsEvent" action="{!c.cSetTitanId}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <!-- aura:attribute -->
     <aura:attribute name="TitanList" type="Titan__c[]"/>
@@ -32,7 +29,7 @@
         
         <!-- Left decorative image - Valkyrie -->
         <div class="slds-size_1-of-3 slds-align_absolute-center" id='TitanIMG'>
-            <img src="{!$Resource.TitanResources  + '/TitanResources/Valkyrie.gif'}"/>
+            <img src="{!$Resource.TitanResources  + '/TitanResources/Chimera.gif'}"/>
         </div>
         
         <!-- Contact information Component, allows the user to view their contact information -->
@@ -56,7 +53,7 @@
         
         <!-- Right decorative image - Chimera -->
         <div class="slds-size_1-of-3 slds-align_absolute-center" id='TitanIMG'>
-            <img src="{!$Resource.TitanResources  + '/TitanResources/Chimera.gif'}"/>
+            <img src="{!$Resource.TitanResources  + '/TitanResources/Hydra.gif'}"/>
         </div>
     </div>
     
@@ -75,7 +72,7 @@
                     
                     <!-- Decorative image; Hydra -->
                     <div class="slds-size_2-of-12 slds-col slds-gutters slds-align_absolute-center" id='TitanIMG'>
-                        <img src="{!$Resource.TitanResources  + '/TitanResources/Hydra.gif'}"/>
+                        <img src="{!$Resource.TitanResources  + '/TitanResources/WaterTitan.gif'}"/>
                     </div>
                     
                     <div class="slds-col_bump-left slds-gutters slds-size_5-of-12">
