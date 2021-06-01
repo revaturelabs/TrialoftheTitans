@@ -2,7 +2,7 @@
     width: 95%; 
     margin: 5% 0% 0% 5%;  
     background: #29292A; 
-    border: 10px solid #84a7e4; 
+    border: 10px solid --user-team-primary; 
     height: auto;
     border-radius: 5px;
     color: white;
@@ -29,7 +29,7 @@
 }
 
 .THIS .btn{
-    background: #84a7e4;
+    background: --user-team-primary;
     border: none;
     border-radius: 5px;
     color: white;
@@ -40,7 +40,7 @@
 }
 
 .THIS .btn:hover{
-    background: #475BC2;
+    background: --user-team-secondary;
     border: none;
     border-radius: 5px;
     color: white;
