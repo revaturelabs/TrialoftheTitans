@@ -15,9 +15,6 @@ Trial of Titans is a gamified Learning Management System where users are able to
 Technologies used for this project include: **Salesforce, Apex, Lightning Aura Components, HTML, CSS, Lightning Design System, and Javscript**
 
 
-## Manifest
-Manifest includes ONLY the custom fields created by the Exam team. Should be safe to push/pull/create package versions from.
-
 ## Packages
 ### Prerequisites
 **Core_Package**: 04t5e000000d1YR
@@ -40,7 +37,7 @@ Manifest includes ONLY the custom fields created by the Exam team. Should be saf
 
 - [ ] Oracle (Trainer) Epic
   - [ ] Trainer will have access to the Cohort page
-  - [ ] Trainer will be able to create, manage, and assign exam questions
+  - [x] Trainer will be able to create, manage, and assign exam questions
   - [ ] Trainer will be able to conduct one-on-one interview
   - [ ] Trainer will be able to create and assign Projects
   - [ ] Trainer will be able to create Curricula

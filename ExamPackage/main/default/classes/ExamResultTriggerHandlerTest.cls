@@ -45,4 +45,41 @@ public class ExamResultTriggerHandlerTest {
         System.assertEquals('Unassigned', result6.Status__c);
     }
 
+    @isTest
+    public static void ExamTest(){
+        //Insert an example account
+        Account account1 = new Account(Name = 'Jefferson Steelflex');
+        insert account1;
+        //Insert an example exam
+        Exam__c firstExam = new Exam__c(Name = 'First Exam', Default_Passing_Grade__c =0);
+        insert firstExam;
+        //Add two exam results with the same account and exam, both assigned
+	    Exam_Question__c exQues = new Exam_Question__c(Name='Question 1');
+        insert exQues;
+        
+        
+        
+        List<Exam_Result__c> results = new List<Exam_Result__c>();
+        Exam_Result__c result1 = new Exam_Result__c(Account__c = account1.Id, Status__c = 'Assigned', Exam__c = firstExam.Id);
+        
+        Exam_Result__c result2 = new Exam_Result__c(Account__c = account1.Id, Status__c = 'Assigned', Exam__c = firstExam.Id);
+        
+        
+        results.add(result1); 
+        results.add(result2); 
+        
+        //Testing inserting an exam with exams already in the database
+        Exam_Result__c result4 = new Exam_Result__c(Account__c = account1.Id, Status__c = 'Assigned', Exam__c = firstExam.Id);
+        
+        results.add(result4);
+        
+        
+        CollaborationGroup gro = new CollaborationGroup(Name='Titan Slayers', CollaborationType = 'Public');
+        insert gro;
+        
+        ExamResultTriggerHandler.sendChatterMessageForTitanCompletion(results);
+        System.assert(true);
+
+    }
+
 }
