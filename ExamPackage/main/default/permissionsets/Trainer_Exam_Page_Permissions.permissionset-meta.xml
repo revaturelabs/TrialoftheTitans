@@ -223,11 +223,6 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Question_Pool__c.Question_Pool_Exam__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Question_Flow_Helper__c.Option__c</field>
         <readable>true</readable>

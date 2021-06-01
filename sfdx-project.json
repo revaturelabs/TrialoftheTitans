@@ -10,12 +10,12 @@
         {
             "path": "ExamPackage",
             "package": "Exam_Package",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
+            "versionName": "ver 1.1",
+            "versionNumber": "1.1.0.NEXT",
             "default": false,
             "dependencies": [
                 {
-                    "package": "04t5e000000phPqAAI"
+                    "package": "CorePackage@1.1.0-1"
                 }
             ]
         },
