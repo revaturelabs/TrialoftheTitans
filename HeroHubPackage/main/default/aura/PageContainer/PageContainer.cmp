@@ -1,31 +1,44 @@
 <aura:component controller="HeroHubController" access="global" >
+    
     <!--Attributes: contextUser, userTeam, leadTeam,-->
-    <aura:attribute name="contextInfo" type="Map" default="{}" />
+    <aura:attribute name="contextInfo" type="UserContextInfo" />
     <aura:attribute name="leadTeams" type="Map"/>
+    <aura:attribute name="navigate" type="String" default="" />
+    <aura:handler name="navigatePage" event="c:MainPageNavigation" action="{!c.navigate}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <!--Set dynamic colors for teams-->
     <aura:html tag="style">
         :root {
-            --user-team-primary: {!v.contextInfo.team.primary_color__c};
-            --user-team-secondary: {!v.contextInfo.team.secondary_color__c};
-            --lead-team-primary: {!v.leadTeam.primary_color__c};
-        	--lead-team-secondary: {!v.leadTeam.secondary_color__c};
+            --user-team-primary: {!v.contextInfo.team.Primary_Color__c};
+            --user-team-secondary: {!v.contextInfo.team.Secondary_Color__c};
+            --lead-team-primary: {!v.leadTeams.team[0].primary_color__c};
+        	--lead-team-secondary: {!v.leadTeams.team[0].secondary_color__c};
+
+            background-color: #3f3f3f;
         }
     </aura:html>
 
+    <!-- Animated Header and Navigation goes here -->
     <header class="header">
-        <c:AnimatedHeader leadTeam="{!v.leadTeam}"/>
-        <c:Navigation contextInfo="{!v.contextInfo}"/>
+        <c:AnimatedHeader leadTeams="{!v.leadTeams}"/>
+        <c:Navigation contextInfo="{!v.contextInfo}" navigate="{!v.navigate}"/>
     </header>
     
+    <!-- Main page with Titan Page or Titan Slayer and Hero Journey -->
     <div id="main">
-        <c:TitanSlayer leadTeam="{!v.leadTeam}" />
-        <!--main body goes here-->
+            <aura:if isTrue="{!v.navigate == 'Titan'}" >
+                    <!--Insert Titan Page Here-->
+                <aura:set attribute="else">
+                    <c:TitanSlayer leadTeams="{!v.leadTeams}" />
+                    <c:HeroJourney contextInfo="{!v.contextInfo}"/>
+                </aura:set>
+            </aura:if>    
     </div>
 
     <footer>
         <c:Footer />
     </footer>
 
+    <c:Communication />
 </aura:component>

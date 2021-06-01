@@ -1,3 +1,4 @@
+<!--Test component to show data -->
 <aura:component controller="HeroHubController" access="global">
     <aura:attribute name="userinfo" type="UserContextInfo"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>

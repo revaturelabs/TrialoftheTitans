@@ -1,0 +1,62 @@
+<!--
+    CREATED BY: Jared Longnecker
+    USAGE: Used to control the display of group tabs, message composition, and chatter messages
+-->
+
+<aura:component>
+    <aura:attribute name = "tabs" type = "String[]" />
+    <aura:attribute name = "activeTab" type = "String" />
+    <aura:attribute name = "currentContent" type = "Object[]" />
+    <aura:attribute name = "loading" type = "Boolean" default = "true" />
+
+    <aura:registerEvent name = "TabSelectEvent" type = "c:TabSelectEvent" />
+
+    <aura:handler name  = "TabSelectEvent" event = "c:TabSelectEvent" action = "{!c.NewTabLoad}" />
+    <aura:handler name  = "MessageSendEvent" event = "c:MessageSendEvent" action = "{!c.NewMessageLoad}" />
+
+    <!-- COMPONENT METHODS -->
+    <aura:method name = "PopulateTabs" action = "{!c.PopulateTabs}" access = "PUBLIC" >
+        <aura:attribute name = "tabList" type = "String[]" />
+    </aura:method>
+    <aura:method name = "SwapTabs" action = "{!c.SwapTabs}" access = "PUBLIC" >
+        <aura:attribute name = "tabContent" type = "Object[]" />
+    </aura:method>
+    <aura:method name = "AddPostedMessage" action = "{!c.AddPostedMessage}" access = "PUBLIC" >
+        <aura:attribute name = "newMessage" type = "Object" />
+    </aura:method>
+
+    <!-- BEGIN COMPONENT -->
+    <div id = "feed-container">
+
+        <!-- HEADER -->
+        <div class = "slds-grid" id = "feed-header">
+            <aura:iteration items = "{!v.tabs}" var = "name" >
+                <div class = "slds-size_1-of-3" >
+                    <c:CommunicationFeedTab index = "{!_index}" tabName = "{!name}" activeTab = "{!v.activeTab}" />
+                </div>
+            </aura:iteration>
+        </div>
+
+        <!-- CHATTER MESSAGES -->
+        <div id = "feed-content">
+
+            <!-- LOADING SPINNER -->
+            <aura:if isTrue = "{!v.loading}">
+                <div id = "loading"></div>
+            </aura:if>
+
+            <aura:if isTrue = "{!v.currentContent.length == 0 }">
+                <p id = "no-content-text">There doesn't appear to be anything here...</p>
+            </aura:if>
+            <aura:iteration items = "{!v.currentContent}" var = "content" >
+                <c:CommunicationFeedItem content = "{!content}" />
+            </aura:iteration>
+        </div>
+
+        <!-- MESSAGE COMPOSITION FIELD -->
+        <div id = "feed-compose">
+            <c:CommunicationFeedCompose activeTab = "{!v.activeTab}" />
+        </div>
+    </div>
+    
+</aura:component>	

@@ -1,0 +1,8 @@
+<!--
+    CREATED BY: Jared Longnecker
+    USAGE: Used to notify the outer Communication component that a tab has been selected
+-->
+
+<aura:event type="COMPONENT" description="Fires when tab is clicked" >
+    <aura:attribute name = "tabName" type = "String" />
+</aura:event>
