@@ -54,7 +54,7 @@ public class UserContextInfo {
         try{
             User user = [SELECT Id, contactId FROM User WHERE Id = :userId];
         	Contact userContact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.ContactId];
-        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Id = :userContact.AccountId];
+        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c, Team__c, Cohort__c FROM Account WHERE Id = :userContact.AccountId];
             
             //Hard Coded Account for now
         	//Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c, Cohort__c, Team__c FROM Account WHERE Name = 'User0'];
@@ -148,7 +148,8 @@ public class UserContextInfo {
          	examMap.get(exam.Titan__R.Name).add(exam);   
         }
         
-        for(String key: examMap.keySet()){
+        //Sorting algorithm to be added in the future or done with numbers on Exam-Results.
+        /*for(String key: examMap.keySet()){
             List<Exam__c> examsToSort = examMap.get(key);
             
             Boolean isSorted = false;
@@ -167,7 +168,7 @@ public class UserContextInfo {
                     isSorted = true;
                 }
             }
-        }
+        }*/
         
         
         return examMap;

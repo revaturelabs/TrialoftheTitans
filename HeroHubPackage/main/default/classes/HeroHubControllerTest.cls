@@ -51,11 +51,21 @@ public class HeroHubControllerTest {
             
         	Map<String, Decimal> teamScores = HeroHubController.getScoresbyTeam();
             
+			system.debug(teamScores);
            	system.assertEquals(2, teamScores.size());
         
         }
    	}
     
+    @isTest
+    static void findAllResults(){
+        User testUSer = [SELECT Id FROM User WHERE alias = 'testUser' LIMIT 1];
+        system.runAs(testUser){
+            Map<String, Map<String, Decimal>> HeroHub =  HeroHubController.getTeamScores();
+            
+            system.assertEquals(3, HeroHub.size());
+        }
+    }
     private static List<Account> getTwoAccounts(){
         List<Account> acctList = new List<Account>();
         List<Team__c> teamList = new List<Team__c>();
@@ -69,6 +79,7 @@ public class HeroHubControllerTest {
       		cohortList.add(newCohort);
        	}
         database.insert(teamList);
+        system.debug(teamList);
         database.insert(cohortList);
         
         for(Team__c team:teamList){
@@ -83,7 +94,7 @@ public class HeroHubControllerTest {
             acctList.add(newAcct);
         }
         database.insert(acctList);
-        
+        system.debug(acctList);
         return acctList;
         
     }

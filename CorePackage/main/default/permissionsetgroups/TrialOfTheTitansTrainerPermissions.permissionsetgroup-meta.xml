@@ -2,5 +2,8 @@
 <PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>A Permission Set Group for the trainers of the Trial of The Titans.</description>
     <label>TrialOfTheTitansTrainerPermissions</label>
+    <permissionSets>Core_Trainer_Permissions</permissionSets>
+    <permissionSets>Trainer_Exam_Page_Permissions</permissionSets>
+    <permissionSets>Trainer_Titans_Page_Permissions</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>

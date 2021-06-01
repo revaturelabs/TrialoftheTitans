@@ -64,6 +64,11 @@ public class UserContextInfoTest {
         system.debug(userInfo);
         
         
+        system.assertEquals(3, userInfo.userExams.size());
+		
+        for(String key: userInfo.userExams.keySet()){
+            system.assertEquals(3, userInfo.userExams.get(key).size());
+        }        
     }
     
     @isTest
