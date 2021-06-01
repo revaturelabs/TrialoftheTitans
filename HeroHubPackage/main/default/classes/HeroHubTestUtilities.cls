@@ -1,18 +1,10 @@
 @isTest
 public class HeroHubTestUtilities {
     
-    public static Id testAccount;
-    public static Id testContact;
-    public static Id testProfile;
-    public static Id testTeam;
-    public static Id testSquad;
-    
     
     @isTest
     public static void fullSetup(){
-        
-        createRightUser();
-        createWrongUser();
+
         createTitans();
         createExams();
         createQuestions();
@@ -21,32 +13,48 @@ public class HeroHubTestUtilities {
         
     }
     
-    
     @isTest
-    public static void createRightUser(){
+    public static void createUsers(){
         
-        Team__c newTeam = new Team__C(Name='Amplifire');
-        insert newTeam;
-        testTeam = newTeam.Id;
-
-        Squad__c newSquad = new Squad__c(Name = 'This is Fire', Team__c = newTeam.Id);
-        insert newSquad;
-        system.debug(newSquad);
-        testSquad = newSquad.Id;
+        Profile adminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1];
         
-        Account newAccount = new Account(name='User', Squad__c = newSquad.Id);
-        insert newAccount;       
-        testAccount = newAccount.Id;
+        UserRole customerManager = [SELECT Id FROM UserRole WHERE Name = 'Customer Manager' LIMIT 1];
+        
+		User adminUser = new User( profileId = adminProfile.Id,
+						   		 username = 'admin' + Crypto.getRandomInteger() + '@yahoo.com',
+						   		 email = 'test@test.com',
+								 emailencodingkey = 'UTF-8',
+								 localesidkey = 'en_US',
+								 languagelocalekey = 'en_US',
+								 timezonesidkey = 'America/Los_Angeles',
+								 alias = 'testAd',
+								 lastname = 'testAdmin',
+                                 userRoleId = customerManager.Id
+                               );
+            
+        database.insert(adminUser);
+        
+        System.runAs(adminUser){
+        
+        Team__c newTeam = new Team__c(Name = 'TestTeam');
+        database.insert(newTeam);
+         
+        Squad__c newSquad = new Squad__c(Name = 'TestSquad', Team__c = newTeam.Id);
+        database.insert(newSquad);
+            
+        Cohort__c newcohort = new Cohort__c(Name = 'Testcohort');
+        database.insert(newcohort);
+            
+        Account newAccount = new Account(name='User', Team__c = newTeam.Id, Squad__c = newSquad.Id, Cohort__c = newCohort.Id);
+        database.insert(newAccount);       
      
         Contact newContact = new Contact(lastName='User', AccountId = newAccount.id);
-        insert newContact;
-        testContact = newContact.Id;
+        database.insert(newContact);
         
         // Get Hero profile from database to use for Users
         Profile heroProfile = [SELECT Id FROM Profile WHERE Name = 'Hero' LIMIT 1];
-        testProfile = heroProfile.Id;
         
-		User newUser = new User( profileId = heroProfile.id,
+		User testUser = new User( profileId = heroProfile.id,
 						   		 username = newContact.lastName + Crypto.getRandomInteger() + '@yahoo.com',
 						   		 email = 'test@test.com',
 								 emailencodingkey = 'UTF-8',
@@ -57,15 +65,16 @@ public class HeroHubTestUtilities {
 								 lastname = newContact.lastName,
 								 contactId = newContact.id
                                );
-            
-            system.debug(userInfo.getUserRoleId());
-        	insert newUser;
-        	
-        	//Id groupID = [SELECT Id FROM PermissionSetGroup WHERE DeveloperName = 'TrialOfTheTitansHeroPermissions' Limit 1].Id;
-        	//PermissionSetAssignment assignment = new PermissionSetAssignment(PermissionSetGroupId = groupId, AssigneeId = newUser.Id);
-
-			//Database.insert(assignment);
+   
+        database.insert(testUser);
         
+        Id groupID = [SELECT Id FROM PermissionSetGroup WHERE DeveloperName = 'TrialOfTheTitansHeroPermissions' Limit 1].Id;
+       	PermissionSetAssignment assignment = new PermissionSetAssignment(PermissionSetGroupId = groupId, AssigneeId = testUser.Id);
+
+		Database.insert(assignment);
+        
+        }
+        	
     }
     
     @isTest
@@ -108,7 +117,7 @@ public class HeroHubTestUtilities {
             
         }
         
-        insert newTitans;
+        database.insert(newTitans);
     }
     
     @isTest
@@ -127,7 +136,7 @@ public class HeroHubTestUtilities {
         
         }
         
-        insert newExams;
+        database.insert(newExams);
     }
     
     @isTest
@@ -142,7 +151,7 @@ public class HeroHubTestUtilities {
             
         }
         
-        insert newQuestions;
+        database.insert(newQuestions);
     }
      
     @isTest
@@ -168,8 +177,11 @@ public class HeroHubTestUtilities {
             
         }
     
-        insert newResults;
+        database.insert(newResults);
+        
+        system.debug(newResults);
     }
+    
     
     @isTest
     public static void createAnswers(){
@@ -189,7 +201,51 @@ public class HeroHubTestUtilities {
             }	
        	}
         
-        insert newAnswers;
+        database.insert(newAnswers);
         
+    }
+    
+    @isTest
+    public static void createTeams(){
+        List<Team__c> teamList = new List<Team__c>();
+        
+        Team__c Amplifire = new Team__c(Name='Amplifire', Slogan__c = 'Who\'s ready to rock?!?!?!', Primary_Color__c = '#ef6363', Secondary_Color__c = '#c324747');
+        Team__c Alchemy = new Team__c(Name='Alchemy', Slogan__c = 'Wizards Unite!', Primary_Color__c = '#84b059', Secondary_Color__c = '#539951');
+        Team__c Synergy = new Team__c(Name='Synergy', Slogan__c = 'Code Like a Boss', Primary_Color__c = '#ffdd00', Secondary_Color__c = '#fbb034');
+        Team__c Vanquish = new Team__c(Name='Vanquish', Slogan__c = 'Be a Hero!', Primary_Color__c = '#7aa7e9', Secondary_Color__c = '#5f70b0');
+        
+        teamList.add(Amplifire);
+        teamList.add(Alchemy);
+        teamList.add(Synergy);
+        teamList.add(Vanquish);
+        
+        database.insert(teamList);
+        
+    }
+    
+    @isTest
+    public static void createSquads(){
+        List<Squad__c> squadList = new List<Squad__c>();
+        List<Team__c> teamList = [SELECT Id, Name FROM Team__c];
+        
+        for(Team__c team: teamList){
+            if(team.Name == 'Synergy'){
+                squadList.add(new Squad__C(Name='TPS Reports', Team__c = team.Id));
+            }
+            if(team.Name == 'Amplifire'){
+                squadList.add(new Squad__C(Name='This is Fire', Team__c = team.Id));
+                squadList.add(new Squad__C(Name='Fire is This', Team__c = team.Id));
+                squadList.add(new Squad__C(Name='Fire Fire Fire', Team__c = team.Id));
+                squadList.add(new Squad__C(Name='FIRE sale', Team__c = team.Id));
+            }
+            if(team.Name == 'Alchemy'){
+                squadList.add(new Squad__C(Name='Wizard_People', Team__c = team.Id));
+            }
+            if(team.Name == 'Synergy'){
+                squadList.add(new Squad__C(Name='Angry Aardvarks', Team__c = team.Id));
+            }
+        }
+        
+        database.insert( squadList );
     }
 }

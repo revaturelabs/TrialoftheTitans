@@ -21,10 +21,12 @@ public class UserContextInfo {
     public Squad__c squad{get; set;}
     
     //Team Info
-    @auraEnabled public Team__c team{get; set;}
+    @auraEnabled 
+    public Team__c team{get; set;}
     
     //Map of Exam Info by Titan and then Exam Name
-    @auraEnabled public Map<String, List<ExamList>> userExams {get; set;} 
+    @auraEnabled 
+    public Map<String, List<ExamList>> userExams {get; set;} 
 
     //Constructor
     public UserContextInfo( Id userId ){
@@ -50,18 +52,18 @@ public class UserContextInfo {
 		
         // To be added when user is live
         try{
-            //User user = [SELECT Id, contactId FROM User WHERE Id = :userId];
-        	//Contact userContact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.ContactId];
-        	//Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Id = :userContact.AccountId];
+            User user = [SELECT Id, contactId FROM User WHERE Id = :userId];
+        	Contact userContact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.ContactId];
+        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Id = :userContact.AccountId];
             
             //Hard Coded Account for now
-        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c, Cohort__c, Team__c FROM Account WHERE Name = 'User0'];
+        	//Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c, Cohort__c, Team__c FROM Account WHERE Name = 'User0'];
             
             system.debug(userAccount);
 			return userAccount;
         }
         catch(Exception e){
-           return null;
+           return [SELECT Id, Name, Curriculum__c, Squad__c, Cohort__c, Team__c FROM Account WHERE Name = 'User0'];
         }
         
 
@@ -72,7 +74,7 @@ public class UserContextInfo {
         
         system.debug(squadId);
 
-        Squad__c userSquad = [SELECT Id, Name, Team__c FROM Squad__c LIMIT 1];
+        Squad__c userSquad = [SELECT Id, Name, Team__c FROM Squad__c WHERE id = :squadId LIMIT 1];
         
         system.debug(userSquad);
 
@@ -150,7 +152,7 @@ public class UserContextInfo {
             List<Exam__c> examsToSort = examMap.get(key);
             
             Boolean isSorted = false;
-            while(isSorted = false){
+            while(isSorted == true){
                 Integer moves = 0;
                 Exam__C temp;
                 for(Integer i = 0; i < examsToSort.size()-1; i++){

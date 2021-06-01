@@ -11,4 +11,18 @@
 		console.log( "Scripts Loaded" )
 		console.log( component.get( "v.scriptsLoaded" ) )
 	},
+	handleClick : function(component, event, helper){
+		$A.util.toggleClass(event.currentTarget, 'shrunk-chart');
+		$A.util.toggleClass(document.getElementById('mydthree'), 'shrunk-chart');
+		const currentChart = component.get('v.currentChart');
+		const chartEvent = component.getEvent('changeChart');
+		if(currentChart === 'Titan Performance'){
+            chartEvent.setParam('chartType', 'Titan Progress');
+            chartEvent.fire();
+        }
+        else{
+            chartEvent.setParam('chartType', 'Titan Performance');
+            chartEvent.fire();
+        }
+	}
 })

@@ -1,14 +1,13 @@
 <aura:component access="global" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" >
     <aura:attribute name="contextInfo" type="UserContextInfo" default=""></aura:attribute>
-    
+    <aura:attribute name="currentChart" type="String" />
     <aura:attribute name="scriptsLoaded" type="Boolean" default="False"/>
+    <aura:registerEvent name="changeChart" type="c:changeChartEvent"/>
+    <aura:handler name="init" value="{!this}" action="{!c.GenerateRadialChart}"/>
+    <aura:handler name="change" value="{!v.contextInfo}" action="{!c.GenerateRadialChart}"/>
+    <aura:handler name="change" value="{!v.scriptsLoaded}" action="{!c.GenerateRadialChart}"/>
 
-    <aura:handler name="change" value="{!v.contextInfo}" action="{!c.drawRadialChart}"/>
-    <aura:handler name="change" value="{!v.scriptsLoaded}" action="{!c.drawRadialChart}"/>
+    <ltng:require scripts="{!$Resource.d3 + '/d3.js'}" afterScriptsLoaded="{!c.ScriptsLoaded}" />
 
-    <ltng:require scripts="{!$Resource.d3}" afterScriptsLoaded="{!c.ScriptsLoaded}" />
-
-    <div id="mydthree"  >
-        
-    </div>
+    <div id="mydthree" onclick="{!c.handleClick}" />
 </aura:component>	

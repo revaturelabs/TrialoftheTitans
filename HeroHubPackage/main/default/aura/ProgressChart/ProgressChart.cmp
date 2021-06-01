@@ -1,16 +1,16 @@
 <aura:component>
     <aura:attribute name="contextInfo" type="UserContextInfo"/>
     <aura:attribute name="scriptsLoaded" type="Boolean" default="False"/>
-
+    <aura:attribute name="currentChart" type="String" />
     <aura:handler name="change" value="{!v.contextInfo}" action="{!c.GenerateCircleBar}"/>
     <aura:handler name="change" value="{!v.scriptsLoaded}" action="{!c.GenerateCircleBar}"/>
+    <aura:registerEvent name="changeChart" type="c:changeChartEvent"/>
 
     <ltng:require
                   scripts="{!$Resource.d3 + '/d3.js'}"
                   afterScriptsLoaded ="{!c.ScriptsLoaded}"
                   />
 
-        <div id="progress-chart" class="inactive-chart">
-        </div>
+        <div id="progress-chart" class="inactive-chart" onclick="{!c.handleClick}" />
   
 </aura:component>
