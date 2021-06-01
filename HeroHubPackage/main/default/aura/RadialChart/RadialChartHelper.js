@@ -3,7 +3,7 @@
 //Author: Andreology
 //Created: 05/19/2021
 //Updated: 05/30/2021
-//Description: This Component will have halper methods to generate the radial chart based on overall titan progress. 
+//Description: This class will have helper methods to generate the radial chart based on overall titan progress. 
 */
 ({  
     SetUpChart : function(component, event, titans) {
@@ -59,7 +59,6 @@
         let inputData = [];
         inputData.push(sourceData);
         inputData.push(highScoreData);
-        let avgFlag = false;
         let lineCount = inputData[0].averages.length - 1;
         const radialData  = d3.range(0,110,10); // 10 positions
 
