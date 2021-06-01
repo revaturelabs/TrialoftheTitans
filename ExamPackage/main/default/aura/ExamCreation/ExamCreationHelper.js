@@ -1,7 +1,7 @@
 ({
     // get questions pools from server
     // currently getting all of them
-    // need some search or filter functionality.
+    // unless searchbar is triggered
     getQuestionPools : function(component) {
         let action = component.get("c.getQuestionPool");
         let searchKeyword = component.get("v.searchKeyword");
@@ -11,7 +11,7 @@
         action.setCallback(this, function(response){
             let state = response.getState();
             if(state = 'SUCCESS'){
-                
+                console.log('Success!');
                 let x = response.getReturnValue();
                 component.set("v.questionPoolMap", x);
                 
@@ -24,10 +24,7 @@
                 }
                 
             }else{
-                component.find('notifLib').showToast({
-                    "title": "Error.",
-                    "message": "Was not able to retrieve question pools."
-                });
+                console.log('Error!');
             }
             
         });
@@ -46,16 +43,13 @@
                 let x = response.getReturnValue();
                 component.set("v.questionShow", x);
             }else{
-                component.find('notifLib').showToast({
-                    "title": "Error.",
-                    "message": "Was not able to retrieve questions."
-                });
+                console.log('Error!');
             }
             
         });
        	$A.enqueueAction(action);
     },
-    // just send the information to the server for insert
+    // Send the information to the server for insert
     // poolAndNumber is a map
     createExamAssignment : function(component, poolAndNumber, examId){
         let action = component.get("c.createExamAssignment");
@@ -66,15 +60,9 @@
         action.setCallback(this, function(response){
             let state = response.getState();
             if(state = 'SUCCESS'){
-                component.find('notifLib').showToast({
-                    "title": "Success!",
-                    "message": "The record has been updated successfully."
-                });
+                console.log('Success!');
             }else{
-                component.find('notifLib').showToast({
-                    "title": "Error.",
-                    "message": "The record was not updated."
-                });
+                console.log('Error!');
             }
         });
        	$A.enqueueAction(action);

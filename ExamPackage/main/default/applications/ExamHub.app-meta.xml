@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>Exam_Home</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Question_Pool_Record_Page</content>
@@ -28,6 +36,7 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>ExamHub</label>
     <navType>Standard</navType>
+    <tabs>standard-home</tabs>
     <tabs>Exam_Question__c</tabs>
     <tabs>Exam_Result__c</tabs>
     <tabs>Exam__c</tabs>
@@ -35,6 +44,8 @@
     <tabs>Question_Assignment__c</tabs>
     <tabs>Question_Pool__c</tabs>
     <tabs>Import_Questions</tabs>
+    <tabs>Exam_Pool_Assignment__c</tabs>
+    <tabs>standard-OtherUserProfile</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>ExamHub_UtilityBar</utilityBar>
 </CustomApplication>

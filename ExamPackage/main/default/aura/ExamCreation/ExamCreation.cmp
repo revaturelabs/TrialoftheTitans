@@ -1,14 +1,13 @@
 <!--
- Component for exam creation.
- Only for creation as of the current version.
- can be updated to allow for editing by giving lightning recordForm an id.
+ Author: Danny Tran
+ Usage: Component for exam creation.
+ Notes: 
+ -Only for creation as of the current version; need to create exam to add pool to exam.
 -->
 <aura:component controller="ExamCreationAuraController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
     
     <aura:handler name="init" value="{! this }" action="{! c.init }"/>
     <aura:attribute name="searchKeyword" type="String" />
-    <!-- remember to comment out all toast if testing in preview environment -->
-    <lightning:notificationsLibrary aura:id = " notifLib"/>
     
     <aura:attribute name="examId" type="String"/>
     
@@ -29,7 +28,7 @@
     <aura:attribute name="draftValues" type="List"/>
     <aura:attribute name="draftValuesMap" type="Map" default="{}" />
     
-    <aura:attribute name="examCreated" type="Boolean" default="true"/>    
+    <aura:attribute name="examCreated" type="Boolean" default="false"/>    
     
     <div class=" body ">
         
