@@ -38,7 +38,7 @@ public class ExamCreationAuraController {
     // Description: get question pools, called on init
     // Parameters: searchKeyword is a string for the searchbar, can be null or not.
     @AuraEnabled
-    public static Map<Integer, List<QuestionPoolWrapper>> getQuestionPool(String searchKeyword){
+    public static Map<Integer, List<QuestionPoolWrapper>> GetQuestionPool(String searchKeyword){
         
         // determine if key is null or not
         String searchkey= String.isBlank (searchKeyword) ? '%%' : '%'+searchKeyword+'%';
@@ -72,7 +72,7 @@ public class ExamCreationAuraController {
     // Description: get all Exam questions of a particular pool
     // Parameters: poolId to query with.
     @AuraEnabled
-    public static List<Exam_Question__c> getExamQuestions(Id poolId){
+    public static List<Exam_Question__c> GetExamQuestions(Id poolId){
         
         List<Exam_Question__c> eql  = new List<Exam_Question__c>();
         
@@ -98,7 +98,7 @@ public class ExamCreationAuraController {
     // Parameters: examId : of the exam that was created.
     // 			   poolAndNumber : the poolId and the number of question to pull from that pool
     @AuraEnabled
-    public static void createExamAssignment(String examId, Map<Id, Integer> poolAndNumber){
+    public static void CreateExamAssignment(String examId, Map<Id, Integer> poolAndNumber){
         List<Exam_Pool_Assignment__c> eal = new List<Exam_Pool_Assignment__c>();
         for(String key: poolAndNumber.keyset()){
             eal.add(new Exam_Pool_Assignment__c(Exam__c = examId, Question_Pool__c = key, Number_to_pull__c = poolAndNumber.get(key)));

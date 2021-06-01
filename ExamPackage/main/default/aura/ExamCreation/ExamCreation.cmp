@@ -6,7 +6,7 @@
 -->
 <aura:component controller="ExamCreationAuraController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
     
-    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    <aura:handler name="init" value="{! this }" action="{! c.Init }"/>
     <aura:attribute name="searchKeyword" type="String" />
     
     <aura:attribute name="examId" type="String"/>
@@ -19,13 +19,11 @@
     <aura:attribute name="currentPage" type="Integer" default="1"/>
     <aura:attribute name="isLastPage" type="Boolean"/>
     
-    <aura:attribute name="selectedRows" type="List"/>
     <aura:attribute name="poolDataColumns" type="List" />
     
     <aura:attribute name="questionShow" type="List"/>
     <aura:attribute name="questionDataColumns" type="List" />
     
-    <aura:attribute name="draftValues" type="List"/>
     <aura:attribute name="draftValuesMap" type="Map" default="{}" />
     
     <aura:attribute name="examCreated" type="Boolean" default="false"/>    
@@ -40,7 +38,7 @@
                     <lightning:recordForm objectApiName="Exam__c" 
                                           layoutType="Full"
                                           columns="1"
-                                          onsuccess="{!c.handleSuccess}"/>
+                                          onsuccess="{!c.HandleSuccess}"/>
                 </div>
             </aura:if>
         </div>
@@ -55,7 +53,7 @@
                                 <lightning:input aura:id="searchField"              
                                                  value="{!v.searchKeyword}"          
                                                  placeholder="Search Pool Title"
-                                                 onchange = "{!c.init}"/>     
+                                                 onchange = "{!c.Init}"/>     
                             </div>
                         
                 <lightning:layout horizontalAlign="spread" multipleRows="true">
@@ -67,8 +65,8 @@
                                                  keyField="poolId"
                                                  hideCheckboxColumn="true"
                                                  draftValues="{!v.draftValues}"
-                                                 onrowaction="{! c.showQuestionInPool }"
-                                                 oncellchange="{! c.updateQuestionQuantity}"
+                                                 onrowaction="{! c.ShowQuestionInPool }"
+                                                 oncellchange="{! c.UpdateQuestionQuantity}"
                                                  suppressBottomBar="true"/>
                         </div>
                     </lightning:layoutItem>
@@ -90,7 +88,7 @@
                             
                             <lightning:layoutItem size='3' flexibility="auto" padding="horizontal-medium" class="slds-align_absolute-center">
                                 <lightning:button label="Prev" iconName="utility:chevronleft" iconPosition="left"
-                                                  onclick="{!c.handlePrev}" disabled="{! v.currentPage == 1}"/>
+                                                  onclick="{!c.HandlePrev}" disabled="{! v.currentPage == 1}"/>
                             </lightning:layoutItem>
                             
                             <lightning:layoutItem size='6' flexibility="auto" padding="horizontal-medium" class="slds-align_absolute-center">
@@ -99,7 +97,7 @@
                             
                             <lightning:layoutItem size='3' flexibility="auto" padding="horizontal-medium" class="slds-align_absolute-center">
                                 <lightning:button label="Next" iconName="utility:chevronright" iconPosition="right"
-                                                  onclick="{!c.handleNext}" disabled="{! v.isLastPage}"/>
+                                                  onclick="{!c.HandleNext}" disabled="{! v.isLastPage}"/>
                             </lightning:layoutItem>
                             
                         </lightning:layout>
@@ -110,7 +108,7 @@
                     
                 </lightning:layout>
                 
-                <lightning:button variant="brand" label="Create" title="Primary Action" onclick="{!c.handleCreation}"/>
+                <lightning:button variant="brand" label="Create" title="Primary Action" onclick="{!c.HandleCreation}"/>
             </aura:if>
         </div>
         <!-- Relating Pool To Exam Section -->
