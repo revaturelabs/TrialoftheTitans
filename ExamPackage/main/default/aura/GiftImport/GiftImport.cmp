@@ -3,10 +3,17 @@
 //
 // Name: Trial of the Titans - GIFT Parser
 // Author: Danny Tran, David J. Sellinger
-// Created: 2021-05-24
-// Updated: 2021-05-31
-// Description: Component to take in gift format text
-//              file
+// Description: Component to take in gift format text file.
+// - initMessage: Message shown when initial values on picklists have been set and ready to import.
+// - titans: Holds the Name and Ids of Titans.
+// - selectedTitan: Holds the Id of the selected Titan.
+// - technologies: Holds the Name and Ids of Technologies.
+// - selectedTechnology: Holds the Id of the selected Titan.
+// - canUpload: Boolean used to show next page in wizard.
+// - fileName: Name of file uploaded by the user.
+// - toImport: The number of questions in the file uploaded by the user.
+// - showQuestions: Used to show the questions split by the helper.
+// - displayList: Used 
 //
 ////////////////////////////////////////////////////
 -->

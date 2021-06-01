@@ -20,11 +20,6 @@ public class ExamQuestion {
 
     public ExamQuestion() {
     }
-
-    public ExamQuestion(String qText, String qAnswer) {
-        this.qText = qText;
-        this.qAnswer = qAnswer;
-    }
     
     public ExamQuestion(String qTitle, String qText, String qAnswer) {
         this.qTitle = qTitle;

@@ -1,3 +1,12 @@
+/////////////////////////////////////////////////////
+//
+//  Name: GiftImportController
+//  Author: David J. Sellinger
+//  Description: Client-side Controller for the GIFT
+//               Import component.                
+//
+///////////////////////////////////////////////////
+
 ({	
     // DoInit(): Do init.
 

@@ -1,3 +1,12 @@
+/////////////////////////////////////////////////////
+//
+//  Name: GiftImportHelper
+//  Author: David J. Sellinger
+//  Description: Client-side JS Helper for the GIFT
+//               Import component.                
+//
+///////////////////////////////////////////////////
+
 ({
     // HandleInit(): Handle init. Get technology and titan values for the picklists.
 
