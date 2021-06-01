@@ -1,0 +1,377 @@
+.THIS {
+    background: #29292A;
+	border: 15px solid var(--user-team-primary);
+    border-radius: 0px 5px 5px 5px;
+    height: auto;
+    margin-right: 15px;
+    min-width: 375px;
+    min-height: 700px;    
+    padding: 15px 10px 25px 15px;
+    width: 100%;
+    transition: .5s;
+}
+
+.THIS h1{
+    color: white;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.THIS p{
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.THIS .path{
+    margin: auto;
+    max-width: 625px;
+    min-width: 525px;
+}
+
+/* START OF MINIONS */
+
+.THIS .minion{
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid white;
+    transition: .5s;
+}
+
+.THIS .minion-center{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    border-bottom: 5px solid var(--user-team-primary);
+    margin: auto;
+    background: url(/resource/hero) no-repeat center;
+    background-size: 70%;
+}
+
+.THIS .minion-center-final{
+    width: 120px;
+    height: 120px;
+    border-radius: 150px;
+    border: 5px solid white;
+    margin: auto;
+    transition: .5s;
+}
+
+.THIS .minion-center-final:hover{
+    background: #29292A;
+    border-radius: 150px;
+    border: 5px solid var(--user-team-secondary);
+    cursor: pointer;
+    height: 130px;
+    margin: auto;
+    transform: scale(1.1);
+    transition: .5s;
+    width: 130px;
+}
+
+.THIS .minion-center-final-completed{
+    background: #5A714F;
+    width: 120px;
+    height: 120px;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    margin: auto;
+    transition: .5s;
+}
+
+.THIS .minion-center-final-completed:hover{
+    background: #5A714F;
+    width: 120px;
+    height: 120px;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    margin: auto;
+    transition: .5s;
+    transform: scale(1.1);
+}
+
+.THIS .minion-center-final-failed{
+    background: #845555;
+    width: 120px;
+    height: 120px;
+    border-radius: 150px;
+    border: 5px solid #c32828;
+    margin: auto;
+    transition: .5s;
+}
+
+.THIS .minion-center-final-failed:hover{
+    background: #845555;
+    width: 120px;
+    height: 120px;
+    border-radius: 150px;
+    border: 5px solid #c32828;
+    margin: auto;
+    transition: .5s;
+    transform: scale(1.1);
+}
+
+
+.THIS .minion-left{
+    background: #29292A;
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid white;
+    transition: .5s;
+}
+
+.THIS .minion-left:hover{
+    border-radius: 150px;
+    border: 5px solid var(--user-team-secondary);
+    cursor: pointer;
+    height: 100px;
+    transform: scale(1.1);
+    transition: .5s;
+    width: 100px;
+}
+
+.THIS .minion-left-completed{
+    background: #5A714F;
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    transition: .5s;
+    vertical-align: middle;
+}
+
+.THIS .minion-left-completed:hover{
+    background: #5A714F;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    transform: scale(1.1);
+    transition: .5s;
+    vertical-align: middle;
+}
+
+.THIS .minion-failed{
+    background: #845555;
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid #c32828;
+    transition: .5s;
+    vertical-align: middle;
+}
+
+.THIS .minion-failed:hover{
+    background: #845555;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    border: 5px solid #c32828;
+    transform: scale(1.1);
+    transition: .5s;
+    vertical-align: middle;
+}
+
+.THIS .minion-right{
+    border-radius: 150px;
+    border: 5px solid white;
+    width: 100px;
+    height: 100px;
+ 
+    transition: .5s;
+}
+
+.THIS .minion-right:hover{
+    border-radius: 150px;
+    border: 5px solid var(--user-team-secondary);
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    transform: scale(1.1);
+    transition: .5s;
+}
+
+.THIS .minion-right-completed{
+    background: #5A714F;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+    transition: .5s;
+}
+
+.THIS .minion-right-completed:hover{
+    background: #5A714F;
+    border-radius: 150px;
+    border: 5px solid #84C962;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+    transform: scale(1.1);
+    transition: .5s;
+}
+
+.THIS .minion-wrapper-left{
+    text-align: center;
+    width: 105px;
+}
+
+.THIS .minion-wrapper-center{
+    text-align: center;
+    width: 105px;
+    margin: auto;
+}
+
+.THIS .minion-wrapper-right{
+    text-align: center;
+    width: 105px;
+    margin-left: 80%;
+}
+
+
+/* END OF MINIONS */
+/* START OF LINES */
+
+
+.THIS .down-left-center-path{
+    border-bottom: 7px dashed white;
+    border-right: 7px dashed white;
+    height: 50px;
+    width: 43%;
+    margin-left: 7.5%; 
+}
+
+.THIS .down-left-center-path-completed{
+    border-bottom: 7px dashed var(--user-team-primary) !important;
+    border-right: 7px dashed var(--user-team-primary) !important;
+    height: 50px;
+    width: 43%;
+    margin-left: 7.5%; 
+}
+
+.THIS .down-center-final-path{
+    border-bottom: 7px dashed white;
+    border-left: 7px dashed white;
+    height: 50px;
+    width: 43%;
+    margin-left: 7.5%; 
+}
+
+.THIS .down-center-final-path-completed{
+    border-bottom: 7px dashed var(--user-team-primary);
+    border-left: 7px dashed var(--user-team-primary);
+    height: 50px;
+    width: 43%;
+    margin-left: 7.5%; 
+}
+
+.THIS .down-left-path{
+    height: 50px;
+    width: 81.5%;
+    border-right: 7px dashed white;
+    border-bottom: 7px dashed white;
+    margin-left: 7.5%;
+}
+
+.THIS .down-left-path-completed{
+    height: 50px;
+    width: 81.5%;
+    border-right: 7px dashed var(--user-team-primary);
+    border-bottom: 7px dashed var(--user-team-primary);
+    margin-left: 7.5%;
+}
+
+.THIS .down-right-path{
+    height: 100px;
+    width: 81.25%;
+    border-left: 7px dashed white;
+    border-bottom: 7px dashed white;
+    margin-left: 7.5%;
+}
+
+.THIS .down-right-path-completed{
+    height: 100px;
+    width: 81.25%;
+    border-left: 7px dashed var(--user-team-primary);
+    border-bottom: 7px dashed var(--user-team-primary);
+    margin-left: 7.5%;
+}
+
+.THIS .down-right-center-path{
+    height: 100px;
+    width: 40%;
+    border-right: 7px dashed white;
+    border-bottom: 7px dashed white;
+    margin-left: 49.5%;
+}
+
+.THIS .down-right-center-path-completed{
+    height: 100px;
+    width: 40%;
+    border-right: 7px dashed var(--user-team-primary);
+    border-bottom: 7px dashed var(--user-team-primary);
+    margin-left: 49.5%;
+}
+
+.THIS .vertical-line{
+    height: 50px;
+    width: 1px;
+    border-right: 7px dashed white;
+}
+
+.THIS .vertical-line-centered{
+    height: 50px;
+    width: 1px;
+    border-right: 7px dashed white;
+    margin: auto;
+}
+
+.THIS .vertical-line-centered{
+    height: 50px;
+    width: 1px;
+    border-right: 7px dashed white;
+    margin: auto;
+}
+
+.THIS .vertical-line-centered-completed{
+    height: 50px;
+    width: 1px;
+    border-right: 7px dashed var(--user-team-primary);
+    margin: auto;
+}
+
+.THIS .vertical-line-short-right{
+    height: 25px;
+    width: 1px;
+    border-right: 7px dashed white!important;
+    margin-left: 87.5%;
+}
+
+.THIS .vertical-line-short-right-completed{
+    height: 25px;
+    width: 1px;
+    border-right: 7px dashed var(--user-team-primary);
+    margin-left: 87.5%;
+}
+
+.THIS .vertical-line-short-left{
+    height: 25px;
+    width: 1px;
+    border-right: 7px dashed white;
+    margin-left: 7.5%;
+}
+
+.THIS .vertical-line-short-left-completed{
+    height: 25px;
+    width: 1px;
+    border-right: 7px dashed var(--user-team-primary);
+    margin-left: 7.5%;
+}

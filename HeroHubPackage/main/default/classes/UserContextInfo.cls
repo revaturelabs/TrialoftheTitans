@@ -13,21 +13,27 @@
 public class UserContextInfo {
     
     //account Info
-    @auraEnabled public Account acc{get; set;}
+    @auraEnabled 
+    public Account acc{get; set;}
     
     //squad Info
-    @auraEnabled public Squad__c squad{get; set;}
+    @auraEnabled 
+    public Squad__c squad{get; set;}
     
     //Team Info
-    @auraEnabled public Team__c team{get; set;}
+    @auraEnabled 
+    public Team__c team{get; set;}
     
     //Map of Exam Info by Titan and then Exam Name
-    @auraEnabled public Map<String, List<ExamList>> userExams {get; set;} 
+    @auraEnabled 
+    public Map<String, List<ExamList>> userExams {get; set;} 
 
     //Constructor
     public UserContextInfo( Id userId ){
 
         acc = getUserAccount( userId );
+        
+        system.debug(acc.Squad__c);
         
         squad = getSquad( acc.Squad__c );
         
@@ -35,26 +41,29 @@ public class UserContextInfo {
 
         List<Titan__c> allTitans = getAllTitans();
         
-        // Get 
-        List<Exam__c> examList = getExamsWithResults(acc.Id);
+        List<Exam__c> examList = getExamsWithResults( acc.Id );
 
-        userExams = mapTitansToExams( examList, allTitans );
+        Map<String, List<Exam__c>> sortedExams = sortExams( examList, allTitans );
+        
+        userExams = createExamLists( sortedExams );
     }
 
-    private Account getUserAccount(Id userId) {
+   	public static Account getUserAccount(Id userId) {
 		
         // To be added when user is live
         try{
-            //User user = [SELECT Id, contactId FROM User WHERE Id = :userId];
-        	//Contact userContact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.ContactId];
-        	//Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Id = :userContact.AccountId];
+            User user = [SELECT Id, contactId FROM User WHERE Id = :userId];
+        	Contact userContact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.ContactId];
+        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c, Team__c, Cohort__c FROM Account WHERE Id = :userContact.AccountId];
             
             //Hard Coded Account for now
-        	Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE Name = 'User0'];
+        	//Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c, Cohort__c, Team__c FROM Account WHERE Name = 'User0'];
+            
+            system.debug(userAccount);
 			return userAccount;
         }
         catch(Exception e){
-           return null;
+           return [SELECT Id, Name, Curriculum__c, Squad__c, Cohort__c, Team__c FROM Account WHERE Name = 'User0'];
         }
         
 
@@ -62,8 +71,12 @@ public class UserContextInfo {
     }
 
     private Squad__c getSquad(Id squadId){
+        
+        system.debug(squadId);
 
-        Squad__c userSquad = [SELECT Id, Name, Team__c FROM Squad__c WHERE Id = :squadId LIMIT 1];
+        Squad__c userSquad = [SELECT Id, Name, Team__c FROM Squad__c WHERE id = :squadId LIMIT 1];
+        
+        system.debug(userSquad);
 
         return userSquad;
 
@@ -97,50 +110,87 @@ public class UserContextInfo {
     @testVisible
     private List<Exam__c> getExamsWithResults(Id accId){
         
-        List<Exam__c> examList = [SELECT Id, 
+        List<Exam__c> examsList = [SELECT Id, 
                                     Titan__r.Name, 
-                                    Name, 
+                                    Name,
+                                    Next_Exam__c,
                                     (SELECT Pass__c, 
                                             Total_Answers__c, 
-                                            Total_Correct__C 
+                                            Total_Correct__C,
+                                     		Status__c,
+                                            CreatedDate
                                             FROM Exam_Results__r 
                                             WHERE Account__c = :accId 
-                                            AND Graded__c = true)
+                                            )
                                     FROM Exam__c];
     
-        return examList;
+        return examsList;
     }
 
-    //Maps the Exam Results and other fields to a Titan by Exam Name
-    private Map<String, List<ExamList>> mapTitansToExams(List<Exam__c> exams, List<Titan__c> allTitans){
+    //Maps the Exam Results and other fields to a Titan by Exam Name and sort by prerequisites. 
+    private Map<String, List<Exam__c>> sortExams(List<Exam__c> exams, List<Titan__c> allTitans){
 		
         // Custom DataType to mape names, lists, and numbers in one object
-        Map<String, List<ExamList>> examMap = new Map<String, List<ExamList>>();
+        Map<String, List<Exam__c>> examMap = new Map<String, List<Exam__C>>();
         
-        for(Exam__c exam:exams){
-
-            if(examMap.containsKey(exam.Titan__r.Name)){
-                examMap.get(exam.Titan__r.Name).add(new ExamList(exam));
-            }
-            else{
-                List<ExamList> newTitanExams = new List<ExamList>{new ExamList(exam)};
-                examMap.put(exam.Titan__r.Name, newTitanExams);
-            }
-
-        }
-
-        // Map titans with no exams after those with exams.
         for(Titan__c titan: allTitans){
 
             if(examMap.containsKey(titan.Name) != true){
 
-                List<ExamList> newTitanExams = new List<ExamList>();
+                List<Exam__c> newTitanExams = new List<Exam__c>();
                 examMap.put(titan.Name, newTitanExams);
             
             }
         
         }
         
+        for(Exam__c exam:exams){
+         	examMap.get(exam.Titan__R.Name).add(exam);   
+        }
+        
+        //Sorting algorithm to be added in the future or done with numbers on Exam-Results.
+        /*for(String key: examMap.keySet()){
+            List<Exam__c> examsToSort = examMap.get(key);
+            
+            Boolean isSorted = false;
+            while(isSorted == true){
+                Integer moves = 0;
+                Exam__C temp;
+                for(Integer i = 0; i < examsToSort.size()-1; i++){
+                    if(examsToSort[i].next_Exam__c != examsToSort[i+1].Id){
+                      temp = examsToSort[i+1];
+                      examsToSort[i+1] = examsToSort[i];
+                      examsToSort[i] = examsToSort[i+1];
+                      moves++;
+                    }
+                }
+                if(moves == 0){
+                    isSorted = true;
+                }
+            }
+        }*/
+        
+        
         return examMap;
+    }
+    
+    private Map<String, List<ExamList>> createExamLists(Map<String, List<Exam__c>> titanExams){
+        
+        Map<String, List<ExamList>> examList = new Map<String, List<ExamList>>();
+        
+        for( String key: titanExams.keySet()){
+            
+            examList.put(key, new List<ExamList>());
+            List<ExamList> titanExamList = examList.get(key);
+            List<Exam__C> exams = titanExams.get(key);
+            
+            for(Exam__C exam: exams){
+                
+               titanExamList.add(new ExamList(exam));
+                
+            }
+        }
+        
+        return examList;
     }
 }

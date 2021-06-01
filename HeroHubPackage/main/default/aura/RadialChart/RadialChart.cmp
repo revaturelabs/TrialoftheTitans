@@ -1,0 +1,18 @@
+<!-- Name: RadialChart Component
+     Author: Andreology
+     Created: 05/19/2021
+     Updated: 05/30/2021
+     Description: This Component will load d3.js and user context info before rendering charts. 
+-->
+<aura:component access="global" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" >
+    <aura:attribute name="contextInfo" type="UserContextInfo" default=""></aura:attribute>
+    <aura:attribute name="currentChart" type="String" />
+    <aura:attribute name="scriptsLoaded" type="Boolean" default="False"/>
+    <aura:registerEvent name="changeChart" type="c:changeChartEvent"/>
+    <aura:handler name="change" value="{!v.contextInfo}" action="{!c.GenerateRadialChart}"/>
+    <aura:handler name="change" value="{!v.scriptsLoaded}" action="{!c.GenerateRadialChart}"/>
+
+    <ltng:require scripts="{!$Resource.d3 + '/d3.js'}" afterScriptsLoaded="{!c.ScriptsLoaded}" />
+
+    <div id="mydthree" onclick="{!c.handleClick}" />
+</aura:component>	

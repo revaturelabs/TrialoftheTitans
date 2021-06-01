@@ -1,0 +1,48 @@
+.THIS#compose-holder {
+    min-height: 5em;
+}
+
+.THIS #compose-text {
+    background: #d4d5d5;
+    min-height: 100%;
+    border-radius: 5px 0 0 5px;
+}
+
+.THIS #compose-text textarea {
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    background: rgb(0, 0, 0, 0);
+    color: #302f30;
+    border: 0;
+    outline: none;
+    resize: none;
+    vertical-align: top;
+    border-radius: 5px 0 0 5px;
+}
+
+.THIS #compose-text input:active {
+    border: 1px solid var(--user-team-primary);
+    outline-color: var(--user-team-primary);
+}
+
+.THIS #compose-submit {
+    background: var(--user-team-primary);
+    min-height: 100%;
+    padding: auto;
+    color: #302f30;
+    font-weight: bold;
+    padding: 1.5em;
+    border-radius: 0 5px 5px 0;
+}
+
+.THIS #compose-submit:hover {
+    background: var(--user-team-secondary);
+    color: #302f30;
+    cursor: pointer;
+}
+
+.THIS #compose-submit p {
+    height: 100%;
+    width: 100%;
+}

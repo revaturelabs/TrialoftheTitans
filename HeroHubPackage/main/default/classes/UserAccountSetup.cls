@@ -1,15 +1,33 @@
+/////////////////////////////////////////////////////
+//
+//  Name: UserAccountSetup
+//  Author: Josh Miccolo
+//  Created: 5/24/2021
+//  Updated: 5/25/2021
+//  Description: Utility class to create new data for
+//  the Hero Hub and Titan Page team.
+//
+///////////////////////////////////////////////////
+
 public class UserAccountSetup {
+
+    //Creates users and accounts for setup. 
     public static void UserSetUp(){
         
         Team__c newTeam = new Team__C(Name='Amplifire');
         insert newTeam;
 
         Squad__c newSquad = new Squad__c(Name = 'This is Fire', Team__c = newTeam.Id);
-    
+        insert newSquad;
+        
+       	Curriculum__c newCurriculum = new Curriculum__c(Name='Salesforce');
+        
+        insert newCurriculum;
+        
         List<Account> userAccounts = new List<Account>();
         
         for(Integer i = 0; i < 5; i++){
-            Account newAccount = new Account(name='User'+i, Squad__c = newSquad.Id);
+            Account newAccount = new Account(name='User'+i, Squad__c = newSquad.Id, Team__c = newTeam.Id, Curriculum__C = newCurriculum.Id );
             userAccounts.add(newAccount);
         }
         
@@ -45,10 +63,6 @@ public class UserAccountSetup {
         }
         
         insert users; 
-        
-        Curriculum__c newCurriculum = new Curriculum__c(Name='Salesforce');
-        
-        insert newCurriculum;
         
         List<Titan__c> newTitans = new List<Titan__c>();
         
@@ -118,7 +132,7 @@ public class UserAccountSetup {
             for(Exam_Result__c result : newResults){
             	
             	Hero_Answer__c newAnswer = new Hero_Answer__c(Exam_Question__c = question.id, Exam_Result__c = result.id);
-                if(Math.round(Math.random()) == 1){
+                if(Math.random() < .85){
                     
                     newAnswer.Correct__c = true;
                 

@@ -27,6 +27,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Cohort__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Cohort__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.Curriculum__c</field>
         <readable>true</readable>
@@ -122,9 +132,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Team__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -268,13 +278,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Curriculum__c.Technology__c</field>
+        <field>Titan__c.Curriculum__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Titan__c.Curriculum__c</field>
-        <readable>true</readable>
+        <editable>false</editable>
+        <field>Titan__c.Number_of_Skills__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Titan__c.Number_of_Skills__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Core Trainer Permissions</label>
@@ -332,8 +347,4 @@
         <object>Titan__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <recordTypeVisibilities>
-        <recordType>Account.Hero</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
 </PermissionSet>
