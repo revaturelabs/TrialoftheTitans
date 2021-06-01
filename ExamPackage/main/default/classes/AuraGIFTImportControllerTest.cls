@@ -35,7 +35,9 @@ public class AuraGIFTImportControllerTest {
 
         // Test data
         List<ExamQuestion> questionList = new List<ExamQuestion>();
-        questionList.add(new ExamQuestion('','Empty Title Test',''));
+        ExamQuestion eq1 = new ExamQuestion();
+        eq1.qTitle = 'Empty Title Test';
+        questionList.add(eq1);
         questionList.add(new ExamQuestion('','Empty Title TestEmpty Title TestEmpty Title TestEmpty Title TestEmpty Title TestEmpty',''));
         questionList.add(new ExamQuestion('E1','Essay Test',''));
         questionList.add(new ExamQuestion('E2','Essay _____ Test',''));
