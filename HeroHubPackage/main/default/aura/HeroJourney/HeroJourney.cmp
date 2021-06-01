@@ -1,0 +1,61 @@
+<!--
+/////////////////////////////////////////////////////
+//
+//  Name: HeroJourneyHelper.cmp
+//  Author: David Serrano
+//  Created: 5/13/2021
+//  Updated: 5/25/2021
+//  Description: HeroJourney puts together the interface for the Titan tabs, the appropriate gamepath reflecting the
+//  current user's progress, an overview of their strengths, and exam information.
+//
+///////////////////////////////////////////////////
+-->
+
+<aura:component access="global">
+    <aura:attribute name="tabs" type="List"/>
+    <aura:attribute name="active" type="String" default="Overview"/>
+    <aura:attribute name="contextInfo" type="UserContextInfo"/>
+    <aura:attribute name="currentTitanExams" type="List"/>
+    <aura:attribute name="currentChart" type="String" default="Titan Progress" />
+    <aura:handler name="changeChart" event="c:changeChartEvent" action="{!c.changeChart}" />
+    <aura:handler name="init" value="{!this}" action="{!c.ContextChange}"/>
+    <aura:handler name="change" value="{!v.contextInfo}" action="{!c.ContextChange}"/>
+    <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
+    
+    <div class="slds-grid">
+        <div class="slds-col slds-size_1-of-7">
+            <aura:iteration items="{!v.tabs}" var="titan" indexVar="key">
+                <aura:if isTrue="{!v.active == titan}">
+             
+                    <c:TitanTab name="{!titan}" active="true" />
+                    
+                    <aura:set attribute="else">
+                        <c:TitanTab name="{!titan}" active="false"/>
+                    </aura:set>
+                </aura:if>
+            </aura:iteration>
+        </div>
+        
+        <aura:if isTrue="{!v.active == 'Overview'}">
+            <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                <h3 class="chart-title">{!v.currentChart}</h3>
+                <div class="chartBox">
+                    <c:ProgressChart currentChart="{!v.currentChart}" contextInfo="{!v.contextInfo}"/>
+                    <c:RadialChart currentChart="{!v.currentChart}" contextInfo="{!v.contextInfo}"/>
+                </div>
+            </div>
+
+            <aura:set attribute="else">
+                <div class="slds-col slds-size_4-of-7">
+                    <c:GamePath active="{!v.active}" contextInfo="{!v.contextInfo}" currentExams="{!v.currentTitanExams}"/>
+                </div>
+                
+                <div class="slds-col slds-size_2-of-7">
+                    <c:Metrics/>
+                </div>
+            </aura:set>
+        </aura:if>
+        
+    </div>
+    
+</aura:component>

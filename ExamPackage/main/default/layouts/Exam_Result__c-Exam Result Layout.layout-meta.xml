@@ -39,6 +39,10 @@
                 <behavior>Readonly</behavior>
                 <field>Pass__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Score__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

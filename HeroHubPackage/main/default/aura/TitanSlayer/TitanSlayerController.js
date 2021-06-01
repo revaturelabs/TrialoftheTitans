@@ -1,5 +1,28 @@
 ({
 	doInit : function(component, event, helper) {
-        component.set("v.leadTeam", {"Alchemy":{score:88.5}, "Amplifire":{score:86.5}, "Synergy":{score:83.2}, "Vanquish":{score:79.9}})
+		console.log('hit');
+		const flipInterval = window.setInterval($A.getCallback(function(){
+			console.log('from interval');
+			const titanSlayer = document.querySelector('.titanSlayer');
+			titanSlayer.classList.toggle('hide');
+			const titanTimeout = window.setTimeout($A.getCallback(function(){
+				titanSlayer.classList.toggle('switch');
+				titanSlayer.classList.toggle('hide');
+			}), 1000);
+			component.set('v.setTimeoutId', titanTimeout);
+		}), 10000);
+		console.log(flipInterval);
+		component.set('v.setIntervalId', flipInterval);
+	},
+
+	handleClear : function(component, event, helper) {
+		console.log('from handleclear');
+		 window.clearInterval(component.get("v.setIntervalId"));
+		 component.set("v.setIntervalId", null);
+		 window.clearTimeout(component.get('v.setTimeoutId'));
+		 component.set("v.setTimeoutId", null);
+	},
+	logInterval : function(component){
+		console.log(component.get("v.setIntervalId"));
 	}
 })
