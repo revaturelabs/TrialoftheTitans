@@ -8,30 +8,17 @@ public without sharing class TitanPageApexController {
         return userInfo.getName();
     }
     
-    //public static Account getAccountId(Id UserId) {
-    //Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE contactId=:UserInfo.getUserId];
-    //return userAccount;
-    //0035400000hgNoIAAU
-    //return userAccount;
-    //SELECT name, Id, Contact.Account.Name FROM Contact WHERE Id ='0035400000hgNoIAAU'
     
-    //}
     
     
     @AuraEnabled
     public static List<Titan__c> getTitans() {
         //Method for retrieving list of titans
-       // List<Titan__c> titanList = [SELECT Name, Id FROM Titan__c];
+      
         
      	Account acc = [SELECT Curriculum__c FROM Account WHERE Name = :userInfo.getName()];
 		List<Titan__c> titanList = [SELECT Name FROM Titan__c WHERE Curriculum__c = :acc.Curriculum__c];
-//        return titanList;
-//	    List<user> userIdList = [SELECT Name FROM User WHERE Id =:UserInfo.getUserId() LIMIT 1];
-//      String userName = userIdList[0].Name;
-	    //List<Curriculum__c> list1 = [SELECT Id,(SELECT Id FROM Accounts__r), (SELECT Name FROM Titans__r) FROM Curriculum__c];
-//        List<Curriculum__c> titanList = [SELECT Id,(SELECT Name FROM Accounts__r WHERE Name = :userName), (SELECT Name FROM Titans__r) 
-//                                    FROM Curriculum__c];
-        //WHERE Accounts__r.Id =:UserInfo.getUserId()
+
         return titanList;
     }
     
@@ -55,3 +42,25 @@ public without sharing class TitanPageApexController {
     
     
 }
+
+
+
+
+//public static Account getAccountId(Id UserId) {
+    //Account userAccount = [SELECT Id, Name, Curriculum__c, Squad__c FROM Account WHERE contactId=:UserInfo.getUserId];
+    //return userAccount;
+    //0035400000hgNoIAAU
+    //return userAccount;
+    //SELECT name, Id, Contact.Account.Name FROM Contact WHERE Id ='0035400000hgNoIAAU'
+    
+    //}
+
+
+
+//        return titanList;
+//	    List<user> userIdList = [SELECT Name FROM User WHERE Id =:UserInfo.getUserId() LIMIT 1];
+//      String userName = userIdList[0].Name;
+	    //List<Curriculum__c> list1 = [SELECT Id,(SELECT Id FROM Accounts__r), (SELECT Name FROM Titans__r) FROM Curriculum__c];
+//        List<Curriculum__c> titanList = [SELECT Id,(SELECT Name FROM Accounts__r WHERE Name = :userName), (SELECT Name FROM Titans__r) 
+//                                    FROM Curriculum__c];
+        //WHERE Accounts__r.Id =:UserInfo.getUserId()
