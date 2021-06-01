@@ -9,7 +9,6 @@
     <aura:attribute name="currentChart" type="String" />
     <aura:attribute name="scriptsLoaded" type="Boolean" default="False"/>
     <aura:registerEvent name="changeChart" type="c:changeChartEvent"/>
-    <aura:handler name="init" value="{!this}" action="{!c.GenerateRadialChart}"/>
     <aura:handler name="change" value="{!v.contextInfo}" action="{!c.GenerateRadialChart}"/>
     <aura:handler name="change" value="{!v.scriptsLoaded}" action="{!c.GenerateRadialChart}"/>
 
