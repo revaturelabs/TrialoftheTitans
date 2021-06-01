@@ -138,7 +138,6 @@
             helper.SubmitQuestionList( component, questionList, titan );
             
             // empty the displayed file
-            component.set( "v.displayList", [] );
             component.set( "v.submitList", [] );
             component.set( "v.toImport", 0 );
         } else {
