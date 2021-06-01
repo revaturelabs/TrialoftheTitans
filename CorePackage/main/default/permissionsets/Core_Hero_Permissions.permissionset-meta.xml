@@ -3,16 +3,6 @@
     <description>Permissions for the Hero Profile</description>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.Curriculum__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Team__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Cohort__c.Curriculum__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -75,11 +65,20 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
+        <object>Team__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>Titan__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <recordTypeVisibilities>
-        <recordType>Account.Hero</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
+    <tabSettings>
+        <tab>Team__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>

@@ -1,6 +1,562 @@
 .THIS.titanSlayer {
     width: 100%;
-    height: 200px;
-    margin: 2.5% 0%;
-    background-color: var(--text-color);
+    margin: 0% 0% 2.5% 0%;
+    transition: transform 750ms ease-in-out;
+}
+
+.THIS .titanSlayer-Alchemy {
+    background-image: url(/resource/AlchemyParchment);
+    background-size: cover;
+    color: var(--text-color);
+    font-family: 'BeyondWonderland';
+    height: 250px;
+    font-size: 35px;
+    line-height: 35px;
+    text-align: center;
+    padding: 5px 2.5%; 
+}
+
+.THIS .Alchemy-results {
+    display: flex;
+}
+
+.THIS .titanSlayer-Alchemy-title{
+    font-size: 40px;
+    line-height: 40px;
+    opacity: 0;
+    animation: fadeIn 1.5s 500ms ease-in-out forwards;
+}
+
+.THIS .Alchemy-results .scoreWrapper > h3{
+    opacity: 0;
+    animation: fadeIn 1.5s 750ms forwards;
+}
+.THIS .Alchemy-results .Alchemy-Scores{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    opacity:0;
+    animation: fadeIn 1.5s forwards;
+}
+.THIS.hide .titanSlayer-Alchemy-body, .THIS.hide .titanSlayer-Alchemy-body2 {
+    opacity: 0;
+}
+.THIS .titanSlayer-Alchemy-body {
+    transition: opacity 1s ease-in-out;
+}
+.THIS .titanSlayer-Alchemy-body2 {
+    display: none;
+}
+
+.THIS.switch .titanSlayer-Alchemy-body {
+    display: none;
+}
+
+.THIS.switch .titanSlayer-Alchemy-body2 {
+    transition: opacity 1s ease-in-out;
+    display: block;
+}
+
+.THIS .Alchemy-Scores progress[value]{
+    -webkit-appearance: none;
+    background-color: var(--alchemy-secondary);
+    appearance: none;
+    border-radius: none;
+    filter:blur(1px);
+    width: 50%;
+    height: 20px;
+    opacity:0;
+    animation: fadeIn 1.5s forwards;
+}
+
+.THIS .Alchemy-Scores progress::-webkit-progress-bar {
+    background: none;
+    padding: 2px;
+}
+
+.THIS .Alchemy-Scores progress::-webkit-progress-value{
+    background-color: var(--synergy-primary);
+}
+
+.THIS .Alchemy-Scores.Amplifire progress::-webkit-progress-value{
+    background: var(--amplifire-primary);
+}
+
+.THIS .Alchemy-Scores.Vanquish progress::-webkit-progress-value{
+    background: var(--vanquish-primary);
+}
+
+.THIS .Alchemy-Scores.Alchemy progress::-webkit-progress-value{
+    background: var(--alchemy-primary);
+}
+
+.THIS .Alchemy-Scores progress::-webkit-progress-value{
+    background: var(--synergy-primary);
+}
+.THIS.titanSlayer .titanSlayer-Synergy{
+    background: #030303;
+    border: 2px solid grey;
+    height: 100%;
+    font-family: 'PressStart';
+    transition: transform 500ms ease-in-out;
+    transform: scale(1);
+}
+.THIS .Synergy-topBar{
+    width: 100%;
+    background-color: var(--light-text);
+    display: flex;
+    justify-content: space-between;
+    padding: 1px 2px;
+    box-shadow: 1px 1px black;
+}
+
+.THIS .Synergy-topBar h6 {
+    font-size: 15px;
+}
+
+.THIS .Synergy-topBar span {
+    border: 1px solid black;
+    box-shadow: 1px 1px grey;
+    padding: 2px;
+    height: fit-content;
+}
+
+div.THIS .titanSlayer-Synergy-body {
+    width: 100%;
+    height: 100%;
+    padding: 1em;
+}
+
+.THIS .titanSlayer-Synergy-title {
+    width: 0;
+    color: var(--synergy-primary);
+    font-size: 24px;
+    overflow-x: hidden;
+    margin: auto;
+    border-right: 4px solid var(--synergy-primary);
+    animation: 1s steps(12, end) 1s forwards typeOut, 1s linear infinite Blink;
+}
+
+.THIS .titanSlayer-Synergy-title h2 {
+    width: 24ch;
+}
+
+.THIS .Synergy-results {
+    color: var(--synergy-primary);
+    font-size: 18px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.THIS .scoreWrapper {
+    width: 50%;
+    text-align: left;
+}
+
+.THIS .progressBars {
+    justify-content: flex-start;
+}
+.THIS .Synergy-Scores {
+    font-size: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.THIS .Synergy-Scores progress[value]{
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: none;
+    transform:scaleX(0);
+    transform-origin: left;
+    width: 50%;
+    height: 20px;
+    position: relative;
+    animation: 750ms 1s ease-in-out forwards progressGrow;
+}
+
+.THIS .titanSlayer-Synergy-title-second {
+    display: none;
+}
+
+.THIS .titanSlayer.switch > .titanSlayer-Synergy-title-second {
+    display: block;
+}
+
+.THIS.hide .titanSlayer-Synergy{
+    transform-origin: center center;
+    transform: scale(0);
+}
+
+.THIS.switch .titanSlayer-Synergy-body{
+    display: none;
+}
+.THIS .titanSlayer-Synergy-body2 {
+    display: none;
+}
+.THIS.switch .titanSlayer-Synergy-body2{
+    display: block;
+}
+
+.THIS .Synergy-Scores progress::-webkit-progress-bar {
+    background: none;
+    padding: 2px;
+}
+
+.THIS .Synergy-Scores.Synergy h3 {
+    color: var(--Synergy-primary);
+}
+
+.THIS .Synergy-Scores.Amplifire progress::-webkit-progress-value{
+    background: var(--amplifire-secondary);
+}
+
+.THIS .Synergy-Scores.Amplifire h3{
+    color: var(--amplifire-primary);
+}
+
+.THIS .Synergy-Scores.Vanquish h3 {
+    color: var(--vanquish-primary);
+}
+
+.THIS .Synergy-Scores.Vanquish progress::-webkit-progress-value{
+    background: var(--vanquish-secondary);
+}
+
+.THIS .Synergy-Scores.Alchemy h3 {
+    color: var(--alchemy-primary);
+}
+
+.THIS .Synergy-Scores.Alchemy progress::-webkit-progress-value{
+    background: var(--alchemy-secondary);
+}
+
+.THIS .Synergy-Scores.Synergy h3 {
+    color: var(--synergy-primary);
+}
+
+.THIS .Synergy-Scores.Synergy progress::-webkit-progress-value{
+    background: var(--synergy-secondary);
+}
+
+.THIS .titanSlayer-Amplifire {
+    font-family: 'AlfaSlab';
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+}
+
+.THIS .titanSlayer-Amplifire-body{
+    overflow-x: hidden;
+    transform-origin: left;
+    width: 100%;
+    transition: width 1s ease-in-out;
+    display: inline-block;
+}
+.THIS.switch .titanSlayer-Amplifire-body{
+    width: 0%;
+}
+.THIS .titanSlayer-Amplifire-body2 {
+    overflow-x: hidden;
+    display: inline-block;
+    transform-origin: right;
+    transition: width 1s ease-in-out;
+    width: 0%;
+}
+
+.THIS.switch .titanSlayer-Amplifire-body2{
+    width: 100%;
+}
+.THIS .lightBar {
+    width: 100%;
+    height: 40px;
+    border: 2px solid #000;
+    background-image: radial-gradient(circle at center, #fff 0%, #fff 25%, #000 50%);
+    background-size: 5% 100%;
+}
+
+.THIS .Marquee-Bar {
+    width: 100%;
+    background: var(--light-text);
+    color: var(--text-color);
+    font-size: 30px;
+    text-transform:uppercase;
+    line-height: 30px;
+    letter-spacing: .5ch;
+    display: flex;
+    justify-content: space-around;
+    border: 2px solid var(--text-color);
+    overflow-x: hidden;
+}
+
+.THIS .titanSlayer-Amplifire-title > h2 {
+    position: relative;
+    transform: translateX(-2000px);
+    line-height: 30px;
+    letter-spacing: 1ch;
+    transition: opacity 1s;
+    animation: slideRight 2s cubic-bezier(.59,-0.06,.44,1.3) 500ms forwards;
+}
+
+.THIS .Amplifire-secondTitle {
+    display: none;
+}
+.THIS.switch .Amplifire-secondTitle {
+    display: block;
+}
+.THIS .Amplifire-secondary-title h3 {
+    position: relative;
+    transform: translatex(2000px);
+    animation: slideRight 2s cubic-bezier(.59,-0.06,.44,1.3) 500ms forwards;
+}
+.THIS .progress-Wrapper {
+    display: flex;
+    overflow-x: hidden;
+}
+.THIS .overlay-wrapper {
+    position:relative;
+    width: 50%;
+}
+
+.THIS .Amplifire-Scores progress[value]{
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: none;
+    transform:scaleX(0);
+    transform-origin: left;
+    width: 50%;
+    height: 20px;
+    position: relative;
+    animation: 750ms 1s ease-in-out forwards progressGrow;
+}
+
+.THIS .Amplifire-Scores progress::-webkit-progress-value{
+    background: var(--text-color);
+}
+
+.THIS .Amplifire-Scores progress::-webkit-progress-bar {
+    background-color: transparent;
+}
+.THIS .titanSlayer-Amplifire .progressBars{
+    width: 50%;
+    background: var(--light-text);
+    color: var(--text-color);
+    font-size: 20px;
+    justify-content: space-around;
+}
+.THIS .titanSlayer-Amplifire .progressBars:nth-of-type(1){
+    border-right: none;
+}
+.THIS .titanSlayer-Amplifire .progressBars:nth-of-type(2){
+    border-left: none;
+}
+.THIS .Amplifire-Scores {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+    width: 100%;
+    border-top: 2px solid var(--text-color);
+    border-bottom: 2px solid var(--text-color);
+    padding: 0 2.5%;
+}
+
+.THIS .Amplifire-Scores:nth-of-type(odd){
+    border-right: none;
+}
+
+.THIS .Amplifire-Scores:nth-of-type(even){
+    border-left: none;
+}
+
+.THIS .Amplifire-Scores h3{
+    font-family: 'AlfaSlab';
+    text-transform: uppercase;
+    font-size: 30px;
+    line-height: 30px;
+    letter-spacing: .5ch;
+}
+
+.THIS .Amplifire-Scores .Amplifire-starOverlay {
+    background-image:url(/resource/StarImg);
+    background-size: 20% 100%;
+    top: 2px;
+    height: 20px;
+    width: 50%;
+    z-index: 2;
+    position: absolute;
+}
+
+.THIS .progressBars-squads {
+    width: 80%;
+    background: var(--light-text);
+    color: var(--text-color);
+    font-size: 20px;
+    justify-content: space-around;
+}
+
+.THIS.switch .progressBars-squads {
+    display: block;
+    width: 100%;
+}
+.THIS .titanSlayer-Vanquish {
+    background-image:url(/resource/VanquishBG);
+    background-size: cover;
+}
+.THIS .titanSlayer-Vanquish-title {
+    font-family: 'Cinzel';
+    color: var(--light-text);
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.THIS .Vanquish-results {
+    display: flex;
+    background-color: var(--vanquish-secondary);
+}
+.THIS .Vanquish-results .scoreWrapper {
+    width: 50%;
+}
+
+.THIS .Vanquish-results .progressBars {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.THIS .Vanquish-Scores {
+    width: 60px;
+    display: flex;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    background-size: cover;
+    position: relative;
+    transform: scaleY(0);
+    transform-origin: top;
+    animation: dropFlags 1s ease-in-out forwards;
+    filter:drop-shadow(2px 2px 4px var(--text-color));
+}
+
+.THIS .Vanquish-results {
+    display: flex;
+    width: 100%;
+}
+
+.THIS .Vanquish-results .scoreWrapper {
+    width:50%;
+}
+.THIS .Vanquish-results .scoreWrapper h3 {
+    color: var(--light-text);
+    font-size: 25px;
+    font-family: 'Cinzel';
+    text-align: center;
+}
+
+.THIS .Vanquish-results .progressBars h3 {
+    font-size: 1vw;
+    font-family: 'Cinzel';
+    color: var(--text-color);
+}
+
+.THIS .Vanquish-leaders {
+    background-image: url(/resource/VanquishShield);
+    background-size: contain;
+    width: 50%;
+    margin: 20px;
+    height: 350px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.THIS .Vanquish-leaders h2 {
+    font-family: 'Cinzel';
+    font-size: 35px;
+    text-align: center;
+    color: var(--light-text);
+}
+
+.THIS .Vanquish-leaders .scoreWrapper {
+    margin: auto;
+    font-size: 30px;
+    color: var(--light-text);
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.THIS .Vanquish-leaders .progressBars {
+    width: 100%;
+}
+
+.THIS .Vanquish-leaders .Vanquish-Scores {
+    width:50%;
+}
+
+.THIS .Vanquish-leaders .Vanquish-Scores h3 {
+
+    color: var(--light-text);
+    font-size: 24px;
+
+}
+
+
+@keyframes Blink {
+
+    from{
+        border-right: 5px solid var(--synergy-primary);
+    }
+    to{
+        border-right: none;
+    }
+
+}
+
+@keyframes progressGrow {
+    from{
+        transform:scaleX(0);
+    }
+    to{
+        transform:scaleX(1);
+    }
+}
+
+@keyframes SpinText {
+    0%{
+        transform: rotateX(0);
+    }
+
+    50% {
+        transform: rotateX(180deg);
+    }
+
+    100%{
+        transform: rotateX(0);
+    }
+
+}
+
+@keyframes slideRight {
+    to{
+        transform:translateX(0);
+    }
+}
+
+@keyframes dropFlags{
+    to{
+        transform:scaleY(1);
+    }
+}
+
+@keyframes fadeIn {
+    to{
+        opacity: 1;
+    }
 }

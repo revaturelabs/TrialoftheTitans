@@ -33,6 +33,7 @@ public class ExamList {
 
         name = exam.Name;
         nextExam = exam.Next_Exam__c;
+        system.debug('FROM EXAMLISt' + exam.Exam_Results__r);
         currentResults = exam.Exam_Results__r;
         pastResults = getPastResults( currentResults );
         isPassed = currentResults[0].Pass__C;

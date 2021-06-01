@@ -1,9 +1,17 @@
 <aura:component>
-    <aura:attribute name="contextInfo" type="Map" />
-    <div class="navbar">
+    <aura:registerEvent name="navigatePage" type="c:MainPageNavigation" />
+    <aura:attribute name="navigate" type="String" />
+    <aura:attribute name="contextInfo" type="UserContextInfo" />
+
+    <!-- Main Navigation Bar -->
+    <div class="navbar" style="{!'background-color: ' + v.contextInfo.team.Primary_Color__c}">
         <ul>
-            <li>{!v.contextInfo.squad.name}</li>
-            <li class="navbar-quote">{!v.contextInfo.squad.quote}</li>
+            <li>{!v.contextInfo.squad.Name}</li>
+            <li class="navbar-quote">{!v.contextInfo.team.Slogan__c}</li>
+            <li onclick="{!c.fireNav}">
+                <!-- Switch between Titan and HeroHub -->
+                <aura:if isTrue="{!v.navigate != 'Titan'}">Titans<aura:set attribute="else">HeroHub</aura:set></aura:if>
+            </li>
             <li>Logout</li>
         </ul>
     </div>

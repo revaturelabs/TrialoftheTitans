@@ -1,9 +1,12 @@
 @isTest
 public class UserContextInfoTest {
 	
+    @testSetup
+    static void testSetup(){
+        HeroHubTestUtilities.createUsers();
+    }
     @isTest
     static void userContextInfoReturnsAccount(){
-        HeroHubTestUtilities.createRightUser();
         
         User rightUser = [SELECT Id FROM USER WHERE alias = 'testUser' Limit 1];
         Account rightAccount = [SELECT Id FROM Account Where name = 'User' Limit 1];
@@ -16,9 +19,8 @@ public class UserContextInfoTest {
     
     @isTest
     static void userContextInfoReturnsTeam(){
-        HeroHubTestUtilities.createRightUser();
         User rightUser = [SELECT Id FROM USER WHERE alias = 'testUser' Limit 1];
-        Team__C rightTeam = [SELECT Id FROM Team__c WHERE Name = 'Amplifire'];
+        Team__C rightTeam = [SELECT Id FROM Team__c WHERE Name = 'TestTeam'];
         
   		UserContextInfo userInfo = new UserContextInfo(rightUser.Id);
         
@@ -27,9 +29,8 @@ public class UserContextInfoTest {
     
     @isTest
     static void userContextInfoReturnsSquad(){
-        HeroHubTestUtilities.createRightUser();
         User rightUser = [SELECT Id FROM USER WHERE alias = 'testUser' Limit 1];
-       	Squad__C rightSquad = [SELECT Id FROM Squad__c WHERE Name = 'This is Fire'];
+       	Squad__C rightSquad = [SELECT Id FROM Squad__c WHERE Name = 'TestSquad'];
         
   		UserContextInfo userInfo = new UserContextInfo(rightUser.Id);
         
@@ -38,7 +39,6 @@ public class UserContextInfoTest {
     
     @isTest
     static void userContextInfoReturnsAllTitans(){
-        HeroHubTestUtilities.createRightUser();
         HeroHubTestUtilities.createTitans();
         
         User rightUser = [SELECT Id FROM USER WHERE alias = 'testUser' Limit 1];
@@ -64,12 +64,17 @@ public class UserContextInfoTest {
         system.debug(userInfo);
         
         
+        system.assertEquals(3, userInfo.userExams.size());
+		
+        for(String key: userInfo.userExams.keySet()){
+            system.assertEquals(3, userInfo.userExams.get(key).size());
+        }        
     }
     
     @isTest
     static void userContextInfoThrowsWrongUser(){
-        HeroHubTestUtilities.createRightUser();
-        User wrongUser = [SELECT Id FROM USER WHERE alias = 'testTrainer' Limit 1];
+        HeroHubTestUtilities.createWrongUser();
+        User wrongUser = [SELECT Id FROM USER WHERE alias = 'TTrain' Limit 1];
         
         try{
             UserContextInfo userInfo = new UserContextInfo(wrongUser.Id);
