@@ -281,11 +281,6 @@
         <field>Titan__c.Number_of_Skills__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Titan__c.Number_of_Skills__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Core Trainer Permissions</label>
     <objectPermissions>
