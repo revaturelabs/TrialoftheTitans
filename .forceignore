@@ -15,7 +15,11 @@
 !**/layouts/Cohort__c-Cohort Layout.layout-meta.xml
 !**/layouts/Curriculum__c-Curriculum Layout.layout-meta.xml
 !**/layouts/Titan__c-Titan Layout.layout-meta.xml
-
+!**/layouts/Cohort__c-Cohort Layout.layout-meta.xml
+!**/layouts/Curriculum__c-Curriculum Layout.layout-meta.xml
+!**/layouts/Skill__c-Skill Layout.layout-meta.xml
+!**/layouts/Team__c-Team Layout.layout-meta.xml
+!**/layouts/Titan__c-Titan Layout.layout-meta.xml
 
 package.xml
 
