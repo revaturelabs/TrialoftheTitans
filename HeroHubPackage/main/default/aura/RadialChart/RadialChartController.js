@@ -9,8 +9,7 @@
     GenerateRadialChart: function(component, event, helper) {
 		// Only render chart if we have both d3.js and data loaded
 		if(component.get( "v.scriptsLoaded" ) && component.get( "v.contextInfo" ) ){
-        const titans = component.get( "v.contextInfo" ).userExams;
-		helper.drawChart( component, event, titans );	
+			helper.SetUpChart( component, event );	
 		}
 	},
     ScriptsLoaded : function(component, event, helper){
