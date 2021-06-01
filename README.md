@@ -12,7 +12,7 @@
 ### Description
 Trial of Titans is a gamified Learning Management System where users are able to progress through different topics and ultimately face a final challenge. Users are known as 'Hero's who are guided by their 'Oracle' trainers. To conquer a 'Titan', i.e. a technology, the hero must face a series of 'Minions' which are Titan related sub skills. Eventually, the hero is met with a final challenge that allows them to conquer the Titan.
 
-Technologies used for this project include: **Salesforce, Apex, Lightning Aura Components, HTML, CSS, Lightning Design System, and Javscript
+Technologies used for this project include: **Salesforce, Apex, Lightning Aura Components, HTML, CSS, Lightning Design System, and Javscript**
 
 
 ## Manifest
