@@ -7,9 +7,9 @@
         <div>
             <!-- Contact information Component, allows the user to view their contact information -->
             <span> <div class="container slds-m-around_large" id="contactinfo">
-                <lightning:card title="{!v.activeTitan.Name + ' Exams'}" iconName="standard:contact">
+                <lightning:card title="{!v.activeTitan.Name + ' Exams'}">
                     
-                    <div class="slds-grid">
+                    <div class="titanDiv slds-grid">
                         <ul>
                             <aura:iteration items="{!v.examsList}" var="Exams">
                                 <div class="slds-grid">
