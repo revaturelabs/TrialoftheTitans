@@ -1,3 +1,9 @@
+<!-- Name: RadialChart Component
+     Author: Andreology
+     Created: 05/19/2021
+     Updated: 05/30/2021
+     Description: This Component will load d3.js and user context info before rendering charts. 
+-->
 <aura:component access="global" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" >
     <aura:attribute name="contextInfo" type="UserContextInfo" default=""></aura:attribute>
     <aura:attribute name="currentChart" type="String" />
