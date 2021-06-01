@@ -37,7 +37,7 @@
         </div>
         
         <aura:if isTrue="{!v.active == 'Overview'}">
-            <div style="background:#8CA7DF; border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+            <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
                 <h3 class="chart-title">{!v.currentChart}</h3>
                 <div class="chartBox">
                     <c:ProgressChart currentChart="{!v.currentChart}" contextInfo="{!v.contextInfo}"/>

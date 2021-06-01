@@ -1,6 +1,6 @@
 .THIS {
     background: #29292A;
-	border: 15px solid --user-team-primary;
+	border: 15px solid var(--user-team-primary);
     border-radius: 0px 5px 5px 5px;
     height: auto;
     margin-right: 15px;
@@ -45,9 +45,9 @@
     width: 100px;
     height: 100px;
     border-radius: 10px;
-    border-bottom: 5px solid --user-team-primary;
+    border-bottom: 5px solid var(--user-team-primary);
     margin: auto;
-    background: url(/resource/vanquishhero) no-repeat center;
+    background: url(/resource/hero) no-repeat center;
     background-size: 70%;
 }
 
@@ -63,7 +63,7 @@
 .THIS .minion-center-final:hover{
     background: #29292A;
     border-radius: 150px;
-    border: 5px solid --user-team-secondary;
+    border: 5px solid var(--user-team-secondary);
     cursor: pointer;
     height: 130px;
     margin: auto;
@@ -126,7 +126,7 @@
 
 .THIS .minion-left:hover{
     border-radius: 150px;
-    border: 5px solid --user-team-secondary;
+    border: 5px solid var(--user-team-secondary);
     cursor: pointer;
     height: 100px;
     transform: scale(1.1);
@@ -189,7 +189,7 @@
 
 .THIS .minion-right:hover{
     border-radius: 150px;
-    border: 5px solid --user-team-secondary;
+    border: 5px solid var(--user-team-secondary);
     cursor: pointer;
     width: 100px;
     height: 100px;
@@ -250,8 +250,8 @@
 }
 
 .THIS .down-left-center-path-completed{
-    border-bottom: 7px dashed --user-team-primary!important;
-    border-right: 7px dashed --user-team-primary!important;
+    border-bottom: 7px dashed var(--user-team-primary) !important;
+    border-right: 7px dashed var(--user-team-primary) !important;
     height: 50px;
     width: 43%;
     margin-left: 7.5%; 
@@ -266,8 +266,8 @@
 }
 
 .THIS .down-center-final-path-completed{
-    border-bottom: 7px dashed --user-team-primary;
-    border-left: 7px dashed --user-team-primary;
+    border-bottom: 7px dashed var(--user-team-primary);
+    border-left: 7px dashed var(--user-team-primary);
     height: 50px;
     width: 43%;
     margin-left: 7.5%; 
@@ -284,8 +284,8 @@
 .THIS .down-left-path-completed{
     height: 50px;
     width: 81.5%;
-    border-right: 7px dashed --user-team-primary;
-    border-bottom: 7px dashed --user-team-primary;
+    border-right: 7px dashed var(--user-team-primary);
+    border-bottom: 7px dashed var(--user-team-primary);
     margin-left: 7.5%;
 }
 
@@ -300,8 +300,8 @@
 .THIS .down-right-path-completed{
     height: 100px;
     width: 81.25%;
-    border-left: 7px dashed --user-team-primary;
-    border-bottom: 7px dashed --user-team-primary;
+    border-left: 7px dashed var(--user-team-primary);
+    border-bottom: 7px dashed var(--user-team-primary);
     margin-left: 7.5%;
 }
 
@@ -316,8 +316,8 @@
 .THIS .down-right-center-path-completed{
     height: 100px;
     width: 40%;
-    border-right: 7px dashed --user-team-primary;
-    border-bottom: 7px dashed --user-team-primary;
+    border-right: 7px dashed var(--user-team-primary);
+    border-bottom: 7px dashed var(--user-team-primary);
     margin-left: 49.5%;
 }
 
@@ -344,7 +344,7 @@
 .THIS .vertical-line-centered-completed{
     height: 50px;
     width: 1px;
-    border-right: 7px dashed #8CA7DF;
+    border-right: 7px dashed var(--user-team-primary);
     margin: auto;
 }
 
@@ -358,7 +358,7 @@
 .THIS .vertical-line-short-right-completed{
     height: 25px;
     width: 1px;
-    border-right: 7px dashed --user-team-primary;
+    border-right: 7px dashed var(--user-team-primary);
     margin-left: 87.5%;
 }
 
@@ -372,6 +372,6 @@
 .THIS .vertical-line-short-left-completed{
     height: 25px;
     width: 1px;
-    border-right: 7px dashed --user-team-primary;
+    border-right: 7px dashed var(--user-team-primary);
     margin-left: 7.5%;
 }
