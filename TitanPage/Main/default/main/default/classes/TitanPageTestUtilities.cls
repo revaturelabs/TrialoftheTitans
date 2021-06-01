@@ -39,13 +39,12 @@ public class TitanPageTestUtilities {
         Team__c newTeam = new Team__c(Name = 'TestTeam');
         database.insert(newTeam);
          
-        Squad__c newSquad = new Squad__c(Name = 'TestSquad', Team__c = newTeam.Id);
-        database.insert(newSquad);
+        
             
         Cohort__c newcohort = new Cohort__c(Name = 'Testcohort');
         database.insert(newcohort);
             
-        Account newAccount = new Account(name='User', Team__c = newTeam.Id, Squad__c = newSquad.Id);
+        Account newAccount = new Account(name='User', Team__c = newTeam.Id);
         database.insert(newAccount);       
      
         Contact newContact = new Contact(lastName='User', AccountId = newAccount.id);
@@ -209,10 +208,10 @@ public class TitanPageTestUtilities {
     public static void createTeams(){
         List<Team__c> teamList = new List<Team__c>();
         
-        Team__c Amplifire = new Team__c(Name='Amplifire', Slogan__c = 'Who\'s ready to rock?!?!?!', Primary_Color__c = '#ef6363', Secondary_Color__c = '#c324747');
-        Team__c Alchemy = new Team__c(Name='Alchemy', Slogan__c = 'Wizards Unite!', Primary_Color__c = '#84b059', Secondary_Color__c = '#539951');
-        Team__c Synergy = new Team__c(Name='Synergy', Slogan__c = 'Code Like a Boss', Primary_Color__c = '#ffdd00', Secondary_Color__c = '#fbb034');
-        Team__c Vanquish = new Team__c(Name='Vanquish', Slogan__c = 'Be a Hero!', Primary_Color__c = '#7aa7e9', Secondary_Color__c = '#5f70b0');
+        Team__c Amplifire = new Team__c(Name='Amplifire');
+        Team__c Alchemy = new Team__c(Name='Alchemy');
+        Team__c Synergy = new Team__c(Name='Synergy');
+        Team__c Vanquish = new Team__c(Name='Vanquish');
         
         teamList.add(Amplifire);
         teamList.add(Alchemy);
@@ -222,7 +221,7 @@ public class TitanPageTestUtilities {
         database.insert(teamList);
         
     }
-    
+    /*
     @isTest
     public static void createSquads(){
         List<Squad__c> squadList = new List<Squad__c>();
@@ -248,4 +247,5 @@ public class TitanPageTestUtilities {
         
         database.insert( squadList );
     }
+    */
 }

@@ -5,7 +5,7 @@
             "package": "CorePackage",
             "versionName": "ver 1.1",
             "versionNumber": "1.1.0.NEXT",
-            "default": true
+            "default": false
         },
         {
             "path": "ExamPackage",
@@ -24,10 +24,13 @@
             "package": "TitansPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": false,
+            "default": true,
             "dependencies": [
                 {
-                    "package": "04t5e000000xyyrAAA"
+                    "package": "CorePackage@1.1.0-1"
+                },
+                {
+                    "package": "Exam_Package@1.1.0-1"
                 }
             ]
         },
