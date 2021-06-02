@@ -76,4 +76,4 @@ Technologies used for this project include: **Salesforce, Apex, Lightning Aura C
 | Screen | Wireframes |
 | --- | --- |
 | Hero Hub | <img src="https://i.imgur.com/zhWEmks.png" width=400><img src="https://i.imgur.com/TvDw62J.png" width=400><img src="https://i.imgur.com/O8BF9JW.png" width=400><img src="https://i.imgur.com/Ir5lYbk.png" width=400> |
-
+| Titan Page | <img src="https://i.imgur.com/9HU6Jd9.jpg" width=400><img src="https://i.imgur.com/RzY62tR.png" width=400><img src="https://i.imgur.com/bOCOX5W.png" width=400><img src="https://i.imgur.com/85jw5Jj.png" width=400> |
