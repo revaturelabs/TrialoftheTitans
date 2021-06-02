@@ -1,10 +1,18 @@
+<!-- 
+
+    Name: Navigation
+    Author: Josh Miccolo
+    Description: Navigation Bar for Header
+
+ -->
+
 <aura:component>
     <aura:registerEvent name="navigatePage" type="c:MainPageNavigation" />
     <aura:attribute name="navigate" type="String" />
     <aura:attribute name="contextInfo" type="UserContextInfo" />
 
     <!-- Main Navigation Bar -->
-    <div class="navbar" style="{!'background-color: ' + v.contextInfo.team.Primary_Color__c}">
+    <div class="navbar" >
         <ul>
             <li>{!v.contextInfo.squad.Name}</li>
             <li class="navbar-quote">{!v.contextInfo.team.Slogan__c}</li>

@@ -1,9 +1,22 @@
+<!--
+
+  Name: Titan Slayer
+  Author: Josh Miccolo
+  Description: Titan Slayer Component shows 
+  lead scores for team cohorts and squads 
+
+-->
+
 <aura:component access="global">
+    <!-- Lead Team Info, Has Team, Cohort, and Squad keys -->
     <aura:attribute name="leadTeams" type="Map" />
+
+    <!-- Set and Clear Intervals and Timeouts -->
     <aura:attribute name="setIntervalId" type="Integer"/>
     <aura:attribute name="setTimeoutId" type="Integer"/>
+
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <!-- <aura:handler event="aura:locationChange" action="{!c.handleClear}"/> -->
+
     <aura:handler name="change" value="{!v.setIntervalId}" action="{!c.logInterval}"/>
     
     <!-- container for all themes -->
@@ -11,6 +24,7 @@
 
         <!-- Magical text disapppears and returns -->
         <aura:if isTrue="{!v.leadTeams.Team[0][0] == 'Alchemy'}">
+            <!-- Start Titan Slayer Alchemy -->
             <div class="titanSlayer-Alchemy">
                 <div class="titanSlayer-Alchemy-body">
                     <div class="titanSlayer-Alchemy-title">
@@ -64,7 +78,7 @@
             </div>
             <aura:set attribute="else">
 
-            <!-- Concert Marquee scrolls side to side -->
+            <!-- Start TitanSlayer Amplifire -->
                 <aura:if isTrue="{!v.leadTeams.Team[0][0] == 'Amplifire'}">
                     <div class="titanSlayer-Amplifire">
                         <div class="titanSlayer-Amplifire-body">

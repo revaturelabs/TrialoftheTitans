@@ -1,3 +1,10 @@
+/////////////////////
+//
+//  Name:TitanSlayerRenderer
+//  Author: Josh Miccolo
+//  Description: Unrender setTimeout and setIntergal and adds animation. 
+//
+/////////////////////
 ({
     unrender: function(component, event, helper){
 

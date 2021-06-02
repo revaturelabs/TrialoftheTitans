@@ -1,3 +1,12 @@
+/////////////////////
+//
+//  Name:TitanSlayerController
+//  Author: Josh Miccolo
+//  Description: Controller to take care of 
+//  the set Interval issues.
+//  
+//
+/////////////////////
 ({
 	doInit : function(component, event, helper) {
 		console.log('hit');

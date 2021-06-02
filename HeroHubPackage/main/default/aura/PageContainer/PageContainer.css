@@ -1,3 +1,12 @@
+/*
+
+  Name: PageContainer
+  Author: Josh Miccolo
+  Description: Container for the Hero Hub Page
+  Will call to database for all userContextInfo. 
+
+*/
+
 /* Define header/Slayer Fonts */
 @font-face {
     font-family: "AlfaSlab";
@@ -23,20 +32,21 @@
 .THIS :root {
     background-color: #3f3f3f;
 }
+
 /* root variables accessible from any part of application */
 .THIS {
-    --text-color: #302f30;
-    --light-text: #D3d4d4;
-    --background-color: #3f3f3f;
-    --vanquish-primary: #7aa7e9;
-    --vanquish-secondary: #5f70b0;
+    --alchemy-primary: #84b059;
+    --alchemy-secondary: #539951;    
     --amplifire-primary: #ef6363;
     --amplifire-secondary: #c24747;
-    --alchemy-primary: #84b059;
-    --alchemy-secondary: #539951;
+    --background-color: #3f3f3f;
+    --light-text: #D3d4d4;
+    --padding: .5em;
+    --text-color: #302f30;
     --synergy-primary: #ffdd00;
     --synergy-secondary: #fbb034;
-    --padding: .5em;
+    --vanquish-primary: #7aa7e9;
+    --vanquish-secondary: #5f70b0;
 
     background-color: var(--background-color);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -49,8 +59,8 @@
 
 #main.THIS {
 
-	padding: 2.5% 5% 0% 2.5%;
     background-color: var(--background-color);
+	padding: 2.5% 5% 0% 2.5%;
 
 }
 
