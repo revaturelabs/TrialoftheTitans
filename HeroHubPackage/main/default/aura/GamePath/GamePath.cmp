@@ -8,11 +8,11 @@
     <aura:attribute name="currentExams" type="List"/>
     
   	<!--<aura:handler name="init" value="{!this}" action="{!c.GameInit}"/>-->
-    <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
+    <!--<aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>-->
+    <aura:handler name = "change" value = "{!v.currentExams}" action = "{!c.TitanClicked}" />
     <aura:registerEvent name="ExamClickedEvent" type="c:ExamClickedEvent"/>
     
     <div>
-        <p style="color:white;"> {!v.active}</p>
 
 
         <!-- CHECK IF ONLY ONE EXAM -->
@@ -37,14 +37,12 @@
 
         <!-- CHECK IF ONLY TWO EXAMS -->
         <aura:if isTrue="{!v.exams.length == 2}">
-        <p style="color:white;">two exams</p>
         </aura:if>
 
 
 
         <!-- CHECK IF MORE THAN TWO EXAMS-->
         <aura:if isTrue="{!v.exams.length > 2}">
-            <p style="color:white;">two+ exams</p>
 
 
 
@@ -317,7 +315,7 @@
                     <div class="vertical-line-centered-completed"/>
                     <div class="minion-wrapper-center" onclick="{!c.ExamClicked}" data-value="final">
                         <div class="minion-center-final-completed">
-                            <h1>{!exam.highScore}%</h1>
+                            <h1>{!v.finalExam.highScore}%</h1>
                         </div>
                         <p>{!v.finalExam.name}</p>
                     </div>
@@ -355,7 +353,7 @@
                             <div class="vertical-line-centered-completed"/>
                             <div class="minion-wrapper-center" onclick="{!c.ExamClicked}" data-value="final">
                                 <div class="minion-center-final-failed">
-                                    <h1>{!exam.highScore}%</h1>
+                                    <h1>{!v.finalExam.highScore}%</h1>
                                 </div>
                                 <p>{!v.finalExam.name}</p>
                             </div>
