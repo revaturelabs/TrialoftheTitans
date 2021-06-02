@@ -15,7 +15,7 @@
             var arrayTextPools = textPools[0].split(';');
             var objectPools = component.get("v.pools");
             var selectedObjectPools = [];
-            
+            // extract selected pool into selectedObjectPools array 
             for(let i = 0 ;i<arrayTextPools.length;i++ ){
                 for(let j=0;j<objectPools.length;j++){
                     if(arrayTextPools[i]==objectPools[j].Name)
@@ -30,6 +30,7 @@
         
         //****************Get Question List*********************
         let action = component.get('c.GetQues');
+        // Setting Params to send to Apex Server
         action.setParams({
             'searchKeyword' :   searchKeyword,
             'pools'			:   selectedObjectPools,
@@ -97,12 +98,12 @@
         debugger;
         
         var textPools = component.get("v.selectedPools");
-        
+        // Exactrac the selectedPools from aura component to JS to send to Apex 
         if(textPools.length>0){
             var arrayTextPools = textPools[0].split(';');
             var objectPools = component.get("v.pools");
             var selectedObjectPools = [];
-            
+            // extract selected pool into selectedObjectPools array 
             for(let i = 0 ;i<arrayTextPools.length;i++ ){
                 for(let j=0;j<objectPools.length;j++){
                     if(arrayTextPools[i]==objectPools[j].Name)
@@ -140,6 +141,8 @@
             return;
         } 
         debugger;
+
+        // Setting Params to send to Apex Server
         let action3 = component.get('c.deleteQuesPool');
         action3.setParams({
             'pools' 			:  selectedObjectPools,

@@ -1,6 +1,7 @@
 ({
   ProgressChart : function(component) {   
     var examInfo = component.get("v.contextInfo").userExams;
+    var teamColors = [component.get('v.contextInfo').team.Primary_Color__c, component.get('v.contextInfo').team.Secondary_Color__c];
     console.log("Ready to generate chart...");
     console.log(Object.entries(examInfo));
 
@@ -16,11 +17,11 @@
       console.log(titanName);
 
       for (let exam of titan[1]){
-        exam.isPassed ? ( exam.currentResults ? recentPassedExams++ : passedExams++ ): null
+        exam.isPassed ? ( exam.currentResults ? recentPassedExams++ : passedExams++ ): null;
       };
 
-      progress = passedExams/titan[1].length
-      recentProgress = recentPassedExams/titan[1].length
+      progress = passedExams/titan[1].length;
+      recentProgress = recentPassedExams/titan[1].length;
 
       let newData = {
         "Titan" : titanName,
@@ -106,7 +107,7 @@
         .domain([0, 1]); // Domain of Y is from 0 to the max seen in the data
 
     var z = d3.scaleOrdinal()
-        .range(userColors.Vanquish) // Range of Z is the colors each section or the arc will be assigned
+        .range(teamColors) // Range of Z is the colors each section or the arc will be assigned
         .domain(["Value", "RecentProgress"]); // Domain of Z is the data key of the sections each arc is divided into
     
     console.log(data.map(function(d){return [d.Value, d.RecentProgress]}))

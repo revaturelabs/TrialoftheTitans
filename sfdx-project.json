@@ -3,49 +3,52 @@
         {
             "path": "CorePackage",
             "package": "CorePackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": false
+            "versionName": "ver 1.1",
+            "versionNumber": "1.1.0.NEXT",
+            "default": true
         },
         {
             "path": "ExamPackage",
             "package": "Exam_Package",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
+            "versionName": "ver 1.1",
+            "versionNumber": "1.1.0.NEXT",
             "default": false,
             "dependencies": [
                 {
-                    "package": "04t5e000000phPqAAI"
+                    "package": "CorePackage@1.1.0-1"
                 }
             ]
         },
         {
             "path": "TitanPage\\Main\\default",
             "package": "TitansPackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
+            "versionName": "ver 1.1",
+            "versionNumber": "1.1.0.NEXT",
             "default": false,
             "dependencies": [
                 {
-                    "package": "04t5e000000xyyrAAA"
+                    "package": "CorePackage@1.1.0-1"
+                },
+                {
+                    "package": "Exam_Package@1.1.0-2"
                 }
             ]
         },
         {
             "path": "HeroHubPackage",
             "package": "HeroHubPackage",
-            "versionName": "ver 1.0",
-            "versionNumber": "1.0.0.NEXT",
+            "versionName": "ver 1.1",
+            "versionNumber": "1.1.0.NEXT",
             "default": true,
             "dependencies": [
                 {
-                    "package": "CorePackage@0.1.0-2"
+                    "package": "CorePackage@1.1.0-1"
                 },
                 {
-                    "package": "Exam_Package@0.1.0-3"
+                    "package": "Exam_Package@1.1.0-2"
                 },
                 {
-                    "package": "TitansPackage@0.1.0-2"
+                    "package": "TitansPackage@1.1.0-1"
                 }
             ]
         }
@@ -65,6 +68,11 @@
         "HeroHubPackage@0.1.0-1": "04t5e0000005UjhAAE",
         "TitansPackage": "0Ho5e000000blceCAA",
         "TitansPackage@0.1.0-1": "04t5e000000lUzKAAU",
-        "TitansPackage@0.1.0-2": "04t5e000000lV3XAAU"
+        "TitansPackage@0.1.0-2": "04t5e000000lV3XAAU",
+        "CorePackage@1.1.0-1": "04t5e000000pplKAAQ",
+        "Exam_Package@1.1.0-1": "04t5e000000y6a2AAA",
+        "Exam_Package@1.1.0-2": "04t5e000000y6iSAAQ",
+        "TitansPackage@1.1.0-1": "04t5e000000lchhAAA",
+        "HeroHubPackage@1.1.0-1": "04t5e0000005fCtAAI"
     }
 }
