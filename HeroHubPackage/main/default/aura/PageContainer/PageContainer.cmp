@@ -27,8 +27,9 @@
     
     <!-- Main page with Titan Page or Titan Slayer and Hero Journey -->
     <div id="main">
-            <aura:if isTrue="{!v.navigate == 'Titan'}" >
+            <aura:if isTrue="{!v.navigate == 'Titans'}" >
                     <!--Insert Titan Page Here-->
+                    <c:TitansPageLanding />
                 <aura:set attribute="else">
                     <c:TitanSlayer leadTeams="{!v.leadTeams}" />
                     <c:HeroJourney contextInfo="{!v.contextInfo}"/>
