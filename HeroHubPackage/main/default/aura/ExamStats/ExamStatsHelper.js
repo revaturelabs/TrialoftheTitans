@@ -1,4 +1,19 @@
+/////////////////////////////////////////////////////
+//
+//  Name: ExamStatsHelper.js
+//  Author: David Serrano
+//  Created: 5/13/2021
+//  Updated: 5/28/2021
+//  Description: Javascript helper to handle logic for data passed in through event
+//
+///////////////////////////////////////////////////
+
+
 ({
+    // DisplayStats(): helps display the information related to an exam clicked on by the user
+    // There are 3 different views that are possible, all depending on the assigned and isPassed variables
+    // component: helps set data on the display
+    // event: allows the event parameter containing the exam information to be passed through
     DisplayStats : function( component, event) {
         console.log("displayresults: " + JSON.stringify(event.getParam("exam")));
         let exam = event.getParam("exam");
