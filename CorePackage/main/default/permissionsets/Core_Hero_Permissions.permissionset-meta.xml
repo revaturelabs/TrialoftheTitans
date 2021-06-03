@@ -11,6 +11,7 @@
         <field>Account.Curriculum__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.Team__c</field>
         <readable>true</readable>
