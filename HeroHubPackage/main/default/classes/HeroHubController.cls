@@ -52,7 +52,7 @@ public with sharing class HeroHubController {
     }
     
     public static Map<String, Decimal> getScoresByTeam(){
-        List<AggregateResult> teamScores = [SELECT SUM(Total_Answers__C) answers, SUM(Total_Correct__C) correct, AVG(Score__c) score, Account__r.Cohort__C,  Account__r.Team__r.Name teamName FROM Exam_Result__c WHERE Graded__c=true GROUP BY Account__r.Team__r.Name, Account__r.Cohort__C ORDER BY AVG(Score__c) DESC];
+        List<AggregateResult> teamScores = [SELECT SUM(Total_Answers__C) answers, SUM(Total_Correct__C) correct, AVG(Score__c) score,  Account__r.Team__r.Name teamName FROM Exam_Result__c WHERE Graded__c=true GROUP BY Account__r.Team__r.Name ORDER BY AVG(Score__c) DESC];
         
         Map<String, Decimal> scoresByTeam = new Map<String, Decimal>();
         
