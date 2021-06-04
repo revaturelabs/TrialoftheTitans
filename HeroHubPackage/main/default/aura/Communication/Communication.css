@@ -45,22 +45,24 @@
     }
 }
 
-.THIS .inline-item {
-    display: inline;
-}
 
 .THIS .feed-collapsed {
     animation: collapse-feed forwards 1.5s;
 }
 
-.THIS .feed-initial {
-    max-width: 0;
-    max-height: 0;
-}
-
 .THIS .feed-expanded {
     animation: expand-feed forwards 1.5s;
     border-radius: 5px;
+}
+
+.THIS .feed-initial {
+    max-height: 0;
+    max-width: 0;
+}
+
+
+.THIS .inline-item {
+    display: inline;
 }
 
 .THIS#hidden-chat-btn {
