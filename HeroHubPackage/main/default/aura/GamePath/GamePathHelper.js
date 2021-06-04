@@ -2,13 +2,13 @@
 //
 //  Name: GamePathHelper.cmp
 //  Author: David Serrano
-//  Created: 5/13/2021
-//  Updated: 5/28/2021
 //  Description: Javascript helper that handles the logic for onclick events
 //
 ///////////////////////////////////////////////////
 
 ({
+    // handleInit(): sets the appropriate exams to be displayed based on the titan being displayed on initialization of GamePath
+
 	handleInit : function( component, event ) {
  		let exams = component.get("v.currentExams");
         console.log("current Exams", exams)

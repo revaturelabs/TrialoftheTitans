@@ -3,8 +3,6 @@
 //
 //  Name: GamePath.cmp
 //  Author: David Serrano
-//  Created: 5/13/2021
-//  Updated: 5/28/2021
 //  Description: Gamepath helps display a gamified version of the hero's progress on a particular titan
 //  div classes here can be broken down into components in a future iterations for increased markup readability
 //  displays are dependent on whether an exam has been passed, attempted but failed, assigned, or unassigned
@@ -29,7 +27,6 @@
     <aura:attribute name="currentExams" type="List"/>
     
   	<aura:handler name="init" value="{!this}" action="{!c.GameInit}"/>
-    <!--<aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>-->
     <aura:handler name = "change" value = "{!v.currentExams}" action = "{!c.TitanClicked}" />
     <aura:registerEvent name="ExamClickedEvent" type="c:ExamClickedEvent"/>
     

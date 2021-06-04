@@ -2,8 +2,6 @@
 //
 //  Name: ExamStatsHelper.js
 //  Author: David Serrano
-//  Created: 5/13/2021
-//  Updated: 5/28/2021
 //  Description: Javascript helper to handle logic for data passed in through event
 //
 ///////////////////////////////////////////////////

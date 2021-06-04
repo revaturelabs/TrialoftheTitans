@@ -3,8 +3,6 @@
 //
 //  Name: ExamStats.cmp
 //  Author: David Serrano
-//  Created: 5/13/2021
-//  Updated: 5/25/2021
 //  Description: ExamStats helps display information on the exam depending on whether the exam has been attempted,
 //  assigned, or unavailable to take yet.
 //
