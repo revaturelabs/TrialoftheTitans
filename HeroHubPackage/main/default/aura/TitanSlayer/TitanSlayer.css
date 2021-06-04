@@ -1,3 +1,12 @@
+/*
+
+  Name: TitanSlayer
+  Author: Josh Miccolo
+  Description: Displays each TitanSlayer component
+  according to name of lead team 
+
+*/
+
 .THIS.titanSlayer {
     width: 100%;
     margin: 0% 0% 2.5% 0%;
@@ -507,7 +516,7 @@ div.THIS .titanSlayer-Synergy-body {
 
 }
 
-
+/* blinking text bar */
 @keyframes Blink {
 
     from{
@@ -519,6 +528,7 @@ div.THIS .titanSlayer-Synergy-body {
 
 }
 
+/* grow progress bars */
 @keyframes progressGrow {
     from{
         transform:scaleX(0);
@@ -528,33 +538,21 @@ div.THIS .titanSlayer-Synergy-body {
     }
 }
 
-@keyframes SpinText {
-    0%{
-        transform: rotateX(0);
-    }
-
-    50% {
-        transform: rotateX(180deg);
-    }
-
-    100%{
-        transform: rotateX(0);
-    }
-
-}
-
+/* slides to the right position in marquee */
 @keyframes slideRight {
     to{
         transform:translateX(0);
     }
 }
 
+/* drops flags in Vanquish  */
 @keyframes dropFlags{
     to{
         transform:scaleY(1);
     }
 }
 
+/* generic fade in */
 @keyframes fadeIn {
     to{
         opacity: 1;

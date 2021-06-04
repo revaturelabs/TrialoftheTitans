@@ -1,3 +1,11 @@
+/////////////////////
+//
+//  Name:PageContainerController
+//  Author: Josh Miccolo
+//  Description: Controller for Hero Hub Page
+//  returns user context info and navigates to pages
+//
+/////////////////////
 ({
     doInit: function( component, event, helper ) {
         const getContextInfo = component.get( "c.getUserInfo" );
@@ -22,6 +30,7 @@
                 Object.keys(teamScores).forEach(category =>{
                     teamScores[category] = Object.entries(teamScores[category])
                 });
+                teamScores.Team[0][0] = "Synergy";
                 console.log(teamScores);
                 component.set('v.leadTeams', teamScores);
            }

@@ -1,3 +1,13 @@
+/////////////////////
+//
+//  Name:TitanSlayerController
+//  Author: Josh Miccolo
+//  Description: Controller for the Titan Slayer
+//  component. Initializes Animation setIntervals
+//  and setTimeouts for animation. 
+//
+/////////////////////
+
 ({
 	doInit : function(component, event, helper) {
 		console.log('hit');

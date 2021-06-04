@@ -1,3 +1,11 @@
+<!--
+
+  Name: Titan Slayer
+  Author: Josh Miccolo
+  Description: Titan Slayer Component shows 
+  lead scores for team cohorts and squads 
+
+-->
 <aura:component access="global">
     <aura:attribute name="leadTeams" type="Map" />
     <aura:attribute name="setIntervalId" type="Integer"/>

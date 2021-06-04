@@ -1,3 +1,11 @@
+/*
+
+  Name: Navigation
+  Author: Josh Miccolo
+  Description: Navigation Bar for Hero Hub 
+
+*/
+
 .THIS.navbar{
     width: 100%;
     background-color: var(--text-color);

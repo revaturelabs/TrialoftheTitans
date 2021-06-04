@@ -1,3 +1,12 @@
+/*
+
+  Name: PageContainer
+  Author: Josh Miccolo
+  Description: Container for the Hero Hub Page
+  Will call to database for all userContextInfo. 
+
+*/
+
 /* Define header/Slayer Fonts */
 @font-face {
     font-family: "AlfaSlab";
