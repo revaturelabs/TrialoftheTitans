@@ -29,6 +29,7 @@ public with sharing class HeroHubController {
         }
     }
     
+    // Get Team Scores to display. 
     @AuraEnabled
     public static Map<String, Map<String, Decimal>> getTeamScores(){
         
