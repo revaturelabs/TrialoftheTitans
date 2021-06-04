@@ -10,7 +10,27 @@
 
 ({
 	handleInit : function( component, event ) {
- 
+ 		let exams = component.get("v.currentExams");
+        console.log("current Exams", exams)
+        let iterableExams = [];
+
+        let firstExam = exams[0];
+        let finalExam = exams[exams.length - 1];
+
+        for(let exam in exams){
+            if(exam == 0 || exam == (exams.length - 1)){
+
+            }else{
+
+                iterableExams.push(exams[exam]);
+            }
+        }
+
+        
+        component.set("v.exams", exams);
+        component.set("v.firstExam", firstExam);
+        component.set("v.finalExam", finalExam);
+        component.set("v.iterableExams", iterableExams);
 	},
 
 

@@ -7,6 +7,7 @@
 */
 ({  
     SetUpChart : function(component, event, titans) {
+        //const data = component.get('v.contextInfo').userExams;
         const MARGIN = { TOP: 20, BOTTOM: 30, RIGHT: 10, LEFT: 90}
         const WIDTH = 490 - MARGIN.LEFT - MARGIN.RIGHT;
         const HEIGHT = 490 - MARGIN.TOP - MARGIN.BOTTOM;
@@ -21,7 +22,7 @@
         teamColors.set('Alchemy', '#84C247');
         teamColors.set('Vanquish', '#475BC2');
         teamColors.set('Avg', 'purple');
-        let userTeam = 'Synergy';
+        let userTeam = 'Alchemy';
 
         this.FindHighAvgScores(titans, trackLabels, trackExamAverage, currHighScores, currKey);
     

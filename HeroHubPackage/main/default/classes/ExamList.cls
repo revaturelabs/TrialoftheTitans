@@ -30,7 +30,7 @@ public class ExamList {
     @auraEnabled public Decimal highScore{get;set;}
 	
     public ExamList( Exam__c exam ) {
-
+        System.debug(exam.name);
         name = exam.Name;
         nextExam = exam.Next_Exam__c;
         system.debug('FROM EXAMLISt' + exam.Exam_Results__r);

@@ -15,4 +15,4 @@
     <ltng:require scripts="{!$Resource.d3 + '/d3.js'}" afterScriptsLoaded="{!c.ScriptsLoaded}" />
 
     <div id="mydthree" onclick="{!c.handleClick}" />
-</aura:component>	
+</aura:component>
