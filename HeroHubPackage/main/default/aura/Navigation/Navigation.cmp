@@ -18,7 +18,7 @@
             <li class="navbar-quote">{!v.contextInfo.team.Slogan__c}</li>
             <li onclick="{!c.fireNav}">
                 <!-- Switch between Titan and HeroHub -->
-                <aura:if isTrue="{!v.navigate != 'Titan'}">Titans<aura:set attribute="else">HeroHub</aura:set></aura:if>
+                <aura:if isTrue="{!v.navigate != 'Titans'}">Titans<aura:set attribute="else">HeroHub</aura:set></aura:if>
             </li>
             <li>Logout</li>
         </ul>
