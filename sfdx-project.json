@@ -5,7 +5,7 @@
             "package": "CorePackage",
             "versionName": "ver 1.1",
             "versionNumber": "1.1.0.NEXT",
-            "default": true
+            "default": false
         },
         {
             "path": "ExamPackage",

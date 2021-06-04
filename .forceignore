@@ -3,7 +3,7 @@
 #
 
 **profiles
-#!**/profiles/Hero.profile-meta.xml
+!**/profiles/Hero.profile-meta.xml
 #!**/profiles/TitanTrainer.profile-meta.xml
 **layouts
 !**/layouts/Exam__c-Exam Layout.layout-meta.xml

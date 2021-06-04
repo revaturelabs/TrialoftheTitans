@@ -21,6 +21,7 @@
                 Object.keys(teamScores).forEach(category =>{
                     teamScores[category] = Object.entries(teamScores[category])
                 });
+                teamScores.Team[0][0] = "Synergy";
                 console.log(teamScores);
                 component.set('v.leadTeams', teamScores);
            }
