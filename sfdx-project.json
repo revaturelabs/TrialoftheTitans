@@ -66,13 +66,16 @@
         "Exam_Package@0.1.0-3": "04t5e000000xyyrAAA",
         "HeroHubPackage": "0Ho5e000000oLxlCAE",
         "HeroHubPackage@0.1.0-1": "04t5e0000005UjhAAE",
+        "HeroHubPackage@1.1.0-1": "04t5e0000005fCtAAI",
+        "HeroHubPackage@1.1.0-2": "04t5e0000005hHSAAY",
+        "HeroHubPackage@1.1.0-3": "04t5e0000005hLfAAI",
+        "HeroHubPackage@1.1.0-4": "04t5e0000005hYIAAY",
         "TitansPackage": "0Ho5e000000blceCAA",
         "TitansPackage@0.1.0-1": "04t5e000000lUzKAAU",
         "TitansPackage@0.1.0-2": "04t5e000000lV3XAAU",
         "CorePackage@1.1.0-1": "04t5e000000pplKAAQ",
         "Exam_Package@1.1.0-1": "04t5e000000y6a2AAA",
         "Exam_Package@1.1.0-2": "04t5e000000y6iSAAQ",
-        "TitansPackage@1.1.0-1": "04t5e000000lchhAAA",
-        "HeroHubPackage@1.1.0-1": "04t5e0000005fCtAAI"
+        "TitansPackage@1.1.0-1": "04t5e000000lchhAAA"
     }
 }

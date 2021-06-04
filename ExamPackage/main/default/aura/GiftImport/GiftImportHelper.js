@@ -161,6 +161,7 @@
                 component.set( "v.successMessage", true );
                 component.set( "v.imported", userFeedback[0] );
                 component.set( "v.updated", userFeedback[1] );
+                component.set( "v.fileName", "No file selected..." );
             }
         });
         $A.enqueueAction( action );

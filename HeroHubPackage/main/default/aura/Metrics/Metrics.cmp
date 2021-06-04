@@ -1,9 +1,5 @@
 <aura:component >
 	<div>
-        <div style="width:95%; margin-left:5%; background:#29292A; border:10px solid #84a7e4; height:200px; border-radius:5px;">
-            <c:RadialChart contextInfo="{!v.contextInfo}"/>
-        </div>
-
         <c:ExamStats/>
     </div>
 </aura:component>

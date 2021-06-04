@@ -1,3 +1,11 @@
+/*
+
+  Name: Navigation
+  Author: Josh Miccolo
+  Description: Navigation Bar for Hero Hub 
+
+*/
+
 ({
     fireNav : function(component, event, helper){
 

@@ -1,4 +1,13 @@
-<aura:component controller="HeroHubController" access="global" >
+<!--
+
+  Name: PageContainer
+  Author: Josh Miccolo
+  Description: Container for the Hero Hub Page
+  Will call to database for all userContextInfo. 
+
+-->
+
+<aura:component controller="HeroHubController" implements="forceCommunity:themeLayout" access="global" >
     
     <!--Attributes: contextUser, userTeam, leadTeam,-->
     <aura:attribute name="contextInfo" type="UserContextInfo" />
@@ -27,18 +36,15 @@
     
     <!-- Main page with Titan Page or Titan Slayer and Hero Journey -->
     <div id="main">
-            <aura:if isTrue="{!v.navigate == 'Titan'}" >
+            <aura:if isTrue="{!v.navigate == 'Titans'}" >
                     <!--Insert Titan Page Here-->
+                    <c:TitansPageLanding />
                 <aura:set attribute="else">
                     <c:TitanSlayer leadTeams="{!v.leadTeams}" />
                     <c:HeroJourney contextInfo="{!v.contextInfo}"/>
                 </aura:set>
             </aura:if>    
     </div>
-
-    <footer>
-        <c:Footer />
-    </footer>
 
     <c:Communication />
 </aura:component>
