@@ -10,10 +10,10 @@
 		// Only render chart if we have both d3.js and data loaded
 		if(component.get( "v.scriptsLoaded" ) && component.get( "v.contextInfo" ) ){
             let titans = {
-                "Apex": [
+                "APEX Classes": [
                     {
                         "currentResults": [],
-                        "highScore": .49,
+                        "highScore": .8,
                         "isPassed": false,
                         "name": "ello",
                         "nextExam": "asdfasdf",
@@ -21,16 +21,16 @@
                     },
                     {
                         "currentResults": [],
-                        "highScore": .89,
+                        "highScore": 1,
                         "isPassed": false,
                         "name": "ello",
                         "nextExam": "asdfasdf",
                         "pastResult": []
                     }],
-                "Data Modeling": [
+                "Lightning Aura Components": [
                     {
                         "currentResults": [],
-                        "highScore": .29,
+                        "highScore": 1,
                         "isPassed": false,
                         "name": "ello",
                         "nextExam": "asdfasdf",
@@ -38,7 +38,7 @@
                     },
                     {
                         "currentResults": [],
-                        "highScore": .19,
+                        "highScore": .4,
                         "isPassed": false,
                         "name": "ello",
                         "nextExam": "asdfasdf",
@@ -47,7 +47,7 @@
                 "Process Automation": [
                     {
                         "currentResults": [],
-                        "highScore": .69,
+                        "highScore": .4,
                         "isPassed": false,
                         "name": "ello",
                         "nextExam": "asdfasdf",
@@ -55,16 +55,16 @@
                     },
                     {
                         "currentResults": [],
-                        "highScore": .29,
+                        "highScore": 1,
                         "isPassed": false,
                         "name": "ello",
                         "nextExam": "asdfasdf",
                         "pastResult": []
                     }],
-                    "Security": [
+                    "Visualforce": [
                         {
                             "currentResults": [],
-                            "highScore": .19,
+                            "highScore": 1,
                             "isPassed": false,
                             "name": "ello",
                             "nextExam": "asdfasdf",
@@ -72,7 +72,7 @@
                         },
                         {
                             "currentResults": [],
-                            "highScore": .09,
+                            "highScore": .3,
                             "isPassed": false,
                             "name": "ello",
                             "nextExam": "asdfasdf",

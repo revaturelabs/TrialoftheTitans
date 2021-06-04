@@ -20,7 +20,7 @@
         <isOptional>false</isOptional>
     </lookupFilter>
     <referenceTo>Exam__c</referenceTo>
-    <relationshipLabel>Next Exam</relationshipLabel>
+    <relationshipLabel>Previous Exam</relationshipLabel>
     <relationshipName>Next_Exam</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>

@@ -1,4 +1,4 @@
-<aura:component controller="HeroHubController" access="global" >
+<aura:component controller="HeroHubController" implements="forceCommunity:themeLayout" access="global" >
     
     <!--Attributes: contextUser, userTeam, leadTeam,-->
     <aura:attribute name="contextInfo" type="UserContextInfo" />

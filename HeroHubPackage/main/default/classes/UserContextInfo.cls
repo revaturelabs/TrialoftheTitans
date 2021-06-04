@@ -63,7 +63,7 @@ public class UserContextInfo {
 			return userAccount;
         }
         catch(Exception e){
-           return [SELECT Id, Name, Curriculum__c, Squad__c, Cohort__c, Team__c FROM Account WHERE Name = 'User0'];
+           return [SELECT Id, Name, Curriculum__c, Squad__c, Cohort__c, Team__c FROM Account WHERE Name = 'Gladius Maximus'];
         }
         
 
@@ -121,6 +121,7 @@ public class UserContextInfo {
                                             CreatedDate
                                             FROM Exam_Results__r 
                                             WHERE Account__c = :accId 
+                                 			ORDER BY Score__c DESC NULLS LAST
                                             )
                                     FROM Exam__c];
     

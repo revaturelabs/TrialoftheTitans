@@ -17,14 +17,12 @@
 
     
     <!-- Header div -->
-    <div class="slds-text-heading_large slds-align_absolute-center" id="Header" style="font-size:xxx-large;">
+    <span class="slds-text-heading_large slds-align_absolute-center" id="Header" style="font-size:xxx-large;">
         <h5> Welcome {!v.AccountInfo} </h5>
-    </div>
+    </span>
     
    <!-- Constellation Banner -->
-    <div class = "slds-grid slds-col slds-size_12-of-12" id="bannerDiv" 
-         style="background-image:url(https://i.imgur.com/pXRWqgG.png);
-                height:260px;border:1px solid black;padding:10px;">  
+    <div class = "slds-grid slds-col slds-size_12-of-12" id="bannerDiv">  
     </div>
     
     <!-- Primary div  -->

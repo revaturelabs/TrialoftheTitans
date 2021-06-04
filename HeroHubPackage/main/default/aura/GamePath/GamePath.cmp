@@ -7,7 +7,7 @@
     <aura:attribute name="contextInfo" type="Map"/>
     <aura:attribute name="currentExams" type="List"/>
     
-  	<!--<aura:handler name="init" value="{!this}" action="{!c.GameInit}"/>-->
+  	<aura:handler name="init" value="{!this}" action="{!c.GameInit}"/>
     <!--<aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>-->
     <aura:handler name = "change" value = "{!v.currentExams}" action = "{!c.TitanClicked}" />
     <aura:registerEvent name="ExamClickedEvent" type="c:ExamClickedEvent"/>
@@ -42,7 +42,7 @@
 
 
         <!-- CHECK IF MORE THAN TWO EXAMS-->
-        <aura:if isTrue="{!v.exams.length > 2}">
+        <aura:if isTrue="{!v.exams.length >= 2}">
 
 
 
@@ -61,7 +61,7 @@
                     <div class="vertical-line-short-left-completed"/>
                     <div class="minion-wrapper-left" onclick="{!c.ExamClicked}" data-value="first">
                         <div class="minion-left-completed">
-                            <h1>{!v.firstExam.highScore}%</h1>
+                            <h1>{!v.firstExam.highScore * 100}%</h1>
                         </div>
                         <p>{!v.firstExam.name}</p>
                     </div>
@@ -85,7 +85,7 @@
                             <div class="vertical-line-short-left-completed"/>
                             <div class="minion-wrapper-left" onclick="{!c.ExamClicked}" data-value="first">
                                 <div class="minion-failed">
-                                    <h1>{!v.firstExam.highScore}%</h1>
+                                    <h1>{!v.firstExam.highScore* 100}%</h1>
                                 </div>
                                 <p>{!v.firstExam.name}</p>
                             </div>
@@ -138,7 +138,7 @@
                                 <div class="vertical-line-short-right-completed"/>
                                 <div class="minion-wrapper-right" onclick="{!c.ExamClicked}" data-value="{!index}">
                                     <div class="minion-right-completed">
-                                        <h1>{!exam.highScore}%</h1>
+                                        <h1>{!exam.highScore* 100}%</h1>
                                     </div>
                                     <p>{!exam.name}</p>
                                 </div>
@@ -155,7 +155,7 @@
                                     <div class="vertical-line-short-right-completed"/>
                                     <div class="minion-wrapper-right" onclick="{!c.ExamClicked}" data-value="{!index}">
                                         <div class="minion-failed">
-                                            <h1>{!exam.highScore}%</h1>
+                                            <h1>{!exam.highScore* 100}%</h1>
                                         </div>
                                         <p>{!exam.name}</p>
                                     </div>
@@ -214,7 +214,7 @@
                             <div class="vertical-line-short-left-completed"/>
                             <div class="minion-wrapper-left" onclick="{!c.ExamClicked}" data-value="{!index}">
                                 <div class="minion-left-completed">
-                                    <h1>{!exam.highScore}%</h1>
+                                    <h1>{!exam.highScore* 100}%</h1>
                                 </div>
                                 <p>{!exam.name}</p>
                             </div>
@@ -232,7 +232,7 @@
                                     <div class="vertical-line-short-left-completed"/>
                                     <div class="minion-wrapper-left" onclick="{!c.ExamClicked}" data-value="{!index}">
                                         <div class="minion-failed">
-                                            <h1>{!exam.highScore}%</h1>
+                                            <h1>{!exam.highScore* 100}%</h1>
                                         </div>
                                         <p>{!exam.name}</p>
                                     </div>
@@ -315,7 +315,7 @@
                     <div class="vertical-line-centered-completed"/>
                     <div class="minion-wrapper-center" onclick="{!c.ExamClicked}" data-value="final">
                         <div class="minion-center-final-completed">
-                            <h1>{!v.finalExam.highScore}%</h1>
+                            <h1>{!v.finalExam.highScore* 100}%</h1>
                         </div>
                         <p>{!v.finalExam.name}</p>
                     </div>
@@ -353,7 +353,7 @@
                             <div class="vertical-line-centered-completed"/>
                             <div class="minion-wrapper-center" onclick="{!c.ExamClicked}" data-value="final">
                                 <div class="minion-center-final-failed">
-                                    <h1>{!v.finalExam.highScore}%</h1>
+                                    <h1>{!v.finalExam.highScore* 100}%</h1>
                                 </div>
                                 <p>{!v.finalExam.name}</p>
                             </div>

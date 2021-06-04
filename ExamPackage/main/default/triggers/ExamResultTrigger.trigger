@@ -10,10 +10,10 @@
 trigger ExamResultTrigger on Exam_Result__c (before insert, before update, after insert, after update) {
     switch on trigger.operationType {
         when BEFORE_INSERT{
-            ExamResultTriggerHandler.PreventDuplicateExams(trigger.new);
+            //ExamResultTriggerHandler.PreventDuplicateExams(trigger.new);
         }
         when BEFORE_UPDATE{
-            ExamResultTriggerHandler.PreventDuplicateExams(trigger.new);
+            //ExamResultTriggerHandler.PreventDuplicateExams(trigger.new);
         }
         when AFTER_INSERT{
             ExamResultTriggerHandler.sendChatterMessageForTitanCompletion(trigger.new);     
