@@ -26,34 +26,42 @@ public class ExamList {
     //All exam results
     @auraEnabled public List<Exam_Result__c> currentResults{get;set;}
 
+    //Did they pass the exam based on high score?
     @auraEnabled public Boolean isPassed{get;set;}
+
     @auraEnabled public Decimal highScore{get;set;}
 	
     public ExamList( Exam__c exam ) {
-        System.debug(exam.name);
         name = exam.Name;
         nextExam = exam.Next_Exam__c;
-        system.debug('FROM EXAMLISt' + exam.Exam_Results__r);
         currentResults = exam.Exam_Results__r;
         pastResults = getPastResults( currentResults );
-        isPassed = currentResults[0].Pass__C;
-        // If no answers highScore is null
-        if(currentResults[0].Total_Answers__c != 0){
+
+        // check for 
+        if(currentResults[0] != null){
+            isPassed = currentResults[0].Pass__C;
+            if(currentResults[0].Total_Answers__c != 0){
                 
-        	highScore = currentResults[0].Total_Correct__c/currentResults[0].Total_Answers__c;
-            highScore = highScore.setScale(2);
-            
+                highScore = currentResults[0].Total_Correct__c/currentResults[0].Total_Answers__c;
+                highScore = highScore.setScale(2);
+                
+            }
+            else{
+                    
+                highScore = null;
+                
+            }
+
+            if(currentResults[0].Status__c == 'Assigned' || currentResults[0].Status__c == 'Completed'){
+                assigned = true;
+            }
+            else{
+                assigned = false;
+            }
         }
         else{
-                
+            isPassed = false;
             highScore = null;
-            
-        }
-        
-        if(currentResults[0].Status__c == 'Assigned' || currentResults[0].Status__c == 'Completed'){
-            assigned = true;
-        }
-        else{
             assigned = false;
         }
     }
@@ -69,7 +77,7 @@ public class ExamList {
                                         WHERE Graded__C = true 
                                         AND Id IN :results 
                                         AND CreatedDate < THIS_WEEK 
-                                        ORDER BY Total_Correct__c ];
+                                        ORDER BY Score__c DESC NULLS LAST];
         
         return oldResults;
         

@@ -29,6 +29,7 @@ public with sharing class HeroHubController {
         }
     }
     
+    //Method to return Team Scores in a Map of {Team:{Team: Score}, Cohort:{Team: Score}, Squad:{Squad: Score}}
     @AuraEnabled
     public static Map<String, Map<String, Decimal>> getTeamScores(){
         
@@ -64,7 +65,7 @@ public with sharing class HeroHubController {
         
         return scoresByTeam;
     }
-    
+
     public static Map<String, Decimal> getScoresByCohort(Account userAcc){
         List<AggregateResult> cohortScores = [SELECT SUM(Total_Answers__C) answers, SUM(Total_Correct__C) correct, AVG(Score__c) score, Account__r.Team__R.Name teamName, Account__r.Cohort__c FROM Exam_Result__c WHERE Account__r.Cohort__c = :userAcc.Cohort__c AND Graded__c = true GROUP BY Account__r.Cohort__c, Account__r.Team__r.Name ORDER BY AVG(Score__c) DESC];
         
@@ -82,6 +83,7 @@ public with sharing class HeroHubController {
         return scoresByCohort;
     }
     
+
     public static Map<String, Decimal> getScoresBySquad( Account userAcc ){
         
         List<AggregateResult> squadScores = [SELECT SUM(Total_Answers__C) answers, SUM(Total_Correct__C) correct, AVG(Score__C) score, Account__r.Squad__r.Name squadName, Account__r.Team__c FROM Exam_Result__c WHERE Account__r.Team__c = :userAcc.Team__c AND Graded__c = true GROUP BY Account__r.Team__c, Account__r.Squad__r.Name ORDER BY AVG(Score__c) DESC LIMIT 4 ];

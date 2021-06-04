@@ -175,6 +175,7 @@ public class UserContextInfo {
         return examMap;
     }
     
+    // Creates a custom class object to prepare exams to be mapped to titans. 
     private Map<String, List<ExamList>> createExamLists(Map<String, List<Exam__c>> titanExams){
         
         Map<String, List<ExamList>> examList = new Map<String, List<ExamList>>();
