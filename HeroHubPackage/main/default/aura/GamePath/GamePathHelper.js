@@ -1,4 +1,14 @@
+/////////////////////////////////////////////////////
+//
+//  Name: GamePathHelper.cmp
+//  Author: David Serrano
+//  Description: Javascript helper that handles the logic for onclick events
+//
+///////////////////////////////////////////////////
+
 ({
+    // handleInit(): sets the appropriate exams to be displayed based on the titan being displayed on initialization of GamePath
+
 	handleInit : function( component, event ) {
  		let exams = component.get("v.currentExams");
         console.log("current Exams", exams)
@@ -23,57 +33,10 @@
         component.set("v.iterableExams", iterableExams);
 	},
 
+
+    // HandleGamechange(): sets the appropriate exams to be displayed based on the titan being displayed
+
     HandleGameChange : function( component, event){
-        let examMap = new Map();
-
-        // creating mock data
-        examMap.set( "Data Model", [{ name: "Objects", 
-                                      isPassed: true, 
-                                      highScore: 88.8, 
-                                      assigned: true}, 
-
-                                    { name: "ERD", 
-                                      isPassed: true, 
-                                      highScore: 78.8, 
-                                      assigned: true,
-                                      currentResults: [{Total_Answers__c: 50, 
-                                                        Total_Correct__c: 49},
-                                    ] },
-
-                                    { name: "Security", 
-                                      isPassed: true, 
-                                      highScore: 99.8, 
-                                      assigned: true 
-                                    },
-
-                                    { name: "Yes", 
-                                      isPassed: false, 
-                                      highScore: null, 
-                                      assigned: true },
-
-                                    { name: "Exam", 
-                                      isPassed: false, 
-                                      highScore: null, 
-                                      assigned: false } 
-                                ]);
-
-        examMap.set( "Security", [ { name: "someName", isPassed: true, highScore: 81.5, assigned: true },
-                                    { name: "someName", isPassed: true, highScore: 81.5, assigned: true } 
-                                ]);
-
-        examMap.set( "Triggers" , [ { name: "someName1", isPassed: true, highScore: 99.0, assigned: true },
-                                    { name: "someName2", isPassed: true, highScore: 87.0, assigned: true },
-                                    { name: "someName3", isPassed: true, highScore: 73.0, assigned: true },
-                                    { name: "someName4", isPassed: false, highScore: 39.0, assigned: true },
-                                    { name: "someName5", isPassed: false, highScore: 42.0, assigned: true }, 
-                                    { name: "someName6", isPassed: false, highScore: 69.9, assigned: true },
-                                    { name: "someName7", isPassed: false, highScore: null, assigned: true },
-                                    { name: "someName8", isPassed: false, highScore: null, assigned: false },
-                                    { name: "someName9", isPassed: false, highScore: null, assigned: false }
-                                    ]);
-         
-        console.log("updated active: " + component.get("v.active"));
-
         
         if(component.get("v.active") != "Overview"){
             
@@ -85,6 +48,7 @@
         let firstExam = exams[0];
         let finalExam = exams[exams.length - 1];
 
+        // go through list of exams and push all exams except for the first and last into iterableExams
         for(let exam in exams){
             if(exam == 0 || exam == (exams.length - 1)){
 
@@ -108,6 +72,9 @@
         }
     },
     
+    // HandgleExamClick(): gets the necessary event, and passes in the exam information as a parameter
+    // data-values are set in the markup to help distinguish which exam to pass in
+
     HandleExamClick : function( component, event ){
 		console.log("handling click");
         let clickEvent =  $A.get("e.c:ExamClickedEvent");

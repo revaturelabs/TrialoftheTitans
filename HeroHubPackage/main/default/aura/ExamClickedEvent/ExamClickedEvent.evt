@@ -3,8 +3,6 @@
 //
 //  Name: ExamClickedEvent.evt
 //  Author: David Serrano
-//  Created: 5/13/2021
-//  Updated: 5/25/2021
 //  Description: This application event helps send ExamList data to the ExamStats component from the Gamepath components
 //  depending on the exam minion clicked by the user.
 //
