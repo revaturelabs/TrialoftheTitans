@@ -1,8 +1,8 @@
 /*
 
   Name: AnimatedHeader
-  Author: Some Author
-  Description: Animated Header with multiple 
+  Author: Josh Miccolo
+  Description: Animated Header with multiple versions.
 
   */
 
@@ -141,47 +141,52 @@
     
   }
 }
+/* displays text as if typing to 100%   */
 @keyframes typeOutFull {
-    to{
-        width: 100%;
-    }
+  to{
+      width: 100%;
+  }
 }
 
+/* Moves background flames around */
 @keyframes Slayer {
-  from{
-    background-position: 0, 35px 0;
-  }
-  to{ 
-    background-position: 35px 0, 0;
-  }
+from {
+  background-position: 0, 35px 0;
+}
+to { 
+  background-position: 35px 0, 0;
+}
 }
 
 @keyframes swordIn {
-  to {
-    background-position: 45%, center;
-  }
+to {
+  background-position: 45%, center;
+}
 }
 
+/* Glowing text */
 @keyframes Glowing {
-  from {
-    opacity:0;
-    filter: blur(10px);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0);
-  }
+from {
+  opacity:0;
+  filter: blur(10px);
 }
+to {
+  opacity: 1;
+  filter: blur(0);
+}
+}
+
+/* Moves background image around to give appearance of smoke */
 @keyframes Smoky {
-  0% {
-    background-position: 0 0;
-    
-  }
-  50% {
-    background-position: 0 -500px;
-    
-  }
-  100%{
-    background-position: 0 500px;
-  }
+0% {
+  background-position: 0 0;
+  
+}
+50% {
+  background-position: 0 -500px;
+  
+}
+100% {
+  background-position: 0 500px;
+}
 }
