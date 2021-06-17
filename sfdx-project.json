@@ -3,79 +3,69 @@
         {
             "path": "CorePackage",
             "package": "CorePackage",
-            "versionName": "ver 1.1",
-            "versionNumber": "1.1.0.NEXT",
+            "versionName": "ver 1.0",
+            "versionNumber": "1.0.0.NEXT",
             "default": false
         },
         {
             "path": "ExamPackage",
-            "package": "Exam_Package",
-            "versionName": "ver 1.1",
-            "versionNumber": "1.1.0.NEXT",
+            "package": "ExamPackage",
+            "versionName": "ver 1.0",
+            "versionNumber": "1.0.0.NEXT",
             "default": false,
             "dependencies": [
                 {
-                    "package": "CorePackage@1.1.0-1"
+                    "package": "CorePackage@1.0.0-1"
                 }
             ]
         },
         {
-            "path": "TitanPage\\Main\\default",
-            "package": "TitansPackage",
-            "versionName": "ver 1.1",
-            "versionNumber": "1.1.0.NEXT",
+            "path": ".\\TitanPage",
+            "package": "TitanPage",
+            "versionName": "ver 0.1",
+            "versionNumber": "1.0.0.NEXT",
             "default": false,
             "dependencies": [
                 {
-                    "package": "CorePackage@1.1.0-1"
+                    "package": "CorePackage@1.0.0-1"
                 },
                 {
-                    "package": "Exam_Package@1.1.0-2"
+                    "package": "ExamPackage@1.0.0-2"
                 }
             ]
         },
         {
             "path": "HeroHubPackage",
             "package": "HeroHubPackage",
-            "versionName": "ver 1.1",
-            "versionNumber": "1.1.0.NEXT",
+            "versionName": "ver 1.0",
+            "versionNumber": "1.0.0.NEXT",
             "default": true,
             "dependencies": [
                 {
-                    "package": "CorePackage@1.1.0-1"
+                    "package": "CorePackage@1.0.0-1"
                 },
                 {
-                    "package": "Exam_Package@1.1.0-2"
+                    "package": "ExamPackage@1.0.0-2"
                 },
                 {
-                    "package": "TitansPackage@1.1.0-1"
+                    "package": "TitanPage@1.0.0-2"
                 }
             ]
         }
     ],
     "namespace": "",
-    "sfdcLoginUrl": "https://resilient-fox-mdjzd0-dev-ed.my.salesforce.com",
+    "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "51.0",
     "packageAliases": {
-        "CorePackage": "0Ho5e0000008OSgCAM",
-        "CorePackage@0.1.0-1": "04t5e000000phPlAAI",
-        "CorePackage@0.1.0-2": "04t5e000000phPqAAI",
-        "Exam_Package": "0Ho5e000000Gn37CAC",
-        "Exam_Package@0.1.0-1": "04t5e000000xy1lAAA",
-        "Exam_Package@0.1.0-2": "04t5e000000xyZWAAY",
-        "Exam_Package@0.1.0-3": "04t5e000000xyyrAAA",
-        "HeroHubPackage": "0Ho5e000000oLxlCAE",
-        "HeroHubPackage@0.1.0-1": "04t5e0000005UjhAAE",
-        "HeroHubPackage@1.1.0-1": "04t5e0000005fCtAAI",
-        "HeroHubPackage@1.1.0-2": "04t5e0000005hHSAAY",
-        "HeroHubPackage@1.1.0-3": "04t5e0000005hLfAAI",
-        "HeroHubPackage@1.1.0-4": "04t5e0000005hYIAAY",
-        "TitansPackage": "0Ho5e000000blceCAA",
-        "TitansPackage@0.1.0-1": "04t5e000000lUzKAAU",
-        "TitansPackage@0.1.0-2": "04t5e000000lV3XAAU",
-        "CorePackage@1.1.0-1": "04t5e000000pplKAAQ",
-        "Exam_Package@1.1.0-1": "04t5e000000y6a2AAA",
-        "Exam_Package@1.1.0-2": "04t5e000000y6iSAAQ",
-        "TitansPackage@1.1.0-1": "04t5e000000lchhAAA"
+        "ExamPackage": "0Ho5e000000XZX0CAO",
+        "ExamPackage@1.0.0-1": "04t5e0000002WUEAA2",
+        "TitanPage": "0Ho5e000000XZX5CAO",
+        "TitanPage@1.0.0-1": "04t5e0000002WghAAE",
+        "HeroHubPackage": "0Ho5e000000XZXACA4",
+        "HeroHubPackage@1.0.0-1": "04t5e0000002WgmAAE",
+        "CorePackage": "0Ho5e000000XZXFCA4",
+        "CorePackage@1.0.0-1": "04t5e0000002Wl4AAE",
+        "ExamPackage@1.0.0-2": "04t5e0000002Wl9AAE",
+        "TitanPage@1.0.0-2": "04t5e0000002WlEAAU"
     }
 }
