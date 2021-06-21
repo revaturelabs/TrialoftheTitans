@@ -1,14 +1,23 @@
-<aura:component>
-    <!--One Set for the Matching Question-->
-    <h1>Something to Match too:</h1>
-    <ol>
-        <li>
-            <lightning:select name="select1" label="How many tickets?">
-                <option value="">choose one...</option>
-                <option value="1">one</option>
-                <option value="2">two</option>
-                <option value="3">three</option>
-            </lightning:select>
-        </li>
-    </ol>
+<aura:component controller = "MatchingQuestionTypeApexController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access = "global">
+    <!--Author: Jayvious Williams
+        Usage: Component for Matching Type of Question on Exams
+    -->
+    <!--Attribute Creation-->
+    <aura:attribute name = "question" type = "Exam_Question__c"/>
+    <aura:attribute name = "options" type = "String[]"/>
+    <aura:attribute name = "answers" type = "String[]"/>
+    <aura:attribute name = "questionprompt" type = "String"/>
+
+    <!--Component View-->
+    <lightning:card>
+        <div class="slds-p-around_x-small">
+            <h1>Something to Match too:</h1>
+                <lightning:select name="select1" label="How many tickets?">
+                    <option value="">choose one...</option>
+                    <option value="1">one</option>
+                    <option value="2">two</option>
+                    <option value="3">three</option>
+                </lightning:select>
+        </div>
+    </lightning:card>
 </aura:component>	
