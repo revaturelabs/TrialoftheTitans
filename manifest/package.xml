@@ -31,6 +31,7 @@
     <types>
         <members>QCInterview</members>
         <members>QCInterviewQA</members>
+        <members>QCInterviewHeader</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
