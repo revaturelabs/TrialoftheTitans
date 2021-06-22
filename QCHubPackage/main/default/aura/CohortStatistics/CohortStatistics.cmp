@@ -1,0 +1,7 @@
+<aura:component>
+    
+    <ltng:require scripts="{! $Resource.d3 }" /> 
+
+
+
+</aura:component>	
