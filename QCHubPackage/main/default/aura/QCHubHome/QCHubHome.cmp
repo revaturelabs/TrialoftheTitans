@@ -1,13 +1,13 @@
 <aura:component implements="flexipage:availableForAllPageTypes" access="global">
     <div class="slds-grid slds-gutters slds-align_absolute-center">
         <div class="slds-col slds-size_3-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small slds-theme_shade">
-            <p>This is the cohort box</p>
+            <p>Cohort Component expression goes here.</p>
         </div>
         <div class="slds-col slds-size_5-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small slds-theme_shade">
-            <p>This is the data view box</p>
+            <p>Charts Component expression goes here.</p>
         </div>
         <div class="slds-col slds-size_3-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small slds-theme_shade">
-            <p>This is the squad box (hidden)</p>
+            <p>Squads component expression goes here ( Can it start hidden? )</p>
         </div>
     </div>
 </aura:component>
