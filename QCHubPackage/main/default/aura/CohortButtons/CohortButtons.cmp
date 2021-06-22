@@ -1,0 +1,24 @@
+<aura:component>
+
+    <ul class="slds-has-block-links_space">
+        <li>
+          <a href="#">Cohort</a>
+        </li>
+        <li>
+          <a href="#">Cohort</a>
+        </li>
+        <li>
+          <a href="#">Cohort</a>
+        </li>
+        <li>
+          <a href="#">Cohort</a>
+        </li>
+        <li>
+          <a href="#">Cohort</a>
+        </li>
+        <li>
+          <a href="#">Cohort</a>
+        </li>
+      </ul>
+
+</aura:component>	

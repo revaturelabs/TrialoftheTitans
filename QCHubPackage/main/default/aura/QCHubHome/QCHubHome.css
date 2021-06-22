@@ -1,2 +1,14 @@
-.THIS {
+.THIS .boxGrid {
+
+    height: 500px;
+    background-color:#fef8ec;
+    border-radius: 5px;
+
+}
+.THIS .boxGrid-Hero {
+
+    height: 250px;
+    background-color:#fef8ec;
+    border-radius: 5px;
+
 }
