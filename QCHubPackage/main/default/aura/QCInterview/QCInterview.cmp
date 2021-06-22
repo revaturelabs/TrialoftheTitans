@@ -1,0 +1,26 @@
+<aura:component >
+    <aura:attribute name="CurrentStage" type="String" default="QCStart"/>
+    
+    <!--Begin component display (depends on CurrentStage attribute)-->
+    <aura:if isTrue="{!v.CurrentStage==QCStart}">
+    
+    </aura:if>
+    
+    
+    <aura:if isTrue="{!v.CurrentStage==QCInterview}">
+        <c:QCInterviewQA/>
+    </aura:if>
+    
+    
+    <aura:if isTrue="{!v.CurrentStage==QCEnd}">
+    
+    </aura:if>
+    
+    
+    <aura:set attribute="else">
+        <p>An unknown error has occurred.</p>
+    </aura:set>
+    <!--End component display-->
+    
+    
+</aura:component>
