@@ -1,5 +1,5 @@
 ({
-    helperMethod : function() {
+    handleRowSelection : function(component, event) {
 
     }
 })
