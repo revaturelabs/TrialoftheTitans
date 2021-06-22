@@ -1,0 +1,10 @@
+.THIS.wrapper {
+    width: 80%;
+    color: white;
+    border: 1px solid white;
+}
+
+.THIS .yo {
+    border: 2px solid red;
+    color: yellow;
+}
