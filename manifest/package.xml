@@ -42,5 +42,9 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
         <members></members>
         <name>StaticResource</name>
     </types>
+    <types>
+        <members>Week_Picklist</members>
+        <name>GlobalValueSet</name>
+    </types>
     <version>51.0</version>
 </Package>
