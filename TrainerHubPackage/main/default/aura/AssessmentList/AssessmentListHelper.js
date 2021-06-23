@@ -22,9 +22,25 @@
         }));
         $A.enqueueAction(action);
     },
-
-    //write comment here
-    updateSelected : function(component){
-
+	
+	showRowDetails : function(row, cmp, event) {
+        var cmpEvent  = cmp.getEvent("sendAssessmentIdEvent");
+        cmpEvent.setParam("AssessmentId", row.Id);
+        
+        cmpEvent.fire();
+		//Alert just for debugging purposes, remove this after complete integration of component
+		//alert("Fired Event with " + row.Id + " as the Id");
     },
+
+	handleReturnComponentEvent : function(cmp, event) {
+        cmp.set("v.ShowChosenAssessment", false);
+		this.fetchData(cmp);
+    },
+
+	handleReturnAssessmentIdEvent : function(cmp, event) {
+        var eventReturnedId = event.getParam("AssessmentId");
+        // set the handler attributes based on event data
+        cmp.set("v.AssessmentId", eventReturnedId);
+        cmp.set("v.ShowChosenAssessment", true);
+    },	
 })

@@ -14,17 +14,54 @@
 -->
 
 <aura:component controller="AssessmentListController">
-    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="data" type="Assessment__c[]" />
     <aura:attribute name="columns" type="List" />
-
+    
     <aura:handler name="init" value="{!this}" action="{!c.fetchData}" />
+	<aura:registerEvent name="sendAssessmentIdEvent" type="c:CohortPageTransferIdEvent"/>
+
+    <!-- FOR KAMERON AAHSAHASHAHASHS LOOK AT ME I'M MISTER MEESEEKS -->
+	<!-- This first handler is for getting the return event from the record edit page -->
+	<aura:handler name="cmpReturnEvent" event="c:CohortPageReturnEvent" action="{!c.handleReturnComponentEvent}" />
+
+	<!-- This second handler is for getting the return event sent from this component, the list component -->
+	<aura:handler name="sendAssessmentIdEvent" event="c:CohortPageTransferIdEvent" action="{!c.handleReturnAssessmentIdEvent}" />
+	<!-- DON'T YOU IGNORE ME -->
+	<!-- String for Id which is set by the list components TransferIdEvent -->
+	<aura:attribute name="AssessmentId" type ="String" default=""/>
+	<!-- Just a Boolean for the main parent component, controlled by both events,
+	Lists id return event turns it to true, edit record page turns it to false -->
+	<aura:attribute name="ShowChosenAssessment" type ="Boolean" default="false"/>
+
+	<!-- DON'T YOU FORGET ABOUT ME, DON'T DON'T DON'T -->
+
 
     <!-- Assessmnet Data Table -->
     <lightning:datatable
-        data = "{!v.data}"
-        columns = "{!v.columns}"
-        keyField = "Id"
-        maxRowSelection = "1"
-        onrowselection = "{!c.updateSelected}" />
-        
-</aura:component>	
+                         data = "{!v.data}"
+                         columns = "{!v.columns}"
+                         keyField = "id"
+                         maxRowSelection = "1"
+                         onrowaction="{! c.updateSelected }"
+                         hideCheckboxColumn="true"/>
+    
+
+	<!-- Slap this section in to the main parent component -->
+	<!-- You'll need to add a boolean attribute and control it with the return events for both
+	of the returning events, showing if it's the one with the id and hiding if it's from the edit page
+	cancelling and submitting trigger the same event, all it does is send an event to the main parent so it
+	can turn off the section, it doesn't have any attributes associated with it -->
+	<aura:if isTrue="{!v.ShowChosenAssessment}">
+    	<lightning:layout >
+        <lightning:layoutItem padding="around-small" size="6">
+            <div class="page-section page-main">
+                <p>
+                    <c:CohortPageEditRecord AssessmentId="{!v.AssessmentId}"/>
+                </p>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+    </aura:if>
+	<!-- I'm sure you know what to do with this aura:if -->    
+
+</aura:component>
