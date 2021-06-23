@@ -24,7 +24,7 @@
                                 "id": singleExam.Id,
                                 "onclick": cmp.getReference("c.onExamClick"),
                                 "aura:id": "exam-btn",
-                                "class": "exam-btn"
+                                "class": `exam-btn ${(singleExam.Exam__r.Titan__r.Name).replace(" ", "_").toLowerCase()}`
                             }
                         }], [
                             "aura:html", {
@@ -84,7 +84,8 @@
                         'tag': 'div',
                         'body': `${titan}`,
                         'HTMLAttributes': {
-                            'class': 'titan-tab'
+                            'class': 'titan-tab',
+                            'onclick': cmp.getReference("c.onTitanClick")
                         }
                     },
                         function (newCmp, status, errMsg) {
@@ -111,10 +112,6 @@
         $A.enqueueAction(getTitanList)
     },
 
-    boxClicked: function (cmp, event, helper) {
-        // const result = cmp.get('v.resultList');
-        // console.log("score is...", result[0].Score__c);
-    },
     onExamClick: function (cmp, event, helper) {
         console.log(event.target.id)
         let action = $A.get('e.c:ExamResultBtnClickedEvent');
@@ -122,8 +119,30 @@
             'ExamId': event.target.id
         })
         action.fire();
-        cmp.set("v.examClicked", true)
+        // Diable button hides for now
+        // cmp.set("v.examClicked", true)
         console.log(action);
+    },
+    onTitanClick: function (cmp, event, helper) {
+        // if (cmp.get('v.examClicked')) {
+        //     cmp.set('v.examClicked', false)
+        // }
+        let className = ' slds-hide'
+        let titan = event.target.innerHTML.replace(" ", "_").toLowerCase()
+        // here!
+        document.querySelectorAll(`.exam-btn`).forEach(singleBtn => {
+            // console.log(singleBtn.className.split(' '))
+            singleBtn.style.display = singleBtn.className.includes(titan) ? 'block' : 'none'
+            // if (each.includes(titan)) {
+            //     each.style.display = 'block';
+            // } else {
+            //     each.style.display = 'none';
+            // }
+        })
+        var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+        document.querySelectorAll(`.${titan}`).className = 'titan-tab'
+        // document.querySelectorAll(`.titan-tab .${titan}`)..remove('slds-hide')
+
     }
 
 })
