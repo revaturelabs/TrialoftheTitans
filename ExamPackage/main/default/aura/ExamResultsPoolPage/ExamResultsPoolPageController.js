@@ -1,24 +1,23 @@
 ({
     doInit : function(component, event, helper) {
         let getExamQuestions = component.get("c.getExamResultPools");
-        let numbercorrect = 5;
+        let numberCorrect = 5;
+        let percent
         getExamQuestions.setCallback( this, function( response ) {
             if( response.getState() === "SUCCESS" ){
                 const ExamQuestionResults = response.getReturnValue();
                 for(let i in ExamQuestionResults){
-                   // testvariable.push(ExamQuestionResults)[i]
-                    console.log(ExamQuestionResults[i].Number_to_pull__c)
+                    ExamQuestionResults[i].Number_to_pull__c = numberCorrect/ExamQuestionResults[i].Number_to_pull__c;
+                    console.log(ExamQuestionResults[i].Question_Pool__r.Name)
                 }
                 console.log("Getting Exam Question Info", ExamQuestionResults);
                 component.set( "v.questionPool", ExamQuestionResults );
-                //testvariable = ExamQuestionResults;
             }
             else {
-                //User isn't signed in return to login
+
             }
         });
         $A.enqueueAction(getExamQuestions);
-        console.log("Here" + testvariable)
 
     },
     navigater : function(component, event, helper){

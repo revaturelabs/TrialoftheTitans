@@ -21,7 +21,7 @@ public with sharing class ExamResultsPoolPageController {
         return epa;
     }
 
-    public static void getExamResultAnswers(Id examResultsId, Id examId){
+    public static void getExamResultAnswers(/*Id examResultsId, Id examId*/){
 
         
 
@@ -29,24 +29,34 @@ public with sharing class ExamResultsPoolPageController {
                                     FROM Hero_Answer__c
                                     WHERE Exam_Result__c = :examResultsId];
                                     return hal;*/
-        List<Question_Assignment__c> qal = new List<Question_Assignment__c>();
-
-        for(Hero_Answer__c hal : [SELECT Name, Exam_Question__c, Correct__c
+        //List<Question_Assignment__c> qal = new List<Question_Assignment__c>();
+        Map<Id,String> m1 = new Map<Id,String>();
+        String examQuestion;
+        /*for(Hero_Answer__c hal : [SELECT Name, Exam_Question__c, Correct__c
                                     FROM Hero_Answer__c
-                                    WHERE Exam_Result__c = :examResultsId]){
+                                    WHERE Exam_Result__c = 'a075e000001fT4DAAU' AND Correct__c = True LIMIT 5]){
+                                        
+        examQuestion = hal.Exam_Question__c;
 
-        String examQuestion = hal.Exam_Question__c;
-
-            for(Question_Assignment__c qa : [SELECT Question_Pool__c, Question_Pool__r.Name
+            for(Question_Assignment__c qa : [SELECT Exam_Question__c, Question_Pool__c, Question_Pool__r.Name
             FROM Question_Assignment__c 
-            WHERE Exam_Question__c = :examQuestion]){
+            WHERE Exam_Question__c = :examQuestion ]){
 
-               // qal.add(new Question_Assignment__c(Exam_Question__c = ));
-
+            m1.put(hal.Exam_Question__c, qa.Question_Pool__r.Name);
             }
+            
+            system.debug(m1);
 
-            }
-                                   
+            }  */
+            for(Question_Assignment__c qa : [SELECT Exam_Question__c, Question_Pool__c, Question_Pool__r.Name
+                                            FROM Question_Assignment__c 
+                                            WHERE Exam_Question__c IN 
+                                            (SELECT Exam_Question__c FROM Hero_Answer__c 
+                                            WHERE Exam_Result__c = 'a075e000001fT4DAAU' AND Correct__c = True)]){
+
+            m1.put(qa.Exam_Question__c, qa.Question_Pool__r.Name);
+            }                            
+            System.debug(m1);
     }
 
 }

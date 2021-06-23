@@ -12,9 +12,7 @@
 
     <aura:if isTrue= "{!v.revealPoolInfo}">
     <aura:iteration var="pool" items="{!v.questionPool}">
-    <lightning:input name="input" label="{!v.numbertopull}"/>
-    <p>{!pool.Question_Pool__c},
-    {!pool.Question_Pool__r.Name}</p>
+    <p>{!pool.Question_Pool__r.Name}.....{!pool.Number_to_pull__c}</p>
 </aura:iteration>
 
 
