@@ -11,7 +11,7 @@ public with sharing class ExamResultsPoolPageController {
         (SELECT Exam__c FROM Exam_Pool_Assignment__c WHERE Exam__c = 'a085e000000GfC5AAK')];
         System.debug(eql);
     */
-        List<Exam_Pool_Assignment__c> epa = [SELECT Name, Exam__c, Question_Pool__c, Question_Pool__r.Name
+        List<Exam_Pool_Assignment__c> epa = [SELECT Name, Exam__c, Number_to_pull__c, Question_Pool__c, Question_Pool__r.Name
                                             FROM Exam_Pool_Assignment__c 
                                             WHERE Exam__c = 'a085e000000GfC5AAK'];
                                             System.debug(epa);
@@ -20,4 +20,33 @@ public with sharing class ExamResultsPoolPageController {
         
         return epa;
     }
+
+    public static void getExamResultAnswers(Id examResultsId, Id examId){
+
+        
+
+        /*List<Hero_Answer__c> hal = [SELECT Name, Exam_Question__c, Correct__c
+                                    FROM Hero_Answer__c
+                                    WHERE Exam_Result__c = :examResultsId];
+                                    return hal;*/
+        List<Question_Assignment__c> qal = new List<Question_Assignment__c>();
+
+        for(Hero_Answer__c hal : [SELECT Name, Exam_Question__c, Correct__c
+                                    FROM Hero_Answer__c
+                                    WHERE Exam_Result__c = :examResultsId]){
+
+        String examQuestion = hal.Exam_Question__c;
+
+            for(Question_Assignment__c qa : [SELECT Question_Pool__c, Question_Pool__r.Name
+            FROM Question_Assignment__c 
+            WHERE Exam_Question__c = :examQuestion]){
+
+               // qal.add(new Question_Assignment__c(Exam_Question__c = ));
+
+            }
+
+            }
+                                   
+    }
+
 }
