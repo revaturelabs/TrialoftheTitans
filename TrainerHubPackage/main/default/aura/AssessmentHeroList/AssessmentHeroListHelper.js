@@ -34,7 +34,7 @@
                     if(data[i].Assessment__c == null){
                         data[i].assessment = "No Assessment";
                     } else{
-                        data[i].assessment = data[i].Assessment__r.Name__c ;
+                        data[i].assessment = data[i].Assessment__r.Name ;
                     }
                 }
                 //set the new data to the table

@@ -12,7 +12,7 @@
 public with sharing class ExamListController {
     @AuraEnabled
     public static List<Exam_Result__c> ExamList(){
-        List<Exam_Result__c> examResultSearch = [SELECT Exam__r.Name, Score__c,
+        List<Exam_Result__c> examResultSearch = [SELECT Account__r.Name, Exam__r.Name, Score__c,
                                                 Total_Correct__c, Total_Answers__c
                                                 FROM Exam_Result__c];
         return examResultSearch;

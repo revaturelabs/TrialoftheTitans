@@ -20,10 +20,10 @@
                 for( let i=0; i< data.length; i++ ){
                     //if data retrieved is null place value stating it is null
                     //if not null place data in the key for the column
-                    if(data[i].Account == null){
+                    if(data[i].Account__c == null){
                         data[i].hero = "No Hero";
                     } else{
-                        data[i].hero = data[i].Account.Name;
+                        data[i].hero = data[i].Account__r.Name;
                     }
                 }
                 //for loop to set key for the coloumn with data
@@ -31,9 +31,9 @@
                     //if data retrieved is null place value stating it is null
                     //if not null place data in the key for the column
                     if(data[i].Exam__c == null){
-                        data[i].hero = "No Exam";
+                        data[i].exam = "No Exam";
                     } else{
-                        data[i].hero = data[i].Exam__r.Name;
+                        data[i].exam = data[i].Exam__r.Name;
                     }
                 }
                 //set the new data to the table

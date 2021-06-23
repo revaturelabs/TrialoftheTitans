@@ -11,7 +11,9 @@
 public with sharing class HeroAssessmentListController {
     @AuraEnabled
     public static List<Hero_Assessment__c> HeroList() {
-        List<Hero_Assessment__c> heroAssessmentSearch = [SELECT Assessment__r.Name, Overall_Score__c FROM Hero_Assessment__c];
+        List<Hero_Assessment__c> heroAssessmentSearch = [SELECT Assessment__r.Name, Overall_Score__c,
+                                                         Hero__r.Name
+                                                         FROM Hero_Assessment__c];
         return heroAssessmentSearch;
     }
 }
