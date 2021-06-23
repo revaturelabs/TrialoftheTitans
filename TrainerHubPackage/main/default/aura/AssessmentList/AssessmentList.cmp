@@ -21,8 +21,8 @@
 
     <!-- Assessmnet Data Table -->
     <lightning:datatable
-        data = "v.data"
-        columns = "v.columns"
+        data = "{!v.data}"
+        columns = "{!v.columns}"
         keyField = "Id"
         maxRowSelection = "1"
         onrowselection = "{!c.updateSelected}" />
