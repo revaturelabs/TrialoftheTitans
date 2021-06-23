@@ -15,7 +15,7 @@
             <p><c:CohortButtons ActiveCohorts="{!ActiveCohorts}"/></p>
         </div>
         <div class="boxGrid slds-col slds-size_7-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small slds-m-vertical_x-small">
-            <p><c:CohortStatistics/></p>
+            <!-- <p><c:CohortStatistics/></p> -->
         </div>
         <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
             <p><c:SquadButtons/></p>
