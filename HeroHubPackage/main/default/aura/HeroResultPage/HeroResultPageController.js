@@ -116,13 +116,33 @@
         // if (cmp.get('v.examClicked')) {
         //     cmp.set('v.examClicked', false)
         // }
-        let className = ' slds-hide'
+        // event.target.className()
+        // console.log(event.target.Id)
+        // document.getElementById(`${event.target.Id}`).className += ' active'
+        // console.log(event.target)
         let titan = event.target.innerHTML.replace(" ", "_").toLowerCase()
-
-        document.querySelectorAll(`.exam-btn`).forEach(singleBtn => {
-            singleBtn.style.display = singleBtn.className.includes(titan) ? 'block' : 'none'
-
+        cmp.set('v.currentPage', titan)
+        document.querySelectorAll('.titan-tab').forEach(singleTab => {
+            console.log(cmp.get('v.currentPage'), ' AND ', singleTab.innerHTML.replace(" ", "_").toLowerCase())
+            singleTab.style.borderLeft = cmp.get('v.currentPage') === singleTab.innerHTML.replace(" ", "_").toLowerCase() ? '3px solid red' : '3px solid white'
+        }
+            // if (cmp.get('v.currentPage') === singleTab.innerHTML.replace(" ", "_").toLowerCase()) {
+            //     console.log('im here')
+            //     singleTab.style.borderLeft = '3px solid red'
+            // } else {
+            //     singleTab.style.borderLeft = '3px solid white'
+            // }
         })
+    if(titan === 'all_titans') {
+    document.querySelectorAll(`.exam-btn`).forEach(singleBtn => {
+        singleBtn.style.display = 'block'
+    })
+} else {
+    document.querySelectorAll(`.exam-btn`).forEach(singleBtn => {
+        singleBtn.style.display = singleBtn.className.includes(titan) ? 'block' : 'none'
+    })
+}
+
 
     }
 

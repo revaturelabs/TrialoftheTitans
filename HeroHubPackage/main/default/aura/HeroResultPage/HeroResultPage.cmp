@@ -2,6 +2,7 @@
     <aura:attribute type="Aura.Component[]" name="examListPanel" />
     <aura:attribute type="Aura.Component[]" name="titanTabPanel" />
     <aura:attribute name="resultList" type="List" />
+    <aura:attribute name="currentPage" type="String" />
     <aura:attribute name="examClicked" type="Boolean" default="false" />
     <aura:attribute name="titanIdList" type="List" />
     <aura:registerEvent name="ExamResultBtnClickedEvent" type="c:ExamResultBtnClickedEvent" />
@@ -10,6 +11,8 @@
 
         <div class="flex-wrapper">
             <div class="titan-tab-group">
+                <!-- consider turning these into other element -->
+                <div class='titan-tab' onclick="{!c.onTitanClick}">All Titans</div>
                 {!v.titanTabPanel}
             </div>
             <div class="main-panel">
