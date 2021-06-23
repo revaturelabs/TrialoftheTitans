@@ -1,9 +1,10 @@
 <aura:component implements="flexipage:availableForAllPageTypes" access="global">
     <aura:handler name="init" value={!this} action="{!c.OnInit}"/>
-    <aura:handler name="UpdateCohort" event="c:UpdateCohort" action="{!c.UpdateCohort}"/>
+    <aura:handler name="UpdateCohortEvent" event="c:UpdateCohortEvent" action="{!c.UpdateCohort}"/>
 
     <aura:attribute name="ActiveCohorts"    type="Cohort__c[]"/>
     <aura:attribute name="SelectedCohort"   type="Cohort__c"/>
+    <aura:attribute name="NoCohortSelected" type="Boolean" default = "true"/>
     <aura:attribute name="Hero" type="Object" />
 
     <div class="slds-grid slds-gutters slds-align_absolute-center">

@@ -1,6 +1,6 @@
 <aura:component controller="CohortButtonsAuraController">
 
-    <aura:registerEvent name="UpdateCohort" type="c:UpdateCohort"/>
+    <aura:registerEvent name="UpdateCohortEvent" type="c:UpdateCohortEvent"/>
 
     <aura:attribute name="ActiveCohorts" type="Cohort__c[]"/>
 
