@@ -10,7 +10,7 @@
  
         var pie = d3.pie()
         .sort(null)
-        .value(function(d) { return d.candidates; });
+        .value(function(d) { return d.curriculum; });
  
         var path = d3.arc()
         .outerRadius(radius - 10)
@@ -27,11 +27,11 @@
  
         arc.append("path")
         .attr("d", path)
-        .attr("fill", function(d) { return color(d.data.age); });
+        .attr("fill", function(d) { return color(d.data.name); });
  
         arc.append("text")
         .attr("transform", function(d) { return "translate(" + label.centroid(d) + ")"; })
         .attr("dy", "0.35em")
-        .text(function(d) { return d.data.age; });
+        .text(function(d) { return d.data.name; });
     }
 })

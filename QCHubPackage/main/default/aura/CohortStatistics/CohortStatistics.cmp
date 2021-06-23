@@ -1,8 +1,10 @@
-<aura:component >
+<aura:component controller="QCHubController" implements="flexipage:availableForAllPageTypes" access="global">
     
 <!-- Pull in the necessary libraries to build charts -->
     <ltng:require scripts="{!join(',',
         $Resource.d3 + '/d3.js',
         $Resource.JQuery)}" afterScriptsLoaded="{!c.initD3Charts}"/>
+
+    <aura:if></aura:if>
 
 </aura:component>	
