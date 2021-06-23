@@ -52,6 +52,7 @@
                 }
             ]
         },
+        
         {
             "path": "TrainerHubPackage",
             "package": "TrainerHubPackage",
@@ -71,6 +72,7 @@
             ]
         }
     ],
+    
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "51.0",
