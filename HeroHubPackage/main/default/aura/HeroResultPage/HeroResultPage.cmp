@@ -11,7 +11,6 @@
 
         <div class="flex-wrapper">
             <div class="titan-tab-group">
-                <!-- consider turning these into other element -->
                 <div class='titan-tab' onclick="{!c.onTitanClick}">All Titans</div>
                 {!v.titanTabPanel}
             </div>
