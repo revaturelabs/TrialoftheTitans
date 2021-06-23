@@ -1,4 +1,3 @@
-  
 /////////////////////////////////////////////////////
 //
 //  Name: Assessment Hero List Helper
@@ -45,5 +44,14 @@
             }
         }));
         $A.enqueueAction(action);
+    },
+
+	showRowDetails : function(row, cmp, event) {
+        var cmpEvent  = cmp.getEvent("sendHeroAssessmentIdEvent");
+        cmpEvent.setParam("AssessmentId", row.Id);
+        
+        cmpEvent.fire();
+		//Alert just for debugging purposes, remove this after complete integration of component
+		alert("Fired Event with " + row.Id + " as the Id also delete me");
     },
 })

@@ -1,0 +1,24 @@
+<!--
+
+  Name: CohortPageHeroAssessmentEditRecord
+  Author: Brett Spokes
+  Description: For editting Hero Assessments
+
+-->
+
+<aura:component >
+    <aura:registerEvent name="HeroAssessmentReturnEvent" type="c:CohortPageReturnEvent"/>    
+    <aura:attribute name="HeroAssessmentId" type ="String" default=""/>   
+
+    <!-- A record edit form for the Assessment; associated action's purpose is to use the event to return the view to the parent component -->
+
+       <lightning:recordEditForm recordId="{!v.HeroAssessmentId}" objectApiName="Hero_Assessment__c" onsuccess="{! c.handleClick }">
+            <lightning:messages />
+            <lightning:inputField fieldName="Hero__c" />
+            <lightning:inputField fieldName="Assessment__c" />
+            <lightning:inputField fieldName="Overall_Score__c" />
+            <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update" />
+            <lightning:button class="slds-m-top_small" variant="brand" label="Cancel" title="Cancel action" onclick="{! c.handleClick }" />
+    	</lightning:recordEditForm>
+    
+</aura:component>

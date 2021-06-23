@@ -1,3 +1,4 @@
 <aura:application extends="force:slds" access="public">
-    <c:AssessmentList/>
+    <c:AssessmentHeroList/>
+    <c:CohortPageHeroAssessmentEditRecord/>
 </aura:application>

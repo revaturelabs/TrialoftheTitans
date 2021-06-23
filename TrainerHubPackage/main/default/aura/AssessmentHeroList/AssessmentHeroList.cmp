@@ -18,12 +18,15 @@
     <aura:attribute name="columns" type="List" />
 
     <aura:handler name="init" value="{!this}" action="{!c.fetchData}" />
+	<aura:registerEvent name="sendHeroAssessmentIdEvent" type="c:CohortPageTransferIdEvent"/>
+
 
     <!-- Hero Assessmnet Data Table -->
     <lightning:datatable
         data = "{!v.data}"
         columns = "{!v.columns}"
-        keyField = "Id"
+        keyField = "id"
+		onrowaction="{! c.updateSelected }"
         hideCheckboxColumn="true" />
         
-</aura:component>	
+</aura:component>
