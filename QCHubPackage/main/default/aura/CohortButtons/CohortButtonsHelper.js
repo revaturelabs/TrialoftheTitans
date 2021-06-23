@@ -1,5 +1,8 @@
 ({
-    helperMethod : function() {
-
+    FireCohortUpdate(component, cohort){
+        let cohortUpdate = component.getEvent("UpdateCohortEvent");
+        cohortUpdate.setParams("SelectedCohort", cohort)
+        cohortUpdate.fire();
     }
+
 })

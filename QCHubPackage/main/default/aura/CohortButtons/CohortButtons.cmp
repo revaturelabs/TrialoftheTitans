@@ -1,24 +1,13 @@
-<aura:component>
+<aura:component controller="CohortButtonsAuraController">
 
-    <ul class="slds-has-block-links_space">
-        <li>
-          <a href="#">Cohort</a>
-        </li>
-        <li>
-          <a href="#">Cohort</a>
-        </li>
-        <li>
-          <a href="#">Cohort</a>
-        </li>
-        <li>
-          <a href="#">Cohort</a>
-        </li>
-        <li>
-          <a href="#">Cohort</a>
-        </li>
-        <li>
-          <a href="#">Cohort</a>
-        </li>
-      </ul>
+    <aura:registerEvent name="UpdateCohortEvent" type="c:UpdateCohortEvent"/>
+
+    <aura:attribute name="ActiveCohorts" type="Cohort__c[]"/>
+
+
+<aura:iteration items="{!v.ActiveCohorts}" var="Cohort">
+    <lightning:button value="{!Cohort}" onclick="{!c.SelectCohort}">{!Cohort.Name}</lightning:button>
+</aura:iteration>
+
 
 </aura:component>	
