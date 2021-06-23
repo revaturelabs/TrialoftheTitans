@@ -43,10 +43,6 @@
                                 wrapperDiv.set("v.body", innerDiv)
                                 examListPanel.push(wrapperDiv)
                                 cmp.set("v.examListPanel", examListPanel)
-                                // body = cmp.get("v.body");
-                                // body.push(newCmp);
-                                // cmp.set("v.body", body);
-                                // console.log(body)
                             } else if (status === "INCOMPLETE") {
                                 console.log("No response from server or client is offline.")
                                 // Show offline error
@@ -57,16 +53,10 @@
                         }
                     )
                 })
-                // console.log('RESULT VARIABLE: ' + JSON.parse(result[0]).Pass__c)
+
                 cmp.set("v.resultList", resultList)
                 cmp.set("v.titanIdList", titanIdList)
-                // for (let i of resultList) {
-                //     result.push(resultList[i]);
-                // }
 
-                // console.log('MY RESULT HERE:.......' + resultList)
-                // result.push(resultList)
-                // console.log('MY RESULT HERE:.......' + JSON.parse(result))
                 console.log("resultList is...", cmp.get('v.resultList'));
                 //=> {Id: "a075e000000q6WDAAY", Account__c: "0015e00000AeLnyAAF", Score__c: 88.89, Total_Correct__c: 40, Total_Answers__c: 45, …}
             }
@@ -91,7 +81,6 @@
                         function (newCmp, status, errMsg) {
                             if (status === 'SUCCESS') {
                                 let titanTabPanel = cmp.get('v.titanTabPanel')
-                                // console.log('Hiiii' + titanTabs)
                                 titanTabPanel.push(newCmp)
                                 cmp.set('v.titanTabPanel', titanTabPanel)
                             }
@@ -119,7 +108,7 @@
             'ExamId': event.target.id
         })
         action.fire();
-        // Diable button hides for now
+        // Diable `exam-btn` hide for now
         // cmp.set("v.examClicked", true)
         console.log(action);
     },
@@ -129,52 +118,12 @@
         // }
         let className = ' slds-hide'
         let titan = event.target.innerHTML.replace(" ", "_").toLowerCase()
-        // here!
+
         document.querySelectorAll(`.exam-btn`).forEach(singleBtn => {
-            // console.log(singleBtn.className.split(' '))
             singleBtn.style.display = singleBtn.className.includes(titan) ? 'block' : 'none'
-            // if (each.includes(titan)) {
-            //     each.style.display = 'block';
-            // } else {
-            //     each.style.display = 'none';
-            // }
+
         })
-        var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
-        document.querySelectorAll(`.${titan}`).className = 'titan-tab'
-        // document.querySelectorAll(`.titan-tab .${titan}`)..remove('slds-hide')
 
     }
 
 })
-    // let htmlText = ''
-    //                 htmlText += `
-    // <div class="exam-btn" data-id="${singleExam.Id}" onclick="${cmp.getReference("c.onExamClick")}">
-    //     ${singleExam.Exam__r.Name} <br/> ${singleExam.Pass__c ? `<div class="pass">Pass</div>`: `<div class="fail">Fail</div>`} Score: ${singleExam.Score__c}
-    // </div>
-    // `
-    // document.querySelector('.exam-btn').addEventListener("click", onExamClick);
-
-
-    // $A.createComponent(
-    //         "div", {
-    //             "aura:id": "exam-btn",
-    //             "class": "exam-btn",
-    //             "data-id": singleExam.Id,
-    //             "onclick": cmp.getReference("c.onExamClick")
-    //         },
-    //         function(component, status, errMessage) {
-    //             if (status === "SUCCESS") {
-    //                 var body = cmp.get("v.body");
-    //                 console.log(body)
-    //                 body.push(component);
-    //                 cmp.set("v.body", body);
-    //             } else if (status === "INCOMPLETE") {
-    //                 console.log("No response from server or client is offline.")
-    //                     // Show offline error
-    //             } else if (status === "ERROR") {
-    //                 console.log("Error: " + errorMessage);
-    //                 // Show error message
-    //             }
-    //         }
-    //     )
-    // document.querySelector('.exam-btn-group').innerHTML = htmlText;
