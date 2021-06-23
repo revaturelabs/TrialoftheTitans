@@ -1,3 +1,11 @@
 <aura:component>
 
+    <!-- Hide list until we can dynamically create each li based on a returned array size. (add slds-hidden when function working) -->
+    <ul class="slds-has-block-links_space ">
+        <li>
+        <a href="#">squad</a>
+        </li>
+        <!-- dynamically add additional list item links depending on the amount of squads returned -->
+    </ul>
+
 </aura:component>	
