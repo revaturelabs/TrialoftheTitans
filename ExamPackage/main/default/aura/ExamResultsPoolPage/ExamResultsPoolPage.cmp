@@ -1,0 +1,19 @@
+<aura:component  controller="ExamResultsPoolPageController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+
+    <aura:attribute name="questionPool" type="Exam_Pool_Assignment__c[]"/>
+    <aura:attribute name="revealPoolInfo" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <lightning:button label="Toggle Pool"
+                                      class="slds-var-m-top_medium"
+                                      variant="brand"
+                                      onclick="{!c.ExamPoolFormToggle}"/>
+
+    <aura:if isTrue= "{!v.revealPoolInfo}">
+    <aura:iteration var="pool" items="{!v.questionPool}">
+    <p>{!pool.Question_Pool__c},
+    {!pool.Question_Pool__r.Name}</p>
+</aura:iteration>
+
+    </aura:if>
+</aura:component>	
