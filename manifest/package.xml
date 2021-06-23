@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>QC_Flag__c</members>
@@ -9,7 +9,7 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members></members>
+        <members>QCHubDataFactory</members>
         <name>ApexClass</name>
     </types>
     <types>
