@@ -1,4 +1,7 @@
 <aura:component >
+    <!--Main container component for the QC Interview app; manages and stores data for other QC Interview app components-->
+    <aura:attribute name="CurrentHero"  type="Account"/>
+    <aura:attribute name="Week"         type="String"/>
     <aura:attribute name="CurrentStage" type="String" default="QCStart"/>
     
     <!--Begin component display (depends on CurrentStage attribute)-->

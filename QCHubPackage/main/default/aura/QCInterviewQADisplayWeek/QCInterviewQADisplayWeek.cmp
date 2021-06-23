@@ -1,0 +1,6 @@
+<aura:component>
+    <aura:attribute name="Week" type="String"/>
+    <div class="slds-grid">
+        {!v.Week}
+    </div>
+</aura:component>
