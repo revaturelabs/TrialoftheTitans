@@ -1,4 +1,4 @@
-<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+<aura:component controller="QCHubController" implements="flexipage:availableForAllPageTypes" access="global">
     <aura:handler name="init" value={!this} action="{!c.OnInit}"/>
     <aura:handler name="UpdateCohortEvent" event="c:UpdateCohortEvent" action="{!c.UpdateCohort}"/>
 
@@ -6,7 +6,10 @@
     <aura:attribute name="SelectedCohort"   type="Cohort__c"/>
     <aura:attribute name="NoCohortSelected" type="Boolean" default = "true"/>
     <aura:attribute name="Hero" type="Object" />
+    <aura:attribute name="contextInfo" type="UserContextInfo" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
+    <!-- Beginning of box layout grid for components -->
     <div class="slds-grid slds-gutters slds-align_absolute-center">
         <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
             <p><c:CohortButtons ActiveCohorts="{!ActiveCohorts}"/></p>
@@ -18,7 +21,10 @@
             <p><c:SquadButtons/></p>
         </div>
     </div>
+    <!-- End of box layout grid for components -->
 
+
+    <!-- Beginning of tabset for heroes -->
     <div class="slds-grid slds-gutters slds-align_absolute-center">
         <div class="boxGrid-Hero slds-col slds-size_9-of-12 slds-text-align_center slds-m-top_x-small">
 
@@ -76,4 +82,6 @@
 
         </div>
     </div>
+    <!-- End of tabset for heroes -->
+
 </aura:component>

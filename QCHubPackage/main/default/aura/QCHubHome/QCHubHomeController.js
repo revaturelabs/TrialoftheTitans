@@ -9,5 +9,11 @@
         let selectedCohort = event.getSource().get("SelectedCohort");
         component.set("SelectedCohort", selectedCohort);
         component.set("NoCohortSelected", false);
+        
+    },
+
+
+    doInit: function( component, event, helper ) {
+       
     }
 })
