@@ -59,3 +59,21 @@
     border-radius: 7px;
     text-align: center;
 }
+
+.THIS .titan-tab-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 19vw;
+    gap: 0.3em;
+}
+
+.THIS .titan-tab {
+    color: black;
+    background: white;
+    border-left: 3px solid white;
+    cursor: pointer;
+}
+
+.THIS .titan-tab:hover {
+    border-left: 3px solid red;
+}

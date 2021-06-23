@@ -2,6 +2,7 @@
     onInit: function (cmp, event, helper) {
         const getResultList = cmp.get('c.getResultList');
         let result = []
+        let titanIdList = [];
         getResultList.setCallback(this, function (response) {
             if (response.getState() === "SUCCESS") {
                 const resultList = response.getReturnValue();
@@ -10,8 +11,12 @@
                     result.push(resultList[i])
                     console.log(resultList[i])
                 }
-                let body
+                let examListPanel
                 result.forEach(singleExam => {
+                    const titanId = singleExam.Exam__r.Titan__c
+                    if (!titanIdList.includes(titanId)) {
+                        titanIdList.push(titanId)
+                    }
                     $A.createComponents([
                         ["aura:html", {
                             "tag": 'div',
@@ -34,10 +39,10 @@
                             if (status === "SUCCESS") {
                                 let wrapperDiv = cmps[0]
                                 let innerDiv = cmps[1]
-                                body = cmp.get('v.body')
+                                examListPanel = cmp.get('v.examListPanel')
                                 wrapperDiv.set("v.body", innerDiv)
-                                body.push(wrapperDiv)
-                                cmp.set("v.body", body)
+                                examListPanel.push(wrapperDiv)
+                                cmp.set("v.examListPanel", examListPanel)
                                 // body = cmp.get("v.body");
                                 // body.push(newCmp);
                                 // cmp.set("v.body", body);
@@ -53,8 +58,8 @@
                     )
                 })
                 // console.log('RESULT VARIABLE: ' + JSON.parse(result[0]).Pass__c)
-                cmp.set("v.resultList", resultList);
-
+                cmp.set("v.resultList", resultList)
+                cmp.set("v.titanIdList", titanIdList)
                 // for (let i of resultList) {
                 //     result.push(resultList[i]);
                 // }
@@ -66,9 +71,44 @@
                 //=> {Id: "a075e000000q6WDAAY", Account__c: "0015e00000AeLnyAAF", Score__c: 88.89, Total_Correct__c: 40, Total_Answers__c: 45, …}
             }
         })
-        $A.enqueueAction(getResultList);
-        console.log(result)
-
+        console.log('mylist..' + cmp.get('v.titanIdList'))
+        // console.log(result)
+        const getTitanList = cmp.get('c.getTitanList');
+        getTitanList.setCallback(this, function (response) {
+            if (response.getState() === "SUCCESS") {
+                const titanList = response.getReturnValue();
+                console.log('myTitans...' + titanList)
+                titanList.forEach(titan => {
+                    $A.createComponent(
+                        "aura:html", {
+                        'tag': 'div',
+                        'body': `${titan}`,
+                        'HTMLAttributes': {
+                            'class': 'titan-tab'
+                        }
+                    },
+                        function (newCmp, status, errMsg) {
+                            if (status === 'SUCCESS') {
+                                let titanTabPanel = cmp.get('v.titanTabPanel')
+                                // console.log('Hiiii' + titanTabs)
+                                titanTabPanel.push(newCmp)
+                                cmp.set('v.titanTabPanel', titanTabPanel)
+                            }
+                            else if (status === "INCOMPLETE") {
+                                console.log("No response from server or client is offline.")
+                                // Show offline error
+                            }
+                            else if (status === "ERROR") {
+                                console.log("Error: " + errorMessage);
+                                // Show error message
+                            }
+                        }
+                    )
+                })
+            }
+        })
+        $A.enqueueAction(getResultList)
+        $A.enqueueAction(getTitanList)
     },
 
     boxClicked: function (cmp, event, helper) {

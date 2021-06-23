@@ -1,18 +1,21 @@
 <aura:component controller="HeroResultPageController">
+    <aura:attribute type="Aura.Component[]" name="examListPanel" />
+    <aura:attribute type="Aura.Component[]" name="titanTabPanel" />
     <aura:attribute name="resultList" type="List" />
     <aura:attribute name="examClicked" type="Boolean" default="false" />
+    <aura:attribute name="titanIdList" type="List" />
     <aura:registerEvent name="ExamResultBtnClickedEvent" type="c:ExamResultBtnClickedEvent" />
     <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
     <div class="wrapper">
-        <lightning:button label="Click" onclick="{! c.boxClicked }" />
-        <div class="flex-wrapper">
-            <div class="titan-tabs">
 
+        <div class="flex-wrapper">
+            <div class="titan-tab-group">
+                {!v.titanTabPanel}
             </div>
             <div class="main-panel">
                 <aura:if isTrue="{!!v.examClicked}">
                     <div class="exam-btn-group">
-                        {!v.body}
+                        {!v.examListPanel}
                     </div>
                 </aura:if>
                 <!-- <aura:if isTrue="{!v.examClicked}"> -->
