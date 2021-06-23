@@ -1,7 +1,7 @@
 ({
     doInit : function(component, event, helper) {
         let getExamQuestions = component.get("c.getExamResultPools");
-        let testvariable = []
+        let numbercorrect = 5;
         getExamQuestions.setCallback( this, function( response ) {
             if( response.getState() === "SUCCESS" ){
                 const ExamQuestionResults = response.getReturnValue();
