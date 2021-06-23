@@ -77,6 +77,13 @@
     },
     onExamClick: function (cmp, event, helper) {
         console.log(event.target.id)
+        let action = $A.get('e.c:ExamResultBtnClickedEvent');
+        action.setParams({
+            'ExamId': event.target.id
+        })
+        action.fire();
+        cmp.set("v.examClicked", true)
+        console.log(action);
     }
 
 })

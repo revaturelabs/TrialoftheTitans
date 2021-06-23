@@ -1,5 +1,7 @@
 <aura:component controller="HeroResultPageController">
     <aura:attribute name="resultList" type="List" />
+    <aura:attribute name="examClicked" type="Boolean" default="false" />
+    <aura:registerEvent name="ExamResultBtnClickedEvent" type="c:ExamResultBtnClickedEvent" />
     <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
     <div class="wrapper">
         <lightning:button label="Click" onclick="{! c.boxClicked }" />
@@ -8,9 +10,14 @@
 
             </div>
             <div class="main-panel">
-                <div class="exam-btn-group">
-                    {!v.body}
-                </div>
+                <aura:if isTrue="{!!v.examClicked}">
+                    <div class="exam-btn-group">
+                        {!v.body}
+                    </div>
+                </aura:if>
+                <!-- <aura:if isTrue="{!v.examClicked}"> -->
+                <c:wootaeTestComp />
+                <!-- </aura:if> -->
             </div>
             <div class="right-panel"></div>
         </div>
