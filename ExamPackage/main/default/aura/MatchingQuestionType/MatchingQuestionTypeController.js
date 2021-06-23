@@ -1,5 +1,6 @@
 ({
-    myAction : function(component, event, helper) {
+    loadOptions : function(component, event, helper) {
+        helper.searchQuestionHelper(component);
 
     }
 })
