@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" name="UpdateCohort">
+    <aura:attribute name="SelectedCohort" type="Cohort__c"/>
+</aura:event>

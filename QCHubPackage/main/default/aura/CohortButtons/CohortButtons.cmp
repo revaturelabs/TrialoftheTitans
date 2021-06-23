@@ -1,16 +1,13 @@
-<aura:component>
+<aura:component controller="CohortButtonsAuraController">
 
-<aura:attribute name="cohorts" type="object"/>
+    <aura:registerEvent name="UpdateCohort" type="c:UpdateCohort"/>
 
-  <!-- On click of the button, run a function to query and pull a list of all active cohorts, and then insert them into the li below creating a new li for each active cohort -->
-  <button class="slds-button slds-button_neutral" onclick="{!c.getCohorts}">Get Active Cohorts</button>
+    <aura:attribute name="ActiveCohorts" type="Cohort__c[]"/>
 
-    <!-- Hide list until we can dynamically create each li based on a returned array size. -->
-    <ul class="slds-has-block-links_space slds-hidden">
-        <li>
-          <a href="#">{v.cohorts}</a>
-        </li>
-        <!-- dynamically add additional list item links depending on the amount of cohorts returned -->
-    </ul>
+
+<aura:iteration items="{!v.ActiveCohorts}" var="Cohort">
+    <lightning:button value="{!Cohort}" onclick="{!c.SelectCohort}">{!Cohort.Name}</lightning:button>
+</aura:iteration>
+
 
 </aura:component>	
