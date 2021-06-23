@@ -16,7 +16,7 @@
                         ["aura:html", {
                             "tag": 'div',
                             "HTMLAttributes": {
-                                "data-id": singleExam.Id,
+                                "id": singleExam.Id,
                                 "onclick": cmp.getReference("c.onExamClick"),
                                 "aura:id": "exam-btn",
                                 "class": "exam-btn"
@@ -76,39 +76,39 @@
         // console.log("score is...", result[0].Score__c);
     },
     onExamClick: function (cmp, event, helper) {
-        console.log('hello!')
+        console.log(event.target.id)
     }
 
 })
-// let htmlText = ''
-//                 htmlText += `
-// <div class="exam-btn" data-id="${singleExam.Id}" onclick="${cmp.getReference("c.onExamClick")}">
-//     ${singleExam.Exam__r.Name} <br/> ${singleExam.Pass__c ? `<div class="pass">Pass</div>`: `<div class="fail">Fail</div>`} Score: ${singleExam.Score__c}
-// </div>
-// `
-// document.querySelector('.exam-btn').addEventListener("click", onExamClick);
+    // let htmlText = ''
+    //                 htmlText += `
+    // <div class="exam-btn" data-id="${singleExam.Id}" onclick="${cmp.getReference("c.onExamClick")}">
+    //     ${singleExam.Exam__r.Name} <br/> ${singleExam.Pass__c ? `<div class="pass">Pass</div>`: `<div class="fail">Fail</div>`} Score: ${singleExam.Score__c}
+    // </div>
+    // `
+    // document.querySelector('.exam-btn').addEventListener("click", onExamClick);
 
 
-// $A.createComponent(
-//         "div", {
-//             "aura:id": "exam-btn",
-//             "class": "exam-btn",
-//             "data-id": singleExam.Id,
-//             "onclick": cmp.getReference("c.onExamClick")
-//         },
-//         function(component, status, errMessage) {
-//             if (status === "SUCCESS") {
-//                 var body = cmp.get("v.body");
-//                 console.log(body)
-//                 body.push(component);
-//                 cmp.set("v.body", body);
-//             } else if (status === "INCOMPLETE") {
-//                 console.log("No response from server or client is offline.")
-//                     // Show offline error
-//             } else if (status === "ERROR") {
-//                 console.log("Error: " + errorMessage);
-//                 // Show error message
-//             }
-//         }
-//     )
-// document.querySelector('.exam-btn-group').innerHTML = htmlText;
+    // $A.createComponent(
+    //         "div", {
+    //             "aura:id": "exam-btn",
+    //             "class": "exam-btn",
+    //             "data-id": singleExam.Id,
+    //             "onclick": cmp.getReference("c.onExamClick")
+    //         },
+    //         function(component, status, errMessage) {
+    //             if (status === "SUCCESS") {
+    //                 var body = cmp.get("v.body");
+    //                 console.log(body)
+    //                 body.push(component);
+    //                 cmp.set("v.body", body);
+    //             } else if (status === "INCOMPLETE") {
+    //                 console.log("No response from server or client is offline.")
+    //                     // Show offline error
+    //             } else if (status === "ERROR") {
+    //                 console.log("Error: " + errorMessage);
+    //                 // Show error message
+    //             }
+    //         }
+    //     )
+    // document.querySelector('.exam-btn-group').innerHTML = htmlText;

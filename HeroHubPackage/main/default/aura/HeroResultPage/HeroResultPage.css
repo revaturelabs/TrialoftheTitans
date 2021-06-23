@@ -1,12 +1,13 @@
 .THIS.wrapper {
     width: 90vw;
-    color: white;
+    color: darkgrey;
     border: 1px solid white;
     min-height: 100vh;
 }
 
 .THIS .pass {
     color: green;
+    pointer-events: none;
     font-weight: 1000;
 }
 
@@ -38,6 +39,7 @@
 
 .THIS .exam-btn {
     border: 2px solid white;
+    background: white;
     /* width: 100px; */
     display: flex;
     flex-direction: column;
@@ -51,9 +53,9 @@
 }
 
 .THIS .exam-btn:hover {
-    color: black;
-    background-color: white;
-    border: 2px solid white;
+    color: white;
+    background-color: lightgreen;
+    border: 2px solid lightgreen;
     border-radius: 7px;
     text-align: center;
 }
