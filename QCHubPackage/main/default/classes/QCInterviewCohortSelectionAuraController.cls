@@ -7,6 +7,8 @@
 //
 ///////////////////////////////////////////////////
 
+// This component was made in error, overlapping Diego's work. please delete/ignore
+
 public with sharing class QCInterviewCohortSelectionAuraController {
 
 
