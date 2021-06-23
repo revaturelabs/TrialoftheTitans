@@ -3,9 +3,16 @@
     <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
     <div class="wrapper">
         <lightning:button label="Click" onclick="{! c.boxClicked }" />
+        <div class="flex-wrapper">
+            <div class="titan-tabs">
 
-        <ul class="unorderedlist">
-
-        </ul>
+            </div>
+            <div class="main-panel">
+                <div class="exam-btn-group">
+                    {!v.body}
+                </div>
+            </div>
+            <div class="right-panel"></div>
+        </div>
     </div>
 </aura:component>

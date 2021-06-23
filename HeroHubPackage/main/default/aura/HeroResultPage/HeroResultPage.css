@@ -1,10 +1,59 @@
 .THIS.wrapper {
-    width: 80%;
+    width: 90vw;
     color: white;
     border: 1px solid white;
+    min-height: 100vh;
 }
 
-.THIS .yo {
-    border: 2px solid red;
-    color: yellow;
+.THIS .pass {
+    color: green;
+    font-weight: 1000;
+}
+
+.THIS .flex-wrapper {
+    display: flex;
+}
+
+.THIS .flex-wrapper .main-panel {
+    min-width: 50vw;
+}
+
+.THIS .flex-wrapper .titan-tabs {
+    min-width: 20vw;
+    border: 1px solid red;
+}
+
+.THIS .flex-wrapper .right-panel {
+    min-width: 20vw;
+    border: 1px solid red;
+}
+
+.THIS .exam-btn-group {
+    display: grid;
+    grid-template-rows: repeat(1fr);
+    /* width: 60%; */
+    gap: 1em;
+    margin: 0 auto;
+}
+
+.THIS .exam-btn {
+    border: 2px solid white;
+    /* width: 100px; */
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+    border-radius: 7px;
+    /* text-align: center; */
+    transition: 0.3s;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.THIS .exam-btn:hover {
+    color: black;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 7px;
+    text-align: center;
 }
