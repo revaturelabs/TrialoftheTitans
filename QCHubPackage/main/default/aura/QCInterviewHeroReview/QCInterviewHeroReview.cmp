@@ -37,7 +37,7 @@
     <!-- displays a list of questions and their hero-supplied answers -->
     <lightning:datatable keyField="id" 
                         label="Overview"
-                        data="{!v.data}" 
+                        data="{!v.answers}" 
                         columns="{!v.columns}" 
                         onRowSelection="{!c.handleRowSelection}" 
                         hideCheckboxColumn="true"

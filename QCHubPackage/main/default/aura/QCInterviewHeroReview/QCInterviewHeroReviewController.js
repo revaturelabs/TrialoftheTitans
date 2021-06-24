@@ -2,10 +2,9 @@
     init : function(component, event, helper) {
         component.set("v.columns", 
             [
-                {label:'Question', fieldName=""},
-                {label:'Answer', fieldName=""},
-                {label:'Score', fieldName=""},
-
+                {label:'Score', fieldName="Score__c"},
+                {label:'Question', fieldName="Question__c"},
+                {label:'Answer', fieldName="Hero_Answer__c"},
             ]
         )
         helper.getInterview(component, event)
