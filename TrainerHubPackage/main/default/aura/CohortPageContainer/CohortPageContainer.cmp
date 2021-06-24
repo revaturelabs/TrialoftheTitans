@@ -1,11 +1,11 @@
-<!--
+<!-- 
 
   Name: CohortPageContainer
   Author: Kameron Fincher
   Description: Container for the Cohort Hub Page 
 
 -->
-<aura:component >
+<aura:component implements="flexipage:availableForAllPageTypes">
     <aura:html tag="style">
         :root {
         background-color: #9996e7;
@@ -24,6 +24,7 @@
     
 	<!-- String for Id which is set by the list components TransferIdEvent -->
 	<aura:attribute name="AssessmentId" type ="String" default=""/>
+    <aura:attribute name="CohortId" type ="String" default=""/>
     
     <aura:attribute name="tabs" type="List"/>
     <aura:attribute name="active" type="String" default="Overall"/>
@@ -34,20 +35,22 @@
     <aura:handler name="HeroAssessmentCreationHideEvent" event="c:HeroAssessmentCreationHideEvent" action="{!c.HideNewAssessment}"/>
     <aura:handler name="AssessmentCreationHideEvent" event="c:AssessmentCreationHideEvent" action="{!c.HideNewAssessment}"/>
     
-    <!--<aura:attribute name="scriptsLoaded" type="Boolean"/>
+    <aura:attribute name="scriptsLoaded" type="Boolean"/>
   
     <ltng:require
                   scripts="{!$Resource.d3 + '/d3.js'}"
                   afterScriptsLoaded ="{!c.Chart}"
                   />
 
-        <div id="svg"></div>-->
-  
+        <div id="svg"></div>
     
     <!-- Header -->
     <div class="header">
         Cohort Page
     </div>
+    <!-- Header -->
+    
+    <!-- Body -->
     <div id="overall-body">
         <div class="slds-grid">
             
@@ -158,9 +161,9 @@
                     <aura:if isTrue="{!v.active == 'Exam List'}">
                         
                         <!-- Table/Chart -->
-                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_4-of-7">
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
                             <div class="slds-m-horizontal_small slds-m-bottom_small">
-                                <lightning:button label="Create new Assessment" disabled='{!titan.buttonDisabled}' class=" slds-m-top_medium slds-m-right_small slds-button_neutral" title="Back" value="{!titan}" onclick="{!c.CreateNewAssessment}"/><br/>
+                                <lightning:button label="Exam Hubs" disabled='{!titan.buttonDisabled}' class=" slds-m-top_medium slds-m-right_small slds-button_neutral" title="Back" value="{!titan}" onclick="{!c.CreateNewAssessment}"/><br/>
                                 <div class="slds-m-top_medium">
                                 	<c:ExamList/>
                                 </div>
@@ -169,8 +172,8 @@
                         <!-- Table/Chart -->
                         
                         <!-- Single Record Display -->
-                        <div style="background:var(--user-team-primary); border-radius: 5px 5px 5px 5px;" class="slds-col slds-size_2-of-7 slds-m-left_medium">
-                        </div>
+                        <!--<div style="background:var(user-team-primary); border-radius: 5px 5px 5px 5px;" class="slds-col slds-size_2-of-7 slds-m-left_medium">
+                        </div>-->
                         <!-- Single Record Display -->
                         
                     </aura:if>
@@ -181,5 +184,6 @@
             <!-- Main Body & Side Portion -->
         </div>
     </div>
+    <!-- Body -->
     <c:Communication />
 </aura:component>

@@ -17,6 +17,7 @@
             <lightning:inputField fieldName="Hero__c" />
             <lightning:inputField fieldName="Assessment__c" />
             <lightning:inputField fieldName="Overall_Score__c" />
+           <lightning:inputField fieldName="Notes__c" />
             <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update" />
             <lightning:button class="slds-m-top_small" variant="brand" label="Cancel" title="Cancel action" onclick="{! c.handleClick }" />
     	</lightning:recordEditForm>
