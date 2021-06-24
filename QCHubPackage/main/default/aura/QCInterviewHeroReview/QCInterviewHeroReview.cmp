@@ -9,23 +9,21 @@
 
 <aura:component controller="QCInterviewHeroReviewAuraController">
 
-    <aura:attribute name="interview" type="QC_Interview__c[]" />
+    <aura:attribute name="interview" type="QC_Interview__c" />
     <aura:attribute name="columns" type="List" />
     <aura:attribute name="answers" type="QC_Question_Answer__c[]" />
-    <aura:attribute name="flag" type="QC_Flag__c[]" />
+    <aura:attribute name="flagList" type="QC_Flag__c[]" />
     <aura:attribute name="makeFlag" type="Boolean" default="false" />
+
 
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
 
-    <!-- displays editable form for completed hero record -->
-    <!-- <lightning:recordEditForm recordId="{!v.interview}" objectApiName="QC_Interview__c"  >
-        <lightning:outputField label="Total Score" fieldname="" />
-        <lightning:inputField label="Score Adjustment" fieldName="" />
-        <lightning:inputField label="Hero" fieldName="Account__r.Name" />
-    </lightning:recordEditForm> -->
+    <aura:handler name="DeleteRowEvt" event="c:QCInterviewHeroReviewDeleteRowEvent" action="{!c.DeleteNewRow}"/>
+    <aura:handler name="AddRowEvt" event="c:QCInterviewHeroReviewAddRowEvent" action="{!c.AddNewRow}"/>
 
+    <!-- displays hero and calculated score, with cohort and squad relationship potential -->
     <lightning:card>
-        <aura:set attribute="interview">
+        <aura:set attribute="title">
             <lightning:icon iconName="utility:approval" size="small"/>
             {!v.interview.Account__r.Name}
         </aura:set>
@@ -36,17 +34,6 @@
         Calculated Score: {!v.interview.Overall_Score__c}
     </lightning:card>
 
-    <!-- probably need another component to create multiple rows for flags -->
-    <!-- <lightning:input type="checkbox-button" label="The Senate wants to Flag this Hero" name="input1" value="{!v.flag.}" checked="false" />
-    <aura:if>
-        <lightning:select aura:id="flag" label="" name="">
-            <aura:iteration items="{!v.options}" var="option">
-                <option text="{!option.label}" value="{!option.id}" selected="{!option.selected}"/>
-            </aura:iteration>
-        </lightning:select>
-        <lightning:input aura:id="flag" label="" name="" required="false" />
-    </aura:if> -->
-
     <!-- displays a list of questions and their hero-supplied answers -->
     <lightning:datatable keyField="id" 
                         label="Overview"
@@ -56,15 +43,15 @@
                         hideCheckboxColumn="true"
                         suppressBottomBar="true" />
 
+    <!-- refers to child component to enable handling of multiple flags -->
     
+        <aura:iteration items="{!v.flagList}" var="item" indexVar="index">
+            <div>
+                <c:QCInterviewHeroReviewFlagRow flag="{!item}" rowIndex="{!index}" />
+            </div>
+        </aura:iteration>
+    
+
     <lightning:button title="Click here to finalize interview for this Hero!" label="Finalize" onclick="{!handleFinalize}" />
 
 </aura:component>
-
-<!-- going to use this somehow for requiring reason for change in score
-<lightning:textarea name="input7" required="true" value="" 
-                    placeholder="compose your tweet" 
-                    label="Required textarea field with a maximum length of 140 characters" 
-                    maxlength="140" 
-                    messageWhenTooLong="A maximum of 140 characters are allowed in a tweet." 
-                    messageWhenValueMissing="An empty tweet cannot be posted." /> -->
