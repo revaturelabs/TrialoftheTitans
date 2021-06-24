@@ -1,4 +1,5 @@
 <aura:component controller="QCHubHomeAuraController" implements="flexipage:availableForAllPageTypes" access="global">
+    
     <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/>
     <aura:handler name="UpdateCohortEvent" event="c:UpdateCohortEvent" action="{!c.UpdateCohort}"/>
 
@@ -19,7 +20,7 @@
             <p><c:CohortStatistics ActiveCohort="{!v.SelectedCohort}"/></p>
         </div>
         <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
-            <p><c:SquadButtons/></p>
+           <!--  <p><c:SquadButtons/></p> -->
         </div>
     </div>
     <!-- End of box layout grid for components -->
