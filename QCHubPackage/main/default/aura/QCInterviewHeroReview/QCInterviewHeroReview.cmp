@@ -7,7 +7,7 @@
 //
 /////////////////////////////////////////////////// -->
 
-<aura:component controller="QCInterviewHeroReviewAuraController">
+<aura:component controller="QCInterviewHeroReviewAuraController" implements="flexipage:availableForAllPageTypes" access="global">
 
     <aura:attribute name="interview" type="QC_Interview__c" />
     <aura:attribute name="columns" type="List" />
