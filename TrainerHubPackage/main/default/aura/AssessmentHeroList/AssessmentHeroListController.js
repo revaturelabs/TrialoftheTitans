@@ -21,6 +21,11 @@
         helper.fetchData(component);
     },
 
+    //get list of data by searching hero names
+    search : function(component, event, helper) {
+        helper.search(component);
+    },
+
 	//Function for selected rows
     updateSelected : function(component, event, helper){
         //get selected row logic
