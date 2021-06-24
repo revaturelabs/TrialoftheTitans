@@ -20,7 +20,7 @@
             <p><c:CohortStatistics ActiveCohort="{!v.SelectedCohort}"/></p>
         </div>
         <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
-           <!--  <p><c:SquadButtons/></p> -->
+       <!--     <p><c:SquadButtons/></p>-->
         </div>
     </div>
     <!-- End of box layout grid for components -->

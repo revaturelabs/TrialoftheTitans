@@ -1,18 +1,10 @@
 ({
-    init : function(component, event) {
-            component.set("v.columns", 
-                [
-                    {label:'Question', fieldName=""},
-                    {label:'Answer', fieldName=""},
-                    {label:'Score', fieldName=""},
-
-                ]
-            )
-    
-        var interviews = component.get("c.DoInit")
+    getInterview : function(component, event) {
+        var interviews = component.get("c.getInterview")
         interviews.setParams({cohort: event.getParam(NEEDCOHORTPARAMSET),
                                 hero: event.getParam(NEEDHEROPARAMSET)})
 
+                    // get event handler set from cohort select component
                                 // Reference: ^possibly just hero set
                                 // var.setParams({param: component.find('table').getSelectedRows()[0],
                                 // param2: component.find('aura:id').get("v.value")})
@@ -28,8 +20,34 @@
         $A.enqueueAction(interviews)
     },
 
+    //initializes row 1 of flags
+    createFlag : function (component, event) {
+        var RowItemList = component.get("v.flagList");
+        RowItemList.push({
+            'sobjectType': 'QC_Flag__c',
+            'Name': '',
+            'Description': '',
+        })
+        component.set("v.flagList", RowItemList);
+    },
+
     handleFinalize : function(component, event) {
-        component
+        var flags = component.get("v.flagList")
+        var interviews = component.get("v.interviews")
+
+        flags.setParams({})
+    },
+
+    validateFlags: function(component, event) {
+        var isValid = true;
+        var flagRows = component.get("v.flagList");
+        for (var index = 0; index < flagRows.length; index++) {
+            if (flagRows[index].Description__c == '') {
+                isValid = false;
+                alert('Description required for Row ' + (index + 1));
+            }
+        }
+        return isValid;
     },
 
 })
