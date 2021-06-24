@@ -122,7 +122,8 @@
         cmp.set('v.currentPage', titan)
         document.querySelectorAll('.titan-tab').forEach(singleTab => {
             console.log(cmp.get('v.currentPage'), ' AND ', singleTab.innerHTML.replace(" ", "_").toLowerCase())
-            singleTab.style.borderLeft = cmp.get('v.currentPage') === singleTab.innerHTML.replace(" ", "_").toLowerCase() ? '3px solid red' : '3px solid white'
+            singleTab.style.borderLeft = cmp.get('v.currentPage') === singleTab.innerHTML.replace(" ", "_").toLowerCase() ? '3px solid black' : ''
+            singleTab.style.boxShadow = cmp.get('v.currentPage') === singleTab.innerHTML.replace(" ", "_").toLowerCase() ? '3px 3px 2px black' : ''
         })
         if (titan === 'all_titans') {
             document.querySelectorAll(`.exam-btn`).forEach(singleBtn => {

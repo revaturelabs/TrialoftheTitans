@@ -7,18 +7,18 @@
 .THIS.wrapper {
     width: 90vw;
     color: darkgrey;
-    border: 1px solid white;
     min-height: 100vh;
 }
 
 .THIS .pass {
     color: green;
     pointer-events: none;
-    font-weight: 1000;
+    font-weight: 800;
 }
 
 .THIS .flex-wrapper {
     display: flex;
+    gap: 1em;
 }
 
 .THIS .flex-wrapper .main-panel {
@@ -39,7 +39,7 @@
     display: grid;
     grid-template-rows: repeat(1fr);
     /* width: 60%; */
-    gap: 1em;
+    gap: 0.5em;
     margin: 0 auto;
 }
 
@@ -51,20 +51,18 @@
     flex-direction: column;
     height: 30px;
     text-align: center;
-    border-radius: 7px;
-    /* text-align: center; */
     transition: 0.3s;
     cursor: pointer;
     align-items: center;
     justify-content: center;
+    /* align-content: center; */
 }
 
 .THIS .exam-btn:hover {
     color: white;
     background-color: lightgreen;
     border: 2px solid lightgreen;
-    border-radius: 7px;
-    text-align: center;
+    box-shadow: 3px 3px 2px black;
 }
 
 .THIS .titan-tab-group {
@@ -79,8 +77,10 @@
     background: white;
     border-left: 3px solid white;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .THIS .titan-tab:hover {
     border-left: 3px solid red;
+    box-shadow: 3px 3px 2px black;
 }
