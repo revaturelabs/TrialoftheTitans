@@ -71,6 +71,15 @@
                         data[i].hero = data[i].Hero__r.Name;
                     }
                 }
+                for( let i=0; i< data.length; i++ ){
+                    //if data retrieved is null place value stating it is null
+                    //if not null place data in the key for the column
+                    if(data[i].Assessment__c == null){
+                        data[i].assessment = "No Assessment";
+                    } else{
+                        data[i].assessment = data[i].Assessment__r.Name ;
+                    }
+                }
                 //set the new data to the table
                 component.set('v.data', data);
             } else if (state === "ERROR") {
