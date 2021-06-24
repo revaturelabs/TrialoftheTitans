@@ -9,7 +9,7 @@
         //let selectedCohort = event.getParam("SelectedCohort");
         //console.log("QCHUBHOME HANDLER: " + selectedCohort);
         //console.log("cObj in String Format===>"+JSON.stringify(selectedCohort) );
-        component.set("v.SelectedCohort", event.getParam("SelectedCohort"));
+        helper.LoadCohortData(component.event.getParam("SelectedCohort"))
         component.set("v.NoCohortSelected", false);
         
     },

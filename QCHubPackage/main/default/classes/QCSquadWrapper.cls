@@ -7,10 +7,9 @@
 //////////////////////////////////////////////////////////////////////////////
 
 @AuraEnabled
-public with sharing class QCCohortWrapper {
+public class QCSquadWrapper {
     
-    Cohort__c cohort;
-    Map<String, List<Account>> squadList;
-
+    Squad__c squad;
+    List<Account> Heroes;
 
 }
