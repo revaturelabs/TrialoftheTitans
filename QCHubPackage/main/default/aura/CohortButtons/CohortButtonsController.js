@@ -6,8 +6,11 @@
     },
 
     SelectCohort : function(component, event, helper){
-
-        let selectedCohort = event.getSource().get("value");
+        console.log(component.get("v.CohortList[0]"));
+        console.log("BUTTON CLICK");
+        let selectedCohort = event.getSource().get("v.value");
+        console.log("SELECTCOHORT_COHORTBUTTONSCONTROLLER: ");
+        console.log(selectedCohort);
         helper.FireCohortUpdate(component, selectedCohort);
 
     }

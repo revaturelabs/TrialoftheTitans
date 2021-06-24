@@ -1,8 +1,23 @@
 QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-<types>
+
+	<types>
+		<members>QCHubHomeAuraController</members>
+		<members>QCHubController</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
 		<members>QC_Hub</members>
 		<name>CustomApplication</name>
+	</types>
+	<types>
+        <members>QCInterview</members>
+        <members>QCInterviewQA</members>
+		<members>CohortButtons</members>
+		<members>QCHubHome</members>
+		<members>QCInterviewHeader</members>
+		<members>UpdateCohortEvent</members>
+		<name>AuraDefinitionBundle</name>
 	</types>
 	<types>
 		<members>QC_Flag__c.Account__c</members>

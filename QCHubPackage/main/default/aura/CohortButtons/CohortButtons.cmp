@@ -1,13 +1,13 @@
-<aura:component controller="CohortButtonsAuraController">
+<aura:component>
 
     <aura:registerEvent name="UpdateCohortEvent" type="c:UpdateCohortEvent"/>
 
-    <aura:attribute name="ActiveCohorts" type="Cohort__c[]"/>
+    <aura:attribute name="CohortList" type="Cohort__c[]"/>
 
 
-<aura:iteration items="{!v.ActiveCohorts}" var="Cohort">
+<aura:iteration items="{!v.CohortList}" var="Cohort">
     <lightning:button value="{!Cohort}" onclick="{!c.SelectCohort}">{!Cohort.Name}</lightning:button>
 </aura:iteration>
 
 
-</aura:component>	
+</aura:component>

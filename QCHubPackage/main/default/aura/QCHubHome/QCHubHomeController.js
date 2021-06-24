@@ -6,9 +6,11 @@
     },
 
     UpdateCohort : function(component, event, helper){
-        let selectedCohort = event.getSource().get("SelectedCohort");
-        component.set("SelectedCohort", selectedCohort);
-        component.set("NoCohortSelected", false);
+        //let selectedCohort = event.getParam("SelectedCohort");
+        //console.log("QCHUBHOME HANDLER: " + selectedCohort);
+        //console.log("cObj in String Format===>"+JSON.stringify(selectedCohort) );
+        component.set("v.SelectedCohort", event.getParam("SelectedCohort"));
+        component.set("v.NoCohortSelected", false);
         
     },
 
