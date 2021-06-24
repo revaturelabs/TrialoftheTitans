@@ -1,20 +1,25 @@
-<aura:component  controller="ExamResultsPoolPageController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+<aura:component controller="ExamResultsPoolPageController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
 
     <aura:attribute name="questionPool" type="List"/>
     <aura:attribute name="numbertopull" type="Integer"/>
     <aura:attribute name="revealPoolInfo" type="Boolean" default="false"/>
+    <aura:attribute name="poolmap" type="Map" default="{}" />
+    <aura:registerEvent name="poolevent" type="c:NavResultsPoolEvent"/>
+    <aura:handler name="pooleventhandler" event="c:NavResultsPoolEvent" action="{!c.poolEvent}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
+    
+    <aura:if isTrue= "{!v.revealPoolInfo}">
+        <aura:iteration var="pool" items="{!v.questionPool}">
+            <p>{!pool.Question_Pool__r.Name}.....{!pool.Number_to_pull__c}</p>
+        </aura:iteration>
+    </aura:if>
     <lightning:button label="Toggle Pool"
                                       class="slds-var-m-top_medium"
                                       variant="brand"
                                       onclick="{!c.ExamPoolFormToggle}"/>
-
-    <aura:if isTrue= "{!v.revealPoolInfo}">
-    <aura:iteration var="pool" items="{!v.questionPool}">
-    <p>{!pool.Question_Pool__r.Name}.....{!pool.Number_to_pull__c}</p>
-</aura:iteration>
-
-
-    </aura:if>
+    <lightning:button label="Correct Answer Pool"
+                                      class="slds-var-m-top_medium"
+                                      variant="brand"
+                                      onclick="{!c.poolEvent}"/>                                  
 </aura:component>	

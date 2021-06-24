@@ -21,9 +21,8 @@ public with sharing class ExamResultsPoolPageController {
         return epa;
     }
 
-    public static void getExamResultAnswers(/*Id examResultsId, Id examId*/){
-
-        
+    @AuraEnabled
+    public static Map<Id,String> getExamResultAnswers(/*Id examResultsId, Id examId*/){
 
         /*List<Hero_Answer__c> hal = [SELECT Name, Exam_Question__c, Correct__c
                                     FROM Hero_Answer__c
@@ -52,11 +51,12 @@ public with sharing class ExamResultsPoolPageController {
                                             FROM Question_Assignment__c 
                                             WHERE Exam_Question__c IN 
                                             (SELECT Exam_Question__c FROM Hero_Answer__c 
-                                            WHERE Exam_Result__c = 'a075e000001fT4DAAU' AND Correct__c = True)]){
+                                            WHERE Exam_Result__c = 'a075e000001fT4DAAU' AND Correct__c = True)]){                                             
 
             m1.put(qa.Exam_Question__c, qa.Question_Pool__r.Name);
             }                            
             System.debug(m1);
+            return m1;
     }
 
 }
