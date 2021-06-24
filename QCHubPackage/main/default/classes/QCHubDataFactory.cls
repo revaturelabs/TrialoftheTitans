@@ -15,7 +15,7 @@ public class QCHubDataFactory {
     // namePrefix: Each hero created has a name from 0-19, prefixed with namePrefix.
     
     public static void dataFactory(String cohortName, String namePrefix){
-        Cohort__c testCohort = new Cohort__c(Name=cohortName);
+        Cohort__c testCohort = new Cohort__c(Name=cohortName, Active__c=true);
         insert testCohort;
         
         Schema.DescribeSObjectResult acctDesc = Account.SObjectType.getDescribe();

@@ -4,6 +4,7 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 	<types>
 		<members>QCHubHomeAuraController</members>
 		<members>QCHubController</members>
+		<members>QCCohortWrapper</members>
 		<name>ApexClass</name>
 	</types>
 	<types>

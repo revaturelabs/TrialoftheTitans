@@ -3,12 +3,12 @@
     <aura:handler name="UpdateCohortEvent" event="c:UpdateCohortEvent" action="{!c.UpdateCohort}"/>
 
     <aura:attribute name="CohortList"    type="Cohort__c[]"/>
-    <aura:attribute name="SelectedCohort"   type="Cohort__c"/>
+    <aura:attribute name="SelectedCohort"   type="QCCohortWrapper"/>
     <aura:attribute name="NoCohortSelected" type="Boolean" default = "true"/>
     <aura:attribute name="Hero" type="Object" />
     <aura:attribute name="contextInfo" type="UserContextInfo" />
 
-    <p>{!v.SelectedCohort.Name}</p>
+    <p>{!v.SelectedCohort.Cohort.Name}</p>
 
     <!-- Beginning of box layout grid for components -->
     <div class="slds-grid slds-gutters slds-align_absolute-center">
