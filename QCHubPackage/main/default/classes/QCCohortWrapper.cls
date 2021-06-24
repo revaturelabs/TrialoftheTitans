@@ -6,11 +6,10 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-@AuraEnabled
 public with sharing class QCCohortWrapper {
     
-    Cohort__c cohort;
-    Map<String, List<Account>> squadList;
+    @AuraEnabled public Cohort__c cohort{get;set;}
+    @AuraEnabled public Map<String, List<Account>> squadList{get;set;}
 
 
 }

@@ -26,20 +26,19 @@ public with sharing class QCHubHomeAuraController {
 		Map<String, Schema.RecordTypeInfo> acctRecTypeMap = acctDesc.getRecordTypeInfosByName();
 		Id heroTypeId = acctRecTypeMap.get('Hero').getRecordTypeId();
 
-        Map<Id, Squad__c> allSquads=([SELECT Name, Team__r.Name FROM Squad__c]);
-        List<Account> heroList=([SELECT Name, Squad__r.Name, Team__r.Name FROM Account__c WHERE RecordTypeId=:heroTypeId AND Cohort__r.Name=:cohort.Name]);
+        List<Account> heroList=([SELECT Name, Squad__r.Name, Team__r.Name FROM Account WHERE RecordTypeId=:heroTypeId AND Cohort__r.Name=:cohort.Name]);
 
         
         // Map squad objects to a list of the heroes in that squad
 
         //Map<Squad__c, List<Account>> squadList = new Map<Squad__c, Account>();
-        Map<String, List<Account>> squadList = new Map<String, Account>();
+        Map<String, List<Account>> squadList = new Map<String, List<Account>>();
 
         for (Account hero : heroList){
-            if (squadList.get(hero.Squad__r.Name)){
+            if (squadList.get(hero.Squad__r.Name) != NULL){
                 squadList.get(hero.Squad__r.Name).add(hero);
             }
-            else (squadList.put(hero.Squad__r.Name, hero));
+            else (squadList.put(hero.Squad__r.Name, new List<Account>{hero}));
         }
 
         QCCohortWrapper cohortData = new QCCohortWrapper();
