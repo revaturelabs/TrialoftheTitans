@@ -6,11 +6,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ({
-	hideComponent : function(component, event, helper) {
-        helper.hideComponent(component, event);
+	HideComponent : function(component, event, helper) {
+        helper.HideComponent(component, event);
 	},
     
-    submitClick : function(component, event, helper) {
-        helper.submitClick(component, event);
+    SubmitClick : function(component, event, helper) {
+        helper.SubmitClick(component, event);
     }
 })

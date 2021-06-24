@@ -1,0 +1,20 @@
+/*
+  Name: CohortPageContainer
+  Author: Kameron Fincher
+  Description: Container for the Cohort Hub Page  
+*/
+/* Define header styling */
+.THIS.header{
+    background-color: black;
+	color:white;
+    padding-top:20px;
+    padding-bottom:20px;
+    text-align: center;
+    font-size:30px;
+}
+/* Define body styling */
+#overall-body.THIS {
+
+	padding: 3% 5% 0% 5%;
+
+}
