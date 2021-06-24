@@ -1,3 +1,11 @@
+<!-- 
+/////////////////////////////////////
+//  Name: HeroResultPage.cmp
+//  Author: Wootae Yang
+//  Description: HeroResultPage Markup
+/////////////////////////////////////
+-->
+
 <aura:component controller="HeroResultPageController">
     <aura:attribute type="Aura.Component[]" name="examListPanel" />
     <aura:attribute type="Aura.Component[]" name="titanTabPanel" />
@@ -8,7 +16,6 @@
     <aura:registerEvent name="ExamResultBtnClickedEvent" type="c:ExamResultBtnClickedEvent" />
     <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
     <div class="wrapper">
-
         <div class="flex-wrapper">
             <div class="titan-tab-group">
                 <div class='titan-tab' onclick="{!c.onTitanClick}">All Titans</div>
