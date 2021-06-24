@@ -16,7 +16,8 @@
 	},
     */
     
-    TestQBox : function(component, event, helper) {
-        console.log(component.get("v.HeroAnswer.Question__c"));
+    TestQBox : function(cmp, event, helper) {
+        console.log("ahoy");
+        helper.getQuestionDeck(cmp,"Sample Question Deck");
     }
 })
