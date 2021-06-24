@@ -11,6 +11,7 @@
         helper.fireExamIdEvent(cmp, event)
     },
     onTitanClick: function (cmp, event, helper) {
-        helper.filterAndMarkTab(cmp, event)
+        helper.markActiveTab(cmp, event)
+        helper.filterExamList(cmp, event)
     }
 })

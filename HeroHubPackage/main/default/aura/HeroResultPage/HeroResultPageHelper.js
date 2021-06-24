@@ -106,6 +106,33 @@
         $A.enqueueAction(getResultList)
         $A.enqueueAction(getTitanList)
     },
+    markActiveTab: function (cmp, event) {
+        let titan = event.target.innerHTML.replace(" ", "_").toLowerCase()
+        cmp.set('v.currentPage', titan)
+        document.querySelectorAll('.titan-tab').forEach(singleTab => {
+            console.log(cmp.get('v.currentPage'), ' AND ', singleTab.innerHTML.replace(" ", "_").toLowerCase())
+            singleTab.style.borderLeft = cmp.get('v.currentPage') === singleTab.innerHTML.replace(" ", "_").toLowerCase()
+                ? '3px solid black'
+                : ''
+            singleTab.style.boxShadow = cmp.get('v.currentPage') === singleTab.innerHTML.replace(" ", "_").toLowerCase()
+                ? '3px 3px 2px black'
+                : ''
+        })
+    },
+    filterExamList: function (cmp, event) {
+        let titan = event.target.innerHTML.replace(" ", "_").toLowerCase()
+        if (titan === 'all_titans') {
+            document.querySelectorAll(`.exam-btn`).forEach(singleBtn => {
+                singleBtn.style.display = 'block'
+            })
+        } else {
+            document.querySelectorAll(`.exam-btn`).forEach(singleBtn => {
+                singleBtn.style.display = singleBtn.className.includes(titan)
+                    ? 'block'
+                    : 'none'
+            })
+        }
+    },
     fireExamIdEvent: function (cmp, event) {
         console.log(event.target.id)
         let action = $A.get('e.c:ExamResultBtnClickedEvent');
@@ -116,23 +143,5 @@
         // Diable `exam-btn` hide for now
         // cmp.set("v.examClicked", true)
         console.log(action);
-    },
-    filterAndMarkTab: function (cmp, event) {
-        let titan = event.target.innerHTML.replace(" ", "_").toLowerCase()
-        cmp.set('v.currentPage', titan)
-        document.querySelectorAll('.titan-tab').forEach(singleTab => {
-            console.log(cmp.get('v.currentPage'), ' AND ', singleTab.innerHTML.replace(" ", "_").toLowerCase())
-            singleTab.style.borderLeft = cmp.get('v.currentPage') === singleTab.innerHTML.replace(" ", "_").toLowerCase() ? '3px solid black' : ''
-            singleTab.style.boxShadow = cmp.get('v.currentPage') === singleTab.innerHTML.replace(" ", "_").toLowerCase() ? '3px 3px 2px black' : ''
-        })
-        if (titan === 'all_titans') {
-            document.querySelectorAll(`.exam-btn`).forEach(singleBtn => {
-                singleBtn.style.display = 'block'
-            })
-        } else {
-            document.querySelectorAll(`.exam-btn`).forEach(singleBtn => {
-                singleBtn.style.display = singleBtn.className.includes(titan) ? 'block' : 'none'
-            })
-        }
     }
 })
