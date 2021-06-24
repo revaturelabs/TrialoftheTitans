@@ -1,0 +1,30 @@
+<!-- /////////////////////////////////////////////////////
+//
+//  Name: QCInterviewCohortSelection
+//  Author: Natalie Clark
+//  Description: Aura component segment meant for reference
+//  to be displayed on selection of Cohort from Hub page in aura:if
+//
+/////////////////////////////////////////////////// -->
+
+<!-- This component was made in error, overlapping Diego's work. please delete/ignore -->
+
+<aura:component controller="QCInterviewCohortSelectionAuraController">
+
+    <!-- List of attributes -->
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="data" type="List" />
+
+    <!-- Event handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <!-- Datatable displaying a list of heroes available  -->
+    <lightning:datatable keyField="id" 
+                        data="{!v.data}" 
+                        columns="{!v.columns}" 
+                        onRowSelection="{!c.handleRowSelection}" 
+                        hideCheckboxColumn="true"
+                        suppressBottomBar="true" />
+
+
+</aura:component>	
