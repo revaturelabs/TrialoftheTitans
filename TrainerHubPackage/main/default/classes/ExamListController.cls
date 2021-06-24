@@ -17,4 +17,15 @@ public with sharing class ExamListController {
                                                 FROM Exam_Result__c];
         return examResultSearch;
     }
+
+    @AuraEnabled
+    public static List<Exam_Result__c> SearchExamList(String searchKey){
+        String name =  + searchKey + '%';
+        List<Exam_Result__c> examResultSearch = [SELECT Account__r.Name, Exam__r.Name, Score__c,
+                                                Total_Correct__c, Total_Answers__c
+                                                FROM Exam_Result__c
+                                                WHERE Account__r.Name
+                                                LIKE :name];
+        return examResultSearch;
+    }
 }

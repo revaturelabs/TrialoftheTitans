@@ -21,4 +21,9 @@
         // get Hero Assessment data
         helper.fetchData(component);
     },
+
+    //get list of data by searching hero names
+    search : function(component, event, helper) {
+        helper.search(component);
+    },
 })
