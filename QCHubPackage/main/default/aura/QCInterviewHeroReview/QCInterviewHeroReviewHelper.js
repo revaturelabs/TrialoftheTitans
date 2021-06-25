@@ -4,6 +4,7 @@
         interviews.setParams({cohort: event.getParam(NEEDCOHORTPARAMSET),
                                 hero: event.getParam(NEEDHEROPARAMSET)})
 
+                    // get event handler set from cohort select component
                                 // Reference: ^possibly just hero set
                                 // var.setParams({param: component.find('table').getSelectedRows()[0],
                                 // param2: component.find('aura:id').get("v.value")})

@@ -6,6 +6,10 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>QCCohortWrapper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>QCHubController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -32,11 +36,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>QC_Interview__c.Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>QC_Interview__c.Cohort__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -18,6 +18,14 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<members>QCHubHome</members>
 		<members>QCInterviewHeader</members>
 		<members>UpdateCohortEvent</members>
+		<members>QCInterviewCohortSelection</members>
+		<members>QCInterviewHeroReview</members>
+		<members>QCInterviewHeroReviewAddRowEvent</members>
+		<members>QCInterviewHeroReviewDeleteRowEvent</members>
+		<members>QCInterviewHeroReviewFlagRow</members>
+		<members>QCInterviewQADisplayWeek</members>
+		<members>QCInterviewScoreComp</members>
+		<members>UpdateCohortEvent</members>
 		<name>AuraDefinitionBundle</name>
 	</types>
 	<types>
