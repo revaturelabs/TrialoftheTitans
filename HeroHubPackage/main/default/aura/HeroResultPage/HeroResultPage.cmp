@@ -10,6 +10,7 @@
     <aura:attribute type="Aura.Component[]" name="examListPanel" />
     <aura:attribute type="Aura.Component[]" name="titanTabPanel" />
     <aura:attribute name="resultList" type="List" />
+    <aura:attribute name="examResultId" type="String" />
     <aura:attribute name="currentPage" type="String" />
     <aura:attribute name="examClicked" type="Boolean" default="false" />
     <aura:attribute name="titanIdList" type="List" />
@@ -27,11 +28,18 @@
                         {!v.examListPanel}
                     </div>
                 </aura:if>
-                <!-- <aura:if isTrue="{!v.examClicked}"> -->
-                <c:wootaeTestComp />
-                <!-- </aura:if> -->
+                <aura:if isTrue="{!v.examClicked}">
+                    <c:HeroResults examResultId="{!v.examResultId}" />
+                </aura:if>
             </div>
-            <div class="right-panel"></div>
+            <div class="right-panel">
+                <aura:if isTrue="{!v.examClicked}">
+                    <div class="right-panel-btn-group">
+                        <div class="pbp-btn" onclick="{!c.onPbpClick}">Pool by Pool</div>
+                        <div class="back-btn" onclick="{!c.onBackBtnClick}">Back to results</div>
+                    </div>
+                </aura:if>
+            </div>
         </div>
     </div>
 </aura:component>

@@ -21,9 +21,9 @@
                         ["aura:html", {
                             "tag": 'div',
                             "HTMLAttributes": {
-                                "id": singleExam.Id,
+                                // "id": singleExam.Id,
                                 "onclick": cmp.getReference("c.onExamClick"),
-                                "data-exam-id": singleExam.Exam__c,
+                                "data-result-id": singleExam.Id,
                                 "aura:id": "exam-btn",
                                 "class": `exam-btn ${(singleExam.Exam__r.Titan__r.Name).replace(" ", "_").toLowerCase()}`
                             }
@@ -129,16 +129,23 @@
             })
         }
     },
+    navBackToExams: function(cmp, event) {
+        cmp.set('v.examClicked', false)
+    },
+    onPbpClick: function(cmp, event) {
+
+    },
     fireExamIdEvent: function (cmp, event) {
         // Pass list of ExamResult as Array instead.
+        cmp.set('v.examResultId', event.target.getAttribute('data-result-id'))
         // console.log(event.target.getAttribute('data-exam-id'))
-        const action = $A.get('e.c:ExamResultBtnClickedEvent');
-        action.setParams({
-            'ExamId': event.target.getAttribute('data-exam-id')
-        })
-        action.fire();
+        // const action = $A.get('e.c:ExamResultBtnClickedEvent');
+        // action.setParams({
+        //     'ExamId': event.target.getAttribute('data-result-id')
+        // })
+        // action.fire();
         // Diable `exam-btn` hide for now
-        // cmp.set("v.examClicked", true)
-        console.log(action);
+        cmp.set("v.examClicked", true)
+        // console.log(action);
     }
 })

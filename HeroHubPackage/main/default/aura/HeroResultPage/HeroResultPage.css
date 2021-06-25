@@ -27,12 +27,12 @@
 
 .THIS .flex-wrapper .titan-tabs {
     min-width: 20vw;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .THIS .flex-wrapper .right-panel {
     min-width: 20vw;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .THIS .exam-btn-group {
@@ -75,12 +75,46 @@
 .THIS .titan-tab {
     color: black;
     background: white;
-    border-left: 3px solid white;
+    border-right: 3px solid white;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .THIS .titan-tab:hover {
     border-left: 3px solid red;
+    box-shadow: 3px 3px 2px black;
+}
+
+.THIS .right-panel-btn-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 19vw;
+    gap: 0.3em;
+}
+
+.THIS .pbp-btn {
+    width: 100%;
+    color: black;
+    background: white;
+    border-right: 3px solid white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.THIS .pbp-btn:hover {
+    border-right: 3px solid red;
+    box-shadow: 3px 3px 2px black;
+}
+.THIS .back-btn {
+    width: 100%;
+    color: black;
+    background: white;
+    border-right: 3px solid white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.THIS .back-btn:hover {
+    border-right: 3px solid red;
     box-shadow: 3px 3px 2px black;
 }
