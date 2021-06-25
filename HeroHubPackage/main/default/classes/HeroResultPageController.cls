@@ -1,7 +1,16 @@
+/////////////////////////////////////////////////////
+//
+//  Name: HeroResultPageController.cls
+//  Author: Wootae Yang
+//  Description: Controller used in HeroHubPackage/aura/HeroResultPage
+//
+///////////////////////////////////////////////////
+
+
 public with sharing class HeroResultPageController {
     @AuraEnabled
     public static List<Exam_Result__c> getResultList(){
-        return [SELECT Id, Exam__r.Titan__r.Name, Account__r.Name, Exam__r.Name, Exam__r.Titan__c, Score__c, Total_Correct__c, Total_Answers__c, Pass__c FROM Exam_Result__c WHERE Account__r.Name = 'Gladius Maximus' ];
+        return [SELECT Id, Exam__c, Exam__r.Titan__r.Name, Account__r.Name, Exam__r.Name, Exam__r.Titan__c, Score__c, Total_Correct__c, Total_Answers__c, Pass__c FROM Exam_Result__c WHERE Account__r.Name = 'Gladius Maximus' ];
     }
 
     @AuraEnabled
@@ -12,7 +21,6 @@ public with sharing class HeroResultPageController {
             if(!result.contains(name))
             result.add(name);
         }
-        system.debug(result);
         return result;
     }
 }
