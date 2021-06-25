@@ -2,9 +2,9 @@
     init : function(component, event, helper) {
         component.set("v.columns", 
             [
-                {label:'Score', fieldName="Score__c"},
-                {label:'Question', fieldName="Question__c"},
-                {label:'Answer', fieldName="Hero_Answer__c"},
+                {label:'Score', fieldName:'Score__c'},
+                {label:'Question', fieldName:'Question__c'},
+                {label:'Answer', fieldName:'Hero_Answer__c'},
             ]
         )
         helper.getInterview(component, event)
@@ -39,7 +39,7 @@
             action.setCallback(this, function(response) {
                 var state = response.getState();
                 if (state === "SUCCESS") {
-                    // if response if success then reset/blank the 'contactList' Attribute 
+                    // if response is success then reset/blank the 'contactList' Attribute 
                     // and call the common helper method for create a default Object Data to Contact List 
                     component.set("v.flagList", []);
                     helper.createFlag(component, event);
@@ -52,7 +52,8 @@
     },
 
     handleFinalize : function(component, event, helper) {
-        helper.handleFinalize(component, event)
+        helper.setFlags(component, event)
+        helper.finalizeInterview(component,event)
     },
     
 })
