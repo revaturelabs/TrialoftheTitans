@@ -1,4 +1,4 @@
-<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+<aura:component implements="flexipage:availableForAllPageTypes, lightning:isUrlAddressable" access="global">
 
     <!--Main container component for the QC Interview app; manages and stores data for other QC Interview app components-->
     <aura:attribute name="CurrentHero"  type="Account"/>

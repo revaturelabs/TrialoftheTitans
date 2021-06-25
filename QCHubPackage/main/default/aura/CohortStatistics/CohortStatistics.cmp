@@ -11,5 +11,7 @@
                 />
 
                 <div id="svg"></div>>
+    
+    <lightning:button value="{!ActiveCohort}">Interview Cohort</lightning:button>
 
 </aura:component>	

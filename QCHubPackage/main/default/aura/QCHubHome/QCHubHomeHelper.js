@@ -58,7 +58,16 @@
                 let cohortData = response.getReturnValue();
                 console.log(cohortData);
                 component.set("v.SelectedCohort", cohortData);
+                component.set("v.SquadList", cohortData.squadList);
+                /*
+                console.log("Squad List Render");
+                let squadMap = new Map([cohortData.squadMap]);
 
+                console.log(squadMap);
+                console.log("KEYS");
+                console.log(squadMap.keys());
+                component.set("v.SquadList", squadMap.keys());
+                */
             }
             
             else if (state == "INCOMPLETE"){

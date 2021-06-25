@@ -8,9 +8,10 @@
     <aura:attribute name="NoCohortSelected" type="Boolean" default = "true"/>
     <aura:attribute name="Hero" type="Object" />
     <aura:attribute name="contextInfo" type="UserContextInfo" />
+    <aura:attribute name="SquadList" type="QCSquadWrapper[]"/>
 
     <p>{!v.SelectedCohort.cohort.Name}</p>
-
+    <p>{!v.SelectedCohort.squadList[0].squad.Name}</p>
     <!-- Beginning of box layout grid for components -->
     <div class="slds-grid slds-gutters slds-align_absolute-center">
         <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
@@ -25,7 +26,7 @@
             </td>
         </div>
         <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
-       <!--     <p><c:SquadButtons/></p>-->
+            <p><c:SquadButtons SquadList="{!v.SquadList}"/></p>
         </div>
     </div>
     <!-- End of box layout grid for components -->
