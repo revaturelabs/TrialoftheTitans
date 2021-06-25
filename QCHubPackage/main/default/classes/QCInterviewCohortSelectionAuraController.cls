@@ -24,22 +24,22 @@ public with sharing class QCInterviewCohortSelectionAuraController {
         }
     }
 
-    @AuraEnabled
-    public static List<QC_Interview__c> getInterviews(List<Account> heroes){
-        try {
-            List<String> hid = new List<String>();
-            for(Account h : heroes) {
-                hid.add(h.id);
-            }
+    // @AuraEnabled
+    // public static List<QC_Interview__c> getInterviews(List<Account> heroes){
+    //     try {
+    //         List<Id> hid = new List<Id>();
+    //         for(Account h : heroes) {
+    //             hid.add(h.id);
+    //         }
 
-            List<QC_Interview__c> qci = [SELECT Name, QC_Score__c, Finalized__c 
-                                        FROM QC_Interview__c 
-                                        WHERE Account__c IN :hid];
+    //         List<QC_Interview__c> qci = [SELECT Name, QC_Score__c, Finalized__c 
+    //                                     FROM QC_Interview__c 
+    //                                     WHERE Account__c IN :hid];
 
-            return qci;
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
-    }
+    //         return qci;
+    //     } catch (Exception e) {
+    //         throw new AuraHandledException(e.getMessage());
+    //     }
+    // }
 
 }
