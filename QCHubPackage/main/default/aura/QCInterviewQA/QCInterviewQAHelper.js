@@ -12,7 +12,7 @@
             console.log(response.getState());
             if (state === "SUCCESS") {
                 
-                return response.getReturnValue();
+                console.log(response.getReturnValue());
 
             } else if (state === "ERROR") {
                 var errors = response.getError();
