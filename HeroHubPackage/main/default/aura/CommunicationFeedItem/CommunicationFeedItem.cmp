@@ -11,4 +11,4 @@
         <h1>{!v.content.header.text}</h1>
         <p>{!v.content.body.text}</p>
     </div>
-</aura:component>	
+</aura:component>

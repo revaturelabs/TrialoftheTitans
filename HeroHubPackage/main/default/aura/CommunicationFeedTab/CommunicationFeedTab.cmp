@@ -13,4 +13,4 @@
     <div class = "{!v.tabName == v.activeTab ? 'active-tab' : 'tab'}" id = "{!'feed-tab-' + v.index}" onclick = "{!c.TabSelected}">
         {!v.tabName}
     </div>
-</aura:component>	
+</aura:component>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cohort__c</fullName>
+    <description>The cohort for which this interview was conducted (individual hero).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The cohort that the hero this interview is conducted with belongs to.</inlineHelpText>
+    <label>Cohort</label>
+    <referenceTo>Cohort__c</referenceTo>
+    <relationshipLabel>QC Interviews</relationshipLabel>
+    <relationshipName>QC_Interviews</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>
