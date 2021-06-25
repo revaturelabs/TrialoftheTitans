@@ -53,7 +53,6 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<members>QC_Question_Answer__c</members>
 		<members>QC_Question_Deck__c</members>
 		<members>QC_Question__c</members>
-		<members>Cohort__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
