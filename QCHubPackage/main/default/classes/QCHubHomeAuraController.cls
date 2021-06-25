@@ -76,6 +76,9 @@ public with sharing class QCHubHomeAuraController {
     */
     @AuraEnabled
     public static QCCohortWrapper RetrieveCohortData(String cohortStr){
+        System.debug('IN APEX CONTROLLER');
+
+        System.debug(cohortStr);
 
         Schema.DescribeSObjectResult acctDesc = Account.SObjectType.getDescribe();
 		Map<String, Schema.RecordTypeInfo> acctRecTypeMap = acctDesc.getRecordTypeInfosByName();
