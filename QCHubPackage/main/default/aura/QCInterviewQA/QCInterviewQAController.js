@@ -17,7 +17,9 @@
     //*/
     
     TestQBox : function(cmp, event, helper) {
-        console.log("ahoy");
-        helper.getQuestionDeck(cmp,"Sample Question Deck");
+        //console.log("ahoy");
+        
+       helper.getQuestionDeck(cmp,"Sample Question Deck", helper);
+       
     }
 })
