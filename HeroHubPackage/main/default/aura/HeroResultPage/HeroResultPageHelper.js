@@ -6,19 +6,13 @@
 
 ({
     init: function (cmp, event) {
-        const getResultList = cmp.get('c.getResultList');
-        let result = []
         let titanIdList = [];
+        const getResultList = cmp.get('c.getResultList');
         getResultList.setCallback(this, function (response) {
             if (response.getState() === "SUCCESS") {
                 const resultList = response.getReturnValue();
-                console.log("getting result list", resultList);
-                for (let i in resultList) {
-                    result.push(resultList[i])
-                    console.log(resultList[i])
-                }
-                let examListPanel
-                result.forEach(singleExam => {
+                // console.log("getting result list", resultList);
+                resultList.forEach(singleExam => {
                     const titanId = singleExam.Exam__r.Titan__c
                     if (!titanIdList.includes(titanId)) {
                         titanIdList.push(titanId)
@@ -46,7 +40,7 @@
                             if (status === "SUCCESS") {
                                 let wrapperDiv = cmps[0]
                                 let innerDiv = cmps[1]
-                                examListPanel = cmp.get('v.examListPanel')
+                                let examListPanel = cmp.get('v.examListPanel')
                                 wrapperDiv.set("v.body", innerDiv)
                                 examListPanel.push(wrapperDiv)
                                 cmp.set("v.examListPanel", examListPanel)
@@ -64,17 +58,17 @@
                 cmp.set("v.resultList", resultList)
                 cmp.set("v.titanIdList", titanIdList)
 
-                console.log("resultList is...", cmp.get('v.resultList'));
+                // console.log("resultList is...", cmp.get('v.resultList'));
                 //=> {Id: "a075e000000q6WDAAY", Account__c: "0015e00000AeLnyAAF", Score__c: 88.89, Total_Correct__c: 40, Total_Answers__c: 45, …}
             }
         })
-        console.log('mylist..' + cmp.get('v.titanIdList'))
+        // console.log('mylist..' + cmp.get('v.titanIdList'))
         // console.log(result)
         const getTitanList = cmp.get('c.getTitanList');
         getTitanList.setCallback(this, function (response) {
             if (response.getState() === "SUCCESS") {
                 const titanList = response.getReturnValue();
-                console.log('myTitans...' + titanList)
+                // console.log('myTitans...' + titanList)
                 titanList.forEach(titan => {
                     $A.createComponent(
                         "aura:html", {
@@ -108,20 +102,21 @@
         $A.enqueueAction(getTitanList)
     },
     markActiveTab: function (cmp, event) {
-        let titan = event.target.innerHTML.replace(" ", "_").toLowerCase()
+        const titan = event.target.innerHTML.replace(" ", "_").toLowerCase()
         cmp.set('v.currentPage', titan)
         document.querySelectorAll('.titan-tab').forEach(singleTab => {
-            console.log(cmp.get('v.currentPage'), ' AND ', singleTab.innerHTML.replace(" ", "_").toLowerCase())
-            singleTab.style.borderLeft = cmp.get('v.currentPage') === singleTab.innerHTML.replace(" ", "_").toLowerCase()
+            const slug = singleTab.innerHTML.replace(" ", "_").toLowerCase()
+            // console.log(cmp.get('v.currentPage'), ' AND ', slug)
+            singleTab.style.borderLeft = cmp.get('v.currentPage') === slug
                 ? '3px solid black'
                 : ''
-            singleTab.style.boxShadow = cmp.get('v.currentPage') === singleTab.innerHTML.replace(" ", "_").toLowerCase()
+            singleTab.style.boxShadow = cmp.get('v.currentPage') === slug
                 ? '3px 3px 2px black'
                 : ''
         })
     },
     filterExamList: function (cmp, event) {
-        let titan = event.target.innerHTML.replace(" ", "_").toLowerCase()
+        const titan = event.target.innerHTML.replace(" ", "_").toLowerCase()
         if (titan === 'all_titans') {
             document.querySelectorAll(`.exam-btn`).forEach(singleBtn => {
                 singleBtn.style.display = 'block'
@@ -136,18 +131,8 @@
     },
     fireExamIdEvent: function (cmp, event) {
         // Pass list of ExamResult as Array instead.
-        console.log(event.target.getAttribute('data-exam-id'))
-        // const getExamId = cmp.get('c.getExamId');
-        // getExamId.setParams({
-        //     'resultId': event.target.id
-        // })
-        // getExamId.setCallback(this, function (response) {
-        //     if (response.getState() === 'SUCCESS') {
-        //         console.log('Hello FROM getExamId Callback');
-        //     }
-        // })
-        // $A.enqueueAction(getExamId);
-        let action = $A.get('e.c:ExamResultBtnClickedEvent');
+        // console.log(event.target.getAttribute('data-exam-id'))
+        const action = $A.get('e.c:ExamResultBtnClickedEvent');
         action.setParams({
             'ExamId': event.target.getAttribute('data-exam-id')
         })
