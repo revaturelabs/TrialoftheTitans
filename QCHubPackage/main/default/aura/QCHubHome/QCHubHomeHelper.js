@@ -44,8 +44,10 @@
     },
 
     LoadCohortData : function(component, selectedCohort){
+        console.log("Cohort data helper");
         let CohortInit = component.get("c.RetrieveCohortData");
-        CohortInit.setParam({cohort : selectedCohort});
+        console.log(JSON.stringify(selectedCohort));
+        CohortInit.setParams({cohortStr : JSON.stringify(selectedCohort)});
 
         CohortInit.setCallback(this, function(response){
 
@@ -53,7 +55,8 @@
 
             if (state == "SUCCESS"){
                 console.log(state);
-                var cohortData = response.getReturnValue();
+                let cohortData = response.getReturnValue();
+                console.log(cohortData);
                 component.set("v.SelectedCohort", cohortData);
 
             }
@@ -65,7 +68,7 @@
 
             else if (state == "ERROR"){
                 console.log(state);
-                var errors = response.getError();
+                let errors = response.getError();
 
                 if (errors) {
                     if (errors[0] && errors[0].message){
