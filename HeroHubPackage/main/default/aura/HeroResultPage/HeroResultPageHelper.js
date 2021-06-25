@@ -29,6 +29,7 @@
                             "HTMLAttributes": {
                                 "id": singleExam.Id,
                                 "onclick": cmp.getReference("c.onExamClick"),
+                                "data-exam-id": singleExam.Exam__c,
                                 "aura:id": "exam-btn",
                                 "class": `exam-btn ${(singleExam.Exam__r.Titan__r.Name).replace(" ", "_").toLowerCase()}`
                             }
@@ -134,10 +135,21 @@
         }
     },
     fireExamIdEvent: function (cmp, event) {
-        console.log(event.target.id)
+        // Pass list of ExamResult as Array instead.
+        console.log(event.target.getAttribute('data-exam-id'))
+        // const getExamId = cmp.get('c.getExamId');
+        // getExamId.setParams({
+        //     'resultId': event.target.id
+        // })
+        // getExamId.setCallback(this, function (response) {
+        //     if (response.getState() === 'SUCCESS') {
+        //         console.log('Hello FROM getExamId Callback');
+        //     }
+        // })
+        // $A.enqueueAction(getExamId);
         let action = $A.get('e.c:ExamResultBtnClickedEvent');
         action.setParams({
-            'ExamId': event.target.id
+            'ExamId': event.target.getAttribute('data-exam-id')
         })
         action.fire();
         // Diable `exam-btn` hide for now
