@@ -31,13 +31,7 @@
         component.set("v.flagList", RowItemList);
     },
 
-    handleFinalize : function(component, event) {
-        var flags = component.get("v.flagList")
-        var interviews = component.get("v.interviews")
-
-        flags.setParams({})
-    },
-
+    // validation for requiring description on row save
     validateFlags: function(component, event) {
         var isValid = true;
         var flagRows = component.get("v.flagList");
@@ -49,5 +43,23 @@
         }
         return isValid;
     },
+
+    
+    // should handle getting params for insert and upsert of flags and interview
+    setFlags : function(component, event) {
+        var flags = component.get("v.flagList")
+
+        flags.setParams({flags: component.get("v.flagList")})
+
+        $A.enqueueAction(flags)
+    },
+
+    finalizeInterview : function(component, event) {
+        var interview = component.get("c.setInterview")
+
+        interview.setParams({interview: component.get("v.interviews")})
+
+        $A.enqueueAction(interview)
+    }
 
 })
