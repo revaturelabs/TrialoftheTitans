@@ -1,24 +1,42 @@
 <aura:component implements="flexipage:availableForAllPageTypes" access="global">
 
+
     <!--Main container component for the QC Interview app; manages and stores data for other QC Interview app components-->
     <aura:attribute name="CurrentHero"  type="Account"/>
     <aura:attribute name="Week"         type="String"/>
-    <aura:attribute name="CurrentStage" type="String" default="QCStart"/>
+    <aura:attribute name="Start" type="boolean" default="false"/>
+    <aura:attribute name="Interview" type="boolean" default="true"/>
+    <aura:attribute name="End" type="boolean" default="false"/>
+
+
+    <!-- This header section shows the currently active stage - (Begin) -->
+    <div>
+        <div>
+            <div class="boxBackground slds-box slds-grid slds-gutters slds-align_absolute-center">
+                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center"><p>Start</p></div>
+                <div class="active boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">Interview</div>
+                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">End</div>
+            </div>
+        </div>
+    </div>
+    <!-- End of header stage section -->
+
     
     <!--Begin component display (depends on CurrentStage attribute)-->
     <div>
-        <aura:if isTrue="{!v.CurrentStage==QCStart}">
-            True
+        <aura:if isTrue="{!v.Start}">
+     
+
         </aura:if>
     </div>
     
      
-    <aura:if isTrue="{!v.CurrentStage==QCInterview}">
+    <aura:if isTrue="{!v.Interview}">
         <c:QCInterviewQA/>
     </aura:if>
     
     
-    <aura:if isTrue="{!v.CurrentStage==QCEnd}">
+    <aura:if isTrue="{!v.End}">
     
     </aura:if>
     
