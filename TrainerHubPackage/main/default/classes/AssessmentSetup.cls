@@ -36,4 +36,13 @@ public class AssessmentSetup {
        insert heroAssessmentList;
         
     }
+    public static void associateCohort(){
+        Cohort__c coh = new Cohort__c(Name='4122021');
+        insert coh;
+        List<Account> userAccount = [SELECT Name, Team__c from Account]; 
+        for(Account acc : userAccount){
+            acc.Cohort__c = coh.id;
+        }
+        update userAccount;
+    }
 }
