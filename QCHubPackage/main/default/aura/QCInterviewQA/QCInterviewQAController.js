@@ -14,7 +14,7 @@
         component.set("v.HeroAnswer.Question__c", input);
         //component.set("v.TEST", input);
 	},
-    //*/
+    */
     
     TestQBox : function(cmp, event, helper) {
         console.log("ahoy");

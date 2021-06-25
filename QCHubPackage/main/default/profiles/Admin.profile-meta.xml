@@ -39,6 +39,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>QC_Interview__c.Cohort__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>QC_Interview__c.Finalized__c</field>
         <readable>true</readable>
