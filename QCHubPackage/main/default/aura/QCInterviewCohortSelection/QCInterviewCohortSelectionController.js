@@ -5,14 +5,15 @@
                     [
                         {label:'Hero', fieldName="Account__c"},
                         {label:'Score', fieldName="QC_Score__c"},
-                        {label:'Status', fieldName=""}, //should be Finalized__c and should show 1 icon on true, and another on false
+                        {label:'Status', fieldName=""},
                         {label:'Interview', type:'button', 
                             typeAttributes: {
                                     name: 'start',
                                     label: 'Start',
                                     iconPosition: 'left',
-                                    iconName: 'utility:warning',
-                                    variant: 'warning' 
+                                    iconName: 'utility:add',
+                                    variant: 'Success',
+                                    disabled: '{!v.heroList.Finalized__c}',  
                             }
                         }
                     ]
@@ -27,7 +28,7 @@
 
 })
 
-// add this to v.columns attribute when Finalized__c on QC_Interview__c = true
+// add this to v.columns attribute when heroList.Finalized__c=true, if I can figure out how to do this
 // {type : 'button', label: 'Interview',
 // typeAttributes: {
 //         name: 'completed',
