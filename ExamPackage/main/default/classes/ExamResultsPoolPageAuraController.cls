@@ -8,7 +8,7 @@ public with sharing class ExamResultsPoolPageAuraController {
 ///////////////////////////////////////////////////
 
 @AuraEnabled
-public static List<String> GetAllExamResultPoolQuestions(/*Id examResultId */){
+public static List<String> GetAllExamResultPoolQuestions(String examResultId){
 
     List<String> allExamResultPoolQuestions = new List<String>();
 
@@ -16,7 +16,7 @@ public static List<String> GetAllExamResultPoolQuestions(/*Id examResultId */){
     FROM Question_Assignment__c 
     WHERE Exam_Question__c IN 
     (SELECT Exam_Question__c FROM Hero_Answer__c 
-    WHERE Exam_Result__c = 'a075e000001fT4DAAU')]){
+    WHERE Exam_Result__c = :examResultId)]){
 
     allExamResultPoolQuestions.add(qa.Question_Pool__r.Name);
     }
@@ -25,7 +25,7 @@ public static List<String> GetAllExamResultPoolQuestions(/*Id examResultId */){
 }
 
 @AuraEnabled
-public static List<String> GetCorrectExamResultPoolQuestions(/*Id examResultId */){
+public static List<String> GetCorrectExamResultPoolQuestions(String examResultId){
 
     List<String> correctExamResultPoolQuestions = new List<String>();
 
@@ -33,7 +33,7 @@ public static List<String> GetCorrectExamResultPoolQuestions(/*Id examResultId *
                                         FROM Question_Assignment__c 
                                         WHERE Exam_Question__c IN 
                                         (SELECT Exam_Question__c FROM Hero_Answer__c 
-                                        WHERE Exam_Result__c = 'a075e000001fT4DAAU' AND Correct__c = True)]){
+                                        WHERE Exam_Result__c = :examResultId AND Correct__c = True)]){
 
         correctExamResultPoolQuestions.add(qa.Question_Pool__r.Name);
         } 
