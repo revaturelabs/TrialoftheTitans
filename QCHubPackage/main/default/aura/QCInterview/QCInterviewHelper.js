@@ -1,5 +1,5 @@
 ({
-	helperMethod : function() {
+	LoadSessionData : function(component) {
 		
 	}
 })
