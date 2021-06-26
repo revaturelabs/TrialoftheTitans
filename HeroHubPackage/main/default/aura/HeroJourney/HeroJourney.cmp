@@ -15,10 +15,12 @@
     <aura:attribute name="contextInfo" type="UserContextInfo"/>
     <aura:attribute name="currentTitanExams" type="List"/>
     <aura:attribute name="currentChart" type="String" default="Titan Progress" />
+    <aura:attribute name="takingExam" type="Boolean"/>
     <aura:handler name="changeChart" event="c:changeChartEvent" action="{!c.changeChart}" />
     <aura:handler name="init" value="{!this}" action="{!c.ContextChange}"/>
     <aura:handler name="change" value="{!v.contextInfo}" action="{!c.ContextChange}"/>
     <aura:handler event="c.TitanClickedEvent" action="{!c.TitanClicked}"/>
+    <aura:handler event="c.TakeExamClickedEvent" action="{!c.takeExamClicked}"/>
     
     <div class="slds-grid">
         <!-- Tabs column -->
@@ -63,6 +65,9 @@
                 <!-- Metrics Column -->
 
             </aura:set>
+        </aura:if>
+        <aura:if isTrue = "{!v.takingExam}">
+            <c:ExamInterview/>
         </aura:if>
         <!-- Overview & GamePath Column -->
     </div>

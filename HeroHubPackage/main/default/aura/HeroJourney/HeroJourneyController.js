@@ -27,5 +27,9 @@
       console.log('from changeChart');
       component.set('v.currentChart', event.getParam('chartType'));
     
+    }, 
+
+    takeExamClicked : function(component, event, helper){
+      console.log("examClicked");
     }
 })

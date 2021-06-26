@@ -1,0 +1,13 @@
+<!-- 
+/////////////////////////////////////////////////////
+//
+//  Name: TakeExamClickedEvent.evt
+//  Author: Jayvious Williams
+//  Description: This application event helps send the exam that is going to be taken to the ExamInterview.cmp from the ExamStats.cmp
+//
+///////////////////////////////////////////////////
+-->
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name = "exam" type = "String"/>
+    <aura:attribute name = "takingExam" type = "Boolean"/>
+</aura:event>

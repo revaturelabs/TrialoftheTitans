@@ -50,5 +50,17 @@
 
         }
 
+    },
+
+
+    // takeExamEvent(): Sets up the TakeExamClickedEvent.evt with the proper information.
+    // Based on the exam, that was clicked for the above helper. Also set the takingExam to True
+    takeExamEvent : function(component, event){
+        console.log("Handling the Take Event Button on click Event");
+        var clickEvent = $A.get("e.c:TakeExamClickedEvent");
+        let exam = event.getParam("exam");
+        console.log(exam);
+        clickEvent.setParams({"exam" : exam}, {"takingExam" : true});
+        clickEvent.fire();
     }
 })

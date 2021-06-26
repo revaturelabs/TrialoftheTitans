@@ -19,6 +19,7 @@
     <aura:attribute name="display" type="Boolean" />
 
     <aura:handler event="c.ExamClickedEvent" action="{!c.ExamClicked}"/>
+    <aura:registerEvent name = "TakeExamAppEvent" type = "c:TakeExamClickedEvent"/>
 
     <aura:if isTrue="{!v.display}">
         <div>
@@ -34,7 +35,7 @@
             <!-- Display for an exam that has yet to be attempted -->
             <aura:if isTrue="{!and(v.assigned, v.attempted == false)}">
                     <h1> Ready to take on the {!v.exam} minion? </h1>
-                    <button class="btn">Take Exam!</button>
+                    <button class="btn" onclick = "{!c.takeExam}">Take Exam!</button>
             </aura:if>
             <!-- Display for an exam that has yet to be attempted -->
 

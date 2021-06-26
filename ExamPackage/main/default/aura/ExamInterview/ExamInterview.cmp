@@ -1,0 +1,28 @@
+<aura:component controller = "ExamInterviewApexController">
+    <!--Author: Jayvious Williams
+        Usage: Holder for the Exam Interview. This will make use of each of the question component type we created.
+    -->
+    <!--Aura Attributes-->
+    <aura:attribute name = "exam" type = "Exam__c"/>
+    <aura:attribute name = "titan" type = "Titan__c"/>
+    <aura:attribute name = "examQuestions" type = "Exam_Question__c[]"/>
+    <aura:attribute name = "examName" type = "String"/>
+    <aura:handler event = "c.TakeExamClickedEvent" action = "{!c.assignExam}"/>
+    
+
+    <aura:handler name = "init" value = "{!this}" action = "{!c.loadExamQuestions}"/>
+
+
+    <!--Componet View-->
+    <aura:iteration aura:id = "iterator" items="{!v.exam}" var="questions">
+        <aura:if isTrue = "{!questions.Question_Type__c == Numerical}">
+            {!c.navigateToQuestion}
+        </aura:if>
+        <aura:if isTrue = "{!questions.Question_Type__c == Matching}">
+            {!c.navigateToQuestion}
+        </aura:if>
+    </aura:iteration>
+
+    
+
+</aura:component>	
