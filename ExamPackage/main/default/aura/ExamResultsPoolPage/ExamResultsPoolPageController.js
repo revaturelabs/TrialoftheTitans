@@ -1,15 +1,15 @@
 ({
-    doInit : function(component, event, helper) {
-        let getExamPoolQuestions = component.get("c.getExamResultPools");
-
+    //retrieve all questions from exam results that are within a question pool and set to an attribute
+    DoInit : function(component, event, helper) {
+        let getExamPoolQuestions = component.get("c.GetAllExamResultPoolQuestions");
+        //set.Param with examResultId
         getExamPoolQuestions.setCallback( this, function( response ) {
             if( response.getState() === "SUCCESS" ){
-                var pool = [];
-                const  AllExamPoolQuestions = response.getReturnValue();
-     
-                console.log("Getting Exam Question Info",  AllExamPoolQuestions);
-                component.set( "v.questionPool",  AllExamPoolQuestions );
-                component.set( "v.correctpoollist",  AllExamPoolQuestions );
+
+                var allExamResultPoolQuestions = response.getReturnValue();
+                console.log("Getting Exam Question Info",  allExamResultPoolQuestions);
+                component.set( "v.ExamResultPoolQuestions",  allExamResultPoolQuestions );
+                component.set( "v.QuestionPoolReset",  allExamResultPoolQuestions );
             }
             else {
                 console.log('No Pools in this Exam')
@@ -18,35 +18,25 @@
         $A.enqueueAction(getExamPoolQuestions);
 
     },
-
-    poolEvent : function(component, event, helper){
-        let getCorrectAnswerPool = component.get("c.getExamResultAnswers");
-        //create an object to count frequency through key/value pairs
+    //retrieve all correctly answered questions from exam results that are within a question pool
+    RetrieveCorrectExamResultPools : function(component, event, helper){
+        let getCorrectAnswerPool = component.get("c.GetCorrectExamResultPoolQuestions");
         
         getCorrectAnswerPool.setCallback( this, function( response ) {
             if( response.getState() === "SUCCESS" ){
-                let resetPool = component.get("v.correctpoollist")
-                const CorrectAnswerPool = response.getReturnValue();
-                component.set( "v.questionPool",  resetPool);
-
-               helper.correctExamPoolQuestionsMapped(component, CorrectAnswerPool);
-
+                let resetPool = component.get("v.QuestionPoolReset")
+                var correctExamResultPoolQuestions = response.getReturnValue();
+                component.set( "v.ExamResultPoolQuestions",  resetPool);
+                
+               //Calculates the percentage per pool
+               helper.CalculatePoolPercentage(component, correctExamResultPoolQuestions);
             }
             else {
                 console.log('No correct answers in a pool')
             }
         });
         $A.enqueueAction(getCorrectAnswerPool);
-        helper.ExamPoolFormToggle(component, event, helper);
+        helper.ToggleExamPoolPercentage(component, event, helper);
     },
-    
-   /*navigater : function(component, event, helper){
-
-        console.log('hit');
-        const page = event.getParam('page');
-        console.log(page);
-        component.set("v.navigate", page);
-
-    },*/
 
 })
