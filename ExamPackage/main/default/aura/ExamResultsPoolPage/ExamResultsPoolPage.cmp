@@ -1,0 +1,41 @@
+<!--ExamResultsPoolPage-->
+<!-- 6/25/2021 -->
+<!-- Miguel McCrary-->
+<!-- Description: 
+--> 
+
+<aura:component controller="ExamResultsPoolPageAuraController" 
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,
+                            force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+
+
+    <aura:attribute name="ExamResultPoolQuestions" type="Map" default="{}" />
+    <aura:attribute name="TogglePoolInfo" type="Boolean" default="false"/>
+    <aura:attribute name="QuestionPoolReset" type="Map" default="{}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.DoInit}"/>
+    
+   
+    <div class="slds-grid">
+     <!-- Pool Percentages -->
+     <div class="slds-col">  
+    <aura:if isTrue= "{!v.TogglePoolInfo}">
+        <aura:iteration items="{!v.ExamResultPoolQuestions}" var="pool" indexVar="key" >
+            <p>{!pool.key}.....{!pool.value}%</p>
+        </aura:iteration>
+    </aura:if>
+    </div> 
+  <!-- Pool Percentages -->
+
+
+     <!-- Pool Percentage Button -->
+     <div class="slds-col"> 
+        <lightning:button label="Pool Percentages"
+                                      class="slds-var-m-top_medium"
+                                      variant="brand"
+                                      onclick="{!c.RetrieveCorrectExamResultPools}"/>
+    </div>  
+    <!-- Pool Percentage Button -->
+
+
+    </div>                                  
+</aura:component>	
