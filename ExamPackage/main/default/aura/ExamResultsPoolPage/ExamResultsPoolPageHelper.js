@@ -1,15 +1,15 @@
 ({ 
    //toggles the visibility for the pool percentages
    ToggleExamPoolPercentage : function(component, event, helper) {
-        component.set("v.TogglePoolInfo", !component.get("v.TogglePoolInfo"));
+        // component.set("v.TogglePoolInfo", component.get("v.TogglePoolInfo"));
     },
 
     //creates an object for all exam result questions in a pool 
     //and all correct exam result questions in a pool, compares the pool
     CalculatePoolPercentage : function(component, correctExamResultPoolQuestions) {
-        var correctPoolQuestionsObj = {};
-        var allPoolQuestionsObj ={};
-        var resultsObject ={};
+        let correctPoolQuestionsObj = {};
+        let allPoolQuestionsObj ={};
+        let resultsObject ={};
         let key;
         let initValue;
         let fixedValue;
@@ -24,7 +24,9 @@
             });
 
             //create an object to count answer frequency for each pool through key/value pairs
-            var allExamResultPoolQuestions =  JSON.parse(JSON.stringify(component.get("v.ExamResultPoolQuestions")));
+            let allExamResultPoolQuestions =  JSON.parse(JSON.stringify(component.get("v.ExamResultPoolQuestions")));
+            console.log('HERE',allExamResultPoolQuestions);
+
             allExamResultPoolQuestions.forEach(item => {
                 if(allPoolQuestionsObj[item]){
                 allPoolQuestionsObj[item]++;
@@ -49,7 +51,7 @@
                         }
                     }
                 }
-                var mapForAttribute = Object.entries(resultsObject).map(([key, value]) => ({key,value}));
+                let mapForAttribute = Object.entries(resultsObject).map(([key, value]) => ({key,value}));
 
             component.set("v.ExamResultPoolQuestions", mapForAttribute);
             console.log("Attribute Finalized: ");
