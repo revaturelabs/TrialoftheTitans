@@ -16,7 +16,8 @@ public with sharing class QCInterviewCohortSelectionAuraController {
             String cid = cohort.id;
             List<Account> a = [SELECT Name, Cohort__r.Name, Squad__r.Name
                                 FROM Account
-                                WHERE Cohort__c=:cid];
+                                WHERE Cohort__c=:cid
+                                ORDER BY Squad__c];
 
             return a;
         } catch (Exception e) {
@@ -27,7 +28,7 @@ public with sharing class QCInterviewCohortSelectionAuraController {
     @AuraEnabled
     public static List<QC_Interview__c> getInterviews(List<Account> heroes){
         try {
-            List<String> hid = new List<String>();
+            List<Id> hid = new List<Id>();
             for(Account h : heroes) {
                 hid.add(h.id);
             }
