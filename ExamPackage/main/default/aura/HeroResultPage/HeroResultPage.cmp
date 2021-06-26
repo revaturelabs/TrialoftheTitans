@@ -13,6 +13,7 @@
     <aura:attribute name="examResultId" type="String" />
     <aura:attribute name="currentPage" type="String" />
     <aura:attribute name="examClicked" type="Boolean" default="false" />
+    <aura:attribute name="pbpClicked" type="Boolean" default="false" />
     <aura:attribute name="titanIdList" type="List" />
     <aura:registerEvent name="ExamResultBtnClickedEvent" type="c:ExamResultBtnClickedEvent" />
     <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
@@ -23,19 +24,26 @@
                 {!v.titanTabPanel}
             </div>
             <div class="main-panel">
-                <aura:if isTrue="{!!v.examClicked}">
-                    <div class="exam-btn-group">
-                        {!v.examListPanel}
-                    </div>
+                <aura:if isTrue="{!!v.pbpClicked}">
+                    <aura:if isTrue="{!!v.examClicked}">
+                        <div class="exam-btn-group">
+                            {!v.examListPanel}
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!v.examClicked}">
+                        <c:HeroResults examResultId="{!v.examResultId}" />
+                    </aura:if>
                 </aura:if>
-                <aura:if isTrue="{!v.examClicked}">
-                    <c:HeroResults examResultId="{!v.examResultId}" />
+                <aura:if isTrue="{!v.pbpClicked}">
+                    <c:ExamResultsPoolPage examResultId="{!v.examResultId}" />
                 </aura:if>
             </div>
             <div class="right-panel">
                 <aura:if isTrue="{!v.examClicked}">
                     <div class="right-panel-btn-group">
-                        <div class="pbp-btn" onclick="{!c.onPbpClick}">Pool by Pool</div>
+                        <aura:if isTrue="{!!v.pbpClicked}">
+                            <div class="pbp-btn" onclick="{!c.onPbpClick}">Pool by Pool</div>
+                        </aura:if>
                         <div class="back-btn" onclick="{!c.onBackBtnClick}">Back to results</div>
                     </div>
                 </aura:if>

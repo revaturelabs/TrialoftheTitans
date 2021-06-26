@@ -131,9 +131,10 @@
     },
     navBackToExams: function(cmp, event) {
         cmp.set('v.examClicked', false)
+        cmp.set('v.pbpClicked', false)
     },
-    onPbpClick: function(cmp, event) {
-
+    showPbp: function(cmp, event) {
+        cmp.set('v.pbpClicked', true)
     },
     fireExamIdEvent: function (cmp, event) {
         // Pass list of ExamResult as Array instead.
