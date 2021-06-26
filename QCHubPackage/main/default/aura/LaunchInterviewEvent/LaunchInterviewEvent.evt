@@ -1,0 +1,1 @@
+<aura:event type="Component" description="Used to get QCHubHome to launch an interview for the currently selected cohort"/>

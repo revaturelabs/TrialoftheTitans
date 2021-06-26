@@ -1,4 +1,5 @@
 ({
+    // Load a list of all currently active cohorts (on init)
     LoadCohorts : function(component) {
 
         let CohortListInit = component.get("c.RetrieveCohorts");
@@ -43,9 +44,14 @@
 
     },
 
+
+    // Load data for a specific cohort (launched by UpdateCohort function in main JS controller,
+    // which is triggered by UpdateCohortEvent from CohortButtons component when a cohort is selected)
     LoadCohortData : function(component, selectedCohort){
+        console.log("Cohort data helper");
         let CohortInit = component.get("c.RetrieveCohortData");
-        CohortInit.setParam({cohort : selectedCohort});
+        console.log(JSON.stringify(selectedCohort));
+        CohortInit.setParams({cohortStr : JSON.stringify(selectedCohort)});
 
         CohortInit.setCallback(this, function(response){
 
@@ -53,9 +59,10 @@
 
             if (state == "SUCCESS"){
                 console.log(state);
-                var cohortData = response.getReturnValue();
+                let cohortData = response.getReturnValue();
+                console.log(cohortData);
                 component.set("v.SelectedCohort", cohortData);
-
+                component.set("v.SquadList", cohortData.squadList);
             }
             
             else if (state == "INCOMPLETE"){
@@ -65,7 +72,7 @@
 
             else if (state == "ERROR"){
                 console.log(state);
-                var errors = response.getError();
+                let errors = response.getError();
 
                 if (errors) {
                     if (errors[0] && errors[0].message){
@@ -85,5 +92,25 @@
 
         $A.enqueueAction(CohortInit);
 
+    },
+
+
+    LaunchInterview : function(component){
+        console.log("Helper: launching interview");
+        let navService = component.find("navService");
+        let interviewReference = {
+            type: 'standard__component',
+            attributes: {
+                componentName: 'c__QCInterview'
+
+            },
+            state: {
+
+            }
+    
+        }
+        navService.navigate(interviewReference);
+
     }
+
 })
