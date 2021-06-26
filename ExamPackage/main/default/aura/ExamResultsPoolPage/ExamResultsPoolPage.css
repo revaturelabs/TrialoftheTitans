@@ -1,2 +1,22 @@
-.THIS {
+.THIS.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.THIS .poolbypool {
+  background: white;
+  color: black;
+  padding: 0.5em;
+}
+.THIS .data-vis1 {
+  border: 1px solid red;
+}
+.THIS .data-vis2 {
+  border: 1px solid white;
+  grid-column: 1 / span 2;
+  height: 100px;
+}
+
+.THIS .pool-item-wrapper {
+  font-size: 1.5em;
 }

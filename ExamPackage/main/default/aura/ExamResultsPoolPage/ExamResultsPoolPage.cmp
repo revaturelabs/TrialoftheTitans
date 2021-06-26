@@ -2,37 +2,36 @@
 <!-- 6/25/2021 -->
 <!-- Miguel McCrary-->
 <!-- Description: 
---> 
+-->
 
 <aura:component controller="ExamResultsPoolPageAuraController">
 
 
     <aura:attribute name="ExamResultPoolQuestions" type="Map" default="{}" />
-    <aura:attribute name="TogglePoolInfo" type="Boolean" default="true"/>
+    <aura:attribute name="TogglePoolInfo" type="Boolean" default="true" />
     <aura:attribute name="examResultId" type="String" />
-    <aura:handler name="init" value="{!this}" action="{!c.DoInit}"/>
-    
-    <div class="slds-grid">
-     <!-- Pool Percentages -->
-     <div class="slds-col">  
-    <aura:if isTrue= "{!v.TogglePoolInfo}">
-        <aura:iteration items="{!v.ExamResultPoolQuestions}" var="pool" indexVar="key" >
-            <p>{!pool.key}.....{!pool.value}%</p>
-        </aura:iteration>
-    </aura:if>
-    </div> 
-  <!-- Pool Percentages -->
+    <aura:handler name="init" value="{!this}" action="{!c.DoInit}" />
+
+    <div class="wrapper">
+        <!-- Pool Percentages -->
+        <div class="poolbypool">
+            <aura:if isTrue="{!v.TogglePoolInfo}">
+                <aura:iteration items="{!v.ExamResultPoolQuestions}" var="pool" indexVar="key">
+                    <div class="pool-item-wrapper">
+                        {!pool.key}.....{!pool.value}%
+                    </div>
+                </aura:iteration>
+            </aura:if>
+        </div>
+        <!-- Pool Percentages -->
+        <div class="data-vis1">
+            
+        </div>
+        <div class="data-vis2">
+
+        </div>
+        <!-- Pool Percentage Button -->
 
 
-     <!-- Pool Percentage Button -->
-     <div class="slds-col"> 
-        <lightning:button label="Pool Percentages"
-                                      class="slds-var-m-top_medium"
-                                      variant="brand"
-                                      onclick="{!c.RetrieveCorrectExamResultPools}"/>
-    </div>  
-    <!-- Pool Percentage Button -->
-
-
-    </div>                                  
-</aura:component>	
+    </div>
+</aura:component>
