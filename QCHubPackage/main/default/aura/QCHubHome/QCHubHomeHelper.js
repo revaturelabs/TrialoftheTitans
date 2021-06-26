@@ -1,4 +1,5 @@
 ({
+    // Load a list of all currently active cohorts (on init)
     LoadCohorts : function(component) {
 
         let CohortListInit = component.get("c.RetrieveCohorts");
@@ -43,6 +44,9 @@
 
     },
 
+
+    // Load data for a specific cohort (launched by UpdateCohort function in main JS controller,
+    // which is triggered by UpdateCohortEvent from CohortButtons component when a cohort is selected)
     LoadCohortData : function(component, selectedCohort){
         console.log("Cohort data helper");
         let CohortInit = component.get("c.RetrieveCohortData");
@@ -59,15 +63,6 @@
                 console.log(cohortData);
                 component.set("v.SelectedCohort", cohortData);
                 component.set("v.SquadList", cohortData.squadList);
-                /*
-                console.log("Squad List Render");
-                let squadMap = new Map([cohortData.squadMap]);
-
-                console.log(squadMap);
-                console.log("KEYS");
-                console.log(squadMap.keys());
-                component.set("v.SquadList", squadMap.keys());
-                */
             }
             
             else if (state == "INCOMPLETE"){
@@ -97,5 +92,25 @@
 
         $A.enqueueAction(CohortInit);
 
+    },
+
+
+    LaunchInterview : function(component){
+        console.log("Helper: launching interview");
+        let navService = component.find("navService");
+        let interviewReference = {
+            type: 'standard__component',
+            attributes: {
+                componentName: 'c__QCInterview'
+
+            },
+            state: {
+
+            }
+    
+        }
+        navService.navigate(interviewReference);
+
     }
+
 })

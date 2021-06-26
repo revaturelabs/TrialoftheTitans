@@ -1,7 +1,10 @@
 <aura:component controller="QCHubHomeAuraController" implements="flexipage:availableForAllPageTypes" access="global">
+
+    <lightning:navigation aura:id="navService"/>
     
     <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/>
     <aura:handler name="UpdateCohortEvent" event="c:UpdateCohortEvent" action="{!c.UpdateCohort}"/>
+    <aura:handler name="LaunchInterviewEvent" event="c:LaunchInterviewEvent" action="{!c.LaunchInterview}"/>
 
     <aura:attribute name="CohortList"    type="Cohort__c[]"/>
     <aura:attribute name="SelectedCohort"   type="QCCohortWrapper"/>

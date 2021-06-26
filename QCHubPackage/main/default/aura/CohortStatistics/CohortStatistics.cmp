@@ -1,5 +1,7 @@
 <aura:component controller="QCHubController" implements="flexipage:availableForAllPageTypes" access="global">
 
+    <aura:registerEvent name="LaunchInterviewEvent" type="c:LaunchInterviewEvent"/>
+
     <aura:attribute name="ActiveCohort" type="Cohort__c"/>
 
     <p>Active cohort: {!v.ActiveCohort.Name}</p>
@@ -12,6 +14,6 @@
 
                 <div id="svg"></div>>
     
-    <lightning:button value="{!ActiveCohort}">Interview Cohort</lightning:button>
+    <lightning:button value="{!ActiveCohort}" onclick="{!c.LaunchEvent}">Interview Cohort</lightning:button>
 
 </aura:component>	
