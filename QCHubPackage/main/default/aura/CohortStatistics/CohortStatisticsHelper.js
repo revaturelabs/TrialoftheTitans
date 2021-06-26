@@ -71,6 +71,15 @@
 
 
 
-        )}
+        )},
+    
+    
+    FireLaunchInterviewEvent : function(component){
+
+        let liEvent = component.getEvent("LaunchInterviewEvent");
+        console.log("Firing liEvent");
+        liEvent.fire();
+
+    }
     
 })
