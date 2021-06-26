@@ -96,7 +96,6 @@
 
 
     LaunchInterview : function(component){
-        console.log("Helper: launching interview");
         let navService = component.find("navService");
         let interviewReference = {
             type: 'standard__component',
@@ -105,10 +104,14 @@
 
             },
             state: {
-
+                c__Cohort: component.get("v.SelectedCohort"),
+                c__CohortId: "6712345"
             }
     
         }
+        //console.log(JSON.stringify(interviewReference));
+        //console.log(JSON.stringify(component.get("v.SelectedCohort")));
+        sessionStorage.setItem('ActiveCohort', JSON.stringify(component.get("v.SelectedCohort")));
         navService.navigate(interviewReference);
 
     }
