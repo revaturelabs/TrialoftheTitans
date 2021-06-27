@@ -1,15 +1,18 @@
 <aura:component implements="flexipage:availableForAllPageTypes, lightning:isUrlAddressable" access="global">
 
-    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/>
+    <aura:handler name="UpdateQAListEvent" event="c:UpdateQAListEvent" action="{!c.QAEvent}"/>
 
     <!--Main container component for the QC Interview app; manages and stores data for other QC Interview app components-->
     <aura:attribute name="Cohort"       type="QCCohortWrapper"/>
     <aura:attribute name="CohortId"     type="String"/>
     <aura:attribute name="CurrentHero"  type="Account"/>
     <aura:attribute name="Week"         type="String"/>
+    <aura:attribute name="CurrentQAList" type="QC_Question_Answer__c[]"/>
     <aura:attribute name="Start" type="boolean" default="false"/>
     <aura:attribute name="Interview" type="boolean" default="true"/>
     <aura:attribute name="End" type="boolean" default="false"/>
+
 
 
     <!-- This header section shows the currently active stage - (Begin) -->
@@ -34,8 +37,7 @@
     <!--Begin component display (depends on CurrentStage attribute)-->
     <div>
         <aura:if isTrue="{!v.Start}">
-     
-
+            <c:QCInterviewCohortSelection/>
         </aura:if>
     </div>
     
@@ -46,7 +48,7 @@
     
     
     <aura:if isTrue="{!v.End}">
-    
+        <c:QCInterviewHeroReview/>
     </aura:if>
     
     
