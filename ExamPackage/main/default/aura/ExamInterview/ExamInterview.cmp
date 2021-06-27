@@ -12,7 +12,7 @@
 
     <aura:handler name = "init" value = "{!this}" action = "{!c.loadExamQuestions}"/>
 
-
+HELLO
     <!--Componet View-->
     <aura:iteration aura:id = "iterator" items="{!v.exam}" var="questions">
         <aura:if isTrue = "{!questions.Question_Type__c == Numerical}">
