@@ -60,6 +60,12 @@
         interview.setParams({interview: component.get("v.interviews")})
 
         $A.enqueueAction(interview)
+    },
+    
+    LaunchStageEvent : function(component, stage){
+        let StageEvent = component.getEvent("UpdateStageEvent");
+        StageEvent.setParams("StageName", stage);
+        StageEvent.fire();
     }
 
 })
