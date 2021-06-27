@@ -20,9 +20,16 @@
     <div class="wrapper">
         <div class="flex-wrapper">
             <div class="titan-tab-group">
-                <div class='titan-tab' onclick="{!c.onTitanClick}">All Titans</div>
-                {!v.titanTabPanel}
+                <aura:if isTrue="{!!v.examClicked}">
+                    <div class='titan-tab' onclick="{!c.onTitanClick}">All Titans</div>
+                    {!v.titanTabPanel}
+                </aura:if>
+                <aura:if isTrue="{!v.examClicked}">
+                        <div class="back-exams-btn" onclick="{!c.onBackBtnClick}">Back to exam list</div>
+                </aura:if>
+            
             </div>
+            
             <div class="main-panel">
                 <aura:if isTrue="{!!v.pbpClicked}">
                     <aura:if isTrue="{!!v.examClicked}">
@@ -44,7 +51,9 @@
                         <aura:if isTrue="{!!v.pbpClicked}">
                             <div class="pbp-btn" onclick="{!c.onPbpClick}">Pool by Pool</div>
                         </aura:if>
-                        <div class="back-btn" onclick="{!c.onBackBtnClick}">Back to results</div>
+                        <aura:if isTrue="{!v.pbpClicked}">
+                            <div class="back-btn" onclick="{!c.onBackDetailBtnClick}">Test Result Details</div>
+                        </aura:if>
                     </div>
                 </aura:if>
             </div>

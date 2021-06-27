@@ -133,6 +133,9 @@
         cmp.set('v.examClicked', false)
         cmp.set('v.pbpClicked', false)
     },
+    navBackToSingleExam: function (cmp, event) {
+        cmp.set('v.pbpClicked', false)
+    },
     showPbp: function(cmp, event) {
         cmp.set('v.pbpClicked', true)
     },

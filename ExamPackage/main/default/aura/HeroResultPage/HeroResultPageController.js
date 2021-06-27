@@ -17,6 +17,9 @@
     onBackBtnClick: function (cmp, event, helper) {
         helper.navBackToExams(cmp, event)
     },
+    onBackDetailBtnClick: function(cmp, event, helper) {
+        helper.navBackToSingleExam(cmp, event)
+    },
     onPbpClick: function (cmp, event, helper) {
         helper.showPbp(cmp, event)
     }
