@@ -4,7 +4,7 @@
 //Author: Jayvious Williams
 //Date Created: 6/21/21
 //Date Updated: 6/21/21
-//Description: Temporary Controller for MatchingQuestionType
+//Description: Temporary Controller for MatchingQuestionType Component
 //
 //////////////////////////////////////////
 //

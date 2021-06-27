@@ -16,9 +16,10 @@
         console.log("displayresults: " + JSON.stringify(event.getParam("exam")));
         let exam = event.getParam("exam");
         console.log("exam assigned? " + exam.assigned);
-        component.set("v.exam", exam.name);
+        component.set("v.exam", exam);
 
-        if(exam.assigned == false){
+        //todo: change below conditional statement to exam.assigned == false
+        if(exam.assigned == true){
             component.set("v.assigned", false);
         }else{
             if(exam.highScore != null){
@@ -50,5 +51,19 @@
 
         }
 
+    },
+
+
+    // takeExamEvent(): Sets up the TakeExamClickedEvent.evt with the proper information.
+    // Based on the exam, that was clicked for the above helper. Also set the takingExam to True
+    takeExamEvent : function(component, event){
+        let clickEvent = $A.get("e.c:TakeExamClickedEvent");
+        let examId = component.get('v.exam')["currentResults"][0].Exam__c
+        console.log('myexam ' + examId);
+        clickEvent.setParams({
+            "examId" : examId, 
+            "takingExam" : true
+        });
+        clickEvent.fire();
     }
 })

@@ -12,7 +12,6 @@
 
     <!--Component View-->
     <lightning:card>
-        <!--<lightning:button label = "Pull Matching Questions" onclick = "{!c.search}"/>-->
         <div class="slds-p-around_x-small">
             <h1>{!v.questionprompt}</h1>
                 {!v.body}
