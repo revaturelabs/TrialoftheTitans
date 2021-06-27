@@ -1,4 +1,9 @@
 <aura:component>
+<aura:handler name="render" value="{!this}" action="{!c.RenTest}"/>
+<aura:attribute name="ActiveCohort" type="QCCohortWrapper"/>
+<aura:attribute name="SquadList" type="QCSquadWrapper[]"/>
+
+
 
     <!-- Hide list until we can dynamically create each li based on a returned array size. (add slds-hidden when function working) -->
     <ul class="slds-has-block-links_space ">
@@ -7,8 +12,10 @@
         </li>
         <!-- dynamically add additional list item links depending on the amount of squads returned -->
     </ul>
-    <aura:iteration>
-        <lightning:button>Current Squad</lightning:button>
+    <aura:iteration items="{!v.SquadList}" var="SquadWrap">
+        <lightning:button>Hi, this is a squad {!SquadWrap.squad.Name}</lightning:button>
     </aura:iteration>
 
-</aura:component>	
+
+
+</aura:component>

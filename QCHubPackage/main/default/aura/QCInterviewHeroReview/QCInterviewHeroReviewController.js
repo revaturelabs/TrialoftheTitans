@@ -52,8 +52,9 @@
     },
 
     handleFinalize : function(component, event, helper) {
-        helper.setFlags(component, event)
-        helper.finalizeInterview(component,event)
+        helper.setFlags(component, event);
+        helper.finalizeInterview(component,event);
+        helper.UpdateStage(component, "Start");
     },
     
 })
