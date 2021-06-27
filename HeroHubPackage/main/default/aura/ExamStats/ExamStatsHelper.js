@@ -20,7 +20,6 @@
 
         //todo: change below conditional statement to exam.assigned == false
         if(exam.assigned == true){
-            // if(exam.assigned == false){
             component.set("v.assigned", false);
         }else{
             if(exam.highScore != null){
@@ -61,7 +60,10 @@
         let clickEvent = $A.get("e.c:TakeExamClickedEvent");
         let examId = component.get('v.exam')["currentResults"][0].Exam__c
         console.log('myexam ' + examId);
-        clickEvent.setParams({"examId" : examId}, {"takingExam" : true});
+        clickEvent.setParams({
+            "examId" : examId, 
+            "takingExam" : true
+        });
         clickEvent.fire();
     }
 })
