@@ -30,7 +30,10 @@
     }, 
 
     takeExamClicked : function(component, event, helper){
-      console.log("examClicked");
+      // console.log(event.getParams()['examId'])
+      // console.log(event.getParams()['takingExam'])
+      component.set('v.examId',event.getParams()['examId'])
+      component.set('v.takingExam', event.getParams()['takingExam'])
     },
     onFakeBtnClick : function (cmp, event, helper) {
       let examId = cmp.get('v.examId')
