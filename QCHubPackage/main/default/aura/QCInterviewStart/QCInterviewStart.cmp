@@ -1,0 +1,13 @@
+<aura:component>
+
+    <aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
+    <aura:registerEvent name="StartInterviewEvent" type="c:StartInterviewEvent"/>
+    <!--aura:handler name="SelectHeroEvent" type="c:SelectHeroEvent" action="c.StartInterview"/-->
+
+    <aura:attribute name="Cohort" type="QCCohortWrapper"/>
+
+    <c:QCInterviewCohortSelection/>
+
+    <lightning:button onclick="{!c.TESTNEXT}">TestNext</lightning:button>
+
+</aura:component>	

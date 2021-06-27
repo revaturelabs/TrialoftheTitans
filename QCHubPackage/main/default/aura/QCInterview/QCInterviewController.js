@@ -14,10 +14,23 @@
 	},
 
 
+	UpdateStage : function(component, event, handler){
+
+		component.set("v.Stage", event.getParam("StageName"))
+
+	},
+
+
 	QAEvent : function(component, event, handler){
 
 		let questionAnswer = event.getParam("QA");
 		helper.AddQuestionAnswer(component, questionAnswer);
 
+	},
+
+
+	SetHero : function(component, event, handler){
+
+		component.set("v.CurrentHero", event.getParam("SelectedHero"));
 	}
 })

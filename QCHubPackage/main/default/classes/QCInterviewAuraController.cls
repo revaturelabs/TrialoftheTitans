@@ -1,7 +1,9 @@
 public with sharing class QCInterviewAuraController {
-    
+
+
+    // ***CURRENTLY NOT IN USE***
     @AuraEnabled
-    public InsertInterviewData(QC_Interview__c qcInterview, List<QC_Question_Answer__c> qcQA, List<QC_Flag__c> qcFlags) {
+    public static void InsertInterviewData(QC_Interview__c qcInterview, List<QC_Question_Answer__c> qcQA, List<QC_Flag__c> qcFlags) {
 
         insert qcInterview;
 
