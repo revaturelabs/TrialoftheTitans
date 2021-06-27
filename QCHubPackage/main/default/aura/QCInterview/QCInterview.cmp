@@ -12,9 +12,9 @@
     <aura:attribute name="CurrentHero"  type="Account"/>
     <aura:attribute name="Week"         type="String"/>
     <aura:attribute name="CurrentQAList" type="QC_Question_Answer__c[]"/>
-    <aura:attribute name="Start" type="boolean" default="false"/>
+    <!-- <aura:attribute name="Start" type="boolean" default="false"/>
     <aura:attribute name="Interview" type="boolean" default="true"/>
-    <aura:attribute name="End" type="boolean" default="false"/>
+    <aura:attribute name="End" type="boolean" default="false"/> -->
 
 
 
@@ -27,7 +27,7 @@
                     <p class="{!v.Stage=='Start' ? 'active' : ''}">Start</p>
                 </div>
 
-                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center'}">
+                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">
                     <p class="{!v.Stage=='Interview' ? 'active ' : ''}">Interview</p>
                 </div>
 
