@@ -5,13 +5,22 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.init }"/>
    
-    <!--div style="height: 300px"> need to move this styling to style sheet-->
-       
-        <lightning:button label="+" title="plus" onclick="{! c.PlusClick }"/>     
-        <lightning:button label="-" title="minus" onclick="{! c.MinusClick }"/>     
-        <lightning:input type="number" name="scorebox" value="{!v.HeroScore}" placeholder="{!v.HeroScore}" label="Hero Score" />
+        <div> 
+            <lightning:input type="number" name="scorebox" value="{!v.HeroScore}" placeholder="{!v.HeroScore}" label="Hero Score" />
+        </div>
+         
+        <div>
+
+            <div>
+                <lightning:button label="+" title="plus" onclick="{! c.PlusClick }"/> 
+            </div>
+               
+            <div>
+                <lightning:button label="-" title="minus" onclick="{! c.MinusClick }"/>
+            </div>
+
+        </div>  
+        
         <!-- use onChange to run a function-->
-    <!--    
-    </div>
-    -->
+   
 </aura:component>
