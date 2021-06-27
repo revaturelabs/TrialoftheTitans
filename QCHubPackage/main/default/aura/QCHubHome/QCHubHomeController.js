@@ -6,12 +6,15 @@
     },
 
     UpdateCohort : function(component, event, helper){
-        //let selectedCohort = event.getParam("SelectedCohort");
-        //console.log("QCHUBHOME HANDLER: " + selectedCohort);
-        //console.log("cObj in String Format===>"+JSON.stringify(selectedCohort) );
-        helper.LoadCohortData(component.event.getParam("SelectedCohort"))
-        component.set("v.NoCohortSelected", false);
+        // Triggered by UpdateCohortEvent
+        helper.LoadCohortData(component, event.getParam("SelectedCohort"));
         
+    },
+
+    LaunchInterview : function(component, event, helper){
+
+        console.log("liEvent received, launching interview");
+        helper.LaunchInterview(component);
     },
 
 

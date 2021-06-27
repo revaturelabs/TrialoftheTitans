@@ -9,57 +9,74 @@
 
 public with sharing class QCHubHomeAuraController {
 
+
+    // Apex controller method fired from QCHubHome Init event - retrieves data about active cohorts
     @AuraEnabled
     public static List<Cohort__c> RetrieveCohorts(){
-        return [SELECT Id, Name FROM Cohort__c WHERE Active__c = true];
-    }
-    /*
-    public List<QCCohortWrapper> CohortsInit() {
-        List<QCCohortWrapper> activeCohorts = new List<QCCohortWrapper>();
+        
+        return [SELECT Id, Name, QC_Interview_Sum__c, QC_Interview_Count__c FROM Cohort__c WHERE Active__c = true];
 
     }
-    */
+
+    
+    // Apex controller method fired from QCHubHome UpdateCohortEvent event - retrieves detailed data about a
+    // single cohort.
     @AuraEnabled
     public static QCCohortWrapper RetrieveCohortData(String cohortStr){
+    // QCCohortWrapper contains the following properties: Cohort__c cohort, Map<String, List<Account>> squadMap, and
+    // List<QCSquadWrapper> squadList. squadMap (initialized with the above map) probably will not be necessary in the
+    // aura component, but is included for now.
+    // QCSquadWrapper contains: Squad__c squad, and List<Account> heroes.
+    // Overall, cohortData is a QCCohortWrapper type object that stores the cohort that is currently selected,
+    // and a list of QCSquadWrapper objects to store each squad in the cohort, and a list of heroes in that squad.
+    // It is initialized below.
 
-        System.debug('UNIQUE IDENTIFIER ADZHITENOV');
-
+        // Get 'Hero' record type Id to retrieve Hero accounts only
         Schema.DescribeSObjectResult acctDesc = Account.SObjectType.getDescribe();
 		Map<String, Schema.RecordTypeInfo> acctRecTypeMap = acctDesc.getRecordTypeInfosByName();
 		Id heroTypeId = acctRecTypeMap.get('Hero').getRecordTypeId();
 
-        System.debug(heroTypeId);
-
-        System.debug(cohortStr);
-
+        // Cohort object is passed in as a JSON string, deserialized into Cohort__c sObject type here
         Cohort__c cohort = (Cohort__c) JSON.deserialize(cohortStr, Cohort__c.class);
 
-        System.debug(cohort);
+        // Retrieve all heroes in the selected cohort
+        List<Account> heroList = [SELECT Name, Squad__r.Name, Squad__r.Id, Team__r.Name FROM Account WHERE RecordTypeId=:heroTypeId AND Cohort__r.Name=:cohort.Name];
 
-        List<Account> heroList = new List<Account>([SELECT Name, Squad__r.Name, Team__r.Name FROM Account WHERE RecordTypeId=:heroTypeId AND Cohort__r.Name=:cohort.Name]);
-
-        System.debug(heroList);
-
-        // Map squad objects to a list of the heroes in that squad
-
-        //Map<Squad__c, List<Account>> squadList = new Map<Squad__c, Account>();
-        Map<String, List<Account>> squadList = new Map<String, List<Account>>();
+        // squadMap is initialized to hold a list of all heroes for each squad name key, and is
+        // used to sort Heroes in a cohort into squads
+        Map<String, List<Account>> squadMap = new Map<String, List<Account>>();
 
         for (Account hero : heroList){
-            if (squadList.get(hero.Squad__r.Name) != NULL){
-                squadList.get(hero.Squad__r.Name).add(hero);
+            String currentHeroSquad = hero.Squad__r.Name;
+            if (squadMap.containsKey(currentHeroSquad)){
+                squadMap.get(currentHeroSquad).add(hero);
+
             }
-            else (squadList.put(hero.Squad__r.Name, new List<Account>{hero}));
+            else (squadMap.put(hero.Squad__r.Name, new List<Account>{hero}));
+
         }
 
-        System.debug(squadList);
-
+        // Initialize the QCCohortWrapper object that will be used to pass data back to the component's JS controller,
+        // and begin populating it with values
         QCCohortWrapper cohortData = new QCCohortWrapper();
         cohortData.cohort = cohort;
-        cohortData.squadList = squadList;
+        cohortData.squadMap = squadMap;
 
-        System.debug(cohortData);
+        List<Squad__c> squads = [SELECT Id, Name, Team__r.Name FROM Squad__c WHERE Name IN :squadMap.keySet()];
+
+        cohortData.squadList = new List<QCSquadWrapper>();
+
+        // Populate cohortData's squadList with the squads that are in the selected cohort
+        for (Squad__c s : squads){
+            cohortData.squadList.add(new QCSquadWrapper(s));
+        }
+        // Populate each QCSquadWrapper object in squadList with a list of the heroes that are in that squad,
+        // using squadMap from above
+        for (QCSquadWrapper squadListElement : cohortData.squadList){
+            squadListElement.heroes = squadMap.get(squadListElement.squad.Name);
+        }
 
         return cohortData;
+
     }
 }

@@ -3,21 +3,23 @@
     init : function(component, event, helper) {
         component.set("v.columns", 
                     [
-                        {label:'Hero', fieldName="Account__c"},
-                        {label:'Score', fieldName="QC_Score__c"},
-                        {label:'Status', fieldName=""}, //should be Finalized__c and should show 1 icon on true, and another on false
-                        {label:'Interview', type:'button', 
-                            typeAttributes: {
-                                    name: 'start',
-                                    label: 'Start',
-                                    iconPosition: 'left',
-                                    iconName: 'utility:warning',
-                                    variant: 'warning' 
-                            }
-                        }
+                        {label:'Hero', fieldName:'Name'},
+                        // {label:'Squad Name', fieldName:'Squad__r.Name', type:'text'},
+                        // {label:'', fieldName:""},
+                        // {label:'Interview', type:'button', 
+                        //     typeAttributes: {
+                        //             name: 'start',
+                        //             label: 'Start',
+                        //             iconPosition: 'left',
+                        //             iconName: 'utility:add',
+                        //             variant: 'Success',
+                                    // disabled: '{!v.heroList.Finalized__c}',  
+                            // }
+                        // }
                     ]
         )
         helper.getHeroes(component, event)
+        helper.getInterviews(component, event)
     },
 
     // row selection handles button to start interview
@@ -27,7 +29,7 @@
 
 })
 
-// add this to v.columns attribute when Finalized__c on QC_Interview__c = true
+// add this to v.columns attribute when heroList.Finalized__c=true, if I can figure out how to do this
 // {type : 'button', label: 'Interview',
 // typeAttributes: {
 //         name: 'completed',
