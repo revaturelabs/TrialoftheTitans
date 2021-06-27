@@ -30,7 +30,10 @@
     </div>
     <!-- End of header stage section -->
 
-    <aura:attribute name="CurrentStage" type="String" default="QCStart"/>
+
+    <p>{!v.Cohort.cohort.Id}</p>
+    <p>{!v.CurrentHero.Name}</p>
+
     
     <!--Begin component display (depends on CurrentStage attribute)-->
     <div>

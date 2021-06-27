@@ -6,10 +6,13 @@
         console.log("QCInterviewQAHelperInit");
         let serverCall = component.get("c.CreateInterview");
         console.log("QCInterviewQAHelper action defined");
+        console.log("hero id: " + component.get("v.Hero.Id"));
+        console.log("cohort id: " + component.get("v.CohortId"));
 
-        serverCall.setParams(   { "heroId"  : component.get("v.Hero.Id") },
-                                { "cohortId" : component.get("v.CohortId")},
-                                { "week"    : component.get("v.Week")});
+        serverCall.setParams({  "heroId"  : component.get("v.Hero.Id"),
+                                "heroName" : component.get("v.Hero.Name"),
+                                "cohortId" : component.get("v.CohortId"),
+                                "week"    : component.get("v.Week")});
 
         serverCall.setCallback(this, function(response){
 
@@ -142,7 +145,7 @@
     LaunchQAListEvent : function(component){
 
         let QAListEvent = component.getEvent("UpdateQAListEvent");
-        QAListEvent.setParams("QA", component.get("v.HeroAnswer"));
+        QAListEvent.setParams({"QA" : component.get("v.HeroAnswer")});
         QAListEvent.fire();
     
     },
@@ -151,7 +154,7 @@
     LaunchStageEvent : function(component, stage){
 
         let StageEvent = component.getEvent("UpdateStageEvent");
-        StageEvent.setParams("StageName", stage);
+        StageEvent.setParams({"StageName" : stage});
         StageEvent.fire();
 
     }
