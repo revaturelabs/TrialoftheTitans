@@ -6,7 +6,8 @@
 
     <aura:attribute name="Cohort" type="QCCohortWrapper"/>
 
-    <c:QCInterviewCohortSelection/>
+    <!--This needs to be put back in, but seems to be throwing errors at the moment-->
+    <!--c:QCInterviewCohortSelection/-->
 
     <lightning:button onclick="{!c.TESTNEXT}">TestNext</lightning:button>
 
