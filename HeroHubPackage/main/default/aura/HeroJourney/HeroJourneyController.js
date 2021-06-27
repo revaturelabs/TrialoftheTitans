@@ -31,5 +31,9 @@
 
     takeExamClicked : function(component, event, helper){
       console.log("examClicked");
+    },
+    onFakeBtnClick : function (cmp, event, helper) {
+      let examId = cmp.get('v.examId')
+      helper.startExamEvent(cmp, event, examId);
     }
 })
