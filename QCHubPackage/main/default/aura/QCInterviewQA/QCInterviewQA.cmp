@@ -41,7 +41,7 @@
             </div>
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
-
+                <c:QCInterviewScoreComp/>
             </div>
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
