@@ -50,6 +50,7 @@
     
     <aura:if isTrue="{!v.Stage=='End' ? true : false}">
         <c:QCInterviewHeroReview/>
+
     </aura:if>
     
     
