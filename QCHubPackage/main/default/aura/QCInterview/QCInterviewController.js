@@ -1,5 +1,5 @@
 ({
-	onInit : function(component, event, handler){
+	OnInit : function(component, event, handler){
 		let pageRef = component.get("v.pageReference");
 		let session = sessionStorage.getItem('ActiveCohort');
 		if(pageRef){
@@ -10,6 +10,14 @@
 			component.set("v.Cohort", JSON.parse(session));
 
 		}
+
+	},
+
+
+	QAEvent : function(component, event, handler){
+
+		let questionAnswer = event.getParam("QA");
+		helper.AddQuestionAnswer(component, questionAnswer);
 
 	}
 })
