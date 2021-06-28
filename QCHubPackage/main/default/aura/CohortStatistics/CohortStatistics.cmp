@@ -4,7 +4,7 @@
 
     <aura:attribute name="ActiveCohort" type="Cohort__c"/>
 
-    <p>Active cohort: {!v.ActiveCohort.Name}</p>
+    <!-- <p>Active cohort: {!v.ActiveCohort.Name}</p> -->
     
 <!-- Pull in the necessary libraries to build charts -->
                 <!-- <ltng:require
