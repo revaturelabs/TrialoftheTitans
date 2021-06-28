@@ -1,4 +1,4 @@
-<aura:component implements="flexipage:availableForAllPageTypes, lightning:isUrlAddressable" access="global">
+<aura:component implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable" access="global">
 
     <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/>
     <aura:handler name="UpdateStageEvent" event="c:UpdateStageEvent" action="{!c.UpdateStage}"/>
@@ -12,9 +12,7 @@
     <aura:attribute name="CurrentHero"  type="Account"/>
     <aura:attribute name="Week"         type="String"/>
     <aura:attribute name="CurrentQAList" type="QC_Question_Answer__c[]"/>
-    <!-- <aura:attribute name="Start" type="boolean" default="false"/>
-    <aura:attribute name="Interview" type="boolean" default="true"/>
-    <aura:attribute name="End" type="boolean" default="false"/> -->
+    
 
 
 
@@ -48,7 +46,7 @@
     <!--Begin component display (depends on CurrentStage attribute)-->
     <div>
         <aura:if isTrue="{!v.Stage=='Start' ? true : false}">
-            <c:QCInterviewStart Cohort="{!v.Cohort}"/>
+            <c:QCInterviewStartView Cohort="{!v.Cohort}"/>
         </aura:if>
     </div>
     
@@ -59,7 +57,7 @@
     
     
     <aura:if isTrue="{!v.Stage=='End' ? true : false}">
-        <c:QCInterviewHeroReview/>
+        <c:QCInterviewEnd/>
 
     </aura:if>
     
