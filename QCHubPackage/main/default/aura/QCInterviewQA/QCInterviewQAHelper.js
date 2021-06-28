@@ -67,8 +67,9 @@
                 
                 //console.log(response.getReturnValue());
                 //cmp.set('v.HeroAnswer.Question__c', response.getReturnValue()[0].Question_Body__c);
-                helper.scrambleList(response.getReturnValue());
-                return response.getReturnValue();
+                cmp.set('v.HeroAnswer.Question__c', helper.scrambleList(response.getReturnValue())[0][0].Question_Body__c);
+                //return helper.scrambleList(response.getReturnValue());
+                //return response.getReturnValue();
 
             } else if (state === "ERROR") {
                 var errors = response.getError();
@@ -86,7 +87,7 @@
         
         let OutputList = [];
         let values = Object.values(InputList);
-        console.log(InputList);
+        //console.log(InputList);
             //*
             for(let x in InputList){
 
@@ -95,7 +96,8 @@
                  
             }
             //*/
-            console.log(OutputList);
+            //console.log(OutputList);
+            return OutputList;
 
     },
 
