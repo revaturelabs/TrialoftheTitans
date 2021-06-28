@@ -16,9 +16,18 @@ public class TrainHubPastCohortsTable_Test {
 
         database.insert(newCohorts);
 
-		TrainerHubPastCohortsTableAuraController.fetchPastCohorts();
-        
-        TrainerHubPastCohortsTableAuraController.fetchActiveCohort();
+
+		System.assert(newCohorts[0].Active__c == true, 'First is not active');
+		System.assert(newCohorts[1].Active__c == false, 'Second is active');			
+		
+
+		List<Cohort__c> pastCohorts = TrainerHubPastCohortsTableAuraController.fetchPastCohorts();	     
+        String activeCohort = TrainerHubPastCohortsTableAuraController.fetchActiveCohort();
+
+		for(Cohort__c c : pastCohorts)
+        {
+		System.assert(c.Active__c == false, 'cohort__c ' + c +  ' is not active');
+		}
 
     }
 }
