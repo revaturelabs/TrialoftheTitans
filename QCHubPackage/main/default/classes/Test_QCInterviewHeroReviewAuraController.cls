@@ -1,3 +1,11 @@
+//////////////////////////////////////////////////////////////////////
+//
+//  Name: Test_QCInterviewHereReviewAuraController
+//  Author: Natalie Clark
+//  Description:    Tests the following Apex classes:
+//                  QCInterviewHeroReviewAuraController, QCHubDataFactory
+//
+//////////////////////////////////////////////////////////////////////
 @isTest
 public class Test_QCInterviewHeroReviewAuraController {
     @TestSetup
