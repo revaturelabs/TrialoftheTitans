@@ -1,3 +1,7 @@
+<!--
+    Author: Tyler Curry-Wong
+    Description: Aura component to display Multiple Choice Questions for Exam
+-->
 <aura:component controller="MultipleChoiceQController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
     <!--Declare Attributes-->
     <aura:attribute name="question" type="Object"/>

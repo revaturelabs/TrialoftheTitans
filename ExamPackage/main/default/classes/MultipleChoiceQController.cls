@@ -1,3 +1,7 @@
+/*
+    Author: Tyler Curry-Wong
+    Description: Apex Controller for MultipleChoiceQuestion component
+*/
 public with sharing class MultipleChoiceQController {
     public class MultipleChoiceQController {
         @AuraEnabled

@@ -1,3 +1,7 @@
+/*
+    Author: Tyler Curry-Wong
+    Description: Apex Controller for TrueFalseQuestion component
+*/
 public with sharing class TrueFalseQController {
     public class TrueFalseQController {
         @AuraEnabled
