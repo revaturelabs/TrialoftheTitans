@@ -112,7 +112,6 @@ public class ExamResultsPoolPageAuraController_Test {
     public static void testPositive(){
 
         String ExamResultId = [SELECT Id FROM Exam_Result__c LIMIT 1].Id;
-
         List<String> getReturnAll =  ExamResultsPoolPageAuraController.GetAllExamResultPoolQuestions(ExamResultId);
   
         //first method positive        
@@ -131,7 +130,6 @@ public class ExamResultsPoolPageAuraController_Test {
 
         //second method positive
         List<String> getReturnCorrect = ExamResultsPoolPageAuraController.GetCorrectExamResultPoolQuestions(ExamResultId);
-
         List<String> correctExamResultPoolQuestions = new List<String>();
 
         for(Question_Assignment__c qa : [SELECT Exam_Question__c, Question_Pool__c, Question_Pool__r.Name
@@ -150,8 +148,8 @@ public class ExamResultsPoolPageAuraController_Test {
 
     @isTest
     public static void testNegative(){
-        String emptyString = '';
 
+        String emptyString = '';
         List<String> getReturnAll =  ExamResultsPoolPageAuraController.GetAllExamResultPoolQuestions(emptyString);
   
         //first method negative     
@@ -169,7 +167,6 @@ public class ExamResultsPoolPageAuraController_Test {
 
         //second method negative
         List<String> getReturnCorrect = ExamResultsPoolPageAuraController.GetCorrectExamResultPoolQuestions(emptyString);
-
         List<String> correctExamResultPoolQuestions = new List<String>();
 
         for(Question_Assignment__c qa : [SELECT Exam_Question__c, Question_Pool__c, Question_Pool__r.Name
