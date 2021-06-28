@@ -18,10 +18,13 @@
 
     OnInit : function(component, event, helper){
 
-        helper.CreateInterview(component);
-
+        helper.getQuestionDeck(cmp,"Sample Question Deck", helper);
+        helper.InterviewInit()
     },
-    
+  
+
+  
+
     TestQBox : function(cmp, event, helper) {
         //console.log("ahoy");
         
@@ -42,6 +45,29 @@
 
         helper.LaunchStageEvent(component, "End");
 
-    }
+    },
+
+    RetriveScore: function(component, event){
+        console.log("ahoy")
+		console.log(event.getParam("ScoreToTransfer"));
+		component.set("v.HeroAnswer.Score__c", event.getParam("ScoreToTransfer"));
+
+	},
+
+    PlusClick: function(cmp){
+
+        let x = cmp.get('v.HeroScore')
+        cmp.set('v.HeroScore', ++x)
+       
+    },
+
+    MinusClick: function(cmp){
+
+        let x = cmp.get('v.HeroScore')
+        if(x > 0)
+            cmp.set('v.HeroScore', --x)
+        
+    },
+    
 
 })
