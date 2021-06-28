@@ -16,7 +16,7 @@
                 if(component.get("v.scriptsLoaded")) {
                     this.D3CohortOverview(component);
                 }
-                component.set("v.dataLoaded", true);
+                component.set("v.dataLoaded", true)
             }
             
             else if (state == "INCOMPLETE"){
@@ -138,7 +138,7 @@
 
 
         var height = 500,
-        scaleFactor = 10,
+        scaleFactor = 5,
         barWidth = 85;
 
         var cOverview = d3.select(".svgCohortOverview").append("svg")
@@ -155,7 +155,7 @@
             yScale = d3.scaleLinear().range([height, 0]);
 
         var g = svg.append("g")
-            .attr("transform", "translate(" + 100 + "," + 100 + ")");
+            .attr("transform", "translate(" + 50 + "," + 50 + ")");
 
         xScale.domain(data.map(function(d) { return d.cohortName; }));
         yScale.domain([0, d3.max(data, function(d) { return d.qcAv; })]);

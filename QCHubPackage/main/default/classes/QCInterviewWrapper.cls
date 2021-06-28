@@ -1,6 +1,6 @@
 public with sharing class QCInterviewWrapper {
-    
-    QC_Interview__c qcInt;
-    List<QC_Question_Answer__c> interviewQA;
+    @AuraEnabled public Cohort__c cohort{get;set;}
+    @AuraEnabled public Map<String, List<Account>> squadList{get;set;} 
 
+    
 }

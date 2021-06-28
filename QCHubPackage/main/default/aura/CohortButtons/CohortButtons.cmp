@@ -6,7 +6,10 @@
 
 
 <aura:iteration items="{!v.CohortList}" var="Cohort">
+    <div class="slds-grid slds-grid_vertical-reverse slds-scrollable" style="margin-top: 1%">
     <lightning:button value="{!Cohort}" onclick="{!c.SelectCohort}">{!Cohort.Name}</lightning:button>
+    </div>
+    
 </aura:iteration>
 
 

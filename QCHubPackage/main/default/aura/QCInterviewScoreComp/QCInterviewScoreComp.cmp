@@ -1,12 +1,13 @@
 <aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
     
+    <aura:registerEvent name="PassScoreEvent" type="c:PassScoreEvent"/>
 
     <aura:attribute name="HeroScore" type="Integer"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.init }"/>
    
         <div> 
-            <lightning:input type="number" name="scorebox" value="{!v.HeroScore}" placeholder="{!v.HeroScore}" label="Hero Score" />
+            <lightning:input type="number" name="scorebox" value="{!v.HeroScore}" onchange = "{!c.PassScore}" placeholder="{!v.HeroScore}" label="Hero Score" />
         </div>
          
         <div>

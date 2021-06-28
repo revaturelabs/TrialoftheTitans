@@ -1,0 +1,30 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    
+    <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/> 
+    
+    <aura:attribute name="Hero" type="Object" />
+    <aura:attribute name="heroMap" type="Object" />
+    <aura:attribute name="weeks" type="Object" />  
+    <aura:attribute name="cohortName" type="String" />
+    <aura:attribute name="data" type="Object" />
+              
+    <lightning:tabset variant="scoped">
+        <aura:iteration items="{!v.weeks}" var="weekName">
+            <lightning:tab label="{!weekName}">
+                <aura:iteration items="{!v.heroMap}" var="obj">
+                    <aura:iteration items="{!obj.value}" var="hero">
+                        <aura:if isTrue ="{!weekName == hero.weekName}">
+                            <ul>
+                                {!hero.qcInterviewId} - {!hero.heroId} -  {!hero.heroName} 
+                                <c:QCQuestionAnswer weekName="{!weekName}" qcInterviewId="{!hero.qcInterviewId}" />
+                                <br />
+                                <hr />
+                            </ul>
+                        </aura:if>
+                    </aura:iteration>
+                </aura:iteration>
+            </lightning:tab>
+        </aura:iteration>                    
+    </lightning:tabset>
+          
+  </aura:component>

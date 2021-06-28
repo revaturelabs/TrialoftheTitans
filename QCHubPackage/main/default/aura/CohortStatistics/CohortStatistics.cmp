@@ -4,7 +4,7 @@
 
     <aura:attribute name="ActiveCohort" type="Cohort__c"/>
 
-    <!-- <p>Active cohort: {!v.ActiveCohort.Name}</p> -->
+<!--    <h1 style="text-align: center; font-weight: bolder">Active cohort: {!v.ActiveCohort.Name}</h1> -->
     
 <!-- Pull in the necessary libraries to build charts -->
                 <!-- <ltng:require
@@ -16,4 +16,4 @@
     
     <lightning:button value="{!ActiveCohort}" onclick="{!c.LaunchEvent}">Interview Cohort</lightning:button>
 
-</aura:component>	
+</aura:component>

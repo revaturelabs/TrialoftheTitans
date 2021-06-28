@@ -1,0 +1,67 @@
+<aura:component controller="RetrieveHero_Info" implements="flexipage:availableForAllPageTypes" access="global">
+
+    <lightning:navigation aura:id="navService"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/>
+    <aura:handler name="UpdateCohortEvent" event="c:UpdateCohortEvent" action="{!c.UpdateCohort}"/>
+    <aura:handler name="LaunchInterviewEvent" event="c:LaunchInterviewEvent" action="{!c.LaunchInterview}"/>
+
+    <aura:attribute name="CohortList"    type="Cohort__c[]"/>
+    <aura:attribute name="SelectedCohort"   type="QCCohortWrapper"/>
+    <aura:attribute name="NoCohortSelected" type="Boolean" default = "true"/>
+    <aura:attribute name="Hero" type="Object" />
+    <aura:attribute name="contextInfo" type="UserContextInfo" />
+    <aura:attribute name="SquadList" type="QCSquadWrapper[]"/>
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="heroMap" type="Object" />
+    <aura:attribute name="weeks" type="Object" />
+    <aura:attribute name="allQuestionDeckWithQuestion" type="Object" />
+    <aura:attribute name="cohortName" type="String" />
+
+    <p>{!v.SelectedCohort.cohort.Name}</p>
+    <p>{!v.SelectedCohort.squadList[0].squad.Name}</p>
+
+    <!-- Beginning of box layout grid for components -->
+    <div class="slds-grid slds-gutters slds-align_absolute-center">
+        <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
+            
+            <aura:iteration items="{!v.data.cohortNames}" var="cohortName">
+                
+                    <lightning:button value="{!cohortName}" onclick="{!c.SelectCohort}">{!cohortName}</lightning:button>
+                
+            </aura:iteration>
+        </div>
+
+        <!--  -->
+        <div class="boxGrid slds-col slds-size_7-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small slds-m-vertical_x-small">
+
+            {!v.body}
+ <!--            <p><c:CohortStatistics ActiveCohort="{!v.SelectedCohort.cohort}"/></p>
+            <td>
+                <aura:iteration items="{!v.CohortList}" var="Cohort">
+                    <tr><td>{!Cohort.Name}</td><td>{!Cohort.QC_Interview_Sum__c/Cohort.QC_Interview_Count__c}</td></tr>
+                </aura:iteration>
+            </td> -->
+        </div>
+
+        <!--  -->
+        <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
+            <p><c:SquadButtons SquadList="{!v.SquadList}"/></p>
+        </div>
+    </div>
+    <!-- End of box layout grid for components -->
+
+
+    <!-- Beginning of tabset for heroes -->
+<!--     <div class="slds-grid slds-gutters slds-align_absolute-center">
+        <div class="boxGrid-Hero slds-col slds-size_9-of-12 slds-text-align_center slds-m-top_x-small">
+
+            <div class="tabSet slds-m-top_x-small">
+                        
+            </div>
+
+        </div>
+    </div> -->
+    <!-- End of tabset for heroes -->
+
+</aura:component>

@@ -1,35 +1,131 @@
-QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-
 	<types>
-		<members>QCHubHomeAuraController</members>
-		<members>QCHubController</members>
 		<members>QCCohortWrapper</members>
+		<members>QCHubController</members>
+		<members>QCHubDataFactory</members>
+		<members>QCHubHomeAuraController</members>
+		<members>QCInterviewAuraController</members>
+		<members>QCInterviewCohortSelectionAuraController</members>
+		<members>QCInterviewHeroReviewAuraController</members>
+		<members>QCInterviewQAAuraController</members>
+		<members>QCInterviewWrapper</members>
+		<members>QCSquadWrapper</members>
+		<members>QC_Interview</members>
+		<members>QuestionTableApexController</members>
+		<members>RetrieveHero_Info</members>
+		<members>Test_QCICohortSelectionAuraController</members>
+		<members>Test_QCInterviewHeroReviewAuraController</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
-		<members>QC_Hub</members>
-		<name>CustomApplication</name>
-	</types>
-	<types>
-        <members>QCInterview</members>
-        <members>QCInterviewQA</members>
 		<members>CohortButtons</members>
+		<members>CohortStatistics</members>
+		<members>InterviewHeroEvent</members>
+		<members>PassScoreEvent</members>
+		<members>QCHelloInterview</members>
+		<members>QCHeroInterview_display</members>
 		<members>QCHubHome</members>
+		<members>QCInterview</members>
+		<members>QCInterviewCohortSelection</members>
+		<members>QCInterviewEnd</members>
+		<members>QCInterviewFinalized</members>
 		<members>QCInterviewHeader</members>
-		<members>UpdateCohortEvent</members>
-		<!-- <members>QCInterviewCohortSelection</members> -->
-		<!-- <members>QCInterviewHeroReview</members> -->
+		<members>QCInterviewHeroReview</members>
 		<members>QCInterviewHeroReviewAddRowEvent</members>
 		<members>QCInterviewHeroReviewDeleteRowEvent</members>
 		<members>QCInterviewHeroReviewFlagRow</members>
+		<members>QCInterviewQA</members>
 		<members>QCInterviewQADisplayWeek</members>
+		<members>QCInterviewQAHarness</members>
+		<members>QCInterviewQANavButtons</members>
 		<members>QCInterviewScoreComp</members>
+		<members>QCInterviewStart</members>
 		<members>QCInterviewStartView</members>
-		<members>QCInterviewEnd</members>
+		<members>QCQuestionAnswer</members>
+		<members>QC_Animated_Header</members>
+		<members>QC_Hub_Harness</members>
+		<members>SquadButtons</members>
+		<members>TestQCHub</members>
 		<members>UpdateCohortEvent</members>
-		<members>LaunchInterviewEvent</members>
+		<members>UpdateQAListEvent</members>
+		<members>UpdateStageEvent</members>
+		<members>selectAweek</members>
+		<members>weekDropdown</members>
+		<members>weekSelectionDropdown</members>
 		<name>AuraDefinitionBundle</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>BrandingSet</name>
+	</types>
+	<types>
+		<members>Account.QC_Interview__c</members>
+		<members>Cohort__c.Active__c</members>
+		<members>Cohort__c.Average_Score__c</members>
+		<members>Cohort__c.QC_Interview_Count__c</members>
+		<members>Cohort__c.QC_Interview_Sum__c</members>
+		<members>QC_Flag__c.Account__c</members>
+		<members>QC_Flag__c.Description__c</members>
+		<members>QC_Flag__c.QC_Interview__c</members>
+		<members>QC_Flag__c.Type__c</members>
+		<members>QC_Interview__c.Account__c</members>
+		<members>QC_Interview__c.Cohort__c</members>
+		<members>QC_Interview__c.Finalized__c</members>
+		<members>QC_Interview__c.QC_Score__c</members>
+		<members>QC_Interview__c.Week__c</members>
+		<members>QC_Question_Answer__c.Expected_Answer__c</members>
+		<members>QC_Question_Answer__c.Hero_Answer__c</members>
+		<members>QC_Question_Answer__c.QC_Interview__c</members>
+		<members>QC_Question_Answer__c.Question__c</members>
+		<members>QC_Question_Answer__c.Score__c</members>
+		<members>QC_Question_Deck__c.Week__c</members>
+		<members>QC_Question__c.Expected_Answer__c</members>
+		<members>QC_Question__c.QC_Question_Deck__c</members>
+		<members>QC_Question__c.Question_Body__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>QC_Flag__c</members>
+		<members>QC_Interview__c</members>
+		<members>QC_Question_Answer__c</members>
+		<members>QC_Question_Deck__c</members>
+		<members>QC_Question__c</members>
+		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>DerTestingApp</members>
+		<members>QC_Interview</members>
+		<members>QC_Question_Deck__c</members>
+		<members>QC_Question__c</members>
+		<name>CustomTab</name>
+	</types>
+	<types>
+		<members>DerTestingApp</members>
+		<members>QC_Hub_Home</members>
+		<members>QC_Hub_UtilityBar</members>
+		<members>QC_Interview</members>
+		<members>QC_Interview_Start</members>
+		<members>QC_Review</members>
+		<name>FlexiPage</name>
+	</types>
+	<types>
+		<members>Week_Picklist</members>
+		<name>GlobalValueSet</name>
+	</types>
+	<types>
+		<members>QC_Flag__c-QC Flag Layout</members>
+		<members>QC_Interview__c-QC Interview Layout</members>
+		<members>QC_Question_Answer__c-QC Question Answer Layout</members>
+		<members>QC_Question_Deck__c-QC Question Deck Layout</members>
+		<members>QC_Question__c-QC Question Layout</members>
+		<name>Layout</name>
+	</types>
+	<types>
+		<members>QC_Interview__c.All</members>
+		<members>QC_Question_Deck__c.All</members>
+		<members>QC_Question__c.All</members>
+		<name>ListView</name>
 	</types>
 	<version>51.0</version>
 </Package>

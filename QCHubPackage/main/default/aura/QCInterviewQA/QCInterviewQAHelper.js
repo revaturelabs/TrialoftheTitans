@@ -67,7 +67,7 @@
                 
                 //console.log(response.getReturnValue());
                 //cmp.set('v.HeroAnswer.Question__c', response.getReturnValue()[0].Question_Body__c);
-                cmp.set('v.HeroAnswer.Question__c', helper.scrambleList(response.getReturnValue())[0][0].Question_Body__c);
+                cmp.set('v.QuestionSet', helper.scrambleList(response.getReturnValue()));
                 //return helper.scrambleList(response.getReturnValue());
                 //return response.getReturnValue();
 
@@ -87,16 +87,12 @@
         
         let OutputList = [];
         let values = Object.values(InputList);
-        //console.log(InputList);
-            //*
+      
             for(let x in InputList){
 
-
-                OutputList.push(values.splice(Math.floor(Math.random() * values.length), 1));
-                 
+                OutputList.push(values.splice(Math.floor(Math.random() * values.length), 1));    
             }
-            //*/
-            //console.log(OutputList);
+
             return OutputList;
 
     },

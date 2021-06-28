@@ -21,7 +21,7 @@
 
         let x = cmp.get('v.HeroScore')
         cmp.set('v.HeroScore', ++x)
-        
+       
     },
 
     MinusClick: function(cmp){
@@ -30,6 +30,16 @@
         if(x > 0)
             cmp.set('v.HeroScore', --x)
         
+    },
+
+    PassScore: function(cmp){
+
+        let ScoreTarget = cmp.getEvent("PassScoreEvent");
+        ScoreTarget.setParams({"ScoreToTransfer" : cmp.get("v.HeroScore")});
+        
+        ScoreTarget.fire();
+        console.log("fired");
+
     }
 
 })

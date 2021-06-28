@@ -4,7 +4,7 @@ public with sharing class QCInterviewQAAuraController {
     // Create a new interview with current data, then return it to the component so that its ID
     // is known when answers are uploaded to the database (we do this each time a question is
     // answered, to minimize risk of data loss)
-    @AuraEnabled 
+    @AuraEnabled
     public static QC_Interview__c CreateInterview(Id heroId, String heroName, String cohortId, String week){
         System.debug(cohortId);
         QC_Interview__c newInterview = new QC_Interview__c(Account__c=heroId, Cohort__c=cohortId, Name=heroName + ' ' + week);

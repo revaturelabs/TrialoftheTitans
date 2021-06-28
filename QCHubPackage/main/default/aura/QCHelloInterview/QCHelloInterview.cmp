@@ -1,0 +1,18 @@
+<!--  Dylan Katrenick-Perez 
+
+ -->
+
+
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+	<aura:attribute name="Cohort"       type="QCCohortWrapper"/>
+    <aura:attribute name="CohortId"     type="String"/>
+    
+    <lightning:card>
+        
+    <p>Hello from QCInterview!</p>
+    <p>Cohort: {!v.Cohort.cohort.Name}</p>
+    <p>CohortId: {!v.CohortId}</p>
+    <p>{!v.Cohort.Name}</p>
+        
+    </lightning:card>   
+</aura:component>

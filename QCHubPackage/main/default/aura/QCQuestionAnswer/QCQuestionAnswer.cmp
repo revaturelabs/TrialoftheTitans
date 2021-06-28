@@ -1,0 +1,29 @@
+<aura:component controller="RetrieveHero_Info" implements="flexipage:availableForAllPageTypes" access="global">
+    
+    <aura:attribute name ="weekName" type="String" />
+    <aura:attribute name ="qcInterviewId" type="String" />
+    <aura:attribute name ="answer" type="String" />
+    <aura:attribute name="questionDeck" type="Object" />
+    <aura:attribute name="allQuestionDeckWithQuestions" type="Object" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/>
+
+   <h1>{!v.weekName}</h1>
+    <h1>Question Deck - {!v.questionDeck.Name}</h1>
+    <aura:iteration items="{!v.questionDeck.QC_Questions__r}" var="question">
+        <ul>
+            {!question.Question_Body__c}
+            <br />
+  <form>
+            <lightning:input aura:id="answerField" fieldName="answer" placeholder="Type your Answer" label="Provide your Answer" />
+            <lightning:input aura:id="scoreField" fieldName="score"  placeholder="Type the score for your Answer" 
+            type="number" label="Provide Score fot the Answer" />
+            <lightning:button label="Submit Answer" onclick="{!c.answerSubmit}"></lightning:button>
+
+       </form>
+            
+        </ul>
+        <br />
+    </aura:iteration>
+
+</aura:component>

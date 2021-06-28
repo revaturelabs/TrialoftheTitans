@@ -1,14 +1,6 @@
-/////////////////////////////////////////////////////
-//
-//  Name: QCInterviewHeroReviewAuraController
-//  Author: Natalie Clark
-//  Description: Apex controller for aura component QCInterviewHeroReview
-//
-///////////////////////////////////////////////////
-
 public with sharing class QCInterviewHeroReviewAuraController {
 
-    //init to load score for hero in order to finalize in aura component
+    //init to load score for hero in order to finalize
     @AuraEnabled
     public static QC_Interview__c getInterview(Cohort__c cohort, Account hero){
             String id = cohort.id;
@@ -20,13 +12,11 @@ public with sharing class QCInterviewHeroReviewAuraController {
             return qci[0];
     }
 
-    // inserts flags created by aura component
     @AuraEnabled
     public static void setFlags(List<QC_Flag__c> flags){
             insert flags;
     }
 
-    //finalizes interview and upserts to update checkbox value
     @AuraEnabled
     public static void setInterview(QC_Interview__c interview){
             interview.Finalized__c = true;

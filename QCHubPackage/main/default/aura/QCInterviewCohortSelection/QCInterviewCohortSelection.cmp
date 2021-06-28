@@ -11,6 +11,9 @@
 
 <aura:component controller="QCInterviewCohortSelectionAuraController" implements="flexipage:availableForAllPageTypes" access="global">
 
+    <aura:registerEvent name="InterviewHeroEvent" type="c:InterviewHeroEvent"/>
+    <aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
+
     <!-- List of attributes -->
     <aura:attribute name="columns" type="List" />
     <aura:attribute name="heroList" type="Account[]" />
@@ -32,7 +35,8 @@
                         columns="{!v.columns}" 
                         onRowSelection="{!c.handleRowSelection}" 
                         hideCheckboxColumn="true"
-                        suppressBottomBar="true" />
+                        suppressBottomBar="true" 
+                        onrowaction="{!c.LaunchInterview}"/>
 
 
-</aura:component>	
+</aura:component>

@@ -15,7 +15,7 @@ public class QCHubDataFactory {
     // namePrefix: Each hero created has a name from 0-19, prefixed with namePrefix.
     
     public static void dataFactory(String cohortName, String namePrefix){
-        Cohort__c testCohort = new Cohort__c(Name=cohortName, Active__c=true);
+        Cohort__c testCohort = new Cohort__c(Name=cohortName);
         insert testCohort;
         
         Schema.DescribeSObjectResult acctDesc = Account.SObjectType.getDescribe();
@@ -58,3 +58,40 @@ public class QCHubDataFactory {
     }
     
 }
+
+/*
+List<Squad__c> Squads = new List<Squad__c>([SELECT Name, Id FROM Squad__c]);
+List<Team__c> Teams = new List<Team__c>([SELECT Name, Id FROM Team__c]);
+
+Map<String, Id> SquadMapId = new Map<String, Id>();
+Map<String, Id> TeamMapId = new Map<String, Id>();
+
+for (Squad__c squad : Squads){
+    SquadMapId.put(squad.Name, squad.Id);
+}
+
+for (Team__c team : Teams){
+    TeamMapId.put(team.Name, team.Id);
+}
+
+integer count = 0;
+for (Account Hero : updateList){
+    if (count<5){
+        Hero.Team__c = teamMapId.get('Vanquish');
+        Hero.Squad__c = squadMapId.get('Code Sourcerers');
+    }
+    else if (count<10){
+        Hero.Team__c = teamMapId.get('Amplifire');
+        Hero.Squad__c = squadMapId.get('Hello World');
+    }
+    else if (count<15){
+        Hero.Team__c = teamMapId.get('Alchemy');
+        Hero.Squad__c = squadMapId.get('Lead Team');
+    }
+    else if (count<20){
+        Hero.Team__c = teamMapId.get('Synergy');
+        Hero.Squad__c = squadMapId.get('Soars');
+    }
+}
+
+*/
