@@ -5,22 +5,26 @@
 //  Description: Aura component segment meant for hero reference
 //  to be displayed on selection of Cohort and week from other components
 //
-//  in future refactoring, should be able to recall
-//
 /////////////////////////////////////////////////// -->
 
 <!-- meant to follow Diego's week selection component? -->
 
-<aura:component controller="QCInterviewCohortSelectionAuraController">
+<aura:component controller="QCInterviewCohortSelectionAuraController" implements="flexipage:availableForAllPageTypes" access="global">
 
     <!-- List of attributes -->
     <aura:attribute name="columns" type="List" />
     <aura:attribute name="heroList" type="Account[]" />
     <aura:attribute name="interviewList" type="QC_Interview__c[]" />
+    <!-- <aura:attribute name="index" type="String" /> -->
+    <aura:attribute name="currentHero" type="Account" />
+    <aura:attribute name="currentCohort" type="Cohort__c" />
 
     <!-- Event handlers -->
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-    <aura:registerEvent name="finalInterviews" type="c:QCInterviewFinalized" />
+    <!-- might need to utilize this to call variable once the lower gets put into the Hub
+    <aura:handler name="FinalEvent" event="c:QCInterviewFinalized" action="{!c.handleComponentEvent}" /> -->
+    <!-- this should be put in the QC Hub to be able to refer to the values throughout 
+        <aura:registerEvent name="FinalEvent" type="c:QCInterviewFinalized" /> -->
 
     <!-- Datatable displaying a list of heroes available  -->
     <lightning:datatable keyField="id" 

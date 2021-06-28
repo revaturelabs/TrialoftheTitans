@@ -73,6 +73,14 @@
         .attr("width", xScale.bandwidth())
         .attr("height", function(d) { return height - yScale(d.value); });
 
+    },
+
+
+    LaunchEvent : function (component, event, helper){
+
+        console.log("Button clicked?");
+        helper.FireLaunchInterviewEvent(component);
+
     }
 
 })
