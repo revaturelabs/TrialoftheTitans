@@ -18,3 +18,15 @@
     margin: 10px 0;
 
 }
+
+.THIS svg rect {
+    fill: rgb(52, 52, 163);
+}
+
+.THIS svg text {
+    fill: black;
+}
+
+.THIS .bar {
+    fill: rgb(52, 52, 163);
+}
