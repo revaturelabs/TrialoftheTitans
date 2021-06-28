@@ -15,7 +15,7 @@
     <aura:attribute name="columns" type="List" />
     <aura:attribute name="heroList" type="Account[]" />
     <aura:attribute name="interviewList" type="QC_Interview__c[]" />
-    <aura:attribute name="index" type="String" />
+    <!-- <aura:attribute name="index" type="String" /> -->
     <aura:attribute name="currentHero" type="Account" />
     <aura:attribute name="currentCohort" type="Cohort__c" />
 
