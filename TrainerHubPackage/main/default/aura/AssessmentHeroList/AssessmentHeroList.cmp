@@ -18,6 +18,7 @@
 <aura:component controller="HeroAssessmentListController">
     <aura:attribute name="data" type="Object" />
     <aura:attribute name="columns" type="List" />
+	<aura:attribute name="CohortId" type ="String"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.fetchData}" />
 	<aura:registerEvent name="sendHeroAssessmentIdEvent" type="c:CohortPageTransferIdEvent"/>

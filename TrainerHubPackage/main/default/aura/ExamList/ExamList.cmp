@@ -16,6 +16,7 @@
 <aura:component controller="ExamListController">
     <aura:attribute name="data" type="Object" />
     <aura:attribute name="columns" type="List" />
+	<aura:attribute name="CohortId" type ="String"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.fetchData}" />
 
@@ -29,4 +30,4 @@
         keyField = "Id"
         hideCheckboxColumn="true" />
 
-</aura:component>	
+</aura:component>

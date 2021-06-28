@@ -37,13 +37,13 @@
     
     <aura:attribute name="scriptsLoaded" type="Boolean"/>
   
-    <ltng:require
+    <!--<ltng:require
                   scripts="{!$Resource.d3 + '/d3.js'}"
                   afterScriptsLoaded ="{!c.Chart}"
                   />
 
         <div id="svg"></div>
-    
+    -->
     <!-- Header -->
     <div class="header">
         Cohort Page
@@ -132,7 +132,7 @@
                            <div class="slds-m-horizontal_small slds-m-bottom_small">
                                 <lightning:button label="Create new Assessment" disabled='{!titan.buttonDisabled}' class=" slds-m-top_medium slds-m-right_small slds-button_neutral" title="Back" value="{!titan}" onclick="{!c.CreateNewAssessment}"/><br/>
                                 <div class="slds-m-top_medium">
-                                	<c:AssessmentHeroList aura:id="assessmentHeroList"/>
+                                	<c:AssessmentHeroList aura:id="assessmentHeroList" CohortId="{!v.CohortId}"/>
                                 </div>
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                             <div class="slds-m-horizontal_small slds-m-bottom_small">
                                 <lightning:button label="Exam Hubs" disabled='{!titan.buttonDisabled}' class=" slds-m-top_medium slds-m-right_small slds-button_neutral" title="Back" value="{!titan}" onclick="{!c.CreateNewAssessment}"/><br/>
                                 <div class="slds-m-top_medium">
-                                	<c:ExamList/>
+                                	<c:ExamList CohortId="{!v.CohortId}"/>
                                 </div>
                             </div>
                         </div>

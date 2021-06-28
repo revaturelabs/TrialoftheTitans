@@ -11,21 +11,24 @@
 
 public with sharing class ExamListController {
     @AuraEnabled
-    public static List<Exam_Result__c> ExamList(){
+    public static List<Exam_Result__c> ExamList(String cohortId){
+		String cohort = cohortId;
         List<Exam_Result__c> examResultSearch = [SELECT Account__r.Name, Exam__r.Name, Score__c,
                                                 Total_Correct__c, Total_Answers__c
-                                                FROM Exam_Result__c];
+                                                FROM Exam_Result__c
+												WHERE Account__r.Cohort__c = :cohort];
         return examResultSearch;
     }
 
     @AuraEnabled
-    public static List<Exam_Result__c> SearchExamList(String searchKey){
+    public static List<Exam_Result__c> SearchExamList(String searchKey, String cohortId){
         String name =  + searchKey + '%';
+		String cohort = cohortId;
         List<Exam_Result__c> examResultSearch = [SELECT Account__r.Name, Exam__r.Name, Score__c,
                                                 Total_Correct__c, Total_Answers__c
                                                 FROM Exam_Result__c
                                                 WHERE Account__r.Name
-                                                LIKE :name];
+                                                LIKE :name and Account__r.Cohort__c = :cohort];
         return examResultSearch;
     }
 }

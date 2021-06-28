@@ -11,6 +11,10 @@
     // get Exam Results from the server
     fetchData : function(component) {
         var action = component.get('c.ExamList');
+		var cohortId = component.get('v.CohortId');
+		action.setParams({
+			"cohortId": cohortId
+        });
         action.setCallback(this, (function (response) {
             var state = response.getState();
             if (state === "SUCCESS") {
@@ -51,9 +55,11 @@
         //variable stores the user input
         var searchKey = component.find("searchKey").get("v.value");
         var action = component.get("c.SearchExamList");
+		var cohortId = component.get('v.CohortId');
         //set the variable for the method parameters
         action.setParams({
-            "searchKey": searchKey
+            "searchKey": searchKey,
+			"cohortId": cohortId
         });
         action.setCallback(this, (function(response) {
             var state = response.getState();
