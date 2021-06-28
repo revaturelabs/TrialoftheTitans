@@ -1,0 +1,23 @@
+<aura:component controller="MultMultipleChoicesQController">
+    <!--Declare Attribute-->
+   <aura:attribute name="question" type="Object"/>
+   <aura:attribute name="options" type="String[]"/>
+   <aura:attribute name="checkGroupOptions" type="String[]"/>
+   <aura:attribute name="answerChoices" type="String[]"/>
+    
+    <!--Declare Handler-->
+    <aura:handler name="init" value="{!this}" action="{!c.fetchMultiChoices}"/>
+    
+    <!--Component Here-->
+    <lightning:card>
+        <div class="slds-m-around--xx-large">
+            <div>
+                <lightning:checkboxGroup name="{!v.question.Question_Text__c}"  
+                                      label="{!v.question.Question_Text__c}"   
+                                      options="{!v.checkGroupOptions}"  
+                                      value="{!v.answerChoices}"
+                                      onchange="{! c.handleChange }"/>  
+            </div>         
+        </div>   
+    </lightning:card>    	
+</aura:component>

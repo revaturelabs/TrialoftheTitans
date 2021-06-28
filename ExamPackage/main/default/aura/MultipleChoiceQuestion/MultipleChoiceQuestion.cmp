@@ -1,0 +1,23 @@
+<aura:component controller="MultipleChoiceQController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <!--Declare Attributes-->
+    <aura:attribute name="question" type="Object"/>
+    <aura:attribute name="options" type="String[]"/>
+    <aura:attribute name="radioGroupOptions" type="String[]"/>
+    <aura:attribute name="answerChoice" type="String"/>
+    
+    <!--Declare Handler-->
+    <aura:handler name="init" value="{!this}" action="{!c.fetchMultiChoice}"/>
+    
+    <!--Component Start-->
+    <lightning:card>
+        <div class="slds-m-around--xx-large">
+            <div>
+                <lightning:radioGroup name="{!v.question.Question_Text__c}"  
+                                      label="{!v.question.Question_Text__c}"   
+                                      options="{!v.radioGroupOptions}"  
+                                      value="{!v.answerChoice}"  
+                                      type="radio"/>  
+            </div>         
+        </div>   
+    </lightning:card>
+</aura:component>

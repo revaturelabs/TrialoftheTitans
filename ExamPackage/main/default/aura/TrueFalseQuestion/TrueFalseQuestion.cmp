@@ -1,0 +1,25 @@
+<aura:component controller="TrueFalseQController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <!--Declare Attributes-->
+    <aura:attribute name="question" type="Object"/>
+    <aura:attribute name="options" type="List" default="[
+    {'label': 'True', 'value': 'option1'},
+    {'label': 'False', 'value': 'option2'}
+    ]"/>
+    <aura:attribute name="value" type="String" default="option1"/>
+    
+    <!--Declare Handler-->
+    <aura:handler name="init" value="{!this}" action="{!c.fetchTrueFalse}"/>
+    
+    <!--Component Here-->
+    <lightning:card>
+        <div class="slds-m-around--xx-large">
+            <div>
+    			<lightning:radioGroup name="{!v.question.Question_Text__c}"  
+                                      label="{!v.question.Question_Text__c}"
+                          			  options="{!v.options}"
+                          			  value="{!v.value}"
+                          			  type="radio"/>
+            </div>
+        </div>
+    </lightning:card>   
+</aura:component>
