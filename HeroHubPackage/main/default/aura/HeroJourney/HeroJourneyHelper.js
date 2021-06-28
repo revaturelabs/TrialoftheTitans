@@ -61,6 +61,13 @@
 
         component.set("v.active", 'Overview');
         component.set("v.tabs", tabs);
+    },
+    startExamEvent: function(cmp, event, examId) {
+        const action = $A.get('e.c:startExamEvent');
+        action.setParams({
+            'ExamId': examId
+        })
+        action.fire();
     }
 
 })
