@@ -12,7 +12,11 @@
                 console.log(state);
                 var cohorts = response.getReturnValue();
                 component.set("v.CohortList", cohorts);
-
+                
+                if(component.get("v.scriptsLoaded")) {
+                    this.D3CohortOverview(component);
+                }
+                component.set("v.dataLoaded", true)
             }
             
             else if (state == "INCOMPLETE"){

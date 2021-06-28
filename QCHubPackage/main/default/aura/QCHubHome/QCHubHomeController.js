@@ -23,7 +23,11 @@
     },
 
     D3 : function(component, event, helper){
+        // component.set('v.d3', true)
         console.log("D3 ACTIVATED");
-        helper.D3CohortOverview(component);
+        if(component.get("v.dataLoaded")) {
+            helper.D3CohortOverview(component);
+        }
+        component.set("v.scriptsLoaded", true);
     }
 })
