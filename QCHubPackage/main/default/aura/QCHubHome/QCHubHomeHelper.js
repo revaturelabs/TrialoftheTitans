@@ -16,7 +16,7 @@
                 if(component.get("v.scriptsLoaded")) {
                     this.D3CohortOverview(component);
                 }
-                component.set("v.dataLoaded", true)
+                component.set("v.dataLoaded", true);
             }
             
             else if (state == "INCOMPLETE"){
