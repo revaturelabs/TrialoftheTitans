@@ -1,4 +1,4 @@
-public with sharing class ExamResultsPoolPageAuraController {
+public class ExamResultsPoolPageAuraController {
     /////////////////////////////////////////////////////
 //  Name: ExamResultsPoolPageAuraController
 //  Author: Miguel McCrary
@@ -12,7 +12,7 @@ public static List<String> GetAllExamResultPoolQuestions(String examResultId){
 
     List<String> allExamResultPoolQuestions = new List<String>();
 
-    for(Question_Assignment__c qa : [SELECT Exam_Question__c, Question_Pool__c, Question_Pool__r.Name
+    for(Question_Assignment__c qa : [SELECT Exam_Question__c, Question_Pool__c, Question_Pool__r.Name 
     FROM Question_Assignment__c 
     WHERE Exam_Question__c IN 
     (SELECT Exam_Question__c FROM Hero_Answer__c 
