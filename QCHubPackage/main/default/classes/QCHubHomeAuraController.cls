@@ -18,6 +18,13 @@ public with sharing class QCHubHomeAuraController {
 
     }
 
+
+    @AuraEnabled
+    public static List<String> RetrieveWeek(){
+
+        return QC_Interview__c.Week__c.getDescribe().qcIntWeek.getPicklistValues();
+    }
+
     
     // Apex controller method fired from QCHubHome UpdateCohortEvent event - retrieves detailed data about a
     // single cohort.

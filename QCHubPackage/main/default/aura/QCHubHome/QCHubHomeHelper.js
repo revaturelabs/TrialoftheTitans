@@ -45,6 +45,51 @@
     },
 
 
+    LoadWeeks : function(component){
+
+        let WeekListInit = component.get("c.RetrieveCohorts");
+
+        WeekListInit.setCallback(this, function(response){
+
+            let state = response.getState();
+
+            if (state == "SUCCESS"){
+                console.log(state);
+                var weeks = response.getReturnValue();
+                component.set("v.WeeksList", weeks);
+
+            }
+            
+            else if (state == "INCOMPLETE"){
+                console.log(state);
+
+            }
+
+            else if (state == "ERROR"){
+                console.log(state);
+                var errors = response.getError();
+
+                if (errors) {
+                    if (errors[0] && errors[0].message){
+                        console.log("Error message: " + errors[0].message);
+
+                    }
+
+                }
+                else {
+                    console.log("Unknown error");
+
+                }
+
+            }
+
+        });
+
+        $A.enqueueAction(WeekListInit);
+
+    },
+
+
     // Load data for a specific cohort (launched by UpdateCohort function in main JS controller,
     // which is triggered by UpdateCohortEvent from CohortButtons component when a cohort is selected)
     LoadCohortData : function(component, selectedCohort){
