@@ -9,30 +9,20 @@
 // - columns: Holds the Name,Field Name, and Type of the columns.
 // - HANDLERS
 // - init: Handles initialization of data table.
-// - EVENTS 
-// - sendHeroAssessmentIdEvent:
 //
 ////////////////////////////////////////////////////
 -->
 
-<aura:component controller="HeroAssessmentListController">
+<aura:component controller="QCInterviewController">
     <aura:attribute name="data" type="Object" />
     <aura:attribute name="columns" type="List" />
 
     <aura:handler name="init" value="{!this}" action="{!c.fetchData}" />
-	<aura:registerEvent name="sendHeroAssessmentIdEvent" type="c:CohortPageTransferIdEvent"/>
 
-    <!-- Search Bar Input -->
-    <lightning:input type="text" name="searchKey" label="Enter" aura:id="searchKey" onchange="{!c.search}" placeholder="Search Hero" />
-
-    <aura:method name="FetchData" action="{!c.fetchData}" access="global"/>
-    
-    <!-- Hero Assessmnet Data Table -->
     <lightning:datatable
         data = "{!v.data}"
         columns = "{!v.columns}"
         keyField = "id"
 		onrowaction="{! c.updateSelected }"
         hideCheckboxColumn="true" />
-        
 </aura:component>
