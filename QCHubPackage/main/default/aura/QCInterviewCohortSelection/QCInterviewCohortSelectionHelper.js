@@ -35,7 +35,7 @@
                 console.error(errors);
             }
         })
-        $A.enqueueAction(int)
+        $A.enqueueAction(int);
 
     }, 
 
@@ -46,8 +46,22 @@
         // component.getEvent("QCInterviewFinalized").setParams({"index" : component.get("v.index") }).fire()
 
         //right now, this function sets the current hero to reference
-        component.set("v.currentHero", event.getParam('selectedRows')[0])
+        component.set("v.currentHero", event.getParam('selectedRows')[0]);
         // gets param for selected hero if needed for apex
         // hero.setParams(component.find('teacherTable').getSelectedRows()[0])
     },  
+
+    LaunchInterviewEvent : function(component, hero){
+        let liEvent = component.getEvent("InterviewHeroEvent");
+        liEvent.setParams({"SelectedHero" : hero});
+        liEvent.fire();
+    },
+
+    LaunchStageEvent : function(component, stage){
+
+        let StageEvent = component.getEvent("UpdateStageEvent");
+        StageEvent.setParams({"StageName" : stage});
+        StageEvent.fire();
+
+    }
 })

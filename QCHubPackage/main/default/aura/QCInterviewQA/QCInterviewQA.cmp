@@ -35,9 +35,7 @@
             </div>
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
-                {!v.CohortId}
-                {!v.CurrentInterview.Id}
-                {!v.CurrentInterview.Name}
+                {!v.Hero.Name}
             </div>
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
