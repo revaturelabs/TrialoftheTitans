@@ -20,5 +20,10 @@
 
     doInit: function( component, event, helper ) {
        
+    },
+
+    D3 : function(component, event, helper){
+        console.log("D3 ACTIVATED");
+        helper.D3CohortOverview(component);
     }
 })

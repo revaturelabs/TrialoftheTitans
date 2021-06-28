@@ -13,8 +13,13 @@
     <aura:attribute name="contextInfo" type="UserContextInfo" />
     <aura:attribute name="SquadList" type="QCSquadWrapper[]"/>
 
-    <p>{!v.SelectedCohort.cohort.Name}</p>
-    <p>{!v.SelectedCohort.squadList[0].squad.Name}</p>
+    <ltng:require scripts="{!$Resource.d3 + '/d3.js'}"
+                  afterScriptsLoaded ="{!c.D3}"/>
+
+    <div class="svgCohortOverview"></div>
+
+    <lightning:button label="d3 TEST" value="d3 TEST" onclick="{!c.D3}"/>
+
     <!-- Beginning of box layout grid for components -->
     <div class="slds-grid slds-gutters slds-align_absolute-center">
         <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
@@ -22,11 +27,7 @@
         </div>
         <div class="boxGrid slds-col slds-size_7-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small slds-m-vertical_x-small">
             <p><c:CohortStatistics ActiveCohort="{!v.SelectedCohort.cohort}"/></p>
-            <td>
-                <aura:iteration items="{!v.CohortList}" var="Cohort">
-                    <tr><td>{!Cohort.Name}</td><td>{!Cohort.QC_Interview_Sum__c/Cohort.QC_Interview_Count__c}</td></tr>
-                </aura:iteration>
-            </td>
+
         </div>
         <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
             <p><c:SquadButtons SquadList="{!v.SquadList}"/></p>
