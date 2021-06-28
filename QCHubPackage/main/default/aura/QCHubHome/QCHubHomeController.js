@@ -2,6 +2,7 @@
     OnInit : function(component, event, helper){
 
         helper.LoadCohorts(component);
+        helper.LoadWeeks(component);
 
     },
 
