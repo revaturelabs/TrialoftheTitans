@@ -4,18 +4,18 @@
         component.set("v.columns", 
                     [
                         {label:'Hero', fieldName:'Name'},
-                        // {label:'Squad Name', fieldName:'Squad__r.Name', type:'text'},
-                        // {label:'', fieldName:""},
-                        // {label:'Interview', type:'button', 
-                        //     typeAttributes: {
-                        //             name: 'start',
-                        //             label: 'Start',
-                        //             iconPosition: 'left',
-                        //             iconName: 'utility:add',
-                        //             variant: 'Success',
-                                    // disabled: '{!v.heroList.Finalized__c}',  
-                            // }
-                        // }
+                        {label:'Squad Name', fieldName:'Squad__r.Name', type:'text'},
+                        {label:'', fieldName:""},
+                        {type:'button', 
+                             typeAttributes: {
+                                    name: 'start',
+                                    label: 'Interview',
+                                    iconPosition: 'left',
+                                    iconName: 'utility:add',
+                                    variant: 'Success',
+                                    disabled: false,  
+                             }
+                         }
                     ]
         )
         helper.getHeroes(component, event)
@@ -26,6 +26,13 @@
     handleRowSelection : function(component, event, helper) {
         helper.handleRowSelection(component, event)
     },
+
+    LaunchInterview : function(component, event, helper){
+        let row = event.getParam("row");
+        console.log("LAUNCH INTERVIEW FUNCTION");
+        helper.LaunchInterviewEvent(component, row);
+        //helper.LaunchStageEvent(component, "Interview");
+    }
 
 })
 

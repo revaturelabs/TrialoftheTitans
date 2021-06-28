@@ -1,3 +1,12 @@
+//////////////////////////////////////////////////////////////////////
+//
+//  Name: QCInterviewQAAuraController
+//  Author: Alexander Dzhitenov and ???
+//  Description: Controller for the QCInterview Aura Component
+//
+//////////////////////////////////////////////////////////////////////
+
+
 public with sharing class QCInterviewQAAuraController {
 
 
@@ -6,18 +15,16 @@ public with sharing class QCInterviewQAAuraController {
     // answered, to minimize risk of data loss)
     @AuraEnabled 
     public static QC_Interview__c CreateInterview(Id heroId, String heroName, String cohortId, String week){
-        System.debug(cohortId);
+
         QC_Interview__c newInterview = new QC_Interview__c(Account__c=heroId, Cohort__c=cohortId, Name=heroName + ' ' + week);
-        System.debug('Account: ' + heroId);
-        System.debug('Cohort: ' + cohortId);
-        System.debug('Hero Name: ' + heroName);
-        System.debug('Week: ' + week);
         insert newInterview;
-        System.debug('NEW INTERVIEW INSERTED FROM AURA CONTROLLER');
+
         return newInterview;
     }
 
 
+    // Add QA data each time a new question is loaded, to prevent data loss (if the app is exited or the window is closed
+    // while a QC Interview is in progress, it wouldn't get saved otherwise)
     @AuraEnabled
     public static void InsertQAData(Id interviewId, String heroAnswerStr){
 
