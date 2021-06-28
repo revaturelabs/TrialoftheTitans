@@ -1,4 +1,4 @@
-<aura:component controller = "MatchingQuestionTypeApexController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access = "global">
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access = "global">
     <!--Author: Jayvious Williams
         Usage: Component for Matching Type of Question on Exams
     -->
@@ -7,6 +7,7 @@
     <aura:attribute name = "options" type = "String[]"/>
     <aura:attribute name = "answers" type = "String[]"/>
     <aura:attribute name = "questionprompt" type = "String"/>
+    <aura:attribute name = "heroAnswer" type = "Hero_Answer__c"/>
 
     <aura:handler name = "init" value = "{!this}" action = "{!c.loadOptions}"/>
 
@@ -15,11 +16,11 @@
         <div class="slds-p-around_x-small">
             <h1>{!v.questionprompt}</h1>
                 {!v.body}
-                <div class = "slds-hidden">
-                    <aura:iteration aura:id = "iterator" items="{!v.options}" var="ops">
-                        <option aura:id = "eachOption" value = "{!ops}" text = "{!ops}"/>
-                    </aura:iteration>
-                </div>
         </div>
     </lightning:card>
+    <div class = "slds-hidden">
+        <aura:iteration aura:id = "iterator" items="{!v.options}" var="ops">
+            <option aura:id = "eachOption" value = "{!ops}" text = "{!ops}"/>
+        </aura:iteration>
+    </div>
 </aura:component>	

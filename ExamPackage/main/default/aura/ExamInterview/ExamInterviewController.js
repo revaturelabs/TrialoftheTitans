@@ -5,9 +5,9 @@
     
     loadExamQuestions : function(component, event, helper) {
         helper.loadExamHelper(component);
-    }
+    },
 
-    /*navigateToQuestion : function(component, event, helper) {
-        helper.navigateToQuestionHelper(component, event);
-    }*/
+    navigateToQuestion : function(component, event, helper) {
+        helper.navigateToQuestionHelper(component);
+    }
 })
