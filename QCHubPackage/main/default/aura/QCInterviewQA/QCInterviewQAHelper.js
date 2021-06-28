@@ -53,6 +53,15 @@
 
     },
 
+    InterviewInit: function(cmp,h){
+
+        
+        h.CreateInterview(cmp);
+        cmp.set('v.HeroScore',0)
+
+
+    },
+
 
     getQuestionDeck : function(cmp, data, helper) {
       
@@ -67,8 +76,9 @@
                 
                 //console.log(response.getReturnValue());
                 //cmp.set('v.HeroAnswer.Question__c', response.getReturnValue()[0].Question_Body__c);
-                helper.scrambleList(response.getReturnValue());
-                return response.getReturnValue();
+                cmp.set('v.QuestionSet', helper.scrambleList(response.getReturnValue()));
+                //return helper.scrambleList(response.getReturnValue());
+                //return response.getReturnValue();
 
             } else if (state === "ERROR") {
                 var errors = response.getError();
@@ -86,16 +96,13 @@
         
         let OutputList = [];
         let values = Object.values(InputList);
-        console.log(InputList);
-            //*
+      
             for(let x in InputList){
 
-
-                OutputList.push(values.splice(Math.floor(Math.random() * values.length), 1));
-                 
+                OutputList.push(values.splice(Math.floor(Math.random() * values.length), 1));    
             }
-            //*/
-            console.log(OutputList);
+
+            return OutputList;
 
     },
 

@@ -11,13 +11,13 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
     
 <!--  Top Box  -->
-    <div class="slds-grid slds-gutters slds-align_absolute-center">
-        <div class="topbox slds-grid slds-grid_vertical slds-size_12-of-12 slds-m-horizontal_xx-small">
+    <!-- <div class="slds-grid slds-gutters slds-align_absolute-center">
+        <div class="topbox slds-grid slds-grid_vertical slds-size_12-of-12 slds-m-horizontal_xx-small"> -->
             
 <!--  QC Interview Header  -->
-            <c:QCInterviewHeader/>
+            <!-- <c:QCInterviewHeader/>
         </div>
-    </div>
+    </div> -->
     
     
     

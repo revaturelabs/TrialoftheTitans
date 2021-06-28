@@ -8,15 +8,15 @@
 /////////////////////////////////////////////////// -->
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
     
-<aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
+    <aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
     <aura:registerEvent name="StartInterviewEvent" type="c:StartInterviewEvent"/>
     <!--aura:handler name="SelectHeroEvent" type="c:SelectHeroEvent" action="c.StartInterview"/-->
 
+    <!--InterviewHeroEvent is launched from the child QCInterviewCohortSelection component, but update stage
+    even is launched from here-->
+    <aura:handler name="InterviewHeroEvent" event="c:InterviewHeroEvent" action="c.StartInterview"/>
+
     <aura:attribute name="Cohort" type="QCCohortWrapper"/>
-
-    <!--This needs to be put back in, but seems to be throwing errors at the moment-->
-    <!--c:QCInterviewCohortSelection/-->
-
     
     
     
@@ -45,7 +45,7 @@
             
             <div class="rightboxes slds-box slds-col slds-m-vertical_x-small">
                 <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Cohort Table:</h1>
-                <p style="text-align: center">NOTE: Cohort Table Comp Needed.</p>
+                <p style="text-align: center"><c:QCInterviewCohortSelection heroList = "{!v.Cohort.heroList}"/></p>
                 <lightning:button onclick="{!c.TESTNEXT}">TestNext</lightning:button>
 
             </div>   

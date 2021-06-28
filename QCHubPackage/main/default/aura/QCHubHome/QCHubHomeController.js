@@ -2,6 +2,7 @@
     OnInit : function(component, event, helper){
 
         helper.LoadCohorts(component);
+        helper.LoadWeeks(component);
 
     },
 
@@ -20,5 +21,10 @@
 
     doInit: function( component, event, helper ) {
        
+    },
+
+    D3 : function(component, event, helper){
+        console.log("D3 ACTIVATED");
+        helper.D3CohortOverview(component);
     }
 })

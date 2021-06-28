@@ -18,6 +18,13 @@ public with sharing class QCHubHomeAuraController {
 
     }
 
+
+    @AuraEnabled
+    public static List<String> RetrieveWeek(){
+
+        return QC_Interview__c.Week__c.getDescribe().qcIntWeek.getPicklistValues();
+    }
+
     
     // Apex controller method fired from QCHubHome UpdateCohortEvent event - retrieves detailed data about a
     // single cohort.
@@ -61,7 +68,12 @@ public with sharing class QCHubHomeAuraController {
         QCCohortWrapper cohortData = new QCCohortWrapper();
         cohortData.cohort = cohort;
         cohortData.squadMap = squadMap;
+        cohortData.heroList = heroList;
 
+        /* NOTE:    This is an option, and the corresponding code can be re-enabled in QCCohortWrapper to populate this
+                    variable (it matches heroes to squads by putting a squad, and a list of the heroes in it, into a wrapper class).
+                    However, it might be substantially easier (and better) to just use a map between squads and accounts,
+                    similar to the one above, to split heroes into squads wherever it's necessary.
         List<Squad__c> squads = [SELECT Id, Name, Team__r.Name FROM Squad__c WHERE Name IN :squadMap.keySet()];
 
         cohortData.squadList = new List<QCSquadWrapper>();
@@ -75,7 +87,7 @@ public with sharing class QCHubHomeAuraController {
         for (QCSquadWrapper squadListElement : cohortData.squadList){
             squadListElement.heroes = squadMap.get(squadListElement.squad.Name);
         }
-
+        */
         return cohortData;
 
     }
