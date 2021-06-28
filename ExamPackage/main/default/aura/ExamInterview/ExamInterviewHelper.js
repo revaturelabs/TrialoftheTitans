@@ -47,7 +47,7 @@
                         )
                         cntr++;
                     }
-                    else if(question.Question_Type__c === "Numerical"){
+                    if(question.Question_Type__c === "Numerical"){
                         $A.createComponent(
                             "c:NumericalQuestionType" ,
                             {"question" : question,
@@ -68,6 +68,52 @@
                                 }
                             }
 
+                        )
+                        cntr++;
+                    }
+                    if(question.Question_Type__c === "Essay"){
+                        $A.createComponent(
+                            "c:EssayTypeQuestion" ,
+                            {"question" : question,
+                            "EssayQuestion" : "Question " + cntr + " : " + question.Question_Text__c,
+                            "EssayAnswer" : question.Correct_Answer_s__c},
+
+                            function(essayCMP, status, errorMessage){
+                                if(status === "SUCCESS"){
+                                    var body = component.get("v.body");
+                                    body.push(essayCMP);
+                                    component.set("v.body", body);
+                                }
+                                else if(status === "INCOMPLETE"){
+                                    console.log("No response from the server or client side.")
+                                }
+                                else if(status === "ERROR"){
+                                    console.log("ERROR: " + errorMessage);
+                                }
+                            }
+                        )
+                        cntr++;
+                    }
+                    if(question.Question_Type__c === "Essay"){
+                        $A.createComponent(
+                            "c:ShortAnswerTypeQuestion" ,
+                            {"question" : question,
+                            "ShortQuestion" : "Question " + cntr + " : " + question.Question_Text__c,
+                            "ShortAnswer" : question.Correct_Answer_s__c},
+
+                            function(shortAnswerCMP, status, errorMessage){
+                                if(status === "SUCCESS"){
+                                    var body = component.get("v.body");
+                                    body.push(shortAnswerCMP);
+                                    component.set("v.body", body);
+                                }
+                                else if(status === "INCOMPLETE"){
+                                    console.log("No response from the server or client side.")
+                                }
+                                else if(status === "ERROR"){
+                                    console.log("ERROR: " + errorMessage);
+                                }
+                            }
                         )
                         cntr++;
                     }

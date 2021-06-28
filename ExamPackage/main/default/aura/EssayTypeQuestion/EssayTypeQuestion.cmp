@@ -2,6 +2,7 @@
     implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
     
     <!--aura:handler name="init" value="{! this }" action="{! c.Init }"/-->
+    <aura:attribute name = "question" type = "Exam_Question__c"/>
     <aura:attribute name="EssayQuestion" type="String" default="Question" />
     <aura:attribute name="EssayAnswer" type="String" default="" />
 
@@ -14,7 +15,7 @@
                     <p>
                         {!v.EssayQuestion}
                     </p>
-                    <lightning:textarea name="Answer" label="Correct Answer" value="{!v.EssayAnswer}" />
+                    <lightning:textarea name="Answer"/>
                     <lightning:button label='Save' onclick="{!c.ButtonClick}" />
                 </div>
         </lightning:layoutitem>
