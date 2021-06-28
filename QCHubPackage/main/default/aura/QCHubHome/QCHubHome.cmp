@@ -16,7 +16,7 @@
     <ltng:require scripts="{!$Resource.d3 + '/d3.js'}"
                   afterScriptsLoaded ="{!c.D3}"/>
 
-    <div class="svgCohortOverview"></div>
+    
 
     <lightning:button label="d3 TEST" value="d3 TEST" onclick="{!c.D3}"/>
 
@@ -26,7 +26,10 @@
             <p><c:CohortButtons CohortList="{!v.CohortList}"/></p>
         </div>
         <div class="boxGrid slds-col slds-size_7-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small slds-m-vertical_x-small">
-            <p><c:CohortStatistics ActiveCohort="{!v.SelectedCohort.cohort}"/></p>
+            <p>
+                <div class="svgCohortOverview"></div>
+                <c:CohortStatistics ActiveCohort="{!v.SelectedCohort.cohort}"/>
+            </p>
 
         </div>
         <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">

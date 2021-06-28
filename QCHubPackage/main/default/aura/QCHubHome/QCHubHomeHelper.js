@@ -135,7 +135,7 @@
 
         var height = 500,
         scaleFactor = 10,
-        barWidth = 40;
+        barWidth = 75;
 
         var cOverview = d3.select(".svgCohortOverview").append("svg")
                             .attr("height", height).attr("width", barWidth*data.length);
