@@ -1,0 +1,71 @@
+<aura:component implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable" access="global">
+
+    <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/>
+    <aura:handler name="UpdateStageEvent" event="c:UpdateStageEvent" action="{!c.UpdateStage}"/>
+    <aura:handler name="UpdateQAListEvent" event="c:UpdateQAListEvent" action="{!c.QAEvent}"/>
+    <aura:handler name="StartInterviewEvent" event="c:StartInterviewEvent" action="{!c.SetHero}"/>
+
+    <!--Main container component for the QC Interview app; manages and stores data for other QC Interview app components-->
+    <aura:attribute name="Stage"        type="String" default="Start"/>
+    <aura:attribute name="Cohort"       type="QCCohortWrapper"/>
+    <!--aura:attribute name="CohortId"     type="String"/-->
+    <aura:attribute name="CurrentHero"  type="Account"/>
+    <aura:attribute name="Week"         type="String"/>
+    <aura:attribute name="CurrentQAList" type="QC_Question_Answer__c[]"/>
+    
+
+
+
+    <!-- This header section shows the currently active stage - (Begin) -->
+    <div>
+        <div>
+            <div class="boxBackground slds-box slds-grid slds-gutters slds-align_absolute-center">
+
+                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">
+                    <p class="{!v.Stage=='Start' ? 'active' : ''}">Start</p>
+                </div>
+
+                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">
+                    <p class="{!v.Stage=='Interview' ? 'active ' : ''}">Interview</p>
+                </div>
+
+                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">
+                    <p class="{!v.Stage=='End' ? 'active ' : ''}">End</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End of header stage section -->
+
+
+    <p>{!v.Cohort.cohort.Id}</p>
+    <p>{!v.CurrentHero.Name}</p>
+
+    
+    <!--Begin component display (depends on CurrentStage attribute)-->
+    <div>
+        <aura:if isTrue="{!v.Stage=='Start' ? true : false}">
+            <c:QCInterviewStartView Cohort="{!v.Cohort}"/>
+        </aura:if>
+    </div>
+    
+     
+    <aura:if isTrue="{!v.Stage=='Interview' ? true : false}">
+        <c:QCInterviewQA CohortId="{!v.Cohort.cohort.Id}" Hero = "{!v.CurrentHero}"/>
+    </aura:if>
+    
+    
+    <aura:if isTrue="{!v.Stage=='End' ? true : false}">
+        <c:QCInterviewEnd/>
+
+    </aura:if>
+    
+    
+    <aura:set attribute="else">
+        <p>An unknown error has occurred.</p>
+    </aura:set>
+    <!--End component display-->
+    
+    
+</aura:component>

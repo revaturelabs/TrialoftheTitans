@@ -1,0 +1,59 @@
+<!-- /////////////////////////////////////////////////////
+//
+//  Name: QCInterviewHeroReview
+//  Author: Natalie Clark
+//  Description: Aura Component for review of hero input
+//  on completion of interview before save
+//
+/////////////////////////////////////////////////// -->
+
+<aura:component controller="QCInterviewHeroReviewAuraController" implements="flexipage:availableForAllPageTypes" access="global">
+
+    <aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
+
+    <aura:attribute name="interview" type="QC_Interview__c" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="answers" type="QC_Question_Answer__c[]" />
+    <aura:attribute name="flagList" type="QC_Flag__c[]" />
+    <aura:attribute name="makeFlag" type="Boolean" default="false" />
+
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:handler name="DeleteRowEvt" event="c:QCInterviewHeroReviewDeleteRowEvent" action="{!c.DeleteNewRow}"/>
+    <aura:handler name="AddRowEvt" event="c:QCInterviewHeroReviewAddRowEvent" action="{!c.AddNewRow}"/>
+
+    <!-- displays hero and calculated score, with cohort and squad relationship potential -->
+    <lightning:card>
+        <aura:set attribute="title">
+            <lightning:icon iconName="utility:approval" size="small"/>
+            {!v.interview.Account__r.Name}
+        </aura:set>
+        <aura:set attribute="footer">
+            <lightning:badge label="{!v.Cohort__r.Name}"/>
+            <lightning:badge label="{!v.Squad__r.Name}"/>
+        </aura:set>
+        Calculated Score: {!v.interview.Overall_Score__c}
+    </lightning:card>
+
+    <!-- displays a list of questions and their hero-supplied answers -->
+    <lightning:datatable keyField="id" 
+                        label="Overview"
+                        data="{!v.answers}" 
+                        columns="{!v.columns}" 
+                        onRowSelection="{!c.handleRowSelection}" 
+                        hideCheckboxColumn="true"
+                        suppressBottomBar="true" />
+
+    <!-- refers to child component to enable handling of multiple flags -->
+    
+        <aura:iteration items="{!v.flagList}" var="item" indexVar="index">
+            <div>
+                <c:QCInterviewHeroReviewFlagRow flag="{!item}" rowIndex="{!index}" />
+            </div>
+        </aura:iteration>
+    
+
+    <lightning:button title="Click here to finalize interview for this Hero!" label="Finalize" onclick="{!handleFinalize}" />
+
+</aura:component>

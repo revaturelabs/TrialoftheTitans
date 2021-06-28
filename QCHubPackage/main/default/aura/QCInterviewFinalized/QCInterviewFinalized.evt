@@ -1,0 +1,11 @@
+<!-- /////////////////////////////////////////////////////
+//
+//  Name: QCInterviewFinalized
+//  Author: Natalie Clark
+//  Description: 
+/////////////////////////////////////////////////// -->
+
+<aura:event type="COMPONENT" description="Event template">
+    <aura:attribute name="finalizedInterviews" type="QC_Interview__c[]" />
+    <aura:attribute name="finalFlagList" type="QC_Flag__c[]" />
+</aura:event>

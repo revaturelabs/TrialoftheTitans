@@ -1,0 +1,102 @@
+<aura:component controller="QCInterviewQAAuraController" implements="flexipage:availableForAllPageTypes" access="global">
+
+
+    <aura:registerEvent name="UpdateQAListEvent" type="c:UpdateQAListEvent"/>
+    <aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/>
+    <aura:handler name="NextQuestionEvent" event="c:NextQuestionEvent" action="{!c.SaveAndNext}"/>
+
+    <aura:attribute name="CohortId"         type="String"/>
+    <aura:attribute name="Hero"             type="Account"/>
+    <aura:attribute name="CurrentInterview" type="QC_Interview__c"/>
+    <aura:attribute name="Week" type="String"/>
+    
+    <aura:attribute name="QuestionDeck"     type="QC_Question_Deck__c"/>
+    <aura:attribute name="CurrentQuestion"  type="QC_Question__c"
+
+                    default="{'sObjectType' : 'QC_Question__c',
+                             	'Name' : 'Default Question',
+                             	'Question__c' : ''}"/>
+
+    <aura:attribute name="HeroAnswer" type="QC_Question_Answer__c"
+                    default="{'sObjectType' : 'QC_Question_Answer__c',
+                             	'Question__c' : '',
+                             	'Answer__c' : ''}"/>
+    
+    <!--Begin first column-->
+
+    <div class="slds-grid slds-gutters slds-align_absolute-center">
+
+        <div class="boxGrid slds-grid slds-grid_vertical slds-col slds-size_3-of-12 slds-m-horizontal_xx-small">
+
+            <div class="slds-box slds-col slds-m-vertical_x-small">
+                Week Comp
+            </div>
+
+            <div class="slds-box slds-col slds-m-vertical_x-small">
+                {!v.CohortId}
+                {!v.CurrentInterview.Id}
+                {!v.CurrentInterview.Name}
+            </div>
+
+            <div class="slds-box slds-col slds-m-vertical_x-small">
+                <c:QCInterviewScoreComp/>
+            </div>
+
+            <div class="slds-box slds-col slds-m-vertical_x-small">
+
+                <lightning:button onclick="{!c.FinishInterview}">Finish</lightning:button>
+
+            </div>
+
+        </div>
+    
+    <!--End first column-->
+    
+    
+    <!--Begin Question Box / Column 2-->
+    
+        <!--Note: The Question Box updates the Hero Answer because the Hero Answer stores the question-->
+        <!--that was asked, as well as the hero's answer and the interviewer's score-->
+        <div class="boxGrid slds-col slds-size_7-of-12 slds-m-horizontal_xx-small ">
+
+            <div>
+                <lightning:textarea aura:id="QuestionBox" name="QCQuestionBox" value="{!v.HeroAnswer.Question__c}"
+                                    placeholder="Enter a question here..." class="QuestionBox slds-align_absolute-center"/>
+            </div>
+            <!--End Question Box-->
+
+
+            <!-- <p>{!v.CurrentQuestion.Question__c}</p>
+            <p>{!v.HeroAnswer.Question__c}</p> -->
+
+
+            <div class="slds-align_absolute-center">
+
+                <lightning:button label="TEST" onclick="{!c.TestQBox}"/>
+                
+                <!--Begin Navigation Buttons-->
+                <c:QCInterviewQANavButtons/>
+                <!--End Navigation Buttons-->
+
+            </div>
+
+            <!--Begin Answer Box-->
+            <div>
+                <lightning:textarea name="QCAnswerBox" value = "{!v.HeroAnswer.Answer__c}"
+                                    placeholder="Hero's answer..." class="QuestionBox slds-align_absolute-center"/>
+            </div>
+
+            <!-- <p>{!v.HeroAnswer.Answer__c}</p> -->
+            
+            <!--End Answer Box-->
+            
+
+        </div>
+
+    </div>
+
+    
+    
+</aura:component>

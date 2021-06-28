@@ -39,6 +39,24 @@
             "package": "HeroHubPackage",
             "versionName": "ver 1.0",
             "versionNumber": "1.0.0.NEXT",
+            "default": false,
+            "dependencies": [
+                {
+                    "package": "CorePackage@1.0.0-1"
+                },
+                {
+                    "package": "ExamPackage@1.0.0-2"
+                },
+                {
+                    "package": "TitanPage@1.0.0-2"
+                }
+            ]
+        },
+        {
+            "path": "QCHubPackage",
+            "package": "QCHubPackage",
+            "versionName": "ver 1.0",
+            "versionNumber": "1.0.0.NEXT",
             "default": true,
             "dependencies": [
                 {
@@ -49,6 +67,9 @@
                 },
                 {
                     "package": "TitanPage@1.0.0-2"
+                },
+                {
+                    "package": "HeroHubPackage@1.0.0-2"
                 }
             ]
         }
@@ -66,6 +87,9 @@
         "CorePackage": "0Ho5e000000XZXFCA4",
         "CorePackage@1.0.0-1": "04t5e0000002Wl4AAE",
         "ExamPackage@1.0.0-2": "04t5e0000002Wl9AAE",
-        "TitanPage@1.0.0-2": "04t5e0000002WlEAAU"
+        "TitanPage@1.0.0-2": "04t5e0000002WlEAAU",
+        "HeroHubPackage@1.0.0-2": "04t5e0000002YFlAAM",
+        "QCHubPackage": "0Ho5e000000sY8UCAU",
+        "QCHubPackage@1.0.0-1": "04t5e000000AIl2AAG"
     }
 }
