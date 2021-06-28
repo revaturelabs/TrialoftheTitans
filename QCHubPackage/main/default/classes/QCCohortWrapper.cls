@@ -1,15 +1,16 @@
 //////////////////////////////////////////////////////////////////////////////
 //
-//  
+//  Name: QCCohortWrapper
+//  Author: Alexander Dzhitenov
+//  Description: 
 //
 //////////////////////////////////////////////////////////////////////////////
 
-
 public with sharing class QCCohortWrapper {
     
-    Cohort__c cohort;
-    List<QCHeroWrapper> heroes;
-
-
+    @AuraEnabled public Cohort__c cohort{get;set;}
+    @AuraEnabled public Map<String, List<Account>> squadMap{get;set;}
+    
+    @AuraEnabled public List<QCSquadWrapper> squadList{get;set;}
 
 }

@@ -1,0 +1,77 @@
+<!-- /////////////////////////////////////////////////////
+//
+//  Name: QCInterviewHeroReview
+//  Author: Dylan Katrenick-Perez
+//  Description: Aura Component for the visualization
+//  of  the interview start page.
+//
+/////////////////////////////////////////////////// -->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    
+<aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
+    <aura:registerEvent name="StartInterviewEvent" type="c:StartInterviewEvent"/>
+    <!--aura:handler name="SelectHeroEvent" type="c:SelectHeroEvent" action="c.StartInterview"/-->
+
+    <aura:attribute name="Cohort" type="QCCohortWrapper"/>
+
+    <!--This needs to be put back in, but seems to be throwing errors at the moment-->
+    <!--c:QCInterviewCohortSelection/-->
+
+    
+    
+    
+    
+    
+<!--  Lower Main Box  -->
+    <div class="slds-grid slds-gutters slds-align_absolute-center">
+        
+       
+        
+        
+<!--  Lower LEFT Main Box  -->
+        <div class=" slds-grid slds-grid_vertical slds-col slds-size_3-of-12 slds-m-horizontal_xx-small">            
+            <div class="leftbox slds-box slds-col slds-m-vertical_x-small">
+                <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Cohort Statistics:</h1>
+                <p style="text-align: center">NOTE: Cohort Statistics Comp Needed.</p>
+
+                
+            </div>
+        </div>
+        
+        
+        
+        <div class=" slds-col slds-size_6-of-12 slds-m-horizontal_xx-small "> 
+
+            
+            <div class="rightboxes slds-box slds-col slds-m-vertical_x-small">
+                <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Cohort Table:</h1>
+                <p style="text-align: center">NOTE: Cohort Table Comp Needed.</p>
+                <lightning:button onclick="{!c.TESTNEXT}">TestNext</lightning:button>
+
+            </div>   
+            
+   
+            
+            
+        </div> 
+        
+        
+        <div class=" slds-col slds-size_3-of-12 slds-m-horizontal_xx-small "> 
+
+            
+            <div class="rightboxes slds-box slds-col slds-m-vertical_x-small">
+                <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Interview Topics:</h1>
+                <p style="text-align: center">NOTE: Need the Multi-Select Picklist Comp.</p>
+
+            </div>   
+            
+            
+           
+  
+            
+            
+        </div>
+        
+        
+    </div>    
+</aura:component>

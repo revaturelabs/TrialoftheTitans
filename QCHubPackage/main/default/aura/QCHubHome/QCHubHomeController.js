@@ -6,16 +6,28 @@
     },
 
     UpdateCohort : function(component, event, helper){
-        //let selectedCohort = event.getParam("SelectedCohort");
-        //console.log("QCHUBHOME HANDLER: " + selectedCohort);
-        //console.log("cObj in String Format===>"+JSON.stringify(selectedCohort) );
-        component.set("v.SelectedCohort", event.getParam("SelectedCohort"));
-        component.set("v.NoCohortSelected", false);
+        // Triggered by UpdateCohortEvent
+        helper.LoadCohortData(component, event.getParam("SelectedCohort"));
         
+    },
+
+    LaunchInterview : function(component, event, helper){
+
+        console.log("liEvent received, launching interview");
+        helper.LaunchInterview(component);
     },
 
 
     doInit: function( component, event, helper ) {
        
+    },
+
+    D3 : function(component, event, helper){
+        // component.set('v.d3', true)
+        console.log("D3 ACTIVATED");
+        if(component.get("v.dataLoaded")) {
+            helper.D3CohortOverview(component);
+        }
+        component.set("v.scriptsLoaded", true);
     }
 })

@@ -15,8 +15,33 @@
         //component.set("v.TEST", input);
 	},
     */
+
+    OnInit : function(component, event, helper){
+
+        helper.CreateInterview(component);
+
+    },
     
-    TestQBox : function(component, event, helper) {
-        console.log(component.get("v.HeroAnswer.Question__c"));
+    TestQBox : function(cmp, event, helper) {
+        //console.log("ahoy");
+        
+       helper.getQuestionDeck(cmp,"Sample Question Deck", helper);
+       
+    },
+
+    SaveAndNext : function(component, event, helper){
+
+        helper.UploadAnswer(component);
+        //Not currently in use - only need it if we want to switch to uploading all data at the end of each interview
+        /*
+        helper.LaunchQAListEvent(component);
+        */
+    },
+
+    FinishInterview : function(component, event, helper){
+
+        helper.LaunchStageEvent(component, "End");
+
     }
+
 })

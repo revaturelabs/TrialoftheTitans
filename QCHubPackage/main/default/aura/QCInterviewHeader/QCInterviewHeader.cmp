@@ -1,9 +1,13 @@
-<aura:component>
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+
     <aura:attribute name="CurrentStage" type="String" default="QCInterviewStart"/>
 
-    <div class="slds-grid slds-wrap">
-        <div class="slds-size--1-of-3">Start</div>
-        <div class="slds-size--2-of-3">Interview</div>
-        <div class="slds-size--3-of-3">End</div>
+    <div>
+        <div class="boxBackground slds-box slds-grid slds-gutters slds-align_absolute-center">
+            <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center"><p>Start</p></div>
+            <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">Interview</div>
+            <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">End</div>
+        </div>
     </div>
+    
 </aura:component>

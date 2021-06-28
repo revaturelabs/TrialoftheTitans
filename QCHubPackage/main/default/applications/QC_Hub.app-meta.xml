@@ -10,9 +10,9 @@
     </actionOverrides>
     <brand>
         <headerColor>#F9B643</headerColor>
-        <logo>corinthianrealisticantiquegreekgold</logo>
+        <logo>ColumnTop</logo>
         <logoVersion>1</logoVersion>
-        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
     <description>Home Page for QC Team.</description>
     <formFactors>Small</formFactors>
@@ -22,7 +22,8 @@
     <label>QC Hub</label>
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
-    <tabs>DerTestingApp</tabs>
+    <tabs>QC_Interview</tabs>
+    <tabs>QC_Hero_Interview_Review</tabs>
     <tabs>QC_Question__c</tabs>
     <tabs>QC_Question_Deck__c</tabs>
     <uiType>Lightning</uiType>
