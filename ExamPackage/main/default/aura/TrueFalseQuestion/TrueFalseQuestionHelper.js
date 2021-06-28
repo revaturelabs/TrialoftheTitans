@@ -1,6 +1,6 @@
 ({
 	fetchTrueFalse : function(component) {
-        var action = component.get('c.fetchTrueFalseQ');
+        /*var action = component.get('c.fetchTrueFalseQ');
         
         action.setCallback(this, (function(response) {
             var status = response.getState();
@@ -17,7 +17,7 @@
             	console.log("ERROR: " + errorMessage);
             }           
     }));
-        $A.enqueueAction(action);
+        $A.enqueueAction(action);*/
 		
 	}
 })

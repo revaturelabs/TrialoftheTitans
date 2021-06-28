@@ -75,6 +75,7 @@
                         $A.createComponent(
                             "c:EssayTypeQuestion" ,
                             {"question" : question,
+                            "radioGroupOptions" : question.Options__c,
                             "EssayQuestion" : "Question " + cntr + " : " + question.Question_Text__c,
                             "EssayAnswer" : question.Correct_Answer_s__c},
 
@@ -117,6 +118,76 @@
                         )
                         cntr++;
                     }
+                    if(question.Question_Type__c === "Multiple Choice"){
+                        $A.createComponent(
+                            "c:MultipleChoiceQuestion" ,
+                            {"question" : question,
+                            "radioGroupOptions" : question.Options__c,
+                            "questionprompt" : "Question " + cntr + " : " + question.Question_Text__c,
+                            "correctAnswer" : question.Correct_Answer_s__c},
+
+                            function(multipleChoiceCMP, status, errorMessage){
+                                if(status === "SUCCESS"){
+                                    var body = component.get("v.body");
+                                    body.push(multipleChoiceCMP);
+                                    component.set("v.body", body);
+                                }
+                                else if(status === "INCOMPLETE"){
+                                    console.log("No response from the server or client side.")
+                                }
+                                else if(status === "ERROR"){
+                                    console.log("ERROR: " + errorMessage);
+                                }
+                            }
+                        )
+                        cntr++;
+                    }
+                    if(question.Question_Type__c === "Multiple Choice - multiple answers"){
+                        $A.createComponent(
+                            "c:MultiMultipleChoicesQuestion",
+                            {"checkGroupOptions" : question.Options__c,
+                            "question" : question,
+                            "questionprompt" : "Question " + cntr + " : " + question.Question_Text__c,
+                            "correctAnswer" : question.Correct_Answer_s__c},
+                            function(multiMultipleChoiceCMP, status, errorMessage){
+                                if(status === "SUCCESS"){
+                                    var body = component.get("v.body");
+                                    body.push(multiMultipleChoiceCMP);
+                                    component.set("v.body", body);
+                                }
+                                else if(status === "INCOMPLETE"){
+                                    console.log("No response from the server or client side.")
+                                }
+                                else if(status === "ERROR"){
+                                    console.log("ERROR: " + errorMessage);
+                                }
+                            }
+                        );
+                        cntr++;
+                    }
+                    if(question.Question_Type__c === "True-false"){
+                        $A.createComponent(
+                            "c:TrueFalseQuestion", 
+                            {"question" : question,
+                            "questionprompt" : "Question " + cntr + " : " + question.Question_Text__c,
+                            "correctAnswer" : question.Correct_Answer_s__c},
+                            function(trueFalseCMP, status, errorMessage){
+                                if(status === "SUCCESS"){
+                                    var body = component.get("v.body");
+                                    body.push(trueFalseCMP);
+                                    component.set("v.body", body);
+                                }
+                                else if(status === "INCOMPLETE"){
+                                    console.log("No response from the server or client side.")
+                                }
+                                else if(status === "ERROR"){
+                                    console.log("ERROR: " + errorMessage);
+                                }
+                            }
+                        )
+                    }
+                    
+
                 }
             }
         })
