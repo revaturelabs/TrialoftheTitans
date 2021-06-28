@@ -36,6 +36,39 @@ public class AssessmentSetup {
        insert heroAssessmentList;
         
     }
+    // Uses most of the code from Alex's QCHubDataFactory controller
+    public static void QCSetup(String namePrefix){
+        List<Account> testAcct = [SELECT Name, Team__c from Account];
+        Schema.DescribeSObjectResult acctDesc = Account.SObjectType.getDescribe();
+		Map<String, Schema.RecordTypeInfo> acctRecTypeMap = acctDesc.getRecordTypeInfosByName();
+		Id heroTypeId = acctRecTypeMap.get('Hero').getRecordTypeId();
+        
+        Cohort__c testCohort = [Select Name from Cohort__c LIMIT 1];
+        List<QC_Interview__c> QCInterviewList = new List<QC_Interview__c>();
+        for (Account a : testAcct){
+            if(a.Squad__c!=null)
+            	a.RecordTypeId=heroTypeId = heroTypeId;
+        	QC_Interview__c newInterview = new QC_Interview__c(Name=a.Name+'QC '+namePrefix,
+                                                               Cohort__c=testCohort.Id, Account__c=a.Id);
+            QCInterviewList.add(newInterview);
+            
+        }
+        update testAcct;
+		insert QCInterviewList;
+        
+        List<QC_Question_Answer__c> QCAnswersList = new List<QC_Question_Answer__c>();
+        for (QC_Interview__c QCInt : QCInterviewList){
+            for (integer qcAnsCount=0; qcAnsCount<5; ++qcAnsCount){
+                QC_Question_Answer__c qcAns = new QC_Question_Answer__c(Question__c='Question: ',Hero_Answer__c='Answer: ',
+                                                                        Score__c=qcAnsCount, QC_Interview__c=QCInt.Id);
+                QCAnswersList.add(qcAns);
+                
+            }
+            
+        }
+        
+        insert QCAnswersList;
+    }
     public static void associateCohort(){
         Cohort__c coh = new Cohort__c(Name='4122021');
         insert coh;
