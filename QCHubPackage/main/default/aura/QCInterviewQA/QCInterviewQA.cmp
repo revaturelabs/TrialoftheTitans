@@ -5,7 +5,7 @@
     <aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/>
-    <aura:handler name="NextQuestionEvent" event="c:NextQuestionEvent" action="{!c.SaveAndNext}"/>
+
     <!--<aura:handler name="PassScoreEvent" event="c:PassScoreEvent" action="{!c.RetriveScore}"/>-->
     
 
@@ -101,7 +101,7 @@
                 <lightning:button label="TEST" onclick="{!c.TestQBox}"/>
                 
                 <!--Begin Navigation Buttons-->
-                <c:QCInterviewQANavButtons/>
+                <lightning:button onclick="{!c.SaveAndNext}">Next</lightning:button>
                 <!--End Navigation Buttons-->
 
             </div>
