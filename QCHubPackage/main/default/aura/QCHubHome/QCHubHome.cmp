@@ -23,19 +23,30 @@
 
     <!-- Beginning of box layout grid for components -->
     <div class="slds-grid slds-gutters slds-align_absolute-center">
+
         <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
+
             <p><c:CohortButtons CohortList="{!v.CohortList}"/></p>
-        </div>
-        <div class="boxGrid slds-col slds-size_7-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small slds-m-vertical_x-small">
-            <p>
-                <div class="svgCohortOverview"></div>
-                <c:CohortStatistics ActiveCohort="{!v.SelectedCohort.cohort}"/>
-            </p>
 
         </div>
+
+        <div class="boxGrid slds-col slds-size_7-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small slds-m-vertical_x-small">
+
+
+            <!-- This is the d3 bar graph -->
+            <p>
+                <div id="svg" class="svgCohortOverview"></div>
+                <c:CohortStatistics ActiveCohort="{!v.SelectedCohort.cohort}"/>
+            </p>
+            <!-- end of d3 bar graph -->
+
+
+        </div>
+
         <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
             <p><c:SquadButtons SquadList="{!v.SquadList}"/></p>
         </div>
+
     </div>
     <!-- End of box layout grid for components -->
 

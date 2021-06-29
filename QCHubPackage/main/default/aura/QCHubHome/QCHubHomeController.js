@@ -24,6 +24,7 @@
     },
 
     D3 : function(component, event, helper){
+        // component.set('v.d3', true)
         console.log("D3 ACTIVATED");
         console.log(component.get("v.DataLoaded"));
         console.log(component.get("v.ScriptLoaded"));
