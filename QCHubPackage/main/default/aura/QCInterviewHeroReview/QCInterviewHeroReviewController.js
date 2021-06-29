@@ -58,4 +58,13 @@
         helper.UpdateStage(component, "Start");
     },
     
+    Submit : function(component, event, helper){
+        HeroId = component.get("v.HeroId");
+        HeroName = component.get("v.HeroName");
+        CohortId = component.get("v.CohortId");
+        Week = component.get("v.Week");
+        HeroAnswers = component.get("v.answers");
+        Flags = component.get("v.flagList");
+        helper.SubmitInterview(component);
+    }
 })

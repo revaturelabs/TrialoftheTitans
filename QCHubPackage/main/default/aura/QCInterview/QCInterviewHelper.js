@@ -6,7 +6,7 @@
 	AddQuestionAnswer : function(component, questionAnswer){
 
 		let currentQAList = component.get("CurrentQAList");
-		currentQAList.add(questionAnswer);
+		currentQAList.push(questionAnswer);
 		component.set("CurrentQAList", currentQAList);
 		
 	}

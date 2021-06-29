@@ -1,4 +1,5 @@
 ({
+    // ***CURRENTLY NOT IN USE***
     getInterview : function(component, event) {
         var interviews = component.get("c.getInterview")
         interviews.setParams({cohort: event.getParam(NEEDCOHORTPARAMSET),
@@ -66,6 +67,15 @@
         let StageEvent = component.getEvent("UpdateStageEvent");
         StageEvent.setParams("StageName", stage);
         StageEvent.fire();
+    },
+
+    SubmitInterview : function(HeroId, HeroName, CohortId, Week, HeroAnswers, Flags){
+        console.log(HeroId);
+        console.log(HeroName);
+        console.log(CohortId);
+        console.log(Week);
+        console.log(HeroAnswers);
+        console.log(Flags);
     }
 
 })
