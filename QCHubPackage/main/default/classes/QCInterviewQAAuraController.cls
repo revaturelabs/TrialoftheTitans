@@ -20,10 +20,10 @@ public with sharing class QCInterviewQAAuraController {
         // System.debug('Cohort: ' + cohortId);
         // System.debug('Hero Name: ' + heroName);
         // System.debug('Week: ' + week);
-        insert newInterview;
+        //insert newInterview;
         // System.debug('NEW INTERVIEW INSERTED FROM AURA CONTROLLER');
 
-        QC_Interview__c newInterview = new QC_Interview__c(Account__c=heroId, Cohort__c=cohortId, Name=heroName + ' ' + week);
+        //QC_Interview__c newInterview = new QC_Interview__c(Account__c=heroId, Cohort__c=cohortId, Name=heroName + ' ' + week);
         insert newInterview;
 
         return newInterview;
@@ -34,6 +34,9 @@ public with sharing class QCInterviewQAAuraController {
     // while a QC Interview is in progress, it wouldn't get saved otherwise)
     @AuraEnabled
     public static void InsertQAData(Id interviewId, String heroAnswerStr){
+        System.debug('ahoy');
+        System.debug(interviewId);
+        System.debug(heroAnswerStr);
 
         System.debug(interviewId);
         System.debug(heroAnswerStr);

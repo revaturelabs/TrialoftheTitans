@@ -59,8 +59,12 @@
         // prevents the creation of bum
         //h.CreateInterview(cmp);
         
+        //let x = cmp.get("v.CurrentQuestionIndex");
+        
+
         cmp.set('v.HeroAnswer.Score__c',0)
-        h.ChangeQuestion(cmp,cmp.get("v.CurrentQuestionIndex"));
+        cmp.set('v.HeroAnswer.Answer__c',null);
+        //h.ChangeQuestion(cmp,++x);
 
     },
 
@@ -167,7 +171,6 @@
         
         let QAListEvent = component.getEvent("UpdateQAListEvent");
         QAListEvent.setParams({"QA" : component.get("v.HeroAnswer")});
-        console.log("exit");
         QAListEvent.fire();
         
         
