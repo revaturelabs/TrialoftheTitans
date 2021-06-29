@@ -17,7 +17,7 @@
     <aura:attribute name="CurrentQAList" type="QC_Question_Answer__c[]"/>
     
 
-    {!v.Week}
+    <!--{!v.Week}-->
 
     <!-- This header section shows the currently active stage - (Begin) -->
     <div>
@@ -51,7 +51,7 @@
     
      
     <aura:if isTrue="{!v.Stage=='Interview' ? true : false}">
-        <c:QCInterviewQA CohortId="{!v.Cohort.cohort.Id}" Hero = "{!v.CurrentHero}"/>
+        <c:QCInterviewQA CohortId="{!v.Cohort.cohort.Id}" Hero = "{!v.CurrentHero}" Week = "{!v.Week}"/>
     </aura:if>
     
     
