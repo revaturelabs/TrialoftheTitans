@@ -40,11 +40,11 @@
                 
 <!--  QC Interview Cohort Selection Component  -->   
                 <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Select a Cohort:</h1>
-                <c:QCInterviewHeroReview week="{!v.Week}" answers="{!v.CurrentQAList}" CohortId="{!v.Cohort.cohort.Id}"
-                                            HeroId="{!v.CurrentHero.Id}" HeroName="{!v.CurrentHero.Name}"/>
+                <c:QCInterviewHeroReview Week="{!v.Week}" answers="{!v.answers}" CohortId="{!v.CohortId}"
+                                            HeroId="{!v.HeroId}" HeroName="{!v.HeroName}"/>
             </div>
         </div>
-        
+        {!v.Week} {!v.CohortId} {!v.HeroId} {!v.HeroName}
         
         
 <!--  Lower RIGHT Main Box  -->
