@@ -3,6 +3,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/>
     <aura:handler name="UpdateStageEvent" event="c:UpdateStageEvent" action="{!c.UpdateStage}"/>
     <aura:handler name="UpdateQAListEvent" event="c:UpdateQAListEvent" action="{!c.QAEvent}"/>
+    <aura:handler name="SetWeekEvent" event="c:SetWeekEvent" action="{!c.SetWeek}"/>
     <!--aura:handler name="StartInterviewEvent" event="c:StartInterviewEvent" action="{!c.SetHero}"/-->
     <aura:handler name="InterviewHeroEvent" event="c:InterviewHeroEvent" action="{!c.SetHero}"/>
 
@@ -16,7 +17,7 @@
     <aura:attribute name="CurrentQAList" type="QC_Question_Answer__c[]"/>
     
 
-
+    {!v.Week}
 
     <!-- This header section shows the currently active stage - (Begin) -->
     <div>

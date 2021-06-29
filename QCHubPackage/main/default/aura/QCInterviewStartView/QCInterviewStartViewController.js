@@ -20,6 +20,21 @@
 
 
     StartInterview : function(component, event, helper){
+
+        helper.LaunchWeekEvent(component, component.get("v.Week"));
         helper.LaunchStageEvent(component, "Interview");
-    }
+
+    },
+
+
+    WeekSelect : function(component, event, handler){
+        
+        console.log("SET WEEK: ");
+        console.log(component.find("WeekSelection").get("v.value"));
+		let week = component.find("WeekSelection").get("v.value");
+        console.log("SET");
+        console.log(week);
+        component.set("v.Week", week);
+
+	}
 })
