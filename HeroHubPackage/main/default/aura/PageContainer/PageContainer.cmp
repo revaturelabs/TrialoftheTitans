@@ -7,43 +7,43 @@
 
 -->
 
-<aura:component controller="HeroHubController" implements="forceCommunity:themeLayout" access="global" >
-    
+<aura:component controller="HeroHubController" implements="forceCommunity:themeLayout" access="global">
+
     <!--Attributes: contextUser, userTeam, leadTeam,-->
     <aura:attribute name="contextInfo" type="UserContextInfo" />
-    <aura:attribute name="leadTeams" type="Map"/>
+    <aura:attribute name="leadTeams" type="Map" />
+    <aura:attribute name="nameClicked" type="Boolean" default="false" />
     <aura:attribute name="navigate" type="String" default="" />
-    <aura:handler name="navigatePage" event="c:MainPageNavigation" action="{!c.navigate}"/>
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="navigatePage" event="c:MainPageNavigation" action="{!c.navigate}" />
+    <aura:handler name="navigateToResults" event="c:NavResultsEvent" action="{!c.navigateToResults}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
     <!--Set dynamic colors for teams-->
     <aura:html tag="style">
-        :root {
-            --user-team-primary: {!v.contextInfo.team.Primary_Color__c};
-            --user-team-secondary: {!v.contextInfo.team.Secondary_Color__c};
-            --lead-team-primary: {!v.leadTeams.team[0].primary_color__c};
-        	--lead-team-secondary: {!v.leadTeams.team[0].secondary_color__c};
-
-            background-color: #3f3f3f;
-        }
+        :root { --user-team-primary: {!v.contextInfo.team.Primary_Color__c}; --user-team-secondary: {!v.contextInfo.team.Secondary_Color__c}; --lead-team-primary: {!v.leadTeams.team[0].primary_color__c}; --lead-team-secondary: {!v.leadTeams.team[0].secondary_color__c};
+        background-color: #3f3f3f; }
     </aura:html>
 
     <!-- Animated Header and Navigation goes here -->
     <header class="header">
-        <c:AnimatedHeader leadTeams="{!v.leadTeams}"/>
-        <c:Navigation contextInfo="{!v.contextInfo}" navigate="{!v.navigate}"/>
+        <c:AnimatedHeader leadTeams="{!v.leadTeams}" />
+        <c:Navigation contextInfo="{!v.contextInfo}" navigate="{!v.navigate}" />
     </header>
-    
+    <!-- v.nameClicked != true -->
     <!-- Main page with Titan Page or Titan Slayer and Hero Journey -->
     <div id="main">
-            <aura:if isTrue="{!v.navigate == 'Titans'}" >
-                    <!--Insert Titan Page Here-->
+        <aura:if isTrue="{!v.nameClicked}">
+            <c:HeroResultPage/>
+            <aura:set attribute="else">
+                <aura:if isTrue="{!v.navigate == 'Titans'}">
                     <c:TitansPageLanding />
-                <aura:set attribute="else">
-                    <c:TitanSlayer leadTeams="{!v.leadTeams}" />
-                    <c:HeroJourney contextInfo="{!v.contextInfo}"/>
-                </aura:set>
-            </aura:if>    
+                    <aura:set attribute="else">
+                        <c:TitanSlayer leadTeams="{!v.leadTeams}" />
+                        <c:HeroJourney contextInfo="{!v.contextInfo}" />
+                    </aura:set>
+                </aura:if>
+            </aura:set>
+        </aura:if>
     </div>
 
     <c:Communication />

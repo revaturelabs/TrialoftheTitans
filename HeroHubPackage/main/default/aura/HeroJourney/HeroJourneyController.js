@@ -27,5 +27,16 @@
       console.log('from changeChart');
       component.set('v.currentChart', event.getParam('chartType'));
     
+    }, 
+
+    takeExamClicked : function(component, event, helper){
+      // console.log(event.getParams()['examId'])
+      // console.log(event.getParams()['takingExam'])
+      component.set('v.examId',event.getParams()['examId'])
+      component.set('v.takingExam', event.getParams()['takingExam'])
+    },
+    onFakeBtnClick : function (cmp, event, helper) {
+      let examId = cmp.get('v.examId')
+      helper.startExamEvent(cmp, event, examId);
     }
 })
