@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Account__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
     <description>The hero this QC Interview was for.</description>
     <externalId>false</externalId>
     <inlineHelpText>The hero this QC Interview was for.</inlineHelpText>
