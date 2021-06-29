@@ -7,7 +7,21 @@
         helper.loadExamHelper(component);
     },
 
-    navigateToQuestion : function(component, event, helper) {
-        helper.navigateToQuestionHelper(component);
+    nextClick : function(component, event, helper) {
+        helper.navigateToNextQuestionHelper(component);
+    },
+
+    prevClick : function(component, event, helper){
+        helper.navigateToPrevQuestionHelper(component);
+    },
+
+    submitClick : function(component, event, helper){
+        helper.submitExam(component);
+    },
+
+    setTitan : function(component, event, helper){
+        helper.setTitanHelper(component, event);
     }
+
+    
 })

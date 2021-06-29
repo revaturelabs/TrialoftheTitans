@@ -3,6 +3,6 @@
 		helper.fetchMultiChoices(component);
 	},
     handleChange: function (component, event) {
-        alert(event.getParam('value'));
+        //alert(event.getParam('value'));
     },
 })

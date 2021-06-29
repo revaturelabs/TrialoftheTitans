@@ -1,6 +1,19 @@
 ({
 	fetchMultiChoices : function(component) {
-		var action = component.get('c.fetchMultiMultiple');
+        var options = component.get("v.checkGroupOptions");
+        //component.set("v.radioGroupOptions", options);
+        var options = options.split('||');
+        let optionsArray = [];
+        for (let i = 0; i< options.length; i++) {
+            let myObject = {
+                'label': `${options[i]}`,
+                'value': `${options[i]}`
+            };
+            optionsArray.push(myObject);
+        }
+        component.set('v.checkGroupOptions', optionsArray);
+
+		/*var action = component.get('c.fetchMultiMultiple');
         
         action.setCallback(this, (function(response) {
             var status = response.getState();
@@ -32,6 +45,6 @@
             
             
     }));
-        $A.enqueueAction(action);
+        $A.enqueueAction(action);*/
 	}
 })

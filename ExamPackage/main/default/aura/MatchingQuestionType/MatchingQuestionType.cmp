@@ -8,8 +8,8 @@
     <aura:attribute name = "answers" type = "String[]"/>
     <aura:attribute name = "questionprompt" type = "String"/>
     <aura:attribute name = "heroAnswer" type = "Hero_Answer__c"/>
-
     <aura:handler name = "init" value = "{!this}" action = "{!c.loadOptions}"/>
+    
 
     <!--Component View-->
     <lightning:card>
@@ -18,8 +18,8 @@
                 {!v.body}
         </div>
     </lightning:card>
-    <div class = "slds-hidden">
-        <aura:iteration aura:id = "iterator" items="{!v.options}" var="ops">
+    <div class = "slds-hide">
+       <aura:iteration aura:id = "iterator" items="{!v.options}" var="ops">
             <option aura:id = "eachOption" value = "{!ops}" text = "{!ops}"/>
         </aura:iteration>
     </div>
