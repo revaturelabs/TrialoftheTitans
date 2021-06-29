@@ -47,7 +47,7 @@
 
     LoadWeeks : function(component){
 
-        let WeekListInit = component.get("c.RetrieveCohorts");
+        let WeekListInit = component.get("c.RetrieveWeeks");
 
         WeekListInit.setCallback(this, function(response){
 

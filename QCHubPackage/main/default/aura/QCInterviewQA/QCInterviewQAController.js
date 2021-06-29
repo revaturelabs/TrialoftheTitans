@@ -18,10 +18,11 @@
 
     OnInit : function(component, event, helper){
         console.log("QCInterviewQA Init:");
+        
         helper.getQuestionDeck(cmp,"Sample Question Deck", helper);
-        helper.InterviewInit()
+        helper.InterviewInit(component, helper);
     },
-  
+    
 
   
 
@@ -35,6 +36,9 @@
     SaveAndNext : function(component, event, helper){
 
         helper.UploadAnswer(component);
+        // after this call helper interview init, this will override the old set and make a clean slate
+        // set the current question index forward 1 to get the next question (already randomized)
+
         //Not currently in use - only need it if we want to switch to uploading all data at the end of each interview
         /*
         helper.LaunchQAListEvent(component);

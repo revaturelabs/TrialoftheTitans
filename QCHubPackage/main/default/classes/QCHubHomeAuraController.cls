@@ -20,9 +20,17 @@ public with sharing class QCHubHomeAuraController {
 
     // Return the global picklist value set of weeks used in the org
     @AuraEnabled
-    public static List<String> RetrieveWeek(){
+    public static List<String> RetrieveWeeks(){
         System.debug(QC_Interview__c.Week__c.getDescribe().getPicklistValues());
-        return QC_Interview__c.Week__c.getDescribe().getPicklistValues();
+
+        List<String> weekList = new List<String>();
+        List<Schema.PicklistEntry> pickValues = QC_Interview__c.Week__c.getDescribe().getPicklistValues();
+        for (Schema.PicklistEntry pickVal : pickValues){
+            System.debug(pickVal.getValue());
+            weekList.add(pickVal.getValue());
+        }
+        System.debug(weekList);
+        return weekList;
     }
 
     

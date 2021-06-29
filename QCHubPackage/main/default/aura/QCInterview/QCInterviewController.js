@@ -5,17 +5,23 @@
 		let pageRef = component.get("v.pageReference");
 		let sessionCohort = sessionStorage.getItem('ActiveCohort');
 		let sessionWeekList = sessionStorage.getItem('WeekList');
+		console.log(sessionWeekList);
 		if(pageRef){
 			component.set("v.CohortId", pageRef.state.c__CohortId);
 
 		}
 		console.log("Retrieving Session Variables;");
-		if(session){
-			console.log(JSON.parse(sessionWeekList));
+		if (sessionCohort){
+			console.log("In session retrieve;");
 			component.set("v.Cohort", JSON.parse(sessionCohort));
-			component.set("v.Week", JSON.parse(sessionWeekList));
+		}
+		if (sessionWeekList){
+			console.log("Cohort retrieved;");
+			component.set("v.WeekList", JSON.parse(sessionWeekList));
 		}
 		console.log("QCInterview Init complete.")
+		console.log("WeekList:");
+		console.log(component.get("v.WeekList"));
 	},
 
 

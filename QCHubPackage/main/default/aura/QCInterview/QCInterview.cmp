@@ -40,10 +40,6 @@
     </div>
     <!-- End of header stage section -->
 
-
-    <p>{!v.Cohort.cohort.Id}</p>
-    <p>{!v.CurrentHero.Name}</p>
-
     
     <!--Begin component display (depends on CurrentStage attribute)-->
     <div>
