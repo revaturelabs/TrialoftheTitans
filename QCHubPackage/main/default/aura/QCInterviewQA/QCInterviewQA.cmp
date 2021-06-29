@@ -42,6 +42,7 @@
             </div>
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
+                {!v.Hero.Name}
                 {!v.CohortId}
                 {!v.CurrentInterview.Id}
                 {!v.CurrentInterview.Name}
