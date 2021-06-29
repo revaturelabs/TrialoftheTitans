@@ -38,6 +38,7 @@
 
     SaveAndNext : function(component, event, helper){
 
+        console.log("SaveAndNext method activated");
         helper.UploadAnswer(component);
         
         // this call to interview init, should overwrite the interview attribute, this may interfer with the save due to scheduling 

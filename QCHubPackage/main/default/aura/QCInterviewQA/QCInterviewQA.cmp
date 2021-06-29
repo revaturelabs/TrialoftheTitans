@@ -9,11 +9,11 @@
     <!--<aura:handler name="PassScoreEvent" event="c:PassScoreEvent" action="{!c.RetriveScore}"/>-->
     
 
-    <aura:attribute name="CohortId"         type="String"/>
-    <aura:attribute name="Hero"             type="Account"/>
+    <aura:attribute name="CohortId"     type="String"/>
+    <aura:attribute name="Hero"         type="Account"/>
     <aura:attribute name="CurrentInterview" type="QC_Interview__c"/>
-    <aura:attribute name="Week" type="String"/>
-    <aura:attribute name="HeroScore" type="Integer"/>
+    <aura:attribute name="Week"         type="String"/>
+    <aura:attribute name="HeroScore"    type="Integer"/>
     <aura:attribute name="CurrentQuestionIndex" type="Integer"/>
     <aura:attribute name="IncomingDeckList" type="Object"/>
     

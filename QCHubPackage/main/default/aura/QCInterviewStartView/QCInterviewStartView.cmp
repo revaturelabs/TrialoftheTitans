@@ -22,7 +22,9 @@
     <aura:attribute name="Week" type="String" default="Week 1"/>
     
     IN INTERVIEW START{!v.Week}
-    
+    <aura:iteration items="{!v.WeekList}" var="w">
+        Week: {!w}
+    </aura:iteration>
     
     
     
