@@ -67,6 +67,6 @@
         let HeroAnswers = component.get("v.answers");
         let Flags = component.get("v.flagList");
         console.log("Variable")
-        helper.SubmitInterview(HeroId, HeroName, CohortId, Week, HeroAnswers, Flags);
+        helper.SubmitInterview(component, HeroId, HeroName, CohortId, Week, HeroAnswers, Flags);
     }
 })
