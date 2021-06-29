@@ -7,6 +7,10 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<members>QCCohortWrapper</members>
 		<name>ApexClass</name>
 	</types>
+	<type>
+	<member>Hero_Answer__c</members>
+		<name>CustomObject</name>
+	</type>
 	<types>
 		<members>QC_Hub</members>
 		<name>CustomApplication</name>
