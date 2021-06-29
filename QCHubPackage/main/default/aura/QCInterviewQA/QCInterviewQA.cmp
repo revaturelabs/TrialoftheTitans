@@ -43,10 +43,6 @@
             </div>
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
-                Hero name: {!v.Hero.Name} <br/>
-                <!--{!v.CohortId}-->
-                {!v.CurrentInterview.Id}
-                {!v.CurrentInterview.Name}
                 
             </div>
 

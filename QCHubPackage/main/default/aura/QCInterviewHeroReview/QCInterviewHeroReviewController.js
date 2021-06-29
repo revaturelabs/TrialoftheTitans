@@ -59,12 +59,14 @@
     },
     
     Submit : function(component, event, helper){
-        HeroId = component.get("v.HeroId");
-        HeroName = component.get("v.HeroName");
-        CohortId = component.get("v.CohortId");
-        Week = component.get("v.Week");
-        HeroAnswers = component.get("v.answers");
-        Flags = component.get("v.flagList");
-        helper.SubmitInterview(component);
+        console.log("In submit function");
+        let HeroId = component.get("v.HeroId");
+        let HeroName = component.get("v.HeroName");
+        let CohortId = component.get("v.CohortId");
+        let Week = component.get("v.Week");
+        let HeroAnswers = component.get("v.answers");
+        let Flags = component.get("v.flagList");
+        console.log("Variable")
+        helper.SubmitInterview(HeroId, HeroName, CohortId, Week, HeroAnswers, Flags);
     }
 })

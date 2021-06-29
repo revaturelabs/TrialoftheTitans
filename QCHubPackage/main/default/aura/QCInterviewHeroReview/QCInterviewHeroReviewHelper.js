@@ -70,12 +70,87 @@
     },
 
     SubmitInterview : function(HeroId, HeroName, CohortId, Week, HeroAnswers, Flags){
+        
+        console.log("SubmitInterview helper");
+
         console.log(HeroId);
         console.log(HeroName);
         console.log(CohortId);
         console.log(Week);
         console.log(HeroAnswers);
-        console.log(Flags);
+
+
+        var HeroAnswersStr = new Array("banana");
+        
+        console.log(HeroAnswersStr);
+
+        /*
+        for (let hA of HeroAnswers){
+            console.log("IN FOR LOOP");
+            //console.log(JSON.stringify(hA));
+            HeroAnswersStr.push(JSON.stringify(hA));
+            console.log(HeroAnswerStr[0]);
+        }
+        */
+
+        let FlagsStr = [];
+
+        /*
+        for (let f of Flags){
+            console.log("IN FOR LOOP 2");
+            console.log(JSON.stringify(f));
+            FlagsStr.push(JSON.stringify(f));
+        }
+        */
+
+
+        console.log("Stringification complete");
+        console.log(HeroAnswerStr);
+        console.log(FlagsStr);
+
+        let interviewSubmit = component.get("c.UploadInterviewData");
+
+        interviewSubmit.setParams({"cohortId" : CohortId, "heroId" : HeroId,
+                                    "heroName" : HeroName, "week" : Week, 
+                                    "qaStrList" : HeroAnswersStr, "qaStrFlags" : FlagsStr});
+
+        console.log("PARAMETERS SET");
+
+        interviewSubmit.setCallback(this, function(response){
+            
+            let state = response.getState();
+
+            if (state === "SUCCESS"){
+                console.log(state);
+
+            }
+            
+            else if (state === "INCOMPLETE"){
+                console.log(state);
+
+            }
+
+            else if (state === "ERROR"){
+                console.log(state);
+                var errors = response.getError();
+
+                if (errors) {
+                    if (errors[0] && errors[0].message){
+                        console.log("Error message: " + errors[0].message);
+
+                    }
+
+                }
+                else {
+                    console.log("Unknown error");
+
+                }
+
+            }
+        });
+        console.log("ENQUEUEING ACTION...");
+        $A.enqueueAction(interviewSubmit);
+        console.log("ACTION ENQUEUED.");
     }
 
 })

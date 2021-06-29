@@ -17,12 +17,6 @@
     <aura:attribute name="CurrentQAList" type="QC_Question_Answer__c[]"/>
     
 
-    {!v.Week}
-    {!v.CurrentHero.Id}
-    {!v.Cohort.cohort.Id}
-    {!v.CurrentHero.Name}
-    <!--{!v.Week}-->
-
     <!-- This header section shows the currently active stage - (Begin) -->
     <div>
         <div>
