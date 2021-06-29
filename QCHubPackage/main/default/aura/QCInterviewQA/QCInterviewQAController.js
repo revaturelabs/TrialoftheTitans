@@ -18,7 +18,10 @@
 
     OnInit : function(component, event, helper){
         
-        helper.getQuestionDeck(cmp,"Sample Question Deck", helper);
+        //cmp.set("v.CurrentQuestionIndex",0);
+                                       // VVV this needs to be component.get("{!v.IncomingDeckList}"), which need to be set in interviewStart
+        helper.getQuestionDeck(component,"Sample Question Deck", helper);
+        
         helper.InterviewInit(component, helper);
     },
     
@@ -35,7 +38,9 @@
     SaveAndNext : function(component, event, helper){
 
         helper.UploadAnswer(component);
-        // after this call helper interview init, this will override the old set and make a clean slate
+        
+        // this call to interview init, should overwrite the interview attribute, this may interfer with the save due to scheduling 
+        helper.InterviewInit(component, helper);
         // set the current question index forward 1 to get the next question (already randomized)
 
         //Not currently in use - only need it if we want to switch to uploading all data at the end of each interview
