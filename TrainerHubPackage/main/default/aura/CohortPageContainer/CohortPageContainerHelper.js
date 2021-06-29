@@ -11,11 +11,8 @@
 	Init : function(component, event) {
 		let tabs = [];
         let titan = null;
-        for(let i = 0;i<6;i++){
+        for(let i = 1;i<6;i++){
             switch(i){
-                case 0:
-                    titan = {name:"Overall"};
-                    break;
                 case 1:
                     titan = {name:"Hero List"};
                     break;    
@@ -40,7 +37,7 @@
             tabs.push(titan);
         }
         component.set( "v.currIndex", 0);
-        component.set( "v.active", 'Overall');                
+        component.set( "v.active", 'Hero List');                
         component.set( "v.tabs", tabs);
 	},
     SetExamLink : function(component, event) {

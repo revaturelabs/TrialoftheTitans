@@ -45,6 +45,7 @@
 
         <div id="svg"></div>
     -->
+    
     <!-- Header -->
     <div class="header">
         Cohort Page
@@ -185,9 +186,9 @@
                         <!-- Table/Chart -->
                         <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
                             <div class="slds-m-horizontal_small slds-m-bottom_small">
-                                <a href="{!v.examURl}">
+                                <!--<a href="{!v.examURl}">
                                 <lightning:button label="Exam Hubs" class=" slds-m-top_medium slds-m-right_small slds-button_neutral" title="Back" value="{!titan}" onclick="{!c.ToExamHub}"/><br/>
-                                </a>
+                                </a>-->
                                	<div class="slds-m-top_medium">
                                 	<c:ExamList CohortId="{!v.CohortId}"/>
                                 </div>

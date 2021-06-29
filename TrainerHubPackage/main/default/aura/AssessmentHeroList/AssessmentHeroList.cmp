@@ -24,7 +24,7 @@
 	<aura:registerEvent name="sendHeroAssessmentIdEvent" type="c:CohortPageTransferIdEvent"/>
 
     <!-- Search Bar Input -->
-    <lightning:input type="text" name="searchKey" label="Enter" aura:id="searchKey" onchange="{!c.search}" placeholder="Search Hero" />
+    <lightning:input type="text" name="searchKey" aura:id="searchKey" onchange="{!c.search}" placeholder="Search Hero" />
 
     <aura:method name="FetchData" action="{!c.fetchData}" access="global"/>
     
