@@ -48,5 +48,14 @@
 		console.log(test);
 		console.log("SETHERO: SETTING HERO WITH " + test.Name);
 		component.set("v.CurrentHero", event.getParam("SelectedHero"));
+	},
+
+
+	SetWeek : function(component, event, handler){
+		console.log("Handling Week Event");
+		component.set("v.Week", event.getParam("Week"));
+		console.log(event.getParam("Week"));
+		console.log("Week set to: ");
+		console.log(component.get("v.Week"));
 	}
 })
