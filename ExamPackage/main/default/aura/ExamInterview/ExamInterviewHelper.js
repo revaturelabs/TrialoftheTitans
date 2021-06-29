@@ -315,5 +315,12 @@
             prev.set('v.disabled', true);
         }
         component.set("v.questionNumber", questionNumber);
+    },
+
+    submitExam : function(component){
+        setTimeout(function () {
+            alert('Reloading Page');
+            location.reload(true);
+          }, 3000);
     }
 })

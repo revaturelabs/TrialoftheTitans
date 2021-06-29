@@ -13,6 +13,11 @@
 
     prevClick : function(component, event, helper){
         helper.navigateToPrevQuestionHelper(component);
+    },
+
+    submitClick : function(component, event, helper){
+        helper.submitExam(component);
     }
+
     
 })
