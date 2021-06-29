@@ -11,11 +11,11 @@
 	Init : function(component, event) {
 		let tabs = [];
         let titan = null;
-        for(let i = 1;i<5;i++){
+        for(let i = 1;i<6;i++){
             switch(i){
                 case 1:
-                    titan = {name:"Overall"};
-                    break;
+                    titan = {name:"Hero List"};
+                    break;    
                 case 2:
                     titan = {name:"General Assessments"};
                     break;
@@ -25,6 +25,9 @@
                 case 4:
                     titan = {name:"Exam List"};
                     break;
+                case 5:
+                    titan = {name:"QC Scores"};
+                    break;    
                 default:
                     titan = {name:"View "+i};
             }
@@ -34,9 +37,26 @@
             tabs.push(titan);
         }
         component.set( "v.currIndex", 0);
-        component.set( "v.active", 'Overall');                
+        component.set( "v.active", 'Hero List');                
         component.set( "v.tabs", tabs);
 	},
+    SetExamLink : function(component, event) {
+        var action = component.get('c.returnDomain');
+        var help = this;
+        action.setCallback(this, (function (response) {
+            if (response.getState() === "SUCCESS") {
+                var data = response.getReturnValue();
+                component.set("v.examURL", data);
+                
+            } 
+        }));
+        $A.enqueueAction(action);
+          
+    },
+    ToExamHub : function(component, event) {
+        var url = component.get('v.examURL');
+        window.open(url, '_blank');
+    },
     // HandleTabClick(): handles the event of a different tab being clicked
     HandleTabClick : function( component, event){
         let currentTitan = event.getParam("titan")

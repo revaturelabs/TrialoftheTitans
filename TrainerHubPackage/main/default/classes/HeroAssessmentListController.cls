@@ -9,13 +9,14 @@
 ////////////////////////////////////////////////////
 
 public with sharing class HeroAssessmentListController {
-    /*@AuraEnabled
-    public static List<Hero_Assessment__c> HeroList() {
+    
+	@AuraEnabled
+    public static List<Hero_Assessment__c> HeroListAllCohorts() {
         List<Hero_Assessment__c> heroAssessmentSearch = [SELECT Assessment__r.Name, Overall_Score__c,
                                                          Hero__r.Name
                                                          FROM Hero_Assessment__c];
         return heroAssessmentSearch;
-    }*/
+    }
 
     @AuraEnabled
     public static List<Hero_Assessment__c> SearchHeroList(String searchKey, String cohortId) {

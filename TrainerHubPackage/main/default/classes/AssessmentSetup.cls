@@ -5,10 +5,13 @@
 //  Description: Utility class to create new data for 
 //	the Cohort Page and Trainer Hub. It is ideal to 
 //	run UserAccountSetup.UserSetup prior to this.
+//	It's also best to run Setup first, then associateCohort
+//	and finally QCSetup
 //	
 ///////////////////////////////////////////////////
 public class AssessmentSetup {
     // Creates assement and hero assessment objects, associating them with existing heroes (accounts)
+    @testVisible
     public static void Setup(){
         List<Assessment__c> assessmentList = new List<Assessment__c>();
         
@@ -27,7 +30,7 @@ public class AssessmentSetup {
             for(Account acc : userAccount){
                 if(acc.Team__c!=null){
                     Hero_Assessment__c tempHeroAssessment = new Hero_Assessment__c(Hero__c=acc.id,Assessment__c=a.id);
-                    tempHeroAssessment.Overall_Score__c = (Math.random()*50)+50;
+                    tempHeroAssessment.Overall_Score__c = Decimal.valueOf(Math.random()*50).setScale(2)+50;
                     heroAssessmentList.add(tempHeroAssessment);
                 }
             }
@@ -36,8 +39,42 @@ public class AssessmentSetup {
        insert heroAssessmentList;
         
     }
+    // Uses most of the code from Alex's QCHubDataFactory controller
+    @testVisible
+    public static void QCSetup(String namePrefix){
+        List<Account> testAcct = [SELECT Name, Team__c from Account];
+        Schema.DescribeSObjectResult acctDesc = Account.SObjectType.getDescribe();
+		Map<String, Schema.RecordTypeInfo> acctRecTypeMap = acctDesc.getRecordTypeInfosByName();
+		Id heroTypeId = acctRecTypeMap.get('Hero').getRecordTypeId();
+        
+        Cohort__c testCohort = [Select Name from Cohort__c LIMIT 1];
+        List<QC_Interview__c> QCInterviewList = new List<QC_Interview__c>();
+        for (Account a : testAcct){
+            a.RecordTypeId=heroTypeId = heroTypeId;
+        	QC_Interview__c newInterview = new QC_Interview__c(Name=a.Name+'QC '+namePrefix,
+                                                               Cohort__c=testCohort.Id, Account__c=a.Id);
+            QCInterviewList.add(newInterview);
+            
+        }
+        update testAcct;
+		insert QCInterviewList;
+        
+        List<QC_Question_Answer__c> QCAnswersList = new List<QC_Question_Answer__c>();
+        for (QC_Interview__c QCInt : QCInterviewList){
+            for (integer qcAnsCount=0; qcAnsCount<5; ++qcAnsCount){
+                QC_Question_Answer__c qcAns = new QC_Question_Answer__c(Question__c='Question: ',Hero_Answer__c='Answer: ',
+                                                                        Score__c=qcAnsCount, QC_Interview__c=QCInt.Id);
+                QCAnswersList.add(qcAns);
+                
+            }
+            
+        }
+        
+        insert QCAnswersList;
+    }
+    @testVisible
     public static void associateCohort(){
-        Cohort__c coh = new Cohort__c(Name='4122021');
+        Cohort__c coh = new Cohort__c(Name='4122021',Active__c=true);
         insert coh;
         List<Account> userAccount = [SELECT Name, Team__c from Account]; 
         for(Account acc : userAccount){
