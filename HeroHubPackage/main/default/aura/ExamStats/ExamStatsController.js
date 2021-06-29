@@ -9,5 +9,9 @@
 ({
     ExamClicked : function(component, event, helper) {
         helper.DisplayStats( component, event );
+    },
+
+    takeExam : function(component, event, helper){
+        helper.takeExamEvent(component, event);
     }
 })

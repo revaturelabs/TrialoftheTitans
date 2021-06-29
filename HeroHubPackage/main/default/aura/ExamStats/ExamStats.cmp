@@ -10,7 +10,7 @@
 -->
 
 <aura:component>
-    <aura:attribute name="exam" type="String"/>
+    <aura:attribute name="exam" type="Object"/>
     <aura:attribute name="totalAnswers" type="Integer"/>
     <aura:attribute name="correctAnswers" type="Integer"/>
     <aura:attribute name="score" type="Decimal"/>
@@ -19,6 +19,7 @@
     <aura:attribute name="display" type="Boolean" />
 
     <aura:handler event="c.ExamClickedEvent" action="{!c.ExamClicked}"/>
+    <aura:registerEvent name = "TakeExamAppEvent" type = "c:TakeExamClickedEvent"/>
 
     <aura:if isTrue="{!v.display}">
         <div>
@@ -33,15 +34,15 @@
 
             <!-- Display for an exam that has yet to be attempted -->
             <aura:if isTrue="{!and(v.assigned, v.attempted == false)}">
-                    <h1> Ready to take on the {!v.exam} minion? </h1>
-                    <button class="btn">Take Exam!</button>
+                    <h1> Ready to take on the {!v.exam.name} minion? </h1>
+                    <button class="btn" onclick = "{!c.takeExam}">Take Exam!</button>
             </aura:if>
             <!-- Display for an exam that has yet to be attempted -->
 
 
             <!-- Display that shows the results of the "most recent" exam having been taken -->
             <aura:if isTrue="{!and(v.attempted, v.assigned)}">
-                    <h1> {!v.exam} Results </h1>
+                    <h1> {!v.exam.name} Results </h1>
                     <div class="line"/>
                     <br/>
                     <h3>Last Attempt: </h3>
@@ -51,7 +52,7 @@
                     <br/>
                     <h1>{!v.score}%</h1>
                     <br/>
-                    <button class="btn">Retake Exam</button>
+                    <button class="btn" onclick = "{!c.takeExam}">Retake Exam</button>
             </aura:if>
             <!-- Display that shows the results of the "most recent" exam having been taken -->
 

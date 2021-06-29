@@ -10,5 +10,5 @@
 -->
 
 <aura:event type="APPLICATION" description="Event template">
-    <aura:attribute name="exam" type="ExamList"/>
+    <aura:attribute name="exam" type="Object"/>
 </aura:event>
