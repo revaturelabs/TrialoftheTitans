@@ -9,6 +9,8 @@
 
 <aura:component controller="QCInterviewHeroReviewAuraController" implements="flexipage:availableForAllPageTypes" access="global">
 
+    <lightning:navigation aura:id="navService2"/>
+
     <aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
 
     <aura:attribute name="interview" type="QC_Interview__c" />

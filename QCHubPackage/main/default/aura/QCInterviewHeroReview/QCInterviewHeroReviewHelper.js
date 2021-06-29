@@ -121,6 +121,18 @@
 
             if (state === "SUCCESS"){
                 console.log(state);
+                let navService2 = component.find("navService2");
+                let interviewFinalReference = {
+                            type: 'standard__recordPage',
+                            attributes: {
+                                    actionName: 'view',
+                                    recordId: response.getReturnValue()
+                            },
+                            state: {
+                            }
+    
+                }
+                navService2.navigate(interviewFinalReference);
 
             }
             
