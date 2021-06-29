@@ -2,8 +2,7 @@
 //
 //  Name: QCInterviewCohortSelection
 //  Author: Natalie Clark
-//  Description: Aura component segment meant for reference
-//  to be displayed on selection of Cohort from Hub page in aura:if
+//  Description: Apex controller for aura component QCInterviewCohortSelection
 //
 ///////////////////////////////////////////////////
 
@@ -12,22 +11,19 @@ public with sharing class QCInterviewCohortSelectionAuraController {
     // used to initialize the hero list based off of selected cohort param
     @AuraEnabled
     public static List<Account> getHeroes(Cohort__c cohort){
-        try {
             String cid = cohort.id;
             List<Account> a = [SELECT Name, Cohort__r.Name, Squad__r.Name
                                 FROM Account
-                                WHERE Cohort__c=:cid];
+                                WHERE Cohort__c=:cid
+                                ORDER BY Squad__c];
 
             return a;
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
     }
 
+    // queries for interview instances related to list of heroes in params
     @AuraEnabled
     public static List<QC_Interview__c> getInterviews(List<Account> heroes){
-        try {
-            List<String> hid = new List<String>();
+            List<Id> hid = new List<Id>();
             for(Account h : heroes) {
                 hid.add(h.id);
             }
@@ -37,9 +33,6 @@ public with sharing class QCInterviewCohortSelectionAuraController {
                                         WHERE Account__c IN :hid];
 
             return qci;
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
     }
 
 }

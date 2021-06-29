@@ -19,26 +19,6 @@
     </classAccesses>
     <custom>false</custom>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Cohort__c.Active__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Cohort__c.Curriculum__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Cohort__c.QC_Interview_Count__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Cohort__c.QC_Interview_Sum__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>QC_Flag__c.Account__c</field>
         <readable>true</readable>
@@ -56,6 +36,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>QC_Interview__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>QC_Interview__c.Cohort__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -118,15 +103,6 @@
     <layoutAssignments>
         <layout>QC_Question__c-QC Question Layout</layout>
     </layoutAssignments>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>Cohort__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>

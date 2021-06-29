@@ -1,7 +1,7 @@
 <!-- /////////////////////////////////////////////////////
 //
 //  Name: QCInterviewHeroReview
-//  Author: Natalie Clark
+//  Author: Natalie Clark, Alexander Dzhitenov
 //  Description: Aura Component for review of hero input
 //  on completion of interview before save
 //
@@ -9,11 +9,18 @@
 
 <aura:component controller="QCInterviewHeroReviewAuraController" implements="flexipage:availableForAllPageTypes" access="global">
 
+    <aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
+
     <aura:attribute name="interview" type="QC_Interview__c" />
     <aura:attribute name="columns" type="List" />
     <aura:attribute name="answers" type="QC_Question_Answer__c[]" />
     <aura:attribute name="flagList" type="QC_Flag__c[]" />
     <aura:attribute name="makeFlag" type="Boolean" default="false" />
+    <aura:attribute name="Week"         type="String"/>
+
+    <aura:attribute name="HeroName" type="String"/>
+    <aura:attribute name="HeroId" type="String"/>
+    <aura:attribute name="CohortId" type="String"/>
 
 
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
@@ -47,11 +54,13 @@
     
         <aura:iteration items="{!v.flagList}" var="item" indexVar="index">
             <div>
-                <c:QCInterviewHeroReviewFlagRow flag="{!item}" rowIndex="{!index}" />
+                <c:QCInterviewHeroReviewFlagRow flag="{!v.item}" rowIndex="{!v.index}" />
             </div>
         </aura:iteration>
     
 
-    <lightning:button title="Click here to finalize interview for this Hero!" label="Finalize" onclick="{!handleFinalize}" />
+    <lightning:button title="Click here to finalize interview for this Hero!" label="Finalize" onclick="{!c.handleFinalize}" />
+
+    <lightning:button title="Submit Interview" label="Submit Interview" onclick="{!c.Submit}"/>
 
 </aura:component>

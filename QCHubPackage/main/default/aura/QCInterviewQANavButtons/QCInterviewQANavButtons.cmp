@@ -1,0 +1,4 @@
+<aura:component>
+    <aura:registerEvent name="NextQuestionEvent" type="c:NextQuestionEvent"/>
+    <lightning:button onclick="{!c.NextQuestion}">Next</lightning:button>
+</aura:component>	

@@ -1,13 +1,14 @@
 ({
     init : function(component, event, helper) {
+        console.log("QCINTERVIEWHEROREVIEW INIT:");
         component.set("v.columns", 
             [
-                {label:'Score', fieldName="Score__c"},
-                {label:'Question', fieldName="Question__c"},
-                {label:'Answer', fieldName="Hero_Answer__c"},
+                {label:'Score', fieldName:'Score__c'},
+                {label:'Question', fieldName:'Question__c'},
+                {label:'Answer', fieldName:'Hero_Answer__c'},
             ]
         )
-        helper.getInterview(component, event)
+        //helper.getInterview(component, event)
         helper.createFlag(component, event)
     },
 
@@ -39,7 +40,7 @@
             action.setCallback(this, function(response) {
                 var state = response.getState();
                 if (state === "SUCCESS") {
-                    // if response if success then reset/blank the 'contactList' Attribute 
+                    // if response is success then reset/blank the 'contactList' Attribute 
                     // and call the common helper method for create a default Object Data to Contact List 
                     component.set("v.flagList", []);
                     helper.createFlag(component, event);
@@ -52,7 +53,20 @@
     },
 
     handleFinalize : function(component, event, helper) {
-        helper.handleFinalize(component, event)
+        helper.setFlags(component, event);
+        helper.finalizeInterview(component,event);
+        helper.UpdateStage(component, "Start");
     },
     
+    Submit : function(component, event, helper){
+        console.log("In submit function");
+        let HeroId = component.get("v.HeroId");
+        let HeroName = component.get("v.HeroName");
+        let CohortId = component.get("v.CohortId");
+        let Week = component.get("v.Week");
+        let HeroAnswers = component.get("v.answers");
+        let Flags = component.get("v.flagList");
+        console.log("Variable")
+        helper.SubmitInterview(HeroId, HeroName, CohortId, Week, HeroAnswers, Flags);
+    }
 })
