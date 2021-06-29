@@ -1,0 +1,16 @@
+<aura:component>
+    <aura:attribute name="SquadList" type="Squad__c[]"/>
+
+    <!-- Hide list until we can dynamically create each li based on a returned array size. (add slds-hidden when function working) -->
+    <ul class="slds-has-block-links_space ">
+        <aura:iteration items="{!v.SquadList}" var="Squad"/>
+        <li>
+        <a href="#">squad</a>
+        </li>
+        <!-- dynamically add additional list item links depending on the amount of squads returned -->
+    </ul>
+    <aura:iteration>
+        <lightning:button>Current Squad</lightning:button>
+    </aura:iteration>
+
+</aura:component>	

@@ -1,0 +1,31 @@
+<!-- /////////////////////////////////////////////////////
+//
+//  Name: QCInterviewCohortSelection
+//  Author: Natalie Clark
+//  Description: Aura component segment meant for hero reference
+//  to be displayed on selection of Cohort and week from other components
+//
+/////////////////////////////////////////////////// -->
+
+<!-- meant to follow Diego's week selection component? -->
+
+<aura:component controller="QCInterviewCohortSelectionAuraController">
+
+    <!-- List of attributes -->
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="heroList" type="Account[]" />
+
+    <!-- Event handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <!-- <aura:handler name="" value="c:EVENTNAME" action="{!}" /> -->
+
+    <!-- Datatable displaying a list of heroes available  -->
+    <lightning:datatable keyField="id" 
+                        data="{!v.heroList}" 
+                        columns="{!v.columns}" 
+                        onRowSelection="{!c.handleRowSelection}" 
+                        hideCheckboxColumn="true"
+                        suppressBottomBar="true" />
+
+
+</aura:component>	
