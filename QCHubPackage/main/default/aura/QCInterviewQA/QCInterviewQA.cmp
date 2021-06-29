@@ -4,7 +4,7 @@
     <aura:registerEvent name="UpdateQAListEvent" type="c:UpdateQAListEvent"/>
     <aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
 
-    <aura:handler name="init" value="{!this}" action="{!c.TwoInit}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/>
     <aura:handler name="NextQuestionEvent" event="c:NextQuestionEvent" action="{!c.SaveAndNext}"/>
     <!--<aura:handler name="PassScoreEvent" event="c:PassScoreEvent" action="{!c.RetriveScore}"/>-->
     
@@ -42,14 +42,10 @@
             </div>
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
-<<<<<<< HEAD
                 {!v.CohortId}
                 {!v.CurrentInterview.Id}
                 {!v.CurrentInterview.Name}
                 
-=======
-                {!v.Hero.Name}
->>>>>>> f1b4bd123a9bc9411664a4efb265b6dbe1a5f030
             </div>
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
