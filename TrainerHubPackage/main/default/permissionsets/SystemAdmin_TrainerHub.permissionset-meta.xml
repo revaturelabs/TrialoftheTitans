@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>TrainerHub</application>
+        <visible>true</visible>
+    </applicationVisibilities>
     <description>System admin permissions for TrainerHub and Cohort Page objects and components</description>
     <fieldPermissions>
         <editable>true</editable>
@@ -90,6 +94,10 @@
     </tabSettings>
     <tabSettings>
         <tab>Hero_Assessment__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Previous_Cohorts</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>

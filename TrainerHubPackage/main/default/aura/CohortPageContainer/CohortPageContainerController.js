@@ -9,7 +9,11 @@
 ({
 	Init : function(component, event, helper) {
 		helper.Init(component, event);
+        helper.SetExamLink(component, event);
 	},
+    ToExamHub : function(cmp, event, helper) {
+        helper.ToExamHub(cmp, event);
+    },
     HandleTabClick : function(component, event, helper) {
 		helper.HandleTabClick(component, event);
 	},

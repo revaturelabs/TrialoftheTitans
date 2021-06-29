@@ -11,6 +11,10 @@
     // get Exam Results from the server
     fetchData : function(component) {
         var action = component.get('c.HeroList');
+        var cohortId = component.get('v.CohortId');
+		action.setParams({
+			"cohortId": cohortId
+        });
         action.setCallback(this, (function (response) {
             var state = response.getState();
             if (state === "SUCCESS") {
