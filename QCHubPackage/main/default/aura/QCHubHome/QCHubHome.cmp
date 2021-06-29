@@ -12,7 +12,7 @@
     <aura:attribute name="Hero" type="Object" />
     <aura:attribute name="contextInfo" type="UserContextInfo" />
     <aura:attribute name="SquadList" type="QCSquadWrapper[]"/>
-    <aura:attribute name="WeeksList" type="String[]"/>
+    <aura:attribute name="WeekList" type="String[]"/>
 
     <ltng:require scripts="{!$Resource.d3 + '/d3.js'}"
                   afterScriptsLoaded ="{!c.D3}"/>

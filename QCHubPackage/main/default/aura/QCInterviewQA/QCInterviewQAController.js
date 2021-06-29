@@ -17,6 +17,7 @@
     */
 
     OnInit : function(component, event, helper){
+        console.log("QCInterviewQA Init:");
         
         //cmp.set("v.CurrentQuestionIndex",0);
                                        // VVV this needs to be component.get("{!v.IncomingDeckList}"), which need to be set in interviewStart

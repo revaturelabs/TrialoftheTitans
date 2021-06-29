@@ -18,8 +18,8 @@
                          }
                     ]
         )
-        helper.getHeroes(component, event)
-        helper.getInterviews(component, event)
+        //helper.getHeroes(component, event)
+        //helper.getInterviews(component, event)
     },
 
     // row selection handles button to start interview

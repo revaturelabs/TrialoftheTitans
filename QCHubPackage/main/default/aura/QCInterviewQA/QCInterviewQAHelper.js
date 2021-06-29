@@ -22,6 +22,7 @@
                 console.log(state);
                 var newInterview = response.getReturnValue();
                 component.set("v.CurrentInterview", newInterview);
+                console.log("Interview retrieved;");
 
             }
             
