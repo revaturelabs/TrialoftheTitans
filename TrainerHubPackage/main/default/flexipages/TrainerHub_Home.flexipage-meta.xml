@@ -6,6 +6,11 @@
                 <componentName>CurrentCohortAverage</componentName>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>HeroGroupchart</componentName>
+            </componentInstance>
+        </itemInstances>
         <name>top</name>
         <type>Region</type>
     </flexiPageRegions>

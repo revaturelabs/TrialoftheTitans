@@ -3,7 +3,7 @@
         
         var margin = {top: 20, right: 20, bottom: 30, left: 40},
             width = 800 - margin.left - margin.right,
-            height = 400 - margin.top - margin.bottom;
+            height = 250 - margin.top - margin.bottom;
         var x0  = d3.scaleBand().rangeRound([0, width], .5);
         var x1  = d3.scaleBand();
         var y   = d3.scaleLinear().rangeRound([height, 0]);
@@ -21,17 +21,21 @@
         var yAxis = d3.axisLeft().scale(y);
         
         const color = d3.scaleOrdinal(d3.schemeCategory10);
-        var svg = d3.select('body').append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var svg = d3.select("#svg2")
+        .append("svg:svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("viewBox", `0 0 ${width+30} ${height+50}`)
+        .attr("margin", margin)
+        
+        var g = svg.append("g")
+        .attr("transform", "translate(" + 30 + "," + 30 + ")");
        
         var categoriesNames = result.map(function(d) { return d[0]; });
         //console.log(categoriesNames);
         var rateNames = result[0][1].map(function(d) { return d.grpName; }); //*need update grpName//
 		//console.log(rateNames);
-        x0.domain(categoriesNames);
+        x0.domain(categoriesNames).paddingInner(0.1);
         x1.domain(rateNames).rangeRound([0, x0.bandwidth()]);                          
         y.domain([0, d3.max(result, function(key) { return d3.max(key[1], function(d) { return d.grpValue; }); })]); //*need update grpName//
         
@@ -63,10 +67,11 @@
         slice.selectAll("rect")
         .data(function(d) { return d[1]; })
         .enter().append("rect")
-        .attr("width", x1.bandwidth())
+        .attr("width", x1.bandwidth()/2)
         .attr("x", function(d) { return x1(d.grpName); })
         .style("fill", function(d) {return color(d.grpName) })
         .attr("y", function(d) { return y(0); })
+        .attr("transform",function(d) { return "translate(" + x1.bandwidth()/4 + ",0)"; })
         .attr("height", function(d) { return height - y(0); });
        // .on("mouseover", function(d) {
       //      d3.select(this).style("fill", d3.rgb(color(d.grpName)).darker(2));
@@ -80,27 +85,5 @@
         .duration(1000)
         .attr("y", function(d) { return y(d.grpValue); })
         .attr("height", function(d) { return height - y(d.grpValue); });
-            //Legend
-        var legend = svg.selectAll(".legend")
-        .data(result[0][1].map(function(d) { return d.grpName; }).reverse())
-        .enter().append("g")
-        .attr("class", "legend")
-        .attr("transform", function(d,i) { return "translate(0," + i * 20 + ")"; })
-        .style("opacity","0");
-
-        legend.append("rect")
-        .attr("x", width - 18)
-        .attr("width", 18)
-        .attr("height", 18)
-        .style("fill", function(d) { return color(d); });
-
-        legend.append("text")
-        .attr("x", width - 24)
-        .attr("y", 9)
-        .attr("dy", ".35em")
-        .style("text-anchor", "end")
-        .text(function(d) {return d; });
-
-        legend.transition().duration(500).delay(function(d,i){ return 1300 + 100 * i; }).style("opacity","1");
     }
 })
