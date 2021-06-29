@@ -44,14 +44,14 @@ private class QCInterviewControllerTest {
     
             insert listOfInterviews;
     
-            List<QC_Interview__c> listOfInterviewsTest = QCInterviewController.InterviewList();
+            List<QC_Interview__c> listOfInterviewsTest = QCInterviewController.InterviewList(listOfCohortRef[3].Id);
             System.assert( listOfInterviewsTest != null); 
         }
     
         @isTest
         private static void TestNegative(){
     
-            List<QC_Interview__c> listOfInterviewsTest = QCInterviewController.InterviewList();
+            List<QC_Interview__c> listOfInterviewsTest = QCInterviewController.InterviewList('Test Cohort');
             System.assert( listOfInterviewsTest.isEmpty(), true); 
         }
         
