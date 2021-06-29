@@ -1,0 +1,235 @@
+<!-- 
+
+  Name: CohortPageContainer
+  Author: Kameron Fincher
+  Description: Container for the Cohort Hub Page 
+
+-->
+<aura:component controller="CohortPageController" implements="flexipage:availableForAllPageTypes">
+    <aura:html tag="style">
+        :root {
+        background-color: #9996e7;
+        --user-team-primary: #444192;
+        --user-team-secondary: #333081;
+        }
+    </aura:html>
+    
+    <!-- This first handler is for getting the return event from the record edit page -->
+	<aura:handler name="cmpReturnEvent" event="c:CohortPageReturnEvent" action="{!c.HandleReturnComponentEvent}" />
+    <aura:handler name="HeroAssessmentReturnEvent" event="c:CohortPageReturnEvent" action="{!c.HandleReturnHeroComponentEvent}" />
+	
+    <!-- This second handler is for getting the return event sent from this component, the list component -->
+	<aura:handler name="sendAssessmentIdEvent" event="c:CohortPageTransferIdEvent" action="{!c.HandleReturnAssessmentIdEvent}" />
+	<aura:handler name="sendHeroAssessmentIdEvent" event="c:CohortPageTransferIdEvent" action="{!c.HandleReturnAssessmentIdEvent}" />
+    
+	<!-- String for Id which is set by the list components TransferIdEvent -->
+	<aura:attribute name="AssessmentId" type ="String" default=""/>
+    <aura:attribute name="CohortId" type ="String" default=""/>
+    
+    <aura:attribute name="tabs" type="List"/>
+    <aura:attribute name="active" type="String" default="Overall"/>
+    <aura:attribute name="examURL" type="String"/>
+    <aura:attribute name="currIndex" type="Integer"/>
+    <aura:handler name="init" value="{!this}" action="{!c.Init}"/>
+    <aura:handler event="c.TitanClickedEvent" action="{!c.HandleTabClick}"/>
+    
+    <aura:handler name="HeroAssessmentCreationHideEvent" event="c:HeroAssessmentCreationHideEvent" action="{!c.HideNewAssessment}"/>
+    <aura:handler name="AssessmentCreationHideEvent" event="c:AssessmentCreationHideEvent" action="{!c.HideNewAssessment}"/>
+    
+    <aura:attribute name="scriptsLoaded" type="Boolean"/>
+  
+    <!--<ltng:require
+                  scripts="{!$Resource.d3 + '/d3.js'}"
+                  afterScriptsLoaded ="{!c.Chart}"
+                  />
+
+        <div id="svg"></div>
+    -->
+    
+    <!-- Header -->
+    <div class="header">
+        Cohort Page
+    </div>
+    <!-- Header -->
+    
+    <!-- Body -->
+    <div id="overall-body">
+        <div class="slds-grid">
+            
+            <!-- Tabs column -->
+            <div class="slds-col slds-size_1-of-7">
+                <aura:iteration items="{!v.tabs}" var="titan" indexVar="key">
+                    
+                    <aura:if isTrue="{!v.active == titan.name}">
+                        
+                        <c:TitanTab name="{!titan.name}" active="true" />
+                        
+                        <aura:set attribute="else">
+                            <c:TitanTab name="{!titan.name}" active="false"/>
+                        </aura:set>
+                    </aura:if>
+                </aura:iteration>
+            </div>
+            <!-- Tabs column -->
+            
+            <!-- Main Body & Side Portion -->
+            <aura:iteration items="{!v.tabs}" var="titan" indexVar="key">
+                <aura:if isTrue="{!v.active == titan.name}">
+                    <!-- Overall Tab -->
+                    <aura:if isTrue="{!v.active == 'Overall' }">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_4-of-7">
+                            Chart<!--component here>-->
+                        </div>
+                        <!-- Table/Chart -->
+                        
+                        <!-- Single Record Display -->
+                        <div style="background:var(--user-team-primary); border-radius: 5px 5px 5px 5px;" class="slds-col slds-size_2-of-7 slds-m-left_medium">
+                            Hey 2
+                        </div>
+                        <!-- Single Record Display -->
+                        
+                    </aura:if>
+                    <!-- Overall Tab -->
+                    
+                    <!-- Hero List Tab -->
+                    <aura:if isTrue="{!v.active == 'Hero List'}">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                            <div class="slds-m-horizontal_small slds-m-bottom_small">
+                                <div class="slds-m-top_medium">
+                                	<c:HeroList CohortId="{!v.CohortId}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Table/Chart -->
+                        
+                        <!-- Single Record Display -->
+                        <!--<div style="background:var(user-team-primary); border-radius: 5px 5px 5px 5px;" class="slds-col slds-size_2-of-7 slds-m-left_medium">
+                        </div>-->
+                        <!-- Single Record Display -->
+                        
+                    </aura:if>
+                    <!-- Hero List Tab -->
+                    
+                    <!-- General Assessments Tab -->
+                    <aura:if isTrue="{!v.active == 'General Assessments'}">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_4-of-7">
+                            <div class="slds-m-horizontal_small slds-m-bottom_small">
+                                <lightning:button label="Create new Assessment" disabled='{!titan.buttonDisabled}' class=" slds-m-top_medium slds-m-right_small slds-button_neutral" title="Back" value="{!titan}" onclick="{!c.CreateNewAssessment}"/><br/>
+                                <div class="slds-m-top_medium">
+                                	<c:AssessmentList aura:id='assessmentList'/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Table/Chart -->
+                        
+                        <!-- Single Record Display -->
+                        <div style="background:var(--user-team-primary); border-radius: 5px 5px 5px 5px;" class="slds-p-horizontal_xx-small slds-p-horizontal_x-small slds-col slds-size_2-of-7 slds-m-horizontal_small">
+                            <aura:if isTrue="{!titan.state == 'Create New'}">
+                                <c:AssessmentCreation/>
+                            </aura:if>
+                            <aura:if isTrue="{!titan.state == 'View Details'}">
+                                <div class="page-section page-main">
+                                    <p>
+                                        <c:CohortPageEditRecord AssessmentId="{!v.AssessmentId}"/>
+                                    </p>
+                                </div>
+                                
+                            </aura:if>
+                        </div>
+                        <!-- Single Record Display -->
+                        
+                    </aura:if>
+                    <!-- General Assessments Tab -->
+                    
+                    <!-- Hero Assessments Tab -->
+                    <aura:if isTrue="{!v.active == 'Hero Assessments'}">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_4-of-7">
+                           <div class="slds-m-horizontal_small slds-m-bottom_small">
+                                <lightning:button label="Create new Assessment" disabled='{!titan.buttonDisabled}' class=" slds-m-top_medium slds-m-right_small slds-button_neutral" title="Back" value="{!titan}" onclick="{!c.CreateNewAssessment}"/><br/>
+                                <div class="slds-m-top_medium">
+                                	<c:AssessmentHeroList aura:id="assessmentHeroList" CohortId="{!v.CohortId}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Table/Chart -->
+                        
+                        <!-- Single Record Display -->
+                        <div style="background:var(--user-team-primary); border-radius: 5px 5px 5px 5px;" class="slds-p-horizontal_xx-small slds-p-horizontal_x-small slds-col slds-size_2-of-7 slds-m-horizontal_small">
+                            <aura:if isTrue="{!titan.state == 'Create New'}">
+                                <c:HeroAssessmentCreation/>
+                            </aura:if>
+                            <aura:if isTrue="{!titan.state == 'View Details'}">
+                                <div class="page-section page-main">
+                                    <p>
+                                        <c:CohortPageHeroAssessmentEditRecord HeroAssessmentId="{!v.AssessmentId}"/>
+                                    </p>
+                                </div>
+                                
+                            </aura:if>
+                        </div>
+                        <!-- Single Record Display -->
+                        
+                    </aura:if>
+                    <!-- Hero Assessments Tab -->
+                    
+                    <!-- Exam List Tab -->
+                    <aura:if isTrue="{!v.active == 'Exam List'}">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                            <div class="slds-m-horizontal_small slds-m-bottom_small">
+                                <!--<a href="{!v.examURl}">
+                                <lightning:button label="Exam Hubs" class=" slds-m-top_medium slds-m-right_small slds-button_neutral" title="Back" value="{!titan}" onclick="{!c.ToExamHub}"/><br/>
+                                </a>-->
+                               	<div class="slds-m-top_medium">
+                                	<c:ExamList CohortId="{!v.CohortId}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Table/Chart -->
+                        
+                        <!-- Single Record Display -->
+                        <!--<div style="background:var(user-team-primary); border-radius: 5px 5px 5px 5px;" class="slds-col slds-size_2-of-7 slds-m-left_medium">
+                        </div>-->
+                        <!-- Single Record Display -->
+                        
+                    </aura:if>
+                    <!-- Exam List Tab -->
+                    
+                    <!-- QC Scores Tab -->
+                    <aura:if isTrue="{!v.active == 'QC Scores'}">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                            <div class="slds-m-horizontal_small slds-m-bottom_small">
+                                <div class="slds-m-top_medium">
+                                	<c:QCInterview CohortId="{!v.CohortId}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Table/Chart -->
+                        
+                        <!-- Single Record Display -->
+                        <!--<div style="background:var(user-team-primary); border-radius: 5px 5px 5px 5px;" class="slds-col slds-size_2-of-7 slds-m-left_medium">
+                        </div>-->
+                        <!-- Single Record Display -->
+                        
+                    </aura:if>
+                    <!-- QC Scores Tab -->
+                    
+                </aura:if>
+            </aura:iteration>
+            <!-- Main Body & Side Portion -->
+        </div>
+    </div>
+    <!-- Body -->
+    <c:Communication />
+</aura:component>

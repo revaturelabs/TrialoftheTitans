@@ -1,0 +1,15 @@
+<!--
+/////////////////////////////////////////////////
+// 
+//  Name: TrainerHubTransferActiveCohortPage
+//  Author: Brett Spokes
+//  Description: Controller for populating and defining the navigation event for
+//  	the active cohort specifically.
+//	
+//////////////////////////////////////////////////
+-->
+<aura:component controller="TrainerHubPastCohortsTableAuraController">
+    <!-- Simply an event that's triggered and populated by the controller when the button is clicked -->
+	<aura:registerEvent name="cohortIdEvent" type="c:TrainerHubTransferCohortIdEvent"/>
+	<lightning:button variant="brand-outline" label="Go To Active Cohort Page" title="Active Cohort" onclick="{! c.transferToActiveCohort }" />
+</aura:component>

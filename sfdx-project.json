@@ -53,11 +53,11 @@
             ]
         },
         {
-            "path": "TrainerHubPackage",
-            "package": "TrainerHubPackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": true,
+            "path": "QCHubPackage",
+            "package": "QCHubPackage",
+            "versionName": "ver 1.0",
+            "versionNumber": "1.0.0.NEXT",
+            "default": false,
             "dependencies": [
                 {
                     "package": "CorePackage@1.0.0-1"
@@ -67,10 +67,38 @@
                 },
                 {
                     "package": "TitanPage@1.0.0-2"
+                },
+                {
+                    "package": "HeroHubPackage@1.0.0-2"
+                }
+            ]
+        },
+		{
+            "path": "TrainerHubPackage",
+            "package": "TrainerHubPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+			"default": true,
+            "dependencies": [
+                {
+                    "package": "CorePackage@1.0.0-1"
+                },
+                {
+                    "package": "ExamPackage@1.0.0-2"
+                },
+                {
+                    "package": "TitanPage@1.0.0-2"
+                },
+                {
+                    "package": "HeroHubPackage@1.0.0-2"
+                },
+                {
+                    "package": "QCHubPackage@1.0.0-1"
                 }
             ]
         }
     ],
+    
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "51.0",
@@ -86,7 +114,10 @@
         "ExamPackage@1.0.0-2": "04t5e0000002Wl9AAE",
         "TitanPage@1.0.0-2": "04t5e0000002WlEAAU",
         "HeroHubPackage@1.0.0-2": "04t5e0000002YFlAAM",
+        "QCHubPackage": "0Ho5e000000sY8UCAU",
+        "QCHubPackage@1.0.0-1": "04t5e000000AIl2AAG",
         "TrainerHubPackage": "0Ho5e00000000TxCAI",
         "TrainerHubPackage@0.1.0-1": "04t5e000000ZNUFAA4"
+
     }
 }
