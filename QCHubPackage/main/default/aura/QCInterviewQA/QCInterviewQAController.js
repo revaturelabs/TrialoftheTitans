@@ -19,7 +19,7 @@
     OnInit : function(component, event, helper){
         console.log("QCInterviewQA Init:");
         
-        //cmp.set("v.CurrentQuestionIndex",0);
+       
                                        // VVV this needs to be component.get("{!v.IncomingDeckList}"), which need to be set in interviewStart
         helper.getQuestionDeck(component,"Sample Question Deck", helper);
         
@@ -42,21 +42,12 @@
         
         //helper.UploadData(component);
        
-        //Not currently in use - only need it if we want to switch to uploading all data at the end of each interview
-        //*
-
-      
-
         helper.LaunchQAListEvent(component);
-        
-        //*/
-
-        
+       
         // this call to interview init, should overwrite the interview attribute, this may interfer with the save due to scheduling 
         helper.InterviewInit(component, helper);
+        helper.ChangeQuestion(component)
         // set the current question index forward 1 to get the next question (already randomized)
-
-
     },
 
     FinishInterview : function(component, event, helper){
@@ -78,7 +69,7 @@
         cmp.set('v.HeroAnswer.Score__c', ++x)
        
     },
-
+    // hero score is not bounded postivly can be increase to any number that fits in the test field
     MinusClick: function(cmp){
 
         let x = cmp.get('v.HeroAnswer.Score__c')

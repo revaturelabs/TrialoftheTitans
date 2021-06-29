@@ -56,16 +56,19 @@
 
     InterviewInit: function(cmp,h){
 
-        // prevents the creation of bum
+        // prevents the creation of bum data
         //h.CreateInterview(cmp);
         
-        //let x = cmp.get("v.CurrentQuestionIndex");
+        let x = cmp.get("v.QuestionIndex");
         
 
         cmp.set('v.HeroAnswer.Score__c',0)
         cmp.set('v.HeroAnswer.Answer__c',null);
-        //h.ChangeQuestion(cmp,++x);
-
+        //h.ChangeQuestion(cmp);
+       
+        //++x is currently unbounded, isnt causing issues but would want to restrict it
+        cmp.set("v.QuestionIndex", ++x);
+   
     },
 
 
@@ -178,9 +181,9 @@
     },
 
     
-    ChangeQuestion: function(cmp,index){
-        console.log(cmp.get('v.QuestionSet')[index][0].Question_Body__c);
-        cmp.set('v.HeroAnswer.Question__c',cmp.get('v.QuestionSet')[index][0].Question_Body__c);
+    ChangeQuestion: function(cmp){
+        console.log(cmp.get("v.QuestionIndex"));
+        cmp.set('v.HeroAnswer.Question__c',cmp.get('v.QuestionSet')[cmp.get("v.QuestionIndex")][0].Question_Body__c);
     },
 
 
