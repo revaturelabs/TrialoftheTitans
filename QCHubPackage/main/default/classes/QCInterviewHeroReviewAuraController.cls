@@ -36,8 +36,8 @@ public with sharing class QCInterviewHeroReviewAuraController {
     //Creates a new QC_Interview__c with the interview's data and associates it's ID with 
     @AuraEnabled
     public static void UploadInterviewData( Id cohortId, Id heroId, String heroName, String week, 
-                                                List<QC_Question_Answer__c> qaStrList,
-                                                List<QC_Flag__c> qaStrFlags){
+                                                List<String> qaStrList,
+                                                List<String> qaStrFlags){
 
         System.debug('IN APEX');
         System.debug(qaStrList);
