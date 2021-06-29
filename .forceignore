@@ -2,7 +2,8 @@
 # More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
 # .forceignore v2
 
-
+# !**/profiles/Hero.profile-meta.xml
+# !**/profiles/TitanTrainer.profile-meta.xml
 # **layouts
 # !**/layouts/Exam__c-Exam Layout.layout-meta.xml
 # !**/layouts/Exam_Result__c-Exam Result Layout.layout-meta.xml
@@ -16,6 +17,11 @@
 # !**/layouts/Team__c-Team Layout.layout-meta.xml
 # !**/layouts/Titan__c-Titan Layout.layout-meta.xml
 
+
+**/QCHubPackage/main/default/aura
+**/QCHubPackage/main/default/flexipages
+**/lwc/d3ChartTest
+**/applications/QC_Hub.app-meta.xml
 package.xml
 
 # LWC configuration files

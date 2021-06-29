@@ -8,23 +8,24 @@
 
             let state = response.getState();
 
-            if (state == "SUCCESS"){
+            if (state === "SUCCESS"){
                 console.log(state);
                 var cohorts = response.getReturnValue();
                 component.set("v.CohortList", cohorts);
                 
-                if(component.get("v.scriptsLoaded")) {
-                    this.D3CohortOverview(component);
+                if (component.get("v.ScriptLoaded")){
+                    helper.D3CohortOverview(component);
                 }
-                component.set("v.dataLoaded", true);
+                component.set("v.DataLoaded", true);
+
             }
             
-            else if (state == "INCOMPLETE"){
+            else if (state === "INCOMPLETE"){
                 console.log(state);
 
             }
 
-            else if (state == "ERROR"){
+            else if (state === "ERROR"){
                 console.log(state);
                 var errors = response.getError();
 
@@ -49,6 +50,51 @@
     },
 
 
+    LoadWeeks : function(component){
+
+        let WeekListInit = component.get("c.RetrieveWeeks");
+
+        WeekListInit.setCallback(this, function(response){
+
+            let state = response.getState();
+
+            if (state === "SUCCESS"){
+                console.log(state);
+                var weeks = response.getReturnValue();
+                component.set("v.WeekList", weeks);
+
+            }
+            
+            else if (state === "INCOMPLETE"){
+                console.log(state);
+
+            }
+
+            else if (state === "ERROR"){
+                console.log(state);
+                var errors = response.getError();
+
+                if (errors) {
+                    if (errors[0] && errors[0].message){
+                        console.log("Error message: " + errors[0].message);
+
+                    }
+
+                }
+                else {
+                    console.log("Unknown error");
+
+                }
+
+            }
+
+        });
+
+        $A.enqueueAction(WeekListInit);
+
+    },
+
+
     // Load data for a specific cohort (launched by UpdateCohort function in main JS controller,
     // which is triggered by UpdateCohortEvent from CohortButtons component when a cohort is selected)
     LoadCohortData : function(component, selectedCohort){
@@ -61,20 +107,23 @@
 
             let state = response.getState();
 
-            if (state == "SUCCESS"){
+            if (state === "SUCCESS"){
                 console.log(state);
                 let cohortData = response.getReturnValue();
                 console.log(cohortData);
+                console.log(component.get("v.DataLoaded"));
+                console.log(component.get("v.ScriptLoaded"));
                 component.set("v.SelectedCohort", cohortData);
                 component.set("v.SquadList", cohortData.squadList);
+
             }
             
-            else if (state == "INCOMPLETE"){
+            else if (state === "INCOMPLETE"){
                 console.log(state);
 
             }
 
-            else if (state == "ERROR"){
+            else if (state === "ERROR"){
                 console.log(state);
                 let errors = response.getError();
 
@@ -115,7 +164,11 @@
         }
         //console.log(JSON.stringify(interviewReference));
         //console.log(JSON.stringify(component.get("v.SelectedCohort")));
+        console.log(component.get("v.WeekList"));
         sessionStorage.setItem('ActiveCohort', JSON.stringify(component.get("v.SelectedCohort")));
+        console.log("QCHubHome: ");
+        console.log(JSON.stringify(component.get("v.WeekList")));
+        sessionStorage.setItem('WeekList', JSON.stringify(component.get("v.WeekList")));
         navService.navigate(interviewReference);
 
     },
@@ -139,7 +192,7 @@
 
         var height = 500,
         scaleFactor = 10,
-        barWidth = 85;
+        barWidth = 150;
 
         var cOverview = d3.select(".svgCohortOverview").append("svg")
                             .attr("height", height).attr("width", barWidth*data.length);

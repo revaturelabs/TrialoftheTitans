@@ -1,4 +1,5 @@
 ({
+    // ***CURRENTLY NOT IN USE***
     getInterview : function(component, event) {
         var interviews = component.get("c.getInterview")
         interviews.setParams({cohort: event.getParam(NEEDCOHORTPARAMSET),
@@ -66,6 +67,101 @@
         let StageEvent = component.getEvent("UpdateStageEvent");
         StageEvent.setParams("StageName", stage);
         StageEvent.fire();
+    },
+
+    SubmitInterview : function(component, HeroId, HeroName, CohortId, Week, HeroAnswers, Flags){
+        
+        console.log("SubmitInterview helper");
+
+        console.log(HeroId);
+        console.log(HeroName);
+        console.log(CohortId);
+        console.log(Week);
+        console.log(HeroAnswers);
+
+
+        var HeroAnswersStr = [];
+        
+        console.log(HeroAnswersStr);
+
+        
+        for (let hA of HeroAnswers){
+            HeroAnswersStr.push(JSON.stringify(hA));
+        }
+        
+		console.log("Something");
+        console.log(HeroAnswersStr);
+        
+        /*
+        var FlagsStr = [];
+		console.log(Flags.length);
+        if (Flags.length != 0){
+            console.log("Stuff");
+        	for (let f of Flags){
+            	FlagsStr.push(JSON.stringify(f));
+        	}
+        }
+        */
+        
+        console.log("Stringification complete");
+
+        let interviewSubmit = component.get("c.UploadInterviewData");
+		
+        console.log("REFERENCE RETRIEVED");
+        let FlagsStr = "";
+        interviewSubmit.setParams({"cohortId" : CohortId, "heroId" : HeroId,
+                                    "heroName" : HeroName, "week" : Week, 
+                                    "qaStrList" : HeroAnswersStr, "qaStrFlags" : FlagsStr});
+
+        console.log("PARAMETERS SET");
+
+        interviewSubmit.setCallback(this, function(response){
+            
+            let state = response.getState();
+
+            if (state === "SUCCESS"){
+                console.log(state);
+                let navService2 = component.find("navService2");
+                let interviewFinalReference = {
+                            type: 'standard__recordPage',
+                            attributes: {
+                                    actionName: 'view',
+                                    recordId: response.getReturnValue()
+                            },
+                            state: {
+                            }
+    
+                }
+                navService2.navigate(interviewFinalReference);
+
+            }
+            
+            else if (state === "INCOMPLETE"){
+                console.log(state);
+
+            }
+
+            else if (state === "ERROR"){
+                console.log(state);
+                var errors = response.getError();
+
+                if (errors) {
+                    if (errors[0] && errors[0].message){
+                        console.log("Error message: " + errors[0].message);
+
+                    }
+
+                }
+                else {
+                    console.log("Unknown error");
+
+                }
+
+            }
+        });
+        console.log("ENQUEUEING ACTION...");
+        $A.enqueueAction(interviewSubmit);
+        console.log("ACTION ENQUEUED.");
     }
 
 })

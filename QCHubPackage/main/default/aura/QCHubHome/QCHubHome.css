@@ -6,17 +6,12 @@
 
 }
 .THIS .boxGrid-Hero {
-
     height: 250px;
     background-color:#fef8ec;
     border-radius: 5px;
-
 }
-
 .THIS .tabSet {
-
     margin: 10px 0;
-
 }
 
 .THIS svg rect {
@@ -28,5 +23,6 @@
 }
 
 .THIS .bar {
+
     fill: rgb(249,182,68);
 }

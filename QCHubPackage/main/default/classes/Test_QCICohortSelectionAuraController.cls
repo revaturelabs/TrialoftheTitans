@@ -1,3 +1,11 @@
+//////////////////////////////////////////////////////////////////////
+//
+//  Name: Test_QCICohortSelectionAuraController
+//  Author: Natalie Clark
+//  Description:    Tests the following Apex classes:
+//                  QCInterviewCohortSelectionAuraController
+//
+//////////////////////////////////////////////////////////////////////
 @isTest
 public class Test_QCICohortSelectionAuraController {
     @TestSetup

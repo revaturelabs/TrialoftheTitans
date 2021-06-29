@@ -33,4 +33,47 @@ public with sharing class QCInterviewHeroReviewAuraController {
             upsert interview;
     }
 
+    //Creates a new QC_Interview__c with the interview's data and associates it's ID with 
+    @AuraEnabled
+    public static String UploadInterviewData( Id cohortId, Id heroId, String heroName, String week, 
+                                                List<String> qaStrList,
+                                                List<String> qaStrFlags){
+
+        System.debug('IN APEX');
+        System.debug(qaStrList);
+        System.debug(qaStrFlags);
+
+        QC_Interview__c newInterview = new QC_Interview__c(Name=heroName+' '+week, Cohort__c=cohortId, Week__c=week,
+                                                                Account__c=heroId);
+        insert newInterview;
+
+        System.debug('INTERVIEW INSERTED');
+
+        List<QC_Question_Answer__c> qaList = new List<QC_Question_Answer__c>();
+
+        for (String qaStr : qaStrList){
+                QC_Question_Answer__c newQA = (QC_Question_Answer__c) JSON.deserialize(qaStr, QC_Question_Answer__c.class);
+                System.debug(newQA);
+                newQA.QC_Interview__c = newInterview.Id;
+                qaList.add(newQA);
+        }
+
+        System.debug('ANSWERS CONVERTED');
+        insert qaList;
+
+        List<QC_Flag__c> fList = new List<QC_Flag__c>();
+/*
+        for (String qf : qaStrFlags){
+
+                QC_Flag__c newF = (QC_Flag__c) JSON.deserialize(qf, QC_Flag__c.class);
+                newF.QC_Interview__c = newInterview.Id;
+                fList.add(newF);
+        }
+*/
+        System.debug('FLAGS CONVERTED');
+        insert fList;
+
+        return newInterview.Id;
+    }
+
 }

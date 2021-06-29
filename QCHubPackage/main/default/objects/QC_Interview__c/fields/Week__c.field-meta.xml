@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Week__c</fullName>
+    <deprecated>false</deprecated>
     <description>The week for which this interview is conducted.</description>
     <externalId>false</externalId>
     <inlineHelpText>The week for which the interview is conducted.</inlineHelpText>

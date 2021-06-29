@@ -14,7 +14,7 @@
     <aura:attribute name = "questionAmount" type = "Integer"/>
     <aura:attribute name = "questionsLoaded" type = "Boolean" default = "false"/>
     <aura:attribute name = "examId" type = "String"/>
-    <aura:handler event = "c.TitanClickedEvent" action = "{!c.setTitan}"/>
+    <!-- <aura:handler event = "c.TitanClickedEvent" action = "{!c.setTitan}"/> -->
     <aura:handler event = "c.TakeExamClickedEvent" action = "{!c.assignExam}"/>
     <aura:handler name = "init" value = "{!this}" action = "{!c.loadExamQuestions}"/>
     <!--<aura:handler name = "change" value = "{!v.body}" action = "{!c.hideQuestions}"/>-->

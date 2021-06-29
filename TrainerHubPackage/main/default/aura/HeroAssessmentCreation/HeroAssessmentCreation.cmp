@@ -1,0 +1,9 @@
+<!-- Name: AssessmentCreationController -->
+<!-- Author: Chance Leonard -->
+<!-- Description: Component displays a form for creating an Hero Assessment record -->
+<aura:component >
+    <!-- Event is used to give parent component ability to hide this component -->
+    <aura:registerEvent name="HeroAssessmentCreationHideEvent" type="c:HeroAssessmentCreationHideEvent"/>
+    <!-- Form for creating an Hero Assessment record -->
+    <lightning:recordForm objectApiName="Hero_Assessment__c" layoutType="Full" oncancel="{! c.HideComponent }" onsuccess="{! c.SubmitClick }" />
+</aura:component>

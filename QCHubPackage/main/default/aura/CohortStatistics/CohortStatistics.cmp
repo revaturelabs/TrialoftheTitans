@@ -16,4 +16,4 @@
     
     <lightning:button value="{!ActiveCohort}" onclick="{!c.LaunchEvent}">Interview Cohort</lightning:button>
 
-</aura:component>	
+</aura:component>
