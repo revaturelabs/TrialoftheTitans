@@ -1,40 +1,35 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-        <members>*</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexClass</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexComponent</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexTestSuite</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>AuraDefinitionBundle</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>LightningComponentBundle</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>StaticResource</name>
-    </types>
-    <version>51.0</version>
+
+	<types>
+		<members>QCHubHomeAuraController</members>
+		<members>QCHubController</members>
+		<members>QCCohortWrapper</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>QC_Hub</members>
+		<name>CustomApplication</name>
+	</types>
+	<types>
+        <members>QCInterview</members>
+        <members>QCInterviewQA</members>
+		<members>CohortButtons</members>
+		<members>QCHubHome</members>
+		<members>QCInterviewHeader</members>
+		<members>UpdateCohortEvent</members>
+		<!-- <members>QCInterviewCohortSelection</members> -->
+		<!-- <members>QCInterviewHeroReview</members> -->
+		<members>QCInterviewHeroReviewAddRowEvent</members>
+		<members>QCInterviewHeroReviewDeleteRowEvent</members>
+		<members>QCInterviewHeroReviewFlagRow</members>
+		<members>QCInterviewQADisplayWeek</members>
+		<members>QCInterviewScoreComp</members>
+		<members>QCInterviewStartView</members>
+		<members>QCInterviewEnd</members>
+		<members>UpdateCohortEvent</members>
+		<members>LaunchInterviewEvent</members>
+		<name>AuraDefinitionBundle</name>
+	</types>
+	<version>51.0</version>
 </Package>
