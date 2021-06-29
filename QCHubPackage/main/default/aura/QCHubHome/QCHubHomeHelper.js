@@ -138,7 +138,7 @@
 
 
         var height = 500,
-        scaleFactor = 5,
+        scaleFactor = 10,
         barWidth = 85;
 
         var cOverview = d3.select(".svgCohortOverview").append("svg")
@@ -155,7 +155,7 @@
             yScale = d3.scaleLinear().range([height, 0]);
 
         var g = svg.append("g")
-            .attr("transform", "translate(" + 50 + "," + 50 + ")");
+            .attr("transform", "translate(" + 100 + "," + 100 + ")");
 
         xScale.domain(data.map(function(d) { return d.cohortName; }));
         yScale.domain([0, d3.max(data, function(d) { return d.qcAv; })]);

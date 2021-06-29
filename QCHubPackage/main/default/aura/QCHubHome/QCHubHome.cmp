@@ -36,7 +36,7 @@
 
             <!-- This is the d3 bar graph -->
             <p>
-                <div id="svg" class="svgCohortOverview"></div>
+                <div class="svgCohortOverview"></div>
                 <c:CohortStatistics ActiveCohort="{!v.SelectedCohort.cohort}"/>
             </p>
             <!-- end of d3 bar graph -->
