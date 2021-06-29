@@ -44,8 +44,11 @@
        
         //Not currently in use - only need it if we want to switch to uploading all data at the end of each interview
         //*
+
+      
+
         helper.LaunchQAListEvent(component);
-        cmp.set("v.CurrentQuestionIndex", ++cmp.get("v.CurrentQuestionIndex"));
+        
         //*/
 
         
