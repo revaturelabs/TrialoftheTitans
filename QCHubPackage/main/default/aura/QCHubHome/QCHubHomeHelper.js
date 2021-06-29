@@ -8,19 +8,19 @@
 
             let state = response.getState();
 
-            if (state == "SUCCESS"){
+            if (state === "SUCCESS"){
                 console.log(state);
                 var cohorts = response.getReturnValue();
                 component.set("v.CohortList", cohorts);
 
             }
             
-            else if (state == "INCOMPLETE"){
+            else if (state === "INCOMPLETE"){
                 console.log(state);
 
             }
 
-            else if (state == "ERROR"){
+            else if (state === "ERROR"){
                 console.log(state);
                 var errors = response.getError();
 
@@ -53,19 +53,19 @@
 
             let state = response.getState();
 
-            if (state == "SUCCESS"){
+            if (state === "SUCCESS"){
                 console.log(state);
                 var weeks = response.getReturnValue();
                 component.set("v.WeekList", weeks);
 
             }
             
-            else if (state == "INCOMPLETE"){
+            else if (state === "INCOMPLETE"){
                 console.log(state);
 
             }
 
-            else if (state == "ERROR"){
+            else if (state === "ERROR"){
                 console.log(state);
                 var errors = response.getError();
 
@@ -102,7 +102,7 @@
 
             let state = response.getState();
 
-            if (state == "SUCCESS"){
+            if (state === "SUCCESS"){
                 console.log(state);
                 let cohortData = response.getReturnValue();
                 console.log(cohortData);
@@ -110,12 +110,12 @@
                 component.set("v.SquadList", cohortData.squadList);
             }
             
-            else if (state == "INCOMPLETE"){
+            else if (state === "INCOMPLETE"){
                 console.log(state);
 
             }
 
-            else if (state == "ERROR"){
+            else if (state === "ERROR"){
                 console.log(state);
                 let errors = response.getError();
 
