@@ -89,7 +89,7 @@
                         "HTMLAttributes": {
                             "style": `--i:${objSorted[Object.keys(objSorted)[i]]}%; --y:${objSorted[Object.keys(objSorted)[i]] * 0.9}%`,
                             // "onclick": cmp.getReference("c.onExamClick"),
-                            "class": 'bar-chart',
+                            "class": `bar-chart ${objSorted[Object.keys(objSorted)[i]] >= 75 ? 'pass' : 'fail'}`,
                             // "data-score": `${myJson[Object.keys(myJson)[i]]}%`
                         }
                     },
