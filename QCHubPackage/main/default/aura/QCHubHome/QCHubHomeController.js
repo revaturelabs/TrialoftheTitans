@@ -25,6 +25,11 @@
 
     D3 : function(component, event, helper){
         console.log("D3 ACTIVATED");
-        helper.D3CohortOverview(component);
+        console.log(component.get("v.DataLoaded"));
+        console.log(component.get("v.ScriptLoaded"));
+        if (component.get("v.DataLoaded")){
+            helper.D3CohortOverview(component);
+        }
+        component.set("v.ScriptLoaded", true);
     }
 })
