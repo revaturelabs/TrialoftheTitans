@@ -69,7 +69,7 @@
         StageEvent.fire();
     },
 
-    SubmitInterview : function(HeroId, HeroName, CohortId, Week, HeroAnswers, Flags){
+    SubmitInterview : function(component, HeroId, HeroName, CohortId, Week, HeroAnswers, Flags){
         
         console.log("SubmitInterview helper");
 
@@ -80,36 +80,35 @@
         console.log(HeroAnswers);
 
 
-        var HeroAnswersStr = new Array("banana");
+        var HeroAnswersStr = [];
         
         console.log(HeroAnswersStr);
 
-        /*
+        
         for (let hA of HeroAnswers){
-            console.log("IN FOR LOOP");
-            //console.log(JSON.stringify(hA));
             HeroAnswersStr.push(JSON.stringify(hA));
-            console.log(HeroAnswerStr[0]);
         }
-        */
-
-        let FlagsStr = [];
-
+        
+		console.log("Something");
+        console.log(HeroAnswersStr);
+        
         /*
-        for (let f of Flags){
-            console.log("IN FOR LOOP 2");
-            console.log(JSON.stringify(f));
-            FlagsStr.push(JSON.stringify(f));
+        var FlagsStr = [];
+		console.log(Flags.length);
+        if (Flags.length != 0){
+            console.log("Stuff");
+        	for (let f of Flags){
+            	FlagsStr.push(JSON.stringify(f));
+        	}
         }
         */
-
-
+        
         console.log("Stringification complete");
-        console.log(HeroAnswerStr);
-        console.log(FlagsStr);
 
         let interviewSubmit = component.get("c.UploadInterviewData");
-
+		
+        console.log("REFERENCE RETRIEVED");
+        let FlagsStr = "";
         interviewSubmit.setParams({"cohortId" : CohortId, "heroId" : HeroId,
                                     "heroName" : HeroName, "week" : Week, 
                                     "qaStrList" : HeroAnswersStr, "qaStrFlags" : FlagsStr});
