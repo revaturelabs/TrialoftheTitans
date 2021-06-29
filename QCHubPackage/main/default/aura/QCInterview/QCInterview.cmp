@@ -18,6 +18,9 @@
     
 
     {!v.Week}
+    {!v.CurrentHero.Id}
+    {!v.Cohort.cohort.Id}
+    {!v.CurrentHero.Name}
 
     <!-- This header section shows the currently active stage - (Begin) -->
     <div>
@@ -56,7 +59,7 @@
     
     
     <aura:if isTrue="{!v.Stage=='End' ? true : false}">
-        <c:QCInterviewEnd week="{!v.Week}" answers="{!v.CurrentQAList}" CohortId="{!v.Cohort.cohort.Id}"
+        <c:QCInterviewEnd Week="{!v.Week}" answers="{!v.CurrentQAList}" CohortId="{!v.Cohort.cohort.Id}"
                             HeroId="{!v.CurrentHero.Id}" HeroName="{!v.CurrentHero.Name}"/>
     </aura:if>
     
