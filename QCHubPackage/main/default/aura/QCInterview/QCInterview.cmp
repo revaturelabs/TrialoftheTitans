@@ -11,6 +11,7 @@
     <aura:attribute name="Cohort"       type="QCCohortWrapper"/>
     <!--aura:attribute name="CohortId"     type="String"/-->
     <aura:attribute name="CurrentHero"  type="Account"/>
+    <aura:attribute name="WeekList"         type="String[]"/>
     <aura:attribute name="Week"         type="String"/>
     <aura:attribute name="CurrentQAList" type="QC_Question_Answer__c[]"/>
     
@@ -47,7 +48,7 @@
     <!--Begin component display (depends on CurrentStage attribute)-->
     <div>
         <aura:if isTrue="{!v.Stage=='Start' ? true : false}">
-            <c:QCInterviewStartView Cohort="{!v.Cohort}"/>
+            <c:QCInterviewStartView Cohort="{!v.Cohort}" WeekList="{!v.WeekList}"/>
         </aura:if>
     </div>
     

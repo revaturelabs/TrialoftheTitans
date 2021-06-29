@@ -17,6 +17,8 @@
     <aura:handler name="InterviewHeroEvent" event="c:InterviewHeroEvent" action="c.StartInterview"/>
 
     <aura:attribute name="Cohort" type="QCCohortWrapper"/>
+    <aura:attribute name="WeekList" type="String[]"/>
+    <aura:attribute name="Week" type="String"/>
     
     
     
@@ -46,7 +48,13 @@
             <div class="rightboxes slds-box slds-col slds-m-vertical_x-small">
                 <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Cohort Table:</h1>
                 <p style="text-align: center"><c:QCInterviewCohortSelection heroList = "{!v.Cohort.heroList}"/></p>
-                <lightning:button onclick="{!c.TESTNEXT}">TestNext</lightning:button>
+                <!--lightning:button onclick="{!c.TESTNEXT}">TestNext</lightning:button-->
+                <lightning:select name="WeekSelection" label="Week" onchange="{!c.SetWeek}">
+                    <aura:iteration items="{!v.WeeksList}" var="w">
+                        <option value="{!w}" text="{!w}"></option>
+                    </aura:iteration>
+
+                </lightning:select>
 
             </div>   
             

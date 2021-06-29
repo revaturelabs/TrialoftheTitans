@@ -17,7 +17,7 @@
     */
 
     OnInit : function(component, event, helper){
-
+        console.log("QCInterviewQA Init:");
         helper.getQuestionDeck(cmp,"Sample Question Deck", helper);
         helper.InterviewInit()
     },

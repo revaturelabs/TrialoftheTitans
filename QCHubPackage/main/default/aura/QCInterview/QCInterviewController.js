@@ -1,17 +1,21 @@
 ({
 	OnInit : function(component, event, handler){
 		// Set cohort to be interviewed with information stored in sessionStorage, set from QCHubHome
+		console.log("QCInterview Init: ");
 		let pageRef = component.get("v.pageReference");
-		let session = sessionStorage.getItem('ActiveCohort');
+		let sessionCohort = sessionStorage.getItem('ActiveCohort');
+		let sessionWeekList = sessionStorage.getItem('WeekList');
 		if(pageRef){
 			component.set("v.CohortId", pageRef.state.c__CohortId);
 
 		}
+		console.log("Retrieving Session Variables;");
 		if(session){
-			component.set("v.Cohort", JSON.parse(session));
-
+			console.log(JSON.parse(sessionWeekList));
+			component.set("v.Cohort", JSON.parse(sessionCohort));
+			component.set("v.Week", JSON.parse(sessionWeekList));
 		}
-
+		console.log("QCInterview Init complete.")
 	},
 
 

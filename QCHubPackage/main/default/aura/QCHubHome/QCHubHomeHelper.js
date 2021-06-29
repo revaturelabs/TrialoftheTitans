@@ -56,7 +56,7 @@
             if (state == "SUCCESS"){
                 console.log(state);
                 var weeks = response.getReturnValue();
-                component.set("v.WeeksList", weeks);
+                component.set("v.WeekList", weeks);
 
             }
             
@@ -156,7 +156,11 @@
         }
         //console.log(JSON.stringify(interviewReference));
         //console.log(JSON.stringify(component.get("v.SelectedCohort")));
+        console.log(component.get("v.WeekList"));
         sessionStorage.setItem('ActiveCohort', JSON.stringify(component.get("v.SelectedCohort")));
+        console.log("QCHubHome: ");
+        console.log(JSON.stringify(component.get("v.WeekList")));
+        sessionStorage.setItem('WeekList', JSON.stringify(component.get("v.WeekList")));
         navService.navigate(interviewReference);
 
     },
