@@ -12,6 +12,11 @@
                 console.log(state);
                 var cohorts = response.getReturnValue();
                 component.set("v.CohortList", cohorts);
+                
+                if (component.get("v.ScriptLoaded")){
+                    helper.D3CohortOverview(component);
+                }
+                component.set("v.DataLoaded", true);
 
             }
             
@@ -106,8 +111,11 @@
                 console.log(state);
                 let cohortData = response.getReturnValue();
                 console.log(cohortData);
+                console.log(component.get("v.DataLoaded"));
+                console.log(component.get("v.ScriptLoaded"));
                 component.set("v.SelectedCohort", cohortData);
                 component.set("v.SquadList", cohortData.squadList);
+
             }
             
             else if (state === "INCOMPLETE"){
