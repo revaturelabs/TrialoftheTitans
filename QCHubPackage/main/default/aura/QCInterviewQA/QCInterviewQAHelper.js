@@ -64,11 +64,16 @@
     },
 
 
-    getQuestionDeck : function(cmp, data, helper) {
+    getQuestionDeck : function(cmp, IncomingQDeckList, helper) {
       
-
+        //data is a list of strings that are names of the question decks we want to pull in to questions
         var action = cmp.get('c.getQuestion');
-        action.setParams({ Decks : data});
+            //VVV
+        //action.setParams({ Decks : IncomingQDeckList});
+        
+        // VVV remove this when we need to use a list of decks from interview start
+        action.setParams({ Decks : "Sample2"});
+        
         action.setCallback(this, function (response) {
             
             var state = response.getState();
@@ -78,6 +83,7 @@
                 //console.log(response.getReturnValue());
                 //cmp.set('v.HeroAnswer.Question__c', response.getReturnValue()[0].Question_Body__c);
                 cmp.set('v.QuestionSet', helper.scrambleList(response.getReturnValue()));
+                helper.ChangeQuestion(cmp,0);
                 //return helper.scrambleList(response.getReturnValue());
                 //return response.getReturnValue();
 
@@ -102,7 +108,7 @@
 
                 OutputList.push(values.splice(Math.floor(Math.random() * values.length), 1));    
             }
-
+            //console.log(OutputList);
             return OutputList;
 
     },
@@ -156,6 +162,11 @@
         QAListEvent.setParams({"QA" : component.get("v.HeroAnswer")});
         QAListEvent.fire();
     
+    },
+
+    ChangeQuestion: function(cmp,index){
+        console.log(cmp.get('v.QuestionSet')[index][0].Question_Body__c);
+        cmp.set('v.HeroAnswer.Question__c',cmp.get('v.QuestionSet')[index][0].Question_Body__c);
     },
 
 

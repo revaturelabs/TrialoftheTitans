@@ -15,10 +15,11 @@
     <aura:attribute name="Week" type="String"/>
     <aura:attribute name="HeroScore" type="Integer"/>
     <aura:attribute name="CurrentQuestionIndex" type="Integer"/>
-    <aura:attribute name="DeckList" type="Object"/>
+    <aura:attribute name="IncomingDeckList" type="Object"/>
     
     <aura:attribute name="QuestionDeck"     type="QC_Question_Deck__c"/>
     <aura:attribute name="QuestionSet" type="Object"/>
+    
     <aura:attribute name="CurrentQuestion"  type="QC_Question__c"
 
                     default="{'sObjectType' : 'QC_Question__c',
