@@ -10,7 +10,8 @@
                 let correctExamResultPoolQuestions = response.getReturnValue();
                 console.log(correctExamResultPoolQuestions)
                 //Calculates the percentage per pool
-                helper.CalculatePoolPercentage(component, correctExamResultPoolQuestions);
+                helper.CalculatePoolPercentage(component, event, correctExamResultPoolQuestions);
+                // helper.drawD3(component, event, correctExamResultPoolQuestions);
             }
             else {
                 console.log('No correct answers in a pool')
@@ -37,11 +38,5 @@
         helper.ToggleExamPoolPercentage(component, event, helper);
         $A.enqueueAction(getExamPoolQuestions);
         $A.enqueueAction(getCorrectAnswerPool);
-
-    },
-    //retrieve all correctly answered questions from exam results that are within a question pool
-    RetrieveCorrectExamResultPools: function (component, event, helper) {
-
-    },
-
+    }
 })
