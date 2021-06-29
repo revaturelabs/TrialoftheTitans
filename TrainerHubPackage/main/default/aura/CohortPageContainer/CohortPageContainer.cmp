@@ -5,7 +5,7 @@
   Description: Container for the Cohort Hub Page 
 
 -->
-<aura:component implements="flexipage:availableForAllPageTypes">
+<aura:component controller="CohortPageController" implements="flexipage:availableForAllPageTypes">
     <aura:html tag="style">
         :root {
         background-color: #9996e7;
@@ -28,6 +28,7 @@
     
     <aura:attribute name="tabs" type="List"/>
     <aura:attribute name="active" type="String" default="Overall"/>
+    <aura:attribute name="examURL" type="String"/>
     <aura:attribute name="currIndex" type="Integer"/>
     <aura:handler name="init" value="{!this}" action="{!c.Init}"/>
     <aura:handler event="c.TitanClickedEvent" action="{!c.HandleTabClick}"/>
@@ -44,6 +45,7 @@
 
         <div id="svg"></div>
     -->
+    
     <!-- Header -->
     <div class="header">
         Cohort Page
@@ -90,6 +92,27 @@
                         
                     </aura:if>
                     <!-- Overall Tab -->
+                    
+                    <!-- Hero List Tab -->
+                    <aura:if isTrue="{!v.active == 'Hero List'}">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                            <div class="slds-m-horizontal_small slds-m-bottom_small">
+                                <div class="slds-m-top_medium">
+                                	<c:HeroList CohortId="{!v.CohortId}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Table/Chart -->
+                        
+                        <!-- Single Record Display -->
+                        <!--<div style="background:var(user-team-primary); border-radius: 5px 5px 5px 5px;" class="slds-col slds-size_2-of-7 slds-m-left_medium">
+                        </div>-->
+                        <!-- Single Record Display -->
+                        
+                    </aura:if>
+                    <!-- Hero List Tab -->
                     
                     <!-- General Assessments Tab -->
                     <aura:if isTrue="{!v.active == 'General Assessments'}">
@@ -163,8 +186,10 @@
                         <!-- Table/Chart -->
                         <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
                             <div class="slds-m-horizontal_small slds-m-bottom_small">
-                                <lightning:button label="Exam Hubs" disabled='{!titan.buttonDisabled}' class=" slds-m-top_medium slds-m-right_small slds-button_neutral" title="Back" value="{!titan}" onclick="{!c.CreateNewAssessment}"/><br/>
-                                <div class="slds-m-top_medium">
+                                <!--<a href="{!v.examURl}">
+                                <lightning:button label="Exam Hubs" class=" slds-m-top_medium slds-m-right_small slds-button_neutral" title="Back" value="{!titan}" onclick="{!c.ToExamHub}"/><br/>
+                                </a>-->
+                               	<div class="slds-m-top_medium">
                                 	<c:ExamList CohortId="{!v.CohortId}"/>
                                 </div>
                             </div>
@@ -178,6 +203,27 @@
                         
                     </aura:if>
                     <!-- Exam List Tab -->
+                    
+                    <!-- QC Scores Tab -->
+                    <aura:if isTrue="{!v.active == 'QC Scores'}">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                            <div class="slds-m-horizontal_small slds-m-bottom_small">
+                                <div class="slds-m-top_medium">
+                                	<c:QCInterview CohortId="{!v.CohortId}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Table/Chart -->
+                        
+                        <!-- Single Record Display -->
+                        <!--<div style="background:var(user-team-primary); border-radius: 5px 5px 5px 5px;" class="slds-col slds-size_2-of-7 slds-m-left_medium">
+                        </div>-->
+                        <!-- Single Record Display -->
+                        
+                    </aura:if>
+                    <!-- QC Scores Tab -->
                     
                 </aura:if>
             </aura:iteration>

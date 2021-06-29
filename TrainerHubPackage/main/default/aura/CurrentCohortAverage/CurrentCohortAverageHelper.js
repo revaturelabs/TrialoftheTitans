@@ -238,7 +238,7 @@
                 return "green";
                 break;
             case 'Project':
-                return "yellow";
+                return "orange";
                 break;
             case 'QC':
                 return "purple";

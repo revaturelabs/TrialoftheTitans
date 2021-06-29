@@ -40,8 +40,10 @@ public class CurrentCohortController {
         
         
         for(String oS : overallScores.keySet()){
-            overallScores.put(oS,((overallScores.get(oS)/assessmentSize.get(oS)).setScale(2)));
-            pr.add(new Pair(oS,overallScores.get(oS)));
+            if(assessmentSize.get(oS)!=0){
+                overallScores.put(oS,((overallScores.get(oS)/assessmentSize.get(oS)).setScale(2))); // set scale rounds
+                pr.add(new Pair(oS,overallScores.get(oS)));
+            }
         }
 
         return pr;

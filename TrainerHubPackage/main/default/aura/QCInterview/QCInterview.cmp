@@ -3,7 +3,7 @@
 //
 // Name: Assessment Hero List
 // Author: Josue Cisneros
-// Description: Component to diplay Exam Result Data.
+// Description: Component to diplay QC Interview Data.
 // - ATTRIBUTES
 // - data: Holds the object for the data to be displayed.
 // - columns: Holds the Name,Field Name, and Type of the columns.
@@ -16,7 +16,8 @@
 <aura:component controller="QCInterviewController">
     <aura:attribute name="data" type="Object" />
     <aura:attribute name="columns" type="List" />
-
+	<aura:attribute name="CohortId" type ="String"/>
+    
     <aura:handler name="init" value="{!this}" action="{!c.fetchData}" />
 
     <lightning:datatable
