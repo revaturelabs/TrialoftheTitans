@@ -1,13 +1,15 @@
 //////////////////////////////////////////////////////////////////////
 //
-//  Name: Test_QCICohortSelectionAuraController
+//  Name: Test_QCHubHomeAuraController
 //  Author: Natalie Clark
 //  Description:    Tests the following Apex classes:
-//                  QCInterviewCohortSelectionAuraController
+//                  QCSquadWrapper, QCCohortWrapper, 
+//                  QCHubHomeAuraController
 //
 //////////////////////////////////////////////////////////////////////
+
 @isTest
-public class Test_QCICohortSelectionAuraController {
+public class Test_QCHubHomeAuraController {
     @TestSetup
     static void makeData(){
     // factory creates 1 cohort (named cohortName) with 20 heroes (named namePrefix[0-19])
@@ -33,26 +35,28 @@ public class Test_QCICohortSelectionAuraController {
             interviews[i].QC_Score__c = 4;
         }
         update interviews;
+
+        //note that QC_Interview_Sum__c and QC_Interview_Count__c fields are roll-up-summary fields
     }
 
     @isTest
-    static void heroReviewTest() {
-
-        //creates params for input into getHeroes method
-        Cohort__c c = [SELECT Id FROM Cohort__c WHERE Name='cohortName' LIMIT 1];
-
+    static void HubHomeTest() {
+        //creates params for input into RetrieveCohortData method
         //executes getHeroes method, with system.asserts to verify
-        List<Account> accs = QCInterviewCohortSelectionAuraController.getHeroes(c);
+        List<Cohort__c> cohorts = QCHubHomeAuraController.RetrieveCohorts();
+        String str = JSON.serialize(cohorts[0]);
 
-        System.assertEquals('cohortName', accs[0].Cohort__r.Name);
-        System.assert(accs.size()==20);
-        System.assertEquals('squadName', accs[0].Squad__r.Name);
+        System.assertEquals('cohortName', cohorts[0].Name);
 
-        //executes getInterviews method, with system.asserts to verify
-        List<QC_Interview__c> qci = QCInterviewCohortSelectionAuraController.getInterviews(accs);
+        //executes RetrieveCohortData method, with system.asserts to verify
+        QCCohortWrapper cw = QCHubHomeAuraController.RetrieveCohortData(str);
 
-        System.assert(qci[0].Finalized__c);
-        System.assertEquals(4, qci[0].QC_Score__c);
-        System.assert(qci.size() == 20);
+        //tests QCCohortWrapper
+        System.assert(cw.squadMap.containsKey('squadName'));
+        System.assertEquals('cohortName', cw.cohort.Name);
+        //tests QCSquadWrapper
+        System.assertEquals('squadName', cw.squadList[0].squad.Name);
+        System.assertEquals('namePrefix0', cw.squadList[0].heroes[0].Name);
     }
+
 }
