@@ -18,7 +18,7 @@
 
             let state = response.getState();
 
-            if (state == "SUCCESS"){
+            if (state === "SUCCESS"){
                 console.log(state);
                 var newInterview = response.getReturnValue();
                 component.set("v.CurrentInterview", newInterview);
@@ -26,12 +26,12 @@
 
             }
             
-            else if (state == "INCOMPLETE"){
+            else if (state === "INCOMPLETE"){
                 console.log(state);
 
             }
 
-            else if (state == "ERROR"){
+            else if (state === "ERROR"){
                 console.log(state);
                 var errors = response.getError();
 
@@ -165,6 +165,7 @@
     
     },
 
+    
     ChangeQuestion: function(cmp,index){
         console.log(cmp.get('v.QuestionSet')[index][0].Question_Body__c);
         cmp.set('v.HeroAnswer.Question__c',cmp.get('v.QuestionSet')[index][0].Question_Body__c);

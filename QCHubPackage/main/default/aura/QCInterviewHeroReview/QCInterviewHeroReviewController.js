@@ -1,5 +1,6 @@
 ({
     init : function(component, event, helper) {
+        console.log("QCINTERVIEWHEROREVIEW INIT:");
         component.set("v.columns", 
             [
                 {label:'Score', fieldName:'Score__c'},
@@ -7,7 +8,7 @@
                 {label:'Answer', fieldName:'Hero_Answer__c'},
             ]
         )
-        helper.getInterview(component, event)
+        //helper.getInterview(component, event)
         helper.createFlag(component, event)
     },
 
