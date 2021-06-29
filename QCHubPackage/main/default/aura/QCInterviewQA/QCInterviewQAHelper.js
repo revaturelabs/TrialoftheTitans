@@ -116,6 +116,7 @@
 
     UploadData : function(component){
 
+        console.log("ahoy");
         let uploadCall = component.get("c.InsertQAData");
         uploadCall.setParams(   {"interviewId" : component.get("v.CurrentInterview.Id")},
                                 {"heroAnswer"  : JSON.stringify(component.get("v.HeroAnswer"))});
@@ -126,12 +127,12 @@
 
             if (state == "SUCCESS"){
                 console.log(state);
-
+                this.ChangeQuestion(component,0);
             }
             
             else if (state == "INCOMPLETE"){
                 console.log(state);
-
+                
             }
 
             else if (state == "ERROR"){
