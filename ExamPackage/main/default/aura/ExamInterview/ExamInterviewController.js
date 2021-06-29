@@ -7,7 +7,12 @@
         helper.loadExamHelper(component);
     },
 
-    navigateToQuestion : function(component, event, helper) {
-        helper.navigateToQuestionHelper(component);
+    nextClick : function(component, event, helper) {
+        helper.navigateToNextQuestionHelper(component);
+    },
+
+    prevClick : function(component, event, helper){
+        helper.navigateToPrevQuestionHelper(component);
     }
+    
 })
