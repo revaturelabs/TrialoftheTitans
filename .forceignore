@@ -22,7 +22,6 @@
 **/lwc/d3ChartTest
 **/applications/QC_Hub.app-meta.xml
 package.xml
-**/profiles
 
 # LWC configuration files
 **/jsconfig.json
