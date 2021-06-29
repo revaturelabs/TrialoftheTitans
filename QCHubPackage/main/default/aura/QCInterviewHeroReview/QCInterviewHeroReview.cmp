@@ -28,13 +28,6 @@
     <aura:handler name="DeleteRowEvt" event="c:QCInterviewHeroReviewDeleteRowEvent" action="{!c.DeleteNewRow}"/>
     <aura:handler name="AddRowEvt" event="c:QCInterviewHeroReviewAddRowEvent" action="{!c.AddNewRow}"/>
 
-    {!v.HeroName}
-    {!v.HeroId}
-    {!v.CohortId}
-    <aura:iteration items="{!v.answers}" var="a">
-        {!a.Question__c}
-    </aura:iteration>
-
     <!-- displays hero and calculated score, with cohort and squad relationship potential -->
     <lightning:card>
         <aura:set attribute="title">

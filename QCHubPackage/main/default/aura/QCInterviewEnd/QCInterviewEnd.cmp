@@ -44,7 +44,6 @@
                                             HeroId="{!v.HeroId}" HeroName="{!v.HeroName}"/>
             </div>
         </div>
-        {!v.Week} {!v.CohortId} {!v.HeroId} {!v.HeroName}
         
         
 <!--  Lower RIGHT Main Box  -->
