@@ -30,7 +30,7 @@
                     "package": "CorePackage@1.0.0-1"
                 },
                 {
-                    "package": "ExamPackage@1.0.0-2"
+                    "package": "ExamPackage@1.0.0-3"
                 }
             ]
         },
@@ -45,10 +45,10 @@
                     "package": "CorePackage@1.0.0-1"
                 },
                 {
-                    "package": "ExamPackage@1.0.0-2"
+                    "package": "ExamPackage@1.0.0-3"
                 },
                 {
-                    "package": "TitanPage@1.0.0-2"
+                    "package": "TitanPage@1.0.0-4"
                 }
             ]
         },
@@ -63,34 +63,34 @@
                     "package": "CorePackage@1.0.0-1"
                 },
                 {
-                    "package": "ExamPackage@1.0.0-2"
+                    "package": "ExamPackage@1.0.0-3"
                 },
                 {
-                    "package": "TitanPage@1.0.0-2"
+                    "package": "TitanPage@1.0.0-4"
                 },
                 {
-                    "package": "HeroHubPackage@1.0.0-2"
+                    "package": "HeroHubPackage@1.0.0-3"
                 }
             ]
         },
-		{
+        {
             "path": "TrainerHubPackage",
             "package": "TrainerHubPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-			"default": true,
+            "default": true,
             "dependencies": [
                 {
                     "package": "CorePackage@1.0.0-1"
                 },
                 {
-                    "package": "ExamPackage@1.0.0-2"
+                    "package": "ExamPackage@1.0.0-3"
                 },
                 {
                     "package": "TitanPage@1.0.0-2"
                 },
                 {
-                    "package": "HeroHubPackage@1.0.0-2"
+                    "package": "HeroHubPackage@1.0.0-3"
                 },
                 {
                     "package": "QCHubPackage@1.0.0-1"
@@ -98,7 +98,6 @@
             ]
         }
     ],
-    
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "51.0",
@@ -117,7 +116,9 @@
         "QCHubPackage": "0Ho5e000000sY8UCAU",
         "QCHubPackage@1.0.0-1": "04t5e000000AIl2AAG",
         "TrainerHubPackage": "0Ho5e00000000TxCAI",
-        "TrainerHubPackage@0.1.0-1": "04t5e000000ZNUFAA4"
-
+        "TrainerHubPackage@0.1.0-1": "04t5e000000ZNUFAA4",
+        "ExamPackage@1.0.0-3": "04t5e0000002sGRAAY",
+        "TitanPage@1.0.0-4": "04t5e0000002sGbAAI",
+        "HeroHubPackage@1.0.0-3": "04t5e0000002sGgAAI"
     }
 }
