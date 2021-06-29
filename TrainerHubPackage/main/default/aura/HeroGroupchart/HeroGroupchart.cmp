@@ -1,0 +1,7 @@
+<aura:component controller="D3GrpChartController">
+    <ltng:require scripts="{!$Resource.d3 +'/d3.js'}" 
+                           afterScriptsLoaded="{!c.initD3Charts}"/>
+    <h1>Group Bar Chart</h1>
+    <br/>
+    <div id="svg"></div>
+</aura:component>
