@@ -14,12 +14,12 @@
     <aura:attribute name="SquadList" type="QCSquadWrapper[]"/>
     <aura:attribute name="WeekList" type="String[]"/>
 
+    <aura:attribute name="ScriptLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="DataLoaded" type="Boolean" default="false"/>
+
     <ltng:require scripts="{!$Resource.d3 + '/d3.js'}"
                   afterScriptsLoaded ="{!c.D3}"/>
 
-    
-
-    <lightning:button label="d3 TEST" value="d3 TEST" onclick="{!c.D3}"/>
 
     <!-- Beginning of box layout grid for components -->
     <div class="slds-grid slds-gutters slds-align_absolute-center">
