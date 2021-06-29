@@ -319,8 +319,8 @@
 
     submitExam : function(component){
         setTimeout(function () {
-            alert('Reloading Page');
+            //alert('Reloading Page');
             location.reload(true);
-          }, 3000);
+          }, 1000);
     }
 })
