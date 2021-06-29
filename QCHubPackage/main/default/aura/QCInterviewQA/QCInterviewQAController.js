@@ -37,6 +37,8 @@
     },
 
     SaveAndNext : function(component, event, helper){
+
+        console.log("SaveAndNext method activated");
         console.log("ahoy");
         helper.UploadAnswer(component);
         

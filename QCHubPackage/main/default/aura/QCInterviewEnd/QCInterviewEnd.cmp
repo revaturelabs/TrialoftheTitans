@@ -35,7 +35,7 @@
                 
 <!--  QC Interview Cohort Selection Component  -->   
                 <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Select a Cohort:</h1>
-                <c:QCInterviewCohortSelection/>
+                <c:QCInterviewHeroReview/>
             </div>
         </div>
         
@@ -48,7 +48,7 @@
 <!--  Upper Box  (Lower RIGHT Main Box) -->
             <div class="rightboxes slds-box slds-col slds-m-vertical_x-small">
                 <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">QC Score:</h1>
-                <c:QCInterviewScoreComp/>
+                
                 <p style="text-align: center">NOTE: not sure if this is the correct componenet but i can replace if nessesary.</p>
                 <p style="text-align: center; margin-top:20px; color:red">NOTE: Reason Comp goes here.</p>
                 <p style="text-align: center; margin-top:20px; color:red">NOTE: BUTTON goes here.</p>

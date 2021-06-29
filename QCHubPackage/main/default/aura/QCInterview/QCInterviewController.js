@@ -2,14 +2,11 @@
 	OnInit : function(component, event, handler){
 		// Set cohort to be interviewed with information stored in sessionStorage, set from QCHubHome
 		console.log("QCInterview Init: ");
-		let pageRef = component.get("v.pageReference");
+
 		let sessionCohort = sessionStorage.getItem('ActiveCohort');
 		let sessionWeekList = sessionStorage.getItem('WeekList');
 		console.log(sessionWeekList);
-		if(pageRef){
-			component.set("v.CohortId", pageRef.state.c__CohortId);
 
-		}
 		console.log("Retrieving Session Variables;");
 		if (sessionCohort){
 			console.log("In session retrieve;");
