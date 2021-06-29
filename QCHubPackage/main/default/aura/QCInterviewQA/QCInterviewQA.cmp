@@ -39,12 +39,12 @@
         <div class="boxGrid slds-grid slds-grid_vertical slds-col slds-size_3-of-12 slds-m-horizontal_xx-small">
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
-                Week Comp
+                {!v.Week}
             </div>
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
                 Hero name: {!v.Hero.Name} <br/>
-                {!v.CohortId}
+                <!--{!v.CohortId}-->
                 {!v.CurrentInterview.Id}
                 {!v.CurrentInterview.Name}
                 
@@ -53,7 +53,7 @@
             <div class="slds-box slds-col slds-m-vertical_x-small">
                 <!--<c:QCInterviewScoreComp/>-->
                 <div> 
-                    <lightning:input type="number" name="scorebox" value="{!v.HeroScore}" placeholder="{!v.HeroScore}" label="Hero Score" />
+                    <lightning:input type="number" name="scorebox" value="{!v.HeroAnswer.Score__c}" placeholder="{!v.HeroAnswer.Score__c}" label="Hero Score" />
                 </div>
                  
                 <div>
@@ -98,7 +98,7 @@
 
             <div class="slds-align_absolute-center">
 
-                <lightning:button label="TEST" onclick="{!c.TestQBox}"/>
+                <!--<lightning:button label="TEST" onclick="{!c.TestQBox}"/>-->
                 
                 <!--Begin Navigation Buttons-->
                 <lightning:button onclick="{!c.SaveAndNext}">Next</lightning:button>

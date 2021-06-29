@@ -4,10 +4,9 @@
 	},
 
 	AddQuestionAnswer : function(component, questionAnswer){
-
-		let currentQAList = component.get("CurrentQAList");
+		let currentQAList = component.get("v.CurrentQAList");
 		currentQAList.push(questionAnswer);
-		component.set("CurrentQAList", currentQAList);
-		
+		component.set("v.CurrentQAList", currentQAList);
+	
 	}
 })

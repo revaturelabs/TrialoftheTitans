@@ -31,9 +31,8 @@
 
 
 	QAEvent : function(component, event, handler){
-
 		let questionAnswer = event.getParam("QA");
-		helper.AddQuestionAnswer(component, questionAnswer);
+		handler.AddQuestionAnswer(component, questionAnswer);
 
 	},
 

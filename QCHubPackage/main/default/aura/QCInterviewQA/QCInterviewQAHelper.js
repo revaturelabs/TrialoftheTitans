@@ -56,10 +56,11 @@
 
     InterviewInit: function(cmp,h){
 
+        // prevents the creation of bum
+        //h.CreateInterview(cmp);
         
-        h.CreateInterview(cmp);
-        cmp.set('v.HeroScore',0)
-
+        cmp.set('v.HeroAnswer.Score__c',0)
+        h.ChangeQuestion(cmp,cmp.get("v.CurrentQuestionIndex"));
 
     },
 
@@ -113,29 +114,30 @@
 
     },
 
-
+    // this doesnt work properly
     UploadData : function(component){
 
-        console.log("ahoy");
-        let uploadCall = component.get("c.InsertQAData");
-        uploadCall.setParams(   {"interviewId" : component.get("v.CurrentInterview.Id")},
-                                {"heroAnswer"  : JSON.stringify(component.get("v.HeroAnswer"))});
         
+        var uploadCall = component.get('c.InsertQAData');
+        //*
+        uploadCall.setParams(   {"interviewId" : component.get("v.CurrentInterview.Id"),
+                                "heroAnswerStr"  : JSON.stringify(component.get("v.HeroAnswer"))});
+        //*/
         uploadCall.setCallback(this, function(response){
-
+            console.log("ahoy1");
             let state = response.getState();
-
-            if (state == "SUCCESS"){
-                console.log(state);
+            console.log("ahoy2" + state);
+            if (state === "SUCCESS"){
+                console.log("ahoy" + state);
                 this.ChangeQuestion(component,0);
             }
             
-            else if (state == "INCOMPLETE"){
+            else if (state === "INCOMPLETE"){
                 console.log(state);
                 
             }
 
-            else if (state == "ERROR"){
+            else if (state === "ERROR"){
                 console.log(state);
                 var errors = response.getError();
 
@@ -153,15 +155,22 @@
             }
         });
 
+        
+
     },
 
-    // ***CURRENTLY NOT IN USE***
+    // ***CURRENTLY IN USE***
     // Required only if we want to upload interview data at the end, rather than per-question
     LaunchQAListEvent : function(component){
 
+        //console.log(JSON.stringify(component.get("v.HeroAnswer")));
+        
         let QAListEvent = component.getEvent("UpdateQAListEvent");
         QAListEvent.setParams({"QA" : component.get("v.HeroAnswer")});
+        console.log("exit");
         QAListEvent.fire();
+        
+        
     
     },
 
