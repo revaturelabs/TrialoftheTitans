@@ -35,7 +35,7 @@ public with sharing class QCInterviewHeroReviewAuraController {
 
     //Creates a new QC_Interview__c with the interview's data and associates it's ID with 
     @AuraEnabled
-    public static void UploadInterviewData( Id cohortId, Id heroId, String heroName, String week, 
+    public static String UploadInterviewData( Id cohortId, Id heroId, String heroName, String week, 
                                                 List<String> qaStrList,
                                                 List<String> qaStrFlags){
 
@@ -50,13 +50,14 @@ public with sharing class QCInterviewHeroReviewAuraController {
         System.debug('INTERVIEW INSERTED');
 
         List<QC_Question_Answer__c> qaList = new List<QC_Question_Answer__c>();
-/*
+
         for (String qaStr : qaStrList){
                 QC_Question_Answer__c newQA = (QC_Question_Answer__c) JSON.deserialize(qaStr, QC_Question_Answer__c.class);
+                System.debug(newQA);
                 newQA.QC_Interview__c = newInterview.Id;
                 qaList.add(newQA);
         }
-*/
+
         System.debug('ANSWERS CONVERTED');
         insert qaList;
 
@@ -71,6 +72,8 @@ public with sharing class QCInterviewHeroReviewAuraController {
 */
         System.debug('FLAGS CONVERTED');
         insert fList;
+
+        return newInterview.Id;
     }
 
 }
