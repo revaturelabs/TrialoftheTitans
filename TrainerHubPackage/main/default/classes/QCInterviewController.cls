@@ -11,7 +11,7 @@
 
 public with sharing class QCInterviewController {
     @AuraEnabled
-    public static List<QC_Interview__c> HeroList(){
+    public static List<QC_Interview__c> InterviewList(){
         List<QC_Interview__c> qcInterviews = [SELECT Name, Account__r.Name, Week__c, QC_Score__c
                                         FROM QC_Interview__c];
         return qcInterviews;

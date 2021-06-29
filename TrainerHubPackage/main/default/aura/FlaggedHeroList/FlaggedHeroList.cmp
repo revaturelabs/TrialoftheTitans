@@ -3,7 +3,7 @@
 //
 // Name: Assessment Hero List
 // Author: Josue Cisneros
-// Description: Component to diplay Exam Result Data.
+// Description: Component to diplay QC Flag Data.
 // - ATTRIBUTES
 // - data: Holds the object for the data to be displayed.
 // - columns: Holds the Name,Field Name, and Type of the columns.
