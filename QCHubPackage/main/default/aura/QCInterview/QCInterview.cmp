@@ -56,8 +56,8 @@
     
     
     <aura:if isTrue="{!v.Stage=='End' ? true : false}">
-        <c:QCInterviewEnd/>
-
+        <c:QCInterviewEnd week="{!v.Week}" answers="{!v.CurrentQAList}" CohortId="{!v.Cohort.cohort.Id}"
+                            HeroId="{!v.CurrentHero.Id}" HeroName="{!v.CurrentHero.Name}"/>
     </aura:if>
     
     

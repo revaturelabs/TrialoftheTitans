@@ -33,4 +33,27 @@ public with sharing class QCInterviewHeroReviewAuraController {
             upsert interview;
     }
 
+    //Creates a new QC_Interview__c with the interview's data and associates it's ID with 
+    @AuraEnabled
+    public static void uploadInterviewData(Id heroId, String heroName, Id cohortId, String week, 
+                                                List<Question_Answer__c> qaList,
+                                                List<QC_Flag__c> qaFlags){
+
+        QC_Interview__c newInterview = new QC_Interview__c(Name=heroName+' '+week, Cohort__c=cohortId, Week__c=week,
+                                                                Account__c=heroId);
+        insert newInterview;
+
+        for (QC_Question_Answer__c qa : qaList){
+                qa.QC_Interview__c = newInterview.Id;
+        }
+
+        insert qaList;
+
+        for (QC_Flag__c qf : qaFlags){
+                qf.QC_Flag__c = newInterview.Id;
+        }
+
+        insert qaFlags;
+    }
+
 }

@@ -38,6 +38,8 @@ public with sharing class QCInterviewQAAuraController {
         System.debug(interviewId);
         System.debug(heroAnswerStr);
 
+        System.debug(interviewId);
+        System.debug(heroAnswerStr);
         QC_Question_Answer__c heroAnswer = (QC_Question_Answer__c) JSON.deserialize(heroAnswerStr, QC_Question_Answer__c.class);
 
         heroAnswer.QC_Interview__c = interviewId;

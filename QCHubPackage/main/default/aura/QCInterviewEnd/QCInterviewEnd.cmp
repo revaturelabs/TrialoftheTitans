@@ -19,8 +19,13 @@
         </div>
     </div> -->
     
+    <aura:attribute name="HeroName" type="String"/>
+    <aura:attribute name="HeroId" type="String"/>
+    <aura:attribute name="CohortId" type="String"/>
     
-    
+    <aura:attribute name="answers" type="QC_Question_Answer__c[]" />
+
+    <aura:attribute name="Week"         type="String"/>
     
 <!--  Lower Main Box  -->
     <div class="slds-grid slds-gutters slds-align_absolute-center">
@@ -35,7 +40,8 @@
                 
 <!--  QC Interview Cohort Selection Component  -->   
                 <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Select a Cohort:</h1>
-                <c:QCInterviewHeroReview/>
+                <c:QCInterviewHeroReview week="{!v.Week}" answers="{!v.CurrentQAList}" CohortId="{!v.Cohort.cohort.Id}"
+                                            HeroId="{!v.CurrentHero.Id}" HeroName="{!v.CurrentHero.Name}"/>
             </div>
         </div>
         

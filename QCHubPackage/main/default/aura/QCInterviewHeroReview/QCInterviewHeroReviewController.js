@@ -1,5 +1,6 @@
 ({
     init : function(component, event, helper) {
+        console.log("QCINTERVIEWHEROREVIEW INIT:");
         component.set("v.columns", 
             [
                 {label:'Score', fieldName:'Score__c'},
@@ -7,7 +8,7 @@
                 {label:'Answer', fieldName:'Hero_Answer__c'},
             ]
         )
-        helper.getInterview(component, event)
+        //helper.getInterview(component, event)
         helper.createFlag(component, event)
     },
 
@@ -57,4 +58,13 @@
         helper.UpdateStage(component, "Start");
     },
     
+    Submit : function(component, event, helper){
+        HeroId = component.get("v.HeroId");
+        HeroName = component.get("v.HeroName");
+        CohortId = component.get("v.CohortId");
+        Week = component.get("v.Week");
+        HeroAnswers = component.get("v.answers");
+        Flags = component.get("v.flagList");
+        helper.SubmitInterview(component);
+    }
 })
