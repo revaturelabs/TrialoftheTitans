@@ -34,6 +34,7 @@ Technologies used for this project include: **Salesforce, Apex, Lightning Aura C
   - [x] User will be able to see their exam results 
   - [x] Users will be able to communicate with their squad members
   - [x] Users will be able to see their titan progress
+  - [x] Users will be able to see take their exam based on Exam clicked 
 
 - [ ] Oracle (Trainer) Epic
   - [ ] Trainer will have access to the Cohort page
