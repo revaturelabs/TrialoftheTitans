@@ -18,10 +18,10 @@
 # !**/layouts/Titan__c-Titan Layout.layout-meta.xml
 
 
-**/QCHubPackage/main/default/aura
-**/QCHubPackage/main/default/flexipages
 **/lwc/d3ChartTest
-**/applications/QC_Hub.app-meta.xml
+**/QCHubPackage/main/default/aura/QCInterviewQANavButtons
+
+
 package.xml
 
 # LWC configuration files

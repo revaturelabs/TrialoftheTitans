@@ -93,7 +93,7 @@
                     "package": "HeroHubPackage@1.0.0-3"
                 },
                 {
-                    "package": "QCHubPackage@1.0.0-1"
+                    "package": "QCHubPackage@1.0.0-2"
                 }
             ]
         }
@@ -120,6 +120,8 @@
         "ExamPackage@1.0.0-3": "04t5e0000002sGRAAY",
         "TitanPage@1.0.0-4": "04t5e0000002sGbAAI",
         "HeroHubPackage@1.0.0-3": "04t5e0000002sGgAAI",
-        "TrainerHubPackage@0.1.0-2": "04t5e000000ZZwzAAG"
+        "TrainerHubPackage@0.1.0-2": "04t5e000000ZZwzAAG",
+        "QCHubPackage@1.0.0-2": "04t5e0000002uy1AAA",
+        "TrainerHubPackage@0.1.0-3": "04t5e000000ZbhYAAS"
     }
 }
