@@ -138,6 +138,7 @@
         "QCHubPackage@1.0.0-2": "04t5e0000002uy1AAA",
         "TrainerHubPackage@0.1.0-3": "04t5e000000ZbhYAAS",
         "TmpSitePackage": "0Ho5e000000oMHuCAM",
-        "CustomPackage": "0Ho5e000000oMHzCAM"
+        "CustomPackage": "0Ho5e000000oMHzCAM",
+        "CustomPackage@0.1.0-1": "04t5e0000006KUqAAM"
     }
 }
