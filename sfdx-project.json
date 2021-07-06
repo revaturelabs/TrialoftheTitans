@@ -109,14 +109,31 @@
             "package": "CustomPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true
+            "default": false
         },
         {
             "path": "MockInterviewPackage",
             "package": "MockInterviewPackageTeam1",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": false
+            "default": true,
+            "dependencies": [
+                {
+                    "package": "CorePackage@1.0.0-1"
+                },
+                {
+                    "package": "ExamPackage@1.0.0-3"
+                },
+                {
+                    "package": "TitanPage@1.0.0-2"
+                },
+                {
+                    "package": "HeroHubPackage@1.0.0-3"
+                },
+                {
+                    "package": "QCHubPackage@1.0.0-2"
+                }
+            ]
         }
     ],
     "namespace": "",
@@ -149,6 +166,7 @@
         "CustomPackage@0.1.0-1": "04t5e0000006KUqAAM",
         "CustomPackage@0.1.0-2": "04t5e0000006MjCAAU",
         "CustomPackage@0.1.0-3": "04t5e0000006MnPAAU",
-        "MockInterviewPackageTeam1": "0Ho5e000000oMIJCA2"
+        "MockInterviewPackageTeam1": "0Ho5e000000oMIJCA2",
+        "MockInterviewPackageTeam1@0.1.0-1": "04t5e0000006MrcAAE"
     }
 }
