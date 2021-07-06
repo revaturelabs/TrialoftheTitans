@@ -110,6 +110,13 @@
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": true
+        },
+        {
+            "path": "MockInterviewPackage",
+            "package": "MockInterviewPackageTeam1",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
         }
     ],
     "namespace": "",
@@ -141,6 +148,7 @@
         "CustomPackage": "0Ho5e000000oMHzCAM",
         "CustomPackage@0.1.0-1": "04t5e0000006KUqAAM",
         "CustomPackage@0.1.0-2": "04t5e0000006MjCAAU",
-        "CustomPackage@0.1.0-3": "04t5e0000006MnPAAU"
+        "CustomPackage@0.1.0-3": "04t5e0000006MnPAAU",
+        "MockInterviewPackageTeam1": "0Ho5e000000oMIJCA2"
     }
 }
