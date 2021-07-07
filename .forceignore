@@ -33,3 +33,27 @@ package.xml
 
 # personal testing
 **/.planning/**
+
+# added ignores
+**/profiles
+**/layouts
+**/applications
+**/aura
+**/flows
+**/permissionsets
+**/triggers
+**/workflows
+**/quickActions
+**/matchingRules
+**/flexipages
+**/staticresources
+**/appMenus
+**/aura
+**/components
+**/experiences
+**/sites
+**/navigationMenus
+**/networks
+**/networkBranding
+**/reportTypes
+**/pages
