@@ -21,7 +21,9 @@
         
        
                                        // VVV this needs to be component.get("{!v.IncomingDeckList}"), which need to be set in interviewStart
-        helper.getQuestionDeck(component,"Sample Question Deck", helper);
+        let deckList = component.get("v.Week");
+        console.log(deckList);
+        helper.getQuestionDeck(component, deckList, helper);
         
         helper.InterviewInit(component, helper);
     },
@@ -46,7 +48,8 @@
        
         // this call to interview init, should overwrite the interview attribute, this may interfer with the save due to scheduling 
         helper.InterviewInit(component, helper);
-        helper.ChangeQuestion(component)
+        helper.ChangeQuestion(component);
+        
         // set the current question index forward 1 to get the next question (already randomized)
     },
 
