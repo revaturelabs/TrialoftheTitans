@@ -78,6 +78,30 @@
             "package": "TrainerHubPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
+            "default": false,
+            "dependencies": [
+                {
+                    "package": "CorePackage@1.0.0-1"
+                },
+                {
+                    "package": "ExamPackage@1.0.0-3"
+                },
+                {
+                    "package": "TitanPage@1.0.0-2"
+                },
+                {
+                    "package": "HeroHubPackage@1.0.0-3"
+                },
+                {
+                    "package": "QCHubPackage@1.0.0-2"
+                }
+            ]
+        },
+        {
+            "path": "MockInterviewPackage",
+            "package": "MockInterviewPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
             "default": true,
             "dependencies": [
                 {
@@ -94,6 +118,9 @@
                 },
                 {
                     "package": "QCHubPackage@1.0.0-2"
+                },
+                {
+                    "package": "TrainerHubPackage@0.1.0-3"
                 }
             ]
         }
@@ -122,6 +149,8 @@
         "HeroHubPackage@1.0.0-3": "04t5e0000002sGgAAI",
         "TrainerHubPackage@0.1.0-2": "04t5e000000ZZwzAAG",
         "QCHubPackage@1.0.0-2": "04t5e0000002uy1AAA",
-        "TrainerHubPackage@0.1.0-3": "04t5e000000ZbhYAAS"
+        "TrainerHubPackage@0.1.0-3": "04t5e000000ZbhYAAS",
+        "MockInterviewPackage": "0Ho5e000000XZaiCAG",
+        "MockInterviewPackage@0.1.0-1": "04t5e00000032jOAAQ"
     }
 }
