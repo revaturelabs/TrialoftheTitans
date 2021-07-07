@@ -16,7 +16,7 @@ public with sharing class NewProjectCreationAuraController {
             List<String> projectNames = new List<String>();
             List<String> noProjectsList = new List<String> {'NullList', 'NullList'};
             String noProjects = JSON.serialize(noProjectsList);
-            system.debug(noProjects);
+            
             List<Project__c> projects = [SELECT Name FROM Project__c];
 
             for(Project__c pro : projects) {
@@ -41,13 +41,24 @@ public with sharing class NewProjectCreationAuraController {
     @AuraEnabled
     public static void setNewProject(String name, String description) {
         try {
-
+            Boolean matchFound = false;
             Project__c newProject = new Project__c();
+            List<Project__c> projectList = [SELECT Name FROM Project__c];
 
             newProject.Name = name;
             newProject.Description__c = description;
 
-            insert newProject;
+            for(Project__c proj : projectList) {
+                if(proj.Name == name) {
+                    matchFound = true;
+                    throw new AuraHandledException('Project Name already exists. Please select another name.');
+                }
+
+            }
+
+            if(matchFound == false){
+                insert newProject;
+            }
 
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());

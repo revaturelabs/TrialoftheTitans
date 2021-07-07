@@ -1,48 +1,44 @@
+/////////////////////////////////////////////////////
+//
+//  Name: NewProjectCreationHelper
+//  Author: Steven Magnin
+//  Description: JavaScript helper for New Project Creation Aura Component
+//
+///////////////////////////////////////////////////
+
 ({
     cancelCreate : function(component) {
-        let showCreateComponent = component.get("v.displayNewProjectCreation");
-        let showHomeComponent = component.get("v.displayProjectList");
-
-        if(showCreateComponent == true){
-            if(showHomeComponent == false) {
-                component.set("v.displayNewProjectCreation", false);
-                //component.set("v.displayProjectList", true);
-
-            }
-
-        }
+        component.set("v.currentPage", "homePage");
 
     },
 
     doCreate : function(name, desc, component) {
-        let showCreateComponent = component.get("v.displayNewProjectCreation");
-        let showHomeComponent = component.get("v.displayProjectList");
         let setNewProject = component.get("c.setNewProject");
+        let nameValid = component.find("nameInput").get("v.validity");
 
         setNewProject.setParams({"name" : name, "description" : desc });
+                
+        if(nameValid.valid){
+            setNewProject.setCallback(this, function(response) {
+                if(response.getState() === "SUCCESS") {
+                    component.find("componentNotif").showToast({"Title" : "New Project Created!", "variant" : "success", 
+                            "message" : "Project successfully created!"});
 
-        setNewProject.setCallback(this, function(response) {
-            if(response.getState() === "SUCCESS") {
-                component.find('errorNotif').showToast({"Title" : "New Project Created!", "variant" : "success", 
-                        "message" : "Project successfully created!"});
+                    component.find("nameInput").set("v.value", "");
+                    component.find("descInput").set("v.value", "");
+                    component.set("v.currentPage", "homePage");
 
-                component.find("nameInput").set("v.value", "");
-                component.find("descInput").set("v.value", "");
-
-                if(showCreateComponent == true){
-                    if(showHomeComponent == false) {
-                        component.set("v.displayNewProjectCreation", false);
-                        //component.set("v.displayProjectList", true);
-                        
-                    }
-        
                 }
 
-            }
+            })
 
-        })
+            $A.enqueueAction(setNewProject);
 
-        $A.enqueueAction(setNewProject);
+        }else {
+        component.find('componentNotif').showNotice({"variant" : "error", "header" : "Project Exists", 
+        "message" : "Project Name cannot be blank."});
+        
+        }
 
     },
 
@@ -52,19 +48,20 @@
         getListOfProjectNames.setCallback(this, function(response) {
             if(response.getState() === "SUCCESS") {
                 let listOfProjectNames = JSON.parse(response.getReturnValue());
+                console.log("And the name is: " + name);
+                console.log(listOfProjectNames);
 
-                for(var i = 0; i < listOfProjectNames.length; i++) {
+                for(let i = 0; i < listOfProjectNames.length; i++) {
                     if(listOfProjectNames[i] == name) {
-                        component.find('errorNotif').showNotice({"variant" : "error", "header" : "Project Exists", 
+                        console.log("Name Found");
+                        component.find('componentNotif').showNotice({"variant" : "error", "header" : "Project Exists", 
                         "message" : "Project Name already exists. Please select another name."});
 
                     }
-        
+
                 }
-
+    
             }
-
-            
 
         })
         $A.enqueueAction(getListOfProjectNames);

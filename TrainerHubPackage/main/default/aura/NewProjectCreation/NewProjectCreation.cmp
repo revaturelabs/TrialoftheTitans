@@ -1,12 +1,12 @@
 <aura:component implements="forceCommunity:availableForAllPageTypes" controller="NewProjectCreationAuraController">
-    <aura:attribute name="displayNewProjectCreation" type="boolean"/>
-    <aura:attribute name="displayProjectList" type="boolean"/>
-    <lightning:notificationsLibrary aura:id="errorNotif"/>
-    <lightning:layout>
-        <lightning:layoutItem>
+    <aura:attribute name="currentPage" type="string"/>
+    
+    <lightning:notificationsLibrary aura:id="componentNotif"/>
+    <lightning:layout class="slds-align_absolute-center">
+        <lightning:layoutItem class="slds-box">
             <lightning:input aura:id="nameInput" label="Project Name" required="true" maxlength="50" onblur="{!c.checkIfProjectExists}"/>
-            <lightning:input aura:id="descInput" label="Project Description" maxlength="255"/>
-            <lightning:buttonGroup>
+            <lightning:textarea aura:id="descInput" label="Project Description" maxlength="255"/>
+            <lightning:buttonGroup class="slds-m-top_x-small">
                 <lightning:button aura:id="cancelButton" label="Cancel" onclick="{!c.cancelNewProjectCreation}"/>
                 <lightning:button aura:id="saveButton" label="Save" onclick="{!c.createNewProject}"/>
             </lightning:buttonGroup>
