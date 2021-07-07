@@ -19,13 +19,16 @@
         setNewProject.setParams({"name" : name, "description" : desc });
                 
         if(nameValid.valid){
+            //If name is not blank, try to insert record.
             setNewProject.setCallback(this, function(response) {
                 if(response.getState() === "SUCCESS") {
+                    //If no errors are returned, display toast to let user know record has been inserted.
                     component.find("componentNotif").showToast({"Title" : "New Project Created!", "variant" : "success", 
                             "message" : "Project successfully created!"});
-
+                    //Blank input fields.
                     component.find("nameInput").set("v.value", "");
                     component.find("descInput").set("v.value", "");
+                    //Redirect to homepage.
                     component.set("v.currentPage", "homePage");
 
                 }
@@ -35,8 +38,9 @@
             $A.enqueueAction(setNewProject);
 
         }else {
-        component.find('componentNotif').showNotice({"variant" : "error", "header" : "Project Exists", 
-        "message" : "Project Name cannot be blank."});
+            //If Project Name field is blank, display error.
+            component.find('componentNotif').showNotice({"variant" : "error", "header" : "Project Exists", 
+                "message" : "Project Name cannot be blank."});
         
         }
 
@@ -47,13 +51,12 @@
 
         getListOfProjectNames.setCallback(this, function(response) {
             if(response.getState() === "SUCCESS") {
+                //If no errors are returned, parse returned JSON to array of strings.
                 let listOfProjectNames = JSON.parse(response.getReturnValue());
-                console.log("And the name is: " + name);
-                console.log(listOfProjectNames);
 
+                //Iterate list of names and check for matches against passed-in name from Project Name input field.
                 for(let i = 0; i < listOfProjectNames.length; i++) {
                     if(listOfProjectNames[i] == name) {
-                        console.log("Name Found");
                         component.find('componentNotif').showNotice({"variant" : "error", "header" : "Project Exists", 
                         "message" : "Project Name already exists. Please select another name."});
 

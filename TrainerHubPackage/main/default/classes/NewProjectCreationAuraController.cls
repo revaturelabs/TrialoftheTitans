@@ -12,21 +12,17 @@ public with sharing class NewProjectCreationAuraController {
     @AuraEnabled
     public static String getListOfProjectNames() {
         try {
-
             List<String> projectNames = new List<String>();
-            List<String> noProjectsList = new List<String> {'NullList', 'NullList'};
-            String noProjects = JSON.serialize(noProjectsList);
-            
             List<Project__c> projects = [SELECT Name FROM Project__c];
 
+            //Add names from SOQL statement to list.
             for(Project__c pro : projects) {
                     projectNames.add(pro.Name);
 
             }
-            system.debug(JSON.serialize(projectNames));
 
             if(projectNames == null) {
-                return noProjects;
+                return null;
             }else {
                 return JSON.serialize(projectNames);
             }
@@ -48,6 +44,7 @@ public with sharing class NewProjectCreationAuraController {
             newProject.Name = name;
             newProject.Description__c = description;
 
+            //Check names in Project__c records against passed in name from Project Name field.
             for(Project__c proj : projectList) {
                 if(proj.Name == name) {
                     matchFound = true;
@@ -56,6 +53,7 @@ public with sharing class NewProjectCreationAuraController {
 
             }
 
+            //Prevent insert if name match is found.
             if(matchFound == false){
                 insert newProject;
             }

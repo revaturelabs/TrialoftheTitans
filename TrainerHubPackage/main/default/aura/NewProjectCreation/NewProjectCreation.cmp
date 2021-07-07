@@ -1,6 +1,18 @@
+<!--
+/////////////////////////////////////////////////////
+//
+//  Name: NewProjectCreation Aura Component
+//  Author: Steven Magnin
+//  Description: Component for creating new projects in Trial of the Titans Trainer package.
+//
+///////////////////////////////////////////////////
+-->
+
 <aura:component implements="forceCommunity:availableForAllPageTypes" controller="NewProjectCreationAuraController">
+    <!--Attribute should be bound to attribute in parent component to determine which component is rendered-->
     <aura:attribute name="currentPage" type="string"/>
     
+    <!--Lightning Notification Library to display errors and success toast-->
     <lightning:notificationsLibrary aura:id="componentNotif"/>
     <lightning:layout class="slds-align_absolute-center">
         <lightning:layoutItem class="slds-box">
