@@ -67,6 +67,12 @@
             </div>  <!-- end wrapper -->   
         </aura:if>
 
+        <aura:if isTrue="{!v.currentPage == 'AssignProject'}">
+
+            <c:AssignProject currentPage="{!v.currentPage}" projectId="{!v.selectedProjId}"/>
+            
+        </aura:if>
+
         <aura:if isTrue="{!v.currentPage == 'NewProjectCreation'}">
 
             <c:NewProjectCreation currentPage="{!v.currentPage}"/>

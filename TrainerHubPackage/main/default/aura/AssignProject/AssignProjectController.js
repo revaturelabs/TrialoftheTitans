@@ -117,9 +117,9 @@
         $A.enqueueAction(action);
 
         // set the new display to 'projectHome'
-        component.set('v.display', 'projectHome');
+        component.set('v.currentPage', 'homePage');
     },
     assignCancel : function(component, event, helper) {
-        component.set('v.display', 'projectHome');
+        component.set('v.currentPage', 'homePage');
     }
 })
