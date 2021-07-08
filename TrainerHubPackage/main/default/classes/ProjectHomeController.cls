@@ -16,13 +16,7 @@ public with sharing class ProjectHomeController {
     
     @Auraenabled
     public static List<Project__c> retrieveProjects(){
-        try{
-            final List<Project__c> projects = [SELECT Name, Description__c FROM Project__c];
-            return projects;
-        }catch(Exception ex){
-            CalloutException e = new CalloutException();
-            e.setMessage('Unexpected error: we were unable to retrive the list of projects');
-            throw e;
-        }
+        final List<Project__c> projects = [SELECT Name, Description__c FROM Project__c];
+        return projects;
     }
 }
