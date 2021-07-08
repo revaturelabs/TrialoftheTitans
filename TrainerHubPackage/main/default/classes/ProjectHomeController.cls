@@ -17,7 +17,7 @@ public with sharing class ProjectHomeController {
     @Auraenabled
     public static List<Project__c> retrieveProjects(){
         try{
-            final List<Project__c> projects = [SELECT Name, Description__c FROM Project__c];
+            final List<Project__c> projects = [SELECT Name, Description__c FROM Project__c ORDER BY Name];
             return projects;
         }catch(Exception ex){
             CalloutException e = new CalloutException();

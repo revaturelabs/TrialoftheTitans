@@ -15,10 +15,18 @@
     
     
      edit: function(component, event, helper) {
+<<<<<<< Updated upstream
         console.log("edit");
         console.log(event.target.id);
         component.set("v.currentPage", "dynamicRow");
         component.set("v.selectedProjId", event.target.id);
+=======
+        console.log("edit")
+
+        component.set("v.selectedProjId", event.target.id)
+        component.set("v.currentPage", "dynamicRow");
+
+>>>>>>> Stashed changes
     },
     
     

@@ -1,7 +1,21 @@
+<<<<<<< Updated upstream
+=======
+/////////////////////////////////////////////////////
+//
+//  Name: Dynamic Row Controller
+//  Author: Nathan Tellez
+//  Description: Initializes the equivalency object and adds new ones when adding rows and handles saving to database
+//
+///////////////////////////////////////////////////
+>>>>>>> Stashed changes
 ({
 	doInit: function(component, event, helper) {
         // create a Default RowItem [Equivalency Instance] on first time Component Load 
         helper.createEquivalencyData(component, event);
+<<<<<<< Updated upstream
+=======
+        console.log(component.get("v.projectId"))
+>>>>>>> Stashed changes
     },
  
     // function to save the Records 
