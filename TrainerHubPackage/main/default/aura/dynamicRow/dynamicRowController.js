@@ -8,6 +8,7 @@
 ({
 	doInit: function(component, event, helper) {
         // create a Default RowItem [Equivalency Instance] on first time Component Load 
+        helper.retrieveCurrentEquivalencies(component);
         helper.createEquivalencyData(component, event);
     },
  
