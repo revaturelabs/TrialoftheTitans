@@ -10,7 +10,7 @@
 
 <aura:component implements="forceCommunity:availableForAllPageTypes" controller="NewProjectCreationAuraController">
     <!--Attribute should be bound to attribute in parent component to determine which component is rendered-->
-    <aura:attribute name="currentPage" type="string"/>
+    <aura:attribute name="currentPage" type="String"/>
     
     <!--Lightning Notification Library to display errors and success toast-->
     <lightning:notificationsLibrary aura:id="componentNotif"/>

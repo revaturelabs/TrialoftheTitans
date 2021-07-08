@@ -14,7 +14,7 @@
     <aura:attribute name="projectId" type="String" />
     <!-- Attribute in the top component, used for dynamically deciding which component to display 
         after 'Save' or 'Cancel' is pressed in this component -->
-    <aura:attribute name="display" type="String" />
+    <aura:attribute name="currentPage" type="String" />
 
     <!-- Lists for the second picklist: dynamically choose between Accounts (represents individual Hero users) 
         and Cohorts (represents Salesforce Batches) -->

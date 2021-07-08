@@ -21,19 +21,14 @@
     },
     
     
-    more: function(component, event, helper) {
-        console.log("more")
-        component.set("v.currentPage", "morePage");
-    },
-    
     assign: function(component, event, helper) {
         console.log("assign")   
         component.set("v.selectedProjId", event.target.id);     
-        component.set("v.currentPage", "assignmentPage");
+        component.set("v.currentPage", "AssignProject");
     },
     
     addNewProject: function(component, event, helper) {
         console.log("addNewProject")   
-        component.set("v.currentPage", "AddNewProjectPage");
+        component.set("v.currentPage", "NewProjectCreation");
     },
 })
