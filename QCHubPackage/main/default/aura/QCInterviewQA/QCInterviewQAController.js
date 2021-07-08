@@ -49,6 +49,7 @@
         // this call to interview init, should overwrite the interview attribute, this may interfer with the save due to scheduling 
         helper.InterviewInit(component, helper);
         helper.ChangeQuestion(component);
+        component.set("v.HeroAnswer.Hero_Answer__c", '');
         
         // set the current question index forward 1 to get the next question (already randomized)
     },
