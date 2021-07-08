@@ -1,3 +1,10 @@
+/////////////////////////////////////////////////////
+//
+//  Name: Equivalency Component Controller
+//  Author: Nathan Tellez
+//  Description: Load values for picklist, fire events for adding and deleting rows
+//
+///////////////////////////////////////////////////
 ({
     doInit : function(component, event, helper){
     	//populate skills list

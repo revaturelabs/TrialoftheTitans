@@ -1,4 +1,14 @@
+<!--
+
+Name: Add Equivalency
+Author: Nathan Tellez
+Description: Layout for adding and deleting equivalencies and related fields, also handles setting the values
+             for the equivalency object.
+
+-->
 <aura:component controller="addEquivalencyComponentAuraController">
+    <aura:attribute name="projectId" type="String"/>
+    <aura:attribute name="setComponent" type="String"/>
     <aura:attribute name="equivalencyInstance" type="Equivalency__c"/>
     <aura:attribute name="rowIndex" type="String"/>
     <aura:attribute name="skillList" type="Skill__c[]" default="[]"/>

@@ -1,3 +1,10 @@
+<!--
+
+Name:Dynamic Row Wrapper
+Author:Nathan Tellez
+Description:Wrapper to hold rows in equivalency component
+
+-->
 <aura:component controller="dynamicRowAuraController">
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="DeleteRowEvent" event="c:DeleteRowEvent" action="{!c.removeDeletedRow}"/>
