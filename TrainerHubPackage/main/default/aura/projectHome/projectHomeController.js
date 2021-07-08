@@ -11,13 +11,16 @@
     doInit : function(component, event, helper) {
         helper.retrieveAndDisplayProjectList(component);
     },
-    
-    
-    
-    edit: function(component, event, helper) {
+     
+     edit: function(component, event, helper) {
+
         console.log("edit")
-        component.set("v.selectedProjId", event.target.id);
+
+        component.set("v.selectedProjId", event.target.id)
         component.set("v.currentPage", "dynamicRow");
+
+
+
     },
     
     
@@ -29,6 +32,7 @@
     
     addNewProject: function(component, event, helper) {
         console.log("addNewProject")   
+
         component.set("v.currentPage", "NewProjectCreation");
     },
 })
