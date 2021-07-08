@@ -1,4 +1,5 @@
 <aura:component controller="ProjectHomeController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+<<<<<<< HEAD
     
     <aura:attribute name="currentPage" type="String" default="homePage" />
 
@@ -6,6 +7,12 @@
 
     <aura:attribute name="projectList" type="List" default="[]" />
     <aura:attribute name="errorMessage" type="String" default="There's no available project" />
+=======
+	<aura:attribute name="currentPage" type="String" default="homePage" />
+    <aura:attribute name="projectList" type="List" default="[]" />
+    <aura:attribute name="errorMessage" type="String" default="There's no available project" />
+    <aura:attribute name="selectedProjId" type="String"/>
+>>>>>>> StevenMagnin
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
     <div class="main">  <!-- begin main -->
@@ -28,11 +35,17 @@
                                     <div class="content"><p>{!project.Name}</p></div>
                                     <div class="actions">
                                         
+<<<<<<< HEAD
 
                                         <button id="{!project.Id}"  onclick="{!c.edit}">Edit</button>
                                         
                                         <button id="{!project.Id}" onclick="{!c.assign}">Assign </button>
 
+=======
+                                        <button id="{!project.Id}" onclick="{!c.edit}">Edit...</button>
+                                        
+                                        <button id="{!project.Id}" onclick="{!c.assign}">Assign...</button>
+>>>>>>> StevenMagnin
                                         
                                     </div>
                                 </li>
@@ -72,10 +85,26 @@
             </div>  <!-- end wrapper -->   
         </aura:if>
 
+<<<<<<< HEAD
         <aura:if isTrue="{!v.currentPage == 'dynamicRow'}">
             <c:dynamicRow projectId="{!v.selectedProjId}"/>
         </aura:if>
 
     </div>  <!-- end main -->
     
+=======
+        <aura:if isTrue="{!v.currentPage == 'NewProjectCreation'}">
+
+            <c:NewProjectCreation currentPage="{!v.currentPage}"/>
+
+        </aura:if>
+
+        <aura:if isTrue="{!v.currentPage == 'dynamicRow'}">
+
+            <c:dynamicRow currentPage="{!v.currentPage}" projectId="{!v.selectedProjId}"/>
+
+        </aura:if>
+        
+    </div>  <!-- end main -->
+>>>>>>> StevenMagnin
 </aura:component>

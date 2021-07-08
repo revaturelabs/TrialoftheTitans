@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--
 
 Name:Dynamic Row Wrapper
@@ -6,13 +7,22 @@ Description:Wrapper to hold rows in equivalency component
 
 -->
 <aura:component controller="dynamicRowAuraController">
+=======
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="dynamicRowAuraController">
+>>>>>>> StevenMagnin
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="DeleteRowEvent" event="c:DeleteRowEvent" action="{!c.removeDeletedRow}"/>
     <aura:handler name="AddRowEvent" event="c:AddNewRowEvent" action="{!c.addNewRow}"/>
     
+<<<<<<< HEAD
     <aura:attribute name="currentPage" type="String"/>
     <aura:attribute name="projectId" type="String"/>
     <aura:attribute name="equivList" type="Equivalency__c[]"/>
+=======
+    <aura:attribute name="equivList" type="Equivalency__c[]"/>
+    <aura:attribute name="currentPage" type="String"/>
+    <aura:attribute name="projectId" type="String"/>
+>>>>>>> StevenMagnin
     
     <div class="slds-page-header">
         <h1 class="slds-page-header__title">Set Equivalencies</h1>
