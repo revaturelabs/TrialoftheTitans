@@ -1,11 +1,9 @@
 <aura:component controller="ProjectHomeController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
-    
-    <aura:attribute name="currentPage" type="String" default="homePage" />
 
-    <aura:attribute name="selectedProjId" type="String"/>
-
+	<aura:attribute name="currentPage" type="String" default="homePage" />
     <aura:attribute name="projectList" type="List" default="[]" />
     <aura:attribute name="errorMessage" type="String" default="There's no available project" />
+    <aura:attribute name="selectedProjId" type="String"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
     <div class="main">  <!-- begin main -->
@@ -68,6 +66,13 @@
                 
                 
             </div>  <!-- end wrapper -->   
+        </aura:if>
+
+
+        <aura:if isTrue="{!v.currentPage == 'AssignProject'}">
+
+            <c:AssignProject currentPage="{!v.currentPage}" projectId="{!v.selectedProjId}"/>
+            
         </aura:if>
 
         <aura:if isTrue="{!v.currentPage == 'NewProjectCreation'}">

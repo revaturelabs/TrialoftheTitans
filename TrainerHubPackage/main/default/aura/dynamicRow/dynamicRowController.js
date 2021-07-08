@@ -38,6 +38,10 @@
             $A.enqueueAction(action);
         }
     },
+    
+    Cancel : function(component, event, helper){
+        component.set("v.currentPage", "homePage")
+    },
  
     // function to create new object Row in equiv List 
     addNewRow: function(component, event, helper) {

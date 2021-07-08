@@ -1,22 +1,24 @@
 @isTest
 public class ProjectHomeControllerTest {
-    
-    @testSetup static void setup() {
+    @testSetup public static void setup() {
         // Create common test accounts
         List<Project__c> testObjects = new List<Project__c>();
-        for(Integer i=0 ; i < 2; i++) {
-            Project__c project =  new Project__c(Name = 'Test ' + i);
-            project.Description__c = 'description ' + i;
+        for(Integer index = 0 ; index < 3; index++) {
+            Project__c project =  new Project__c();
+            project.Name = 'test ' + index;
+            project.Description__c = 'description ' + index;
+            testObjects.add(project);
         }
+        system.debug('laurent');
         insert testObjects;        
     }
     
-    @isTest static void testRetrieve(){
-
+    
+    @isTest public static void retrieveProjects(){
+        Test.startTest();
         List<Project__c> projects = ProjectHomeController.retrieveProjects();
-        for(Project__c pro : projects){
-            system.debug(pro.Name);
-        }
-		system.debug(projects.size());
+        Test.stopTest();
+        system.assertEquals(projects.size(), 3);
+        
     }
 }

@@ -11,10 +11,10 @@ Description:Wrapper to hold rows in equivalency component
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="DeleteRowEvent" event="c:DeleteRowEvent" action="{!c.removeDeletedRow}"/>
     <aura:handler name="AddRowEvent" event="c:AddNewRowEvent" action="{!c.addNewRow}"/>
-
-    <aura:attribute name="equivList" type="Equivalency__c[]"/>
+    
     <aura:attribute name="currentPage" type="String"/>
     <aura:attribute name="projectId" type="String"/>
+    <aura:attribute name="equivList" type="Equivalency__c[]"/>
     
     <div class="slds-page-header">
         <h1 class="slds-page-header__title">Set Equivalencies</h1>
@@ -25,5 +25,6 @@ Description:Wrapper to hold rows in equivalency component
     </aura:iteration>
     
     <br/>
-    <button class="slds-button slds-button_brand" onclick="{!c.Save}">Save</button>
+    <lightning:button class="slds-button slds-button_brand" label="Save" onclick="{!c.Save}"/>
+    <lightning:button class="slds-button slds-button_brand" label="Cancel" onclick="{!c.Cancel}"/>
 </aura:component>

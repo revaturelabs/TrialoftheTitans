@@ -24,5 +24,6 @@ public with sharing class ProjectHomeController {
             e.setMessage('Unexpected error: we were unable to retrive the list of projects');
             throw e;
         }
+
     }
 }
