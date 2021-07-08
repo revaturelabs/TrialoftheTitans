@@ -10,6 +10,20 @@
         // set the updated list to attribute (equivList) again    
         component.set("v.equivList", RowItemList);
     },
+
+    retrieveCurrentEquivalencies: function(component){
+        let action = component.get("c.retrieveCurrentEquivalencies");
+        action.setParams({projectId: component.get("v.projectId")});
+        action.setCallback(this,function(response){
+            if(response.getState() === 'SUCCESS'){
+                console.log(response.getReturnValue());
+                component.set("v.currentEquivalencies", response.getReturnValue());
+            }else if(response.getState() === 'ERROR'){
+
+            }
+        });
+        $A.enqueueAction(action);
+    },
     // helper function to check if skill__c is not null/blank on save  
     validateRequired: function(component, event) {
         let isValid = true;
