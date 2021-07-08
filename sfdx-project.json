@@ -96,6 +96,13 @@
                     "package": "QCHubPackage@1.0.0-2"
                 }
             ]
+        },
+        {
+            "path": "CodeAssessmentPackage",
+            "package": "CodeAssessmentPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
         }
     ],
     "namespace": "",
@@ -122,6 +129,7 @@
         "HeroHubPackage@1.0.0-3": "04t5e0000002sGgAAI",
         "TrainerHubPackage@0.1.0-2": "04t5e000000ZZwzAAG",
         "QCHubPackage@1.0.0-2": "04t5e0000002uy1AAA",
-        "TrainerHubPackage@0.1.0-3": "04t5e000000ZbhYAAS"
+        "TrainerHubPackage@0.1.0-3": "04t5e000000ZbhYAAS",
+        "CodeAssessmentPackage": "0Ho5e000000kACqCAM"
     }
 }
