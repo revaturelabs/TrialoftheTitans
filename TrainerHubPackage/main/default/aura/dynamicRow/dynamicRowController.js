@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /////////////////////////////////////////////////////
 //
 //  Name: Dynamic Row Controller
@@ -6,16 +5,10 @@
 //  Description: Initializes the equivalency object and adds new ones when adding rows and handles saving to database
 //
 ///////////////////////////////////////////////////
-=======
->>>>>>> StevenMagnin
 ({
 	doInit: function(component, event, helper) {
         // create a Default RowItem [Equivalency Instance] on first time Component Load 
         helper.createEquivalencyData(component, event);
-<<<<<<< HEAD
-        console.log(component.get("v.projectId"))
-=======
->>>>>>> StevenMagnin
     },
  
     // function to save the Records 
@@ -38,11 +31,7 @@
                     component.set("v.equivList", []);
                     helper.createEquivalencyData(component, event);
                     alert('Records Saved');
-<<<<<<< HEAD
-                    comoponent.set("v.currentPage", "homePage")
-=======
                     component.set("v.currentPage", "homePage");
->>>>>>> StevenMagnin
                 }
             });
             // enqueue the server side action  
