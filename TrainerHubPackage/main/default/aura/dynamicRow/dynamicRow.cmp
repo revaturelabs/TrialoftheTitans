@@ -23,5 +23,6 @@ Description:Wrapper to hold rows in equivalency component
     </aura:iteration>
     
     <br/>
-    <button class="slds-button slds-button_brand" onclick="{!c.Save}">Save</button>
+    <lightning:button class="slds-button slds-button_brand" label="Save" onclick="{!c.Save}"/>
+    <lightning:button class="slds-button slds-button_brand" label="Cancel" onclick="{!c.Cancel}"/>
 </aura:component>
