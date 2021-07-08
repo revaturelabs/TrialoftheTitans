@@ -16,7 +16,10 @@
     
      edit: function(component, event, helper) {
         console.log("edit")
-        component.set("v.currentPage", "editPage");
+
+        component.set("v.selectedProjId", event.target.id)
+        component.set("v.currentPage", "dynamicRow");
+
     },
     
     

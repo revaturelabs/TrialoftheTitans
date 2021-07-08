@@ -9,6 +9,7 @@
 	doInit: function(component, event, helper) {
         // create a Default RowItem [Equivalency Instance] on first time Component Load 
         helper.createEquivalencyData(component, event);
+        console.log(component.get("v.projectId"))
     },
  
     // function to save the Records 
@@ -31,6 +32,7 @@
                     component.set("v.equivList", []);
                     helper.createEquivalencyData(component, event);
                     alert('Records Saved');
+                    comoponent.set("v.currentPage", "homePage")
                 }
             });
             // enqueue the server side action  
