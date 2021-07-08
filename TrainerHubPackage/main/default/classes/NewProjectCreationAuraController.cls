@@ -13,7 +13,7 @@ public with sharing class NewProjectCreationAuraController {
     public static String getListOfProjectNames() {
         try {
             List<String> projectNames = new List<String>();
-            List<Project__c> projects = [SELECT Name FROM Project__c];
+            List<Project__c> projects = [SELECT Name FROM Project__c ORDER BY Name];
 
             //Add names from SOQL statement to list.
             for(Project__c pro : projects) {
@@ -37,7 +37,7 @@ public with sharing class NewProjectCreationAuraController {
     @AuraEnabled
     public static void setNewProject(String name, String description) {
         try {
-            Boolean matchFound = false;
+            Integer matchesFound = 0;
             Project__c newProject = new Project__c();
             List<Project__c> projectList = [SELECT Name FROM Project__c];
 
@@ -47,15 +47,21 @@ public with sharing class NewProjectCreationAuraController {
             //Check names in Project__c records against passed in name from Project Name field.
             for(Project__c proj : projectList) {
                 if(proj.Name == name) {
-                    matchFound = true;
-                    throw new AuraHandledException('Project Name already exists. Please select another name.');
+                    matchesFound++;
+                    
                 }
 
             }
 
             //Prevent insert if name match is found.
-            if(matchFound == false){
+            if(matchesFound == 0){
+
                 insert newProject;
+
+            }else {
+
+                throw new AuraHandledException('Project Name already exists. Please select another name.');
+
             }
 
         } catch (Exception e) {
