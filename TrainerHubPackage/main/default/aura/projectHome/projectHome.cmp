@@ -43,16 +43,15 @@
                             
                             <div class="empty-content">
                                 
-                                <div class="empty-content-wrapper">
-                                    
+                                <div class="slds-align_absolute-center">
+                                     
                                     <div>
-                                        
-                                        <p>{!v.errorMessage}</p>
-                                        
-                                        <button onclick="{!c.addNewProject}">Add New Project</button>
-                                        
-                                    </div>
-                                    
+                                        <p class="slds-text-heading_medium slds-m-top_medium">{!v.errorMessage}</p><br/>
+                                        <div class="slds-align_absolute-center">
+                                            <button class="slds-button slds-button_brand slds-m-top_small" onclick="{!c.addNewProject}">Add New Project</button>
+                                        </div>
+                                    </div>  
+                                
                                 </div>
                                 
                             </div>
