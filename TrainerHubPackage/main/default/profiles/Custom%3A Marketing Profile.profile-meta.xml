@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-<<<<<<< HEAD
-=======
     <applicationVisibilities>
         <application>TrainerHub</application>
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
->>>>>>> a5b9c847f794504cbd7713089efa634e8ce4e14e
     <classAccesses>
         <apexClass>ChangePasswordController</apexClass>
         <enabled>false</enabled>
