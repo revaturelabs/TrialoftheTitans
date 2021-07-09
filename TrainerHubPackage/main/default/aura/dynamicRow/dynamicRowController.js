@@ -8,6 +8,7 @@
 ({
 	doInit: function(component, event, helper) {
         // create a Default RowItem [Equivalency Instance] on first time Component Load 
+        helper.retrieveCurrentEquivalencies(component);
         helper.createEquivalencyData(component, event);
     },
  
@@ -31,11 +32,16 @@
                     component.set("v.equivList", []);
                     helper.createEquivalencyData(component, event);
                     alert('Records Saved');
+                    component.set("v.currentPage", "homePage");
                 }
             });
             // enqueue the server side action  
             $A.enqueueAction(action);
         }
+    },
+    
+    Cancel : function(component, event, helper){
+        component.set("v.currentPage", "homePage")
     },
  
     // function to create new object Row in equiv List 
