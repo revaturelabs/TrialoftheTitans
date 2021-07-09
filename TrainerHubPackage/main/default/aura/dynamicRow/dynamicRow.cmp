@@ -1,0 +1,40 @@
+
+<!--
+
+Name:Dynamic Row Wrapper
+Author:Nathan Tellez
+Description:Wrapper to hold rows in equivalency component
+
+-->
+<aura:component controller="dynamicRowAuraController">
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="DeleteRowEvent" event="c:DeleteRowEvent" action="{!c.removeDeletedRow}"/>
+    <aura:handler name="AddRowEvent" event="c:AddNewRowEvent" action="{!c.addNewRow}"/>
+    
+    <aura:attribute name="currentPage" type="String"/>
+    <aura:attribute name="projectId" type="String"/>
+    <aura:attribute name="equivList" type="Equivalency__c[]"/>
+    <aura:attribute name="currentEquivalencies"  type="Equivalency__c[]"/>
+
+    <div class="slds-page-header">
+      <aura:if isTrue="{!not(empty(v.currentEquivalencies))}">
+        <h1 class="slds-page-header__title">Current Equivalencies</h1> 
+        <aura:iteration items="{!v.currentEquivalencies}" var="equiv" indexVar="index">
+          <div>Skill: {!equiv.Skill__r.Name}</div>
+          <div>Months: {!equiv.Skill_Equivalency__c}</div>
+        </aura:iteration>
+      </aura:if>
+    </div>
+    
+    <div class="slds-page-header">
+        <h1 class="slds-page-header__title">Set Equivalencies</h1>
+    </div>
+    
+    <aura:iteration items="{!v.equivList}" var="equiv" indexVar="index">
+      <c:addEquivalecyComponent equivalencyInstance="{!equiv}" rowIndex="{!index}" />
+    </aura:iteration>
+    
+    <br/>
+    <lightning:button class="slds-button slds-button_brand" label="Save" onclick="{!c.Save}"/>
+    <lightning:button class="slds-button slds-button_brand" label="Cancel" onclick="{!c.Cancel}"/>
+</aura:component>
