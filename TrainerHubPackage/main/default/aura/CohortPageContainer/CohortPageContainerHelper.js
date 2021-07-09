@@ -11,7 +11,7 @@
 	Init : function(component, event) {
 		let tabs = [];
         let titan = null;
-        for(let i = 1;i<6;i++){
+        for(let i = 1;i<7;i++){
             switch(i){
                 case 1:
                     titan = {name:"Hero List"};
@@ -26,6 +26,9 @@
                     titan = {name:"Exam List"};
                     break;
                 case 5:
+                    titan = {name:"Coding Assessments"};
+                    break;
+                case 6:
                     titan = {name:"QC Scores"};
                     break;    
                 default:
