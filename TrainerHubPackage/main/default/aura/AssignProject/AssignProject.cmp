@@ -68,8 +68,8 @@
         </div>
 
         <lightning:buttonGroup>
+            <lightning:button label="Cancel" onclick="{! c.assignCancel}" class="slds-button slds-m-left_large" variant="brand-outline"/>
             <lightning:button label="Submit" onclick="{! c.assignSubmit}" class="slds-button" variant="brand"/>
-            <lightning:button label="Cancel" onclick="{! c.assignCancel}" class="slds-button" variant="destructive"/>
         </lightning:buttonGroup>
 
     </lightning:card>
