@@ -40,7 +40,7 @@
         }
     },
     
-    Cancel : function(component, event, helper){
+    Cancel : function(component){
         component.set("v.currentPage", "homePage")
     },
  
@@ -57,7 +57,7 @@
         // get the all List (equivList attribute) and remove the Object Element Using splice method    
         let allRowsList = component.get("v.equivList");
         allRowsList.splice(index, 1);
-        // set the contactList after removing selected row element  
+        // set the equivList after removing selected row element  
         component.set("v.equivList", allRowsList);
     }
 })

@@ -7,7 +7,6 @@
             let responseState = response.getState();
             if(responseState == "SUCCESS"){
                 this.projectList = response.getReturnValue();
-                console.log(this.projectList)
                 component.set("v.projectList", this.projectList);
             }else if(responseState == "ERROR"){
                 var errors = response.getError();
