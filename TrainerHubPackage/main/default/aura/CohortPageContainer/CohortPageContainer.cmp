@@ -238,7 +238,7 @@
                                     <lightning:button label="Exam Hubs" class=" slds-m-top_medium slds-m-right_small slds-button_neutral" title="Back" value="{!titan}" onclick="{!c.ToExamHub}"/><br/>
                                     </a>-->
                                 <div class="slds-m-top_medium">
-                                    <c:ExamList CohortId="{!v.CohortId}"/>
+                                    <c:CodingExamList CohortId="{!v.CohortId}"/>
                                 </div>
                             </div>
                         </div>
