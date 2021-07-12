@@ -30,7 +30,7 @@ package.xml
 **/workflows
 **/quickActions
 **/matchingRules
-**/flexipages
+# **/flexipages
 **/staticresources
 **/appMenus
 **/components
@@ -41,6 +41,7 @@ package.xml
 **/networkBranding
 **/reportTypes
 **/pages
+**/TrainerHubPackage
 
 **/aura/forgotPassword
 **/aura/loginForm
