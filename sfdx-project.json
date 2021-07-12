@@ -105,13 +105,6 @@
             "default": false
         },
         {
-            "path": "CustomPackage",
-            "package": "CustomPackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": false
-        },
-        {
             "path": "MockInterviewPackage",
             "package": "MockInterviewPackageTeam1",
             "versionName": "ver 0.1",
@@ -165,10 +158,6 @@
         "QCHubPackage@1.0.0-2": "04t5e0000002uy1AAA",
         "TrainerHubPackage@0.1.0-3": "04t5e000000ZbhYAAS",
         "TmpSitePackage": "0Ho5e000000oMHuCAM",
-        "CustomPackage": "0Ho5e000000oMHzCAM",
-        "CustomPackage@0.1.0-1": "04t5e0000006KUqAAM",
-        "CustomPackage@0.1.0-2": "04t5e0000006MjCAAU",
-        "CustomPackage@0.1.0-3": "04t5e0000006MnPAAU",
         "MockInterviewPackageTeam1": "0Ho5e000000oMIJCA2",
         "MockInterviewPackageTeam1@0.1.0-1": "04t5e0000006MrcAAE",
         "MockInterviewPackageTeam1@0.1.0-2": "04t5e0000006MrhAAE"
