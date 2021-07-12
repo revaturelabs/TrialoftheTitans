@@ -1,0 +1,32 @@
+/*
+
+  Name: Navigation
+  Author: Josh Miccolo
+  Description: Navigation Bar for Hero Hub 
+
+*/
+
+.THIS.navbar{
+    width: 100%;
+    background-color: var(--text-color);
+    color:white;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.THIS.navbar ul {
+    margin: 0;
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    padding: var(--padding);
+    box-sizing: border-box;
+}
+
+.THIS li.navbar-quote {
+    justify-self: center;
+}
