@@ -22,6 +22,10 @@
                 <behavior>Readonly</behavior>
                 <field>Percent_Passed__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Titan__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
