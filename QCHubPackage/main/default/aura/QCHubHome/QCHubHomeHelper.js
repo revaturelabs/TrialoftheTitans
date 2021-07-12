@@ -93,6 +93,19 @@
         $A.enqueueAction(WeekListInit);
 
     },
+    
+    LoadHeros : function(component) {
+        let loadHeros = component.get("c.HeroList");
+        loadHeros.setCallback(this, function(response) {
+           let state = response.getState();
+            if (state === "SUCCESS") {
+                component.set("v.HeroList", response.getReturnValue());
+            } else {
+                console.log("Could not get HeroList");
+            }
+        });
+        $A.enqueueAction(loadHeros);
+    },
 
 
     // Load data for a specific cohort (launched by UpdateCohort function in main JS controller,

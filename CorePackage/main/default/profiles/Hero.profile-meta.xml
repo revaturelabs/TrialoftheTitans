@@ -46,6 +46,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>ExamList</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>ForgotPasswordController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -86,18 +90,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>NewProjectCreationAuraController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ProjectHomeController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ProjectHomeControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>SiteLoginController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -114,6 +106,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>UserContextInfo</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <custom>true</custom>
         <apexClass>addEquivalencyComponentAuraController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -147,6 +143,12 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Cohort__c-Cohort Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MySecondTestObject__c-MySecondTestObject Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MyTestObject__c-MyTestObject Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Equivalency__c-Equivalency Layout</layout>

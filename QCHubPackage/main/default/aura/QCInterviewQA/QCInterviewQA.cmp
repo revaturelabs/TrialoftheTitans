@@ -16,7 +16,7 @@
     <aura:attribute name="HeroScore"    type="Integer"/>
     <aura:attribute name="IncomingDeckList" type="Object"/>
     
-    <aura:attribute name="QuestionIndex" default = "0" type="Integer"/>
+    <aura:attribute name="QuestionIndex" default = "-1" type="Integer"/>
     
     <aura:attribute name="QuestionDeck"     type="QC_Question_Deck__c"/>
     <aura:attribute name="QuestionSet" type="Object"/>
@@ -44,7 +44,7 @@
             </div>
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
-                
+                {!v.Hero.Name}
             </div>
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
@@ -105,7 +105,7 @@
 
             <!--Begin Answer Box-->
             <div>
-                <lightning:textarea name="QCAnswerBox" value = "{!v.HeroAnswer.Answer__c}"
+                <lightning:textarea name="QCAnswerBox" value = "{!v.HeroAnswer.Hero_Answer__c}"
                                     placeholder="Hero's answer..." class="QuestionBox slds-align_absolute-center"/>
             </div>
 

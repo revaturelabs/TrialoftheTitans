@@ -1,7 +1,7 @@
 <!-- /////////////////////////////////////////////////////
 //
 //  Name: QCInterviewHeroReview
-//  Author: Natalie Clark, Alexander Dzhitenov
+//  Author: Natalie Clark, Alexander Dzhitenov, Andrew Furr
 //  Description: Aura Component for review of hero input
 //  on completion of interview before save
 //
@@ -23,9 +23,13 @@
     <aura:attribute name="HeroName" type="String"/>
     <aura:attribute name="HeroId" type="String"/>
     <aura:attribute name="CohortId" type="String"/>
+    <aura:attribute name="newFlagName" type="String"/>
+    <aura:attribute name="newFlagDesc" type="String"/>
+    <aura:attribute name="newFlagType" type="String"/>
 
 
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:handler name="CreateFlag" event="c:CreateFlag" action="{!c.handleCreateFlag}"/>
 
     <aura:handler name="DeleteRowEvt" event="c:QCInterviewHeroReviewDeleteRowEvent" action="{!c.DeleteNewRow}"/>
     <aura:handler name="AddRowEvt" event="c:QCInterviewHeroReviewAddRowEvent" action="{!c.AddNewRow}"/>
