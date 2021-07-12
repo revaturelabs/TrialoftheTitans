@@ -1,0 +1,101 @@
+<aura:component>
+    <!-- Degree related values -->
+    <aura:attribute name="degree" type="String" default="Degree here - Major here" />
+    <aura:attribute name="university" type="String" default="Salesforce Univeristy" />
+    <aura:attribute name="dateGraduated" type="String" default="Jan 1990" />
+    <aura:attribute name="gpa" type="Decimal" default="9.99" />
+
+    <!-- Certification related values -->
+    <aura:attribute name="cert" type="String" default="Salesforce Certified XYZ" />
+    <aura:attribute name="assessor" type="String" default="Webassessor" />
+    <aura:attribute name="dateIssued" type="String" default="Jan 01, 1990" />
+    <aura:attribute name="verifySite" type="String" default="URL_for_credentials_verification_here.com/verify" />
+
+    <!-- For swapping between display and edit form -->
+    <aura:attribute name="isEdit" type="Boolean" default="false" />
+
+
+    <aura:if isTrue="{!!v.isEdit}">
+    <!-- Education and Certifications layout -->
+    <lightning:card title="Education &amp; Certifications" class="slds-m-horizontal_medium">
+
+        <!-- To allow hero/user to edit Values -->
+        <aura:set attribute="actions">
+            <lightning:button label="Edit" onclick="{! c.editEduCert}" class="slds-m-right_large" variant="brand-outline"/>
+        </aura:set>
+
+        <!-- Layout for a University Degree -->
+        <div class="slds-grid slds-gutters">
+
+            <!-- University Logo -->
+            <div class="slds-col slds-size_1-of-6">
+                <!-- Logo image - Possible implementations: (1) Reference a static resource image that a hero uploads,
+                                                            (2) Input form where hero provides the URL for that image -->
+                <img src="https://image.freepik.com/free-psd/engraved-black-logo-mockup_125540-223.jpg" alt="University Logo here" />
+            </div>
+            
+            <!-- Degree Info -->
+            <div class="slds-col slds-size_3-of-6">
+                <div class="slds-text-heading_medium" style="padding-left: 16px;">{! v.degree}</div>
+                <lightning:card>
+                    <aura:set attribute="title">
+                        <lightning:icon iconName="utility:home" size="xx-small"/> <!-- Icon can change to preference -->
+
+                        {! v.university} - {! v.dateGraduated} <!-- Possible implementations: (1) receive 3-letter month and 4-number year as attributes,
+                                                                                  (2) pull values from the database if they are saved there for a hero -->
+                    </aura:set>
+                </lightning:card>
+                <div style="padding-left: 16px;">GPA: {! v.gpa}</div> <!-- This is an optional value -->
+            </div>
+        </div>
+
+
+        <!-- Layout for a Certification -->
+        <div class="slds-grid slds-gutters slds-m-top_small">
+
+            <!-- Certification Logo (Salesforce) -->
+            <div class="slds-col slds-size_1-of-6">
+                <img src="https://image.freepik.com/free-psd/engraved-black-logo-mockup_125540-223.jpg" alt="Salesforce Cert Logo here"/>
+            </div>
+
+            <!-- Certification Info -->
+            <div class="slds-col slds-size_3-of-6">
+                <div class="slds-text-heading_medium" style="padding-left: 16px;">{! v.cert} </div>
+                <lightning:card>
+                    <aura:set attribute="title">
+                        <lightning:icon iconName="utility:locker_service_console" size="xx-small"/> <!-- Icon can change to preference -->
+                        {! v.assessor} 
+                    </aura:set>
+                </lightning:card>
+                <div style="padding-left: 16px;">Issued on: {! v.dateIssued}</div>
+                <div style="padding-left: 16px;">
+                    <p>Online Transcript: 
+                        <ui:outputURL label="{! v.verifySite}" value="" />
+                    </p>                    
+                </div>
+            </div>
+        </div>
+    </lightning:card>
+    <!-- End layout -->
+    
+
+    <!-- Edit form -->
+    <aura:set attribute="else">
+        <div class="slds-m-horizontal_large">
+            <div>
+                <div class="slds-text-heading_medium">Edit form here</div>
+                <lightning:input label="Enter a date" name="someInputDate" type="date" />
+                <lightning:input label="Enter some text" name="someInputText" placeholder="type here..." />
+                <lightning:input label="Enter a number" name="someInputNumber" type="number" placeholder="type here..." />
+            </div>
+            <lightning:buttonGroup class="slds-m-top_small">
+                <lightning:button label="Cancel" onclick="{! c.cancelEdit}" variant="brand-outline" class="slds-m-left_small" />
+                <lightning:button label="Save"   onclick="{! c.submitEdit}" variant="brand"/>
+            </lightning:buttonGroup>
+        </div>
+    </aura:set>
+    <!-- End edit form -->
+
+    </aura:if>
+
+</aura:component>	
