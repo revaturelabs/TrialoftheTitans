@@ -30,7 +30,7 @@
                     break;
                 case 6:
                     titan = {name:"QC Scores"};
-                    break;    
+                    break;     
                 default:
                     titan = {name:"View "+i};
             }
