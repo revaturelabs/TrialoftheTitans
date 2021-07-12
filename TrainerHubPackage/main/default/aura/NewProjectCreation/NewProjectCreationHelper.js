@@ -31,8 +31,8 @@
                     //Redirect to homepage.
                     component.set("v.currentPage", "homePage");
                     setTimeout(function() {
-                        // Do something after 5 seconds
                         window.location.reload();//reload page
+
                   }, 1500);
 
                 }
@@ -73,11 +73,6 @@
         })
         $A.enqueueAction(getListOfProjectNames);
         
-        
-        
-
-        
-
     }
 
 })
