@@ -31,43 +31,29 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" description="Get Accounts and Cohorts from server on load" />
 
 
-    <lightning:card>
+    <lightning:card class="slds-size_1-of-2">
 
         <div class="slds-grid slds-gutters slds-wrap">
             <!-- First picklist, how to group the project assignment: by individuals or by cohorts -->
-            <lightning:select aura:id="grouping" name="grouping" label="Grouping?" class="slds-col slds-size_1-of-4" onchange="{! c.onGroupChange}" >
+            <lightning:select aura:id="grouping" name="grouping" label="Grouping?" class="slds-col slds-size_1-of-3 slds-m-left_x-small" onchange="{! c.onGroupChange}" >
                 <option value="individual">Individual(s)</option>
                 <option value="cohort">Cohort(s)</option>
             </lightning:select>
 
             <!-- Second picklist, list of individuals (Accounts) or Cohorts - dynamically set by the choice of the first picklist -->
             <aura:if isTrue="{! v.individualSelected}">
-                <lightning:dualListbox aura:id="accountAssignees" name="accountAssignees" label="Assign to" class="slds-col slds-size_2-of-4" 
+                <lightning:dualListbox aura:id="accountAssignees" name="accountAssignees" label="Assign to" class="slds-col slds-size_1-of-1 slds-m-left_x-small" 
                     sourceLabel="Available" selectedLabel="Selected" options="{! v.accOptions}" value="{! v.accValues}" onchange="{! c.handleAccChange}" />
             
                 <aura:set attribute="else">
-                    <lightning:dualListbox aura:id="cohortAssignees" name="cohortAssignees" label="Assign to" class="slds-col slds-size_2-of-4" 
+                    <lightning:dualListbox aura:id="cohortAssignees" name="cohortAssignees" label="Assign to" class="slds-col slds-size_1-of-1 slds-m-left_x-small" 
                         sourceLabel="Available" selectedLabel="Selected" options="{! v.cohOptions}" value="{! v.cohValues}" onchange="{! c.handleCohChange}" />
                 </aura:set>
 
-            </aura:if>
-
-                                
-            <!-- <lightning:select name="assignees" label="Assign to:" class="slds-col slds-size_1-of-3">
-                <aura:iteration items="{! v.accountList}" var="entity">
-                    <option value="{! entity.Id}" text="{! entity.Name}"></option>
-                </aura:iteration>
-            </lightning:select>
-
-            <lightning:select name="assignees2" label="Assign to:" class="slds-col slds-size_1-of-3">
-                <aura:iteration items="{! v.cohortList}" var="entity">
-                    <option value="{! entity.Id}" text="{! entity.Name}"></option>
-                </aura:iteration>
-            </lightning:select> -->
-        
+            </aura:if>       
         </div>
-
-        <lightning:buttonGroup>
+        
+        <lightning:buttonGroup class="slds-m-top_x-small">
             <lightning:button label="Cancel" onclick="{! c.assignCancel}" class="slds-button slds-m-left_large" variant="brand-outline"/>
             <lightning:button label="Submit" onclick="{! c.assignSubmit}" class="slds-button" variant="brand"/>
         </lightning:buttonGroup>
