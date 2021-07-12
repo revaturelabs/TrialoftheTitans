@@ -20,11 +20,7 @@
 
 **/lwc/d3ChartTest
 **/QCHubPackage/main/default/aura/QCInterviewQANavButtons
-**/CorePackage/**
-**/ExamPackage/**
-**/TitanPage/**
-**/QCHubPackage/**
-**/HeroHubPackage/**
+
 
 
 package.xml
