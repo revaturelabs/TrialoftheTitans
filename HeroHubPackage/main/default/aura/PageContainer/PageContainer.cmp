@@ -14,10 +14,11 @@
     <aura:attribute name="leadTeams" type="Map" />
     <aura:attribute name="nameClicked" type="Boolean" default="false" />
     <aura:attribute name="navigate" type="String" default="" />
+    <aura:attribute name="TitansText" type="String" default="Titans " />
     <aura:handler name="navigatePage" event="c:MainPageNavigation" action="{!c.navigate}" />
     <aura:handler name="navigateToResults" event="c:NavResultsEvent" action="{!c.navigateToResults}" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-
+    
     <!--Set dynamic colors for teams-->
     <aura:html tag="style">
         :root { --user-team-primary: {!v.contextInfo.team.Primary_Color__c}; --user-team-secondary: {!v.contextInfo.team.Secondary_Color__c}; --lead-team-primary: {!v.leadTeams.team[0].primary_color__c}; --lead-team-secondary: {!v.leadTeams.team[0].secondary_color__c};

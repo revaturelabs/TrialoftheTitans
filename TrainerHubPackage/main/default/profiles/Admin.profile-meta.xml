@@ -46,6 +46,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>ExamList</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>ForgotPasswordController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -114,6 +118,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>UserContextInfo</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <custom>false</custom>
         <apexClass>addEquivalencyComponentAuraController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -149,6 +157,10 @@
         <layout>Cohort__c-Cohort Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>MySecondTestObject__c-MySecondTestObject Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MyTestObject__c-MyTestObject Layout</layout>
         <layout>Equivalency__c-Equivalency Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -166,6 +178,15 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>MySecondTestObject__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>Equivalency__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -175,6 +196,7 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>MyTestObject__c</object>
         <object>Project__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>

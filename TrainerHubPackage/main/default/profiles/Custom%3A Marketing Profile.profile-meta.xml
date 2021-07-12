@@ -46,6 +46,13 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+<<<<<<< HEAD
+        <apexClass>ExamList</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+=======
+>>>>>>> a5b9c847f794504cbd7713089efa634e8ce4e14e
         <apexClass>ForgotPasswordController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -86,6 +93,8 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+<<<<<<< HEAD
+=======
         <apexClass>NewProjectCreationAuraController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -98,6 +107,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+>>>>>>> a5b9c847f794504cbd7713089efa634e8ce4e14e
         <apexClass>SiteLoginController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -114,6 +124,12 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+<<<<<<< HEAD
+        <apexClass>UserContextInfo</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <custom>true</custom>
+=======
         <apexClass>addEquivalencyComponentAuraController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -142,10 +158,17 @@
         <field>Project__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
+>>>>>>> a5b9c847f794504cbd7713089efa634e8ce4e14e
     <layoutAssignments>
         <layout>Cohort__c-Cohort Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+<<<<<<< HEAD
+        <layout>MySecondTestObject__c-MySecondTestObject Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MyTestObject__c-MyTestObject Layout</layout>
+=======
         <layout>Equivalency__c-Equivalency Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -153,6 +176,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Project__c-Project Layout</layout>
+>>>>>>> a5b9c847f794504cbd7713089efa634e8ce4e14e
     </layoutAssignments>
     <layoutAssignments>
         <layout>QC_Interview__c-QC Interview Layout</layout>
@@ -245,6 +269,8 @@
         <apexPage>UnderConstruction</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
+<<<<<<< HEAD
+=======
     <tabVisibilities>
         <tab>Equivalency__c</tab>
         <visibility>Hidden</visibility>
@@ -257,6 +283,7 @@
         <tab>projectManagement</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+>>>>>>> a5b9c847f794504cbd7713089efa634e8ce4e14e
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>

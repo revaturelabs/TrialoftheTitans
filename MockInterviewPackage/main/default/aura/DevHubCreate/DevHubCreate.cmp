@@ -1,0 +1,4 @@
+<aura:component controller="DevTools" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+	<h1>Create all test data through clicking this button (Note this is only intended to be done once per setup)</h1>
+    <lightning:button label="Create Mock Data" onClick="c.CreateMockData" />
+</aura:component>

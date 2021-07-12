@@ -1,0 +1,192 @@
+/*
+
+  Name: AnimatedHeader
+  Author: Josh Miccolo
+  Description: Animated Header with multiple versions.
+
+  */
+
+.THIS.header-animatedHeader {
+  box-sizing: border-box;
+  height: 80px;
+  width: 100%;
+}
+
+.THIS .header-animatedHeader_Alchemy, 
+.THIS .header-animatedHeader_Amplifire, 
+.THIS .header-animatedHeader_Synergy,
+.THIS .header-animatedHeader_Vanquish,
+.THIS .header-animatedHeader_normal {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+.THIS .header-animatedHeader_Alchemy {
+  background-color: var(--text-color);
+  background-image: url(/resource/AlchemySmoke);
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.THIS .header-animatedHeader_Alchemy h1 {
+  animation: Glowing 10s 2s infinite alternate;
+  color: var(--alchemy-primary);
+  filter:blur(10px);
+  font-family: 'BeyondWonderland';
+  font-size: 70px;
+  line-height: 70px;
+  opacity: 0;
+  text-align: center;
+  width: 100%; 
+}
+
+.THIS .header-animatedHeader_Amplifire{
+  background-color: var(--amplifire-primary);
+}
+
+.THIS .header-animatedHeader_Synergy {
+  background-color: #000;
+  height: 80px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.THIS .header-animatedHeader_Synergy-title {
+  color: #000;
+  font-family:'PressStart';
+  font-size: 50px;
+  height: 80px;
+  line-height: 80px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 1000;
+}
+
+.THIS .Synergy-codeText-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.THIS .Synergy-codeText {
+  width: 0;
+  display: block;
+  color: var(--synergy-primary);
+  font-size: 4px;
+  overflow:hidden;
+  white-space: nowrap;
+  animation: 3s steps(100, end) 500ms forwards typeOutFull;
+}
+.THIS .Synergy-codeText-wrapper:nth-of-type(even){
+  justify-content: flex-end;
+}
+
+.THIS .header-animatedHeader_Vanquish{
+  background-color: var(--vanquish-primary);
+}
+
+.THIS .Vanquish-title {
+  width: 100%;
+  font-size: 40px;
+  line-height: 40px;
+  font-family: "Cinzel";
+  text-align: center;
+  color: var(--light-text);
+  background-image: url(/resource/VanquishSword);
+  background-size: 400px 100%;
+  background-repeat: no-repeat;
+  background-position: -100%;
+  animation:swordIn 2s ease-in 500ms forwards;
+}
+
+
+
+.THIS .header-animatedHeader_normal {
+  background-color: var(--light-text);
+  color: var(--background-color);
+}
+
+.THIS .header-animateHeader_Amplifire{
+  background-image: url(/resource/Flames), url(/resource/Flames);
+  background-position: 0, 35px 0; 
+  background-size: 100%;
+  height:100%;
+  font-family: 'Slaytanic';
+  color: var(--light-text);
+  position: relative;
+  animation: Slayer 3s reverse infinite;
+  display: flex;
+}
+
+.THIS .header-animateHeader_Amplifire h1 {
+  font-size: 70px;
+  width: 80%;
+  text-align: center;
+  letter-spacing: .5ch;
+}
+
+.THIS .amps {
+  width: 10%;
+  height: 100%;
+  background-image: url(/resource/amp);
+  background-size: 33% 100%;
+}
+
+@media only screen and (max-width:1000px){
+
+  .THIS .header-animatedHeader_Synergy-title {
+    font-size: 30px;
+    
+  }
+}
+/* displays text as if typing to 100%   */
+@keyframes typeOutFull {
+  to{
+      width: 100%;
+  }
+}
+
+/* Moves background flames around */
+@keyframes Slayer {
+from {
+  background-position: 0, 35px 0;
+}
+to { 
+  background-position: 35px 0, 0;
+}
+}
+
+@keyframes swordIn {
+to {
+  background-position: 45%, center;
+}
+}
+
+/* Glowing text */
+@keyframes Glowing {
+from {
+  opacity:0;
+  filter: blur(10px);
+}
+to {
+  opacity: 1;
+  filter: blur(0);
+}
+}
+
+/* Moves background image around to give appearance of smoke */
+@keyframes Smoky {
+0% {
+  background-position: 0 0;
+  
+}
+50% {
+  background-position: 0 -500px;
+  
+}
+100% {
+  background-position: 0 500px;
+}
+}
