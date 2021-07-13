@@ -98,13 +98,6 @@
             ]
         },
         {
-            "path": "force-app",
-            "package": "TmpSitePackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": false
-        },
-        {
             "path": "MockInterviewPackage",
             "package": "MockInterviewPackageTeam1",
             "versionName": "ver 0.1",
@@ -119,33 +112,6 @@
                 },
                 {
                     "package": "TitanPage@1.0.0-2"
-                },
-                {
-                    "package": "HeroHubPackage@1.0.0-3"
-                },
-                {
-                    "package": "QCHubPackage@1.0.0-2"
-                },
-                {
-                    "package": "TrainerHubPackage@0.1.0-3"
-                }
-            ]
-        },
-        {
-            "path": "MockInterviewPackage",
-            "package": "MockInterviewPackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": true,
-            "dependencies": [
-                {
-                    "package": "CorePackage@1.0.0-1"
-                },
-                {
-                    "package": "ExamPackage@1.0.0-3"
-                },
-                {
-                    "package": "TitanPage@1.0.0-4"
                 },
                 {
                     "package": "HeroHubPackage@1.0.0-3"

@@ -23,7 +23,7 @@ package.xml
 
 # added ignores
 **/profiles
-**/layouts
+# **/layouts
 **/flows
 **/permissionsets
 **/triggers
