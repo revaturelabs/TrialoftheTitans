@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="Sets the week for the current QC Interview based on drop-down menu in QCInterviewCohortSelection">
+    <aura:attribute name="Week" type="String"/>
+</aura:event>

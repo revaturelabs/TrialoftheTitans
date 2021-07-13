@@ -1,0 +1,16 @@
+<aura:component controller="HeroListController">
+	<aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="CohortId" type ="String"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.Init}" />
+
+
+    <!-- Hero Data Table -->
+    <lightning:datatable
+        data = "{!v.data}"
+        columns = "{!v.columns}"
+        keyField = "Id"
+        hideCheckboxColumn="true" />
+
+</aura:component>

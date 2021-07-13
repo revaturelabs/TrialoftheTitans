@@ -1,0 +1,39 @@
+<!--
+/////////////////////////////////////////////////////
+//
+//  Name: TitanPath.cmp
+//  Author: David Serrano
+//  Created: 5/13/2021
+//  Updated: 5/28/2021
+//  Description: Displays the individual tabs for each assigned titan
+//  - name: holds the name of the titan
+//  - active: holds the currently click on tab
+//
+///////////////////////////////////////////////////
+-->
+
+
+<aura:component >
+    <aura:registerEvent type="c:TitanClickedEvent" name="TitanClickedEvent"/>
+    
+    <aura:attribute name="name" type="String"/>
+    <aura:attribute name="num" type="Integer"/>
+    <aura:attribute name="active" type="Boolean"/>
+    
+    <div onclick="{!c.titanClicked}">
+        <aura:if isTrue="{!v.active}">
+            
+            <div class="activeTab" >
+                <h1>{!v.name}</h1>
+            </div>
+            
+            <aura:set attribute="else">
+                <div class="tab">
+                    <h1>{!v.name}</h1>
+                </div>
+            </aura:set>
+            
+        </aura:if>
+    </div>
+    
+</aura:component>

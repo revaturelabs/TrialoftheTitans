@@ -1,0 +1,11 @@
+.THIS .boxGrid {
+
+    height: 500px;
+    background-color:#fef8ec;
+    border-radius: 5px;
+
+}
+
+.THIS .QuestionBox {
+    width: 80%;
+}
