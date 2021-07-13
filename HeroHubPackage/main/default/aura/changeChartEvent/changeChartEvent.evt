@@ -1,7 +1,0 @@
-<!-- 
-    Author: Josh Miccolo
-    Description: Event to catch changing of chart type in overview 
--->
-<aura:event type="APPLICATION" description="Event template">
-    <aura:attribute name="chartType" type="String" />
-</aura:event>

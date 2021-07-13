@@ -1,4 +1,0 @@
-<aura:event type="Component" description="Event template">
-    <aura:attribute name="QA" type="QC_Question_Answer__c"/>
-    <aura:attribute name="Flag" type="QC_Flag__c"/>
-</aura:event>

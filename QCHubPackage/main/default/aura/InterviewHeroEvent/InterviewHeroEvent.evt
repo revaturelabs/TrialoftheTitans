@@ -1,3 +1,0 @@
-<aura:event type="Component" description="Used to initiate an interview with a selected hero">
-    <aura:attribute name="SelectedHero" type="Account"/>
-</aura:event>
