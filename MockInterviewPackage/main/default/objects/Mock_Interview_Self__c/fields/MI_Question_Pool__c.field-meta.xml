@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>MI_Question_Pool__c</fullName>
-    <deleteConstraint>Restrict</deleteConstraint>
+    <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>MI Question Pool</label>
     <referenceTo>MI_Question_Pool__c</referenceTo>
-    <relationshipLabel>Mock_Interview_Selfs</relationshipLabel>
-    <relationshipName>Mock_Interview_Selfs</relationshipName>
-    <required>true</required>
+    <relationshipLabel>Mock Interview Selves</relationshipLabel>
+    <relationshipName>Mock_Interview_Selves3</relationshipName>
+    <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

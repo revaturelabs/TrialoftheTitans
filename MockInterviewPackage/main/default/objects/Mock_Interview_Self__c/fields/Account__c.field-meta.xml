@@ -4,8 +4,8 @@
     <externalId>false</externalId>
     <label>Account</label>
     <referenceTo>Account</referenceTo>
-    <relationshipLabel>Mock_Interview_Selfs</relationshipLabel>
-    <relationshipName>Mock_Interview_Selfs</relationshipName>
+    <relationshipLabel>Mock Interview Selves</relationshipLabel>
+    <relationshipName>Mock_Interview_Selves</relationshipName>
     <relationshipOrder>0</relationshipOrder>
     <reparentableMasterDetail>false</reparentableMasterDetail>
     <trackHistory>false</trackHistory>
