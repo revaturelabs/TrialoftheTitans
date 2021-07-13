@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>A Permission Set Group for the trainers of the Trial of The Titans.</description>
-    <label>TrialOfTheTitansTrainerPermissions</label>
-    <permissionSets>Core_Trainer_Permissions</permissionSets>
-    <status>Updated</status>
-</PermissionSetGroup>

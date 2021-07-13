@@ -1,4 +1,0 @@
-<!-- event to remove/delete flag rows from subcomponent in QCInterviewHeroReview -->
-<aura:event type="COMPONENT" description="row delete">
-    <aura:attribute name="index" type="Integer" />
-</aura:event>

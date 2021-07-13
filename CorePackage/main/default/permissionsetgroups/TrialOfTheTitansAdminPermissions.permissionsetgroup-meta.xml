@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Permissions for the Admin of the Trial of the Titan</description>
-    <label>TrialOfTheTitansAdminPermissions</label>
-    <permissionSets>Core_Admin_Permissions</permissionSets>
-    <status>Updated</status>
-</PermissionSetGroup>

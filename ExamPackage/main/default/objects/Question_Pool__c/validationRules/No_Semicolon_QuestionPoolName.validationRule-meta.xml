@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>No_Semicolon_QuestionPoolName</fullName>
-    <active>true</active>
-    <description>No Semicolon when naming &quot;Question Pool Name&quot;</description>
-    <errorConditionFormula>CONTAINS(Name ,&quot;;&quot;)</errorConditionFormula>
-    <errorDisplayField>Name</errorDisplayField>
-    <errorMessage>&quot;Question Pool Name&quot; can&apos;t contain semicolon &quot; ; &quot;</errorMessage>
-</ValidationRule>

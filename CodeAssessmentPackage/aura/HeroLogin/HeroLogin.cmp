@@ -1,0 +1,25 @@
+<!-- add implements="forceCommunity:availableForAllPageTypes" to surface the component in community builder -->
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" controller="HeroLoginApexController">
+
+    <aura:attribute name="message" type="String" default=""/>
+    <aura:attribute name="username" type="String"/>
+    <aura:attribute name="cronExpression" type="String"/>
+    <aura:attribute name="jobName" type="String"/>
+    
+    <div class="slds-grid slds-grid_align-center">
+    <lightning:card title="Scheduler">
+            <lightning:layout>
+                <lightning:layoutItem flexibility ="grow" padding="around-small">
+                    <lightning:input aura:id="username" label="Username" type="email" value="{!v.username}"/>
+                    <lightning:input aura:id="cron" label="Cron Expression" type="text" value="{!v.cronExpression}"/>
+                    <lightning:input aura:id="jobName" label="Job Name" type="text" value="{!v.jobName}"/>
+                    <lightning:button label="Schedule Assessment" onclick="{!c.scheduleAssessment}" variant="brand" class="slds-m-top_medium"/>
+                </lightning:layoutItem>
+            </lightning:layout>
+            <p>{!v.message}</p>
+    </lightning:card>
+    </div>
+    
+    
+
+</aura:component>
