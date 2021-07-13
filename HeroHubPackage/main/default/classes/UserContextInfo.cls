@@ -33,19 +33,31 @@ public class UserContextInfo {
 
         acc = getUserAccount( userId );
         
-        system.debug(acc.Squad__c);
+        system.debug('acc' + acc);
         
         squad = getSquad( acc.Squad__c );
         
+        System.debug('squad' + squad);
+        
         team = getTeam( squad.Team__c );
-
+        
+        System.debug('team' + team);
+		
         List<Titan__c> allTitans = getAllTitans();
         
+        System.debug('allTitans' + allTitans);
+        
         List<Exam__c> examList = getExamsWithResults( acc.Id );
+        
+        System.debug(examList);
 
         Map<String, List<Exam__c>> sortedExams = sortExams( examList, allTitans );
         
+        System.debug('sortedExams' + sortedExams);
+        
         userExams = createExamLists( sortedExams );
+        
+        System.debug('userExams' + userExams);
     }
 
    	public static Account getUserAccount(Id userId) {
@@ -130,69 +142,101 @@ public class UserContextInfo {
 
     //Maps the Exam Results and other fields to a Titan by Exam Name and sort by prerequisites. 
     private Map<String, List<Exam__c>> sortExams(List<Exam__c> exams, List<Titan__c> allTitans){
-		
+		System.debug('In sorting ' + exams + allTitans);
         // Custom DataType to mape names, lists, and numbers in one object
         Map<String, List<Exam__c>> examMap = new Map<String, List<Exam__C>>();
         
+        // create all keys
         for(Titan__c titan: allTitans){
 
             if(examMap.containsKey(titan.Name) != true){
 
                 List<Exam__c> newTitanExams = new List<Exam__c>();
                 examMap.put(titan.Name, newTitanExams);
-            
+            	System.debug(titan.Name + ' ' +  newTitanExams);
             }
         
         }
         
-        for(Exam__c exam:exams){
+        // add too key we are populating
+        for(Exam__c exam : exams){
          	examMap.get(exam.Titan__R.Name).add(exam);   
         }
-        
+
         //Sorting algorithm to be added in the future or done with numbers on Exam-Results.
-        /*for(String key: examMap.keySet()){
+        // Done by James Patton 6/07/2021 baised on insertion sort with first looking at next exam and inserting there without regard for other exams that may have the same next exam
+        //   This will cause if a, b, and, c exams have all the same next exam called d in a titan the first exam evaluated in sort will have that has the next exam so could end up as 
+        //   a, b, c, d | b, a, c, d | a, d, c, b | b, d, c, a really anything other then d being first
+        
+        
+        for (String key : examMap.keySet()) {
             List<Exam__c> examsToSort = examMap.get(key);
+            List<Exam__c> sortedExams = new List<Exam__c>();
             
-            Boolean isSorted = false;
-            while(isSorted == true){
-                Integer moves = 0;
-                Exam__C temp;
-                for(Integer i = 0; i < examsToSort.size()-1; i++){
-                    if(examsToSort[i].next_Exam__c != examsToSort[i+1].Id){
-                      temp = examsToSort[i+1];
-                      examsToSort[i+1] = examsToSort[i];
-                      examsToSort[i] = examsToSort[i+1];
-                      moves++;
+            //Insertion sort baised on nextExam
+            for (Exam__c exam : examsToSort){
+                if (sortedExams.size() == 0){
+                    sortedExams.add(exam);
+                }
+                else {
+                    boolean spotFound = False;
+                    for (Integer sortedExamIndex = 0; sortedExamIndex < sortedExams.size() && spotFound == False; sortedExamIndex++) {
+                        if (sortedExams[sortedExamIndex].next_Exam__c == exam.id) {
+                            if (sortedExamIndex < sortedExams.size() - 1) {
+                                // at end of list so must use .add
+                                sortedExams.add(exam);
+                            }
+                            else{
+                                try {
+                                	// in the middle so insert at next spot
+                                	sortedExams.add(sortedExamIndex + 1, exam);
+                                } catch (Exception ex) {
+                                    System.debug('Problem here' + sortedExamIndex + sortedExams );
+                                }
+                            }
+                            
+                        }
+                    }
+                    if (spotFound == False){
+                        // insert at front or back
+                        if (exam.Next_Exam__c == sortedExams[0].Id) {
+                            //Insert at front
+                            sortedExams.add(0, exam);
+                        }
+                        else {
+                            sortedExams.add(exam);
+                        }
                     }
                 }
-                if(moves == 0){
-                    isSorted = true;
-                }
             }
-        }*/
+            // set values for map to sorted list
+            examMap.put(key, sortedExams);
+        }
         
         
+        System.debug('End sorting ' + examMap);
         return examMap;
     }
     
     // Creates a custom class object to prepare exams to be mapped to titans. 
     private Map<String, List<ExamList>> createExamLists(Map<String, List<Exam__c>> titanExams){
-        
+        //System.debug('In cereateExam List createExamLists');
         Map<String, List<ExamList>> examList = new Map<String, List<ExamList>>();
-        
+        //System.debug('In cereateExam examList1 ' + examList);
         for( String key: titanExams.keySet()){
-            
+            //System.debug('In cereateExam List key' + key);
             examList.put(key, new List<ExamList>());
             List<ExamList> titanExamList = examList.get(key);
+            //System.debug('In cereateExam titanExamList1 ' + titanExamList);
             List<Exam__C> exams = titanExams.get(key);
-            
+            //System.debug('In cereateExam exams' + exams);
             for(Exam__C exam: exams){
-                
+                //system.debug('In cereateExam exam ' + exam);
                titanExamList.add(new ExamList(exam));
-                
+                //system.debug('In cereateExam titanExamList2' + titanExamList);
             }
         }
-        
+        //system.debug('In cereateExam List + examList' + examList);
         return examList;
     }
 }

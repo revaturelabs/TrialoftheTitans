@@ -1,0 +1,28 @@
+<aura:component controller="MockInterviewData" implements="flexipage:availableForAllPageTypes,force:appHostable,forceCommunity:availableForAllPageTypes" access="global" >
+    
+    <aura:attribute name="filetype" type="List" default="['.mp4', '.mpeg', '.mov', '.jpeg', '.png']" />
+    <aura:attribute name="multiple" type="Boolean" default="true" />
+    <aura:attribute name="disabled" type="Boolean" default="true" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="display" type="Boolean" default="false"/>
+    <aura:attribute name="fileUrl" type="String"/>
+    
+    
+    <lightning:fileUpload label="Attach receipt"
+        name="fileUploader"
+        multiple="true"
+        accept="{!v.filetype}"
+        recordId="{!v.recordId}"
+        onuploadfinished="{!c.handleUploadFinished}" />
+
+  
+    <!--
+    <lightning:button label="Display Video" onclick="{!c.displayFile}"/>
+    
+    <aura:if isTrue="{!v.display}">
+      <video controls="controls">
+        <source src="{!v.fileUrl}" type="video/mp4"/>
+      </video>
+    </aura:if>
+   -->
+</aura:component>

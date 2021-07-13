@@ -24,6 +24,11 @@
         <apexClass>AuraGIFTImportControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+    <applicationVisibilities>
+        <application>TrainerHub</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
     <classAccesses>
         <apexClass>ChangePasswordController</apexClass>
         <enabled>false</enabled>
@@ -342,6 +347,17 @@
     </classAccesses>
     <classAccesses>
         <apexClass>RemoveMultiselectBarsTestClass</apexClass>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NewProjectCreationAuraController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ProjectHomeController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ProjectHomeControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -430,6 +446,17 @@
     </classAccesses>
     <classAccesses>
         <apexClass>createAnswerUtil</apexClass>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>UserContextInfo</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <custom>true</custom>
+        <apexClass>addEquivalencyComponentAuraController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>dynamicRowAuraController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
@@ -441,11 +468,21 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Code_Assessment_Result__c.Related_to_Code_Assessment__c</field>
+<readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Equivalency__c.Project__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Code_Assessment_Result__c.Test_Method__c</field>
+<readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+      <field>Equivalency__c.Skill_Equivalency__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -456,6 +493,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Code_Assessment_Result__c.Titan_Name__c</field>
+<readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+      <field>Equivalency__c.Skill__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -513,6 +555,11 @@
         <field>Titan__c.Number_of_Skills__c</field>
         <readable>false</readable>
     </fieldPermissions>
+<fieldPermissions>
+        <editable>false</editable>
+<field>Project__c.Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Code_Assessment_Result__c-Code Assessment Result Layout</layout>
     </layoutAssignments>
@@ -524,6 +571,25 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Hero_Apex_Test_Result__c-Hero Apex Test Result Layout</layout>
+</layoutAssignments>
+      
+    <layoutAssignments>
+        <layout>Cohort__c-Cohort Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MySecondTestObject__c-MySecondTestObject Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MyTestObject__c-MyTestObject Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Equivalency__c-Equivalency Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Exam_Question__c-Exam Question Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project__c-Project Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>QC_Interview__c-QC Interview Layout</layout>
@@ -647,6 +713,17 @@
     <tabVisibilities>
         <tab>Titan__c</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+        <tab>Equivalency__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Project__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>projectManagement</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>
     <userPermissions>

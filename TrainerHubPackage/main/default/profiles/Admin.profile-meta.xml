@@ -24,6 +24,11 @@
         <apexClass>AuraGIFTImportControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <applicationVisibilities>
+        <application>TrainerHub</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
     <classAccesses>
         <apexClass>ChangePasswordController</apexClass>
         <enabled>true</enabled>
@@ -342,6 +347,17 @@
     </classAccesses>
     <classAccesses>
         <apexClass>RemoveMultiselectBarsTestClass</apexClass>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NewProjectCreationAuraController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ProjectHomeController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ProjectHomeControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -430,6 +446,17 @@
     </classAccesses>
     <classAccesses>
         <apexClass>createAnswerUtil</apexClass>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>UserContextInfo</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <custom>false</custom>
+        <apexClass>addEquivalencyComponentAuraController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>dynamicRowAuraController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <custom>false</custom>
@@ -496,21 +523,33 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Titan__c.C_Assesment__c</field>
+      </fieldPermissions>
+    <fieldPermissions>
+        <field>Equivalency__c.Project__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Titan__c.Curriculum__c</field>
+</fieldPermissions>
+    <fieldPermissions>
+        <field>Equivalency__c.Skill_Equivalency__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Titan__c.First_Exam__c</field>
+</fieldPermissions>
+    <fieldPermissions>
+      <field>Equivalency__c.Skill__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Titan__c.Number_of_Skills__c</field>
+</fieldPermissions>
+    <fieldPermissions>
+     <field>Project__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
@@ -527,6 +566,23 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Hero_Apex_Test_Result__c-Hero Apex Test Result Layout</layout>
+
+    </layoutAssignments>
+    <layoutAssignments>
+       <layout>Cohort__c-Cohort Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MySecondTestObject__c-MySecondTestObject Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MyTestObject__c-MyTestObject Layout</layout>
+        <layout>Equivalency__c-Equivalency Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Exam_Question__c-Exam Question Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project__c-Project Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>QC_Interview__c-QC Interview Layout</layout>
@@ -557,6 +613,15 @@
         <modifyAllRecords>true</modifyAllRecords>
         <object>Coding_Assessment__c</object>
         <viewAllRecords>true</viewAllRecords>
+     </objectPermissions>
+     <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>MySecondTestObject__c</object>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -573,7 +638,26 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>Equivalency__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>Titan__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>MyTestObject__c</object>
+        <object>Project__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
@@ -694,6 +778,18 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Titan__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Equivalency__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Project__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>projectManagement</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>
