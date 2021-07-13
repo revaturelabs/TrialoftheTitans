@@ -1,0 +1,44 @@
+<aura:component controller = "ExamInterviewApexController">
+    <!--Author: Jayvious Williams
+        Usage: Holder for the Exam Interview. This will make use of each of the question component type we created.
+        This is where a Hero can take the Exam. 
+        NOTE: The Sumbit button does not submit all the answers into the Org.
+    -->
+    <!--Aura Attributes-->
+    <aura:attribute name = "exam" type = "Exam__c"/>
+    <aura:attribute name = "titan" type = "Titan__c"/>
+    <aura:attribute name = "titanName" type = "String"/>
+    <aura:attribute name = "prevQuestions" type = "Exam_Question__c[]"/>
+    <aura:attribute name = "examQuestions" type = "Exam_Question__c[]"/>
+    <aura:attribute name = "questionNumber" type = "Integer" default = "1"/>
+    <aura:attribute name = "questionAmount" type = "Integer"/>
+    <aura:attribute name = "questionsLoaded" type = "Boolean" default = "false"/>
+    <aura:attribute name = "examId" type = "String"/>
+    <!-- <aura:handler event = "c.TitanClickedEvent" action = "{!c.setTitan}"/> -->
+    <aura:handler event = "c.TakeExamClickedEvent" action = "{!c.assignExam}"/>
+    <aura:handler name = "init" value = "{!this}" action = "{!c.loadExamQuestions}"/>
+    <!--<aura:handler name = "change" value = "{!v.body}" action = "{!c.hideQuestions}"/>-->
+
+    <!--Componet View-->
+    <div class="slds-p-around_x-small">
+        {!v.body}
+        <lightning:button class = "slds-float_left" aura:id = "prev" label="Previous Question" title="Previous Question" onclick="{! c.prevClick }" disabled = "true"/>
+        <lightning:button class = "slds-float_right" aura:id = "next" label="Next Question" title="Next Question" onclick="{!c.nextClick}"/>
+        <div class = "submitdiv" id = "submitdiv">
+            <lightning:button aura:id = "submit" label="Submit Exam" title="Submit Exam" onclick="{!c.submitClick}"/>
+        </div>
+    </div>
+
+    
+    <!--<aura:iteration aura:id = "iterator" items="{!v.examQuestions}" var="questions">
+        <aura:if isTrue = "{!questions.Question_Type__c == Numerical}">
+            {!questions.Question_Text__c}
+        </aura:if>
+        <aura:if isTrue = "{!questions.Question_Type__c == Matching}">
+            {!questions.Question_Text__c}
+        </aura:if>
+    </aura:iteration>-->
+
+    
+
+</aura:component>	
