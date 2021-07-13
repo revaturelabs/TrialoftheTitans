@@ -1,4 +1,0 @@
-<aura:event type="Component" description="Event template">
-    <aura:attribute name="StageName" type="String"/>
-</aura:event>
-
