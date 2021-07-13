@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 ////////////////////////////////////////////////////
 // Author: Connor Melton
 // Created: 07-02-2021 
 // Description: Enqueues all local tests and returns a job id
 ////////////////////////////////////////////////////
 
+=======
+>>>>>>> 59718f85d6da74d24e2a9c18f352686717968bc4
 public class TestUtil {
     
     // Enqueue all classes ending in "Test". 

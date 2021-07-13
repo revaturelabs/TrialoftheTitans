@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>52.0</apiVersion>
-    <description>This event is used for the purpose of transferring a single Id after it has been selected by the user in the data table via interaction with the button. To then be sent to a sibling component so that it may render the proper record edit form.</description>
-</AuraDefinitionBundle>

@@ -1,9 +1,0 @@
-<aura:component controller="TitanPageApexController">
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <aura:attribute name="TitanList" type="Titan__c[]"/>
-    <aura:attribute name="userId" type="Id"/>
-    
-    SOQL Test Component:
-    
-    
-</aura:component>

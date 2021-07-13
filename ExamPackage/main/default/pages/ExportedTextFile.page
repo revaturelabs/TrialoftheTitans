@@ -1,4 +1,0 @@
-<apex:page >
-    <h1>Your records have been exported in GIFT format!</h1>
-    	Check your downloads for the text file.
-</apex:page>

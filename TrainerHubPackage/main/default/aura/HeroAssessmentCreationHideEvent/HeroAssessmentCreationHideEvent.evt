@@ -1,4 +1,0 @@
-<!-- Name: HeroAssessmentCreationHideEvent -->
-<!-- Author: Chance Leonard -->
-<!-- Description: Event used to let component hide the HeroAssessmentCreation component -->
-<aura:event type="COMPONENT" description="Event template" />

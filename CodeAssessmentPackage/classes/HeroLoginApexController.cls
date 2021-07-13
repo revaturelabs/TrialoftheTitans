@@ -11,7 +11,19 @@ public class HeroLoginApexController {
     
     @AuraEnabled
     public static String runScheduler(String username, String cron, String jobName){
+<<<<<<< HEAD:CodeAssessmentPackage/classes/HeroLoginApexController.cls
  
+=======
+        
+        //Checks for valid Trial of the Titan credentials before scheduling by
+        //requesting an access token
+        /*TitanCallouts tc = new TitanCallouts(username);
+        String accessToken = tc.returnAccessToken(tc);
+        if(accessToken == null){
+            return 'Invalid user credentials';
+        }*/
+        
+>>>>>>> 59718f85d6da74d24e2a9c18f352686717968bc4:CodeAssessmentPackage/main/default/classes/HeroLoginApexController.cls
         try{
             CodeAssessmentScheduler s = new CodeAssessmentScheduler(username);
             ID jobid = system.schedule(jobName, cron, s);

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ////////////////////////////////////////////////////
 // Author: Connor Melton
 // Created: 07-02-2021 
@@ -5,6 +6,8 @@
 // *NOTE: Method testCheckMethodStatus needs to be changed such that it
 //  uses the id of a valid apex test result parent job id. 
 ////////////////////////////////////////////////////
+=======
+>>>>>>> 59718f85d6da74d24e2a9c18f352686717968bc4
 @isTest
 public class TestUtil_Test {
     

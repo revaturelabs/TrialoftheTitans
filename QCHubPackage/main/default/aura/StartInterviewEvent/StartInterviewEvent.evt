@@ -1,3 +1,0 @@
-<aura:event type="Component" description="Event template">
-    <aura:attribute name="SelectedHero" type="Account"/>
-</aura:event>

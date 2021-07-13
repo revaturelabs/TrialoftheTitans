@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 
 
 // Author: Apex Developer Guide
 // Link: 
 
+=======
+>>>>>>> 59718f85d6da74d24e2a9c18f352686717968bc4
 @isTest
 public class HTTPMockFactory implements HttpCalloutMock {
   protected Integer code;
