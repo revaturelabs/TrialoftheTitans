@@ -69,7 +69,7 @@
         StageEvent.fire();
     },
 
-    SubmitInterview : function(component, HeroId, HeroName, CohortId, Week, HeroAnswers, Flags){
+    SubmitInterview : function(component, HeroId, HeroName, CohortId, Week, HeroAnswers, Flags, newFlagName, newFlagDesc, newFlagType){
         
         console.log("SubmitInterview helper");
 
@@ -78,6 +78,7 @@
         console.log(CohortId);
         console.log(Week);
         console.log(HeroAnswers);
+        
 
 
         var HeroAnswersStr = [];
@@ -111,7 +112,8 @@
         let FlagsStr = "";
         interviewSubmit.setParams({"cohortId" : CohortId, "heroId" : HeroId,
                                     "heroName" : HeroName, "week" : Week, 
-                                    "qaStrList" : HeroAnswersStr, "qaStrFlags" : FlagsStr});
+                                   "qaStrList" : HeroAnswersStr, "qaStrFlags" : FlagsStr, 
+                                   "fname":newFlagName, "fdesc": newFlagDesc, "ftype": newFlagType});
 
         console.log("PARAMETERS SET");
 

@@ -1,0 +1,92 @@
+.THIS :root {
+    --full-width: 37vw;
+    --full-height: 45vh;
+}
+
+@keyframes expand-feed {
+    0% {
+        max-height: 0;
+        max-width: 0;
+        min-height: 0;
+        min-width: 0;
+    }
+    50% {
+        max-height: 0;
+        max-width: 37vw;
+        min-height: 0;
+        min-width: 37vw;
+    }
+    100% {
+        max-height: 45vh;
+        max-width: 37vw;
+        min-height: 45vh;
+        min-width: 37vw;
+    }
+}
+
+@keyframes collapse-feed {
+    0% {
+        max-height: 45vh;
+        max-width: 37vw;
+        min-height: 45vh;
+        min-width: 37vw;
+    }
+    50% {
+        max-height: 0;
+        max-width: 37vw;
+        min-height: 0;
+        min-width: 37vw;
+    }
+    100% {
+        max-height: 0;
+        max-width: 0;
+        min-height: 0;
+        min-width: 0;
+    }
+}
+
+
+.THIS .feed-collapsed {
+    animation: collapse-feed forwards 1.5s;
+}
+
+.THIS .feed-expanded {
+    animation: expand-feed forwards 1.5s;
+    border-radius: 5px;
+}
+
+.THIS .feed-initial {
+    max-height: 0;
+    max-width: 0;
+}
+
+
+.THIS .inline-item {
+    display: inline;
+}
+
+.THIS#hidden-chat-btn {
+    background: var(--user-team-primary);
+    border-radius: 5px 0 0 0;
+    bottom: 0;
+    box-shadow: 0 0 4px 3px rgb(0, 0, 0, .75);
+    /*color: #302f30; James Patton removed because theme color changed so make this almost impossible to read */
+    color: #d4d5d5; /* James Patton added to make chat feed text to show up on dark background color */
+    min-width: 20%;
+    padding: 1em;
+    position: fixed;
+    right: 0;
+    text-align: center;
+}
+
+.THIS #chat-header {
+    font-size: 1.4em;
+}
+
+.THIS #chat-header:hover {
+    cursor: pointer;
+}
+
+.THIS #feed-holder {
+    overflow-y: hidden;
+}

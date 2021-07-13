@@ -50,16 +50,22 @@ public with sharing class CommunicationController {
     //              - message : the text to be posted to the group
     @AuraEnabled
     public static ConnectAPI.FeedElement PostMessageToGroup( String groupId, String message ) {
+        System.debug('At Top "' + groupId + '"');
         if ( groupId == '' ) 
             return null;
-            
+        
         ConnectAPI.FeedItemInput feedInput = new ConnectAPI.FeedItemInput();
+        System.debug('At 58');
         ConnectAPI.MentionSegmentInput mentionInput = new ConnectAPI.MentionSegmentInput();
+        System.debug('At 60');
         ConnectAPI.MessageBodyInput messageInput = new ConnectAPI.MessageBodyInput();
+        System.debug('At 62');
         ConnectAPI.TextSegmentInput textInput = new ConnectAPI.TextSegmentInput();
+        System.debug('At 64');
         
         // Used to store the segments of the message (the mention and the text)
         messageInput.messageSegments = new List<ConnectAPI.MessageSegmentInput>();
+        System.debug('At 68');
 
         // FOR FUTURE USE:
         // If you need to include mentions, find the id's of the users mentioned and add a mention segment
@@ -67,27 +73,39 @@ public with sharing class CommunicationController {
 
         // Populate the body of the message
         textInput.text = message;
+        System.debug('At 70');
         messageInput.messageSegments.add(textInput);
+        System.debug('At 78');
 
         // Attach the input to the feed item and populate type and id fields
         feedInput.body = messageInput;
+        System.debug('At 82');
         feedInput.feedElementType = ConnectAPI.FeedElementType.FEEDITEM;
+        System.debug('At 84');
         feedInput.subjectId = groupId;
+        System.debug('At 86');
 
         ConnectAPI.FeedElement feedElement = null;
+        System.debug('At 89');
 
         // Post element
         // NOTE: Testing most ConnectAPI methods requires SeeAllData, so instead we skip this line in tests and create dummy data
-        if ( !Test.isRunningTest()) { feedElement = ConnectAPI.ChatterFeeds.postFeedElement( null, feedInput ); }
+        if ( !Test.isRunningTest()) {
+            System.debug('in if'); 
+            
+            feedElement = ConnectAPI.ChatterFeeds.postFeedElement( null, feedInput ); 
+            System.debug('in if2');}
 
         /* THIS ELSE STATEMENT IS ONLY FOR TESTS DO NOT REMOVE UNLESS YOU KNOW WHAT YOU'RE DOING */ 
         else {
+            System.debug('in else');
              feedElement = new ConnectAPI.FeedItem(); 
              feedElement.body = new ConnectAPI.FeedBody();
              feedElement.body.text = message; 
         }
         /* THIS ELSE STATEMENT IS ONLY FOR TESTS DO NOT REMOVE UNLESS YOU KNOW WHAT YOU'RE DOING */
-
+		
+        System.debug('At Bottom' + feedElement);
         return feedElement;
     }
 

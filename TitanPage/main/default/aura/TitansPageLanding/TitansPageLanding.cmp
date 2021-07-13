@@ -41,6 +41,11 @@
                     <!-- Aura Iteration; Displays all Titans -->
                     <div class="slds-grid">
                         <ul>
+                            <!-- James Patton added aura if to display error if there is zero length -->
+                            <aura:if isTrue="{!v.TitanList.length == 0}">
+                                <p>There are no Titans</p>
+                            </aura:if>
+                            
                             <aura:iteration items="{!v.TitanList}" var="Titan" indexVar="titanIndex">
                                 <li class="slds-text-heading_medium slds-col slds-size_12-of-12" 
                                     onclick="{!c.cNavigate}" data-titan="{!Titan.Id}">

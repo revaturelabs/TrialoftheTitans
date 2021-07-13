@@ -1,0 +1,47 @@
+{
+  "appPageId" : "c7689e2d-107a-413e-8467-18377820e113",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "id" : "0878cd57-b7e0-402c-9b71-ef11b17d62db",
+  "label" : "Home",
+  "regions" : [ {
+    "id" : "84370424-11ad-4d91-b0ed-9ff0a3859057",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "richTextValue" : "<div>     <p><span style='font-size: 48px;'>Let's get started!</span></p>     <ol>         <li><span style='font-size: 18px;'>Unfamiliar with Build Your Own? Click Take a Tour in the Help menu.</span></li>         <li><span style='font-size: 18px;'>Want to add more pages? Take a look at the Pages menu.</span></li>         <li><span style='font-size: 18px;'>Want more components on your page? Drag and drop components from the Components panel.</span></li>         <li><span style='font-size: 18px;'>Want your users to see your company logo? Head on over to the Theme panel.</span></li>         <li><span style='font-size: 18px;'>Refine the look of your site with a custom theme layout. See the Experience Cloud Developer Guide.</span></li>     </ol> </div>"
+      },
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "3b83f60c-79fb-403d-9802-64f9ddfe7ab9",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "9685de3f-ebec-4f79-8750-d8466e22fe01",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "2515a02b-d8be-496b-8632-09babaf32c3c",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Home"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "3a3e5f65-0666-4ae8-87ae-f13b9ad0a595",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "590b76d5-6e6f-46a2-a191-099c0a5f4ea0",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "SAIwC0FAv2oceRnbkDvp0bHGqINvf3",
+  "type" : "view",
+  "viewType" : "home"
+}
