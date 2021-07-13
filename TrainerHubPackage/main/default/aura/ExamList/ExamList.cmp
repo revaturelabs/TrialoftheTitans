@@ -1,0 +1,33 @@
+<!--
+////////////////////////////////////////////////////
+//
+// Name: Exam List
+// Author: Josue Cisneros
+// Description: Component to diplay Exam Result Data.
+// - ATTRIBUTES
+// - data: Holds the object for the data to be displayed.
+// - columns: Holds the Name,Field Name, and Type of the columns.
+// - HANDLERS
+// - init: Handles initialization of data table.
+//
+////////////////////////////////////////////////////
+-->
+
+<aura:component controller="ExamListController">
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+	<aura:attribute name="CohortId" type ="String"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.fetchData}" />
+
+    <!-- Search Bar Input -->
+    <lightning:input type="text" name="searchKey" aura:id="searchKey" onchange="{!c.search}" placeholder="Search Hero" />
+
+    <!-- Exam Result Data Table -->
+    <lightning:datatable
+        data = "{!v.data}"
+        columns = "{!v.columns}"
+        keyField = "Id"
+        hideCheckboxColumn="true" />
+
+</aura:component>

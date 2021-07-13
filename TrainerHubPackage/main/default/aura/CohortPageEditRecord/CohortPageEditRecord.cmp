@@ -1,0 +1,25 @@
+<!--
+
+  Name: CohortPageEditRecord
+  Author: Brett Spokes
+  Description: Container for recordEditForms which determines 
+  which type to display for editing.
+
+-->
+
+<aura:component >
+    <aura:registerEvent name="cmpReturnEvent" type="c:CohortPageReturnEvent"/>    
+    <aura:attribute name="AssessmentId" type ="String" default=""/>   
+
+    <!-- A record edit form for the Assessment; associated action's purpose is to use the event to return the view to the parent component -->
+
+       <lightning:recordEditForm recordId="{!v.AssessmentId}" objectApiName="Assessment__c" onsuccess="{! c.handleClick }">
+            <lightning:messages />
+            <lightning:inputField fieldName="Name" />
+            <lightning:inputField fieldName="Type__c" />
+            <lightning:inputField fieldName="Description__c" />
+            <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update" />
+            <lightning:button class="slds-m-top_small" variant="brand" label="Cancel" title="Cancel action" onclick="{! c.handleClick }" />
+    	</lightning:recordEditForm>
+    
+</aura:component>

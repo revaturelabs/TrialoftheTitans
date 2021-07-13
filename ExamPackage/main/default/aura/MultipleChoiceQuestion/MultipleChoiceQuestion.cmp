@@ -1,0 +1,29 @@
+<!--
+    Author: Tyler Curry-Wong
+    Description: Aura component to display Multiple Choice Questions for Exam
+-->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <!--Declare Attributes-->
+    <aura:attribute name="question" type="Exam_Question__c"/>
+    <aura:attribute name="questionprompt" type="String"/>
+    <aura:attribute name="options" type="String[]"/>
+    <aura:attribute name="radioGroupOptions" type="String[]"/>
+    <aura:attribute name="correctAnswer" type="String"/>
+    <aura:attribute name="answerChoice" type="String"/>
+    
+    <!--Declare Handler-->
+    <aura:handler name="init" value="{!this}" action="{!c.fetchMultiChoice}"/>
+    
+    <!--Component Start-->
+    <lightning:card>
+        <div class="slds-m-around--xx-large">
+            <div>
+                <lightning:radioGroup name="{!v.questionprompt}"  
+                                      label="{!v.questionprompt}"   
+                                      options="{!v.radioGroupOptions}"  
+                                      value="{!v.answerChoice}"  
+                                      type="radio"/>  
+            </div>         
+        </div>   
+    </lightning:card>
+</aura:component>
