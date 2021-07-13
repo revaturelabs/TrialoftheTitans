@@ -30,7 +30,7 @@
                     teamScores[category] = Object.entries(teamScores[category])
                 });
                 // teamScores.Team[0][0] = "Synergy";
-                console.log(teamScores);
+                console.log('TeamScores:' + teamScores);
                 component.set('v.leadTeams', teamScores);
             }
         });
@@ -39,12 +39,11 @@
     },
 
     navigate: function(component, event, helper) {
-
+		let titanString = "Titans";
         console.log('hit');
         const page = event.getParam('page');
         console.log(page);
         component.set("v.navigate", page);
-
     },
 
     navigateToResults: function(cmp, event, helper) {

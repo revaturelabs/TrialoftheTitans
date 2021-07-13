@@ -15,6 +15,8 @@
     <aura:attribute name="examClicked" type="Boolean" default="false" />
     <aura:attribute name="pbpClicked" type="Boolean" default="false" />
     <aura:attribute name="titanIdList" type="List" />
+    <aura:attribute name="caClicked" type="Boolean" default="false" />
+    <aura:attribute name="results" type="List"></aura:attribute>
     <aura:registerEvent name="ExamResultBtnClickedEvent" type="c:ExamResultBtnClickedEvent" />
     <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
     <div class="wrapper">
@@ -45,6 +47,7 @@
                     <c:ExamResultsPoolPage examResultId="{!v.examResultId}" />
                 </aura:if>
             </div>
+
             <div class="right-panel">
                 <aura:if isTrue="{!v.examClicked}">
                     <div class="right-panel-btn-group">
@@ -58,5 +61,31 @@
                 </aura:if>
             </div>
         </div>
+        <!-- Code Assessment Component Here Worked on By Saief Sayed -->
+        
+        <div class="wrapper" >
+            
+            	<br></br>
+                <h2>Code Assessment</h2>
+                <div class='titan-tab' onclick="{!c.onCAClick}">See Code Assesment Results</div>
+            	<br></br>               
+                    <aura:if isTrue="{!v.caClicked}">
+                        <lightning:card variant="Narrow" footer="End" title="Code Assessment Results">
+                            <!-- Possibly implement search functionality in next iteration
+								<aura:set attribute="actions">
+                                <lightning:button label="Search"/>
+                            </aura:set>-->
+                            <p class="slds-p-horizontal_small">
+                                <aura:iteration items="{!v.results}" var="r">
+                                    <c:ResultItem resultId="{!r}"/>
+                                </aura:iteration>
+                            </p>
+                		</lightning:card>
+                
+                	</aura:if>            
+
+        </div>
+        
     </div>
+
 </aura:component>

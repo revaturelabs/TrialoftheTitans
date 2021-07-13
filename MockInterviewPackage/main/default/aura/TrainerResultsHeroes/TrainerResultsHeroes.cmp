@@ -1,0 +1,119 @@
+<!-- 
+	Name: TrainerResultsHeroes
+	Author: Frank Berni
+	Description: Sub-Component for TrainerResultsAccordion. 
+		Has onclick action to show list of all Hero Feedback + comments and aggregated Feedback results of a Hero
+
+-->
+
+<aura:component controller="TrainerResultsAccController" >
+	
+    <!--Object[] is referencing the list of aggregate scores pulled from JS controller -->
+    <aura:attribute name="hero" type="Account" />
+    <aura:attribute name="heroAvgScores" type="Object[]" />
+    <aura:attribute name="allFeedback" type="Feedback__c[]" />
+    <aura:attribute name="display" type="Boolean" default="false"/>
+    <aura:attribute name="isEmpty" type="Boolean" default="false"/>
+    <aura:attribute name="checkValue" type="Boolean" default="false"/>
+    <!--Object[] is referencing the list of aggregate scores pulled from JS controller -->
+    
+    <!--Rendering list of heroes with a button to render their feedback scores-->
+    	<p style="color:DarkViolet; font-size:20px;">
+            <br/>
+            <b>Name</b> : {!v.hero.Name}
+            
+        </p>
+    	<p style="color:DarkViolet; font-size:20px;">
+    		<b>Cohort</b> : {!v.hero.Cohort__r.Name}
+        </p>    
+        <br/>
+        
+    <lightning:button label="View" onclick="{!c.selectHero}" />
+    <!--Rendering list of heroes with a button to render their feedback scores-->
+    
+    
+    <aura:if isTrue="{!v.display}">
+        <aura:if isTrue="{!v.isEmpty}" >
+            <!--This table renders along with the average scores in each category when button is clicked-->
+            <p style="color:DarkViolet; font-size:15px;">
+                <br/>
+                {!v.hero.Name}'s Average Feedback Scores
+            	<br/>
+                <br/>
+            </p>    
+            <table class="slds-table slds-table--bordered slds-table--striped">
+                        
+                		<thead>
+                             <tr>
+                             <th scope="col"><span class="slds-truncate">Body Language</span></th>
+                             <th scope="col"><span class="slds-truncate">Confidence</span></th>
+                             <th scope="col"><span class="slds-truncate">Eye Contact</span></th>
+                             <th scope="col"><span class="slds-truncate">Fluency</span></th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <td><p><lightning:formattedNumber value="{!v.heroAvgScores[0].expr0}" maximumFractionDigits="2"/></p></td>
+                                 <td><p><lightning:formattedNumber value="{!v.heroAvgScores[0].expr1}" maximumFractionDigits="2"/></p></td>
+                                 <td><p><lightning:formattedNumber value="{!v.heroAvgScores[0].expr2}" maximumFractionDigits="2"/></p></td>
+                                 <td><p><lightning:formattedNumber value="{!v.heroAvgScores[0].expr3}" maximumFractionDigits="2"/></p></td>
+                             </tr>
+                         </tbody>
+             </table>
+            <!--This table renders along with the average scores in each category when button is clicked-->
+            
+            <p style="color:DarkViolet; font-size:15px;">
+                <br/>
+                All Feedback under {!v.hero.Name}
+            
+        	</p>
+            
+            <!--Looping through every feedback related to a particular hero -->
+            <aura:iteration items="{!v.allFeedback}" var="scores">
+                <br/>
+                <p> 
+                	<span><b>Type: </b></span>  
+                    {!scores.Type__c}
+                </p>
+                <table class="slds-table slds-table--bordered slds-table--striped">
+                        
+                		<thead>
+                             <tr>
+                             <th scope="col"><span class="slds-truncate">Body Language</span></th>
+                             <th scope="col"><span class="slds-truncate">Confidence</span></th>
+                             <th scope="col"><span class="slds-truncate">Eye Contact</span></th>
+                             <th scope="col"><span class="slds-truncate">Fluency</span></th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <td>{!scores.Body_Language__c}</td>
+                                 <td>{!scores.Confidence__c}</td>
+                                 <td>{!scores.Eye_Contact__c}</td>
+                                 <td>{!scores.Fluence__c}</td>   
+                             </tr>
+                         </tbody>
+                    
+                 </table>
+                <p> 
+                	<b>Comments:</b>
+                </p>
+                <p> 
+                	{!scores.Comments__c}
+                </p>
+            </aura:iteration>
+   		 </aura:if>
+        <!--Looping through every feedback related to a particular hero -->
+        
+        <!--Text that appears when a Hero has no feedback-->
+        <aura:if isTrue="{!v.checkValue}">
+            <p style="color:DarkRed; font-size:20px;">
+                <br/>
+                No Feedback available at this time.
+            </p>    
+        </aura:if>   
+        </aura:if>
+        <!--Text that appears when a Hero has no feedback-->
+    
+    	
+</aura:component>

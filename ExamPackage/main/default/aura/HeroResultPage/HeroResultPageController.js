@@ -5,8 +5,11 @@
 //////////////////////////////////////////
 ({
     onInit: function (cmp, event, helper) {
-        helper.init(cmp, event)
+        helper.init(cmp, event)        
     },
+    onCAClick: function(component, event, helper) {
+		helper.start(component, event, helper);
+	},
     onExamClick: function (cmp, event, helper) {
         helper.fireExamIdEvent(cmp, event)
     },

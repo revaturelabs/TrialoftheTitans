@@ -1,0 +1,91 @@
+.THIS {
+    background-color:grey;
+   
+}
+
+.THIS #myIn{
+   	
+    border-style: solid;
+    border-width: 3px;
+  	border-color: purple;
+    margin: auto;
+    margin:1% 3%;
+}
+
+.THIS #rec{
+    color: red;
+    border-style: solid;
+  	border-color: purple;
+    border-width: 3px;
+   	text-align: center;
+  	background-color:white;        
+      margin:5%;  
+}
+.THIS .myfeedstyle{
+    width:50%;
+    
+    margin: 0 auto;
+    height:100%;
+    background-size:cover;
+     background-color:grey;
+    font-size: 120%;
+}
+.THIS h1{
+    color:purple;
+    font-size: 200%;
+    text-align: center;
+    margin: 5%;
+}
+.THIS h2{
+    color:purple;
+    font-size: 200%;
+    text-align: center;
+}
+.THIS h3{
+    color:purple;
+    font-size: 150%;
+    text-align: center;
+}
+.THIS myinterstyle{
+    background-color:grey;
+     width: 50%;
+    color:purple;
+}
+.THIS .feedTitle{
+     color:purple;
+    font-size: 200%;
+    text-align: center;
+    
+}
+.THIS span{
+    color:purple;
+    font-size: 120%;
+    text-align: center;
+}
+.THIS .myform{
+     color:purple;
+    font-size: 200%;
+    text-align: center;
+}
+.THIS .mybutton{
+   text-align: center; 
+    width:15%;
+    margin: 0 auto;
+    position: relative;
+    left:43%;
+    background-color:purple;
+    border:1px transparent solid;
+}
+.THIS .mybutton2{
+    background-color:purple;
+    border:1px transparent solid;
+}
+.THIS label{
+    color:purple;
+}
+
+.THIS #quessec{
+    color:purple;
+    font-size: 200%;
+    text-align: center;
+}
