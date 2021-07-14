@@ -3,10 +3,8 @@
     <fullName>All</fullName>
     <columns>NAME</columns>
     <columns>CREATEDBY_USER</columns>
-    <columns>Coding_Assessment__c</columns>
-    <columns>Method_Name__c</columns>
     <columns>Passed__c</columns>
-    <columns>CREATED_DATE</columns>
+    <columns>Percent_Passed__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

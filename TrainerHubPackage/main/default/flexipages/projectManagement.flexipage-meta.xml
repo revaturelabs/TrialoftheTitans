@@ -9,7 +9,7 @@
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>projectManagement</masterLabel>
+    <masterLabel>Project Management</masterLabel>
     <template>
         <name>flexipage:defaultAppHomeTemplate</name>
     </template>

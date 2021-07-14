@@ -5,6 +5,6 @@
     <errorConditionFormula>OR((Body_Language__c &gt;5 ||  Body_Language__c &lt;1),
  (Confidence__c &gt;5 || Confidence__c &lt;1),
  (Eye_Contact__c &gt;5 || Eye_Contact__c&lt;1 ),
- ( Fluence__c &gt;5 || Fluence__c &lt;1))</errorConditionFormula>
+ ( Fluency__c&gt;5 || Fluency__c &lt;1))</errorConditionFormula>
     <errorMessage>Score Must Be Between 1-5</errorMessage>
 </ValidationRule>

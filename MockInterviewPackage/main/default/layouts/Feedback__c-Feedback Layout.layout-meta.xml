@@ -31,11 +31,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Fluence__c</field>
+                <field>Eye_Contact__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Eye_Contact__c</field>
+                <behavior>Edit</behavior>
+                <field>Fluency__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -98,7 +98,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h21000002HnLh</masterLabel>
+        <masterLabel>00h11000004PcBq</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Created by Lightning App Builder</description>
-    <flexiPage>projectManagement</flexiPage>
-    <label>Project Management</label>
-    <motif>Custom20: Airplane</motif>
+    <flexiPage>Mock_Interview_Feedback</flexiPage>
+    <label>Mock Interview Feedback</label>
+    <motif>Custom81: Musical Note</motif>
 </CustomTab>

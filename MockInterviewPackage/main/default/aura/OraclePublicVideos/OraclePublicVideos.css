@@ -1,21 +1,20 @@
 /*
-	Name: Public Videos stylesheet
+	Name: Oracle Public Videos stylesheet
 	Author: Alyssa Reed
 	Description: CSS stylesheet for publicVideos */
 
 
 .THIS {
-    /*background-color: var(--user-team-secondary);*/
     width: 100%;
+    background-color: transparent;
 }
 
 .THIS button{
-    color:white;
-  background-color:var(--user-team-primary);
+    color:#0176D3;
+    border: 1px solid lightgray;
 }
 .THIS button:hover{
-    background-color:var(--user-team-primary);
-    color:black;
+    color:darkblue;
 }
 
 .THIS .filterStyle{
@@ -27,6 +26,6 @@
 	padding-top: 7%;    
     margin-left: 5%;
     margin-right: 5%;
-    background-color:transparent;
 	border:transparent;
+    background-color: transparent;
 }
