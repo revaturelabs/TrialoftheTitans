@@ -1,0 +1,31 @@
+/*
+	Name: Public Videos stylesheet
+	Author: Alyssa Reed
+	Description: CSS stylesheet for publicVideos */
+
+
+.THIS {
+    background-color:lightgrey;
+    width: 100%;
+}
+
+.THIS button{
+    color:purple;
+}
+.THIS button:hover{
+    background-color:purple;
+    color:white;
+}
+
+.THIS .filterStyle{
+ 	padding-right:10%;
+    padding-top: 1%;
+}
+
+.THIS .outerContainer{
+	padding-top: 7%;    
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color:lightgrey;
+	border:transparent;
+}
