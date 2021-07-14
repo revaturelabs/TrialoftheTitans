@@ -9,15 +9,13 @@
 public class CodeAssessmentScheduler implements Schedulable{
     
     private String username;
-    private String password;
     
-    public CodeAssessmentScheduler(String username, String password){
-        this.username = username;
-        this.password = password;  
+    public CodeAssessmentScheduler(String username){
+        this.username = username;  
     }
     
     public void execute(SchedulableContext SC){
         ID id = TestUtil.enqueueTests();
-        system.enqueueJob(new QueueTitanCallout(id, username, password));
+        system.enqueueJob(new QueueTitanCallout(id, username));
     }
 }

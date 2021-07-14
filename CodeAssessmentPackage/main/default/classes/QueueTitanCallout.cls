@@ -13,13 +13,13 @@ public class QueueTitanCallout implements Queueable {
     private String username;
     private String password;
     
-    public QueueTitanCallout(ID id, String username, String password){
+    public QueueTitanCallout(ID id, String username){
         jobid = id;
         this.username = username;
         this.password = password;
     }
     
     public void execute(QueueableContext context) {
-        TitanCallouts.sendResults(jobid, username, password);
+        TitanCallouts.sendResults(jobid, username);
     }
 }
