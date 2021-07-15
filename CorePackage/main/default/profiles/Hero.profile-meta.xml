@@ -145,12 +145,6 @@
         <layout>Cohort__c-Cohort Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>MySecondTestObject__c-MySecondTestObject Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>MyTestObject__c-MyTestObject Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Equivalency__c-Equivalency Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
