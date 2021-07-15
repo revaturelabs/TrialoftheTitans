@@ -11,7 +11,7 @@
             "path": "ExamPackage",
             "package": "ExamPackage",
             "versionName": "ver 1.0",
-            "versionNumber": "1.0.0.4",
+            "versionNumber": "1.0.0.NEXT",
             "default": false,
             "dependencies": [
                 {
@@ -30,7 +30,7 @@
                     "package": "CorePackage@1.0.0-1"
                 },
                 {
-                    "package": "ExamPackage@1.0.0-3"
+                    "package": "ExamPackage@1.0.0-5"
                 }
             ]
         },
@@ -38,17 +38,17 @@
             "path": "HeroHubPackage",
             "package": "HeroHubPackage",
             "versionName": "ver 1.0",
-            "versionNumber": "1.0.0.NEXT",
+            "versionNumber": "1.0.0.4",
             "default": false,
             "dependencies": [
                 {
                     "package": "CorePackage@1.0.0-1"
                 },
                 {
-                    "package": "ExamPackage@1.0.0-3"
+                    "package": "ExamPackage@1.0.0-5"
                 },
                 {
-                    "package": "TitanPage@1.0.0-4"
+                    "package": "TitanPage@1.0.0-5"
                 }
             ]
         },
@@ -63,13 +63,13 @@
                     "package": "CorePackage@1.0.0-1"
                 },
                 {
-                    "package": "ExamPackage@1.0.0-3"
+                    "package": "ExamPackage@1.0.0-5"
                 },
                 {
-                    "package": "TitanPage@1.0.0-4"
+                    "package": "TitanPage@1.0.0-5"
                 },
                 {
-                    "package": "HeroHubPackage@1.0.0-3"
+                    "package": "HeroHubPackage@1.0.0-4"
                 }
             ]
         },
@@ -84,22 +84,22 @@
                     "package": "CorePackage@1.0.0-1"
                 },
                 {
-                    "package": "ExamPackage@1.0.0-3"
+                    "package": "ExamPackage@1.0.0-5"
                 },
                 {
-                    "package": "TitanPage@1.0.0-2"
+                    "package": "TitanPage@1.0.0-5"
                 },
                 {
-                    "package": "HeroHubPackage@1.0.0-3"
+                    "package": "HeroHubPackage@1.0.0-4"
                 },
                 {
-                    "package": "QCHubPackage@1.0.0-2"
+                    "package": "QCHubPackage@1.0.0-3"
                 }
             ]
         },
         {
             "path": "MockInterviewPackage",
-            "package": "MockInterviewPackageTeam1",
+            "package": "MockInterviewPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": true,
@@ -108,25 +108,55 @@
                     "package": "CorePackage@1.0.0-1"
                 },
                 {
-                    "package": "ExamPackage@1.0.0-3"
+                    "package": "ExamPackage@1.0.0-5"
                 },
                 {
-                    "package": "TitanPage@1.0.0-2"
+                    "package": "TitanPage@1.0.0-5"
                 },
                 {
-                    "package": "HeroHubPackage@1.0.0-3"
+                    "package": "HeroHubPackage@1.0.0-4"
                 },
                 {
-                    "package": "QCHubPackage@1.0.0-2"
+                    "package": "QCHubPackage@1.0.0-3"
                 },
                 {
-                    "package": "TrainerHubPackage@0.1.0-3"
+                    "package": "TrainerHubPackage@0.1.0-4"
                 }
             ]
         },
         {
             "path": "CustimizationsPackage",
             "package": "CustimizationsPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false,
+            "dependencies": [
+                {
+                    "package": "CorePackage@1.0.0-1"
+                },
+                {
+                    "package": "ExamPackage@1.0.0-5"
+                },
+                {
+                    "package": "TitanPage@1.0.0-5"
+                },
+                {
+                    "package": "HeroHubPackage@1.0.0-4"
+                },
+                {
+                    "package": "QCHubPackage@1.0.0-3"
+                },
+                {
+                    "package": "TrainerHubPackage@0.1.0-4"
+                },
+                {
+                    "package": "MockInterviewPackage@0.1.0-4"
+                }
+            ]
+        },
+        {
+            "path": "CodeAssessmentPackage",
+            "package": "CodeAssessmentPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": false
@@ -138,18 +168,18 @@
     "packageAliases": {
         "ExamPackage": "0Ho5e000000oMJ7CAM",
         "ExamPackage@1.0.0-1": "04t5e0000002WUEAA2",
-        "TitanPage": "0Ho5e000000XZX5CAO",
+        "TitanPage": "0Ho5e000000oMJCCA2",
         "TitanPage@1.0.0-1": "04t5e0000002WghAAE",
-        "HeroHubPackage": "0Ho5e000000XZXACA4",
+        "HeroHubPackage": "0Ho5e000000oMJHCA2",
         "HeroHubPackage@1.0.0-1": "04t5e0000002WgmAAE",
         "CorePackage": "0Ho5e000000oMIxCAM",
         "CorePackage@1.0.0-1": "04t5e0000006bTXAAY",
         "ExamPackage@1.0.0-2": "04t5e0000002Wl9AAE",
         "TitanPage@1.0.0-2": "04t5e0000002WlEAAU",
         "HeroHubPackage@1.0.0-2": "04t5e0000002YFlAAM",
-        "QCHubPackage": "0Ho5e000000XZZVCA4",
+        "QCHubPackage": "0Ho5e000000oMJMCA2",
         "QCHubPackage@1.0.0-1": "04t5e0000002sPGAAY",
-        "TrainerHubPackage": "0Ho5e00000000TxCAI",
+        "TrainerHubPackage": "0Ho5e000000oMJRCA2",
         "TrainerHubPackage@0.1.0-1": "04t5e000000ZNUFAA4",
         "ExamPackage@1.0.0-3": "04t5e0000002sGRAAY",
         "TitanPage@1.0.0-4": "04t5e0000002sGbAAI",
@@ -157,10 +187,20 @@
         "TrainerHubPackage@0.1.0-2": "04t5e000000ZZwzAAG",
         "QCHubPackage@1.0.0-2": "04t5e0000002uy1AAA",
         "TrainerHubPackage@0.1.0-3": "04t5e000000ZbhYAAS",
-        "MockInterviewPackage": "0Ho5e000000sY9rCAE",
-        "MockInterviewPackage@0.1.0-1": "04t5e000000ApnDAAS",
-        "MockInterviewPackage@0.1.0-2": "04t5e000000ApnSAAS",
+        "MockInterviewPackage": "0Ho5e000000oMJWCA2",
+        "MockInterviewPackage@0.1.0-1": "04t5e0000006bU6AAI",
+        "MockInterviewPackage@0.1.0-2": "04t5e0000006bUBAAY",
         "MockInterviewPackage@0.1.0-3": "04t5e000000ApnXAAS",
-        "CustimizationsPackage": "0Ho5e000000oMJ2CAM"
+        "CustimizationsPackage": "0Ho5e000000oMJ2CAM",
+        "ExamPackage@1.0.0-4": "04t5e0000006bTcAAI",
+        "ExamPackage@1.0.0-5": "04t5e0000006bThAAI",
+        "TitanPage@1.0.0-5": "04t5e0000006bTmAAI",
+        "HeroHubPackage@1.0.0-4": "04t5e0000006bTrAAI",
+        "QCHubPackage@1.0.0-3": "04t5e0000006bTwAAI",
+        "TrainerHubPackage@0.1.0-4": "04t5e0000006bU1AAI",
+        "MockInterviewPackage@0.1.0-4": "04t5e0000006bUGAAY",
+        "CustimizationsPackage@0.1.0-1": "04t5e0000006bUHAAY",
+        "CodeAssessmentPackage": "0Ho5e000000PBhLCAW",
+        "CodeAssessmentPackage@0.1.0-1": "04t5e0000006bYnAAI"
     }
 }
