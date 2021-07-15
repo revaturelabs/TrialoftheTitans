@@ -11,7 +11,7 @@
             "path": "ExamPackage",
             "package": "ExamPackage",
             "versionName": "ver 1.0",
-            "versionNumber": "1.0.0.NEXT",
+            "versionNumber": "1.0.0.4",
             "default": false,
             "dependencies": [
                 {
@@ -136,7 +136,7 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "51.0",
     "packageAliases": {
-        "ExamPackage": "0Ho5e000000XZX0CAO",
+        "ExamPackage": "0Ho5e000000oMJ7CAM",
         "ExamPackage@1.0.0-1": "04t5e0000002WUEAA2",
         "TitanPage": "0Ho5e000000XZX5CAO",
         "TitanPage@1.0.0-1": "04t5e0000002WghAAE",
