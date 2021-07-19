@@ -29,7 +29,7 @@ package.xml
 **/workflows
 **/quickActions
 **/matchingRules
-# **/flexipages
+**/flexipages
 **/staticresources
 **/appMenus
 **/components
