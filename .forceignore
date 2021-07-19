@@ -21,26 +21,25 @@ package.xml
 **/.planning/**
 
 # added ignores
-# **/profiles
+**/profiles
 # **/layouts
-# **/flows
-# **/permissionsets
-# **/triggers
-# **/workflows
-# **/quickActions
-# **/matchingRules
+**/flows
+**/permissionsets
+**/triggers
+**/workflows
+**/quickActions
+**/matchingRules
 # **/flexipages
-# **/staticresources
-# **/appMenus
-# **/components
-# **/experiences
-# **/sites
-# **/navigationMenus
-# **/networks
-
-# **/networkBranding
-# **/reportTypes
-# **/pages
+**/staticresources
+**/appMenus
+**/components
+**/experiences
+**/sites
+**/navigationMenus
+**/networks
+**/networkBranding
+**/reportTypes
+**/pages
 
 
 **/aura/forgotPassword
