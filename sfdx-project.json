@@ -20,7 +20,7 @@
             ]
         },
         {
-            "path": "TitanPage",
+            "path": ".\\TitanPage",
             "package": "TitanPage",
             "versionName": "ver 0.1",
             "versionNumber": "1.0.0.NEXT",
@@ -123,13 +123,6 @@
                     "package": "TrainerHubPackage@0.1.0-3"
                 }
             ]
-        },
-        {
-            "path": "CustimizationsPackage",
-            "package": "CustimizationsPackage",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
-            "default": false
         }
     ],
     "namespace": "",
@@ -142,8 +135,8 @@
         "TitanPage@1.0.0-1": "04t5e0000002WghAAE",
         "HeroHubPackage": "0Ho5e000000XZXACA4",
         "HeroHubPackage@1.0.0-1": "04t5e0000002WgmAAE",
-        "CorePackage": "0Ho5e000000oMIxCAM",
-        "CorePackage@1.0.0-1": "04t5e0000006bTXAAY",
+        "CorePackage": "0Ho5e000000XZXFCA4",
+        "CorePackage@1.0.0-1": "04t5e0000002Wl4AAE",
         "ExamPackage@1.0.0-2": "04t5e0000002Wl9AAE",
         "TitanPage@1.0.0-2": "04t5e0000002WlEAAU",
         "HeroHubPackage@1.0.0-2": "04t5e0000002YFlAAM",
@@ -160,7 +153,7 @@
         "MockInterviewPackage": "0Ho5e000000sY9rCAE",
         "MockInterviewPackage@0.1.0-1": "04t5e000000ApnDAAS",
         "MockInterviewPackage@0.1.0-2": "04t5e000000ApnSAAS",
-        "MockInterviewPackage@0.1.0-3": "04t5e000000ApnXAAS",
-        "CustimizationsPackage": "0Ho5e000000oMJ2CAM"
+        "MockInterviewPackage@0.1.0-3": "04t5e000000ApnXAAS"
+
     }
 }
