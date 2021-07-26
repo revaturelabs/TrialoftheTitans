@@ -48,25 +48,25 @@ sfdx-project.json
 manifest\package.xml
 
 # added ignores
-**/profiles
-**/layouts
-**/flows
-**/permissionsets
-**/triggers
-**/workflows
-**/quickActions
-**/matchingRules
-**/flexipages
-**/staticresources
-**/appMenus
-**/components
-**/experiences
-**/sites
-**/navigationMenus
-**/networks
-**/networkBranding
-**/reportTypes
-**/pages
+# **/profiles
+# **/layouts
+# **/flows
+# **/permissionsets
+# **/triggers
+# **/workflows
+# **/quickActions
+# **/matchingRules
+# **/flexipages
+# **/staticresources
+# **/appMenus
+# **/components
+# **/experiences
+# **/sites
+# **/navigationMenus
+# **/networks
+# **/networkBranding
+# **/reportTypes
+# **/pages
 
 **/aura/forgotPassword
 **/aura/loginForm
