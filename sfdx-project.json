@@ -20,7 +20,7 @@
             ]
         },
         {
-            "path": ".\\TitanPage",
+            "path": "TitanPage",
             "package": "TitanPage",
             "versionName": "ver 0.1",
             "versionNumber": "1.0.0.NEXT",
