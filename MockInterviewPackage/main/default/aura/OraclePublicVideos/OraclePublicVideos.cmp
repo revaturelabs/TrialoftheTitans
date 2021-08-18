@@ -1,0 +1,52 @@
+<!--Name: Oracle Public Videos
+    Author: Alyssa Reed
+    Description: This component holds the button for the filter options
+		as well as renders the video list depending on which filter is 
+		chosen using different aura:if blocks for each filter's results. -->
+
+<aura:component controller="PublicVideosAuraController" implements="force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="recentFilterDecision" type="boolean" default="true" /> 
+    <aura:attribute name="heroFilterDecision" type="boolean" default="false"/>
+    <aura:attribute name="cohortFilterDecision" type="boolean" default="false"/>
+    <aura:attribute name="feedbackForm" type="boolean" default="false" />
+    <aura:attribute name="disabledCohortFilter" type="boolean" default="false" />
+    
+    <aura:attribute name="heroVideoResults" type="Mock_Interview_Self__c[]"/>
+    <aura:attribute name="cohortVideoResults" type="Mock_Interview_Self__c[]"/>
+    <aura:attribute name="recentVideoResults" type="Mock_Interview_Self__c[]"/>
+    
+    <aura:handler name="init" action="{!c.DoInit}" value="{!this}"/>
+    <div>
+    <lightning:buttonMenu alternativeText="Show Filter menu" onselect="{!c.HandleSelectFilter}" class="filterStyle buttons">
+        <lightning:menuItem aura:id="menuItems" value="FilterByHeroName" label="Filter By Hero Name" checked="false"/>
+        <lightning:menuItem aura:id="menuItems" value="FilterByCohort" label="Filter By Cohort" checked="false" disabled="{!v.disabledCohortFilter}"/>
+        <lightning:menuItem aura:id="menuItems" value="FilterByRecent" label="Filter By Recent" checked="true" />
+     </lightning:buttonMenu>
+    </div> 
+    	<div>
+           <lightning:card class="outerContainer">
+               <div class="slds-grid slds-wrap">
+        <aura:if isTrue="{!v.heroFilterDecision}">
+            <aura:iteration items="{!v.heroVideoResults}" var="video">
+                <c:OracleSingleVideo video="{!video}"/>
+            </aura:iteration>
+        </aura:if>
+                 
+        
+        
+        <aura:if isTrue="{!v.cohortFilterDecision}">
+          <aura:iteration items="{!v.cohortVideoResults}" var="video">
+            <c:OracleSingleVideo video="{!video}"/>
+          </aura:iteration>
+        </aura:if>
+        
+         
+        <aura:if isTrue="{!v.recentFilterDecision}">
+             <aura:iteration items="{!v.recentVideoResults}" var="video">
+                <c:OracleSingleVideo video="{!video}"/>
+             </aura:iteration>
+        </aura:if>
+               </div>
+         </lightning:card> 
+        </div>
+</aura:component>

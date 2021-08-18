@@ -19,21 +19,22 @@
 }
 
 .THIS .boxStyle{
-    background-color: whitesmoke;
-    border: 1px solid purple;
+    background-color: var(--user-team-primary);
+    border: 1px solid var(--user-team-secondary);
     text-align: center;
 }
 
 .THIS .buttons{
-    color: purple;
+    color: white;
+    
     font-variant:small-caps;
     border: 1px solid transparent;
-    background-color: transparent;
+    background-color:var(--user-team-secondary);
     border: 1px solid transparent;
 }
 
 .THIS .buttons:hover{
-    background-color:purple;
+    background-color:var(--user-team-secondary);
     color:white;
     font-variant:small-caps;
     border: 1px solid transparent;
@@ -49,21 +50,35 @@
 }
 .THIS .videoCloseButton:hover{
    background-color: transparent;
-   color: purple;
+   color: white;
     
+}
+.THIS .slds-button.slds-button_brand {
+   border-color: var(--user-team-secondary);
+   background-color: var(--user-team-secondary);
+   color: white;                                
+}
+.THIS .slds-button.slds-button_neutral {
+  border-color: var(--user-team-secondary);
+  background-color: var(--user-team-secondary);
+  color: white; 
 }
 
 .THIS .formStyle{
-    color:purple;
+    color:var(--text-color);
     background-color: whitesmoke;
     border: transparent;
     font-weight: 600;
     font-variant:small-caps;
 }
 
+.THIS .slds-form-element__label {
+   color: var(--text-color);
+}
+
 .THIS .formStyle:hover{
     
-    background-color: purple;
+    background-color: var(--text-color);
     border:transparent;
     font-weight: 600;
     font-variant:small-caps;

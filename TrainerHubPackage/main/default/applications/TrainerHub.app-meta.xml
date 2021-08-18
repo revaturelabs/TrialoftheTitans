@@ -17,10 +17,13 @@
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>TrainerHub</label>
+    <label>Oracle Hub</label>
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
     <tabs>Previous_Cohorts</tabs>
+    <tabs>projectManagement</tabs>
+    <tabs>Mock_Interview_Feedback</tabs>
+    <tabs>TrainerResults</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>TrainerHub_UtilityBar</utilityBar>
 </CustomApplication>

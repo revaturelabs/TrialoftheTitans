@@ -1,0 +1,90 @@
+<aura:component controller="ProjectHomeController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+
+	<aura:attribute name="currentPage" type="String" default="homePage" />
+    <aura:attribute name="projectList" type="List" default="[]" />
+    <aura:attribute name="errorMessage" type="String" default="There's no available project" />
+    <aura:attribute name="selectedProjId" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div class="slds-align_absolute-center">  <!-- begin main -->
+               
+        <aura:if isTrue="{!v.currentPage == 'homePage'}">
+            
+            <div class="slds-box slds-size_1-of-2 slds-theme_default">  <!-- begin wrapper -->
+                
+                <div class="slds-text-heading_large slds-text-align_center">Projects</div>  <!-- begin/end h1 -->
+                
+                <section class="display-elements">  <!-- begin display-elements  -->
+                    
+                    <aura:if isTrue="{!not(empty(v.projectList))}"> <!-- begin aura:if -->
+                        
+                        <aura:iteration items="{!v.projectList}" var="project"> <!-- begin aura:iteration -->
+                            
+                            <ul class="slds-has-dividers_around-space slds-p-horizontal_x-small">
+                                
+                                <li class="slds-card slds-grid slds-gutters slds-m-top_medium slds-p-vertical_small">
+                                    <div class="slds-col slds-size_2-of-3 slds-text-body_regular slds-text-heading_medium"><p>{!project.Name}</p></div>
+                                    <div class="slds-col slds-size_1-of-3 slds-align_absolute-center">
+                                        
+                                        <button class="slds-button slds-button_outline-brand" id="{!project.Id}" onclick="{!c.edit}">Edit...</button>
+                                        
+                                        <button class="slds-button slds-button_outline-brand" id="{!project.Id}" onclick="{!c.assign}">Assign...</button>
+                                        
+                                    </div>
+                                </li>
+                                
+                            </ul>
+                            
+                        </aura:iteration> <!-- end aura:iteration -->
+                        
+                        <div class="slds-align_absolute-center"> <button class="slds-m-top_x-small slds-button slds-button_brand" onclick="{!c.addNewProject}">Add New Project</button> </div>
+                        
+                        <aura:set attribute="else">
+                            
+                            <div class="empty-content">
+                                
+                                <div class="slds-align_absolute-center">
+                                     
+                                    <div>
+                                        <p class="slds-text-heading_medium slds-m-top_medium">{!v.errorMessage}</p><br/>
+                                        <div class="slds-align_absolute-center">
+                                            <button class="slds-button slds-button_brand slds-m-top_small" onclick="{!c.addNewProject}">Add New Project</button>
+                                        </div>
+                                    </div>  
+                                
+                                </div>
+                                
+                            </div>
+                            
+                        </aura:set>
+                        
+                    </aura:if>  <!-- end aura:if -->
+                    
+                    
+                </section> <!-- end display-elements  -->
+                
+                
+            </div>  <!-- end wrapper -->   
+        </aura:if>
+
+
+        <aura:if isTrue="{!v.currentPage == 'AssignProject'}">
+
+            <c:AssignProject currentPage="{!v.currentPage}" projectId="{!v.selectedProjId}"/>
+            
+        </aura:if>
+
+        <aura:if isTrue="{!v.currentPage == 'NewProjectCreation'}">
+
+            <c:NewProjectCreation currentPage="{!v.currentPage}"/>
+
+        </aura:if>
+
+        <aura:if isTrue="{!v.currentPage == 'dynamicRow'}">
+
+            <c:dynamicRow currentPage="{!v.currentPage}" projectId="{!v.selectedProjId}"/>
+
+        </aura:if>
+        
+    </div>  <!-- end main -->
+</aura:component>
