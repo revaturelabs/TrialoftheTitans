@@ -88,6 +88,7 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<members>UpdateStageEvent</members>
 		<members>UpdateQAListEvent</members>
 		<members>LaunchInterviewEvent</members>
+		<members>CreateFlag</members>
 		<name>AuraDefinitionBundle</name>
 	</types>
 	<version>51.0</version>
