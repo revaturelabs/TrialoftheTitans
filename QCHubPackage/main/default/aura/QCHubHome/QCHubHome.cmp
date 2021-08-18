@@ -10,10 +10,11 @@
     <aura:attribute name="SelectedCohort"   type="QCCohortWrapper"/>
     <aura:attribute name="NoCohortSelected" type="Boolean" default = "true"/>
     <aura:attribute name="Hero" type="Object" />
+    <aura:attribute name="HeroList" type="Account[]" />
     <aura:attribute name="contextInfo" type="UserContextInfo" />
     <aura:attribute name="SquadList" type="QCSquadWrapper[]"/>
     <aura:attribute name="WeekList" type="String[]"/>
-
+    
     <aura:attribute name="ScriptLoaded" type="Boolean" default="false"/>
     <aura:attribute name="DataLoaded" type="Boolean" default="false"/>
 
@@ -56,55 +57,37 @@
         <div class="boxGrid-Hero slds-col slds-size_9-of-12 slds-text-align_center slds-m-top_x-small">
 
             <div class="tabSet slds-m-top_x-small">
+                <aura:if isTrue="{!v.HeroList}">
                 <lightning:tabset variant="scoped">
                     <!-- Pull in hero name for label -->
-                    <lightning:tab label="Hero One">
+                    <aura:iteration items="{!v.HeroList}" var="hero">
+                    <lightning:tab label="{!hero.Name}">
                         <!-- Pull in hero data -->
-                        Hero data
+                        <table class="slds-table slds-table--bordered slds-table--striped">
+                             <thead>
+                                 <tr>
+                                 <th scope="col"><span class="slds-truncate">Name</span></th>
+                                 <th scope="col"><span class="slds-truncate">Cohort</span></th>
+                                 <th scope="col"><span class="slds-truncate">Curriculum</span></th>
+                                 <th scope="col"><span class="slds-truncate">Team</span></th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                 <td> {!hero.Name}</td> 
+                                 <td> {!hero.Cohort__r.Name}</td> 
+                                 <td> {!hero.Curriculum__r.Name}</td>
+                                 <td> {!hero.Team__r.Name}</td>
+                                 </tr>
+                             </tbody>
+                        </table>
                     </lightning:tab>
-                    <lightning:tab label="Hero Two">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Three">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Four">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Five">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Six">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Seven">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Eight">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Nine">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Ten">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Eleven">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Twelve">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Thirteen">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Fourteen">
-                        Hero data
-                    </lightning:tab>
-                    <lightning:tab label="Hero Fifteen">
-                        Hero data
-                    </lightning:tab>
+                    </aura:iteration>
                 </lightning:tabset>
+                <aura:set attribute="else">
+                    <div>No Heros Yet!</div>
+                </aura:set>
+                </aura:if>
             </div>
 
         </div>

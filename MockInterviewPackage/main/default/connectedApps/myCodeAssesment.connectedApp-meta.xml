@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>jimmamrru@gmail.com</contactEmail>
+    <label>myCodeAssesment</label>
+    <oauthConfig>
+        <callbackUrl>http://localhost:1717/OauthRedirect</callbackUrl>
+        <certificate>MIIEWzCCA0OgAwIBAgIOAXql6q78AAAAACTh/AAwDQYJKoZIhvcNAQELBQAwdzEPMA0GA1UEAwwGbXlDZXJ0MRgwFgYDVQQLDA8wMEQxMTAwMDAwQ0p0bjQxFzAVBgNVBAoMDlNhbGVzZm9yY2UuY29tMRYwFAYDVQQHDA1TYW4gRnJhbmNpc2NvMQswCQYDVQQIDAJDQTEMMAoGA1UEBhMDVVNBMB4XDTIxMDcxNDE2NDczOFoXDTIyMDcxNDEyMDAwMFowdzEPMA0GA1UEAwwGbXlDZXJ0MRgwFgYDVQQLDA8wMEQxMTAwMDAwQ0p0bjQxFzAVBgNVBAoMDlNhbGVzZm9yY2UuY29tMRYwFAYDVQQHDA1TYW4gRnJhbmNpc2NvMQswCQYDVQQIDAJDQTEMMAoGA1UEBhMDVVNBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjyWAaQrdzEDSO5/G9PlR2JV1BoD5LzR55uhl7nUGSP2OjMQG/fqzFhtn5/JD7sV/OE5z0q5nQGqHlUfIp78m2p1zDT336yXLZU36T3TkJ5nX7xCOdU69stv3YsO1KDwAMpFCfQuo1CkPYW44wjD0Cf2yXMc8UsPnTflSxs18i5KmCltl56dAGa4EYx7eBV1KZqFpBR0jKCu1KPrDw6B6Ea7UCXj7GQCUuP3/PlK8aQOUSr9YAMy55N0nmJHWT/lpUaqDPUrTatZSpmws4c5gJmHd+0kIoopZapdnulDE1kU2+Z3HselDcYworFg733we7fM9sQaBkYe1xrv91WSwhwIDAQABo4HkMIHhMB0GA1UdDgQWBBRxddpyaeRmms0Y28ZktqkeNEQ2gTAPBgNVHRMBAf8EBTADAQH/MIGuBgNVHSMEgaYwgaOAFHF12nJp5GaazRjbxmS2qR40RDaBoXukeTB3MQ8wDQYDVQQDDAZteUNlcnQxGDAWBgNVBAsMDzAwRDExMDAwMDBDSnRuNDEXMBUGA1UECgwOU2FsZXNmb3JjZS5jb20xFjAUBgNVBAcMDVNhbiBGcmFuY2lzY28xCzAJBgNVBAgMAkNBMQwwCgYDVQQGEwNVU0GCDgF6pequ/AAAAAAk4fwAMA0GCSqGSIb3DQEBCwUAA4IBAQAcyQnYF0MEZCSlglkd/zaJxrv1gcNfl2vedangnRtFhY8wqX/oF+ZM5eswL0YhOMJn3Ga9wJpTzOHTu2/64rDFIkNCoGR4LYJQOB0crGsQ6rIJ1UhRZlqL9bFG6JQjTjOsZt7nIK5A78ChN8HHpSqQmQn8w9M2PBN9L+0XExcECEMDtS3F2cAbmvrMK/bv8dwJYACaeqFnMAfDaKegWZehhMWC7uiKlNBOoDtgVj4FvWcaVpY/rIV9eLMXzkhXbgbGuNFMsCQK7aHn8UsrSWA8iu9qW6eDVjmHDfJJgJgml3yRNZr9n3MmZMMwh3HKXs/MbA+T9RhqDBpYXzHP8Tby</certificate>
+        <consumerKey>3MVG98RqVesxRgQ4xmwdKHqEpP0yXJj9JOE5hDxfRGOVCgijW9o.kqKsEPPlzwnFH2E42_NbSFyG_qXsEaeZy</consumerKey>
+        <isAdminApproved>true</isAdminApproved>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isSecretRequiredForRefreshToken>true</isSecretRequiredForRefreshToken>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+    <profileName>Hero</profileName>
+    <profileName>System Administrator</profileName>
+</ConnectedApp>

@@ -1,0 +1,18 @@
+<aura:component >
+    <aura:html tag="style">
+    .Alchemy {
+        background-color: pink;
+        border: 2px solid pink;
+    }
+    
+    .Synergy {
+        background-color: blue;
+        border: 2px solid blue;
+    }
+    </aura:html>
+    <aura:attribute name='PrimaryColor' type='String' default='Alchemy' />
+    <div class="{!v.PrimaryColor}">
+        <c:selfInterviewComponent />
+        <h1>Some content</h1>
+    </div>
+</aura:component>

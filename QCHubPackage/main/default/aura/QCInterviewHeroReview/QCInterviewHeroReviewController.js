@@ -57,7 +57,16 @@
         helper.finalizeInterview(component,event);
         helper.UpdateStage(component, "Start");
     },
-    
+    handleCreateFlag : function(component, event, helper) {
+        let name = event.getParam("flagName");
+        let description = event.getParam("flagDescription");
+        let type = event.getParam("flagType");
+        console.log(name, description, type);
+        component.set("v.newFlagName", name);
+        component.set("v.newFlagDesc", description);
+        component.set("v.newFlagType", type);
+        
+    },
     Submit : function(component, event, helper){
         console.log("In submit function");
         let HeroId = component.get("v.HeroId");
@@ -66,7 +75,10 @@
         let Week = component.get("v.Week");
         let HeroAnswers = component.get("v.answers");
         let Flags = component.get("v.flagList");
-        console.log("Variable")
-        helper.SubmitInterview(component, HeroId, HeroName, CohortId, Week, HeroAnswers, Flags);
+        let newFlagName = component.get("v.newFlagName");
+        let newFlagDesc = component.get("v.newFlagDesc");
+        let newFlagType = component.get("v.newFlagType");
+        console.log("Variable");
+        helper.SubmitInterview(component, HeroId, HeroName, CohortId, Week, HeroAnswers, Flags, newFlagName, newFlagDesc, newFlagType);
     }
 })
