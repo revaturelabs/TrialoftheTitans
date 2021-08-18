@@ -16,8 +16,7 @@
     <aura:attribute name="pbpClicked" type="Boolean" default="false" />
     <aura:attribute name="titanIdList" type="List" />
     <aura:attribute name="caClicked" type="Boolean" default="false" />
-    <aura:attribute name="results" type="List"/>
-    <aura:attribute name="contextInfo" type="UserContextInfo" />
+    <aura:attribute name="results" type="List"></aura:attribute>
     <aura:registerEvent name="ExamResultBtnClickedEvent" type="c:ExamResultBtnClickedEvent" />
     <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
     <div class="wrapper">

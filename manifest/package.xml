@@ -1,119 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 
 	<types>
-		<members>ExamList</members>
-		<members>ExportQuestionsController</members>
-		<members>QCInterviewQAAuraController</members>
-		<members>QCInterviewCohortSelectionAuraController</members>
-		<members>QCInterviewHeroReviewAuraController</members>
 		<members>QCHubHomeAuraController</members>
 		<members>QCHubController</members>
 		<members>QCCohortWrapper</members>
-		<members>QCSquadWrapper</members>
-		<members>UserContextInfo</members>
 		<name>ApexClass</name>
 	</types>
-	<types>
-		<members>ExportQuestions</members>
-		<name>ApexPage</name>
-	</types>
-	<types>
-		<members>d3</members>
-		<name>StaticResource</name>
-	</types>
-	<types>
-		<members>Account</members>
-		<members>Hero_Answer__c</members>
-		<members>Cohort__c</members>
-		<members>Curriculum__c</members>
-		<members>Exam__c</members>
-		<members>Exam_Pool_Assignment__c</members>
-		<members>Exam_Result__c</members>
-		<members>Exam_Question__c</members>
-		<members>QC_Flag__c</members>
-		<members>QC_Interview__c</members>
-		<members>QC_Interview_Sum__c</members>
-		<members>QC_Question__c</members>
-		<members>QC_Question_Answer__c</members>
-		<members>QC_Question_Deck__c</members>
-		<members>Skill__c</members>
-		<members>Squad__c</members>
-		<members>Team__c</members>
-		<members>Titan__c</members>
-		<members>Question_Assignment__c</members>
-		<members>Question_Flow_Helper__c</members>
-		<members>Question_Pool__c</members>
-		<members>Feedback__c</members>
-		<members>MI_Question_Pool__c</members>
-		<members>Mock_Interview_Self__c</members>
-		<members>Assessment__c</members>
-		<members>Coding_Assessment__c</members>
-		<members>Equivalency__c</members>
-		<members>Hero_Apex_Test_Result__c</members>
-		<members>Hero_Assessment__c</members>
-		<members>Project__c</members>
+	<type>
+	<member>Hero_Answer__c</members>
 		<name>CustomObject</name>
-	</types>
-	<types>
-		<members>Cohort__c-Cohort Layout</members>
-		<members>Curriculum__c-Curriculum Layout</members>
-		<members>Team__c-Team Layout</members>
-		<members>Titan__c-Titan Layout</members>
-		<members>Exam__c-Exam Layout</members>
-		<members>Exam_Question__c-Exam Question Layout</members>
-		<members>Exam_Result__c-Exam Result Layout</members>
-		<members>Hero_Answer__c-Hero Answer Layout</members>
-		<members>Question_Pool__c-Question Pool Layout</members>
-		<members>Coding_Assessment__c-Coding Assessment Layout</members>
-		<members>Feedback__c-Feedback Layout</members>
-		<members>MI_Question_Pool__c-MI Question Pool Layout</members>
-		<members>Mock_Interview_Self__c-Mock Interview Self Layout</members>
-		<members>QC_Flag__c-QC Flag Layout</members>
-		<members>QC_Interview__c-QC Interview Layout</members>
-		<members>QC_Question__c-QC Question Layout</members>
-		<members>QC_Question_Answer__c-QC Question Answer Layout</members>
-		<members>QC_Question_Deck__c-QC Question Deck Layout</members>
-		<members>Account-Account Layout</members>
-		<members>Assessment__c-Assessment Layout</members>
-		<members>Equivalency__c-Equivalency Layout</members>
-		<members>Hero_Apex_Test_Result__c-Hero Apex Test Result Layout</members>
-		<members>Hero_Assessment__c-Hero Assessment Layout</members>
-		<members>Project__c-Project Layout</members>
-	</types>
+	</type>
 	<types>
 		<members>QC_Hub</members>
 		<name>CustomApplication</name>
 	</types>
 	<types>
-		<members>QC_Interview__c</members>
-		<members>QC_Question__c</members>
-		<members>QC_Question_Deck__c</members>
-		<name>CustomTab</name>
-	</types>
-	<types>
-		<members>Exam_Record_Page1</members>
-		<members>QC_Hub_Home</members>
-		<members>QC_Hub_UtilityBar</members>
-		<name>FlexiPage</name>
-	</types>
-	<types>
-		<members>Technology__c</members>
-		<members>Week_Picklist__c</members>
-		<name>GlobalValueSet</name>
-	</types>
-	<types>
-		<members>SquadButtons</members>
         <members>QCInterview</members>
         <members>QCInterviewQA</members>
 		<members>CohortButtons</members>
-		<members>CohortStatistics</members>
-		<members>InterviewHeroEvent</members>
 		<members>QCHubHome</members>
 		<members>QCInterviewHeader</members>
 		<members>UpdateCohortEvent</members>
-		<members>QCInterviewCohortSelection</members>
-		<members>QCInterviewHeroReview</members>
+		<!-- <members>QCInterviewCohortSelection</members> -->
+		<!-- <members>QCInterviewHeroReview</members> -->
 		<members>QCInterviewHeroReviewAddRowEvent</members>
 		<members>QCInterviewHeroReviewDeleteRowEvent</members>
 		<members>QCInterviewHeroReviewFlagRow</members>
@@ -121,13 +31,8 @@
 		<members>QCInterviewScoreComp</members>
 		<members>QCInterviewStartView</members>
 		<members>QCInterviewEnd</members>
-		<members>SetWeekEvent</members>
-		<members>StartInterviewEvent</members>
 		<members>UpdateCohortEvent</members>
-		<members>UpdateStageEvent</members>
-		<members>UpdateQAListEvent</members>
 		<members>LaunchInterviewEvent</members>
-		<members>CreateFlag</members>
 		<name>AuraDefinitionBundle</name>
 	</types>
 	<version>51.0</version>
