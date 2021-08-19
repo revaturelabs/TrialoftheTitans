@@ -45,15 +45,15 @@ package.xml
 
 # added ignores
 **/profiles
-# **/layouts
-**/flows
-**/permissionsets
+**/layouts
+#**/flows
+#**/permissionsets
 **/triggers
 **/workflows
 **/quickActions
 **/matchingRules
 **/flexipages
-**/staticresources
+#**/staticresources
 **/appMenus
 **/components
 **/experiences
@@ -63,6 +63,11 @@ package.xml
 **/networkBranding
 **/reportTypes
 **/pages
+**/applications
+**/tabs
+**/profilePasswordPolicies
+**/profileSessionSettings
+**/connectedApps
 
 
 **/aura/forgotPassword
