@@ -1,25 +1,6 @@
 # .forceignore v2
 # List files or directories below to ignore them when running force:source:push, force:source:pull, and force:source:status
 # More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
-# .forceignore v2
-
-# !**/profiles/Hero.profile-meta.xml
-# !**/profiles/TitanTrainer.profile-meta.xml
-# **layouts
-# !**/layouts/Exam__c-Exam Layout.layout-meta.xml
-# !**/layouts/Exam_Result__c-Exam Result Layout.layout-meta.xml
-# !**/layouts/Exam_Question__c-Exam Question Layout.layout-meta.xml
-# !**/layouts/Hero_Answer__c-Hero Answer Layout.layout-meta.xml
-# !**/layouts/Question_Pool__c-Question Pool Layout.layout-meta.xml
-# !**/layouts/Account-Hero Account.layout-meta.xml
-# !**/layouts/Cohort__c-Cohort Layout.layout-meta.xml
-# !**/layouts/Curriculum__c-Curriculum Layout.layout-meta.xml
-# !**/layouts/Skill__c-Skill Layout.layout-meta.xml
-# !**/layouts/Team__c-Team Layout.layout-meta.xml
-# !**/layouts/Titan__c-Titan Layout.layout-meta.xml
-
-# **/lwc/d3ChartTest
-# **/QCHubPackage/main/default/aura/QCInterviewQANavButtons/
 
 # Standard metadata
 package.xml
@@ -41,15 +22,15 @@ package.xml
 
 # added ignores
 **/profiles
-**/layouts
-#**/flows
-#**/permissionsets
+# **/layouts
+**/flows
+**/permissionsets
 **/triggers
 **/workflows
 **/quickActions
 **/matchingRules
 **/flexipages
-#**/staticresources
+**/staticresources
 **/appMenus
 **/components
 **/experiences
@@ -59,11 +40,6 @@ package.xml
 **/networkBranding
 **/reportTypes
 **/pages
-**/applications
-**/tabs
-**/profilePasswordPolicies
-**/profileSessionSettings
-**/connectedApps
 
 
 **/aura/forgotPassword
