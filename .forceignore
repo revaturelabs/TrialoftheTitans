@@ -1,7 +1,6 @@
 # .forceignore v2
 # List files or directories below to ignore them when running force:source:push, force:source:pull, and force:source:status
 # More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
-<<<<<<< HEAD
 # .forceignore v2
 
 # !**/profiles/Hero.profile-meta.xml
@@ -21,9 +20,6 @@
 
 # **/lwc/d3ChartTest
 # **/QCHubPackage/main/default/aura/QCInterviewQANavButtons/
-
-=======
->>>>>>> June-21st-2021
 
 # Standard metadata
 package.xml
