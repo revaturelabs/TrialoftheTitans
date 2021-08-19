@@ -1,5 +1,5 @@
-@isTest
-private class AssignProjectControllerTest {
+ @isTest
+ private class AssignProjectControllerTest {
     
     @isTest static void getAccountsTest() {
         Account a = new Account(Name='testacc1');
@@ -86,4 +86,4 @@ private class AssignProjectControllerTest {
         System.assertEquals('P1', listCohsAfter[0].Project__r.Name);
         System.assertEquals('P1', listCohsAfter[1].Project__r.Name);
     }
-}
+ }
