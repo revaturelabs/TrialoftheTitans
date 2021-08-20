@@ -42,8 +42,8 @@ package.xml
 **/pages
 **/applications
 **/tabs
-**/profilePasswordPolicies
-**/profileSessionSettings
+#**/profilePasswordPolicies
+#**/profileSessionSettings
 **/connectedApps
 
 
