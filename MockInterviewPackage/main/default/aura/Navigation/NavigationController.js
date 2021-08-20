@@ -10,8 +10,9 @@
     fireNav: function(component, event, helper) {
 
         const fireNav = component.getEvent("navigatePage");
-		//James Patton added .trim() to prevent the spaces from breaking compersons
-        fireNav.setParam("page", event.currentTarget.innerHTML.trim());
+
+        fireNav.setParam("page", event.currentTarget.innerHTML);
+
         fireNav.fire();
     },
     onNameClick: function(cmp, event, helper) {

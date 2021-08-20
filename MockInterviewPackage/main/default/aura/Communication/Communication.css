@@ -70,8 +70,7 @@
     border-radius: 5px 0 0 0;
     bottom: 0;
     box-shadow: 0 0 4px 3px rgb(0, 0, 0, .75);
-    /*color: #302f30; James Patton removed because theme color changed so make this almost impossible to read */
-    color: #d4d5d5; /* James Patton added to make chat feed text to show up on dark background color */
+    color: #302f30;
     min-width: 20%;
     padding: 1em;
     position: fixed;

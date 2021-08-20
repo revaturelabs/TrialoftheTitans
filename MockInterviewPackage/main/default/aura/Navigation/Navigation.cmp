@@ -11,7 +11,6 @@
     <aura:registerEvent name="navigateToResults" type="c:NavResultsEvent" />
     <aura:attribute name="navigate" type="String" />
     <aura:attribute name="contextInfo" type="UserContextInfo" />
-    <aura:attribute name="myTitanText" type="String" default="Titans" />
     <!-- <aura:handler name="init" value="{!this}" action="{!c.oninit}" /> -->
     <!-- Main Navigation Bar -->
     <div class="navbar">
@@ -23,18 +22,6 @@
             <li onclick="{!c.fireNav}">
                 <!-- Switch between Titan and HeroHub -->
                 <aura:if isTrue="{!v.navigate != 'Titans'}">Titans
-                    <aura:set attribute="else">HeroHub</aura:set>
-                </aura:if>
-            </li>
-            <li onclick="{!c.fireNav}">
-                <!-- Switch between Titan and HeroHub -->
-                <aura:if isTrue="{!v.navigate != 'Mock Interview'}">Mock Interview
-                    <aura:set attribute="else">HeroHub</aura:set>
-                </aura:if>
-            </li>
-            <li onclick="{!c.fireNav}">
-                <!-- Switch between Titan and HeroHub -->
-                <aura:if isTrue="{!v.navigate != 'Mock Feedback'}">Mock Feedback
                     <aura:set attribute="else">HeroHub</aura:set>
                 </aura:if>
             </li>

@@ -79,7 +79,7 @@
                             <aura:set attribute="else">
                                 <!-- Sword flies in -->
                                     <div class="header-animateHeader_Vanquish">
-                                        <h1 class="Vanquish-title">Trial Of <br/>The Titans</h1>
+                                            <h1 class="Vanquish-title">Trial Of <br/>The Titans</h1>
                                     </div>
                             </aura:set>
                         </aura:if>
