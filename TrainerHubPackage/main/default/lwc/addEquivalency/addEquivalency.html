@@ -1,0 +1,22 @@
+<template>
+    <lightning-card>
+        <lightning-layout class="slds-align_absolute-center">
+            <lightning-layout-item class="slds-p-horizontal_medium slds-m-top_medium">
+                {rowIndex} + 1
+            </lightning-layout-item>
+
+            <lightning-layout-item class="slds-p-horizontal_medium">
+                <lightning-combobox 
+                name="skills"
+                label="Skill Name"
+                value={value}
+                options={skills}
+                onchange={handleChange}></lightning-combobox>
+                <p></p>
+                Selected Value:
+                <lightning-formatted-text title="Chosen Skill"
+                value={chosen}></lightning-formatted-text>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>
