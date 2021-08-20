@@ -50,7 +50,6 @@
     // PARAMETERS:  - message : the message to post
     //              - activeTab : the name of the active group
     SendMessage : function ( component, event, helper ) {
-        console.log('In sending message' + event.getParam( "message" ) + event.getParam( "activeTab" ));
         let message = event.getParam( "message" );
         let activeGroup = helper.GetGroupIdFromTabName( component, event.getParam( "activeTab" ) );
         let postMessageToGroup = component.get( "c.PostMessageToGroup" );

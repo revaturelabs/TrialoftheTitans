@@ -23,4 +23,4 @@
             <option aura:id = "eachOption" value = "{!ops}" text = "{!ops}"/>
         </aura:iteration>
     </div>
-</aura:component>	
+</aura:component>
