@@ -1,0 +1,39 @@
+<template>
+    {leadTeams}
+    <!-- Container to house all versions -->
+    <div class="header-animatedHeader">
+        <!-- Green Smoke and glowing title -->
+        <div if:true={isAlchemy}>
+            <div class="header-animatedHeader_Alchemy">
+                <h1>Trial Of The Titans</h1>
+            </div>
+        </div>
+        <div if:false={isAlchemy}>
+            <!-- Fire and Amps -->
+            <div if:true={isAmplifire}>
+                <div class="header-animatedHeader_Amplifire">
+                    <div class="amps left"></div>
+                    <h1>Trial Of The Titans</h1>
+                    <div class="amps right"></div>
+                </div>
+            </div>
+            <div if:false={isAmplifire}>
+                <!-- Scrolling code exposing title -->
+                <div if:true={isSynergy}>
+                    <div class="header-animatedHeader_Synergy">
+                        <h1 class='header-animatedHeader_Synergy-title'>TRIAL OF THE TITANS</h1>
+                        <div class="Synergy-codeText-wrapper">
+                            <div class="Synergy-codeText"></div>
+                        </div>
+                    </div>
+                </div>
+                <div if:false={isSynergy}>
+                    <!-- Sword flies in -->
+                    <div class="header-animatedHeader_Vanquish">
+                        <h1 class="Vanquish-title">Trial Of <br/>The Titans</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
