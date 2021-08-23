@@ -1,0 +1,27 @@
+<!--
+/////////////////////////////////////////////////////
+//
+//  Name: NewProjectCreation Aura Component
+//  Author: Steven Magnin
+//  Description: Component for creating new projects in Trial of the Titans Trainer package.
+//
+///////////////////////////////////////////////////
+-->
+
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="NewProjectCreationAuraController">
+    <!--Attribute should be bound to attribute in parent component to determine which component is rendered-->
+    <aura:attribute name="currentPage" type="String"/>
+    
+    <!--Lightning Notification Library to display errors and success toast-->
+    <lightning:notificationsLibrary aura:id="componentNotif"/>
+    <lightning:layout class="slds-align_absolute-center slds-box slds-size_1-of-1">
+        <lightning:layoutItem class="slds-box slds-theme_default slds-box slds-size_1-of-3">
+            <lightning:input class="slds-text-heading_small" aura:id="nameInput" label="Project Name" required="true" maxlength="50" onblur="{!c.checkIfProjectExists}"/>
+            <lightning:textarea class="slds-text-heading_small slds-m-top_small" aura:id="descInput" label="Project Description" maxlength="255"/>
+            <lightning:buttonGroup class="slds-m-top_x-small slds-align_absolute-center">
+                <lightning:button class="slds-button slds-button_outline-brand" aura:id="cancelButton" label="Cancel" onclick="{!c.cancelNewProjectCreation}"/>
+                <lightning:button class="slds-button slds-button_brand" aura:id="saveButton" label="Save" onclick="{!c.createNewProject}"/>
+            </lightning:buttonGroup>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>	

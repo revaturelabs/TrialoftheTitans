@@ -1,0 +1,1 @@
+<aura:event type="COMPONENT" description="Adds new rows for inserting equivalencies" />

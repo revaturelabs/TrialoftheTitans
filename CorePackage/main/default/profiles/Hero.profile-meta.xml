@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+<<<<<<< HEAD
     <classAccesses>
         <apexClass>AssementListControllerTest</apexClass>
         <enabled>false</enabled>
@@ -66,6 +67,51 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ExamInterviewApexControllerTestClass</apexClass>
+=======
+    <applicationVisibilities>
+        <application>TrainerHub</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <classAccesses>
+        <apexClass>ChangePasswordController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ChangePasswordControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CommunitiesLandingController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CommunitiesLandingControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CommunitiesLoginController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CommunitiesLoginControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CommunitiesSelfRegConfirmController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CommunitiesSelfRegConfirmControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CommunitiesSelfRegController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CommunitiesSelfRegControllerTest</apexClass>
+>>>>>>> June-21st-2021-Team3
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -73,6 +119,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+<<<<<<< HEAD
         <apexClass>ExamListController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -318,12 +365,68 @@
     </classAccesses>
     <classAccesses>
         <apexClass>UserAccountSetup</apexClass>
+=======
+        <apexClass>ForgotPasswordController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ForgotPasswordControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LightningForgotPasswordController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LightningForgotPasswordControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LightningLoginFormController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LightningLoginFormControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LightningSelfRegisterController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LightningSelfRegisterControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>MyProfilePageController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>MyProfilePageControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SiteLoginController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SiteLoginControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SiteRegisterController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SiteRegisterControllerTest</apexClass>
+>>>>>>> June-21st-2021-Team3
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>UserContextInfo</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+<<<<<<< HEAD
     <classAccesses>
         <apexClass>UserContextInfoTest</apexClass>
         <enabled>false</enabled>
@@ -338,10 +441,19 @@
     </classAccesses>
     <classAccesses>
         <apexClass>createAnswerUtil</apexClass>
+=======
+    <custom>true</custom>
+        <apexClass>addEquivalencyComponentAuraController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>dynamicRowAuraController</apexClass>
+>>>>>>> June-21st-2021-Team3
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
     <fieldPermissions>
+<<<<<<< HEAD
         <editable>true</editable>
         <field>Account.AccountNumber</field>
         <readable>true</readable>
@@ -509,15 +621,24 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Cohort__c.Active__c</field>
+=======
+        <editable>false</editable>
+        <field>Equivalency__c.Project__c</field>
+>>>>>>> June-21st-2021-Team3
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Cohort__c.Average_Score__c</field>
+=======
+        <field>Equivalency__c.Skill_Equivalency__c</field>
+>>>>>>> June-21st-2021-Team3
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Cohort__c.Curriculum__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -534,6 +655,9 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Cohort__c.QC_Interview_Sum__c</field>
+=======
+        <field>Equivalency__c.Skill__c</field>
+>>>>>>> June-21st-2021-Team3
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -545,11 +669,27 @@
         <layout>Account-Account Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+<<<<<<< HEAD
         <layout>Account-Account Layout</layout>
         <recordType>Account.Hero</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Cohort__c-Cohort Layout</layout>
+=======
+        <layout>Cohort__c-Cohort Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MySecondTestObject__c-MySecondTestObject Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MyTestObject__c-MyTestObject Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Equivalency__c-Equivalency Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Exam_Question__c-Exam Question Layout</layout>
+>>>>>>> June-21st-2021-Team3
     </layoutAssignments>
     <layoutAssignments>
         <layout>Project__c-Project Layout</layout>
@@ -557,6 +697,7 @@
     <layoutAssignments>
         <layout>QC_Interview__c-QC Interview Layout</layout>
     </layoutAssignments>
+<<<<<<< HEAD
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
@@ -589,14 +730,113 @@
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>Cohort__c</tab>
+=======
+    <pageAccesses>
+        <apexPage>AnswersHome</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>BandwidthExceeded</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>ChangePassword</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>CommunitiesLanding</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>CommunitiesLogin</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>CommunitiesSelfReg</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>CommunitiesSelfRegConfirm</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>CommunitiesTemplate</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Exception</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FileNotFound</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>ForgotPassword</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>ForgotPasswordConfirm</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>IdeasHome</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>InMaintenance</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>MyProfilePage</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SiteLogin</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SiteRegister</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SiteRegisterConfirm</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>SiteTemplate</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>StdExceptionTemplate</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Unauthorized</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>UnderConstruction</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <tabVisibilities>
+        <tab>Equivalency__c</tab>
+>>>>>>> June-21st-2021-Team3
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Project__c</tab>
+<<<<<<< HEAD
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Account</tab>
+=======
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>projectManagement</tab>
+>>>>>>> June-21st-2021-Team3
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Customer Community</userLicense>

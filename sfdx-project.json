@@ -11,7 +11,7 @@
             "path": "ExamPackage",
             "package": "ExamPackage",
             "versionName": "ver 1.0",
-            "versionNumber": "1.0.0.NEXT",
+            "versionNumber": "1.0.0.4",
             "default": false,
             "dependencies": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "path": ".\\TitanPage",
+            "path": "TitanPage",
             "package": "TitanPage",
             "versionName": "ver 0.1",
             "versionNumber": "1.0.0.NEXT",
@@ -99,7 +99,7 @@
         },
         {
             "path": "MockInterviewPackage",
-            "package": "MockInterviewPackage",
+            "package": "MockInterviewPackageTeam1",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": true,
@@ -111,7 +111,7 @@
                     "package": "ExamPackage@1.0.0-3"
                 },
                 {
-                    "package": "TitanPage@1.0.0-4"
+                    "package": "TitanPage@1.0.0-2"
                 },
                 {
                     "package": "HeroHubPackage@1.0.0-3"
@@ -129,7 +129,7 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "51.0",
     "packageAliases": {
-        "ExamPackage": "0Ho5e000000XZX0CAO",
+        "ExamPackage": "0Ho5e000000oMJ7CAM",
         "ExamPackage@1.0.0-1": "04t5e0000002WUEAA2",
         "TitanPage": "0Ho5e000000XZX5CAO",
         "TitanPage@1.0.0-1": "04t5e0000002WghAAE",
@@ -154,5 +154,6 @@
         "MockInterviewPackage@0.1.0-1": "04t5e000000ApnDAAS",
         "MockInterviewPackage@0.1.0-2": "04t5e000000ApnSAAS",
         "MockInterviewPackage@0.1.0-3": "04t5e000000ApnXAAS"
+
     }
 }
