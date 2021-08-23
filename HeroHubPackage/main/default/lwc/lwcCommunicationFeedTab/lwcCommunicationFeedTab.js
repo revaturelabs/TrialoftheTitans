@@ -20,8 +20,9 @@ export default class LwcCommunicationFeedTab extends LightningElement {
         if (this.tabName == this.activeTab)
             return;
             
-        let selectEvent = new CustomEvent('selectEvent');
+        /*let selectEvent = new CustomEvent('selectEvent');
         selectEvent.tabName = this.tabName;
-        this.dispatchEvent(selectEvent);
+        this.dispatchEvent(selectEvent);*/
+        this.dispatchEvent(new CustomEvent('selectEvent'),{'tabName': this.tabName});
     }
 }
