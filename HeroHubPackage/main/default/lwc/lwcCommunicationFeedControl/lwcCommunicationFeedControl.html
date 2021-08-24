@@ -1,0 +1,35 @@
+<template>
+    <div class = "feed-container">
+        <!-- HEADER -->
+        <div class = "slds-grid" id = "feed-header">
+            <template for:each={tabs} for:item="name">
+                <div class = "slds-size_1-of-3" key={name.id}>
+                    <c-lwc-communication-feed-tab index = {index} tabname = {name} activetab = {activeTab}></c-lwc-communication-feed-tab>
+                </div>
+            </template> 
+        </div>
+
+        <!-- CHATTER MESSAGES -->
+        <div class = "feed-content">
+
+            <!-- LOADING SPINNER -->
+            <div if:true = {loading}>
+                <div class = "loading"></div>
+            </div>
+
+            <div if:true = {currentContentLengthIsZero}>
+                <p id = "no-content-text">There doesn't appear to be anything here...</p>
+            </div>
+            <template for:each={currentContent} for:item="content">
+                <div key={content.id}>
+                    <c-lwc-communication-feed-item content = {content}></c-lwc-communication-feed-item>
+                </div>
+            </template>
+        </div>
+
+        <!-- MESSAGE COMPOSITION FIELD -->
+        <div class = "feed-compose">
+            <c-lwc-communication-feed-compose activetab = {activeTab}></c-lwc-communication-feed-compose>
+        </div>
+    </div>
+</template>

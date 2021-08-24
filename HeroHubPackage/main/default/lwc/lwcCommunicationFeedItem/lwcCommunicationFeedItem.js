@@ -3,7 +3,8 @@ import { LightningElement, api } from 'lwc';
 export default class LwcCommunicationFeedItem extends LightningElement {
     @api
     content;
-
+    
+    /*
     get contentHeader(){
         if(this.content.header.text == null){
             this.content.header.text = "";
@@ -17,4 +18,5 @@ export default class LwcCommunicationFeedItem extends LightningElement {
         }
         return this.content.body.text;
     }
+    */
 }
