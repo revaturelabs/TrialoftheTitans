@@ -154,3 +154,7 @@ manifest\package.xml
 !**/Hero.profile-meta.xml
 !**/TitanTrainer.profile-meta.xml
 !**/Admin.profile-meta.xml
+
+# Theo's test harness app
+**/TheoTestHarnessApp/TheoTestHarnessApp.app
+**/TheoTestHarnessApp/TheoTestHarnessApp.app-meta.xml
