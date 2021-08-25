@@ -1,0 +1,23 @@
+<template>
+    <div>
+        <div>
+            <!-- Contact information Component, allows the user to view their contact information -->
+            <span><div class="container slds-m-around_large" id="contactinfo">
+                <lightning-card title={lightningCardTitle}>
+                    <div class="slds-grid">
+                        <ul>
+                            <!--need key-->
+                            <template for:each={skillsList} for:item="skills">
+                                <div class="slds-grid" key={skills.Id}>
+                                    <ul>
+                                        <li class="slds-text-heading_medium slds-col slds-size_12-of-12">{skills.Name}</li><br/>
+                                    </ul>
+                                </div>
+                            </template>
+                        </ul>
+                    </div>
+                </lightning-card>
+            </div></span>
+        </div>
+    </div>
+</template>

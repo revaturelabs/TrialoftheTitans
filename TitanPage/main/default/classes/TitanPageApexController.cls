@@ -16,8 +16,8 @@ public without sharing class TitanPageApexController {
         //Method for retrieving list of titans
       
         
-     	Account acc = [SELECT Curriculum__c FROM Account WHERE Name = :userInfo.getName()];
-		List<Titan__c> titanList = [SELECT Name FROM Titan__c WHERE Curriculum__c = :acc.Curriculum__c];
+     	Account acc = [SELECT Curriculum__c FROM Account WHERE Name =: userInfo.getName()];
+		List<Titan__c> titanList = [SELECT Name FROM Titan__c WHERE Curriculum__c =: acc.Curriculum__c];
 
         return titanList;
     }
