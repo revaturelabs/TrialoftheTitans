@@ -12,6 +12,8 @@
     fetchData : function(component) {
         var action = component.get('c.InterviewList');
         var cohortId = component.get('v.CohortId');
+        console.log('QCInterview2 (aura) found CohortId to be:');
+        console.log(cohortId);
 		action.setParams({
 			"cohortId": cohortId
         });

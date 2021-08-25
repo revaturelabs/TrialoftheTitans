@@ -16,11 +16,8 @@ export default class QcInterview2LWC extends LightningElement {
     @api
     cohortId;
 
-
     connectedCallback() {
-        // InterviewList({cohortId: '$cohortId'})
-
-        InterviewList({cohortId: ''})
+        InterviewList({cohortId: this.cohortId})
         .then(result => {
             if (result) {
                 let newData = [];
