@@ -9,6 +9,8 @@
 public with sharing class NewProjectCreationAuraController {
 
     //Retrieve list of project names, if any exist.
+    // Conversion to LWC note: this function is no longer used.  Was only used with Aura.
+    // Now "projectNameIsAvailable" is used instead.
     @AuraEnabled
     public static String getListOfProjectNames() {
         try {
@@ -31,6 +33,12 @@ public with sharing class NewProjectCreationAuraController {
             throw new AuraHandledException(e.getMessage());
         }
 
+    }
+    
+    @AuraEnabled
+    public static Boolean projectNameIsAvailable(String name) {
+        List<Project__c> projects = [SELECT Id FROM Project__c WHERE Name = :name];
+        return projects.size() == 0;
     }
 
     //Get name and description from JS controller, assign to Project__c object, then insert.
