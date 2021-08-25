@@ -1,0 +1,39 @@
+<template>
+    <div if:true={display}>
+        <div class = "stats">
+
+            <!-- Display for attempting to access exam not yet assigned -->
+            <div if:true={ifAssignedAttemptedFalse}>
+                    <h1>Slow your pegasus! </h1>
+                    <h1>You still have some minions to get through first! </h1>
+            </div>
+            <!-- Display for attempting to access exam not yet assigned -->
+
+
+            <!-- Display for an exam that has yet to be attempted -->
+            <div if:true={ifAssignedTrueAttemptedFalse}>
+                    <h1> Ready to take on the "exam.name" minion? </h1>
+                    <button class="btn" onclick = {takeExam}>Take Exam!</button>
+            </div>
+            <!-- Display for an exam that has yet to be attempted -->
+
+
+            <!-- Display that shows the results of the "most recent" exam having been taken -->
+            <div if:true={ifAssignedAttemptedTrue}>
+                    <h1> "exam.name" Results </h1>
+                    <div class="line"></div>
+                    <br/>
+                    <h3>Last Attempt: </h3>
+                    <br/>
+                    <h2><span class="number">{correctAnswers}</span> Correct Answers</h2>
+                    <h2><span class="number">{totalAnswers}</span> Total Answers</h2>
+                    <br/>
+                    <h1>{score}%</h1>
+                    <br/>
+                    <button class="btn" onclick = {takeExam}>Retake Exam</button>
+            </div>
+            <!-- Display that shows the results of the "most recent" exam having been taken -->
+
+        </div>
+    </div>
+</template>

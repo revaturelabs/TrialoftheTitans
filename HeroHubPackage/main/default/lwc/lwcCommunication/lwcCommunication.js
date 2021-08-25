@@ -18,7 +18,7 @@ export default class LwcCommunication extends LightningElement {
         let feedBody = this.template.querySelector('[data-id = "feed-holder"]');
 
         if ( feedBody.classList.contains( "feed-collapsed" ) || feedBody.classList.contains( "feed-initial" ) ) {
-            helper.ExpandFeed( feedBody );
+            expandFeed( feedBody );
             return;
         }
         collapseFeed( feedBody );
