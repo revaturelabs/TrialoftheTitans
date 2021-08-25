@@ -1,29 +1,30 @@
 <template>
-    <lightning:input name="name" label="Flag" placeholder="Enter Flag Name Here" value={flagName} />
-    <lightning:input name="description" label="Description" placeholder="Explanation of flag" value={flagDescription} />
-    <lightning:select name="selectItem" label="Select an item" value={flagType}>
+    <lightning-card>
+    <lightning-input name="name" label="Flag" placeholder="Enter Flag Name Here" value={flagName}></lightning-input>
+    <lightning-input name="description" label="Description" placeholder="Explanation of flag" value={flagDescription}></lightning-input>
+    <lightning-select name="selectItem" label="Select an item" value={flagType}>
         <option value="Lack of Professionalism">Lack of Professionalism</option>
         <option value="Disfluency">Disfluency</option>
         <option value="Cursing">Cursing</option>
         <option value="Uncertainty">Uncertainty</option>
         <option value="Dress Code">Dress Code</option>
-    </lightning:select>
-    <lightning:button title="createFlag" label="Create Flag" onclick={submit} iconName="utility:add" iconPosition="left"/>
+    </lightning-select>
+    <lightning-button title="createFlag" label="Create Flag" onclick={submit} icon-name="utility:add" icon-position="left"></lightning-button>
 
-    <div id:true={rowIndex == 0}>
-        <lightning:button label="Add Flag" 
+    <div>
+        <lightning-button label="Add Flag" 
                         title="Adds another row for additional flag input" 
-                        iconName="utility:add" 
+                        icon-name="utility:add" 
                         onclick={AddRow} 
-                        iconPosition="left" />
+                        icon-position="left"></lightning-button>
     </div>
 
-    <div id:false={rowIndex == 0}>
-        <lightning:button label="Clear Flag" 
-                        iconName="utility:delete" 
+    <div>
+        <lightning-button label="Clear Flag" 
+                        icon-name="utility:delete" 
                         onclick={DeleteRow} 
-                        iconPosition="left" 
-                        variant="error" />
+                        icon-position="left" 
+                        variant="error"></lightning-button>
     </div>
-
+    </lightning-card>
 </template>

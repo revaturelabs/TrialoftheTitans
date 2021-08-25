@@ -1,4 +1,5 @@
 <template>
+    <lightning-card>
     <div class="slds-grid slds-gutters slds-align_absolute-center">
 
         <div class="boxGrid slds-grid slds-grid_vertical slds-col slds-size_3-of-12 slds-m-horizontal_xx-small">
@@ -14,16 +15,16 @@
             <div class="slds-box slds-col slds-m-vertical_x-small">
                 <!--<c:QCInterviewScoreComp/>-->
                 <div> 
-                    <lightning:input type="number" name="scorebox" value={HeroAnswer.Score__c} placeholder={HeroAnswer.Score__c} label="Hero Score" />
+                    <lightning-input type="number" name="scorebox" value={HeroAnswer.Score__c} placeholder={HeroAnswer.Score__c} label="Hero Score"></lightning-input>
                 </div>
                  
                 <div>
                     <div>
-                        <lightning:button label="+" title="plus" onclick={PlusClick}/> 
+                        <lightning-button label="+" title="plus" onclick={PlusClick}></lightning-button> 
                     </div>
                        
                     <div>
-                        <lightning:button label="-" title="minus" onclick={MinusClick}/>
+                        <lightning-button label="-" title="minus" onclick={MinusClick}></lightning-button>
                     </div>
         
                 </div>  
@@ -31,7 +32,7 @@
 
             <div class="slds-box slds-col slds-m-vertical_x-small">
 
-                <lightning:button onclick={FinishInterview}>Finish</lightning:button>
+                <lightning-button onclick={FinishInterview}>Finish</lightning-button>
 
             </div>
 
@@ -46,8 +47,8 @@
         <div class="boxGrid slds-col slds-size_7-of-12 slds-m-horizontal_xx-small ">
 
             <div>
-                <lightning:textarea aura:id="QuestionBox" name="QCQuestionBox" value={HeroAnswer.Question__c}
-                                    placeholder="Enter a question here..." class="QuestionBox slds-align_absolute-center"/>
+                <lightning-textarea aura:id="QuestionBox" name="QCQuestionBox" value={HeroAnswer.Question__c}
+                                    placeholder="Enter a question here..." class="QuestionBox slds-align_absolute-center"></lightning-textarea>
             </div>
             <!--End Question Box-->
 
@@ -59,23 +60,23 @@
                 <!--<lightning:button label="TEST" onclick="{!c.TestQBox}"/>-->
                 
                 <!--Begin Navigation Buttons-->
-                <lightning:button onclick={SaveAndNext}>Next</lightning:button>
+                <lightning-button onclick={SaveAndNext}>Next</lightning-button>
                 <!--End Navigation Buttons-->
 
             </div>
 
             <!--Begin Answer Box-->
             <div>
-                <lightning:textarea name="QCAnswerBox" value = {HeroAnswer.Hero_Answer__c}
-                                    placeholder="Hero's answer..." class="QuestionBox slds-align_absolute-center"/>
+                <lightning-textarea name="QCAnswerBox" value = {HeroAnswer.Hero_Answer__c}
+                                    placeholder="Hero's answer..." class="QuestionBox slds-align_absolute-center"></lightning-textarea>
             </div>
 
             <!-- <p>{!v.HeroAnswer.Answer__c}</p> -->
             
             <!--End Answer Box-->
             
-
         </div>
 
     </div>
+    </lightning-card>
 </template>

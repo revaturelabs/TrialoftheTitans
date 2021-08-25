@@ -1,15 +1,17 @@
 <template>
+    <lightning-card>
     <div> 
-        <lightning:input type="number" name="scorebox" value={HeroScore} placeholder="{HeroScore}" label="Hero Score" />
+        <lightning-input type="number" name="scorebox" value={HeroScore} placeholder={HeroScore} label="Hero Score"> </lightning-input>
     </div>
          
     <div>
         <div>
-           <lightning:button label="+" title="plus" onclick={PlusClick}/> 
+           <lightning-button label="+" title="plus" onclick={PlusClick}></lightning-button> 
         </div>
        
         <div>
-            <lightning:button label="-" title="minus" onclick={MinusClick}/>
+            <lightning-button label="-" title="minus" onclick={MinusClick}></lightning-button>
         </div>
     </div>
+    </lightning-card>
 </template>
