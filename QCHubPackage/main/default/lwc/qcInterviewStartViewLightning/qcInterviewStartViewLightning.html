@@ -1,0 +1,48 @@
+<template>
+<!--  Lower Main Box  -->
+    <div class="slds-grid slds-gutters slds-align_absolute-center">
+                
+<!--  Lower LEFT Main Box  -->
+        <div class=" slds-grid slds-grid_vertical slds-col slds-size_3-of-12 slds-m-horizontal_xx-small">            
+            <div class="leftbox slds-box slds-col slds-m-vertical_x-small">
+                <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Cohort Statistics:</h1>
+                <p style="text-align: center">NOTE: Cohort Statistics Comp Needed.</p>        
+            </div>
+        </div>
+        
+        <div class=" slds-col slds-size_6-of-12 slds-m-horizontal_xx-small "> 
+            
+            <div class="rightboxes slds-box slds-col slds-m-vertical_x-small">
+                <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Cohort Table:</h1>
+                
+                <!--Begin Hero List Component-->
+                <p style="text-align: center"><c:QCInterviewCohortSelection heroList = {Cohort.heroList}/></p>
+                <!--End Hero List Component-->
+
+                <!--lightning:button onclick="{!c.TESTNEXT}">TestNext</lightning:button-->
+
+                <!--Begin Week Selection Dropdown Menu-->
+                <lightning:select name="WeekSelection" label="Week" value={Week} onchange={WeekSelect}>
+                    <template for:each={WeekList} for:item='Week'>
+                        <p key={Week.id}>{Week}</p>
+                    </template>
+                </lightning:select>
+                <!--End Week Selection Dropdown Menu-->
+
+            </div>   
+    
+        </div> 
+        
+        
+        <div class=" slds-col slds-size_3-of-12 slds-m-horizontal_xx-small ">
+
+            <div class="rightboxes slds-box slds-col slds-m-vertical_x-small">
+                <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Interview Topics:</h1>
+                <p style="text-align: center">NOTE: Need the Multi-Select Picklist Comp.</p>
+            </div> 
+
+        </div>
+
+    </div>
+
+</template>

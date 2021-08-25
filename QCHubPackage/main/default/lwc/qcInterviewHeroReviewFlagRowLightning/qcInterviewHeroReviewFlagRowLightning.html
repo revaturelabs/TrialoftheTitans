@@ -1,0 +1,42 @@
+<template>
+<<<<<<< HEAD
+    <lightning:input name="name" label="Flag" placeholder="Enter Flag Name Here" value={flagName} />
+=======
+   {flag}
+   {flagName}
+   {flagDescription}
+   {flagType}
+   {rowIndex}
+   <lightning:input name="name" label="Flag" placeholder="Enter Flag Name Here" value={flagName} />
+>>>>>>> c4fb038 (Squashed commit of the following:)
+    <lightning:input name="description" label="Description" placeholder="Explanation of flag" value={flagDescription} />
+    <lightning:select name="selectItem" label="Select an item" value={flagType}>
+        <option value="Lack of Professionalism">Lack of Professionalism</option>
+        <option value="Disfluency">Disfluency</option>
+        <option value="Cursing">Cursing</option>
+        <option value="Uncertainty">Uncertainty</option>
+        <option value="Dress Code">Dress Code</option>
+    </lightning:select>
+<<<<<<< HEAD
+    <lightning:button title="createFlag" label="Create Flag" onclick={submit} iconName="utility:add" iconPosition="left"/>
+
+    <div id:true={rowIndex == 0}>
+        <lightning:button label="Add Flag" 
+                        title="Adds another row for additional flag input" 
+                        iconName="utility:add" 
+                        onclick={AddRow} 
+                        iconPosition="left" />
+    </div>
+
+    <div id:false={rowIndex == 0}>
+        <lightning:button label="Clear Flag" 
+                        iconName="utility:delete" 
+                        onclick={DeleteRow} 
+                        iconPosition="left" 
+                        variant="error" />
+    </div>
+
+=======
+    <lightning:button title="createFlag" label="Create Flag" onclick="{submit}" iconName="utility:add" iconPosition="left"/>    
+>>>>>>> c4fb038 (Squashed commit of the following:)
+</template>
