@@ -1,0 +1,14 @@
+<template>
+    <div class="user-team-color" id = "hidden-chat-btn">
+        <div id = "chat-header" onclick = {onHeaderClick} >
+            <span>Chat Feed</span>
+        </div>
+
+        <!-- FEED AND TABS -->
+        <div class = "feed-initial" data-id = "feed-holder" >
+            <div class = "feed-holder">
+                <c-lwc-communication-feed-control data-id = "feed"></c-lwc-communication-feed-control>
+            </div>
+        </div>
+    </div>
+</template>
