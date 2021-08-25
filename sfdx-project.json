@@ -11,7 +11,7 @@
             "path": "ExamPackage",
             "package": "ExamPackage",
             "versionName": "ver 1.0",
-            "versionNumber": "1.0.0.4",
+            "versionNumber": "1.0.0.NEXT",
             "default": false,
             "dependencies": [
                 {
