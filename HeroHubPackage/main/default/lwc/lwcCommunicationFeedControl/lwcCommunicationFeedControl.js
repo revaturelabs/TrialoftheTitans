@@ -41,7 +41,8 @@ export default class LwcCommunicationFeedControl extends LightningElement {
     // DESCRIPTION: Used to populate the list that contains all of the tab names
     // PARAMETERS: - tabList : A string list of tab names
     populateTabs(e){
-        let params = new CustomEvent('arguments', {tabList: this.tabList});
+        //let params = new CustomEvent('arguments', {tabList: this.tabList});
+        let params = e.detail.arguments;
         if(params){
             let tabList=params.tabList;
             this.tabs = tabList;
@@ -65,7 +66,7 @@ export default class LwcCommunicationFeedControl extends LightningElement {
     // PARAMETERS: - tabContent : A list of FeedElements from the selected group. The last element must be
     //               a string containing the name of the selected tab
     swapTabs(e){
-        let params = new CustomEvent('arguments', {tabContent: this.tabContent});
+        let params = e.detail.arguments;
         if(params){
             let tabContent = params.tabContent;
             let activeTab = tabContent.pop();
@@ -79,7 +80,8 @@ export default class LwcCommunicationFeedControl extends LightningElement {
     // DESCRIPTION: Used to add a message to the content list of the active tab
     // PARAMETERS:  - newMessage : the FeedElement to add to the content list
     addPostedMessage(e){
-        let params = new CustomEvent('arguments', {newMessage: this.newMessage});
+        //let params = new CustomEvent('arguments', {newMessage: this.newMessage});
+        let params = e.detail.arguments;
         if(params){
             this.loading = false;
             let newMessage = params.newMessage;
@@ -91,4 +93,6 @@ export default class LwcCommunicationFeedControl extends LightningElement {
             this.currentContent = contentList;
         }
     }
+
+    //NewTabLoad and NewMessageLoad were put in the connectedCallback.
 }

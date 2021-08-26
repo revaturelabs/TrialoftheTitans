@@ -23,7 +23,7 @@ export default class LwcExamStats extends LightningElement {
     display
 
     examClicked(e){
-        let exam = new CustomEvent("exam", {exam: this.exam});
+        let exam = e.detail.exam;
         console.log("displayresults: " + JSON.stringify(exam));
         console.log("exam assigned? " + exam.assigned);
         this.exam = exam;
