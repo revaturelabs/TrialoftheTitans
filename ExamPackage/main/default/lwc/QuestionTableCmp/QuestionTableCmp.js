@@ -5,6 +5,16 @@
     <aura:attribute name="selectedPools" type="List"/>
     <aura:attribute name="selectedRows" type="List"/>*/
 
+/*to be implemented(methods):
+   //event-driven methods
+   updateSelectedRows 
+   onMultiSelectChange
+   onSingleSelectChange
+   //component-driven methods
+   getData
+   addQues2Pool
+
+*/
     import { LightningElement,api } from "lwc";
     export default class QuestionTableCmp extends LightningElement{
     @api  objectApi;
@@ -16,14 +26,14 @@
     @api pageSize;
     @api isLastPage;
     @api sizeOfData;
-    handlePrev(event){
+    handlePrev(event){//4
         var searchVal = component.find("searchField").get("v-value"); 
         var pageNumber = component.get("v-pageNumber");
         let searchKeyword = component.get("v-searchKeyword");
         component.set("v.pageNumber", pageNumber-1);
         helper.getData(searchKeyword,component);
         
-    }
+    }//3
     handleNext (event) { 
         var searchVal = component.find("v-searchField").get("v-value"); 
         var pageNumber = component.get("v-pageNumber");
@@ -32,6 +42,7 @@
         helper.getData(searchKeyword,component);
         
     }
+    //2
     searchQues(event){
         let searchKeyword = component.get("v-searchKeyword");
         helper.getData(searchKeyword,component);
@@ -41,6 +52,8 @@
     pageSize = component.get("v-pageSize").toString();
     pageNumber = component.get("v-pageNumber").toString(); 
     action = component.get('c-GetQues');
+
+    //1 cant remember where this event was.
     outputPageData(event){
         "Page" + this.pageNumber + "|" + "Showing records from" + ((this.pageNumber-1)*this.pageSize)+' to '+((this.pageNumber-1)*this.pageSize+this.sizeOfData);
     }
@@ -70,7 +83,7 @@
     <aura:attribute name="searchKeyword" type="String" />
 
 ({
-    init: function(component, event, helper) {
+   done init: function(component, event, helper) {
         
         helper.getData(null,component);
     },
@@ -80,7 +93,7 @@
         
         var test=component.get("v.selectedRows");
     },
-    searchQues: function (component,event,helper){
+    2   searchQues: function (component,event,helper){
         let searchKeyword = component.get("v.searchKeyword");
         helper.getData(searchKeyword,component);
     },
@@ -89,7 +102,7 @@
         var selectedPools = component.find("InputSelectMultiple").get("v.value");
         component.set('v.selectedPools',selectedPools);
     },
-    handleNext : function(component, event, helper) { 
+   3 handleNext : function(component, event, helper) { 
         var searchVal = component.find("searchField").get("v.value"); 
         var pageNumber = component.get("v.pageNumber");
         let searchKeyword = component.get("v.searchKeyword");
@@ -98,7 +111,7 @@
         
     },
     
-    handlePrev : function(component, event, helper) {   
+   4 handlePrev : function(component, event, helper) {   
         var searchVal = component.find("searchField").get("v.value"); 
         var pageNumber = component.get("v.pageNumber");
         let searchKeyword = component.get("v.searchKeyword");
