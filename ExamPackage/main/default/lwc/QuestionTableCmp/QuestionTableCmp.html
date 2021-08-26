@@ -1,0 +1,213 @@
+<!--QuestionTableCmp-->
+<!-- 5/22/2021 -->
+<!-- Phong Nguyen-->
+<!-- The components will display table of question records and will allow users
+  to add questions to the existing pools--> 
+
+  <template> 
+    {objectApi}
+    {mydata}
+    {pools}
+    {mycolumns}
+    <div class="body">
+            
+            
+            
+        <div class="section1">
+            <div class="slds-page-header" role="banner">
+                
+                <h2 id="element-with-table-label" class="slds-text-heading_medium slds-m-bottom_xx-small" style='padding-left: 3%;'>Question Table</h2>
+                <div class="slds-grid">
+                    <div class="slds-col">
+                        <div class="section2">
+                            
+                            <div class="slds-clearfix">
+                                <div class="slds-page-header" role="banner">
+                                    
+                                    <div class="slds-float_none" style='padding-bottom: 10px;'>            
+                                        <lightning-button label="Prev" icon-name="utility:chevronleft" icon-position="left"
+                                                          onclick={handlePrev} disabled={pageNumber}></lightning-button>
+                                        <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right"
+                                                          disabled={isLastPage} onclick={handleNext}></lightning-button>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <p class="title">Page Size</p>
+                                        <lightning-select class="single" aura:id="InputSelectSingle" change={onSingleSelectChange}>
+                                            <lightning-select text="10"></lightning-select >
+                                            <lightning-select  text="20"></lightning-select >
+                                            <lightning-select  text="50"></lightning-select >
+                                            <lightning-select  text="80"></lightning-select >
+                                            <lightning-select  text="100"></lightning-select >
+                                        </lightning-select>
+                                        <p><lightning-formatted-text class="result" aura:id="singleResult" value="" ></lightning-formatted-text></p>
+                                    </div> 
+                                    
+                                    <p>{outputPageData}</p>
+                                </div>
+                            </div>
+                            Search box 
+                            <div class="inputsection">  
+                                <!--this.template.querySelector('[data-id="userform"]')-->
+                                <lightning-input aura:id={searchField}             
+                                                 value={searchKeyword}        
+                                                 placeholder="Search Exam Title"
+                                                 onchange = {searchQues}></lightning-input>    
+                            </div>
+                        </div>
+                        
+                        <lightning-platform-show-toast-event aura:id={notifLib}></lightning-platform-show-toast-event>
+                        
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="slds-col"> 
+                        <div class="row">
+                            <p class="title">Multiple Selection Pools to be added</p>
+                            <lightning-select multiple="true" class="multiple" aura:id="InputSelectMultiple" change={onMultiSelectChange}>
+                                <!--<template for:each={items} for:item='item'>
+                                    <p key={item.id}>{item}</p></template>
+
+                                <aura:iteration items="{!v.pools}" var="pool">
+                                    <ui:inputSelectOption text="{!pool.Name}"/>
+                                </aura:iteration>-->   
+                                <template for:each={pools} for:item='pool'>
+                                    <p key={pool.name}>{pool}</p>
+                                </template>
+                            </lightning-select>
+                            <p><lightning-formatted-text class="result" aura:id="multiResult" value="" ></lightning-formatted-text></p>
+                        </div>
+                        <div style="margin-top:10px">
+                            <lightning-button label="Add questions to Pools" onclick={addQuestion2Pool}></lightning-button>
+                        </div> 
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                
+                <div class="table">
+                    <lightning-datatable data={mydata}
+                                         columns={mycolumns}
+                                         keyfield="Id"
+                                         hidecheckboxcolumn="false"
+                                         onrowselection={updateSelectedRows}></lightning-datatable>
+                </div>
+                
+            </div>
+        </div>   
+    </div>
+
+  </template>
+    <!--Set enableToast to False when preview with HarnessAPP. enableToast=True should work in Lightning Experience-->    
+    <!--    <aura:attribute name="enableToast" type="Boolean" default="true"/>
+    Declaring values
+ 
+   <aura:attribute name="objectApi" type="String" default="Question_Assignment__c" />
+    <aura:attribute name="mydata" type="object"/>
+    <aura:attribute name="pools" type="object"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:attribute name="selectedPools" type="List"/>
+    <aura:attribute name="selectedRows" type="List"/>
+    
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    <aura:attribute name="searchKeyword" type="String" />
+    
+    Pagination
+    <aura:attribute name="pageNumber" type="Integer" default="1"/>
+    <aura:attribute name="pageSize" type="Integer" default="10"/>
+    <aura:attribute name="isLastPage" type="Boolean" default="false"/>
+    <aura:attribute name="dataSize" type="Integer" default="0"/> 
+        ////////////////////////////////////////// Component Layout ///////////////////////////////////////
+        <div class="body">
+            
+            
+            
+            <div class="section1">
+                <div class="slds-page-header" role="banner">
+                    
+                    <h2 id="element-with-table-label" class="slds-text-heading_medium slds-m-bottom_xx-small" style='padding-left: 3%;'>Question Table</h2>
+                    <div class="slds-grid">
+                        <div class="slds-col">
+                            <div class="section2">
+                                
+                                <div class="slds-clearfix">
+                                    <div class="slds-page-header" role="banner">
+                                        
+                                        <div class="slds-float_none" style='padding-bottom: 10px;'>            
+                                            <lightning:button label="Prev" iconName="utility:chevronleft" iconPosition="left"
+                                                              onclick="{!c.handlePrev}" disabled="{! v.pageNumber == 1}"/>
+                                            <lightning:button label="Next" iconName="utility:chevronright" iconPosition="right"
+                                                              disabled="{! v.isLastPage}" onclick="{!c.handleNext}"/>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <p class="title">Page Size</p>
+                                            <ui:inputSelect class="single" aura:id="InputSelectSingle" change="{!c.onSingleSelectChange}">
+                                                <ui:inputSelectOption text="10"/>
+                                                <ui:inputSelectOption text="20"/>
+                                                <ui:inputSelectOption text="50"/>
+                                                <ui:inputSelectOption text="80"/>
+                                                <ui:inputSelectOption text="100"/>
+                                            </ui:inputSelect>
+                                            <p><ui:outputText class="result" aura:id="singleResult" value="" /></p>
+                                        </div>  
+                                        
+                                        <p>Page {!v.pageNumber} | Showing records from {! ((v.pageNumber-1)*v.pageSize)+' to '+((v.pageNumber-1)*v.pageSize+v.dataSize)}</p>
+                                    </div>
+                                </div>
+                                Search box 
+                                <div class="inputsection">  
+                                    <lightning:input aura:id="searchField"              
+                                                     value="{!v.searchKeyword}"          
+                                                     placeholder="Search Exam Title"
+                                                     onchange = "{!c.searchQues}"/>     
+                                </div>
+                            </div>
+                            
+                            <lightning:notificationsLibrary aura:id="notifLib"/>
+                            
+                        </div>
+                        
+                        
+                        
+                        
+                        <div class="slds-col"> 
+                            <div class="row">
+                                <p class="title">Multiple Selection Pools to be added</p>
+                                <ui:inputSelect multiple="true" class="multiple" aura:id="InputSelectMultiple" change="{!c.onMultiSelectChange}">              
+                                    <aura:iteration items="{!v.pools}" var="pool">
+                                        <ui:inputSelectOption text="{!pool.Name}"/>
+                                    </aura:iteration>
+                                </ui:inputSelect>
+                                <p><ui:outputText class="result" aura:id="multiResult" value="" /></p>
+                            </div>
+                            <div style="margin-top:10px">
+                                <lightning:button label="Add questions to Pools" onclick="{! c.addQuestion2Pool }"/>
+                            </div> 
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <div class="table">
+                        <lightning:datatable data="{!v.mydata}"
+                                             columns="{!v.mycolumns}"
+                                             keyField="Id"
+                                             hideCheckboxColumn="false"
+                                             onrowselection="{!c.updateSelectedRows}"/>
+                    </div>
+                    
+                </div>
+            </div>   
+        </div>
+    </aura:component>-->

@@ -1,0 +1,1 @@
+# Not needed to Migrate due to Native Shadow DOM(essentially anything and its children identified with slds styling will inherit that styling.)

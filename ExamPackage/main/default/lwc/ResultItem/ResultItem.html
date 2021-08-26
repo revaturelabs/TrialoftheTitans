@@ -1,0 +1,24 @@
+ <!--<lightning:outputField fieldName="Coding_Assessment__c" />-->   
+<!--
+
+    <aura:component >
+	    <aura:attribute name="resultId" type="ID"/>
+    <lightning:recordViewForm recordId="{!v.resultId}" objectApiName="Hero_Apex_Test_Result__c">
+        <div class="slds-box" style="font-style: italic">
+            <lightning:outputField fieldName="Name" />
+            <lightning:outputField fieldName="Method_Name__c" />
+            <lightning:outputField fieldName="Passed__c" />
+                            
+        </div>
+    </lightning:recordViewForm>
+</aura:component>
+-->
+<template>
+    <lightning-record-view-form record-id={resultId} object-api-name="Hero_Apex_Test_Result__c">
+        <div class="slds-box" style="font-style: italic">
+            <lightning-output-field field-name="Name"></lightning-output-field>
+            <lightning-output-field field-name="Method_Name__c"></lightning-output-field>
+            <lightning-output-field field-name="Passed__c"></lightning-output-field>
+        </div>
+    </lightning-record-view-form>
+</template>

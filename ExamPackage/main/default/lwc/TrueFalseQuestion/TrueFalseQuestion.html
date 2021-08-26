@@ -1,0 +1,44 @@
+<!--<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+   
+    <aura:attribute name="question" type="Exam_Question__c"/>
+    <aura:attribute name="questionprompt" type="String"/>
+    <aura:attribute name="correctAnswer" type="String"/>
+    <aura:attribute name="options" type="List" default="[
+    {'label': 'True', 'value': 'option1'},
+    {'label': 'False', 'value': 'option2'}
+    ]"/>
+    <aura:attribute name="value" type="String" default="option1"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.fetchTrueFalse}"/>
+    
+    <lightning:card>
+        <div class="slds-m-around--xx-large">
+            <div>
+    			<lightning:radioGroup name="{!v.questionprompt}"  
+                                      label="{!v.questionprompt}"
+                          			  options="{!v.options}"
+                          			  value="{!v.value}"
+                          			  type="radio"/>
+            </div>
+        </div>
+    </lightning:card>   
+</aura:component>
+-->
+<template>
+<lightning-card>
+    <div class="slds-m-around--xx-large">
+        <div>
+        <lightning-radio-group name={questionprompt}
+        label={questionprompt}
+        options={options}
+        value={value}
+        type="radio"
+        ></lightning-radio-group>
+    </div>
+
+    </div>
+
+</lightning-card>
+
+
+</template>
