@@ -10,7 +10,7 @@
 ////////////////////////////////////////////////////
 
 public with sharing class FlaggedHeroController {
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<QC_Flag__c> HeroList(){
         List<QC_Flag__c> flaggedHero = [SELECT Name, Description__c, Type__c,
                                         Account__r.Name, QC_Interview__r.Week__c, QC_Interview__r.QC_Score__c

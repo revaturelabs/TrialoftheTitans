@@ -1,0 +1,9 @@
+<template>
+    <lightning-card title="Exam Results list">
+        <template if:true={examList.data}>
+            <lightning-datatable key-field="Id" data = [examList.data] columns={columns}>
+
+            </lightning-datatable>
+        </template>
+    </lightning-card>
+</template>
