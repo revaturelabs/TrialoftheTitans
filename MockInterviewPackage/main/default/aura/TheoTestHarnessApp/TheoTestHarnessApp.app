@@ -22,6 +22,25 @@
 
 <c:newProjectCreationLWC />
 
+    <!-- <c:HeroGroupchart /> -->
+    <!-- <c:heroGroupchartLWC /> -->
+
+    <!-- <c:TrainerHubPastCohortsTable/> -->
+
+    <!-- <c:trainerHubPastCohortsTableLWC /> -->
+
+    <!-- <c:TrainerHubTransferActiveCohortPage /> -->
+
+    <!-- <c:TrainerHubAndCohortsPage />
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+break...
+
+<c:trainerHubAndCohortsPageLWC /> -->
+
     <!--
     <c:HeroGroupchart />
     <c:HeroList/> -->

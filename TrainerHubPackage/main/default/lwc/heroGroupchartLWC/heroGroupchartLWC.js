@@ -1,9 +1,49 @@
-({
-	renderChart: function(component, data) {
-        
+import { LightningElement } from 'lwc';
+import getDataMap from '@salesforce/apex/D3GrpChartController.getDataMap';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
+import D3 from '@salesforce/resourceUrl/d3';
+
+export default class HeroGroupchartLWC extends LightningElement {
+
+// https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.js_third_party_library
+
+    svgWidth = 400;
+    svgHeight = 400;
+    d3Initialized = false;
+
+    renderedCallback() {
+        if (this.d3Initialized) {
+            return;
+        }
+        this.d3Initialized = true;
+
+        Promise.all([
+            loadScript(this, D3 + '/d3.js')
+        ])
+            .then(() => {
+                console.log('loaded d3?');
+                getDataMap()
+                    .then(result => {
+                        // Render the returned data as a Bar chart
+                        const data = JSON.stringify(result);
+                        this.renderChart( data );
+                    })
+                    .catch(error => {
+                        console.log('error: ', error);
+                    });
+            })
+            .catch(error => {
+                console.log('error: ', error);
+            });
+    }
+
+    renderChart(data) {
         var margin = {top: 20, right: 20, bottom: 30, left: 40},
             width = 800 - margin.left - margin.right,
             height = 250 - margin.top - margin.bottom;
+
+
         var x0  = d3.scaleBand().rangeRound([0, width], .5);
         var x1  = d3.scaleBand();
         var y   = d3.scaleLinear().rangeRound([height, 0]);
@@ -11,9 +51,9 @@
         let parsedData = JSON.parse(data)
         const result=[];
         for(let element in parsedData) result.push([element, parsedData[element]])
-        console.log(result);
+        // console.log(result);
         const result1=Object.keys(parsedData).map(key=>[key, parsedData[key]]);
-        console.log(result1);
+        // console.log(result1);
         var xAxis = d3.axisBottom().scale(x0).tickValues(result.map(d=>d[0]));
         //.tickFormat(d3.timeFormat("Month %b"))
       
@@ -21,12 +61,15 @@
         var yAxis = d3.axisLeft().scale(y);
         
         const color = d3.scaleOrdinal(d3.schemeCategory10);
-        var svg = d3.select("#svg2")
+        const svg = d3.select(this.template.querySelector('svg.d3'))
         .append("svg:svg")
         .attr("width", width)
         .attr("height", height)
         .attr("viewBox", `0 0 ${width+30} ${height+50}`)
         .attr("margin", margin)
+
+        this.svgWidth = width;
+        this.svgHeight = height;
         
         var g = svg.append("g")
         .attr("transform", "translate(" + 30 + "," + 30 + ")");
@@ -86,4 +129,4 @@
         .attr("y", function(d) { return y(d.grpValue); })
         .attr("height", function(d) { return height - y(d.grpValue); });
     }
-})
+}

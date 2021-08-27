@@ -1,14 +1,14 @@
 import { LightningElement,api } from 'lwc';
 import projectNameIsAvailable from '@salesforce/apex/NewProjectCreationAuraController.projectNameIsAvailable';
-// import ShowToastEvent from 'lightning/platformShowToastEvent'
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import setNewProject from '@salesforce/apex/NewProjectCreationAuraController.setNewProject';
+// import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
-const evt = new ShowToastEvent({
-    title: 'Warning',
-    message: 'This is a warning message',
-    variant: 'warning',
-    mode: 'dismissable'
-});
+// const evt = new ShowToastEvent({
+//     title: 'Warning',
+//     message: 'This is a warning message',
+//     variant: 'warning',
+//     mode: 'dismissable'
+// });
 
 export default class NewProjectCreationLWC extends LightningElement {
 
@@ -22,7 +22,7 @@ export default class NewProjectCreationLWC extends LightningElement {
         .then(result => {
             if (!result) {
                 console.log('unavailable');
-                this.dispatchEvent(evt);
+                // this.dispatchEvent(evt);
             }
         })
         .catch(error => {
@@ -36,6 +36,24 @@ export default class NewProjectCreationLWC extends LightningElement {
 
     createNewProject(event) {
         console.log('create button click');
+        setNewProject({name: this.enteredName, description: this.enteredDescription})
+        .then(result => {
+            //If no errors are returned, display toast to let user know record has been inserted.
+            component.find("componentNotif").showToast({"Title" : "New Project Created!", "variant" : "success", 
+            "message" : "Project successfully created!"});
+            //Blank input fields.
+            component.find("nameInput").set("v.value", "");
+            component.find("descInput").set("v.value", "");
+            //Redirect to homepage.
+            component.set("v.currentPage", "homePage");
+            setTimeout(function() {
+            window.location.reload();//reload page
+
+            })
+        })
+        .catch(error => {
+            console.log('error: ', error);
+        });
     }
 
     handleNameChange(event){

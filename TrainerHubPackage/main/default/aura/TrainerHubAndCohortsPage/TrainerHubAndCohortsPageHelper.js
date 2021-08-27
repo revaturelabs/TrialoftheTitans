@@ -14,7 +14,6 @@
 
         cmp.set("v.CohortPageActive", true);
 		
-		
     },
 
     handleClick : function(cmp) {

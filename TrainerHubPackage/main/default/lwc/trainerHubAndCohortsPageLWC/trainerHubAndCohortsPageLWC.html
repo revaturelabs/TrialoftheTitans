@@ -1,0 +1,21 @@
+<template>
+    <template if:false={cohortPageActive}>
+        <lightning-datatable
+            data={data}
+            columns={columns}
+            key-field="Id"
+            hide-checkbox-column="true"
+            onrowaction={rowClickedAction}>
+        </lightning-datatable>
+        <lightning-button label="Go To Active Cohort Page" title="Active Cohort" onclick={transferToActiveCohort} >
+            </lightning-button>
+    </template>
+    <template if:true={cohortPageActive}>
+        <!-- REPLACE c-qc-interview2-l-w-c with CohortPageContainer here -->
+        <c-qc-interview2-l-w-c cohort-id={cohortId}></c-qc-interview2-l-w-c>
+        <!-- (I'm only using c-qc-interview2-l-w-c for testing purposes, since
+        I don't have the lwc version of CohortPageContainer.) -->
+        <lightning-button label="Return To Trainer Hub" title="Trainer Hub" onclick={returnToTrainerHub} >
+            </lightning-button>
+    </template>
+</template>
