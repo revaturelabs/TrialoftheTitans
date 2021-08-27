@@ -5,14 +5,14 @@ export default class LwcCommunicationFeedItem extends LightningElement {
     content;
     
     /*
-    get contentHeader(){
+    @api contentHeader(){
         if(this.content.header.text == null){
             this.content.header.text = "";
         }
         return this.content.header.text;
     }
 
-    get contentBody(){
+    @api contentBody(){
         if(this.content.body.text == null){
             this.content.body.text = "";
         }

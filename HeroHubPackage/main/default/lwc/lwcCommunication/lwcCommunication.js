@@ -67,7 +67,7 @@ export default class LwcCommunication extends LightningElement {
     //              - activeTab : the name of the active group
     SendMessage(e) {
         let message = e.detail.message;
-        let activeGroupo = getGroupIdFromTabName(e.detail.activeTab);
+        let activeGroup = getGroupIdFromTabName(e.detail.activeTab);
         console.log('In sending message' + e.detail.message + e.detail.activeTab);
 
         if ( activeGroup == "" ) {
@@ -87,25 +87,9 @@ export default class LwcCommunication extends LightningElement {
 
 
     /*HELPER METHODS*/
-    /*
-    // DESCRIPTION: Swaps the feed classes to expand the feed box
-    // PARAMETERS:  - feedBody : the component to expand
-    expandFeed(feedBody){
-        feedBody.classList.remove( "feed-collapsed" );
-        feedBody.classList.remove( "feed-initial" );
-        feedBody.classList.add( "feed-expanded" );
-    }
-    */
-    // DESCRIPTION: Swaps the feed classes to collapse the feed box
-    // PARAMETERS:  - feedBody : the componenet to collapse
-    /*collapseFeed(feedBody){
-        feedBody.classList.remove( "feed-expanded" );
-        feedBody.classList.add( "feed-collapsed" );
-    }*/
 
     // DESCRIPTION: Gets the names of groups from a list of CollaborationGroups and populates tabs with them
-    // PARAMETERS:  - component : the aura component (Communication.cmp)
-    //              - groups : a list of CollaborationGroups to extract the names from
+    // PARAMETERS:  - groups : a list of CollaborationGroups to extract the names from
     extractAndSetGroupNames(groups) {
         let tabNames = [];
 
@@ -122,8 +106,7 @@ export default class LwcCommunication extends LightningElement {
     }
     
     // DESCRIPTION: Given a valid name for a group, returns that groups ID
-    // PARAMETERS:  - component : the aura component (Communication.cmp)
-    //              - tabName : the name of the desired tab
+    // PARAMETERS:  - tabName : the name of the desired tab
     getGroupIdFromTabName(tabName){
         let groupList = this.userGroups;
 
