@@ -4,14 +4,6 @@ export default class CurrentCohortAverageLWC extends LightningElement {
     @wire(getData)
     getData;
  
-    
-    
-    
-    
-    
-    
-    
-    
     Chart(data){
         var margin = 5,
         width = 700,
@@ -22,7 +14,7 @@ export default class CurrentCohortAverageLWC extends LightningElement {
         .attr("height", height)
         .attr("viewBox", `0 0 ${width+30} ${height+50}`)
         .attr("margin", margin);
-
+    
         var xScale = d3.scaleBand().range([0, width]).padding(0.5),
             yScale = d3.scaleLinear().range([height, 0]);
         
@@ -31,7 +23,7 @@ export default class CurrentCohortAverageLWC extends LightningElement {
         
         xScale.domain(data.map(function(d) { return d.name; }));
         yScale.domain([0, d3.max(data, function(d) { return d.value; })]);
-
+    
         g.append("g")
         .attr("transform", "translate(0,"+(height)+")")
         .call(d3.axisBottom(xScale));
@@ -41,7 +33,7 @@ export default class CurrentCohortAverageLWC extends LightningElement {
             return d + "%";
         }).ticks(10));
         
-		var helper = this;
+        var helper = this;
         g.selectAll(".bar")
         .data(data)
         .enter().append("rect")
@@ -58,9 +50,9 @@ export default class CurrentCohortAverageLWC extends LightningElement {
         })
         .on("mouseover", function(d) {
             d3.select(this)
-            	.attr("fill", function(d) {
-                	return d3.rgb(helper.RetColor(d.name)).darker(2);
-            	});
+                .attr("fill", function(d) {
+                    return d3.rgb(helper.RetColor(d.name)).darker(2);
+                });
         })
         .on("mouseout", function(d) {
             d3.select(this).attr("fill", function(d) {
@@ -71,7 +63,6 @@ export default class CurrentCohortAverageLWC extends LightningElement {
             return d.value+"%";
         });
     }
-
     RetColor(name){
         switch (name){
             case 'Exams':
