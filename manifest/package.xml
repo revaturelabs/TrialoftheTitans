@@ -4,6 +4,10 @@
 		<members>Hero</members>
 		<name>Profile</name>
 	</types>
+	<!--types>
+		<members>heroLoginLwc</members>
+		<name>LightningComponentBundle</name>
+	</types-->
 
 
 	<types>
@@ -179,43 +183,43 @@
 		<members>*</members>
 		<name>CustomObject</name>
 	</types>
-	<!--types-->
+	<types-->
 		<!--CorePackage-->
-		<!--members>Cohort__c-Cohort Layout</members>
+		<members>Cohort__c-Cohort Layout</members>
 		<members>Curriculum__c-Curriculum Layout</members>
 		<members>Team__c-Team Layout</members>
-		<members>Titan__c-Titan Layout</members-->
+		<members>Titan__c-Titan Layout</members>
 
 		<!--ExamPackage -->
-		<!--members>Exam__c-Exam Layout</members>
+		<members>Exam__c-Exam Layout</members>
 		<members>Exam_Question__c-Exam Question Layout</members>
 		<members>Exam_Result__c-Exam Result Layout</members>
 		<members>Hero_Answer__c-Hero Answer Layout</members>
-		<members>Question_Pool__c-Question Pool Layout</members-->
+		<members>Question_Pool__c-Question Pool Layout</members>
 
 		<!-- MockInterviewPackage -->
-		<!--members>Coding_Assessment__c-Coding Assessment Layout</members>
+		<members>Coding_Assessment__c-Coding Assessment Layout</members>
 		<members>Feedback__c-Feedback Layout</members>
 		<members>MI_Question_Pool__c-MI Question Pool Layout</members>
-		<members>Mock_Interview_Self__c-Mock Interview Self Layout</members-->
+		<members>Mock_Interview_Self__c-Mock Interview Self Layout</members>
 
 		<!-- QCHubPackage -->
-		<!--members>QC_Flag__c-QC Flag Layout</members>
+		<members>QC_Flag__c-QC Flag Layout</members>
 		<members>QC_Interview__c-QC Interview Layout</members>
 		<members>QC_Question__c-QC Question Layout</members>
 		<members>QC_Question_Answer__c-QC Question Answer Layout</members>
-		<members>QC_Question_Deck__c-QC Question Deck Layout</members-->
+		<members>QC_Question_Deck__c-QC Question Deck Layout</members>
 
 		<!-- TrainerHubPackages -->
-		<!--members>Account-Account Layout</members>
+		<members>Account-Account Layout</members>
 		<members>Assessment__c-Assessment Layout</members>
 		<members>Equivalency__c-Equivalency Layout</members>
 		<members>Hero_Apex_Test_Result__c-Hero Apex Test Result Layout</members>
 		<members>Hero_Assessment__c-Hero Assessment Layout</members>
 		<members>Project__c-Project Layout</members>
 
-		<name>Layout</name-->
-	<!--/types-->
+		<name>Layout</name>
+	</types>
 	<types>
 		<members>QC_Hub</members>
 		<members>ExamHub</members>

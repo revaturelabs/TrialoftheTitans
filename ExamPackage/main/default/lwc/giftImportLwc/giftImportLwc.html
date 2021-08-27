@@ -1,0 +1,179 @@
+<template>
+    <!--
+////////////////////////////////////////////////////
+//
+// Name: Trial of the Titans - GIFT Parser
+// Author: Danny Tran, David J. Sellinger
+// Description: Component to take in gift format text file.
+// - ATTRIBUTES
+// - initMessage: Message shown when initial values on picklists have been set and ready to import.
+// - titans: Holds the Name and Ids of Titans.
+// - selectedTitan: Holds the Id of the selected Titan.
+// - technologies: Holds the Name and Ids of Technologies.
+// - selectedTechnology: Holds the Id of the selected Titan.
+// - canUpload: Boolean used to show next page in wizard.
+// - fileName: Name of file uploaded by the user.
+// - toImport: The number of questions in the file uploaded by the user.
+// - showQuestions: Used to show the questions table.
+// - submitList: Used to hold the questions to be submitted split into parts.
+// - submitError: Displays error message if the user does not select file to upload.
+// - imported: Number of questions imported.
+// - updated: Number of questions updated.
+// - HANDLERS
+// - init: Handles initialization of picklist values.
+//
+////////////////////////////////////////////////////
+
+@api initMessage;
+@api titans=[{'Name': 'Loading...', 'Id': 0}];
+@api selectedTitan;
+@api technologies=[{'TechnologyName': 'Loading...', 'TitanId': 0}];
+@api selectedTechnology;
+@api canUpload=false;
+@api fileName="No File Selected...";
+@api toImport=0;
+@api showQuestions=false;
+@api submitList;
+@api submitError;
+@api successMessage=false;
+@api imported=0;
+@api updated=0;-->
+
+<!-- <aura:component controller="AuraGIFTImportController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+access="global"> -->
+<!-- INIT ATTRIBUTES -->
+<!-- <aura:attribute name="initMessage" type="String" default="" />
+<aura:attribute name="titans" type="List" default="[{'Name': 'Loading...', 'Id': 0}]" />
+<aura:attribute name="selectedTitan" type="String" />
+<aura:attribute name="technologies" type="List" default="[{'TechnologyName': 'Loading...', 'TitanId': 0}]" />
+<aura:attribute name="selectedTechnology" type="String" /> -->
+<!-- UPLOAD ATTRIBUTES -->
+<!-- <aura:attribute name="canUpload" type="Boolean" default="false" />
+<aura:attribute name="fileName" type="String" default="No File Selected..." />
+<aura:attribute name="toImport" type="Integer" default="0" />
+<aura:attribute name="showQuestions" type="Boolean" default="false" /> -->
+<!-- SUBMISSION ATTRIBUTES -->
+<!-- <aura:attribute name="submitList" type="List" default="[]" />
+<aura:attribute name="submitError" type="String" default="" />
+<aura:attribute name="successMessage" type="Boolean" default="false" />
+<aura:attribute name="imported" type="Integer" default="0" />
+<aura:attribute name="updated" type="Integer" default="0" /> -->
+<!-- EVENTS/HANDLERS -->
+<!-- <aura:handler name="init" value="{!this}" action="{!c.DoInit}" /> converted-->
+<!-- /ATTRIBUTES -->
+<!-- body -->
+    <div>
+    <!-- create record -->
+        <template if:false={canUpload}>
+            <div class="title">
+                <table>
+                    <tr>
+                        <td width="1%"><lightning-icon icon-name="utility:database" alternative-text="Event" title="Event" ></lightning-icon></td>
+                        <td><h1>Import GIFT-Formatted Questions</h1></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="messages">
+                <i>{initMessage}</i><br />
+                <template if:true={successMessage}>
+                    <b>File successfully imported!</b><br />
+                    <i>Imported {imported} questions—Updated {updated} questions</i>
+                </template>
+            </div>
+            <!-- define titan -->
+            <div class="slds-box">
+                <h3>Select a Titan:</h3>
+                <select name="TitanId" data-id="titanList" value={selectedTitan} onchange={HandleChange} class="slds-select">
+                <!--select id="titanList" onchange={HandleChange} class="slds-select"-->
+                
+                <template for:each={titans} for:item="titan">
+                        <option key={titan.Id}>{titan.Name}</option>
+                    </template>
+                 
+                </select>
+            </div>
+            <!-- /define titan -->
+            <!-- define technology -->
+            <div class="slds-box">
+                <h3>Titan's Technology:</h3>
+                <select name="TechnologyId" data-id="technologyList" value={selectedTechnology} disabled="True" class="slds-select">
+                    <template for:each={technologies} for:item="tech">
+                        <option key={tech.TitanId}>{tech.TechnologyName}</option>  
+                    </template> 
+                </select>
+            </div>
+            <!-- /define technology -->
+            <!-- submit button -->
+            <div class="slds-box">
+                <lightning-button variant="brand" label="Next" title="Next" onclick={HandleNext}></lightning-button>
+            </div>
+            <!-- /submit button -->
+        </template>
+            <!-- /create record -->
+            <!-- upload component -->
+        <template if:true={canUpload}>
+            <div class="title">
+                <table id="title__table">
+                    <tr>
+                        <td width="1%"><lightning-icon icon-name="doctype:txt" alternative-text="Event" title="Event"></lightning-icon></td>
+                        <td><h1>File Submission</h1></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="slds-box">
+                <span class="errorText">{submitError}</span>
+                <div class="slds-text-body_small slds-text-color_black" style="white-space: pre-line;">
+                    <table style="max-width:80%;margin:25px auto;">
+                        <tr>
+                            <td width="20%">
+                                <!--b>File to Import:</b>&nbsp;{fileName}<br /-->
+                                <b>Number of questions: {toImport}</b><br />
+                            </td>
+                            <td class="td__upload">
+                                <!-- file uploader -->
+                                <input type="file" id="textFile" name="textFile" accept=".txt"  onchange={handleFileUpload} multiple>
+                                <!--/file uploader-->
+                            </td>
+                            <td class="td__buttons">
+                                <!-- cancel button -->
+                                <lightning-button variant="neutral" label="Cancel" title="Cancel" onclick={HandleCancel}> </lightning-button>
+                                <!-- /cancel button -->
+                            </td>
+                            <td class="td__buttons">
+                                <!-- submit button -->
+                                <lightning-button variant="brand" label="Submit" title="Submit" onclick={SubmitClick}> </lightning-button>
+                                <!-- /submit button -->
+                            </td>
+                        </tr>
+                    </table>
+                    <template if:true={showQuestions}>
+                        <h2>Questions to Import:</h2>
+                        <table id="import">
+                            <tr>
+                                <th width="20%">Question Title</th>
+                                <th width="40%">Question Text</th>
+                                <th width="40%">Question Answer</th>
+                            </tr>
+                            <template for:each={submitList} for:item="q">
+                                <tr key={q.Id}><!--added key -->
+                                    <td>
+                                        {q.qTitle}
+                                    </td>
+                                    <td>
+                                        {q.qText}
+                                    </td>
+                                    <td>
+                                        {q.qAnswer}
+                                    </td>
+                                </tr>
+                            </template>
+                        </table>
+                    </template>
+                </div>
+            </div>
+        </template>
+    <!-- /upload component -->
+    </div>
+    <!-- /body -->
+
+</template>

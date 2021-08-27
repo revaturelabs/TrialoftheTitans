@@ -650,7 +650,7 @@ public class AuraGIFTImportController {
 	// returns Map<String,List<Map<String,String>>> initialValueMap: map of values for the picklists shown
 	//					on the aura component.
 
-	@AuraEnabled
+	@AuraEnabled(cacheable=true)
 	public static Map<String,List<Map<String,String>>> HandleInit() {
 		Map<String,List<Map<String,String>>> initialValueMap = new Map<String,List<Map<String,String>>>();
 		try {

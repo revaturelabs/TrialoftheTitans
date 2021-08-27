@@ -1,40 +1,132 @@
-/////////////////////////////////////////////////////
-//
-//  Name: GiftImportHelper
-//  Author: David J. Sellinger
-//  Description: Client-side JS Helper for the GIFT
-//               Import component.                
-//
-///////////////////////////////////////////////////
+import { LightningElement, api } from 'lwc';
+import HandleInit from '@salesforce/apex/AuraGIFTImportController.HandleInit';
+import ImportFile from '@salesforce/apex/AuraGIFTImportController.ImportFile';//(List<ExamQuestion> questionList, String titan)
 
-({
-    // HandleInit(): Handle init. Get technology and titan values for the picklists.
+export default class GiftImportLwc extends LightningElement {
+    @api initMessage;
+    @api titans=[{'Name': 'Loading...', 'Id': 0}];
+    @api selectedTitan;
+    @api technologies=[{'TechnologyName': 'Loading...', 'TitanId': 0}];
+    @api selectedTechnology;//="";
+    @api canUpload=false;
+    @api fileName="No File Selected...";
+    @api toImport=0;
+    @api showQuestions=false;
+    @api submitList;
+    @api submitError;
+    @api successMessage=false;
+    @api imported=0;
+    @api updated=0;
+    @api recordId;
+    
+    constructor(){
+        super();
+        this.HandleInit(); 
+    }
+    //fills initial values
+    async HandleInit(){ //converted
+        let valuesMap = await HandleInit(); 
+        this.technologies = valuesMap["Technologies"];
+        this.selectedTechnology = valuesMap["Technologies"][0]["TitanId"]; 
+        
+        this.titans = valuesMap["Titans"];
+        this.selectedTitan = valuesMap["Titans"][0]["Id"];
+        this.initMessage = "Ready to import questions.";
+    }
 
-    HandleInit : function( component ) {
-        // get initial values from Apex controller
-        let action = component.get( "c.HandleInit" );
-        action.setCallback(this, function( response ) {
-            let state = response.getState();
-            if ( state === "SUCCESS" ) {
-                let valuesMap = response.getReturnValue();
-                component.set( "v.technologies", valuesMap["Technologies"] );
-                component.set( "v.selectedTechnology", valuesMap["Technologies"][0]["TitanId"] );
-                // console.log( "Default technology: " + component.get( "v.selectedTechnology" ) );
-                component.set( "v.titans",valuesMap["Titans"] );
-                component.set( "v.selectedTitan", valuesMap["Titans"][0]["Id"] );
-            // console.log("Default titan: " + component.get("v.selectedTitan"));
-                component.set( "v.initMessage", "Ready to import questions." );
-            }
-        });
-        $A.enqueueAction( action );
-    },
+        
+    // HandleChange(): Handle the change of selectedTechnology option
+    HandleChange() { //converted
+        // change selectedTechnology to have it line up with titan
+        this.selectedTechnology = this.selectedTitan;
+    }
+
+    // HandleNext(): Next button handler, send user to upload page.
+    HandleNext() {//converted
+        this.successMessage = false;
+        this.canUpload = true;
+    }
+
+    //On file upload it use file reader to get the text file content
+    handleFileUpload(event) { //this doesn't actually do anything? 
+
+        const uploadedFiles = event.target.files;
+        var reader = new FileReader();
+        reader.readAsText(uploadedFiles[0]);
+
+        var fileContents = '';
+
+        //works, do stuff
+        reader.onload = function() {
+            fileContents = reader.result;
+            let helperResult = this.SplitString( fileContents );
+            this.submitList = helperResult;
+            this.showQuestions = true;
+            this.toImport = helperResult.length;
+        }.bind(this);
+
+        //doesn't work yo
+        reader.onerror = function() {
+            console.log(reader.error);
+          };
+    }
+
+    // HandleCancel(): Cancel button handler, cancel file submission
+    HandleCancel () {
+        // change view back to first view
+        this.canUpload = false;
+        this.showQuestions = false;
+        
+        // empty the displayed file
+        this.submitList = [];
+        this.toImport = 0;
+    }
+        
+    // SubmitClick(): Submit button handler, submit the file, clear the text and send user back to first page of wizard.
+    //      Then use helper to parse questions into objects that will be sent toward ApexController
+    SubmitClick() {
+        if ( this.submitList.length > 0 ) {
+            let titan = this.selectedTitan;
+            let questionList = this.submitList;
+
+            // change view back to first view
+            this.submitError = "";
+            this.canUpload = false;
+            this.showQuestions = false;
+            
+            // submit the question list
+            this.SubmitQuestionList( questionList, titan );
+            
+            // empty the displayed file
+            this.submitList = [];
+            this.toImport = 0;
+        } else {
+            this.submitError = "You must select a file to upload!";
+        }
+    }
+
+    
+    // SubmitQuestionList(): Takes the list of questions and titan and passes it to the Apex
+    //      controller for parsing.
+    // questions: question list from uploaded file
+    // titan: the titan selected by the user on the first screen of wizard
+
+    async SubmitQuestionList( questions, titan ) {
+        let userFeedback = await ImportFile({questionList:questions, titan:titan});
+
+        this.successMessage = true;
+        this.imported = userFeedback[0];
+        this.updated = userFeedback[1];
+        this.fileName = "No file selected...";
+    }
 
     // SplitString(): Split each question in text file to its own object and put it in a list.
     //          Send the list along with titan and technology to ApexController.
     // theString: the uploaded file in string form
     // returns apexObjectList: array of objects built from questions split into title, text and answer
 
-    SplitString : function( component, theString ) {
+    SplitString ( theString ) {
+
         // remove comments
         theString = theString.replace( /\/\/.*$/mg, '\n' );
         
@@ -115,55 +207,7 @@
             }
         }
         
-        // console.log(apexObjectList);
+        //console.log(apexObjectList);
         return apexObjectList;
-    },
-
-
-    // SubmitClick(): Submit button handler, submit the file, clear the text and send user back to first page of wizard.
-    //      Then use helper to parse questions into objects that will be sent toward ApexController
-
-    SubmitClick : function( component, helper ) {
-        if ( component.get( "v.submitList" ).length > 0 ) {
-            let titan = component.get( "v.selectedTitan" );
-            let questionList = component.get( "v.submitList" );
-            // console.log("titan:" + titan);
-
-            // change view back to first view
-            component.set( "v.submitError", "" );
-            component.set( "v.canUpload", false );
-            component.set( "v.showQuestions", false );
-            
-            // submit the question list
-            helper.SubmitQuestionList( component, questionList, titan );
-            
-            // empty the displayed file
-            component.set( "v.submitList", [] );
-            component.set( "v.toImport", 0 );
-        } else {
-            component.set( "v.submitError", "You must select a file to upload!" );
-        }
-    },
-
-    // SubmitQuestionList(): Takes the list of questions and titan and passes it to the Apex
-    //      controller for parsing.
-    // questions: question list from uploaded file
-    // titan: the titan selected by the user on the first screen of wizard
-
-    SubmitQuestionList : function( component, questions, titan ) {
-        let action = component.get( "c.ImportFile" );
-        action.setParams( {questionList:questions,titan:titan} );
-        action.setCallback( this, function( response ) {
-            let state = response.getState();
-            // console.log( "state: " + state );
-            if ( state === "SUCCESS" ) {
-                let userFeedback = response.getReturnValue();
-                component.set( "v.successMessage", true );
-                component.set( "v.imported", userFeedback[0] );
-                component.set( "v.updated", userFeedback[1] );
-                component.set( "v.fileName", "No file selected..." );
-            }
-        });
-        $A.enqueueAction( action );
     }
-})
+}

@@ -1,0 +1,93 @@
+<template>
+    <div class=" body ">
+        <!-- Exam Creation Section -->
+        <div class="recordFormSection">
+            <template if:false={examCreated}><!--used in controller, possibley a false value as it started w =false onsuccess={handleSuccess}-->
+                <div>
+                    <lightning-record-form object-api-name="Exam__c" 
+                                          layout-type="Full"
+                                          columns="1"
+                                          onsuccess={HandleSuccess}> <!--Converted JS Method-->
+                    </lightning-record-form>
+                </div>
+            </template>
+        </div>
+        <!-- /Exam Creation Section -->
+              
+        <!-- Relating Pool To Exam Section -->
+        <div class="tableSection">
+            <template if:true={examCreated}> <!--Converted variable JS -->
+
+                <!-- Search box-->
+                    <div class="inputsection" style="width:16%">  
+                    <lightning-input data-id="searchField"              
+                                        value={searchKeyword}         
+                                        placeholder="Search Pool Title"
+                                        onchange={GetQuestionPools}>   
+                    </lightning-input>  <!--onchange converted from Init,  Converted JS Method-->
+                </div>
+                        
+                <lightning-layout horizontal-align="spread" multiple-rows="true">
+                    
+                    <!--Right Table-->
+                    <lightning-layout-item size='6' flexibility="auto">
+                        <div class="tableRight">
+                            <lightning-datatable 
+                                                 key-field="poolId"
+                                                 columns={poolDataColumns}
+                                                 data={questionPool}
+                                                 hide-checkbox-column="true"
+                                                 draft-values={draftValues}
+                                                 onrowaction={ShowQuestionInPool}
+                                                 oncellchange={UpdateQuestionQuantity}
+                                                 suppress-bottom-bar="true">
+                            </lightning-datatable> <!--I think i stopped after UpdateQuestion Qunatity-->
+                        </div>
+                    </lightning-layout-item>
+                    
+                    <!--Left table-->
+                    <lightning-layout-item size='6' flexibility="auto">
+                        <div class="tableLeft">
+                            <lightning-datatable data={questionShow}
+                                                 columns={questionDataColumns}
+                                                 key-field="Name"
+                                                 hide-checkbox-column="true">
+                            </lightning-datatable> <!--Converted-->
+                        </div> 
+                    </lightning-layout-item>
+                    
+                    <!-- Next & Prev section -->
+                     <lightning-layout-item size='6' flexibility="auto">  
+
+                         <lightning-layout >
+
+                            <lightning-layout-item size='3' flexibility="auto" padding="horizontal-medium" class="slds-align_absolute-center">
+                                <lightning-button label="Prev" icon-name="utility:chevronleft" icon-position="left"
+                                                  onclick={HandlePrev} disabled={currentPage}>
+                                </lightning-button>
+                            </lightning-layout-item> <!--Converted-->
+                            
+                            <lightning-layout-item size='6' flexibility="auto" padding="horizontal-medium" class="slds-align_absolute-center">
+                                <h1>{currentPage} </h1>
+                            </lightning-layout-item> <!--Converted-->
+                            
+                            <lightning-layout-item size='3' flexibility="auto" padding="horizontal-medium" class="slds-align_absolute-center"> 
+                                <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right"
+                                                  onclick={HandleNext} disabled={isLastPage}> <!--Converted-->
+                            </lightning-button>
+                            </lightning-layout-item>
+                            
+                        </lightning-layout> 
+                    
+                    </lightning-layout-item>
+                    
+                </lightning-layout>
+                
+                <lightning-button variant="brand" label="Create" title="Primary Action" onclick={HandleCreation}>
+                </lightning-button><!--Converted-->
+
+            </template>
+        </div>
+        <!-- Relating Pool To Exam Section -->
+    </div> 
+</template>
