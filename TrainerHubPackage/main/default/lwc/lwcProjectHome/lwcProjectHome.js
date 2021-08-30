@@ -36,6 +36,14 @@ export default class LwcProjectHome extends LightningElement {
     this.currentPage = "NewProjectCreation";
   }
 
+  connectedCallback() {
+    this.currentPage = "homePage";
+  }
+
+  cancelFromNewProjectCreation() {
+    this.currentPage = "homePage";
+  }
+
   // Used for if:true directive
   get isHomePage() {
     return this.currentPage == "homePage" ? true : false;

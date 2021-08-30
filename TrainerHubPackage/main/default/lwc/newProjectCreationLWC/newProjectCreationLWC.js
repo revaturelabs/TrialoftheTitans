@@ -7,9 +7,6 @@ export default class NewProjectCreationLWC extends LightningElement {
     enteredName = '';
     enteredDescription = '';
 
-    @api
-    currentPage;
-
     //Called when the Project Name field loses focus. Checks if project name already exists, and shows an error if so.
     checkIfProjectExists(event) {
         this.checkIfProjectExistsAndSubmitIfApplicable(false);
@@ -36,6 +33,14 @@ export default class NewProjectCreationLWC extends LightningElement {
 
     cancelNewProjectCreation(event) {
         this.currentPage = 'homePage';
+        this.sendCancelEventToParent(event);
+    }
+
+    sendCancelEventToParent(event) {
+        const custEvent = new CustomEvent(
+            'cancel', {
+                detail: event.target.value});
+        this.dispatchEvent(custEvent);
     }
 
     createNewProject(event) {
@@ -55,8 +60,6 @@ export default class NewProjectCreationLWC extends LightningElement {
         .then(result => {
             //If no errors are returned, display alert to let user know record has been inserted.
             alert("Project successully created!"); 
-            //Redirect to homepage.
-            this.currentPage = 'homePage';
             setTimeout(function() {
             window.location.reload();//reload page
 
