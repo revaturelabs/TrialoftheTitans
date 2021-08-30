@@ -41,7 +41,6 @@ export default class titansPageLanding extends LightningElement {
             this.error=error;
         })
     }
-    //  navigate : uses switch statement to show the Titan according to hShowTitan# method
     navigate(event) {
         console.log("LWC navigate function:");
         console.log(this.titanList);
@@ -52,7 +51,6 @@ export default class titansPageLanding extends LightningElement {
             console.log('titanDiv:' + titanDiv);
             $A.util.addClass(titanDiv, "toggle-hide");
         }
-        // ???
         let titanId = event.currentTarget.dataset.titan;
         console.log('Current Titan Id:' + titanId);
         let titanDiv = document.querySelector("#" + titanId);
