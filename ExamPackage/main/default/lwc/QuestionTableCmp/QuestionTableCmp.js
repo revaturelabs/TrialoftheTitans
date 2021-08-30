@@ -27,31 +27,31 @@
     @api isLastPage;
     @api sizeOfData;
     handlePrev(event){//4
-        var searchVal = component.find("searchField").get("v-value"); 
-        var pageNumber = component.get("v-pageNumber");
-        let searchKeyword = component.get("v-searchKeyword");
-        component.set("v.pageNumber", pageNumber-1);
+        var searchVal = component.find("searchField").get("v/value"); 
+        var pageNumber = component.get("v/pageNumber");
+        let searchKeyword = component.get("v/searchKeyword");
+        component.set("v/pageNumber", pageNumber-1);
         helper.getData(searchKeyword,component);
         
     }//3
     handleNext (event) { 
-        var searchVal = component.find("v-searchField").get("v-value"); 
-        var pageNumber = component.get("v-pageNumber");
-        let searchKeyword = component.get("v-searchKeyword");
-        component.set("v.pageNumber", pageNumber+1);
+        var searchVal = component.find("v/searchField").get("v/value"); 
+        var pageNumber = component.get("v/pageNumber");
+        let searchKeyword = component.get("v/searchKeyword");
+        component.set("v/pageNumber", pageNumber+1);
         helper.getData(searchKeyword,component);
         
     }
     //2
     searchQues(event){
-        let searchKeyword = component.get("v-searchKeyword");
+        let searchKeyword = component.get("v/searchKeyword");
         helper.getData(searchKeyword,component);
     }
     
         
-    pageSize = component.get("v-pageSize").toString();
-    pageNumber = component.get("v-pageNumber").toString(); 
-    action = component.get('c-GetQues');
+    pageSize = component.get("v/pageSize").toString();
+    pageNumber = component.get("v/pageNumber").toString(); 
+    action = component.get('c/GetQues');
 
     //1 cant remember where this event was.
     outputPageData(event){
@@ -79,7 +79,7 @@
         }
     }
 
-  /*  <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+  /*  <aura:handler name="init" value="{! this }" action="{! c/init }"/>
     <aura:attribute name="searchKeyword" type="String" />
 
 ({
@@ -89,41 +89,41 @@
     },
     updateSelectedRows: function (component, event) {
         var selectedRows = event.getParam('selectedRows');
-        component.set('v.selectedRows', selectedRows);
+        component.set('v/selectedRows', selectedRows);
         
-        var test=component.get("v.selectedRows");
+        var test=component.get("v/selectedRows");
     },
     2   searchQues: function (component,event,helper){
-        let searchKeyword = component.get("v.searchKeyword");
+        let searchKeyword = component.get("v/searchKeyword");
         helper.getData(searchKeyword,component);
     },
     
     onMultiSelectChange:function(component,event,helper){
-        var selectedPools = component.find("InputSelectMultiple").get("v.value");
-        component.set('v.selectedPools',selectedPools);
+        var selectedPools = component.find("InputSelectMultiple").get("v/value");
+        component.set('v/selectedPools',selectedPools);
     },
    3 handleNext : function(component, event, helper) { 
-        var searchVal = component.find("searchField").get("v.value"); 
-        var pageNumber = component.get("v.pageNumber");
-        let searchKeyword = component.get("v.searchKeyword");
-        component.set("v.pageNumber", pageNumber+1);
+        var searchVal = component.find("searchField").get("v/value"); 
+        var pageNumber = component.get("v/pageNumber");
+        let searchKeyword = component.get("v/searchKeyword");
+        component.set("v/pageNumber", pageNumber+1);
         helper.getData(searchKeyword,component);
         
     },
     
    4 handlePrev : function(component, event, helper) {   
-        var searchVal = component.find("searchField").get("v.value"); 
-        var pageNumber = component.get("v.pageNumber");
-        let searchKeyword = component.get("v.searchKeyword");
-        component.set("v.pageNumber", pageNumber-1);
+        var searchVal = component.find("searchField").get("v/value"); 
+        var pageNumber = component.get("v/pageNumber");
+        let searchKeyword = component.get("v/searchKeyword");
+        component.set("v/pageNumber", pageNumber-1);
         helper.getData(searchKeyword,component);
     },
     
     onSingleSelectChange : function(component, event, helper) {   
-        var singleResult = component.find("InputSelectSingle").get("v.value"); 
+        var singleResult = component.find("InputSelectSingle").get("v/value"); 
         singleResult =Number(singleResult)
-        component.set("v.pageSize", singleResult);
-        let searchKeyword = component.get("v.searchKeyword");
+        component.set("v/pageSize", singleResult);
+        let searchKeyword = component.get("v/searchKeyword");
         helper.getData(searchKeyword,component);
     },
     
@@ -135,19 +135,19 @@
 /*
 ({
     getData : function(searchKeyword,component) {
-        component.set('v.mycolumns', [
+        component.set('v/mycolumns', [
             { label: 'Question Title', fieldName: 'Name', type: 'text'},      
             { label: 'Question Text', fieldName: 'Question_Text', type: 'text'},
             { label: 'Question Type', fieldName: 'Question_Type', type: 'text'}
         ]);
         
         // Getting Values from the client to send to server
-        var pageSize = component.get("v.pageSize").toString();
-        var pageNumber = component.get("v.pageNumber").toString();
+        var pageSize = component.get("v/pageSize").toString();
+        var pageNumber = component.get("v/pageNumber").toString();
         
         
         //****************Get Question List*********************
-        let action = component.get('c.GetQues');
+        let action = component.get('c/GetQues');
         action.setParams({
             'searchKeyword' :   searchKeyword,
             'pageSize' 		:	pageSize,
@@ -171,8 +171,8 @@
                     rows.push(items);
                 }
                 //debugger;
-                component.set("v.dataSize", rows.length);
-                component.set("v.mydata", rows);
+                component.set("v/dataSize", rows.length);
+                component.set("v/mydata", rows);
             } else if (state === "ERROR") {
                 var errors = response.getError();
             }
@@ -180,7 +180,7 @@
         $A.enqueueAction(action);
         
         //*********************Get pool list*******************
-        let action2 = component.get('c.GetPool');
+        let action2 = component.get('c/GetPool');
         // setting CallBack to interact with server side
         action2.setCallback(this, function(response) {
             var state = response.getState();
@@ -197,7 +197,7 @@
                     rows.push(items);
                 }
                 debugger;
-                component.set("v.pools", rows);
+                component.set("v/pools", rows);
             } else if (state === "ERROR") {
                 var errors = response.getError();
             }
@@ -210,11 +210,11 @@
     addQues2Pool : function(component){
         debugger;
         
-        var textPools = component.get("v.selectedPools");
+        var textPools = component.get("v/selectedPools");
         
         if(textPools.length>0){
             var arrayTextPools = textPools[0].split(';');
-            var objectPools = component.get("v.pools");
+            var objectPools = component.get("v/pools");
             var selectedObjectPools = [];
             
             for(let i = 0 ;i<arrayTextPools.length;i++ ){
@@ -231,8 +231,8 @@
         
         
         //var selectedObjectPools = JSON.stringify(selectedObjectPools)
-        var questions = component.get("v.selectedRows");
-        var enableToast = component.get("v.enableToast").toString();
+        var questions = component.get("v/selectedRows");
+        var enableToast = component.get("v/enableToast").toString();
         debugger;
         // validating questions and pools
         if(questions.length<=0 || textPools.length<=0){
@@ -254,7 +254,7 @@
             return;
         } 
         
-        let action3 = component.get('c.addQues2Pool');
+        let action3 = component.get('c/addQues2Pool');
         action3.setParams({
             'pools' 			:  selectedObjectPools,
             'questions' 		:  questions
