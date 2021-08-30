@@ -1,0 +1,57 @@
+<template>
+    <lightning-icon  icon-name={helmetIcon} size="small" alternative-text="Helmet"></lightning-icon>
+    <span class="slds-text-heading_large slds-align_absolute-center" id="Header" style="font-size:xxx-large;">
+        <h5> Welcome {accountInfo} </h5>
+    </span>
+    <div class = "slds-grid slds-col slds-size_12-of-12" id="bannerDiv"></div>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-size_1-of-3 slds-align_absolute-center">
+            <img src={valkyrieImage}/>
+        </div>
+        <!-- Contact information Component, allows the user to view their contact information -->
+        <div class="slds-col slds-size_1-of-3">
+            <span><div class="container slds-m-around_large" id="contactinfo">
+                <lightning-card title={accountInfo} class="slds-text-heading_large">
+                    <div class="slds-grid">
+                        <ul>
+                            <!-- Display error if there is zero length -->
+                            <template if:true={titanListEmpty}>
+                                <p>There are no Titans</p>
+                            </template>
+                            <template for:each={titanList} for:item="titan">
+                                <div key={titan.Id}>
+                                    <li class="slds-text-heading_medium slds-col slds-size_12-of-12" 
+                                        onclick={navigate} data-titan={titan.Id}>
+                                        {titan.Name}
+                                    </li><br/>
+                                </div>
+                            </template>
+                        </ul>
+                    </div>
+                </lightning-card>
+            </div></span>
+        </div>
+        <div class="slds-size_1-of-3 slds-align_absolute-center">
+            <img src={chimeraImage}/>
+        </div>
+    </div>
+    <!-- displays cards with the exams/skills details for each titan when clicked -->
+    <!-- Uses "toggle-hide" class to switch displayed Titan details -->
+    <template for:each={titanList} for:item="titan">
+        <div class="toggle-hide titanDiv slds-col slds-gutters slds-size_12-of-12" key={titan.Id}>
+            <lightning-card>
+                <div class="slds-grid">
+                    <div class="slds-col slds-gutters slds-size_5-of-12">
+                        <c-exams-landing active-titan={titan}></c-exams-landing>
+                    </div>
+                    <div class="slds-size_2-of-12 slds-col slds-gutters slds-align_absolute-center">
+                        <img src={hydraImage}/>
+                    </div>
+                    <div class="slds-col_bump-left slds-gutters slds-size_5-of-12">
+                        <c-landing-skills active-titan={titan}></c-landing-skills>
+                    </div>
+                </div>
+            </lightning-card>
+        </div>     
+    </template>
+</template>

@@ -1,0 +1,13 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  Name: assessmentCreation
+//  Author: Al Waisley/Chance Leonard
+//  Description: JavaScript controller for assessmentCreation
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
+({
+	SubmitClick : function(component, event, helper) {
+        //Give an alert for successful record creation and hide component
+        alert("Succesfully created record");
+    }
+})
