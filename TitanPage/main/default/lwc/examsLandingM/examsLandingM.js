@@ -13,7 +13,7 @@ export default class ExamsLandingM extends LightningElement {
     connectedCallback(){
         //helper.hSetExams(component, event);
         console.log('exam landing is connected');
-        this.doInit();
+        this.doInit(this.event);
 
     }
 
@@ -34,15 +34,16 @@ export default class ExamsLandingM extends LightningElement {
     }
 
     hRendersExams(event){
+        event.preventDefault();
         var renderExams = new CustomEvent('ExamsLandingEvent', {detail:{'titanId':this.activeTitan.Id}});
         this.dispatchEvent(renderExams);
     }
 
-    hSetExams(event, helper){
+    hSetExams(event){
+        
         let activeTitan = this.activeTitan.Id;
         console.log('Active Titan Id: ' + activeTitan);
-        let examsList = this.getExams;
-        examsList({titanId:activeTitan}).then(response =>{
+        getExams({titanId: this.activeTitan.Id}).then(response =>{
             this.examsList = response;
             console.log("Returned Exams: ");
             console.log(response);
