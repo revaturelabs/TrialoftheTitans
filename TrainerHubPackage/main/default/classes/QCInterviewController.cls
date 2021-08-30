@@ -10,7 +10,7 @@
 ////////////////////////////////////////////////////
 
 public with sharing class QCInterviewController {
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<QC_Interview__c> InterviewList(String cohortId){
         List<QC_Interview__c> qcInterviews = [SELECT Name, Account__r.Name, Week__c, QC_Score__c
                                         FROM QC_Interview__c WHERE Account__r.Cohort__c = :cohortId];

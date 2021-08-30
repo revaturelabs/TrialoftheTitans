@@ -16,14 +16,14 @@
     	<!-- Replace with TrainHub main component -->
 		<c:TrainerHubPastCohortsTable />
     </aura:if>
+    <aura:if isTrue="{!!v.CohortPageActive}">
+		<c:TrainerHubTransferActiveCohortPage />
+	</aura:if>
     
 	<aura:if isTrue="{!v.CohortPageActive}">
         <c:CohortPageContainer CohortId="{!v.CohortId}"/>
     </aura:if>
     	
-    <aura:if isTrue="{!!v.CohortPageActive}">
-		<c:TrainerHubTransferActiveCohortPage />
-	</aura:if>
 	<aura:if isTrue="{!v.CohortPageActive}">
 		<lightning:button variant="brand-outline" label="Return To Trainer Hub" title="Trainer Hub" onclick="{! c.handleClick }" />
 	</aura:if>

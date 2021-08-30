@@ -8,6 +8,7 @@ package.xml
 **/appSwitcher/**
 **/objectTranslations/**
 **/profiles/**
+**/permissionsets/**
 **/settings/**
 
 # LWC configuration files
