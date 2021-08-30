@@ -4,330 +4,174 @@ import examFinder from '@salesforce/apex/ExamInterviewApexController.examFinder'
 export default class ExamInterviewLwc extends LightningElement {
 
     @api body;
+    @api examQuestions;
+    @api questionAmount;
+    @api examId; //idk where this comes from/does
 
-      //AssignExamHelper: Assigns the correct Exam that will be taken by the Hero
-    //Gets this information from the TakeExamClickedEvent, which holds the Exam that will be taken
-    // assignExamHelper : function(component, event) {
-    //     var exam = event.getParam("examId");
-    //     //console.log(exam);
-    //     component.set("v.examId", exam); 
-    // },
+    @api matching = false;
+    @api matchId;
+    @api matchQuestion;
+    @api matchOptions;
+    @api matchAnswers;
+    @api matchPrompt;
 
-    // loadExamHelper : function(component){
-    //     var getExam = component.get("c.examFinder");
-    //     var examId = component.get("v.examId");
-    //     var cntr;
-    //     var toggleClass;
-    //     getExam.setParams(
-    //         {"examID" : examId}
-    //     );
+    @api numerical = false; 
+    @api numericalId;
+    @api numericalQuestion;
+    @api numericalPrompt;
+    @api numericalAnswer;
 
-    //     getExam.setCallback(this, function(respone){
-    //         if(respone.getState() === "SUCCESS"){
-    //             var exam = respone.getReturnValue();
-    //             console.log(exam);
-    //             component.set("v.examQuestions", exam);
-    //             //var some = component.get("v.examQuestions")
-    //             //console.log(some[0].Question_Text__c);
-    //             cntr = 1;
-    //            for(var i = 0; i < exam.length; i++){
-    //                if(i == 0){toggleClass = "toggle0"} else toggleClass = "toggle";
-    //                var question = exam[i];
-    //                console.log(question.Question_Text__c);
-    //                 if(question.Question_Type__c === "Matching"){
-    //                     $A.createComponents([
-    //                         ["aura:html", {
-    //                             "tag" : "div",
-    //                             "HTMLAttributes":{"id": "Question" + cntr, "class" : toggleClass}
-    //                         }],
-    //                         ["c:MatchingQuestionType",
-    //                         {"aura:id" : "Question " + cntr, 
-    //                         "question" : question,
-    //                         "options" : question.Options__c,
-    //                         "answers" : question.Correct_Answer_s__c,
-    //                         "questionprompt" : "Question " + cntr + " : " + question.Question_Text__c}]
-    //                     ],
-    //                         function(components, status, errorMessage){
-    //                             if(status === "SUCCESS"){
-    //                                 console.log(status)
-    //                                 var body = component.get("v.body");
-    //                                 var div  = components[0];
-    //                                 var matchingCMP = components[1];
-    //                                 div.set("v.body", matchingCMP);
-    //                                 body.push(div);
-    //                                 component.set("v.body", body);
-    //                             }
-    //                             else if(status === "INCOMPLETE"){
-    //                                 console.log("No response from the server or client side.")
-    //                             }
-    //                             else if(status === "ERROR"){
-    //                                 console.log("ERROR: " + errorMessage);
-    //                             }
-    //                         }
-    //                     )
-    //                     cntr++;
-    //                 }
-    //                 if(question.Question_Type__c === "Numerical"){
-    //                     $A.createComponents([
-    //                         ["aura:html", {
-    //                             "tag" : "div",
-    //                             "HTMLAttributes":{"id": "Question" + cntr, "class" : toggleClass}
-    //                         }], 
-    //                         ["c:NumericalQuestionType" ,
-    //                         {"aura:id" : "Question " + cntr,
-    //                         "question" : question,
-    //                         "questionprompt" : "Question " + cntr + " : " + question.Question_Text__c,
-    //                         "answer" : question.Correct_Answer_s__c}]
-    //                     ],
+    @api essay = false;
+    @api essayId;
+    @api essayQuestion;
+    @api essayEssayQuestion;
+    @api essayAnswer;
 
-    //                         function(components, status, errorMessage){
-    //                             if(status === "SUCCESS"){
-    //                                 var body = component.get("v.body");
-    //                                 var div  = components[0];
-    //                                 var numericalCMP = components[1];
-    //                                 div.set("v.body", numericalCMP);
-    //                                 body.push(div);
-    //                                 component.set("v.body", body);
-    //                             }
-    //                             else if(status === "INCOMPLETE"){
-    //                                 console.log("No response from the server or client side.")
-    //                             }
-    //                             else if(status === "ERROR"){
-    //                                 console.log("ERROR: " + errorMessage);
-    //                             }
-    //                         }
+    @api shortAnswerBool = false; 
+    @api shortId;
+    @api shortQuestion;
+    @api shortShortQuestion;
+    @api shortAnswer;
 
-    //                     )
-    //                     cntr++;
-    //                 }
-    //                 if(question.Question_Type__c === "Essay"){
-    //                     $A.createComponents([
-    //                         ["aura:html", {
-    //                             "tag" : "div",
-    //                             "HTMLAttributes":{"id": "Question" + cntr, "class" : toggleClass}
-    //                         }],
-    //                         ["c:EssayTypeQuestion" ,
-    //                         {"question" : question,
-    //                         "aura:id" : "Question " + cntr,
-    //                         "EssayQuestion" : "Question " + cntr + " : " + question.Question_Text__c,
-    //                         "EssayAnswer" : question.Correct_Answer_s__c}]
-    //                     ],
+    @api multipleChoice = false;
+    @api multipleId;
+    @api multipleQuestion;
+    @api multipleRadio;
+    @api multiplePrompt;
+    @api multipleCorrect;
 
-    //                         function(components, status, errorMessage){
-    //                             if(status === "SUCCESS"){
-    //                                 var body = component.get("v.body");
-    //                                 var div = components[0];
-    //                                 var essayCMP = components[1];
-    //                                 div.set("v.body", essayCMP);
-    //                                 body.push(div);
-    //                                 component.set("v.body", body);
-    //                             }
-    //                             else if(status === "INCOMPLETE"){
-    //                                 console.log("No response from the server or client side.")
-    //                             }
-    //                             else if(status === "ERROR"){
-    //                                 console.log("ERROR: " + errorMessage);
-    //                             }
-    //                         }
-    //                     )
-    //                     cntr++;
-    //                 }
-    //                 if(question.Question_Type__c === "Short answer"){
-    //                     $A.createComponents([
-    //                         ["aura:html", {
-    //                             "tag" : "div",
-    //                             "HTMLAttributes":{"id": "Question" + cntr , "class" : toggleClass}
-    //                         }],
-    //                         ["c:ShortAnswerTypeQuestion" ,
-    //                         {"aura:id" : "Question " + cntr,
-    //                         "question" : question,
-    //                         "ShortQuestion" : "Question " + cntr + " : " + question.Question_Text__c,
-    //                         "ShortAnswer" : question.Correct_Answer_s__c}]
-    //                     ],
+    @api multipleChoiceMultipleAnswers = false; 
+    @api multiAnsId;
+    @api multiAnsCheck;
+    @api multiAnsQuestion;
+    @api multiAnsPrompt;
+    @api multiAnsCorrect;
 
-    //                         function(components, status, errorMessage){
-    //                             if(status === "SUCCESS"){
-    //                                 var body = component.get("v.body");
-    //                                 var div = components[0];
-    //                                 var shortAnswerCMP = components[1];
-    //                                 div.set("v.body" , shortAnswerCMP)
-    //                                 body.push(div);
-    //                                 component.set("v.body", body);
-    //                             }
-    //                             else if(status === "INCOMPLETE"){
-    //                                 console.log("No response from the server or client side.")
-    //                             }
-    //                             else if(status === "ERROR"){
-    //                                 console.log("ERROR: " + errorMessage);
-    //                             }
-    //                         }
-    //                     )
-    //                     cntr++;
-    //                 }
-    //                 if(question.Question_Type__c === "Multiple Choice"){
-    //                     $A.createComponents([
-    //                         ["aura:html", {
-    //                             "tag" : "div",
-    //                             "HTMLAttributes":{"id": "Question" + cntr , "class" : toggleClass}
-    //                         }],
-    //                         ["c:MultipleChoiceQuestion" ,
-    //                         {"aura:id" : "Question " + cntr,
-    //                         "question" : question,
-    //                         "radioGroupOptions" : question.Options__c,
-    //                         "questionprompt" : "Question " + cntr + " : " + question.Question_Text__c,
-    //                         "correctAnswer" : question.Correct_Answer_s__c}]
-    //                     ],
+    @api trueFalse = false; 
+    @api trueFalseId;
+    @api trueFalseQuestion;
+    @api trueFalsePrompt;
+    @api trueFalseCorrect;
+    @api i; 
+    @api exam; 
 
-    //                         function(components, status, errorMessage){
-    //                             if(status === "SUCCESS"){
-    //                                 var body = component.get("v.body");
-    //                                 var div = components[0];
-    //                                 var multipleChoiceCMP = components[1];
-    //                                 div.set("v.body" , multipleChoiceCMP);
-    //                                 body.push(div);
-    //                                 component.set("v.body", body);
-    //                             }
-    //                             else if(status === "INCOMPLETE"){
-    //                                 console.log("No response from the server or client side.")
-    //                             }
-    //                             else if(status === "ERROR"){
-    //                                 console.log("ERROR: " + errorMessage);
-    //                             }
-    //                         }
-    //                     )
-    //                     cntr++;
-    //                 }
-    //                 if(question.Question_Type__c === "Multiple Choice - multiple answers"){
-    //                     $A.createComponents([
-    //                         ["aura:html", {
-    //                             "tag" : "div",
-    //                             "HTMLAttributes":{"id": "Question" + cntr , "class" : toggleClass}
-    //                         }],
-    //                         ["c:MultiMultipleChoicesQuestion",
-    //                         {"aura:id" : "Question " + cntr,
-    //                         "checkGroupOptions" : question.Options__c,
-    //                         "question" : question,
-    //                         "questionprompt" : "Question " + cntr + " : " + question.Question_Text__c,
-    //                         "correctAnswer" : question.Correct_Answer_s__c}]
-    //                     ],
-    //                         function(components, status, errorMessage){
-    //                             if(status === "SUCCESS"){
-    //                                 var body = component.get("v.body");
-    //                                 var div = components[0];
-    //                                 var multiMultipleChoiceCMP = components[1];
-    //                                 div.set("v.body", multiMultipleChoiceCMP);
-    //                                 body.push(div);
-    //                                 component.set("v.body", body);
-    //                             }
-    //                             else if(status === "INCOMPLETE"){
-    //                                 console.log("No response from the server or client side.")
-    //                             }
-    //                             else if(status === "ERROR"){
-    //                                 console.log("ERROR: " + errorMessage);
-    //                             }
-    //                         }
-    //                     );
-    //                     cntr++;
-    //                 }
-    //                 if(question.Question_Type__c === "True-false"){
-    //                     $A.createComponents([
-    //                         ["aura:html", {
-    //                             "tag" : "div",
-    //                             "HTMLAttributes":{"id": "Question" + cntr , "class" : toggleClass}
-    //                         }],
-    //                         ["c:TrueFalseQuestion", 
-    //                         {"aura:id" : "Question " + cntr,
-    //                         "question" : question,
-    //                         "questionprompt" : "Question " + cntr + " : " + question.Question_Text__c,
-    //                         "correctAnswer" : question.Correct_Answer_s__c}]
-    //                     ],
-    //                         function(components, status, errorMessage){
-    //                             if(status === "SUCCESS"){
-    //                                 var body = component.get("v.body");
-    //                                 var div = components[0];
-    //                                 var trueFalseCMP = components[1];
-    //                                 div.set("v.body" , trueFalseCMP);
-    //                                 body.push(div);
-    //                                 component.set("v.body", body);
-    //                             }
-    //                             else if(status === "INCOMPLETE"){
-    //                                 console.log("No response from the server or client side.")
-    //                             }
-    //                             else if(status === "ERROR"){
-    //                                 console.log("ERROR: " + errorMessage);
-    //                             }
-    //                         }
-    //                     )
-    //                     cntr++;
-    //                 }
-    //             }
-    //         }
-    //         component.set("v.questionAmount", exam.length);
-    //     })
-    //     $A.enqueueAction(getExam);
-    // } ,
+    constructor(){
+      super();
+      this.i = 0; 
+      this.loadExamHelper();
+    }
 
-    // navigateToNextQuestionHelper : function(component){
-    //     var questionNumber = component.get("v.questionNumber");
-    //     var questionAmount = component.get("v.questionAmount");
-    //     questionNumber++;
-    //     var prev = component.find("prev");
-    //     prev.set('v.disabled', false);
-    //     var i = 1;
-    //     while(i <= questionAmount){
-    //         var toggleText = document.getElementById("Question" + i);
-    //         if(i == questionNumber){
-    //             toggleText.style.display = 'block';
-    //         }else{
-    //             toggleText.style.display = 'none';
-    //         }
-    //         i++;
-    //     }
-    //     if(questionNumber == questionAmount){
-    //         var next = component.find("next");
-    //         next.set('v.disabled', true);
-    //         var submitB = document.getElementById("submitdiv");
-    //         submitB.style.display = 'block';
-    //     }
+    async loadExamHelper (){
+      this.exam = await examFinder({"examID" : examId});
+      this.questionAmount = this.exam.length;
+        //this.callExam();
+        var examId = this.examId;
+        var cntr;
 
-    //     component.set("v.questionNumber", questionNumber);
-    //     //console.log(toggleText);
-    //     //$A.util.toggleClass(toggleText, "toggle");
-    // },
+                cntr = 1;
+                   
+                   var question = this.exam[this.i];
 
-    // navigateToPrevQuestionHelper : function(component){
-    //     var questionNumber = component.get("v.questionNumber");
-    //     var questionAmount = component.get("v.questionAmount");
-    //     if(questionNumber == questionAmount){
-    //         var submitB = document.getElementById("submitdiv");
-    //         submitB.style.display = 'none';
-    //     }
-    //     questionNumber--;
-    //     var next = component.find("next");
-    //     next.set('v.disabled', false);
-    //     var i = questionAmount;
+                    if(question.Question_Type__c === "Matching"){
+                        this.matching = true;  
+                        this.matchId = "Question " + cntr;
+                        this.matchQuestion = question;
+                        this.matchOptions = question.Options__c;
+                        this.matchAnswers = question.Correct_Answer_s__c;
+                        this.matchPrompt = "Question " + cntr + " : " + question.Question_Text__c;
+                        
+                        cntr++;
+                    }
+                    if(question.Question_Type__c === "Numerical"){
+                        this.numerical = true;   
+                        this.numericalId = "Question " + cntr;
+                        this.numericalQuestion = question;
+                        this.numericalPrompt = "Question " + cntr + " : " + question.Question_Text__c;
+                        this.numericalAnswer = question.Correct_Answer_s__c; 
+                            
+                        cntr++;
+                    }
+                    if(question.Question_Type__c === "Essay"){
+                        this.essay = true;     
+                        this.essayId = "Question " + cntr;
+                        this.essayQuestion = question;
+                        this.essayEssayQuestion = "Question " + cntr + " : " + question.Question_Text__c;
+                        this.essayAnswer = question.Correct_Answer_s__c;
+                        
+                        cntr++;
+                    }
+                    if(question.Question_Type__c === "Short answer"){
+                        this.shortAnswerBool = true; 
+                            this.shortId = "Question " + cntr;
+                            this.shortQuestion = question;
+                            this.shortShortQuestion = "Question " + cntr + " : " + question.Question_Text__c;
+                            this.shortAnswer = question.Correct_Answer_s__c;
+                                         
+                        cntr++;
+                    }
+                    if(question.Question_Type__c === "Multiple Choice"){
+                        this.multipleChoice = true; 
+                            
+                            this.multipleId = "Question " + cntr;
+                            this.multipleQuestion = question;
+                            this.multipleRadio = question.Options__c;
+                            this.multiplePrompt = "Question " + cntr + " : " + question.Question_Text__c;
+                            this.multipleCorrect = question.Correct_Answer_s__c;
+                 
+                        cntr++;
+                    }
+                    if(question.Question_Type__c === "Multiple Choice - multiple answers"){
+                        this.multipleChoiceMultipleAnswers = true; 
+                            
+                            this.multiAnsId = "Question " + cntr;
+                            this.multiAnsCheck = question.Options__c;
+                            this.multiAnsQuestion = question;
+                            this.multiAnsPrompt = "Question " + cntr + " : " + question.Question_Text__c;
+                            this.multiAnsCorrect = question.Correct_Answer_s__c;
+                       
+                        cntr++;
+                    }
+                    if(question.Question_Type__c === "True-false"){
+                        this.trueFalse = true; 
+                            
+                            this.trueFalseId = "Question " + cntr;
+                            this.trueFalseQuestion = question;
+                            this.trueFalsePrompt = "Question " + cntr + " : " + question.Question_Text__c;
+                            this.trueFalseCorrect = question.Correct_Answer_s__c;
+                        
+                        cntr++;
+                    }
+                    this.body = question.Question_Text__c;            
+    } 
 
-    //     while(i >= 1){
-    //         var toggleText = document.getElementById("Question" + i);
-    //         if(i == questionNumber){
-    //             toggleText.style.display = 'block';
-    //         }else{
-    //             toggleText.style.display = 'none';
-    //         }
-    //         i--;
-    //     }
-    //     if(questionNumber == 1){
-    //         var prev = component.find("prev");
-    //         prev.set('v.disabled', true);
-    //     }
-    //     component.set("v.questionNumber", questionNumber);
-    // },
-
-    // submitExam : function(component){
-    //     setTimeout(function () {
-    //         //alert('Reloading Page');
-    //         location.reload(true);
-    //       }, 1000);
-    // }
-
+     nextClick (){
+       //hide titles
+       if(this.questionAmount != this.i+1) {
+      this.matching = false; 
+      this.numerical = false; 
+      this.essay = false; 
+      this.shortAnswerBool = false; 
+      this.multipleChoice = false; 
+      this.multipleChoiceMultipleAnswers = false; 
+      this.trueFalse = false; 
+      this.i++; 
+      this.body = ""; 
+      this.loadExamHelper(); 
+      }
+     }
+     prevClick (){
+      //hide titles
+      if(this.i-1 >= 0) {
+     this.matching = false; 
+     this.numerical = false; 
+     this.essay = false; 
+     this.shortAnswerBool = false; 
+     this.multipleChoice = false; 
+     this.multipleChoiceMultipleAnswers = false; 
+     this.trueFalse = false; 
+     this.i--; 
+     this.body = ""; 
+     this.loadExamHelper(); 
+     }
+    }
 }
