@@ -21,16 +21,11 @@ package.xml
 **/.planning/**
 
 # added ignores
-**/profiles
-**/layouts
-#**/flows
-#**/permissionsets
 **/triggers
 **/workflows
 **/quickActions
 **/matchingRules
 **/flexipages
-#**/staticresources
 **/appMenus
 **/components
 **/experiences
@@ -42,10 +37,14 @@ package.xml
 **/pages
 **/applications
 **/tabs
-**/profilePasswordPolicies
-**/profileSessionSettings
 **/connectedApps
-
+#**/profiles
+#**/staticresources
+#**/layouts
+#**/flows
+#**/permissionsets
+#**/profilePasswordPolicies
+#**/profileSessionSettings
 
 **/aura/forgotPassword
 **/aura/loginForm
@@ -130,6 +129,6 @@ package.xml
 
 # Added back to keep changes
 
-!**/Hero.profile-meta.xml
-!**/TitanTrainer.profile-meta.xml
-!**/Admin.profile-meta.xml
+#!**/Hero.profile-meta.xml
+#!**/TitanTrainer.profile-meta.xml
+#!**/Admin.profile-meta.xml

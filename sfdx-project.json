@@ -1,6 +1,13 @@
 {
     "packageDirectories": [
         {
+            "path": "CodeAssessmentPackage",
+            "package": "CodeAssessmentPackage",
+            "versionName": "ver 1.0",
+            "versionNumber": "1.0.0.NEXT",
+            "default": false
+        },
+        {
             "path": "CorePackage",
             "package": "CorePackage",
             "versionName": "ver 1.0",
@@ -123,6 +130,13 @@
                     "package": "TrainerHubPackage@0.1.0-3"
                 }
             ]
+        },
+        {
+            "path": "force-app",
+            "package": "CodeAssessmentPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
         }
     ],
     "namespace": "",
@@ -153,7 +167,8 @@
         "MockInterviewPackage": "0Ho5e000000sY9rCAE",
         "MockInterviewPackage@0.1.0-1": "04t5e000000ApnDAAS",
         "MockInterviewPackage@0.1.0-2": "04t5e000000ApnSAAS",
-        "MockInterviewPackage@0.1.0-3": "04t5e000000ApnXAAS"
-
+        "MockInterviewPackage@0.1.0-3": "04t5e000000ApnXAAS",
+        "CodeAssessmentPackage": "0Ho5e000000sYAaCAM",
+        "CodeAssessmentPackage@1.0.0-1": "04t5e000000BIDbAAO"
     }
 }

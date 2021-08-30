@@ -9,7 +9,7 @@
 
 public class HeroLoginApexController {
     
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static String runScheduler(String username, String cron, String jobName){
  
         try{

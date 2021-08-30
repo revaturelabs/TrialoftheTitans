@@ -1,0 +1,42 @@
+<template>
+<!--THERE IS A TON OF STUFF COMMENTED OUT. THIS IS BECAUSE THE COMPONENTS THAT WERE TO BE MIGRATED FROM AURA TO LWC DIDN'T WORK TO BEGIN WITH. BLAME THE OTHER BATCHES, NOT US PLEASE.-->
+    <!--Componet View Most Components dont work so they are commented out-->
+    <div class="slds-p-around_x-small">
+        <template if:true={matching}>
+            <h1>Matching Question</h1>
+            <!-- <c-matchingQuestionTypeLwc data-id={matchId} question={matchQuestion} options={matchOptions} answers={matchAnswers} questionprompt={matchPrompt}></c-matchingQuestionTypeLwc> -->
+        </template>
+        <template if:true={numerical}> 
+            <h1>Numerical Question</h1>
+            <!-- <c-numericalQuestionTypeLwc data-id={numericalId} question={numericalQuestion} questionprompt={numericalPrompt} answer={numericalAnswer}></c-numericalQuestionTypeLwc> -->
+        </template>
+        <template if:true={essay}>
+            <h1>Essay Question</h1>
+            <!-- <c-essayTypeQuestionLwc data-id={essayId} question={essayQuestion} essayquestion={essayEssayQuestion} essayanswer={essayAnswer}></c-essayTypeQuestionLwc> -->
+        </template>
+        <template if:true={shortAnswerBool}>
+            <h1>Short Answer Question</h1>
+            <!-- <c-shortAnswerTypeQuestionLwc data-id={shortId} question={shortQuestion} shortquestion={shortShortQuestion} shortanswer={shortAnswer}></c-shortAnswerTypeQuestionLwc> -->
+        </template>
+        <template if:true={multipleChoice}> 
+            <h1>Multiple Choice Question</h1>
+            <!-- <c-multipleChoiceQuestionLwc data-id={multipleId} question={multipleQuestion} radiogroupoptions={multipleRadio} questionprompt={multiplePrompt} correctanswer={multipleCorrect}></c-multipleChoiceQuestionLwc> -->
+        </template>
+        <template if:true={multipleChoiceMultipleAnswers}> 
+            <h1>Multiple Choice Multiple Answer Question</h1>
+            <!-- <c-multiMultipleChoicesQuestionLwc data-id={multiAnsId} checkgroupoptions={multiAnsCheck} question={multiAnsQuestion} questionprompt={multiAnsPrompt} correctanswer={multiAnsCorrect}></c-multiMultipleChoicesQuestionLwc> -->
+        </template>
+        <template if:true={trueFalse}>
+            <h1>True or False Question</h1>
+            <!-- <c-trueFalseQuestionLwc data-id={trueFalseId} question={trueFalseQuestion} questionprompt={trueFalsePrompt} correctanswer={trueFalseCorrect}></c-trueFalseQuestionLwc> -->
+        </template>
+
+        {body}
+        <lightning-button class = "slds-float_left" data-id = "prev" label="Previous Question" title="Previous Question" onclick={prevClick} disabled = "true"></lightning-button>
+        <lightning-button class = "slds-float_right" data-id = "next" label="Next Question" title="Next Question" onclick={nextClick}></lightning-button>
+        <!--div class = "submitdiv" id = "submitdiv">
+            <lightning-button data-id = "submit" label="Submit Exam" title="Submit Exam" onclick={submitClick}></lightning-button>
+        </div-->
+    </div>
+
+</template>

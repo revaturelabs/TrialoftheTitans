@@ -2,5 +2,5 @@
     <!--<c:selfInterviewComponent />
     <c:publicVideos />
     <c:TrainerResultsAccordion /> -->
-    <c:Example PrimaryColor='Synergy'/>
+    <c:ExamStats/>
 </aura:application>

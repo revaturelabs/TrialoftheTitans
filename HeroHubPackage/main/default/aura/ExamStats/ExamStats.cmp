@@ -16,11 +16,11 @@
     <aura:attribute name="score" type="Decimal"/>
     <aura:attribute name="assigned" type="Boolean"/>
     <aura:attribute name="attempted" type="Boolean"/>
-    <aura:attribute name="display" type="Boolean" />
+    <aura:attribute name="display" type="Boolean"/>
 
     <aura:handler event="c.ExamClickedEvent" action="{!c.ExamClicked}"/>
     <aura:registerEvent name = "TakeExamAppEvent" type = "c:TakeExamClickedEvent"/>
-
+	
     <aura:if isTrue="{!v.display}">
         <div>
 

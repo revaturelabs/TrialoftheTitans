@@ -1,0 +1,58 @@
+.stats{
+    width: 95%; 
+    margin: 5% 0% 0% 5%;  
+    background: #29292A; 
+    border: 10px solid var(--user-team-primary); 
+    height: auto;
+    border-radius: 5px;
+    color: white;
+    padding: 20px;
+}
+
+h1{
+    font-size: 1.7em;
+    font-weight: bold;
+    text-align: center;
+}
+
+h2{
+    font-size: 1.3em;
+    text-align: center;
+}
+
+h3{
+    font-size: 1.1em;
+}
+
+.number{
+    font-weight: bold;
+}
+
+.btn{
+    background: var(--user-team-primary);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: auto;
+    padding: 5px;
+    transition: .5s;
+    width: 120px;
+}
+
+.btn:hover{
+    background: var(--user-team-secondary);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: auto;
+    padding: 5px;
+    transition: .5s;
+    width: 120px;
+}
+
+.line{
+    width: 50%;
+    height: 1px;
+    margin: auto;
+    background: white;
+}
