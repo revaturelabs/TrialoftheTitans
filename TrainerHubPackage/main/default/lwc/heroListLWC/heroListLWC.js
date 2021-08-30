@@ -1,4 +1,4 @@
-import { LightningElement, wire, api } from 'lwc';
+import { LightningElement, api } from 'lwc';
 import HeroList from '@salesforce/apex/HeroListController.HeroList'
 
 const columns = [

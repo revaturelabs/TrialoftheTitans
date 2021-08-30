@@ -1,12 +1,9 @@
 import { LightningElement } from 'lwc';
 import getDataMap from '@salesforce/apex/D3GrpChartController.getDataMap';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
+import { loadScript } from 'lightning/platformResourceLoader';
 import D3 from '@salesforce/resourceUrl/d3';
 
 export default class HeroGroupchartLWC extends LightningElement {
-
-// https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.js_third_party_library
 
     svgWidth = 400;
     svgHeight = 400;

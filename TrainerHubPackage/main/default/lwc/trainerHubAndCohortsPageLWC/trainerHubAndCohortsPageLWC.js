@@ -24,14 +24,9 @@ export default class TrainerHubAndCohortsPageLWC extends LightningElement {
     }
 
     transferToActiveCohort() {
-        console.log('transfer to active cohort');
-
         fetchActiveCohort()
         .then(result => {
             if (result) {
-                console.log('got active cohort');
-                console.log(result);
-                
                 this.chosenCohortId = result;
                 this.shouldShowCohortPage = true;
             }
@@ -43,7 +38,6 @@ export default class TrainerHubAndCohortsPageLWC extends LightningElement {
     }
 
     returnToTrainerHub() {
-        console.log('return');
         this.shouldShowCohortPage = false;
     }
 
@@ -51,8 +45,6 @@ export default class TrainerHubAndCohortsPageLWC extends LightningElement {
         fetchPastCohorts()
         .then(result => {
             if (result) {
-                console.log('got,,,');
-                console.log(result);
                 this.data = result;
             }
         })
@@ -65,7 +57,6 @@ export default class TrainerHubAndCohortsPageLWC extends LightningElement {
         const recordId = event.target.dataset.recordid;
         const row = event.detail.row;
         const { Id } = row;
-        console.log(Id);
 
         this.chosenCohortId = Id;
         this.shouldShowCohortPage = true;

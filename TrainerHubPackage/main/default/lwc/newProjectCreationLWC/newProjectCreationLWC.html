@@ -1,7 +1,7 @@
 <template>
     <lightning-layout class="slds-align_absolute-center slds-box slds-size_1-of-1">
         <lightning-layout-item class="slds-box slds-theme_default slds-box slds-size_1-of-3">
-            <lightning-input class="slds-text-heading_small" label="Project Name" required="true" maxlength="50" onchange={handleNameChange} onblur={checkIfProjectExists}>
+            <lightning-input class="slds-text-heading_small" data-id="projName" label="Project Name" required="true" maxlength="50" onchange={handleNameChange} onblur={checkIfProjectExists}>
             </lightning-input>
             <lightning-textarea class="slds-text-heading_small slds-m-top_small" label="Project Description" maxlength="255" onchange={handleDescriptionChange}>
             </lightning-textarea>

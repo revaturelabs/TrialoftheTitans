@@ -1,4 +1,4 @@
-import { LightningElement, wire, api } from 'lwc';
+import { LightningElement, api } from 'lwc';
 import InterviewList from '@salesforce/apex/QCInterviewController.InterviewList'
 
 const columns = [
