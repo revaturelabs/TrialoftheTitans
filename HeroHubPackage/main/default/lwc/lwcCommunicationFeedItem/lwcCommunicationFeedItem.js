@@ -4,19 +4,23 @@ export default class LwcCommunicationFeedItem extends LightningElement {
     @api
     content;
     
-    /*
-    @api contentHeader(){
+    connectedCallback(){
+        this.contentHeader();
+        this.contentBody();
+    }
+    
+    contentHeader(){
         if(this.content.header.text == null){
             this.content.header.text = "";
         }
         return this.content.header.text;
     }
 
-    @api contentBody(){
+    contentBody(){
         if(this.content.body.text == null){
             this.content.body.text = "";
         }
         return this.content.body.text;
     }
-    */
+    
 }

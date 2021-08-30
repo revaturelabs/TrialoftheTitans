@@ -21,7 +21,7 @@ export default class LwcExamStats extends LightningElement {
 
     @api
     display
-
+    
     examClicked(e){
         let exam = e.detail.exam;
         console.log("displayresults: " + JSON.stringify(exam));
@@ -63,7 +63,9 @@ export default class LwcExamStats extends LightningElement {
     }
 
     takeExam(e){
-
+        let examId = this.exam["currentResults"][0].Exam__c;
+        let clickEvent = new CustomEvent("takeExamClickedEvent", {examId: examId, takingExam: true});
+        this.dispatchEvent(clickEvent);
     }
 
     get ifAssignedAttemptedFalse(){

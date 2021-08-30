@@ -5,13 +5,12 @@ export default class LwcCommunicationFeedCompose extends LightningElement {
     activeTab;
 
     submitMessage(e){
-        let message = this.template.querySelector("#message-body");
+        let message = this.template.querySelector('[data-id="message-body"]');;
         if(!message.value){
             return;
         }
-
-        this.dispatchEvent(new CustomEvent('sendEvent'),{'message': message.value, 'activeTab' : this.activeTab});
         message.value = "";
+        this.dispatchEvent(new CustomEvent('sendEvent'),{message: message.value, activeTab : this.activeTab});
     }
 
 }
