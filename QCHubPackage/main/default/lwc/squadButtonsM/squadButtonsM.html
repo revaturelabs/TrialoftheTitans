@@ -1,0 +1,11 @@
+<template>
+    <ul class="slds-has-block-links_space">
+        <li>
+            <a href="#">squad</a>
+        </li>
+    </ul>
+
+    <template for:each={SquadList} for:item="SquadWrap">
+        <lightning-button key={SquadWrap}>Hi, this a squad {SquadWrap.squad.Name}</lightning-button>
+    </template>
+</template>
