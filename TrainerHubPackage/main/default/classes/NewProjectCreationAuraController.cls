@@ -8,6 +8,8 @@
 
 public with sharing class NewProjectCreationAuraController {
     
+//test comment here
+
     //Retrieve list of project names, if any exist.
     // Conversion to LWC note: this function is no longer used.  Was only used with Aura.
     // Now "projectNameIsAvailable" is used instead.

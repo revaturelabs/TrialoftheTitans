@@ -1,0 +1,40 @@
+<template>
+    <lightning-card>
+        <lightning-layout class="slds-align_absolute-center">
+            <lightning-layout-item class="slds-p-horizontal_medium slds-m-top_medium">
+                {rowIndex}
+            </lightning-layout-item>
+
+            <lightning-layout-item class="slds-p-horizontal_medium">
+                <lightning-combobox 
+                name="skills"
+                label="Skill Name"
+                value={value}
+                options={skills}
+                onchange={handleChange}></lightning-combobox>
+            </lightning-layout-item>
+
+            <lightning-layout-item class="slds-p-horizontal_medium">
+                <lightning-input name="skillEquivalency" 
+                value={equivalencyInstance.Skill_Equivalency__c}
+                label="Equivalency"></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <template if:false={rowIndex}>
+                    <lightning-button-icon class="slds-m-top_large" 
+                    icon-name="utility:add" variant="border-filled"
+                     size="small" onclick={addRow} alternative-text="Add">
+                    </lightning-button-icon>
+                </template>
+
+                <template if:true={rowIndex}>
+                    <lightning-button-icon class="slds-m-top_large" 
+                    icon-name="utility:delete" variant="border-filled"
+                     size="small" onclick={deleteRow} alternative-text="Delete">
+                    </lightning-button-icon>
+                </template>
+            </lightning-layout-item>
+            
+        </lightning-layout>
+    </lightning-card>
+</template>

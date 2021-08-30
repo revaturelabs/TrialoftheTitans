@@ -1,0 +1,35 @@
+<template>
+    <div>
+        <div class="slds-page-header">
+            <template if:true={currentEqs}>
+                <div class="slds-page-header_title">
+                    Current Equivalencies
+                </div>
+                <template for:each={currentEqs} for:item='eq'>
+                    <div key={eq.id} class="slds-box slds-box_x-small">
+                        <div >Skill: {eq.Skill__r.Name}</div>
+                        <div>Months: {eq.Skill_Equivalency__c}</div>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </div>
+
+    <lightning-card title="Set Equivalencies" class="slds-theme_default">
+        <template for:each={equivList} for:item="eq" for:index="i">
+            <div key={eq.id} class="slds-box slds-box_x-small">
+                <c-lwc-add-equivalency equivalency-instance={eq} row-index={i}></c-lwc-add-equivalency>
+            </div>
+        </template>
+
+        <br/>
+        <lightning-button-group>
+            <lightning-button class="slds-button slds-button_outline-brand slds-m-left_large"
+            label="Cancel"
+            onclick={cancel}></lightning-button>
+            <lightning-button class="slds-button slds-button_brand"
+            label="Save"
+            onclick={save}></lightning-button>
+        </lightning-button-group>
+    </lightning-card>
+</template>
