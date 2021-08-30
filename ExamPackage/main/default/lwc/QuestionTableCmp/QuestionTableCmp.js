@@ -7,11 +7,11 @@
 
 /*to be implemented(methods):
    //event-driven methods
-   updateSelectedRows 
-   onMultiSelectChange
+   ,,updateSelectedRows 
+  ,, onMultiSelectChange
    onSingleSelectChange
    //component-driven methods
-   getData
+   ,,getData
    addQues2Pool
 
 */
@@ -37,7 +37,7 @@
     handleNext (event) { 
         var searchVal = component.find("v/searchField").get("v/value"); 
         var pageNumber = component.get("v/pageNumber");
-        let searchKeyword = component.get("v/searchKeyword");
+        var searchKeyword = component.get("v/searchKeyword");
         component.set("v/pageNumber", pageNumber+1);
         helper.getData(searchKeyword,component);
         
@@ -47,15 +47,105 @@
         let searchKeyword = component.get("v/searchKeyword");
         helper.getData(searchKeyword,component);
     }
+    updateSelectedRows(component, event) {
+        var selectedRows = event.getParam('selectedRows');
+        component.set('v/selectedRows', selectedRows);
+        
+        var test=component.get("v/selectedRows");
+    }
+    onMultiSelectChange(component,event){
+        var selectedPools = component.find("InputSelectMultiple").get("v/value");
+        component.set('v/selectedPools',selectedPools);
+    }
+  async  addQues2Pool(){
+        debugger;
+        
+        var textPools = component.get("v/selectedPools");
+        
+        if(textPools.length>0){
+            var arrayTextPools = textPools[0].split(';');
+            var objectPools = component.get("v/pools");
+            var selectedObjectPools = [];
+            
+            for(let i = 0 ;i<arrayTextPools.length;i++ ){
+                for(let j=0;j<objectPools.length;j++){
+                    if(arrayTextPools[i]==objectPools[j].Name)
+                    {
+                        selectedObjectPools.push(objectPools[j]);
+                    }
+                }
+            } 
+        } else{
+            selectedObjectPools = null;
+        }
+        
+        
+        //var selectedObjectPools = JSON.stringify(selectedObjectPools)
+        var questions = component.get("v/selectedRows");
+        var enableToast = component.get("v/enableToast").toString();
+        debugger;
+        // validating questions and pools
+        if(questions.length<=0 || textPools.length<=0){
+            selectedObjectPools = null;
+            questions =null;
+            
+            //Toast message
+            if(enableToast=="true"){
+                component.find('notifLib').showNotice({
+                    "variant": "error",
+                    "header": "Invalid selections!",
+                    "message": "Please select at least a question and a pool to add the question to the pool.",
+                    closeCallback: function() {
+                        $A.get('e.force:refreshView').fire();
+                    }
+                })
+            }
+            // Exit function 
+            return;
+        } 
+        
+        let action3 = component.get('c/addQues2Pool');
+        action3.setParams({
+            'pools' 			:  selectedObjectPools,
+            'questions' 		:  questions
+        });
+        
+        
+        
+        // setting CallBack to interact with server side
+
+                
+
+    }
     
         
     pageSize = component.get("v/pageSize").toString();
     pageNumber = component.get("v/pageNumber").toString(); 
     action = component.get('c/GetQues');
 
-    //1 cant remember where this event was.
+    //1 cant remember where this event was.  all it does is output saved data though.
     outputPageData(event){
         "Page" + this.pageNumber + "|" + "Showing records from" + ((this.pageNumber-1)*this.pageSize)+' to '+((this.pageNumber-1)*this.pageSize+this.sizeOfData);
+    }
+    //async because enqueueing actions
+   async getData(searchKeyword,component) {
+        component.set('v/mycolumns', [
+            { label: 'Question Title', fieldName: 'Name', type: 'text'},      
+            { label: 'Question Text', fieldName: 'Question_Text', type: 'text'},
+            { label: 'Question Type', fieldName: 'Question_Type', type: 'text'}
+        ]);
+        
+        // Getting Values from the client to send to server
+        var pageSize = component.get("v/pageSize").toString();
+        var pageNumber = component.get("v/pageNumber").toString();
+        
+    }
+    onSingleSelectChange(component, event) {   
+        var singleResult = component.find("InputSelectSingle").get("v/value"); 
+        singleResult =Number(singleResult)
+        component.set("v/pageSize", singleResult);
+        let searchKeyword = component.get("v/searchKeyword");
+        getData(searchKeyword,component);
     }
 
         connectedCallback(){
@@ -63,9 +153,63 @@
             this.pageSize=10;
             this.isLastPage=false;
             this.sizeOfData=0;
-            helper.getData(null,component);
-            
-            
+            this.getData(any,component);
+            this.addQues2Pool();
+        
+                var resultData3 = response.getReturnValue();
+                
+                //Toast message
+                if(enableToast=="true"){
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        title : 'Successfully added Questions to Pools',
+                        message: 'You can check the questions in pool !!!',
+                        duration:' 4000',
+                        key: 'info_alt',
+                        type: 'success',
+                        mode: 'pester'
+                    });
+                }
+                    
+            //declare in callback, no need for separate callback fcns
+            var action = component.get('c/GetQues');
+            //instanciate event in callback fcn(I'm sure connectedCallback does the validation for us ie ensuring status code is 200 and etc)
+            var event = new CustomEvent();   
+                // Translation from Sobject to JS
+                let rows = [];
+                for (let i = 0; i < resultData.length; i++) {
+                    let items = {	
+                        Id			  : resultData[i].ques[0].Id,
+                        Name		  :	resultData[i].ques[0].Name,
+                        Question_Text :	resultData[i].ques[0].Question_Text__c,
+                        Question_Type : resultData[i].ques[0].Question_Type__c
+                    };
+                    rows.push(items);
+                }
+                let action2 = component.get('c/GetPool');
+                // setting CallBack to interact with server side
+                    
+                        var resultData2 = response.getReturnValue();
+                        
+                        // Translation from Sobject to JS
+                        let rows2 = [];
+                        for (let i = 0; i < resultData2.length; i++) {
+                            let items = {	
+                                Id			  : resultData2[i].assignedQues[0].Id,
+                                Name		  :	resultData2[i].assignedQues[0].Name
+                            };
+                            rows.push(items);
+                        }
+                        debugger;
+                        component.set("v/pools", rows2);
+                   
+                        
+                    
+
+                //debugger;
+                component.set("v/dataSize", rows.length);
+                component.set("v/mydata", rows);
+    
 
             /*
     <aura:attribute name="searchKeyword" type="String" />
