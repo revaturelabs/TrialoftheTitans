@@ -1,0 +1,19 @@
+<!-- Lynn Olson
+     Conversion from Aura to LWC
+     Aug 23,2021 -->
+<template>
+    <lightning-card title="Schedule Code Assessment">
+        <div class="slds-p-around_medium">
+            <lightning-layout>
+                <lightning-layout-item size="3" padding="around-small">
+                    <lightning-input data-id="username" label="Username" type="email" value={username}></lightning-input>
+                    <lightning-input data-id="password" label="Password" type="password" value={password}></lightning-input>
+                    <lightning-input data-id="cron" label="Cron Expression" type="text" value={cronExpression}></lightning-input>
+                    <lightning-input data-id="jobName" label="Job Name" type="text" value={jobName}></lightning-input>
+                    <lightning-button label="Schedule Assessment" onclick={scheduleAssessment} variant="brand" class="slds-m-top_medium"></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+            <p>{message}</p>
+        </div>
+    </lightning-card>
+</template>

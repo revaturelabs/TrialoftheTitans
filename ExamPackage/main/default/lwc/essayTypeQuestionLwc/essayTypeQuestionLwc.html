@@ -1,0 +1,21 @@
+<!-- Lynn Olson
+     Conversion from Aura to LWC
+     Aug 23,2021 -->
+
+<template>
+    <lightning-layout class="slds-page-header slds-page-header_object-home" horizontalalign="spread" multiplerows="true">
+        <lightning-layout-item size='6' flexibility="auto">          
+                <div class="slds-form-element slds-form-element_stacked">
+                    <h4 class="slds-text-heading_small">Essay Question</h4>
+                </div>
+                <div class="slds-form-element slds-form-element_stacked">
+                    <p>
+                        {EssayQuestion}
+                    </p>
+                    <lightning-textarea name="Answer"></lightning-textarea>
+                    <!--This was not used-->
+                    <!--<lightning-button label='Save' onclick={ButtonClick} />-->
+                </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
