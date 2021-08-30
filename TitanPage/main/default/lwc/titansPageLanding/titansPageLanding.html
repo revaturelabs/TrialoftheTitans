@@ -38,7 +38,7 @@
     <!-- displays cards with the exams/skills details for each titan when clicked -->
     <!-- Uses "toggle-hide" class to switch displayed Titan details -->
     <template for:each={titanList} for:item="titan">
-        <div class="toggle-hide titanDiv slds-col slds-gutters slds-size_12-of-12" key={titan.Id}>
+        <div class="toggle-hide titanDiv slds-col slds-gutters slds-size_12-of-12" data-id="titan-div" key={titan.Id}>
             <lightning-card>
                 <div class="slds-grid">
                     <div class="slds-col slds-gutters slds-size_5-of-12">

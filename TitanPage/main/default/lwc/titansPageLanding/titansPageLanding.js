@@ -41,7 +41,6 @@ export default class titansPageLanding extends LightningElement {
             this.error=error;
         })
     }
-    //  navigate : uses switch statement to show the Titan according to hShowTitan# method
     navigate(event) {
         console.log("LWC navigate function:");
         console.log(this.titanList);
@@ -50,13 +49,12 @@ export default class titansPageLanding extends LightningElement {
             console.log('Selected Titan Id:' + titanId);            
             let titanDiv = document.getElementById(titanId);
             console.log('titanDiv:' + titanDiv);
-            $A.util.addClass(titanDiv, "toggle-hide");
+            this.template.querySelector('[data-id="titan-div"]').className='toggle-hide titanDiv slds-col slds-gutters slds-size_12-of-12';
         }
-        // ???
         let titanId = event.currentTarget.dataset.titan;
         console.log('Current Titan Id:' + titanId);
         let titanDiv = document.querySelector("#" + titanId);
-		$A.util.removeClass(titanDiv, "toggle-hide");
+		this.template.querySelector('[data-id="titan-div"]').className='titanDiv slds-col slds-gutters slds-size_12-of-12';
     }
     get titanListEmpty(){
         console.log("Length: " + this.titanList.length);
