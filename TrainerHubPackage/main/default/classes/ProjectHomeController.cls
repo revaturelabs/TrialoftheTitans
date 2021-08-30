@@ -14,7 +14,7 @@ public with sharing class ProjectHomeController {
     //retrieveProjects() function fetches all Project__c records to be displayed
     //on the projects home page
     
-    @Auraenabled
+    @Auraenabled(cacheable=true)
     public static List<Project__c> retrieveProjects(){
         try{
             final List<Project__c> projects = [SELECT Name, Description__c FROM Project__c ORDER BY Name];

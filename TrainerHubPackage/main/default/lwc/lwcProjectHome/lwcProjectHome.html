@@ -1,0 +1,58 @@
+<template>
+    <div class="slds-algin_absolute_center">
+        <template if:true={isHomePage}>
+            <div class="slds-box slds-size_1-of-2 slds-them_default">
+                <div class="slds-text-heading_large slds-text-align_center">Projects</div>
+                <section class="display-elements">
+                    <template if:true={projectList}>
+                        <template for:each={projectList} for:item="project">
+                            <ul key={project.Id} class="slds-has-dividers_around-space slds-p-horizontal_x-small">
+                                <li class="slds-card slds-grid slds-gutters slds-m-top_medium slds-p-vertical_small">
+                                    <div class="slds-col slds-size_2-of-3 slds-text-body_regular slds-text-heading_medium"><p>{project.Name}</p></div>
+                                    <div class="slds-col slds-size_1-of-3 slds-align_absolute-center">
+                                        
+                                        <button class="slds-button slds-button_outline-brand" id={project.Id} onclick={edit}>Edit...</button>
+                                        
+                                        <button class="slds-button slds-button_outline-brand" id={project.Id} onclick={assign}>Assign...</button>
+                                        
+                                    </div>
+                                </li>
+                            </ul>
+                        </template>
+                        <div class="slds-align_absolute-center">
+                            <button class="slds-m-top_x-small slds-button slds-button_brand" onclick={addNewProject}>Add New Project</button>
+                        </div>
+                    </template>
+                </section>
+            </div>
+        </template>
+        <template if:false={isHomePage}>
+            <section>
+                <div class="empty-content">
+                    <div class="slds-align_absolute-center">
+                        <div>
+                            <p class="slds-text-heading_medium slds-m-top_medium">{errorMessage}</p>
+                            <br/>
+                            <div class="slds-align_absolute-center">
+                                <button class="slds-button slds-button_brand slds-m-top_small" onclick={addNewProject}>
+                                    Add New Project
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </template>
+    </div>
+    <template if:true={isAssignProject}>
+        <!-- <c-assign-project current-page={currentPage} project-id={selectedProjId}></c-assign-project> doesn't exist yet -->
+    </template>
+
+    <template if:true={isNewProjectCreation}>
+        <!-- <c-new-project-creation current-page={currentPage}></c-new-project-creation> doesn't exist yet -->
+    </template>
+
+    <template if:true={isDynamicRow}>
+        <c-lwc-dynamic-row current-page={currentPage} project-id={selectedProjId} onaddrow={addrowHandler} ondeleterow={deleterowHandler}></c-lwc-dynamic-row>
+    </template>
+</template>
