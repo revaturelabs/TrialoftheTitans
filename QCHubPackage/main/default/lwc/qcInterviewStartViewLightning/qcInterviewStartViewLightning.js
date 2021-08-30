@@ -1,6 +1,6 @@
-import { api, LightningElement } from 'lwc';
+import { LightningElement, api } from 'lwc';
 
-export default class QcInterviewStartLightning extends LightningElement {
+export default class QcInterviewStartViewLightning extends LightningElement {
     @api Cohort;
     @api WeekList;
     @api Week = 'Week 1';
