@@ -4,7 +4,7 @@ import SearchHeroList from '@salesforce/apex/HeroAssessmentListController.Search
 import {refreshApex} from '@salesforce/apex'
 
 export  default class AssessmentHeroListLWC extends LightningElement {
-   @track myData=[];
+ /*  @track myData=[];
  
    buttonClicked;
  
@@ -243,6 +243,6 @@ export  default class AssessmentHeroListLWC extends LightningElement {
 
     
     }
- 
+ */
 
 }
