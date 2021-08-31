@@ -1,7 +1,7 @@
 <template>
     <lightning-card title="Flagged Heroes list">
-        <template if:true={heroList.data}>
-            <lightning-datatable key-field="Id" data = [heroList.data] columns={columns}>
+        <template if:true={heroList}>
+            <lightning-datatable key-field="Id" data = [heroList] columns={columns}>
 
             </lightning-datatable>
         </template>
