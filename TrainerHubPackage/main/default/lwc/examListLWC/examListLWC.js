@@ -52,7 +52,7 @@ export default class ExamListLWC extends LightningElement {
     
     
     handleSearchKeyword(event){
-        const searchString = event.target.value;
+        const searchString = event.detail.value;
         window.clearTimeout(this.delayTimeout);
         this.delayTimeout = setTimeout(()=>{
             this.searchValue = searchString;
