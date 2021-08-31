@@ -10,7 +10,7 @@
 
 public with sharing class HeroAssessmentListController {
     
-	@AuraEnabled
+	@AuraEnabled(cacheable=true)
     public static List<Hero_Assessment__c> HeroListAllCohorts() {
         List<Hero_Assessment__c> heroAssessmentSearch = [SELECT Assessment__r.Name, Overall_Score__c,
                                                          Hero__r.Name
@@ -18,7 +18,7 @@ public with sharing class HeroAssessmentListController {
         return heroAssessmentSearch;
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<Hero_Assessment__c> SearchHeroList(String searchKey, String cohortId) {
         String name =  + searchKey + '%';
 		String cohort = cohortId;
@@ -30,7 +30,7 @@ public with sharing class HeroAssessmentListController {
         return heroAssessmentSearch;
     }
 
-	@AuraEnabled
+	@AuraEnabled(cacheable=true)
     public static List<Hero_Assessment__c> HeroList(String cohortId) {
 		String cohort = cohortId;
         List<Hero_Assessment__c> heroAssessmentSearch = [SELECT Assessment__r.Name, Overall_Score__c,
