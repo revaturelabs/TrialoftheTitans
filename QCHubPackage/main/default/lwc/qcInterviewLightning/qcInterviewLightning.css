@@ -1,0 +1,19 @@
+.boxGrid {
+
+    background-color:#fef8ec;
+    border-radius: 5px;
+
+}
+
+.boxBackground {
+
+    background-color:#fef8ec;
+    border-radius: 5px;
+
+}
+
+.active {
+
+    color: #bf892d;
+
+}
