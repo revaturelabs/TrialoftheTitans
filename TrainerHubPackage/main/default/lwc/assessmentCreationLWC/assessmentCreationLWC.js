@@ -10,7 +10,7 @@ import { LightningElement } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class landingSkills extends LightningElement {
-    SubmitClick(event) {
+    submitClick(event) {
         //Give an alert for successful record creation and hide component
         this.dispatchEvent( new ShowToastEvent({
             title: 'Success',
