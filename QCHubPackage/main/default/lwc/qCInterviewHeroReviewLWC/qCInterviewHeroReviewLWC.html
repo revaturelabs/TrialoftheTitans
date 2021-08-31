@@ -1,0 +1,38 @@
+<template>
+    <lightning-navigation data-id="navService2"></lightning-navigation>
+
+    <lightning-card>
+        <h1 slot="title">
+            <lightning-icon icon-name="utility:approval" size="small"></lightning-icon>
+        
+            {interview.Account__r.Name}
+        </h1>
+        <h1 slot="footer">
+            <lightning-badge label={Cohort__r.Name}></lightning-badge>
+            <lightning-badge label={Squad__r.Name}></lightning-badge>
+        </h1>
+        Calculated Score: {interview.Overall_Score__c}
+    </lightning-card>
+
+    <!-- displays a list of questions and their hero-supplied answers -->
+ <!--   <lightning-datatable keyField="id" 
+                        label="Overview"
+                        data={answers}
+                        columns={columns} 
+                        onRowSelection={handleRowSelection}
+                        hideCheckboxColumn=true
+                        suppressBottomBar=true ></lightning-datatable>
+ -->
+    <!-- refers to child component to enable handling of multiple flags -->
+    
+      <!--      <div for:each items={flagList} for:item="flag:list" for:index="index">
+                <c-q-c-interview-hero-review-flag-row flag={item} rowIndex={index}></c-q-c-interview-hero-review-flag-row>
+            </div>
+        -->
+    
+
+    <lightning-button title="Click here to finalize interview for this Hero!" label="Finalize" onclick={handleFinalize}></lightning-button>
+
+    <lightning-button title="Submit Interview" label="Submit Interview" onclick={Submit}></lightning-button>
+
+</template>

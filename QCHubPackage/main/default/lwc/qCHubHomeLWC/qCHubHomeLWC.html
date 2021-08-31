@@ -1,0 +1,78 @@
+<template>
+ 
+    <ltng-require scripts={resourceD3}
+                  after-scripts-loaded ={c.D3}></ltng-require>
+
+
+    <!-- Beginning of box layout grid for components -->
+    <div class="slds-grid slds-gutters slds-align_absolute-center">
+
+        <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
+
+         <!--   <p><c-cohort-buttons cohortList={-cohort-list}></c-cohort-buttons></p>  -->
+
+        </div>
+
+        <div class="boxGrid slds-col slds-size_7-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small slds-m-vertical_x-small">
+
+
+            <!-- This is the d3 bar graph -->
+           <!-- <p>-->
+                <div id="svg" class="svgCohortOverview"></div>
+                <lightning-button value={selectedCohort.cohort} onclick={launchInterview}>Interview Cohort</lightning-button>
+            </p>
+            <!-- end of d3 bar graph -->
+
+
+        </div>
+
+        <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
+          <!--  <p><c-squad-buttons-m squadList={-squad-list}></c-squad-buttons-m></p>   -->
+        </div>
+
+    </div>
+    <!-- End of box layout grid for components -->
+
+
+    <!-- Beginning of tabset for heroes -->
+    <div class="slds-grid slds-gutters slds-align_absolute-center">
+        <div class="boxGrid-Hero slds-col slds-size_9-of-12 slds-text-align_center slds-m-top_x-small">
+
+            <div class="tabSet slds-m-top_x-small">
+                <div if:true={HeroList}>
+                <lightning-tabset variant="scoped"></lightning-tabset>
+                    <!-- Pull in hero name for label -->
+               <!--     <aura:iteration items="{!v.HeroList}" var="hero">
+                    <lightning-tab label={hero.Name}></lightning-tab>
+                    
+                        <table class="slds-table slds-table--bordered slds-table--striped">
+                             <thead>
+                                 <tr>
+                                 <th scope="col"><span class="slds-truncate">Name</span></th>
+                                 <th scope="col"><span class="slds-truncate">Cohort</span></th>
+                                 <th scope="col"><span class="slds-truncate">Curriculum</span></th>
+                                 <th scope="col"><span class="slds-truncate">Team</span></th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                 <td> {hero.Name}</td> 
+                                 <td> {hero.Cohort__r.Name}</td> 
+                                 <td> {hero.Curriculum__r.Name}</td>
+                                 <td> {hero.Team__r.Name}</td>
+                                 </tr>
+                             </tbody>
+                        </table>
+                    </lightning-tab>
+                    </aura:iteration>
+                </lightning-tabset>
+            -->
+                </div>
+            
+                <div if:false={HeroList}>No Heroes Yet!</div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End of tabset for heroes -->
+</template>
