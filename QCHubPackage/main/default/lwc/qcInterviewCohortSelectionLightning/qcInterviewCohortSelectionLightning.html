@@ -1,0 +1,10 @@
+<template>
+    <!--TODO:Make sure all the funtionality works-->
+    <lightning-datatable key-field="id" 
+                        data={heroList} 
+                        columns={columns} 
+                        onrowselection={handleRowSelection} 
+                        hidecheckboxcolumn="true"
+                        suppressbottombar="true" 
+                        onrowaction={LaunchInterview}></lightning-datatable>
+</template>
