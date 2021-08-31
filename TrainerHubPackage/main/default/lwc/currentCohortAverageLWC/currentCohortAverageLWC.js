@@ -1,9 +1,16 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 import getData from '@salesforce/apex/CurrentCohortController.getData';
 export default class CurrentCohortAverageLWC extends LightningElement {
     @wire(getData)
     getData;
- 
+    @track pr;
+    @track error;
+    connectedCallback(){
+        getData().then(result=>{console.log('result' + result); this.pr = result; this.Chart(this.pr)}).catch(error=>{console.log('error ' + error); this.error = error;});
+    }
+    
+    //fn(getData){this.Chart(getData);}
+    
     Chart(data){
         var margin = 5,
         width = 700,
@@ -33,13 +40,12 @@ export default class CurrentCohortAverageLWC extends LightningElement {
             return d + "%";
         }).ticks(10));
         
-        var helper = this;
         g.selectAll(".bar")
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
         .attr("fill", function(d) {
-            return helper.RetColor(d.name);
+            return this.RetColor(d.name);
         })
         .attr("x", function(d) { return xScale(d.name); })
         .attr("y", function(d) { return yScale(d.value); })
@@ -51,12 +57,12 @@ export default class CurrentCohortAverageLWC extends LightningElement {
         .on("mouseover", function(d) {
             d3.select(this)
                 .attr("fill", function(d) {
-                    return d3.rgb(helper.RetColor(d.name)).darker(2);
+                    return d3.rgb(this.RetColor(d.name)).darker(2);
                 });
         })
         .on("mouseout", function(d) {
             d3.select(this).attr("fill", function(d) {
-                return helper.RetColor(d.name);
+                return this.RetColor(d.name);
             });
         }).append("title")
         .text(function(d) {
