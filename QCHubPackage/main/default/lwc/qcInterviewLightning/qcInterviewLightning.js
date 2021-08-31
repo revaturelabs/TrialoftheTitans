@@ -40,25 +40,25 @@ export default class QcInterviewLightning extends LightningElement {
 		//console.log(component.get("v.WeekList"));
     }
 
-    UpdateStage(){
-		this.Stage = event.getParam("StageName");
+    UpdateStage(event){
+		this.Stage = event.target.value("StageName");
 	}
 
 
-	QAEvent(){
-		let questionAnswer = event.getParam("QA");
+	QAEvent(event){
+		let questionAnswer = event.target.value("QA");
 		this.CurrentQAList.push(questionAnswer);
         this.CurrentQAList = currentQAList;
 	}
 
 
-	SetHero(){
-		this.CurrentHero = event.getParam("SelectedHero");
+	SetHero(event){
+		this.CurrentHero = event.target.value("SelectedHero");
 	}
 
 
-	SetWeek(){
-		this.Week = event.getParam("Week");
+	SetWeek(event){
+		this.Week = event.target.value("Week");
 	}
 
     checkStageNameIsStart(){
