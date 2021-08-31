@@ -16,13 +16,14 @@
                 <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Cohort Table:</h1>
                 
                 <!--Begin Hero List Component-->
-                <p style="text-align: center"><c:qcInterviewQALightning></c:qcInterviewQALightning></p>
+                <p style="text-align: center"><c-qc-interview-cohort-selection-lightning></c-qc-interview-cohort-selection-lightning></p>
                 <!--End Hero List Component--> <!--heroList = {Cohort.heroList}-->
 
                 <!--lightning-button label="TESTNEXT" onclick="{TESTNEXT}"></lightning:button-->
 
                 <!--Begin Week Selection Dropdown Menu-->
-                <select class="slds-select" name="WeekSelection" label="Week" value={Week} onchange={WeekSelect}>
+                <p>Week</p>
+                <select class="slds-select" name="WeekSelection" label="Week" value={Week} onchange={WeekSelect}>    
                     <template for:each={WeekList} for:item='Week'>
                         <p key={Week.id}>{Week}</p>
                     </template>
