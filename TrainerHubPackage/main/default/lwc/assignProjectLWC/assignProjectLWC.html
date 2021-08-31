@@ -1,0 +1,29 @@
+<template>
+    <lightning-layout class="slds-align_absolute-center slds-box slds-size_1-of-1">
+        <lightning-layout-item class="slds-box slds-theme_default slds-box slds-size_1-of-2">
+            <!-- First picklist, how to group the project assignment: by individuals or by cohorts -->
+            <lightning-combobox
+            name="groupBy"
+            label="Group By"
+            value={groupByValue}
+            placeholder="--"
+            options={groupByOptions}
+            onchange={handleGroupByChange} ></lightning-combobox>
+
+            <br/>
+
+            <!-- Second picklist, list of individuals (Accounts) or Cohorts - dynamically set by the choice of the first picklist -->
+            <lightning-dual-listbox name="dualListbox"
+                            label="Assign To"
+                            source-label="Available"
+                            selected-label="Selected"
+                            options={dualListboxOptions}
+                            onchange={handleDualListboxChange}></lightning-dual-listbox>
+
+            <lightning-button-group class="slds-m-top_x-small">
+            <lightning-button label="Cancel" onclick={cancelAssignProject}></lightning-button>
+            <lightning-button variant="brand"  label="Submit" onclick={submitAssignProject}></lightning-button>
+            </lightning-button-group>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
