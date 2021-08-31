@@ -5,6 +5,7 @@ export default class QcInterviewStartViewLightning extends LightningElement {
     @api WeekList;
     @api Week = 'Week 1';
     constructor(){
+        super();
         this.template.addEventListener('InterviewHeroEvent', StartInterview);
     }
     
