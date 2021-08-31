@@ -1,4 +1,7 @@
 <template>
+    {activeCohort}
+    {squadList}
+
     <svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <path d="M120,108 C120,114.6 114.6,120 108,120 L12,120 C5.4,120 0,114.6 0,108 L0,12 C0,5.4 5.4,0 12,0 L108,0 C114.6,0 120,5.4 120,12 L120,108 L120,108 Z" id="Shape" fill="#2A739E"></path>
@@ -11,7 +14,7 @@
         </li>
     </ul>
 
-    <template for:each={SquadList} for:item="SquadWrap">
+    <template for:each={squadList} for:item="SquadWrap">
         <lightning-button key={SquadWrap}>Hi, this a squad {SquadWrap.squad.Name}</lightning-button>
     </template>
 </template>
