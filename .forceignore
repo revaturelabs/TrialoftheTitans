@@ -25,7 +25,8 @@ package.xml
 **/profiles
 **/layouts
 #**/flows
-#**/permissionsets
+**/permissionsets
+**/permissionsetgroups
 **/triggers
 **/workflows
 **/quickActions

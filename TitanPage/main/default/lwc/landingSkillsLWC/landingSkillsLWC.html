@@ -1,12 +1,15 @@
 <template>
     <div>
         <div>
-            <!-- Contact information Component, allows the user to view their contact information -->
             <span><div class="container slds-m-around_large" id="contactinfo">
                 <lightning-card title={lightningCardTitle}>
                     <div class="slds-grid">
                         <ul>
-                            <!--need key-->
+                            <!-- Display message if there are no related skills -->
+                            <template if:true={skillsListEmpty}>
+                                There are no skills associated with this Titan
+                            </template>
+                            <!-- Display alls skills related to current user -->
                             <template for:each={skillsList} for:item="skills">
                                 <div class="slds-grid" key={skills.Id}>
                                     <ul>

@@ -1,11 +1,12 @@
-.THIS .toggle-hide{
-    display: none;
-}
-.THIS{
+*{
     color: white;
     --background-color:#302f30;
+    background-color: var(--background-color);
 }
-.THIS #bannerDiv{
+.toggle-hide{
+    display: none;
+}
+.bannerDiv{
     background-image: url(/resource/GodsBanner2);
     background-repeat: repeat-x;
     background-position: center; 
@@ -14,68 +15,74 @@
     border:1px;
     padding:10px;
 }
-.THIS #div{
+div{
     background-color: var(--background-color);
 }
-.THIS{
+.Header{
     background-color: var(--background-color);
-}  
-.THIS #Header{
-    background-color:var(--background-color);
     color:white;
 }
-.THIS .card{
+.card{
     background-color: var(--background-color);
 }  
-.THIS .slds-card{
+.slds-card{
     background-color: var(--background-color);  
 }
-.THIS .slds-media_center{
+.slds-media_center{
     background-color: var(--background-color);      
 }
-.THIS .slds-card_boundary{
+.slds-card_boundary{
     background-color: var(--background-color);      
 }
-.THIS .slds-card__body_inner{
+.slds-card__body_inner{
     background-color: var(--background-color);  
 }
-.THIS .slds-card_boundary{
+.slds-card_boundary{
     background-color: var(--background-color);      
 }
-.THIS .slds-card-wrapper{
+.slds-card-wrapper{
     background-color: var(--background-color);      
 }
-.THIS .slds-card__footer{
+.slds-card__footer{
     background-color: var(--background-color);      
 }
-.THIS .slds-grid{
+.slds-grid{
     background-color: var(--background-color);
 }
-.THIS .slds-col{
+.slds-col{
     background-color: var(--background-color);
 }
-.THIS .slds-gutters{
+.slds-gutters{
     background-color: var(--background-color);
 }
-.THIS .slds-card__header{
+.slds-card__header{
     background-color: var(--background-color);
 }
-.THIS .slds-card__header-title{
+.slds-card__header-title{
     background-color: var(--background-color);
 }
-.THIS .slds-text-heading_small{
+.slds-text-heading_small{
     font-size: x-large;
     text-decoration:bold;
 }
-.THIS .slds-card__header-link{
+.slds-text-heading_large{
+    font-size: x-large;
+    text-decoration:bold;
+}
+.slds-card__header-link{
     background-color: var(--background-color);
 }
-.THIS .slds-card__body{
+.slds-card__body{
     background-color: var(--background-color);
 }
-.THIS .slds-card__footer{
+.slds-card__footer{
     background-color: var(--background-color);
-}  
-.THIS #contactinfo{
+}
+.contactinfo{
     position: relative;
+}
+:host{ 
+    --sds-c-card-color-background: var(--background-color);
+    --sds-c-card-footer-color-border: white;
+    --sds-c-card-heading-font-size: x-large;
 }

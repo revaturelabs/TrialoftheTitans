@@ -11,19 +11,21 @@ import getSkills from '@salesforce/apex/TitanPageApexController.getSkills';
 
 export default class landingSkills extends LightningElement {
     
-    @api activeTitan="";
-    @api skillsList="";
-    error;
+    @api activeTitan;
+    skillsList=[];
 
     connectedCallback(){
-        getSkills(this.activeTitan.Id).LightningElement(result =>{
-            this.skillsList = result;
-        }).catch(error => {
-            this.error=error;
-        })
+        getSkills({titanId : this.activeTitan.Id})
+            .then((result) => {
+                this.skillsList = result;
+            }).catch((error) => {
+                console.error(error);
+            });
     }
-
+    get skillsListEmpty(){
+        return this.skillsList.length == 0;
+    }
     get lightningCardTitle(){
-        return activeTitan.Name + ' Skills';
+        return this.activeTitan.Name + ' Skills';
     }
 }
