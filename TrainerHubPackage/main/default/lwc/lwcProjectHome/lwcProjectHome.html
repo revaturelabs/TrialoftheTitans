@@ -49,7 +49,7 @@
     </template>
 
     <template if:true={isNewProjectCreation}>
-        <!-- <c-new-project-creation current-page={currentPage}></c-new-project-creation> doesn't exist yet -->
+        <c-new-project-creation-l-w-c current-page={currentPage} oncancel={cancelFromNewProjectCreation}></c-new-project-creation-l-w-c>
     </template>
 
     <template if:true={isDynamicRow}>
