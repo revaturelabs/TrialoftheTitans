@@ -32,7 +32,6 @@ export default class NewProjectCreationLWC extends LightningElement {
     }
 
     cancelNewProjectCreation(event) {
-        this.currentPage = 'homePage';
         this.sendCancelEventToParent(event);
     }
 
