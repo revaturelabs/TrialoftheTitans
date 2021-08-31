@@ -7,11 +7,16 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import { LightningElement } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class landingSkills extends LightningElement {
     SubmitClick(event) {
         //Give an alert for successful record creation and hide component
-        alert("Succesfully created record");
+        this.dispatchEvent( new ShowToastEvent({
+            title: 'Success',
+            message: 'Succesfully created record',
+            variant: 'success'
+        }));
         let assessmentForm = this.template.querySelector(`[data-id="assessment"]`);
         assessmentForm.className = 'toggle-hide';
     }
