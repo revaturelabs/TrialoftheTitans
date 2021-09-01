@@ -1,0 +1,11 @@
+.boxGrid {
+
+    height: 500px;
+    background-color:#fef8ec;
+    border-radius: 5px;
+
+}
+
+.QuestionBox {
+    width: 80%;
+}

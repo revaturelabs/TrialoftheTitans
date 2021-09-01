@@ -1,0 +1,43 @@
+<template>
+    <div>
+        <div>
+            <div class="boxBackground slds-box slds-grid slds-gutters slds-align_absolute-center">
+
+                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">
+                    <p class={checkStageNameIsStart}>Start</p>
+                </div>
+
+                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">
+                    <p class={checkStageNameIsInterview}>Interview</p>
+                </div>
+
+                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">
+                    <p class={checkStageNameIsEnd}>End</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div if:true={checkStageNameIsEndBoolean}>
+            <c-qc-interview-start-view-lightning cohort={Cohort} weeklist={WeekList}></c-qc-interview-start-view-lightning>
+        </div>
+    </div>
+    
+     
+    <div if:true={checkStageNameIsInterviewBoolean}>
+        <c-qc-interview-qa-lightning cohortid={Cohort.cohort.Id} hero = {CurrentHero} week = {Week}></c-qc-interview-qa-lightning>
+    </div>
+    
+    
+    <div if:true={checkStageNameIsEndBoolean}>
+        <c-qc-interview-end-lightning week={Week} answers={CurrentQAList} cohortid={Cohort.cohort.Id}
+                            heroid={CurrentHero.Id} heroname={CurrentHero.Name}></c-qc-interview-end-lightning>
+    </div>
+    
+    
+    <div if:true={checkStageNameIsInterviewBoolean}>
+        <p>An unknown error has occurred.</p>
+    </div>
+</template>
