@@ -1,0 +1,22 @@
+.body poolTableLwc{
+    background-color: lightblue !important; 
+}
+.section1{
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    width:90%;
+}
+.section2{
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    width:90%;
+}
+.table{
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    width:95%;
+    padding-bottom: 10%;
+}

@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//  Name: titanPageLanding
+//  Name: titanPageLandingLwc
 //  Author: Al Waisley
 //  Description: JavaScript controller for titanPageLanding
 //
@@ -22,13 +22,13 @@ export default class titansPageLanding extends LightningElement {
 
     connectedCallback(){
         getTitans()
-            .then((result) =>{
+            .then((result) => {
                 this.titanList = result;
             }).catch((error) => {
                 console.error(error);
             });
         fetchUser()
-            .then((result) =>{
+            .then((result) => {
                 this.accountInfo = result;
             }).catch((error) => {
                 console.error(error);

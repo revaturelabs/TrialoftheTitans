@@ -1,0 +1,92 @@
+<!-- Name: poolTableLwc -->
+<!-- Author: Phong Nguyen/Al Waisley -->
+<!-- The components will display table of pool records and will allow users
+  to see the questions they have added -->
+
+<template>
+    <div class="body">
+        <div class="section1">
+            <div class="slds-page-header" role="banner">
+                <h2
+                    id="element-with-table-label"
+                    class="slds-text-heading_medium slds-m-bottom_xx-small"
+                    style='padding-left: 3%;'>Pool Table</h2>
+                <div class="slds-grid">
+                    <div class="slds-col">
+                        <div class="section2">
+                            <div class="slds-clearfix">
+                                <div class="slds-page-header" role="banner">
+                                    <div class="slds-float_none" style='padding-bottom: 10px;'>
+                                        <!--Disable might need to be fixed-->        
+                                        <lightning-button
+                                            label="Prev"
+                                            icon-name="utility:chevronleft"
+                                            icon-position="left"
+                                            onclick={handlePrev}
+                                            disabled={isFirstPage}>
+                                        </lightning-button>
+                                        <lightning-button
+                                            label="Next"
+                                            icon-pame="utility:chevronright"
+                                            icon-position="right"
+                                            disabled={isLastPage}
+                                            onclick={handleNext}>
+                                        </lightning-button>
+                                    </div>
+                                    <div class="row">
+                                        <p class="title">Page Size</p>
+                                        <lightning-combobox
+                                            class="single"
+                                            data-id="InputSelectSingle"
+                                            onchange={onSingleSelectChange}
+                                            options={inputSelectSingleOptions}>
+                                        </lightning-combobox>
+                                        <p><lightning-formatted-text
+                                                class="result"
+                                                data-id="singleResult"
+                                                value=""></lightning-formatted-text></p>
+                                    </div>
+                                    <p>Page {pageNumber} | Showing records from {pageRange}</p>
+                                </div>
+                            </div>
+                            <!-- Search box -->
+                            <div class="inputsection">  
+                                <lightning-input
+                                    data-id="searchField"              
+                                    value={searchKeyword}          
+                                    placeholder="Search Exam Title"
+                                    onchange={searchQues}>
+                                </lightning-input>     
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col">
+                        <div class="row">
+                            <lightning-combobox
+                                name="poolDisplayId"
+                                label="Select a Pool:"
+                                data-id="poolDisplayId"
+                                value={selectedPools}
+                                onchange={displayPoolQues}
+                                options={poolDisplayOptions}
+                                placeholder="<Choose one pool to display questions...>">
+                            </lightning-combobox>
+                        </div>
+                        <div style="margin-top:10px">
+                            <lightning-button label="Delete questions from Pools" onclick={delQuestionPool}></lightning-button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table">
+                    <lightning-datatable
+                        data={myData}
+                        columns={myColumns}
+                        key-field="Id"
+                        hide-checkbox-column="false"
+                        onrowselection={updateSelectedRows}>
+                    </lightning-datatable>
+                </div>
+            </div>
+        </div>  
+    </div>
+</template>
