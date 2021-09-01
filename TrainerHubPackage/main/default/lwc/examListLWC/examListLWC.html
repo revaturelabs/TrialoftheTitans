@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Exam Results list">
+        <template if:true={examResult}>
+            <lightning-input type="search" name="searchKey" data-id="searchKey" onchange={handleSearchKeyword} value={searchValue} placeholder="Search Hero">
+
+            </lightning-input>
+            <template for:each={examResult} for:item="examResultItem" for:index="index">
+                <option key ={examResultItem.Id}>{examResultItem.Name}</option>
+            </template>
+            <lightning-datatable key-field="Id" data = [examResult] columns={columns} hide-checkbox-column="true">
+
+            </lightning-datatable>
+        </template>
+    </lightning-card>
+</template>
