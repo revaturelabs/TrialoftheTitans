@@ -54,7 +54,6 @@ export default class TrainerHubAndCohortsPageLWC extends LightningElement {
     }
 
     rowClickedAction(event) {
-        const recordId = event.target.dataset.recordid;
         const row = event.detail.row;
         const { Id } = row;
 

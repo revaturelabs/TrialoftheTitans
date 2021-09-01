@@ -14,6 +14,7 @@ export default class LwcProjectHome extends LightningElement {
   getProjectList({ error, data }) {
     if (data) {
       this.projectList = data;
+      console.log('got project list',data);
       this.errorMessage = undefined;
     } else if (error) {
       this.errorMessage = error;
@@ -28,12 +29,21 @@ export default class LwcProjectHome extends LightningElement {
   }
 
   assign(event) {
-    this.selectedProjId = event.target.id;
+    this.selectedProjId = event.target.id.substring(0,18);
+    // trim it to 18 characters, since a "-0" gets added to the end.
     this.currentPage = "AssignProject";
   }
 
   addNewProject() {
     this.currentPage = "NewProjectCreation";
+  }
+
+  connectedCallback() {
+    this.currentPage = "homePage";
+  }
+
+  cancelFromNPCorAP() {
+    this.currentPage = "homePage";
   }
 
   // Used for if:true directive

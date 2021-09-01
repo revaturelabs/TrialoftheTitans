@@ -46,10 +46,11 @@
     </div>
     <template if:true={isAssignProject}>
         <!-- <c-assign-project current-page={currentPage} project-id={selectedProjId}></c-assign-project> doesn't exist yet -->
+        <c-assign-project-l-w-c project-id={selectedProjId} oncancel={cancelFromNPCorAP}></c-assign-project-l-w-c>
     </template>
 
     <template if:true={isNewProjectCreation}>
-        <!-- <c-new-project-creation current-page={currentPage}></c-new-project-creation> doesn't exist yet -->
+        <c-new-project-creation-l-w-c current-page={currentPage} oncancel={cancelFromNPCorAP}></c-new-project-creation-l-w-c>
     </template>
 
     <template if:true={isDynamicRow}>
