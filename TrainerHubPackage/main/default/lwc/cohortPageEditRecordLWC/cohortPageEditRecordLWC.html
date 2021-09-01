@@ -1,0 +1,21 @@
+<!--
+
+  Name: CohortPageEditRecord
+  Author: Brett Spokes
+  Description: Creates new Assessments
+
+-->
+<template>
+    
+    <!-- A record edit form for the Assessment; associated action's purpose is to use the event to return the view to the parent component -->
+
+       <lightning-record-edit-form record-id={AssessmentId} object-api-name="Assessment__c" onsuccess={handleClick}>
+           <lightning-messages></lightning-messages>
+            <lightning-input-field field-name="Name"></lightning-input-field>
+            <lightning-input-field field-name="Type__c"></lightning-input-field>
+            <lightning-input-field field-name="Description__c"></lightning-input-field>
+            <lightning-button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update"></lightning-button>
+            <lightning-button class="slds-m-top_small" variant="brand" label="Cancel" title="Cancel action" onclick={handleClick}></lightning-button>
+    	</lightning-record-edit-form>
+    
+</template>

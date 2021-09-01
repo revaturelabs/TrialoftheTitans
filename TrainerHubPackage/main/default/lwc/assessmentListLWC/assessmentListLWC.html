@@ -1,0 +1,31 @@
+<!--
+////////////////////////////////////////////////////
+//
+// Name: assessmentListLWC
+// Author: Luis Zapata
+// Description: Component to diplay Assessment Data.
+// - ATTRIBUTES
+// - data: Holds the object for the data to be displayed.
+// - columns: Holds the Name,Field Name, and Type of the columns.
+//
+////////////////////////////////////////////////////
+-->
+<template>
+ 
+    
+	<!-- This first handler is for getting the return event from the record edit page
+        component will not be displayed on page using conditional rendering -->
+    <template if:true ={show}>
+	<c-cohort-page-edit-record-l-w-c oncmpreturnevent={handleReturnComponentEvent}></c-cohort-page-edit-record-l-w-c>
+    </template>
+    <!-- Assessmnet Data Table -->
+    <lightning-datatable
+                         data = {data}
+                         columns = {columns}
+                         key-field = "id"
+                         max-row-selection = "1"
+                         onrowaction={updateSelected}
+                         hide-checkbox-column=true/>
+                        </lightning-datatable>
+
+</template>
