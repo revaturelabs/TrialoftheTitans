@@ -11,7 +11,7 @@
     },
 
     //initializes rows of flags
-    createFlag : function (component, event) {
+    createFlag : function (component) {
         let RowItemList = component.get("v.flagList");
         RowItemList.push({
             'sobjectType': 'QC_Flag__c',
@@ -69,7 +69,7 @@
     },
     
     // should handle getting params for insert and upsert of flags and interview
-    setFlags : function(component, event) {
+    setFlags : function(component) {
         let flags = component.get("v.flagList");
 
         flags.setParams({flags: component.get("v.flagList")});
@@ -87,7 +87,7 @@
         component.set("v.newFlagType", type);
     },
 
-    finalizeInterview : function(component, event) {
+    finalizeInterview : function(component) {
         let interview = component.get("c.setInterview");
 
         interview.setParams({interview: component.get("v.interviews")});

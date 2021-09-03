@@ -1,12 +1,12 @@
 ({
     init : function(component, event, helper) {
         helper.initColumns(component);
-        helper.createFlag(component, event);
+        helper.createFlag(component);
     },
 
     // creates new row on button click
     AddNewRow : function(component, event, helper) { 
-        helper.createFlag(component, event);
+        helper.createFlag(component);
     },
     
     // deletes row on button click 
@@ -19,8 +19,8 @@
     },
 
     handleFinalize : function(component, event, helper) {
-        helper.setFlags(component, event);
-        helper.finalizeInterview(component,event);
+        helper.setFlags(component);
+        helper.finalizeInterview(component);
         helper.UpdateStage(component, "Start");
     },
     

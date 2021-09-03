@@ -1,5 +1,5 @@
 ({
-	createEquivalencyData: function(component, event) {
+	createEquivalencyData: function(component) {
         // get the equivList from component and add New Object to List  
         let RowItemList = component.get("v.equivList");
         RowItemList.push({
