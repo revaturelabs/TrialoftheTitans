@@ -18,8 +18,13 @@
                          }
                     ]
         )
-        //helper.getHeroes(component, event)
-        //helper.getInterviews(component, event)
+        helper.getHeroes(component, event)
+        helper.getInterviews(component, event)
+    },
+    
+    handleCohort : function(component, event, helper) {
+        let cohort = event.getParam("SelectedCohort");
+        component.set("v.currentCohort", cohort);
     },
 
     // row selection handles button to start interview

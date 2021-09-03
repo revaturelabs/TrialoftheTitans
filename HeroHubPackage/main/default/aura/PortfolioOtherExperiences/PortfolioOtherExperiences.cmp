@@ -1,0 +1,96 @@
+<aura:component>
+    <!-- Choose between display and edit -->
+    <aura:attribute name="isEdit" type="Boolean" default="false" />
+
+    <!-- Work Experience info -->
+    <aura:attribute name="company" type="List" default="['Company','B','C']" />
+    <aura:attribute name="position" type="List" default="['Position','e','f']" />
+    <aura:attribute name="dateStart" type="List" default="['Jul 2077','Oct 80','Sep 81']" />
+    <aura:attribute name="dateEnd" type="List" default="['Jul 2078','Dec-80','Feb 82']" />
+
+    <aura:if isTrue="{!!v.isEdit}">
+
+    <!-- Currently displays three but only allows editing of the first one.
+         Fixed array of 3. It is a template to show a sample visual flow of use.
+         Additional approach can include dynamic adding of rows/experiences instead of a fixed limit of 3. -->
+
+    <lightning:card>
+        <div class="">
+
+            <!-- First 'other experience' -->
+            <div class="slds-grid slds-gutters slds-text-align_center">
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-text-heading_large"><lightning:formattedText name="c0" value="{!v.company[0]}" /></div>
+                    <div class="slds-text-heading_medium"><lightning:formattedText name="p0" value="{!v.position[0]}" /></div>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-text-heading_medium">
+                    <p><lightning:formattedText name="ds0" value="{!v.dateStart[0]}" /> 
+                        - <lightning:formattedText name="de0" value="{!v.dateEnd[0]}" /></p>
+                </div>
+            </div>
+
+            <hr/>
+
+            <!-- Second 'other experience' -->
+            <div class="slds-grid slds-gutters slds-text-align_center">
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-text-heading_large"><lightning:formattedText name="c0" value="{!v.company[1]}" /></div>
+                    <div class="slds-text-heading_medium"><lightning:formattedText name="p0" value="{!v.position[1]}" /></div>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-text-heading_medium">
+                    <p><lightning:formattedText name="ds0" value="{!v.dateStart[1]}" /> 
+                        - <lightning:formattedText name="de0" value="{!v.dateEnd[1]}" /></p>
+                </div>
+            </div>
+            
+            <hr/>
+
+            <!-- Third 'other experience' -->
+            <div class="slds-grid slds-gutters slds-text-align_center">
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-text-heading_large"><lightning:formattedText name="c0" value="{!v.company[2]}" /></div>
+                    <div class="slds-text-heading_medium"><lightning:formattedText name="p0" value="{!v.position[2]}" /></div>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-text-heading_medium">
+                    <p><lightning:formattedText name="ds0" value="{!v.dateStart[2]}" /> 
+                        - <lightning:formattedText name="de0" value="{!v.dateEnd[2]}" /></p>
+                </div>
+            </div>
+            
+            <hr/>
+
+        </div>
+
+        <lightning:button label="Edit" class="slds-m-left_small" onclick="{! c.edit}" variant="brand-outline"/>
+        
+    </lightning:card>
+
+
+    <!-- Edit -->
+    <aura:set attribute="else">
+
+        <lightning:card>
+            <div class="slds-grid slds-gutters">
+
+                <div class="slds-col slds-size_1-of-3 slds-text-align_center">
+                    <div class="slds-text-heading_medium">Experience #1</div>
+                    <lightning:input aura:id="c0" label="Enter company name" name="c_0" placeholder="type here..." />
+                    <lightning:input aura:id="p0" label="Enter position" name="p_0" placeholder="type here..." />
+                    <lightning:input aura:id="ds0" label="Enter start date" name="sd_0" placeholder="type here..." />
+                    <lightning:input aura:id="de0" label="Enter end date" name="se_0" placeholder="type here..." />
+                </div>
+
+            </div>
+        </lightning:card>
+
+        <lightning:buttonGroup class="slds-m-top_small">
+            <lightning:button label="Cancel" onclick="{! c.cancel}" variant="brand-outline" class="slds-m-left_small" />
+            <lightning:button label="Save"   onclick="{! c.save}" variant="brand"/>
+        </lightning:buttonGroup>
+
+    </aura:set>
+
+
+    </aura:if>
+
+</aura:component>	
