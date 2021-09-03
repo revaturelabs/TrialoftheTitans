@@ -8,51 +8,65 @@
 ///////////////////////////////////////////////////
 
 ({
+    columnSetUp : function(component) {
+        component.set('v.columns',[
+            { label: 'Hero', fieldName: 'hero', type: 'text', initialWidth: 75 },
+            { label: 'QC Flag Name', fieldName: 'Name', type: 'text', initialWidth: 130},
+            { label: 'QC Week', fieldName: 'week', type: 'text', initialWidth: 100},
+            { label: 'QC Score', fieldName: 'score', type: 'text', initialWidth: 100},
+            { label: 'Type', fieldName: 'Type__c', type: 'text', initialWidth: 150},
+            { label: 'Description', fieldName: 'Description__c', type: 'text', initialWidth: 700},
+        ]);
+    },
+
     // get Exam Results from the server
     fetchData : function(component) {
-        var action = component.get('c.HeroList');
-        action.setCallback(this, (function (response) {
-            var state = response.getState();
+        let action = component.get('c.HeroList');
+        action.setCallback(this, function (response) {
+            let state = response.getState();
             if (state === "SUCCESS") {
                 //have the data in the server in a variable
-                var data = response.getReturnValue();
+                let heroData = response.getReturnValue();
                 //for loop to set key for the coloumn with data
-                for( let i=0; i< data.length; i++ ){
+                for(let data of heroData) {
                     //if data retrieved is null place value stating it is null
                     //if not null place data in the key for the column
-                    if(data[i].Account__c == null){
-                        data[i].hero = "No Hero";
-                    } else{
-                        data[i].hero = data[i].Account__r.Name;
+                    if(data.Account__c == null){
+                        data.hero = "No Hero";
+                    } else {
+                        data.hero = data.Account__r.Name;
                     }
-                }
-                //for loop to set key for the coloumn with data
-                for( let i=0; i< data.length; i++ ){
+            
                     //if data retrieved is null place value stating it is null
                     //if not null place data in the key for the column
-                    if(data[i].QC_Interview__c == null){
-                        data[i].week = "No QC Inerview";
-                    } else{
-                        data[i].week = data[i].QC_Interview__r.Week__c;
+                    if(data.QC_Interview__c == null){
+                        data.week = "No QC Inerview";
+                    } else {
+                        data.week = data.QC_Interview__r.Week__c;
                     }
-                }
-                //for loop to set key for the coloumn with data
-                for( let i=0; i< data.length; i++ ){
+
                     //if data retrieved is null place value stating it is null
                     //if not null place data in the key for the column
-                    if(data[i].QC_Interview__c == null){
-                        data[i].score = "No QC Inerview";
-                    } else{
-                        data[i].score = data[i].QC_Interview__r.QC_Score__c;
+                    if(data.QC_Interview__c == null){
+                        data.score = "No QC Inerview";
+                    } else {
+                        data.score = data.QC_Interview__r.QC_Score__c;
                     }
                 }
                 //set the new data to the table
                 component.set('v.data', data);
             } else if (state === "ERROR") {
-                var errors = response.getError();
-                console.error(errors);
+                let errors = response.getError();
+                if (errors && errors[0].message){
+                    let showToast = $A.get("e.force:showToast");
+                    showToast.setParams({
+                        "message" : "Something went wrong!",
+                        "type" : "error"
+                    });
+                    showToast.fire();
+                }
             }
-        }));
+        });
         $A.enqueueAction(action);
-    },
+    }
 })

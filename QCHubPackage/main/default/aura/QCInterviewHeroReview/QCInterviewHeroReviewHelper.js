@@ -1,40 +1,29 @@
 ({
-    // ***CURRENTLY NOT IN USE***
-    getInterview : function(component, event) {
-        var interviews = component.get("c.getInterview")
-        interviews.setParams({cohort: event.getParam(NEEDCOHORTPARAMSET),
-                                hero: event.getParam(NEEDHEROPARAMSET)})
-
-                    // get event handler set from cohort select component
-                                // Reference: ^possibly just hero set
-                                // var.setParams({param: component.find('table').getSelectedRows()[0],
-                                // param2: component.find('aura:id').get("v.value")})
-
-        interviews.setCallback(this, function(response){
-            if(response.getState() === "SUCCESS"){
-                component.set("v.interview", response.getReturnValue())
-            } else if (state === "ERROR") {
-                var errors = response.getError();
-                console.error(errors);
-            }
-        })
-        $A.enqueueAction(interviews)
+    // initialize table columns
+    initColumns : function(component) {
+        component.set("v.columns", 
+            [
+                {label:'Score', fieldName:'Score__c'},
+                {label:'Question', fieldName:'Question__c'},
+                {label:'Answer', fieldName:'Hero_Answer__c'},
+            ]
+        );
     },
 
-    //initializes row 1 of flags
+    //initializes rows of flags
     createFlag : function (component, event) {
-        var RowItemList = component.get("v.flagList");
+        let RowItemList = component.get("v.flagList");
         RowItemList.push({
             'sobjectType': 'QC_Flag__c',
             'Name': '',
             'Description': '',
-        })
+        });
         component.set("v.flagList", RowItemList);
     },
 
-    // validation for requiring description on row save
-    validateFlags: function(component, event) {
-        var isValid = true;
+    // validation for description on row save
+    validateFlags: function(component) {
+        let isValid = true;
         var flagRows = component.get("v.flagList");
         for (var index = 0; index < flagRows.length; index++) {
             if (flagRows[index].Description__c == '') {
@@ -45,84 +34,102 @@
         return isValid;
     },
 
+    saveFlags : function(component) {
+        // call validation helper to ensure flags all have description field filled
+        if (this.validateFlags(component)) {
+  
+            let action = component.get("c.setFlags");
+            action.setParams({
+                flags: component.get("v.flagList")
+            });
+
+            action.setCallback(this, function(response) {
+                let state = response.getState();
+                if (state === "SUCCESS") {
+                    // if response is success then reset/blank the 'contactList' Attribute 
+                    // and call the common helper method for create a default Object Data to Contact List 
+                    component.set("v.flagList", []);
+                    helper.createFlag(component, event);
+                    alert('Flags Saved');
+                }
+            });
+            // enqueue the server side action  
+            $A.enqueueAction(action);
+        }
+    },
+
+    deleteFlag : function(component, event) {
+        // get row to delete  
+        let index = event.getParam("index");
+        // get the flag list and remove the QC_Flag__c of index    
+        let AllRowsList = component.get("v.flagList");
+        AllRowsList.splice(index, 1);
+        // set the flagList 
+        component.set("v.flagList", AllRowsList);
+    },
     
     // should handle getting params for insert and upsert of flags and interview
     setFlags : function(component, event) {
-        var flags = component.get("v.flagList")
+        let flags = component.get("v.flagList");
 
-        flags.setParams({flags: component.get("v.flagList")})
+        flags.setParams({flags: component.get("v.flagList")});
 
-        $A.enqueueAction(flags)
+        $A.enqueueAction(flags);
+    },
+
+    handleCreateFlag : function(component, event) {
+        let name = event.getParam("flagName");
+        let description = event.getParam("flagDescription");
+        let type = event.getParam("flagType");
+
+        component.set("v.newFlagName", name);
+        component.set("v.newFlagDesc", description);
+        component.set("v.newFlagType", type);
     },
 
     finalizeInterview : function(component, event) {
-        var interview = component.get("c.setInterview")
+        let interview = component.get("c.setInterview");
 
-        interview.setParams({interview: component.get("v.interviews")})
+        interview.setParams({interview: component.get("v.interviews")});
 
-        $A.enqueueAction(interview)
+        $A.enqueueAction(interview);
     },
     
     LaunchStageEvent : function(component, stage){
         let StageEvent = component.getEvent("UpdateStageEvent");
+
         StageEvent.setParams("StageName", stage);
+
         StageEvent.fire();
     },
 
-    SubmitInterview : function(component, HeroId, HeroName, CohortId, Week, HeroAnswers, Flags, newFlagName, newFlagDesc, newFlagType){
-        
-        console.log("SubmitInterview helper");
+    SubmitInterview : function(component) {
+        let HeroId = component.get("v.HeroId");
+        let HeroName = component.get("v.HeroName");
+        let CohortId = component.get("v.CohortId");
+        let Week = component.get("v.Week");
+        let HeroAnswers = component.get("v.answers");
+        let newFlagName = component.get("v.newFlagName");
+        let newFlagDesc = component.get("v.newFlagDesc");
+        let newFlagType = component.get("v.newFlagType");
 
-        console.log(HeroId);
-        console.log(HeroName);
-        console.log(CohortId);
-        console.log(Week);
-        console.log(HeroAnswers);
+        let HeroAnswersStr = [];
         
-
-
-        var HeroAnswersStr = [];
-        
-        console.log(HeroAnswersStr);
-
-        
-        for (let hA of HeroAnswers){
+        for (let hA of HeroAnswers) {
             HeroAnswersStr.push(JSON.stringify(hA));
         }
-        
-		console.log("Something");
-        console.log(HeroAnswersStr);
-        
-        /*
-        var FlagsStr = [];
-		console.log(Flags.length);
-        if (Flags.length != 0){
-            console.log("Stuff");
-        	for (let f of Flags){
-            	FlagsStr.push(JSON.stringify(f));
-        	}
-        }
-        */
-        
-        console.log("Stringification complete");
 
         let interviewSubmit = component.get("c.UploadInterviewData");
 		
-        console.log("REFERENCE RETRIEVED");
-        let FlagsStr = "";
         interviewSubmit.setParams({"cohortId" : CohortId, "heroId" : HeroId,
                                     "heroName" : HeroName, "week" : Week, 
-                                   "qaStrList" : HeroAnswersStr, "qaStrFlags" : FlagsStr, 
-                                   "fname":newFlagName, "fdesc": newFlagDesc, "ftype": newFlagType});
-
-        console.log("PARAMETERS SET");
+                                   "heroAnwerStrList" : HeroAnswersStr, 
+                                   "fname": newFlagName, "fdesc": newFlagDesc, "ftype": newFlagType});
 
         interviewSubmit.setCallback(this, function(response){
-            
             let state = response.getState();
 
-            if (state === "SUCCESS"){
-                console.log(state);
+            if (state === "SUCCESS") {
                 let navService2 = component.find("navService2");
                 let interviewFinalReference = {
                             type: 'standard__recordPage',
@@ -138,32 +145,20 @@
 
             }
             
-            else if (state === "INCOMPLETE"){
-                console.log(state);
-
-            }
-
-            else if (state === "ERROR"){
-                console.log(state);
-                var errors = response.getError();
-
-                if (errors) {
-                    if (errors[0] && errors[0].message){
-                        console.log("Error message: " + errors[0].message);
-
-                    }
-
+            else if (state === "ERROR") {
+                let errors = response.getError();
+                if (errors && errors[0].message){
+                    let showToast = $A.get("e.force:showToast");
+                    showToast.setParams({
+                        "message" : "Something went wrong!",
+                        "type" : "error"
+                    });
+                    showToast.fire();
                 }
-                else {
-                    console.log("Unknown error");
-
-                }
-
             }
         });
-        console.log("ENQUEUEING ACTION...");
+        
         $A.enqueueAction(interviewSubmit);
-        console.log("ACTION ENQUEUED.");
     }
 
 })
