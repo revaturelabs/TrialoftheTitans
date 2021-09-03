@@ -1,0 +1,5 @@
+<aura:event type="COMPONENT" description="Event template" >
+    <aura:attribute name="flagName" type="String"/>
+    <aura:attribute name="flagDescription" type="String"/>
+    <aura:attribute name="flagType" type="String"/>
+</aura:event>

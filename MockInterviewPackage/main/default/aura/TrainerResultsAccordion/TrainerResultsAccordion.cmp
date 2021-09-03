@@ -5,7 +5,7 @@
 
 -->
 
-<aura:component controller="TrainerResultsAccController">
+<aura:component controller="TrainerResultsAccController" implements="flexipage:availableForAllPageTypes,force:appHostable,forceCommunity:availableForAllPageTypes" access="global">
     
     <aura:attribute name="heroList" type="Account[]" />
     <aura:attribute name="cohortList" type="Cohort__c[]"/>
