@@ -29,7 +29,7 @@
                             <h3>Team Scores</h3>
                             <div class="progressBars">
                                 <aura:iteration items="{!v.leadTeams.Team}" indexVar="i" var="team">
-                                    <div class="{!'Alchemy-Scores ' + team[0]}" style ="{!'animation-delay:'+(750 + i*200) + 'ms'}">
+                                    <div class="{!'Alchemy-Scores ' + team[0]}" style ="{!'animation-delay:'+(750 + 200) + 'ms'}">
                                         <h3>{!team[0]}</h3>
                                         <progress class="{!team[0]}" value="{!team[1]}" max="100">{!team[1]}%</progress>
                                         <h3>{!team[1]}%</h3>
