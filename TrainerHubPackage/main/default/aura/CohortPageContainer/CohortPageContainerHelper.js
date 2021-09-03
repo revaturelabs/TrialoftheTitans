@@ -44,8 +44,8 @@
         component.set( "v.tabs", tabs);
 	},
     SetExamLink : function(component, event) {
-        var action = component.get('c.returnDomain');
-        var help = this;
+        let action = component.get('c.returnDomain');
+        let help = this;
         action.setCallback(this, (function (response) {
             if (response.getState() === "SUCCESS") {
                 var data = response.getReturnValue();
@@ -57,7 +57,7 @@
           
     },
     ToExamHub : function(component, event) {
-        var url = component.get('v.examURL');
+        let url = component.get('v.examURL');
         window.open(url, '_blank');
     },
     // HandleTabClick(): handles the event of a different tab being clicked
@@ -75,15 +75,15 @@
        this.ToggleNewAssessment(component, event, 'Blank')
     },
     ToggleNewAssessment : function(component, event, state){
-        var titan = component.get('v.tabs');
-       	var index = component.get('v.currIndex');
+        let titan = component.get('v.tabs');
+       	let index = component.get('v.currIndex');
 
         titan[index].state=state;
         titan[index].buttonDisabled = (state == 'Create New');
         component.set('v.tabs',titan);
     },
     HandleReturnAssessmentIdEvent : function(cmp, event) {
-        var eventReturnedId = event.getParam("AssessmentId");
+        let eventReturnedId = event.getParam("AssessmentId");
         // set the handler attributes based on event data
         cmp.set("v.AssessmentId", eventReturnedId);
         this.ToggleNewAssessment(cmp, event, 'View Details');
@@ -97,7 +97,7 @@
 		this.FetchData(cmp,event,'assessmentHeroList');
     },
     FetchData : function(cmp, event, cmpName) {
-        var assessmentList = cmp.find(cmpName);     
+        let assessmentList = cmp.find(cmpName);     
         assessmentList[0].FetchData();
     }
 })

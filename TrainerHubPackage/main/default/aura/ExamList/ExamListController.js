@@ -9,7 +9,7 @@
 
 ({
     //get Exam Result data and set the columns of the datatable
-    fetchData : function(component, event, helper) {
+    fetchData : function(component, helper) {
         component.set('v.columns',[
             { label: 'Hero', fieldName: 'hero', type: 'text'},
             { label: 'Exam Name', fieldName: 'exam', type: 'text'},
@@ -23,7 +23,7 @@
     },
 
     //get list of data by searching hero names
-    search : function(component, event, helper) {
+    search : function(component, helper) {
         helper.search(component);
     },
 })

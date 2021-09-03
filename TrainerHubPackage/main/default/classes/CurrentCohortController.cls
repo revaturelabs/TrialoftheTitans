@@ -38,16 +38,15 @@ public class CurrentCohortController {
             assessmentSize.put('QC',assessmentSize.get('QC')+1);
         }
         
-        
         for(String oS : overallScores.keySet()){
             if(assessmentSize.get(oS)!=0){
                 overallScores.put(oS,((overallScores.get(oS)/assessmentSize.get(oS)).setScale(2))); // set scale rounds
                 pr.add(new Pair(oS,overallScores.get(oS)));
             }
         }
-
         return pr;
     }
+    
     // Class used for mapping data retrieved into the right format for charts
     public class Pair{
         @AuraEnabled public String name;

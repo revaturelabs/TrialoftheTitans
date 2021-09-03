@@ -10,16 +10,16 @@
 ({
     // get Hero Assessment from the server
     fetchData : function(component) {
-        var action = component.get('c.HeroList');
-		var cohortId = component.get('v.CohortId');
+        let action = component.get('c.HeroList');
+		let cohortId = component.get('v.CohortId');
 		action.setParams({
             "cohortId": cohortId
         });
         action.setCallback(this, (function (response) {
-            var state = response.getState();
+            let state = response.getState();
             if (state === "SUCCESS") {
                 //have the data in the server in a variable
-                var data = response.getReturnValue();
+                let data = response.getReturnValue();
                 //for loop to set key for the coloumn with data
                 for( let i=0; i< data.length; i++ ){
                     //if data retrieved is null place value stating it is null
@@ -43,29 +43,29 @@
                 //set the new data to the table
                 component.set('v.data', data);
             } else if (state === "ERROR") {
-                var errors = response.getError();
+                let errors = response.getError();
                 console.error(errors);
             }
         }));
         $A.enqueueAction(action);
     },
-
+    
     //get specific search from server
     search : function(component){
         //variable stores the user input
-        var searchKey = component.find("searchKey").get("v.value");
-        var action = component.get("c.SearchHeroList");
-        var cohortId = component.get('v.CohortId');
+        let searchKey = component.find("searchKey").get("v.value");
+        let action = component.get("c.SearchHeroList");
+        let cohortId = component.get('v.CohortId');
         //set the variable for the method parameters
         action.setParams({
             "searchKey": searchKey,
 			"cohortId": cohortId
         });
         action.setCallback(this, (function(response) {
-            var state = response.getState();
+            let state = response.getState();
             if (state === "SUCCESS") {
                 //have the data in the server in a variable
-                var data = response.getReturnValue();
+                let data = response.getReturnValue();
                 //for loop to set key for the coloumn with data
                 //for loop to set key for the coloumn with data
                 for( let i=0; i< data.length; i++ ){
@@ -89,7 +89,7 @@
                 //set the new data to the table
                 component.set('v.data', data);
             } else if (state === "ERROR") {
-                var errors = response.getError();
+                let errors = response.getError();
                 console.error(errors);
             }
         }));
@@ -97,7 +97,7 @@
     },
 
 	showRowDetails : function(row, cmp, event) {
-        var cmpEvent  = cmp.getEvent("sendHeroAssessmentIdEvent");
+        let cmpEvent  = cmp.getEvent("sendHeroAssessmentIdEvent");
         cmpEvent.setParam("AssessmentId", row.Id);
         
         cmpEvent.fire();

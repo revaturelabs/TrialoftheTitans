@@ -14,18 +14,15 @@
 			{ label: 'View', type: 'button', initialWidth: 135, typeAttributes: { label: 'View Details', name: 'view_details', title: 'Click to View Details'}},
             { label: 'Name', fieldName: 'Name', type: 'text'},
             { label: 'Type', fieldName: 'Type__c', type: 'text'},
-
         ]);
-
         // get Assessment data
         helper.fetchData(component);
-
     },
-
+    
     //Function for selected rows
     updateSelected : function(component, event, helper){
         //get selected row logic
-		var row = event.getParam('row');
+		let row = event.getParam('row');
         helper.showRowDetails(row, component, event);
     },
 
@@ -33,10 +30,7 @@
         helper.handleReturnComponentEvent(cmp, event);
     },
 
-
 	handleReturnAssessmentIdEvent : function(cmp, event, helper) {
         helper.handleReturnAssessmentIdEvent(cmp, event);
     },	
-
-
 })

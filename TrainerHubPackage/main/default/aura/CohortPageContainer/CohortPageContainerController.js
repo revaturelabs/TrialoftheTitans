@@ -44,21 +44,21 @@
             
             console.log(data.map(function(d){return [d.year, d.value]}))
         }
-        var margin = 5,
+        let margin = 5,
             width = 240,
             height = 240;
         
-        var svg = d3.select("#svg")
+        let svg = d3.select("#svg")
         .append("svg:svg")
         .attr("width", width)
         .attr("height", height)
         .attr("viewBox", `0 0 ${width+30} ${height+50}`)
         .attr("margin", margin)
         
-        var xScale = d3.scaleBand().range([0, width]).padding(0.5),
+        let xScale = d3.scaleBand().range([0, width]).padding(0.5),
             yScale = d3.scaleLinear().range([height, 0]);
         
-        var g = svg.append("g")
+        let g = svg.append("g")
         .attr("transform", "translate(" + 30 + "," + 30 + ")");
         
         xScale.domain(data.map(function(d) { return d.year; }));

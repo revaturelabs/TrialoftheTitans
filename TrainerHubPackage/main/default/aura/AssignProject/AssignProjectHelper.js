@@ -66,7 +66,7 @@
         // Button onclick functionalities
         assignSubmit : function(component, event) {
             let group = component.find('grouping').get('v.value');
-            var options = [];
+            let options = [];
             if (group == 'individual') {
                 options = component.find('accountAssignees').get('v.value');
             }

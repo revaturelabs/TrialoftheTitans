@@ -32,7 +32,6 @@ public with sharing class AssignProjectController {
     
     @AuraEnabled
     public static void assignProject(String grouping, String[] namesToAssign, String projectIdToAssign){
-        try {
             Project__c p = [SELECT Id FROM Project__c WHERE Id=:projectIdToAssign];
             if (grouping == 'individual') {
                 Account[] accs = [SELECT Name,Project__c FROM Account WHERE Name IN :namesToAssign];
@@ -41,8 +40,12 @@ public with sharing class AssignProjectController {
                     a.Project__c = p.Id;
                     accsToUpdate.add(a);
                 }
+                try{
                 update accsToUpdate;
+            } catch(Exception e){
+                throw new AuraHandledException(e.getMessage());
             }
+        }
             else if (grouping == 'cohort') {
                 Cohort__c[] cohs = [SELECT Name,Project__c FROM Cohort__c WHERE Name IN :namesToAssign];
                 Cohort__c[] cohsToUpdate = new Cohort__c[] {};
@@ -50,16 +53,15 @@ public with sharing class AssignProjectController {
                     c.Project__c = p.Id;
                     cohsToUpdate.add(c);
                 }
-                update cohsToUpdate;
+                try{
+                    update cohsToUpdate;
+                }catch(Exception e){
+                    throw new AuraHandledException(e.getMessage());
+                }
             }
             else {
                 //error
             }
-
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
-
+        } 
     }
 
-}

@@ -10,9 +10,9 @@
 ({
     // get Assessment from the server
     fetchData : function(component) {
-        var action = component.get('c.AssessmentList');
+        let action = component.get('c.AssessmentList');
         action.setCallback(this, (function (response) {
-            var state = response.getState();
+            let state = response.getState();
             if (state === "SUCCESS") {
                 component.set('v.data', response.getReturnValue());
             } else if (state === "ERROR") {
@@ -24,9 +24,8 @@
     },
 	
 	showRowDetails : function(row, cmp, event) {
-        var cmpEvent  = cmp.getEvent("sendAssessmentIdEvent");
+        let cmpEvent  = cmp.getEvent("sendAssessmentIdEvent");
         cmpEvent.setParam("AssessmentId", row.Id);
-        
         cmpEvent.fire();
 		//Alert just for debugging purposes, remove this after complete integration of component
 		//alert("Fired Event with " + row.Id + " as the Id");
@@ -38,7 +37,7 @@
     },
 
 	handleReturnAssessmentIdEvent : function(cmp, event) {
-        var eventReturnedId = event.getParam("AssessmentId");
+        let eventReturnedId = event.getParam("AssessmentId");
         // set the handler attributes based on event data
         cmp.set("v.AssessmentId", eventReturnedId);
         cmp.set("v.ShowChosenAssessment", true);

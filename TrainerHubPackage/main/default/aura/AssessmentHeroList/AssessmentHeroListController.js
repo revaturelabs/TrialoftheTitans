@@ -29,7 +29,7 @@
 	//Function for selected rows
     updateSelected : function(component, event, helper){
         //get selected row logic
-		var row = event.getParam('row');
+		let row = event.getParam('row');
         helper.showRowDetails(row, component, event);
     },
 })
