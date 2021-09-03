@@ -9,15 +9,27 @@
     
     <!-- attribute declaration -->
     <aura:attribute name="flag" type="QC_Flag__c" />
-    <aura:attribute name="rowIndex" type="String" />
+    <aura:attribute name="flagName" type="String" />
+    <aura:attribute name="flagDescription" type="String" />
+    <aura:attribute name="flagType" type="String" />
+    <aura:attribute name="rowIndex" type="String" default="0"/>
 
     <!-- register events for handling adding/deleting rows -->
     <aura:registerEvent name="RowDelete" type="c:QCInterviewHeroReviewDeleteRowEvent" />
     <aura:registerEvent name="RowAdd" type="c:QCInterviewHeroReviewAddRowEvent" />
+    <aura:registerEvent name="CreateFlag" type="c:CreateFlag"/>
 
     
-    <lightning:input name="name" label="{!'Flag '+ (v.rowIndex + 1)}" placeholder="Enter Flag Name Here" value="{!v.flag.Name}" />
-    <lightning:input name="description" label="Description" placeholder="Explanation of flag" value="{!v.flag.Description__c}" />
+    <lightning:input name="name" label="Flag" placeholder="Enter Flag Name Here" value="{!v.flagName}" />
+    <lightning:input name="description" label="Description" placeholder="Explanation of flag" value="{!v.flagDescription}" />
+    <lightning:select name="selectItem" label="Select an item" value="{!v.flagType}">
+        <option value="Lack of Professionalism">Lack of Professionalism</option>
+        <option value="Disfluency">Disfluency</option>
+        <option value="Cursing">Cursing</option>
+        <option value="Uncertainty">Uncertainty</option>
+        <option value="Dress Code">Dress Code</option>
+    </lightning:select>
+    <lightning:button title="createFlag" label="Create Flag" onclick="{!c.submit}" iconName="utility:add" iconPosition="left"/>
 
 
     <aura:if isTrue="{!v.rowIndex == 0}">

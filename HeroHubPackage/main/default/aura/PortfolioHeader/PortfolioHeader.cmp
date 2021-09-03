@@ -1,0 +1,31 @@
+<!--
+/////////////////////////////////////////////////////
+//
+//  Name: PortfolioHeader Aura Component
+//  Author: Steven Magnin
+//  Description: Component for the header section of the Hero portfolio. No functionality due to not enough time, just an idea of where to go for iteration 4.
+//
+///////////////////////////////////////////////////
+-->
+
+<aura:component implements="forceCommunity:availableForAllPageTypes">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <!-- Need Apex controller to retrieve current user -->
+    <aura:attribute name="userName" type="String" default="NO USERNAME FOUND"/>
+    <aura:attribute name="titleList" type="List"/>
+    <aura:attribute name="selectedTitle" type="String" default="No Title Selected"/>
+    <aura:attribute name="editMode" type="Boolean"/>
+
+    <lightning:formattedRichText value="{!v.userName}"/>
+    <aura:if isTrue="{!v.editMode}">
+        <lightning:combobox name="Title Select" Label="Select a Title" placeholder="--Select an Option--" options="{!v.titleList}" onchange="{!c.setTitle}"/>
+        <lightning:button variant="brand" title="Exit Edit Mode" label="Save" onclick="{!c.setEdit}"/>
+        <aura:set attribute="else">
+            <lightning:formattedRichText name="Selected Title" value="{!'&lt;h3&gt;' + v.selectedTitle + '&lt;/h3&gt;'}"/>
+            <lightning:button variant="base" title="Set Edit Mode" label="edit" onclick="{!c.setEdit}"/>
+        </aura:set>
+    </aura:if>
+
+
+</aura:component>	
