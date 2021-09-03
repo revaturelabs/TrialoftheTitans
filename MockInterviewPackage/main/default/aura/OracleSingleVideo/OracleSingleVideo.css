@@ -1,0 +1,73 @@
+/*
+	Name: Oracle Single Video stylesheet
+	Author: Alyssa Reed
+	Description: CSS stylesheet for singleVideo */
+
+
+.THIS {
+	min-height: 40vh;
+}
+
+.THIS p{
+    font-weight:600;
+    font-variant:small-caps;
+    color:black;
+}
+
+.THIS span{
+    font-size: 1.15em;
+}
+
+.THIS .boxStyle{
+    background-color: white;
+    border: 1px solid lightgray;
+    text-align: center;
+}
+
+.THIS .buttons{
+    color: #0176D3;
+    font-variant:small-caps;
+    border: 1px solid lightgray;
+    background-color: transparent;
+}
+
+.THIS .buttons:hover{
+    color:darkblue;
+    font-variant:small-caps;
+    border: 1px solid lightgray;
+}
+
+.THIS .formExitButton{
+    float:right;
+}
+
+.THIS .videoCloseButton{
+    background-color: transparent;
+    color: #0176D3;
+    border: 1px solid transparent;
+}
+.THIS .videoCloseButton:hover{
+   background-color: transparent;
+   color: darkblue;
+    
+}
+
+.THIS button.slds-button.slds-button_brand{
+    color: white;
+}
+
+.THIS .formStyle{
+    border: transparent;
+    font-weight: 600;
+    font-variant:small-caps;
+}
+
+.THIS .formStyle:hover{
+    border:1px solid lightgray;
+    font-weight: 600;
+    font-variant:small-caps;
+}
+
+.THIS .vidContainer{
+    width: 350px;
+}

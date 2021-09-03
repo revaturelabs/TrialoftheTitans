@@ -77,10 +77,11 @@
         //data is a list of strings that are names of the question decks we want to pull in to questions
         var action = cmp.get('c.getQuestion');
             //VVV
-        //action.setParams({ Decks : IncomingQDeckList});
+       
+        action.setParams({ Decks : IncomingQDeckList});
         
         // VVV remove this when we need to use a list of decks from interview start
-        action.setParams({ Decks : "Sample2"});
+        //action.setParams({ Decks : "Sample2"});
         
         action.setCallback(this, function (response) {
             

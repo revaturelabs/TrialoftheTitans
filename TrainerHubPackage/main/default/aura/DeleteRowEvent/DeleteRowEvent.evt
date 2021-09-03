@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="Deletes unused rows for equivalencies">
+	<aura:attribute name= "indexVar" type= "Integer"/>
+</aura:event>
