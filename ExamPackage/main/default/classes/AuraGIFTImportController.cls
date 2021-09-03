@@ -661,7 +661,7 @@ public class AuraGIFTImportController {
             if ( titanList.size() == 0 ) {
                 Titan__c titan = new Titan__c(Name = 'Test Titan', Technology__c = 'Salesforce');
                 insert titan;
-                titanList = [SELECT Name, Id, Technology__c FROM Titan__c];
+                titanList.add(titan);
             }
             
 			// create titan name + id lists, plus technology list
