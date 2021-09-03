@@ -1,0 +1,132 @@
+<aura:component>
+    <!-- Choose between display and edit -->
+    <aura:attribute name="isEdit" type="Boolean" default="false" />
+    <aura:attribute name="sigmaIcon" type="String" default="utility:advanced_function" />
+
+
+    <aura:attribute name="skills" type="List" default="['a','b','c','d','e']" />
+    <aura:attribute name="equivs" type="List" default="[7,10,9,12,5]" />
+
+    <aura:if isTrue="{!!v.isEdit}">
+
+    <lightning:card>
+        <div class="slds-grid slds-gutters">
+
+            <div class="slds-col slds-size_1-of-5 slds-text-align_center">
+                <div>
+                    <lightning:icon iconName="{!v.sigmaIcon}" />
+                </div>
+                <div>
+                    <p>Skill name:&nbsp;</p> <lightning:formattedText name="skill_0" value="{!v.skills[0]}" />
+                </div>
+                <div>
+                    <p>Months:&nbsp;</p> <lightning:formattedNumber name="equiv_0" value="{!v.equivs[0]}" />
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-5 slds-text-align_center">
+                <div>
+                    <lightning:icon iconName="{!v.sigmaIcon}" />
+                </div>
+                <div>
+                    <p>Skill name:&nbsp;</p> <lightning:formattedText label="Skill name" name="skill_1" value="{!v.skills[1]}" />
+                </div>
+                <div>
+                    <p>Months:&nbsp;</p> <lightning:formattedNumber label="Months" name="equiv_1" value="{!v.equivs[1]}" />
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-5 slds-text-align_center">
+                <div>
+                    <lightning:icon iconName="{!v.sigmaIcon}" />
+                </div>
+                <div>
+                    <p>Skill name:&nbsp;</p> <lightning:formattedText label="Skill name" name="skill_2" value="{!v.skills[2]}" />
+                </div>
+                <div>
+                    <p>Months:&nbsp;</p> <lightning:formattedNumber label="Months" name="equiv_2" value="{!v.equivs[2]}" />
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-5 slds-text-align_center">
+                <div>
+                    <lightning:icon iconName="{!v.sigmaIcon}" />
+                </div>
+                <div>
+                    <p>Skill name:&nbsp;</p> <lightning:formattedText label="Skill name" name="skill_3" value="{!v.skills[3]}" />
+                </div>
+                <div>
+                    <p>Months:&nbsp;</p> <lightning:formattedNumber label="Months" name="equiv_3" value="{!v.equivs[3]}" />
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-5 slds-text-align_center">
+                <div>
+                    <lightning:icon iconName="{!v.sigmaIcon}" />
+                </div>
+                <div>
+                    <p>Skill name:&nbsp;</p> <lightning:formattedText label="Skill name" name="skill_4" value="{!v.skills[4]}" />
+                </div>
+                <div>
+                    <p>Months:&nbsp;</p> <lightning:formattedNumber label="Months" name="equiv_4" value="{!v.equivs[4]}" />
+                </div>
+            </div>
+
+        </div>
+
+        <lightning:button label="Edit" class="slds-m-left_small" onclick="{! c.edit}" variant="brand-outline"/>
+        
+    </lightning:card>
+
+
+    <!-- Edit -->
+    <aura:set attribute="else">
+
+        <lightning:card>
+            <div class="slds-grid slds-gutters">
+
+                <div class="slds-col slds-size_1-of-5 slds-text-align_center">
+                    <div class="slds-text-heading_medium">Skill #1</div>
+                    <lightning:input aura:id="skillInput_0" label="Enter skill name" name="skillInput_0" placeholder="type here..." />
+                    <lightning:input aura:id="equivInput_0" label="Enter months" name="equivInput_0" type="number" placeholder="type here..." />
+                </div>
+
+                <div class="slds-col slds-size_1-of-5 slds-text-align_center">
+                    <div class="slds-text-heading_medium">Skill #2</div>
+                    <lightning:input aura:id="skillInput_1" label="Enter skill name" name="skillInput_1" placeholder="type here..." />
+                    <lightning:input aura:id="equivInput_1" label="Enter months" name="equivInput_1" type="number" placeholder="type here..." />
+                </div>
+
+                <div class="slds-col slds-size_1-of-5 slds-text-align_center">
+                    <div class="slds-text-heading_medium">Skill #3</div>
+                    <lightning:input aura:id="skillInput_2" label="Enter skill name" name="skillInput_2" placeholder="type here..." />
+                    <lightning:input aura:id="equivInput_2" label="Enter months" name="equivInput_2" type="number" placeholder="type here..." />
+                </div>
+
+                <div class="slds-col slds-size_1-of-5 slds-text-align_center">
+                    <div class="slds-text-heading_medium">Skill #4</div>
+                    <lightning:input aura:id="skillInput_3" label="Enter skill name" name="skillInput_3" placeholder="type here..." />
+                    <lightning:input aura:id="equivInput_3" label="Enter months" name="equivInput_3" type="number" placeholder="type here..." />
+                </div>
+
+                <div class="slds-col slds-size_1-of-5 slds-text-align_center">
+                    <div class="slds-text-heading_medium">Skill #5</div>
+                    <lightning:input aura:id="skillInput_4" label="Enter skill name" name="skillInput_4" placeholder="type here..." />
+                    <lightning:input aura:id="equivInput_4" label="Enter months" name="equivInput_4" type="number" placeholder="type here..." />
+                </div>
+
+            </div>
+        </lightning:card>
+
+        <lightning:buttonGroup class="slds-m-top_small">
+            <lightning:button label="Cancel" onclick="{! c.cancel}" variant="brand-outline" class="slds-m-left_small" />
+            <lightning:button label="Save"   onclick="{! c.save}" variant="brand"/>
+        </lightning:buttonGroup>
+        
+
+    </aura:set>
+
+
+    </aura:if>
+
+</aura:component>	
