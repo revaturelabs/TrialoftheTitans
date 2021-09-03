@@ -5,8 +5,6 @@
 //  Description: Initialization, view attribute updates on first picklist change,
 //               submit and cancel buttons functionalities. Submit calls apex controller AssignProjectController.cls.
 //
-//  ToDo: Much of this code should be moved into the helper.js component file
-//
 ///////////////////////////////////////////////////
 ({
     doInit : function(component, event, helper) {
