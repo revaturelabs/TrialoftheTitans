@@ -1,0 +1,43 @@
+<!--
+/////////////////////////////////////////////////////
+//
+//  Name: PortfolioProjects Aura Component
+//  Author: Steven Magnin
+//  Description: Component for the projects section of the Hero portfolio. No functionality due to not enough time, just an idea of where to go for iteration 4.
+//
+///////////////////////////////////////////////////
+-->
+
+<aura:component implements="forceCommunity:availableForAllPageTypes">
+    <!-- Lists here should be retrieved from Project__c on server -->
+    <aura:attribute name="projectList" type="List" default="['Test Project 1', 'Test Project 2', 'Test Project 3']"/>
+    <aura:attribute name="projectDescList" type="List" default="['Test Project 1 Description', 'Test Project 2 Description', 'Test Project 3 Description']"/>
+
+    <!-- replicate for project 2 and 3 -->
+    <aura:attribute name="editOne" type="Boolean"/>
+    <aura:attribute name="projectOneRoles" type="String"/>
+
+    <!-- replicate for project 2 and 3 -->
+    <div class="slds-box slds-theme_default">
+        <h1 class="slds-text-heading_large">Projects</h1>
+        <div>
+            <h3 class="slds-m-top_medium slds-text-heading_medium">{!v.projectList[0]}</h3>
+            <aura:if isTrue="{!v.editOne}">
+            <lightning:inputRichText aura:id="projOneRolesInput" value="{!v.projectOneRoles}"/>
+            <lightning:button variant="brand" label="Save" onclick="{!c.saveProjOneRoles}"/>
+                <aura:set attribute="else">
+                    <lightning:formattedText value="{!v.projectDescList[0]}"/>
+                    <h5 class="slds-m-top_small slds-text-heading_small">Roles and Responsibilities</h5>
+                    <lightning:formattedRichText class="slds-m-top_small" value="{!v.projectOneRoles}"/>
+                    <div>
+                        <lightning:button variant="base" label="edit" onclick="{!c.editProjOneRoles}"/>
+                    </div>
+                    <h5 class="slds-m-top_small slds-text-heading_small">Environment / Technologies</h5>
+                    <!-- List should be retrieved from Equivalency__c on server -->
+                    <lightning:formattedText class="slds-m-top_small" value="placeholder technology 1, placeholder technology 2, placeholder technology 3"/>
+                </aura:set>
+            </aura:if>
+        </div>
+    </div>
+
+</aura:component>	

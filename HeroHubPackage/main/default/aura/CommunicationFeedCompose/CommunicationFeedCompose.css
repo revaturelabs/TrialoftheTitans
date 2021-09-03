@@ -5,7 +5,7 @@
 .THIS #compose-submit {
     background: var(--user-team-primary);
     border-radius: 0 5px 5px 0;
-    color: #302f30;
+    /*color: #302f30; Turned off because background is also same color so imposible to read with it*/
     font-weight: bold;
     min-height: 100%;
     padding: 1.5em;
@@ -13,7 +13,7 @@
 
 .THIS #compose-submit:hover {
     background: var(--user-team-secondary);
-    color: #302f30;
+    /*color: #302f30; Turned off because background is also same color so imposible to read with it*/
     cursor: pointer;
 }
 

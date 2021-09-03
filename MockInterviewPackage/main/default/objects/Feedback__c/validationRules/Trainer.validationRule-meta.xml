@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trainer</fullName>
+    <active>true</active>
+    <errorConditionFormula>!ISPICKVAL(Type__c  , &apos;Trainer&apos;) &amp;&amp;  CreatedBy.Profile.Name ==&apos;TitanTrainer&apos;</errorConditionFormula>
+    <errorDisplayField>Type__c</errorDisplayField>
+    <errorMessage>Trainer can only pick trainer assessment</errorMessage>
+</ValidationRule>
