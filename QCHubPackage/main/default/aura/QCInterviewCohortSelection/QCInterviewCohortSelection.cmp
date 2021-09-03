@@ -24,6 +24,7 @@
 
     <!-- Event handlers -->
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:handler name="UpdateCohortEvent" event="c:UpdateCohortEvent" action="{!c.handleCohort}"/>
     <!-- might need to utilize this to call variable once the lower gets put into the Hub
     <aura:handler name="FinalEvent" event="c:QCInterviewFinalized" action="{!c.handleComponentEvent}" /> -->
     <!-- this should be put in the QC Hub to be able to refer to the values throughout 

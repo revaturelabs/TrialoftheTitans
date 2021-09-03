@@ -50,7 +50,6 @@
                 return;
                 
             let contentList = component.get( "v.currentContent" );
-            
             // Splice to message to the first position of the array
             contentList.splice( 0, 0, newMessage );
             component.set( "v.currentContent", contentList );

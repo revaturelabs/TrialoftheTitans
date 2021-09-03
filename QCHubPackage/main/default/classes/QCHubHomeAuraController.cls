@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////
 //
 //  Name: QCHubHomeAuraController
-//  Author: Alexander Dzhitenov
+//  Author: Alexander Dzhitenov, Andrew Furr
 //  Description: Controller for the QCHubHome Aura Component
 //
 //////////////////////////////////////////////////////////////////////
@@ -31,6 +31,18 @@ public with sharing class QCHubHomeAuraController {
         }
         System.debug(weekList);
         return weekList;
+    }
+    
+    @AuraEnabled
+    public static List<Account> HeroList() {
+
+        // Get 'Hero' record type Id to retrieve Hero accounts only
+        Schema.DescribeSObjectResult acctDesc = Account.SObjectType.getDescribe();
+		Map<String, Schema.RecordTypeInfo> acctRecTypeMap = acctDesc.getRecordTypeInfosByName();
+		Id heroTypeId = acctRecTypeMap.get('Hero').getRecordTypeId();
+
+        List<Account> heroList = [SELECT Name, Squad__r.Name, Squad__r.Id, Team__r.Name, Cohort__r.Name, Curriculum__r.Name FROM Account WHERE RecordTypeId=:heroTypeId];
+        return heroList;
     }
 
     

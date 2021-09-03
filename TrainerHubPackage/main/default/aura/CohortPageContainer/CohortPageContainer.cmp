@@ -202,7 +202,30 @@
                         <!-- Single Record Display -->
                         
                     </aura:if>
-                    <!-- Exam List Tab -->
+                    
+                    <!-- Coding Assessment List Tab -->
+                    <aura:if isTrue="{!v.active == 'Coding Assessments'}">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                            <div class="slds-m-horizontal_small slds-m-bottom_small">
+                                <!--<a href="{!v.examURl}">
+                                    <lightning:button label="Exam Hubs" class=" slds-m-top_medium slds-m-right_small slds-button_neutral" title="Back" value="{!titan}" onclick="{!c.ToExamHub}"/><br/>
+                                    </a>-->
+                                <div class="slds-m-top_medium">
+                                    <c:CodingExamList CohortId="{!v.CohortId}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Table/Chart -->
+                        
+                        <!-- Single Record Display -->
+                        <!--<div style="background:var(user-team-primary); border-radius: 5px 5px 5px 5px;" class="slds-col slds-size_2-of-7 slds-m-left_medium">
+                            </div>-->
+                        <!-- Single Record Display -->
+                        
+                    </aura:if>
+                    <!-- Coding Assessment List Tab -->
                     
                     <!-- QC Scores Tab -->
                     <aura:if isTrue="{!v.active == 'QC Scores'}">
