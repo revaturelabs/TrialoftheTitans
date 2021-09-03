@@ -5,16 +5,17 @@
 
 
 .THIS {
-    background-color:lightgrey;
+    /*background-color: var(--user-team-secondary);*/
     width: 100%;
 }
 
 .THIS button{
-    color:purple;
+    color:white;
+  background-color:var(--user-team-primary);
 }
 .THIS button:hover{
-    background-color:purple;
-    color:white;
+    background-color:var(--user-team-primary);
+    color:black;
 }
 
 .THIS .filterStyle{
@@ -26,6 +27,6 @@
 	padding-top: 7%;    
     margin-left: 5%;
     margin-right: 5%;
-    background-color:lightgrey;
+    background-color:transparent;
 	border:transparent;
 }

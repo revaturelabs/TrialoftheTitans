@@ -3,6 +3,7 @@
     <fullName>Public__c</fullName>
     <defaultValue>false</defaultValue>
     <externalId>false</externalId>
+    <inlineHelpText>Do you want to allow public to see this?</inlineHelpText>
     <label>Public</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

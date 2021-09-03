@@ -1,0 +1,63 @@
+<!--/////////////////////////////////////////////////
+//
+//  Name: AssignProject.cmp
+//  Author: Jonathan Neilan
+//  Description: Provides trainers a way to assign a project to multiple 
+//               individuals or cohorts via picklists.
+//               When this component is used by a parent component, this one
+//               takes in "projectId" and "display" as parameters.
+//
+////////////////////////////////////////////////-->
+
+<aura:component controller="AssignProjectController" access="global">
+    <!-- Project Id for referencing assignment -->
+    <aura:attribute name="projectId" type="String" />
+    <!-- Attribute in the top component, used for dynamically deciding which component to display 
+        after 'Save' or 'Cancel' is pressed in this component -->
+    <aura:attribute name="currentPage" type="String" />
+
+    <!-- Lists for the second picklist: dynamically choose between Accounts (represents individual Hero users) 
+        and Cohorts (represents Salesforce Batches) -->
+    <aura:attribute name="accountList" type="List" />
+    <aura:attribute name="cohortList" type="List" />
+    <aura:attribute name="individualSelected" type="Boolean" />
+    <!-- For multi-picklist -->
+    <aura:attribute name="accOptions" type="List" />
+    <aura:attribute name="accValues" type="List" />
+    <aura:attribute name="cohOptions" type="List" />
+    <aura:attribute name="cohValues" type="List" />
+
+    <!-- Initialization handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" description="Get Accounts and Cohorts from server on load" />
+
+
+    <lightning:card class="slds-size_1-of-2">
+
+        <div class="slds-grid slds-gutters slds-wrap">
+            <!-- First picklist, how to group the project assignment: by individuals or by cohorts -->
+            <lightning:select aura:id="grouping" name="grouping" label="Grouping?" class="slds-col slds-size_1-of-3 slds-m-left_x-small" onchange="{! c.onGroupChange}" >
+                <option value="individual">Individual(s)</option>
+                <option value="cohort">Cohort(s)</option>
+            </lightning:select>
+
+            <!-- Second picklist, list of individuals (Accounts) or Cohorts - dynamically set by the choice of the first picklist -->
+            <aura:if isTrue="{! v.individualSelected}">
+                <lightning:dualListbox aura:id="accountAssignees" name="accountAssignees" label="Assign to" class="slds-col slds-size_1-of-1 slds-m-left_x-small" 
+                    sourceLabel="Available" selectedLabel="Selected" options="{! v.accOptions}" value="{! v.accValues}" onchange="{! c.handleAccChange}" />
+            
+                <aura:set attribute="else">
+                    <lightning:dualListbox aura:id="cohortAssignees" name="cohortAssignees" label="Assign to" class="slds-col slds-size_1-of-1 slds-m-left_x-small" 
+                        sourceLabel="Available" selectedLabel="Selected" options="{! v.cohOptions}" value="{! v.cohValues}" onchange="{! c.handleCohChange}" />
+                </aura:set>
+
+            </aura:if>       
+        </div>
+        
+        <lightning:buttonGroup class="slds-m-top_x-small">
+            <lightning:button label="Cancel" onclick="{! c.assignCancel}" class="slds-button slds-m-left_large" variant="brand-outline"/>
+            <lightning:button label="Submit" onclick="{! c.assignSubmit}" class="slds-button" variant="brand"/>
+        </lightning:buttonGroup>
+
+    </lightning:card>
+    
+</aura:component>	

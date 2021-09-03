@@ -1,6 +1,6 @@
 ({
     OnInit : function(component, event, helper){
-
+        helper.LoadHeros(component);
         helper.LoadCohorts(component);
         helper.LoadWeeks(component);
 
