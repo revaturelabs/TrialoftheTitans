@@ -31,7 +31,7 @@
         <c:Navigation contextInfo="{!v.contextInfo}" navigate="{!v.navigate}" />
     </header>
     <!-- v.nameClicked != true -->
-    <!-- Main page with Titan Page or Titan Slayer and Hero Journey -->
+    <!-- Main page with Aura:if for either Titan Page, Titan Slayer, or Hero Journey -->
     
     
     <div id="main">
