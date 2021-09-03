@@ -90,7 +90,7 @@
                                  <td>{!scores.Body_Language__c}</td>
                                  <td>{!scores.Confidence__c}</td>
                                  <td>{!scores.Eye_Contact__c}</td>
-                                 <td>{!scores.Fluence__c}</td>   
+                                 <td>{!scores.Fluency__c}</td>   
                              </tr>
                          </tbody>
                     
