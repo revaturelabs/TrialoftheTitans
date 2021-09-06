@@ -8,17 +8,17 @@
 /////////////////////////////////////////////////////
 
 ({
-	transferToActiveCohort : function(cmp, event) {
+	transferToActiveCohort : function(component, event) {
 
-		var action = cmp.get("c.fetchActiveCohort");
+		let action = component.get("c.fetchActiveCohort");
         action.setCallback(this, function(response){
-            var state = response.getState();
+            let state = response.getState();
             if (state === "SUCCESS") {
-       			var data = response.getReturnValue();
+       			let data = response.getReturnValue();
 
-				var cmpEvent  = cmp.getEvent("cohortIdEvent");
-        		cmpEvent.setParam("CohortId", data);       
-        		cmpEvent.fire();
+				let componentEvent  = component.getEvent("cohortIdEvent");
+        		componentEvent.setParam("CohortId", data);       
+        		componentEvent.fire();
             }
 			
         });
