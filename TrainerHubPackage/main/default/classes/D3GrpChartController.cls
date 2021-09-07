@@ -2,12 +2,13 @@ global without sharing class D3GrpChartController {
     @AuraEnabled
     public static Map<String, list<grpBarChart>> getDataMap() {
        Map<String, list<grpBarChart>> groupData=new Map<string, List<grpBarChart>>();
-      
-        List<Cohort__c> batchList=new List<Cohort__c>([Select Id, Name, Curriculum__r.Name from Cohort__c]);
-        List<Hero_Assessment__c> heroAssessmentList=new List<Hero_Assessment__c>([SELECT Id, Hero__r.cohort__r.Name, Hero__r.cohort__r.curriculum__r.name, Overall_Score__c FROM Hero_Assessment__c]);
-        Set<String> filteredbatch=new Set<String>();
         
-                             
+        List<Cohort__c> batchList=new List<Cohort__c>();
+        List<Hero_Assessment__c> heroAssessmentList=new List<Hero_Assessment__c>();
+        Set<String> filteredbatch=new Set<String>();
+        batchList=[Select Id, Name, Curriculum__r.Name from Cohort__c];
+        heroAssessmentList=[SELECT Id, Hero__r.cohort__r.Name, Hero__r.cohort__r.curriculum__r.name, Overall_Score__c FROM Hero_Assessment__c];
+                                                
         for(Cohort__c c: batchList){
            filteredbatch.add(c.Name);  
         }
