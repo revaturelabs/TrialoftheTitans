@@ -21,7 +21,7 @@
 
     // get Exam Results from the server
     fetchData : function(component) {
-        let action = component.get('c.HeroList');
+        let action = component.get("c.HeroList");
         action.setCallback(this, function (response) {
             let state = response.getState();
             if (state === "SUCCESS") {
@@ -54,7 +54,7 @@
                     }
                 }
                 //set the new data to the table
-                component.set('v.data', data);
+                component.set('v.data', heroData);
             } else if (state === "ERROR") {
                 let errors = response.getError();
                 if (errors && errors[0].message){
