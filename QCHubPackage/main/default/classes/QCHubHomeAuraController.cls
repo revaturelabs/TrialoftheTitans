@@ -18,15 +18,6 @@ public with sharing class QCHubHomeAuraController {
 
     }
 
-    @AuraEnabled
-    public static List<QCSquadWrapper> RetrieveSquads(){
-        List<QCSquadWrapper> returnSquads = new List<QCSquadWrapper>();
-        for(Squad__c squad:[SELECT Id, Name, Team__c FROM Squad__c]){
-            returnSquads.add(new QCSquadWrapper(squad));
-        }
-        return returnSquads;
-    }
-
     // Return the global picklist value set of weeks used in the org
     @AuraEnabled
     public static List<String> RetrieveWeeks(){
@@ -99,10 +90,10 @@ public with sharing class QCHubHomeAuraController {
         cohortData.squadMap = squadMap;
         cohortData.heroList = heroList;
 
-        /* NOTE:    This is an option, and the corresponding code can be re-enabled in QCCohortWrapper to populate this
+        /*NOTE:    This is an option, and the corresponding code can be re-enabled in QCCohortWrapper to populate this
                     variable (it matches heroes to squads by putting a squad, and a list of the heroes in it, into a wrapper class).
                     However, it might be substantially easier (and better) to just use a map between squads and accounts,
-                    similar to the one above, to split heroes into squads wherever it's necessary.
+                    similar to the one above, to split heroes into squads wherever it's necessary.*/
         List<Squad__c> squads = [SELECT Id, Name, Team__r.Name FROM Squad__c WHERE Name IN :squadMap.keySet()];
 
         cohortData.squadList = new List<QCSquadWrapper>();
@@ -116,7 +107,7 @@ public with sharing class QCHubHomeAuraController {
         for (QCSquadWrapper squadListElement : cohortData.squadList){
             squadListElement.heroes = squadMap.get(squadListElement.squad.Name);
         }
-        */
+        
         return cohortData;
 
     }

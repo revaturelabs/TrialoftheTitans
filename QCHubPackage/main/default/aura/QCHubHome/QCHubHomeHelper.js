@@ -48,55 +48,6 @@
 
     },
 
-    LoadSquads : function(component) {
-
-        let SquadListInit = component.get("c.RetrieveSquads");
-
-        SquadListInit.setCallback(this, function(response){
-
-            let state = response.getState();
-
-            if (state === "SUCCESS"){
-                console.log(state);
-                let squads = response.getReturnValue();
-                component.set("v.SquadList", squads);
-                
-                // if (component.get("v.ScriptLoaded")){
-                //     this.D3CohortOverview(component);
-                // }
-                // component.set("v.DataLoaded", true);
-
-            }
-            
-            else if (state === "INCOMPLETE"){
-                console.log(state);
-
-            }
-
-            else if (state === "ERROR"){
-                console.log(state);
-                let errors = response.getError();
-
-                if (errors) {
-                    if (errors[0] && errors[0].message){
-                        console.log("Error message: " + errors[0].message);
-
-                    }
-
-                }
-                else {
-                    console.log("Unknown error");
-
-                }
-
-            }
-
-        });
-
-        $A.enqueueAction(SquadListInit);
-
-    },
-
     LoadWeeks : function(component){
 
         let WeekListInit = component.get("c.RetrieveWeeks");
@@ -175,7 +126,7 @@
                 console.log(component.get("v.ScriptLoaded"));
                 component.set("v.SelectedCohort", cohortData);
                 component.set("v.SquadList", cohortData.squadList);
-
+                component.set("v.HeroList", cohortData.heroList);
             }
             
             else if (state === "INCOMPLETE"){

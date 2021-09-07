@@ -3,7 +3,6 @@
         helper.LoadHeros(component);
         helper.LoadCohorts(component);
         helper.LoadWeeks(component);
-        helper.LoadSquads(component);
 
     },
 

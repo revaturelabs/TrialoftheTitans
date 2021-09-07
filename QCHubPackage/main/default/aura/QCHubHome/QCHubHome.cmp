@@ -57,7 +57,7 @@
         <div class="boxGrid-Hero slds-col slds-size_9-of-12 slds-text-align_center slds-m-top_x-small">
 
             <div class="tabSet slds-m-top_x-small">
-                <aura:if isTrue="{!v.HeroList}">
+                <aura:if isTrue="{! !empty(v.HeroList)}">
                 <lightning:tabset variant="scoped">
                     <!-- Pull in hero name for label -->
                     <aura:iteration items="{!v.HeroList}" var="hero">
