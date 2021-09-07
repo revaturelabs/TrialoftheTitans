@@ -18,9 +18,7 @@
     
 
     <!-- This header section shows the currently active stage - (Begin) -->
-    <div>
-        <c:QCInterviewHeader CurrentStage="{!v.stage}"/>
-    </div>
+    <c:QCInterviewHeader CurrentStage="{!v.stage}"/>
     <!-- End of header stage section -->
 
     
