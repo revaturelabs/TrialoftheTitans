@@ -10,11 +10,11 @@
 
             if (state === "SUCCESS"){
                 console.log(state);
-                var cohorts = response.getReturnValue();
+                let cohorts = response.getReturnValue();
                 component.set("v.CohortList", cohorts);
                 
                 if (component.get("v.ScriptLoaded")){
-                    helper.D3CohortOverview(component);
+                    this.D3CohortOverview(component);
                 }
                 component.set("v.DataLoaded", true);
 
@@ -22,12 +22,11 @@
             
             else if (state === "INCOMPLETE"){
                 console.log(state);
-
             }
 
             else if (state === "ERROR"){
                 console.log(state);
-                var errors = response.getError();
+                let errors = response.getError();
 
                 if (errors) {
                     if (errors[0] && errors[0].message){
@@ -49,6 +48,54 @@
 
     },
 
+    LoadSquads : function(component) {
+
+        let SquadListInit = component.get("c.RetrieveSquads");
+
+        SquadListInit.setCallback(this, function(response){
+
+            let state = response.getState();
+
+            if (state === "SUCCESS"){
+                console.log(state);
+                let squads = response.getReturnValue();
+                component.set("v.SquadList", squads);
+                
+                // if (component.get("v.ScriptLoaded")){
+                //     this.D3CohortOverview(component);
+                // }
+                // component.set("v.DataLoaded", true);
+
+            }
+            
+            else if (state === "INCOMPLETE"){
+                console.log(state);
+
+            }
+
+            else if (state === "ERROR"){
+                console.log(state);
+                let errors = response.getError();
+
+                if (errors) {
+                    if (errors[0] && errors[0].message){
+                        console.log("Error message: " + errors[0].message);
+
+                    }
+
+                }
+                else {
+                    console.log("Unknown error");
+
+                }
+
+            }
+
+        });
+
+        $A.enqueueAction(SquadListInit);
+
+    },
 
     LoadWeeks : function(component){
 
@@ -60,7 +107,7 @@
 
             if (state === "SUCCESS"){
                 console.log(state);
-                var weeks = response.getReturnValue();
+                let weeks = response.getReturnValue();
                 component.set("v.WeekList", weeks);
 
             }
@@ -72,7 +119,7 @@
 
             else if (state === "ERROR"){
                 console.log(state);
-                var errors = response.getError();
+                let errors = response.getError();
 
                 if (errors) {
                     if (errors[0] && errors[0].message){
@@ -170,13 +217,12 @@
 
             },
             state: {
-                c__Cohort: component.get("v.SelectedCohort"),
-                c__CohortId: "6712345"
+                "c__Cohort": component.get("v.SelectedCohort")
             }
     
         }
-        //console.log(JSON.stringify(interviewReference));
-        //console.log(JSON.stringify(component.get("v.SelectedCohort")));
+        console.log(JSON.stringify(interviewReference));
+        console.log(JSON.stringify(component.get("v.SelectedCohort")));
         console.log(component.get("v.WeekList"));
         sessionStorage.setItem('ActiveCohort', JSON.stringify(component.get("v.SelectedCohort")));
         console.log("QCHubHome: ");
@@ -265,6 +311,17 @@
                                 return d * scaleFactor;
                             });
         */
+    },
+    D3 : function(component, event){
+        // component.set('v.d3', true)
+        console.log("D3 ACTIVATED");
+        console.log(component.get("v.DataLoaded")
+        );
+        console.log(component.get("v.ScriptLoaded"));
+        if (component.get("v.DataLoaded")){
+            this.D3CohortOverview(component);
+        }
+        component.set("v.ScriptLoaded", true);
     }
 
 })

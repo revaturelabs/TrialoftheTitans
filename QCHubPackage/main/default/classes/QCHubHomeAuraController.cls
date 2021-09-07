@@ -18,6 +18,15 @@ public with sharing class QCHubHomeAuraController {
 
     }
 
+    @AuraEnabled
+    public static List<QCSquadWrapper> RetrieveSquads(){
+        List<QCSquadWrapper> returnSquads = new List<QCSquadWrapper>();
+        for(Squad__c squad:[SELECT Id, Name, Team__c FROM Squad__c]){
+            returnSquads.add(new QCSquadWrapper(squad));
+        }
+        return returnSquads;
+    }
+
     // Return the global picklist value set of weeks used in the org
     @AuraEnabled
     public static List<String> RetrieveWeeks(){

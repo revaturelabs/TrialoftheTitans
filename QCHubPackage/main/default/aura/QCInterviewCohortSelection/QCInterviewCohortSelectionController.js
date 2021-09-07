@@ -1,30 +1,13 @@
 ({
     // initialize creates columns for datatable
     init : function(component, event, helper) {
-        component.set("v.columns", 
-                    [
-                        {label:'Hero', fieldName:'Name'},
-                        {label:'Squad Name', fieldName:'Squad__r.Name', type:'text'},
-                        {label:'', fieldName:""},
-                        {type:'button', 
-                             typeAttributes: {
-                                    name: 'start',
-                                    label: 'Interview',
-                                    iconPosition: 'left',
-                                    iconName: 'utility:add',
-                                    variant: 'Success',
-                                    disabled: false,  
-                             }
-                         }
-                    ]
-        )
-        helper.getHeroes(component, event)
-        helper.getInterviews(component, event)
+        helper.SetColumns(component);
+        helper.getHeroes(component);
+        helper.getInterviews(component);
     },
     
     handleCohort : function(component, event, helper) {
-        let cohort = event.getParam("SelectedCohort");
-        component.set("v.currentCohort", cohort);
+        helper.SetCohort(component, event);
     },
 
     // row selection handles button to start interview
@@ -33,9 +16,8 @@
     },
 
     LaunchInterview : function(component, event, helper){
-        let row = event.getParam("row");
         console.log("LAUNCH INTERVIEW FUNCTION");
-        helper.LaunchInterviewEvent(component, row);
+        helper.LaunchInterviewEvent(component, event);
         //helper.LaunchStageEvent(component, "Interview");
     }
 
