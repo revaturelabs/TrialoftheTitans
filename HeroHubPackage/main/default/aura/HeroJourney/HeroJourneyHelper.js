@@ -20,13 +20,7 @@
         for (let titan in titanMap) {
             if (titanMap[titan][0] == currentTitan) {
                 let titanExams = titanMap[titan];
-                //console.log("DAVID TITAN MAP", titanMap[titan]);
-                //console.log(titanMap[titan]);
-                //console.log("titan found: " + titanMap[titan][0]);
-                //console.log(titanMap[titan]);
                 for (let exam of titanExams[1]) {
-                    //console.log("exam "+exam+": "+JSON.stringify(titanExams[exam]));
-                    //console.log('DAVID EXAM LIST', exam);
                     listOfExams.push(exam);
 
                 }
@@ -34,8 +28,6 @@
             };
 
         }
-
-        console.log(listOfExams);
         component.set("v.active", currentTitan);
         component.set("v.currentTitanExams", listOfExams);
 
@@ -47,9 +39,6 @@
         let contextInfo = component.get("v.contextInfo");
         let tabs = [];
         tabs.push("Overview");
-        // console.log("journey context info: ");
-        console.log("UserEXAMS", contextInfo.userExams);
-        // console.log(Object.keys(contextInfo.userExams))
 
         // using Object.Keys because contextInfo.userExams is a map where each key is a titan
         // Object.keys returns a list os strings containing each key
