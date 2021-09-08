@@ -13,8 +13,8 @@
     ]"/>
     <aura:attribute name="value" type="String" default="option1"/>
     
-    <!--Declare Handler-->
-    <aura:handler name="init" value="{!this}" action="{!c.fetchTrueFalse}"/>
+    <!--Declare Handler
+    <aura:handler name="init" value="{!this}" action="{!c.fetchTrueFalse}"/>-->
     
     <!--Component Here-->
     <lightning:card>

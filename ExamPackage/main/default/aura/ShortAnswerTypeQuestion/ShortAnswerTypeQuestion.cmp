@@ -15,7 +15,7 @@
                         {!v.ShortQuestion}
                     </p>
                     <lightning:textarea name="Answer"/>
-                    <!-- for testing -->
+                    <!--Useful for testing-->
                     <!--<lightning:button label='Save' onclick="{!c.ButtonClick}" />-->
                 </div>
         </lightning:layoutitem>
