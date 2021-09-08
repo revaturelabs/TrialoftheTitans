@@ -21,8 +21,6 @@
     <ltng:require scripts="{!$Resource.d3 + '/d3.js'}"
                   afterScriptsLoaded ="{!c.D3}"/>
 
-
-    <!-- Beginning of box layout grid for components -->
     <div class="slds-grid slds-gutters slds-align_absolute-center">
 
         <div class="boxGrid slds-col slds-size_2-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
@@ -33,14 +31,10 @@
 
         <div class="boxGrid slds-col slds-size_7-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small slds-m-vertical_x-small">
 
-
-            <!-- This is the d3 bar graph -->
             <p>
                 <div id="svg" class="svgCohortOverview"></div>
                 <c:CohortStatistics ActiveCohort="{!v.SelectedCohort.cohort}"/>
             </p>
-            <!-- end of d3 bar graph -->
-
 
         </div>
 
@@ -49,20 +43,15 @@
         </div>
 
     </div>
-    <!-- End of box layout grid for components -->
 
-
-    <!-- Beginning of tabset for heroes -->
     <div class="slds-grid slds-gutters slds-align_absolute-center">
         <div class="boxGrid-Hero slds-col slds-size_9-of-12 slds-text-align_center slds-m-top_x-small">
 
             <div class="tabSet slds-m-top_x-small">
                 <aura:if isTrue="{! !empty(v.HeroList)}">
                 <lightning:tabset variant="scoped">
-                    <!-- Pull in hero name for label -->
                     <aura:iteration items="{!v.HeroList}" var="hero">
                     <lightning:tab label="{!hero.Name}">
-                        <!-- Pull in hero data -->
                         <table class="slds-table slds-table--bordered slds-table--striped">
                              <thead>
                                  <tr>
@@ -92,6 +81,5 @@
 
         </div>
     </div>
-    <!-- End of tabset for heroes -->
 
 </aura:component>

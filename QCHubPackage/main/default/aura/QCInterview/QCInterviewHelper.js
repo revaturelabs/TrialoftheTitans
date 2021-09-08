@@ -1,14 +1,8 @@
 ({
 	LoadSessionData : function(component) {
-			let sessionCohort = sessionStorage.getItem('ActiveCohort');
-			let sessionWeekList = sessionStorage.getItem('WeekList');
-
-			if (sessionCohort){
-				component.set("v.Cohort", JSON.parse(sessionCohort));
-			}
-			if (sessionWeekList){
-				component.set("v.WeekList", JSON.parse(sessionWeekList));
-			}
+			let myPageRef = component.get("v.pageReference");
+			let sessionCohort = myPageRef.state.c__Cohort;
+			component.set("v.Cohort", sessionCohort);
 	},
 	
 	UpdateStage : function(component, event){

@@ -1,12 +1,9 @@
 ({
-    // used to initialize the hero list of currently selected cohort
     getHeroes : function(component) {
-        let heroes = component.get("c.getHeroes")
-        //this needs updated once I find out how to access selected cohort
-        // heroes.setParams({cohort: component.find('COHORT').getSelectedRows[0]}) 
-        heroes.setParams({cohort: component.get("v.currentCohort")})
+        let action = component.get("c.getHeroes");
+        action.setParams({cohort: component.get("v.currentCohort")})
 
-        heroes.setCallback(this, function(response){
+        action.setCallback(this, function(response){
             if(response.getState() === "SUCCESS"){
                 component.set("v.heroList", response.getReturnValue())
             } else if (response.getState() === "ERROR") {
@@ -15,7 +12,7 @@
                 if (errors) {
                     showToast.setParams({
                         "title": "ERROR",
-                        "message": errors[0].message
+                        "message": errors[0].message+"heroes"
                     })
                     showToast.fire();
                 }
@@ -28,23 +25,24 @@
                 }
             }
         })
-        $A.enqueueAction(heroes)
+        $A.enqueueAction(action)
 
     },  
 
-    // used to initialize a list of finalized interviews pertaining to this interview session iteration (pull from event attribute)
     getInterviews : function(component) {
-        //use next line when event is put into hub and utilized
-        // component.set("v.interviewList", event.getParam("finalizedInterviews"))
         let int = component.get("c.getInterviews")
-        //this needs updated once I find out how to access selected cohort
-        // heroes.setParams({cohort: component.find('COHORT').getSelectedRows[0]}) 
-        int.setParams({heroes: component.get("v.heroList")})
+
+        let heroData = JSON.parse(JSON.stringify(component.get("v.heroList")));
+        let heroDataList = [];
+
+        for(let p in heroData){
+            heroDataList.push(heroData[p]);
+        }
+
+        int.setParams({heroes: heroDataList})
 
         int.setCallback(this, function(response){
-            console.log("test");
             if(response.getState() === "SUCCESS"){
-                console.log("SUCCESS");
                 component.set("v.interviewList", response.getReturnValue())
             } else if (response.getState() === "ERROR") {
                 let errors = response.getError();
@@ -69,16 +67,8 @@
 
     }, 
 
-    // should handle selection of hero and start of interview, 
-    // which is to select and load the next component and pass in the hero selection
     handleRowSelection : function(component, event) {
-        // modify and utilize when event is put into hub and utilized
-        // component.getEvent("QCInterviewFinalized").setParams({"index" : component.get("v.index") }).fire()
-
-        //right now, this function sets the current hero to reference
         component.set("v.currentHero", event.getParam('selectedRows')[0]);
-        // gets param for selected hero if needed for apex
-        // hero.setParams(component.find('teacherTable').getSelectedRows()[0])
     },  
 
     LaunchInterviewEvent : function(component, event){

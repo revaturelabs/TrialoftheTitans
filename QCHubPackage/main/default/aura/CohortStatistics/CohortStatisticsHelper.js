@@ -42,9 +42,6 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 let data = response.getReturnValue();
-                console.log(data);
-                // Render the returned data as a pie chart
-                //return data;
             }
             else if(state === "ERROR") {
                 let errors = response.getError();
@@ -65,11 +62,7 @@
                 }
             }
         },
- 
         $A.enqueueAction(action)
-
-
-
         )},
     
     

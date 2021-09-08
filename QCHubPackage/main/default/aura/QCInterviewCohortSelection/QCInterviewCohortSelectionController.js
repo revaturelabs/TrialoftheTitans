@@ -1,8 +1,6 @@
 ({
     init : function(component, event, helper) {
-        helper.SetColumns(component);
-        helper.getHeroes(component);
-        helper.getInterviews(component);
+
     },
     
     handleCohort : function(component, event, helper) {
@@ -15,5 +13,10 @@
 
     LaunchInterview : function(component, event, helper){
         helper.LaunchInterviewEvent(component, event);
+    },
+    CohortChange : function(component, event, helper){
+        helper.SetColumns(component);
+        helper.getHeroes(component);
+        helper.getInterviews(component);
     }
 })

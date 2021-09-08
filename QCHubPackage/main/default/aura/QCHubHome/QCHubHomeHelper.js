@@ -51,11 +51,7 @@
             if (state === "SUCCESS"){
                 let weeks = response.getReturnValue();
                 component.set("v.WeekList", weeks);
-            }
-            else if (state === "INCOMPLETE"){
-                console.log(state);
-            }
-            else if (state === "ERROR"){
+            }else if (state === "ERROR"){
                 let errors = response.getError();
                 let showToast = $A.get("e.force:showToast");
                 if (errors) {
@@ -107,9 +103,6 @@
         $A.enqueueAction(loadHeros);
     },
 
-
-    // Load data for a specific cohort (launched by UpdateCohort function in main JS controller,
-    // which is triggered by UpdateCohortEvent from CohortButtons component when a cohort is selected)
     LoadCohortData : function(component, selectedCohort){
         let CohortInit = component.get("c.RetrieveCohortData");
         CohortInit.setParams({cohortStr : JSON.stringify(selectedCohort)});
@@ -154,23 +147,21 @@
             type: 'standard__component',
             attributes: {
                 componentName: 'c__QCInterview'
-
             },
             state: {
-                "c__Cohort": component.get("v.SelectedCohort")
+                "c__Cohort": component.get("v.SelectedCohort"),
+                "c__WeekList": component.get("v.WeekList")
             }
     
         }
-        sessionStorage.setItem('ActiveCohort', JSON.stringify(component.get("v.SelectedCohort")));
-        sessionStorage.setItem('WeekList', JSON.stringify(component.get("v.WeekList")));
+        // sessionStorage.setItem('ActiveCohort', JSON.stringify(component.get("v.SelectedCohort")));
+        // sessionStorage.setItem('WeekList', JSON.stringify(component.get("v.WeekList")));
         navService.navigate(interviewReference);
     },
 
 
     D3CohortOverview : function(component){
-        console.log("D3 HELPER");
         var data = [];
-        console.log(data);
 
         for (let dat of component.get("v.CohortList")){
             data.push({ cohortName  : dat.Name,
@@ -231,7 +222,6 @@
         var cbars = cOverview.selectAll("g").data(data).enter().append("g");
 
         cbars.attr("transform", function(d,i){
-                                console.log("translated");
                                 return "translate(" + i*barWidth + ", 0)";
                             });
 
