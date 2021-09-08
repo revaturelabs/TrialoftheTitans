@@ -26,7 +26,7 @@ public class TestUtil {
                 return item.parentjobid;
             }
             
-            // Get the job ID of the first queue item returne
+            // Get the job ID of the first queue item returned
         }
         return null;
     }
@@ -38,7 +38,7 @@ public class TestUtil {
              FROM ApexTestResult 
              WHERE AsyncApexJobId=:jobId];
         for (ApexTestResult atr : results) {
-            //System.debug(atr.ApexClass.Name + '.' + atr.MethodName + ': ' + atr.Outcome);
+            
             if (atr.message != null) {
                 System.debug(atr.Message + '\n at ' + atr.StackTrace);
             }
