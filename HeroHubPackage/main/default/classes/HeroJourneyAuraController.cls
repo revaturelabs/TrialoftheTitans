@@ -11,10 +11,6 @@ public class HeroJourneyAuraController {
         List<String> titans; //= [SELECT Name FROM String WHERE Curriculum__c=:curriculum]; // list titan from titan
         List<String> titanNames = new List<String>();
         
-        //for( String t : titans ) { //titan
-        	//titanNames.add(t.Name);    
-        //}
-        
         // permission sets need to be added on creation of org
         titanNames.add('Data Model');
         titanNames.add('Security');

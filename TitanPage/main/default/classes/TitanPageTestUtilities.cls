@@ -32,11 +32,15 @@ public class TitanPageTestUtilities {
 								 lastname = 'testAdmin',
                                  userRoleId = customerManager.Id
                                );
-            
-        database.insert(adminUser);
-        
-        System.runAs(adminUser){
-        
+        // created a new admin user to use in a runAs to create a new transaction.
+        User user1 = [SELECT Id, Name FROM USER WHERE ProfileId = :adminProfile.Id Limit 1];
+        System.runAs(user1) {
+
+
+           Database.insert(adminUser);
+        } 
+        // The above prevents a Mixed DML error.
+
         Team__c newTeam = new Team__c(Name = 'TestTeam');
         database.insert(newTeam);
          
@@ -51,30 +55,41 @@ public class TitanPageTestUtilities {
         Contact newContact = new Contact(lastName='User', AccountId = newAccount.id);
         database.insert(newContact);
         
-        // Get Hero profile from database to use for Users
-        Profile heroProfile = [SELECT Id FROM Profile WHERE Name = 'Hero' LIMIT 1];
+       
         
-		User testUser = new User( profileId = heroProfile.id,
-						   		 username = newContact.lastName + Crypto.getRandomInteger() + '@yahoo.com',
-						   		 email = 'test@test.com',
-								 emailencodingkey = 'UTF-8',
-								 localesidkey = 'en_US',
-								 languagelocalekey = 'en_US',
-								 timezonesidkey = 'America/Los_Angeles',
-								 alias = 'testUser',
-								 lastname = newContact.lastName,
-								 contactId = newContact.id
-                               );
-   
-        database.insert(testUser);
+        System.runAs(adminUser){
         
-        Id groupID = [SELECT Id FROM PermissionSetGroup WHERE DeveloperName = 'TrialOfTheTitansHeroPermissions' Limit 1].Id;
-       	PermissionSetAssignment assignment = new PermissionSetAssignment(PermissionSetGroupId = groupId, AssigneeId = testUser.Id);
+       // Get Hero profile from database to use for Users
+       Profile heroProfile = [SELECT Id FROM Profile WHERE Name = 'Hero' LIMIT 1];
+        
+        
+       
+       User testUser = new User( profileId = heroProfile.id,
+                                   username = newContact.lastName + Crypto.getRandomInteger() + '@yahoo.com',
+                                   email = 'test@test.com',
+                                emailencodingkey = 'UTF-8',
+                                localesidkey = 'en_US',
+                                languagelocalekey = 'en_US',
+                                timezonesidkey = 'America/Los_Angeles',
+                                alias = 'testUser',
+                                lastname = newContact.lastName,
+                                contactId = newContact.id
+                              );
+     
+       database.insert(testUser);
+       Id groupID = [SELECT Id FROM PermissionSetGroup WHERE DeveloperName = 'TrialOfTheTitansHeroPermissions' Limit 1].Id;
+      PermissionSetAssignment assignment = new PermissionSetAssignment(PermissionSetGroupId = groupId, AssigneeId = testUser.Id);
 
-		Database.insert(assignment);
-
+      Database.insert(assignment);
+       
+        
+        
         
         }
+
+         
+         
+        
         	
     }
     
