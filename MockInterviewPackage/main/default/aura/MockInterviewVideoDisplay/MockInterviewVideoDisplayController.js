@@ -1,22 +1,17 @@
 /////////////////////////////////////////////////////
 //
-//  Name: videoUploaderComponentController.js
+//  Name: MockInterviewVideoDisplayController.js
 //  Author: Kenny Gonzalez
-//  Description: This controller handles 4 different actions
-//               from the its associated component. The first
-//               is the doInit which initializes the recordId
-//               attibute which the value being returned from
-//               the apex contoller method. The second action
-//               is the handleUploadFinished which handles the
-//               upload of a file from your local machine. The third
-//               action is the displayFile, which passes in a parameter
-//               to an apex controller to be able to return a URL in 
-//               form of a string to display a video in the component.
-//               The last action(downloadFile) passes in a parameter to 
-//               an apex controller method to return a file id(ContentDocumentId)
-//               in the form of a string to assign it to the lightning:fileCard
-//               in the component.
 //
+//  Description: handleUploadFinished handles the
+//               upload of a file from your local machine
+//
+//               displayFile passes in a parameter to an apex controller to be able to return a URL in 
+//               the form of a string to display a video in the component
+//
+//               videoCloseButton closes the video
+//
+//  Last Updated: 9/8/2021 (Brian McKay) - corrected description and added referenced methods from the videoDisplayComponent (deleted)
 ///////////////////////////////////////////////////
 
 
@@ -33,10 +28,9 @@
          getFileURL.setCallback(this,function(response){
 
             if(response.getState()==="SUCCESS"){
-                //console.log(response.getReturnValue());
-                //console.log("OMG");
+                
                 component.set("v.fileUrl",response.getReturnValue());
-                //console.log(component.get("v.fileUrl"));
+                
                 component.set("v.display", true);
                 component.set("v.display4", false);
             }

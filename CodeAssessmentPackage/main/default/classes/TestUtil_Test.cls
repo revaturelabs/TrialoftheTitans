@@ -3,7 +3,8 @@
 // Created: 07-02-2021 
 // Description: Tests Test Util class. 
 // *NOTE: Method testCheckMethodStatus needs to be changed such that it
-//  uses the id of a valid apex test result parent job id. 
+//  uses the id of a valid apex test result parent job id.
+// Last Updated 9/8/2021 (Brian McKay) - added assert methods to verify TestUtil class works as expected
 ////////////////////////////////////////////////////
 @isTest
 public class TestUtil_Test {
