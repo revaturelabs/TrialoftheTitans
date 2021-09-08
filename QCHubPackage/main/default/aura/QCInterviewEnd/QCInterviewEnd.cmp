@@ -64,15 +64,7 @@
             <div class="rightboxes slds-box slds-col slds-m-vertical_x-small">                
                 <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Question Overview:</h1>
                             <p style="text-align: center; color:red">NOTE: Need the Question Overview Comp.</p>
-
             </div>    
-            
-            
         </div> 
-        
-        
-
-        
-        
-    </div>    
+     </div>    
 </aura:component>

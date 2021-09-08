@@ -1,30 +1,22 @@
 <aura:component implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable" access="global">
 
     <aura:handler name="init" value="{!this}" action="{!c.OnInit}"/>
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.OnInit}" />
     <aura:handler name="UpdateStageEvent" event="c:UpdateStageEvent" action="{!c.UpdateStage}"/>
     <aura:handler name="UpdateQAListEvent" event="c:UpdateQAListEvent" action="{!c.QAEvent}"/>
     <aura:handler name="SetWeekEvent" event="c:SetWeekEvent" action="{!c.SetWeek}"/>
-    <!--aura:handler name="StartInterviewEvent" event="c:StartInterviewEvent" action="{!c.SetHero}"/-->
+    <aura:handler name="StartInterviewEvent" event="c:StartInterviewEvent" action="{!c.SetHero}"/>
     <aura:handler name="InterviewHeroEvent" event="c:InterviewHeroEvent" action="{!c.SetHero}"/>
 
-    <!--Main container component for the QC Interview app; manages and stores data for other QC Interview app components-->
     <aura:attribute name="Stage"        type="String" default="Start"/>
     <aura:attribute name="Cohort"       type="QCCohortWrapper"/>
-    <!--aura:attribute name="CohortId"     type="String"/-->
     <aura:attribute name="CurrentHero"  type="Account"/>
     <aura:attribute name="WeekList"         type="String[]"/>
     <aura:attribute name="Week"         type="String"/>
     <aura:attribute name="CurrentQAList" type="QC_Question_Answer__c[]"/>
     
+    <c:QCInterviewHeader CurrentStage="{!v.stage}"/>
 
-    <!-- This header section shows the currently active stage - (Begin) -->
-    
-    <c:QCInterviewHeader CurrentStage="{! v.Stage }"></c:QCInterviewHeader>
-
-    <!-- End of header stage section -->
-
-    
-    <!--Begin component display (depends on CurrentStage attribute)-->
     <div>
         <aura:if isTrue="{!v.Stage=='Start' ? true : false}">
             <c:QCInterviewStartView Cohort="{!v.Cohort}" WeekList="{!v.WeekList}"/>
@@ -46,7 +38,5 @@
     <aura:set attribute="else">
         <p>An unknown error has occurred.</p>
     </aura:set>
-    <!--End component display-->
-    
     
 </aura:component>

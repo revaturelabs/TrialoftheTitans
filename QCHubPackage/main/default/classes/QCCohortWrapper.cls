@@ -10,7 +10,7 @@ public with sharing class QCCohortWrapper {
     
     @AuraEnabled public Cohort__c cohort{get;set;}
     @AuraEnabled public Map<String, List<Account>> squadMap{get;set;}
-    
+    @AuraEnabled public QCSquadWrapper[] squadList{get;set;}
     @AuraEnabled public List<Account> heroList;
 
     /* NOTE:    This is an option, and the corresponding code can be re-enabled in QCHubHomeAuraController to populate this
