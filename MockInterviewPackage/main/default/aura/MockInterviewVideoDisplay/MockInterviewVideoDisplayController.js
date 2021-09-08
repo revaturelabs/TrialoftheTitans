@@ -66,27 +66,4 @@
         });
         
     },
-
-    displayFile : function(component, event, helper) {
-
-
-         let getFileURL = component.get("c.getContentId");
-         let contentId = component.get("v.recordId");
-
-         getFileURL.setParams({recordId:contentId});
-         console.log(contentId);
-         getFileURL.setCallback(this,function(response){
-
-            if(response.getState()==="SUCCESS"){
-                console.log(response.getReturnValue());
-                console.log("OMG");
-                component.set("v.fileUrl",response.getReturnValue());
-                console.log(component.get("v.fileUrl"));
-                component.set("v.display", true);
-            }
-         });
-
-         $A.enqueueAction(getFileURL);
-
-    }
 })

@@ -11,17 +11,34 @@ public class TestUtil_Test {
     @isTest
     static void testEnqueueTests(){
         
-        test.startTest();
-        TestUtil.enqueueTests();
-        test.stopTest();
+        Test.startTest();
+        ApexClass testClasses = 
+            [SELECT Id FROM ApexClass 
+             WHERE Name LIKE '%Test' LIMIT 1];
+        ApexTestQueueItem item = new ApexTestQueueItem(ApexClassId=testClasses.Id);
+        
+        System.assertEquals(TestUtil.enqueueTests(), item.ParentJobId);
+        Test.stopTest();
+        
     }
     
     @isTest
     static void testCheckMethodStatus(){
         
-        test.startTest();
-        testUtil.checkMethodStatus('7075e00000UTXeDAAX');
-        test.stopTest();
+        Id jobId = '7075e00000UTXeDAAX';
+        ApexTestResult[] results = 
+            [SELECT Outcome, MethodName, Message
+             FROM ApexTestResult 
+             WHERE AsyncApexJobId=:jobId];
+        ApexTestResult[] atr = TestUtil.checkMethodStatus('7075e00000UTXeDAAX');
+        System.assertEquals(atr.size(), results.size());
+        
+        
+        for(Integer i = 0; i < atr.size(); i++) {
+            System.assertEquals(results[i].Message, atr[i].Message);
+            i++;
+        }
+        
     }
 
 }
