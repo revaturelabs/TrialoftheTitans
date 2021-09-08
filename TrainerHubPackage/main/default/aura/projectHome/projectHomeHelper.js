@@ -20,5 +20,17 @@
             }
         });
         $A.enqueueAction(action);
-    }
+    },
+    edit: function(component, event) {
+        component.set("v.selectedProjId", event.target.id)
+        component.set("v.currentPage", "dynamicRow");
+    },
+    assign: function(component, event) { 
+        component.set("v.selectedProjId", event.target.id);     
+        component.set("v.currentPage", "AssignProject");
+    },
+    
+    addNewProject: function(component) {
+        component.set("v.currentPage", "NewProjectCreation");
+    },
 })

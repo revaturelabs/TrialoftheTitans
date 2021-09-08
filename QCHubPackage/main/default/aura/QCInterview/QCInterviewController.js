@@ -1,6 +1,6 @@
 ({
 	OnInit : function(component, event, helper){
-		helper.LoadSessionData(component, event);
+		helper.LoadSessionData(component);
 	},
 
 

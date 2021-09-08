@@ -9,7 +9,6 @@
             let state = response.getState();
 
             if (state === "SUCCESS"){
-                console.log(state);
                 let cohorts = response.getReturnValue();
                 component.set("v.CohortList", cohorts);
                 
@@ -17,7 +16,6 @@
                     this.D3CohortOverview(component);
                 }
                 component.set("v.DataLoaded", true);
-
             }
             
             else if (state === "INCOMPLETE"){
@@ -27,25 +25,17 @@
             else if (state === "ERROR"){
                 console.log(state);
                 let errors = response.getError();
-
                 if (errors) {
                     if (errors[0] && errors[0].message){
                         console.log("Error message: " + errors[0].message);
-
                     }
-
                 }
                 else {
                     console.log("Unknown error");
-
                 }
-
             }
-
         });
-
         $A.enqueueAction(CohortListInit);
-
     },
 
     LoadWeeks : function(component){
@@ -57,35 +47,24 @@
             let state = response.getState();
 
             if (state === "SUCCESS"){
-                console.log(state);
                 let weeks = response.getReturnValue();
                 component.set("v.WeekList", weeks);
-
             }
-            
             else if (state === "INCOMPLETE"){
                 console.log(state);
-
             }
-
             else if (state === "ERROR"){
                 console.log(state);
                 let errors = response.getError();
-
                 if (errors) {
                     if (errors[0] && errors[0].message){
                         console.log("Error message: " + errors[0].message);
-
                     }
-
                 }
                 else {
                     console.log("Unknown error");
-
                 }
-
             }
-
         });
 
         $A.enqueueAction(WeekListInit);
@@ -109,9 +88,7 @@
     // Load data for a specific cohort (launched by UpdateCohort function in main JS controller,
     // which is triggered by UpdateCohortEvent from CohortButtons component when a cohort is selected)
     LoadCohortData : function(component, selectedCohort){
-        console.log("Cohort data helper");
         let CohortInit = component.get("c.RetrieveCohortData");
-        console.log(JSON.stringify(selectedCohort));
         CohortInit.setParams({cohortStr : JSON.stringify(selectedCohort)});
 
         CohortInit.setCallback(this, function(response){
@@ -119,11 +96,7 @@
             let state = response.getState();
 
             if (state === "SUCCESS"){
-                console.log(state);
                 let cohortData = response.getReturnValue();
-                console.log(cohortData);
-                console.log(component.get("v.DataLoaded"));
-                console.log(component.get("v.ScriptLoaded"));
                 component.set("v.SelectedCohort", cohortData);
                 component.set("v.SquadList", cohortData.squadList);
                 component.set("v.HeroList", cohortData.heroList);
@@ -131,31 +104,23 @@
             
             else if (state === "INCOMPLETE"){
                 console.log(state);
-
             }
 
             else if (state === "ERROR"){
                 console.log(state);
                 let errors = response.getError();
-
                 if (errors) {
                     if (errors[0] && errors[0].message){
                         console.log("Error message: " + errors[0].message);
-
                     }
 
                 }
                 else {
                     console.log("Unknown error");
-
                 }
-
             }
-
         });
-
         $A.enqueueAction(CohortInit);
-
     },
 
 

@@ -18,18 +18,5 @@
     LaunchInterview : function(component, event, helper){
         console.log("LAUNCH INTERVIEW FUNCTION");
         helper.LaunchInterviewEvent(component, event);
-        //helper.LaunchStageEvent(component, "Interview");
     }
-
 })
-
-// add this to v.columns attribute when heroList.Finalized__c=true, if I can figure out how to do this
-// {type : 'button', label: 'Interview',
-// typeAttributes: {
-//         name: 'completed',
-//         label: 'Complete',
-//         iconPosition: 'right',
-//         iconName: 'utility:success',
-//         variant: 'Success' 
-// }
-// }

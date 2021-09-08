@@ -13,26 +13,15 @@
     },
      
      edit: function(component, event, helper) {
-
-        console.log("edit")
-
-        component.set("v.selectedProjId", event.target.id)
-        component.set("v.currentPage", "dynamicRow");
-
-
-
+        helper.edit(component, event);
     },
     
     
-    assign: function(component, event, helper) {
-        console.log("assign")   
-        component.set("v.selectedProjId", event.target.id);     
-        component.set("v.currentPage", "AssignProject");
+    assign: function(component, event, helper) { 
+        helper.assign(component, event);
     },
     
     addNewProject: function(component, event, helper) {
-        console.log("addNewProject")   
-
-        component.set("v.currentPage", "NewProjectCreation");
+        helper.addNewProject(component);
     },
 })

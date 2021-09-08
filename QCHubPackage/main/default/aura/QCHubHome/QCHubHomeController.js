@@ -13,8 +13,6 @@
     },
 
     LaunchInterview : function(component, event, helper){
-
-        console.log("liEvent received, launching interview");
         helper.LaunchInterview(component);
     },
 
