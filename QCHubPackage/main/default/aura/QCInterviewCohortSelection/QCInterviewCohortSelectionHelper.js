@@ -11,7 +11,21 @@
                 component.set("v.heroList", response.getReturnValue())
             } else if (response.getState() === "ERROR") {
                 let errors = response.getError();
-                console.error(errors);
+                let showToast = $A.get("e.force:showToast");
+                if (errors) {
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": errors[0].message
+                    })
+                    showToast.fire();
+                }
+                else {
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": "Unknown error"
+                    })
+                    showToast.fire();
+                }
             }
         })
         $A.enqueueAction(heroes)
@@ -28,11 +42,27 @@
         int.setParams({heroes: component.get("v.heroList")})
 
         int.setCallback(this, function(response){
+            console.log("test");
             if(response.getState() === "SUCCESS"){
+                console.log("SUCCESS");
                 component.set("v.interviewList", response.getReturnValue())
             } else if (response.getState() === "ERROR") {
                 let errors = response.getError();
-                console.error(errors);
+                let showToast = $A.get("e.force:showToast");
+                if (errors) {
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": errors[0].message
+                    })
+                    showToast.fire();
+                }
+                else {
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": "Unknown error"
+                    })
+                    showToast.fire();
+                }
             }
         })
         $A.enqueueAction(int);

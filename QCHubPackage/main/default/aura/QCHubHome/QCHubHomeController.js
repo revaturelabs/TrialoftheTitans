@@ -7,7 +7,6 @@
     },
 
     UpdateCohort : function(component, event, helper){
-        // Triggered by UpdateCohortEvent
         helper.LoadCohortData(component, event.getParam("SelectedCohort"));
         
     },

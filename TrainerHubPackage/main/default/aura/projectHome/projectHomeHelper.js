@@ -10,12 +10,20 @@
                 component.set("v.projectList", this.projectList);
             }else if(responseState == "ERROR"){
                 let errors = response.getError();
+                let showToast = $A.get("e.force:showToast");
                 if (errors) {
-                    if (errors[0] && errors[0].message) {
-                        component.set("v.errorMessage",errors[0].message );
-                    }else {
-                        component.set("v.errorMessage","Unknown error :(" );
-                    }
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": errors[0].message
+                    })
+                    showToast.fire();
+                }
+                else {
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": "Unknown error"
+                    })
+                    showToast.fire();
                 }
             }
         });

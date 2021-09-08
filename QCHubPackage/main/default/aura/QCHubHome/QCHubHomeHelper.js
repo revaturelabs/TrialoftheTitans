@@ -17,21 +17,23 @@
                 }
                 component.set("v.DataLoaded", true);
             }
-            
-            else if (state === "INCOMPLETE"){
-                console.log(state);
-            }
 
             else if (state === "ERROR"){
-                console.log(state);
                 let errors = response.getError();
+                let showToast = $A.get("e.force:showToast");
                 if (errors) {
-                    if (errors[0] && errors[0].message){
-                        console.log("Error message: " + errors[0].message);
-                    }
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": errors[0].message
+                    })
+                    showToast.fire();
                 }
                 else {
-                    console.log("Unknown error");
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": "Unknown error"
+                    })
+                    showToast.fire();
                 }
             }
         });
@@ -54,15 +56,21 @@
                 console.log(state);
             }
             else if (state === "ERROR"){
-                console.log(state);
                 let errors = response.getError();
+                let showToast = $A.get("e.force:showToast");
                 if (errors) {
-                    if (errors[0] && errors[0].message){
-                        console.log("Error message: " + errors[0].message);
-                    }
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": errors[0].message
+                    })
+                    showToast.fire();
                 }
                 else {
-                    console.log("Unknown error");
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": "Unknown error"
+                    })
+                    showToast.fire();
                 }
             }
         });
@@ -78,7 +86,22 @@
             if (state === "SUCCESS") {
                 component.set("v.HeroList", response.getReturnValue());
             } else {
-                console.log("Could not get HeroList");
+                let errors = response.getError();
+                let showToast = $A.get("e.force:showToast");
+                if (errors) {
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": errors[0].message
+                    })
+                    showToast.fire();
+                }
+                else {
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": "Unknown error"
+                    })
+                    showToast.fire();
+                }
             }
         });
         $A.enqueueAction(loadHeros);
@@ -101,22 +124,23 @@
                 component.set("v.SquadList", cohortData.squadList);
                 component.set("v.HeroList", cohortData.heroList);
             }
-            
-            else if (state === "INCOMPLETE"){
-                console.log(state);
-            }
 
             else if (state === "ERROR"){
-                console.log(state);
                 let errors = response.getError();
+                let showToast = $A.get("e.force:showToast");
                 if (errors) {
-                    if (errors[0] && errors[0].message){
-                        console.log("Error message: " + errors[0].message);
-                    }
-
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": errors[0].message
+                    })
+                    showToast.fire();
                 }
                 else {
-                    console.log("Unknown error");
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": "Unknown error"
+                    })
+                    showToast.fire();
                 }
             }
         });
@@ -137,15 +161,9 @@
             }
     
         }
-        console.log(JSON.stringify(interviewReference));
-        console.log(JSON.stringify(component.get("v.SelectedCohort")));
-        console.log(component.get("v.WeekList"));
         sessionStorage.setItem('ActiveCohort', JSON.stringify(component.get("v.SelectedCohort")));
-        console.log("QCHubHome: ");
-        console.log(JSON.stringify(component.get("v.WeekList")));
         sessionStorage.setItem('WeekList', JSON.stringify(component.get("v.WeekList")));
         navService.navigate(interviewReference);
-
     },
 
 
@@ -155,15 +173,9 @@
         console.log(data);
 
         for (let dat of component.get("v.CohortList")){
-            console.log(dat);
-            console.log("ADDING TO DATA");
             data.push({ cohortName  : dat.Name,
                         qcAv        : dat.QC_Interview_Sum__c/dat.QC_Interview_Count__c});
-            console.log(data);
         }
-
-        console.log(data);
-
 
         var height = 500,
         scaleFactor = 10,
@@ -229,11 +241,6 @@
         
     },
     D3 : function(component, event){
-        // component.set('v.d3', true)
-        console.log("D3 ACTIVATED");
-        console.log(component.get("v.DataLoaded")
-        );
-        console.log(component.get("v.ScriptLoaded"));
         if (component.get("v.DataLoaded")){
             this.D3CohortOverview(component);
         }

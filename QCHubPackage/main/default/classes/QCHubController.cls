@@ -11,15 +11,15 @@ public class QCHubController {
 
     }
      
-    // public class PieChart {
-    //     @AuraEnabled public String name;
-    //     @AuraEnabled public Integer curriculum;
+    public class PieChart {
+        @AuraEnabled public String name;
+        @AuraEnabled public Integer curriculum;
          
-    //     public PieChart( String name, Integer curriculum ) {
-    //         this.name = name;
-    //         this.curriculum = curriculum;
-    //     }
-    // }
+        public PieChart( String name, Integer curriculum ) {
+            this.name = name;
+            this.curriculum = curriculum;
+        }
+    }
         
 
 
