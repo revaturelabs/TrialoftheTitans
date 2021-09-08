@@ -22,7 +22,8 @@
     <aura:attribute name="isFeedback" type="Boolean" default ="false" />
     <aura:attribute name="isError" type="Boolean" default ="false" />
     <aura:attribute name="isSucc" type="Boolean" default ="false" />
-
+    
+    
     <div class="slds-grid slds-gutters slds-wrap myinterstyle" >
     <!-- INTERVIEW PROCESS START -->
     <aura:if isTrue="{!v.isInterviewing}">

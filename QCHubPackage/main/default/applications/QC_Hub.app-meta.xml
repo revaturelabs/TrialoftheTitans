@@ -17,7 +17,7 @@
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>QC Hub</label>
+    <label>Senate Hub</label>
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
     <tabs>QC_Interview__c</tabs>

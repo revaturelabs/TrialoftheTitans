@@ -20,11 +20,16 @@
         <!-- Pool Percentages -->
         <div class="poolbypool">
             <aura:if isTrue="{!v.TogglePoolInfo}">
+                <!-- James Patton added aura if to display error if there is zero length -->
+                <aura:if isTrue="{!v.ExamResultPoolQuestions.length == 0}">
+                	<p>There are no exam results related to the exam's pool</p>
+                </aura:if>
+                
                 <aura:iteration items="{!v.ExamResultPoolQuestions}" var="pool" indexVar="key">
                     <div class="pool-item-wrapper">
                         {!pool.key}.....{!pool.value}%
                     </div>
-                </aura:iteration>
+                </aura:iteration>   
             </aura:if>
         </div>
         <!-- Pool Percentages -->

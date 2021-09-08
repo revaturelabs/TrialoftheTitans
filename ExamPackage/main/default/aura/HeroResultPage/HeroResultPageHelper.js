@@ -139,6 +139,22 @@
     showPbp: function(cmp, event) {
         cmp.set('v.pbpClicked', true)
     },
+    
+    start : function(component, event, helper) {
+        
+		let getResults = "c.retrieveResults"
+        let action = component.get(getResults)
+        action.setCallback(this, function(response){
+            
+            component.set("v.caClicked", true)
+                           if(response.getState()=="SUCCESS"){                              
+                            component.set("v.results", response.getReturnValue())
+                           }else{
+                               component.set("v.results", null)
+                           }
+        })
+    $A.enqueueAction(action)
+	}, 
     fireExamIdEvent: function (cmp, event) {
        
        // attempt to pass exam results with application event

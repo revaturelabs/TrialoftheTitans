@@ -8,9 +8,13 @@
             <!-- Contact information Component, allows the user to view their contact information -->
             <span> <div class="container slds-m-around_large" id="contactinfo">
                 <lightning:card title="{!v.activeTitan.Name + ' Exams'}">
-                    
                     <div class="titanDiv slds-grid">
                         <ul>
+                            <!-- James Patton added aura if to display error if there is zero length -->
+                            <aura:if isTrue="{!v.examsList.length == 0}">
+                                <p>There are no exams associated with this Titan</p>
+                            </aura:if>
+                            
                             <aura:iteration items="{!v.examsList}" var="Exams">
                                 <div class="slds-grid">
                                     <ul>    
