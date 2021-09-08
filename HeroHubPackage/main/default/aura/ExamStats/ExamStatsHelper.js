@@ -18,8 +18,6 @@
         console.log("exam assigned? " + exam.assigned);
         component.set("v.exam", exam);
 
-        //todo: change below conditional statement to exam.assigned == false
-        //Changed it to false on 9/6/2021
         if(exam.assigned == false){
             component.set("v.assigned", false);
         }else{
