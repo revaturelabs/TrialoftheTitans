@@ -14,7 +14,7 @@ public with sharing class HeroResultPageController {
     }
 
 
-    //Making the name not hard coded
+    
     @AuraEnabled
     public static List<String> getTitanList() {
         String[] result = new List<String>();
