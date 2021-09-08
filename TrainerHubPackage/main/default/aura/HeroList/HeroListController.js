@@ -9,7 +9,7 @@
                 	target: '_self'
                 },
             },
-            //{ label: 'Score', fieldName: 'Score__c', type: 'percentage'},
+
         ]);
 		helper.fetchData(component);
 	},
