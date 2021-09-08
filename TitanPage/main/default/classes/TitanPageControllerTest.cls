@@ -11,6 +11,7 @@
     
             @isTest
             static void testFetchUser(){
+                
                 User testUser = [SELECT Id FROM USER WHERE alias = 'testUser' LIMIT 1];
     
        			 String info;
@@ -22,6 +23,7 @@
     	}
                 
       //    System.AssertEquals(testUser.id; )
+           
             }      
           
          @isTest

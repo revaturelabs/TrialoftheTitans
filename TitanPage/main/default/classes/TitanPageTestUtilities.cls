@@ -33,6 +33,8 @@ public class TitanPageTestUtilities {
                                );
             
         database.insert(adminUser);
+
+       
         
         System.runAs(adminUser){
         
@@ -50,29 +52,34 @@ public class TitanPageTestUtilities {
         Contact newContact = new Contact(lastName='User', AccountId = newAccount.id);
         database.insert(newContact);
         
-        // Get Hero profile from database to use for Users
-        Profile heroProfile = [SELECT Id FROM Profile WHERE Name = 'Hero' LIMIT 1];
         
-		User testUser = new User( profileId = heroProfile.id,
-						   		 username = newContact.lastName + Crypto.getRandomInteger() + '@yahoo.com',
-						   		 email = 'test@test.com',
-								 emailencodingkey = 'UTF-8',
-								 localesidkey = 'en_US',
-								 languagelocalekey = 'en_US',
-								 timezonesidkey = 'America/Los_Angeles',
-								 alias = 'testUser',
-								 lastname = newContact.lastName,
-								 contactId = newContact.id
-                               );
-   
-        database.insert(testUser);
         
-        Id groupID = [SELECT Id FROM PermissionSetGroup WHERE DeveloperName = 'TrialOfTheTitansHeroPermissions' Limit 1].Id;
-       	PermissionSetAssignment assignment = new PermissionSetAssignment(PermissionSetGroupId = groupId, AssigneeId = testUser.Id);
-
-		Database.insert(assignment);
         
         }
+
+         // Get Hero profile from database to use for Users
+         Profile heroProfile = [SELECT Id FROM Profile WHERE Name = 'Hero' LIMIT 1];
+        
+        
+         Contact newContact = [SELECT ID, lastname FROM CONTACT WHERE lastname='User'];
+         User testUser = new User( profileId = heroProfile.id,
+                                     username = newContact.lastName + Crypto.getRandomInteger() + '@yahoo.com',
+                                     email = 'test@test.com',
+                                  emailencodingkey = 'UTF-8',
+                                  localesidkey = 'en_US',
+                                  languagelocalekey = 'en_US',
+                                  timezonesidkey = 'America/Los_Angeles',
+                                  alias = 'testUser',
+                                  lastname = newContact.lastName,
+                                  contactId = newContact.id
+                                );
+         Test.startTest();
+         database.insert(testUser);
+         Id groupID = [SELECT Id FROM PermissionSetGroup WHERE DeveloperName = 'TrialOfTheTitansHeroPermissions' Limit 1].Id;
+        PermissionSetAssignment assignment = new PermissionSetAssignment(PermissionSetGroupId = groupId, AssigneeId = testUser.Id);
+
+		Database.insert(assignment);
+        Test.stopTest();
         	
     }
     
@@ -117,6 +124,7 @@ public class TitanPageTestUtilities {
         }
         
         database.insert(newTitans);
+        
     }
     
     @isTest
