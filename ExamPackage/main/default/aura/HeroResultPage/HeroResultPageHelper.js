@@ -140,6 +140,12 @@
         cmp.set('v.pbpClicked', true)
     },
     fireExamIdEvent: function (cmp, event) {
+       
+       // attempt to pass exam results with application event
+       // cmp.set("v.examResultId", event.getParam("ExamId"));
+       // cmp.set("v.examClicked", true);
+
+        
         // Pass list of ExamResult as Array instead.
         cmp.set('v.examResultId', event.target.getAttribute('data-result-id'))
         // console.log(event.target.getAttribute('data-exam-id'))

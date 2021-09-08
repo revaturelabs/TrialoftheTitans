@@ -3,7 +3,6 @@
     //Gets this information from the TakeExamClickedEvent, which holds the Exam that will be taken
     assignExamHelper : function(component, event) {
         var exam = event.getParam("examId");
-        //console.log(exam);
         component.set("v.examId", exam); 
     },
 
@@ -21,13 +20,11 @@
                 var exam = respone.getReturnValue();
                 console.log(exam);
                 component.set("v.examQuestions", exam);
-                //var some = component.get("v.examQuestions")
-                //console.log(some[0].Question_Text__c);
                 cntr = 1;
-               for(var i = 0; i < exam.length; i++){
-                   if(i == 0){toggleClass = "toggle0"} else toggleClass = "toggle";
-                   var question = exam[i];
-                   console.log(question.Question_Text__c);
+                for(var i = 0; i < exam.length; i++){
+                    if(i == 0){toggleClass = "toggle0"} else toggleClass = "toggle";
+                    var question = exam[i];
+                    console.log(question.Question_Text__c);
                     if(question.Question_Type__c === "Matching"){
                         $A.createComponents([
                             ["aura:html", {
@@ -262,6 +259,9 @@
     } ,
 
     navigateToNextQuestionHelper : function(component){
+
+    
+
         var questionNumber = component.get("v.questionNumber");
         var questionAmount = component.get("v.questionAmount");
         questionNumber++;
@@ -285,8 +285,6 @@
         }
 
         component.set("v.questionNumber", questionNumber);
-        //console.log(toggleText);
-        //$A.util.toggleClass(toggleText, "toggle");
     },
 
     navigateToPrevQuestionHelper : function(component){
@@ -318,8 +316,29 @@
     },
 
     submitExam : function(component){
+
+
+
+        // insert exam results in to DB via apex controller
+        var action = component.get("c.submitExam");
+        console.log(component.get('v.examId'));
+        action.setParams({'examId' : component.get('v.examId')});
+        action.setCallback(this, function (a) {
+            var state = a.getState();
+            if(state == 'SUCCESS'){
+            }
+        });
+        $A.enqueueAction(action);
+
+        // insert exam questions into apex controller method
+        var action2 = component.get("c.submitAnswers");
+        console.log(component.get('v.examQuestions'));
+        action2.setParams({'examQuestionList' : component.get('v.examQuestions')});
+        $A.enqueueAction(action2);
+
+
         setTimeout(function () {
-            //alert('Reloading Page');
+            alert('Reloading Page');
             location.reload(true);
           }, 1000);
     }
