@@ -10,7 +10,7 @@
 ({
     // get Exam Results from the server
     fetchData : function(component) {
-        let action = component.get('c.ExamList');
+        let action = component.get('c.SearchExamList');
 		let cohortId = component.get('v.CohortId');
 		action.setParams({
 			"cohortId": cohortId

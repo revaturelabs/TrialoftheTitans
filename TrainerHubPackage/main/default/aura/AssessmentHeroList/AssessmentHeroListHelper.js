@@ -10,7 +10,7 @@
 ({
     // get Hero Assessment from the server
     fetchData : function(component) {
-        let action = component.get('c.HeroList');
+        let action = component.get('c.SearchHeroList');
 		let cohortId = component.get('v.CohortId');
 		action.setParams({
             "cohortId": cohortId

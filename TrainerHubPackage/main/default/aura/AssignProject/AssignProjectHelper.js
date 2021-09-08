@@ -84,7 +84,7 @@
             }
             // assign the project
             let names = (options+'').split(',');
-            let action = component.get('c.assignProject');
+            let action = component.get('c.AssignProject');
             action.setParams({
                 grouping : group,
                 namesToAssign : names,
