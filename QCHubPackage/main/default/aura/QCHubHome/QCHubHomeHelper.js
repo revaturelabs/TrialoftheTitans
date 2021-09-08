@@ -154,8 +154,7 @@
             }
     
         }
-        // sessionStorage.setItem('ActiveCohort', JSON.stringify(component.get("v.SelectedCohort")));
-        // sessionStorage.setItem('WeekList', JSON.stringify(component.get("v.WeekList")));
+        
         navService.navigate(interviewReference);
     },
 

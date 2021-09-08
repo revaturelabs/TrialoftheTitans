@@ -18,7 +18,6 @@
     <aura:attribute name="currentHero" type="Account" />
     <aura:attribute name="currentCohort" type="Cohort__c" />
 
-    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <aura:handler name="UpdateCohortEvent" event="c:UpdateCohortEvent" action="{!c.handleCohort}"/>
     <aura:handler name="change" value="{!v.currentCohort}" action="{!c.CohortChange}"/>
 
