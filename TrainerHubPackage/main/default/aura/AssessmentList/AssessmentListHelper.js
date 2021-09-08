@@ -10,6 +10,11 @@
 ({
     // get Assessment from the server
     fetchData : function(component) {
+        component.set('v.columns',[
+			{ label: 'View', type: 'button', initialWidth: 135, typeAttributes: { label: 'View Details', name: 'view_details', title: 'Click to View Details'}},
+            { label: 'Name', fieldName: 'Name', type: 'text'},
+            { label: 'Type', fieldName: 'Type__c', type: 'text'},
+        ]);
         let action = component.get('c.AssessmentList');
         action.setCallback(this, (function (response) {
             let state = response.getState();
@@ -27,8 +32,6 @@
         let cmpEvent  = cmp.getEvent("sendAssessmentIdEvent");
         cmpEvent.setParam("AssessmentId", row.Id);
         cmpEvent.fire();
-		//Alert just for debugging purposes, remove this after complete integration of component
-		//alert("Fired Event with " + row.Id + " as the Id");
     },
 
 	handleReturnComponentEvent : function(cmp, event) {

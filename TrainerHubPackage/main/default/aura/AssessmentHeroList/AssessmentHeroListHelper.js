@@ -10,6 +10,12 @@
 ({
     // get Hero Assessment from the server
     fetchData : function(component) {
+        component.set('v.columns',[
+			{ label: 'View', type: 'button', initialWidth: 135, typeAttributes: { label: 'View Details', name: 'view_details', title: 'Click to View Details'}},
+            { label: 'Hero', fieldName: 'hero', type: 'text'},
+            { label: 'Assessment', fieldName: 'assessment', type: 'text'},
+            { label: 'Overall Score', fieldName: 'Overall_Score__c', type: 'percentage'},
+        ]);
         let action = component.get('c.SearchHeroList');
 		let cohortId = component.get('v.CohortId');
 		action.setParams({

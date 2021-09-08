@@ -10,6 +10,13 @@
 ({
     // get Exam Results from the server
     fetchData : function(component) {
+        component.set('v.columns',[
+            { label: 'Hero', fieldName: 'hero', type: 'text'},
+            { label: 'Exam Name', fieldName: 'exam', type: 'text'},
+            { label: 'Score', fieldName: 'Score__c', type: 'percentage'},
+            { label: 'Total Correct', fieldName: 'Total_Correct__c', type: 'number'},
+            { label: 'Total Answer', fieldName: 'Total_Answers__c', type: 'number'},
+        ]);
         let action = component.get('c.SearchExamList');
 		let cohortId = component.get('v.CohortId');
 		action.setParams({
