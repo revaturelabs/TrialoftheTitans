@@ -1,8 +1,7 @@
-<aura:component 
-    implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
     
     <!--aura:handler name="init" value="{! this }" action="{! c.Init }"/-->
-    <aura:attribute name = "question" type = "Exam_Question__c"/>
+    <aura:attribute name="question" type = "Exam_Question__c"/>
     <aura:attribute name="EssayQuestion" type="String" default="Question" />
     <aura:attribute name="EssayAnswer" type="String" default="" />
 
