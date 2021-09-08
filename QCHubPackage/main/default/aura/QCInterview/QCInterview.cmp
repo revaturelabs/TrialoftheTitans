@@ -7,10 +7,8 @@
     <aura:handler name="StartInterviewEvent" event="c:StartInterviewEvent" action="{!c.SetHero}"/>
     <aura:handler name="InterviewHeroEvent" event="c:InterviewHeroEvent" action="{!c.SetHero}"/>
 
-    <!--Main container component for the QC Interview app; manages and stores data for other QC Interview app components-->
     <aura:attribute name="Stage"        type="String" default="Start"/>
     <aura:attribute name="Cohort"       type="QCCohortWrapper"/>
-    <!--aura:attribute name="CohortId"     type="String"/-->
     <aura:attribute name="CurrentHero"  type="Account"/>
     <aura:attribute name="WeekList"         type="String[]"/>
     <aura:attribute name="Week"         type="String"/>

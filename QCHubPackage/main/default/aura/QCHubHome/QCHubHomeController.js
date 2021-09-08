@@ -18,11 +18,6 @@
         helper.LaunchInterview(component);
     },
 
-
-    doInit: function( component, event, helper ) {
-       
-    },
-
     D3 : function(component, event, helper){
         helper.D3(component, event);
     }

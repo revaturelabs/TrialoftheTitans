@@ -241,7 +241,7 @@
          .attr("width", xScale.bandwidth())
          .attr("height", function(d) { return height - yScale(d.qcAv); });
 
-         /*
+         
         var cOverview = d3.select(".svgCohortOverview").append("svg")
                             .attr("height", height).attr("width", barWidth*data.length);
 
@@ -261,7 +261,7 @@
         cbars.append("rect").attr("height", function(d, i){
                                 return d * scaleFactor;
                             });
-        */
+        
     },
     D3 : function(component, event){
         // component.set('v.d3', true)
