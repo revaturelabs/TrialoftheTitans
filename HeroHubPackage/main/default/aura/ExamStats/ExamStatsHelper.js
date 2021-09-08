@@ -19,7 +19,8 @@
         component.set("v.exam", exam);
 
         //todo: change below conditional statement to exam.assigned == false
-        if(exam.assigned == true){
+        //Changed it to false on 9/6/2021
+        if(exam.assigned == false){
             component.set("v.assigned", false);
         }else{
             if(exam.highScore != null){
