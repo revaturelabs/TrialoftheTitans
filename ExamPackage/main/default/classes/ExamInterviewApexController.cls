@@ -17,8 +17,6 @@ public class ExamInterviewApexController {
     public static List<Exam_Question__c> examFinder(String examID){
         List<Exam_Question__c> theExam = [SELECT Question_Text__c, Question_Type__c, Options__c, Correct_Answer_s__c FROM Exam_Question__c WHERE Titan__c != null];
         //exam = theExam[0].Exam__c;
-        return theExam;
-
-      
+        return theExam;  
     }
 }

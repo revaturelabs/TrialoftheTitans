@@ -26,7 +26,7 @@
         <lightning:button class = "slds-float_right" aura:id = "next" label="Next Question" title="Next Question" onclick="{!c.nextClick}"/>
         <div class = "submitdiv" id = "submitdiv">
             <lightning:button aura:id = "submit" label="Submit Exam" title="Submit Exam" onclick="{!c.submitClick}"/>
-            <!--<lightning:button label="Submit" variant="brand" type="submit" name="submit"/> i added this-->
+            <!--<lightning:button label="Submit" variant="brand" type="submit" name="submit"/>-->
         </div>
     </div>
 
