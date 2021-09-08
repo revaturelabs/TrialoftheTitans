@@ -24,4 +24,20 @@
         }));
         $A.enqueueAction(action);
     },
+    
+    	Init : function(component, event) {
+		component.set('v.columns',[
+            { label: 'Hero', fieldName: 'Name', type: 'text'},
+            { label: 'Squad', fieldName: 'Squad__c', type: 'text'},
+            { label: 'Team', fieldName: 'Team__c', type: 'text'},
+            { label: '1-on-1', fieldName: 'Website', type: 'url', typeAttributes: { 
+                    label: 'Zoom link',
+                	target: '_self'
+                },
+            },
+
+        ]);
+		this.fetchData(component);
+	}
+    
 })
