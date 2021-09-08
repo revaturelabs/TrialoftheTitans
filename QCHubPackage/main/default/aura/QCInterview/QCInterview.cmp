@@ -18,25 +18,9 @@
     
 
     <!-- This header section shows the currently active stage - (Begin) -->
-    <div>
-        <div>
-            <div class="boxBackground slds-box slds-grid slds-gutters slds-align_absolute-center">
+    
+    <c:QCInterviewHeader CurrentStage="{! v.Stage }"></c:QCInterviewHeader>
 
-                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">
-                    <p class="{!v.Stage=='Start' ? 'active' : ''}">Start</p>
-                </div>
-
-                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">
-                    <p class="{!v.Stage=='Interview' ? 'active ' : ''}">Interview</p>
-                </div>
-
-                <div class="boxGrid slds-col slds-size_2-of-12 slds-m-horizontal_xx-small slds-align_absolute-center">
-                    <p class="{!v.Stage=='End' ? 'active ' : ''}">End</p>
-                </div>
-
-            </div>
-        </div>
-    </div>
     <!-- End of header stage section -->
 
     
