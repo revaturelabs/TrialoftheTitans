@@ -10,9 +10,14 @@
 ({
     // get Assessment from the server
     fetchData : function(component) {
-        var action = component.get('c.AssessmentList');
+        component.set('v.columns',[
+			{ label: 'View', type: 'button', initialWidth: 135, typeAttributes: { label: 'View Details', name: 'view_details', title: 'Click to View Details'}},
+            { label: 'Name', fieldName: 'Name', type: 'text'},
+            { label: 'Type', fieldName: 'Type__c', type: 'text'},
+        ]);
+        let action = component.get('c.AssessmentList');
         action.setCallback(this, (function (response) {
-            var state = response.getState();
+            let state = response.getState();
             if (state === "SUCCESS") {
                 component.set('v.data', response.getReturnValue());
             } else if (state === "ERROR") {
@@ -24,12 +29,9 @@
     },
 	
 	showRowDetails : function(row, cmp, event) {
-        var cmpEvent  = cmp.getEvent("sendAssessmentIdEvent");
+        let cmpEvent  = cmp.getEvent("sendAssessmentIdEvent");
         cmpEvent.setParam("AssessmentId", row.Id);
-        
         cmpEvent.fire();
-		//Alert just for debugging purposes, remove this after complete integration of component
-		//alert("Fired Event with " + row.Id + " as the Id");
     },
 
 	handleReturnComponentEvent : function(cmp, event) {
@@ -38,7 +40,7 @@
     },
 
 	handleReturnAssessmentIdEvent : function(cmp, event) {
-        var eventReturnedId = event.getParam("AssessmentId");
+        let eventReturnedId = event.getParam("AssessmentId");
         // set the handler attributes based on event data
         cmp.set("v.AssessmentId", eventReturnedId);
         cmp.set("v.ShowChosenAssessment", true);
