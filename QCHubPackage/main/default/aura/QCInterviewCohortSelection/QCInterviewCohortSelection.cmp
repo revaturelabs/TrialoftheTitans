@@ -7,30 +7,21 @@
 //
 /////////////////////////////////////////////////// -->
 
-<!-- meant to follow Diego's week selection component? -->
-
 <aura:component controller="QCInterviewCohortSelectionAuraController" implements="flexipage:availableForAllPageTypes" access="global">
 
     <aura:registerEvent name="InterviewHeroEvent" type="c:InterviewHeroEvent"/>
     <aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
 
-    <!-- List of attributes -->
     <aura:attribute name="columns" type="List" />
     <aura:attribute name="heroList" type="Account[]" />
     <aura:attribute name="interviewList" type="QC_Interview__c[]" />
-    <!-- <aura:attribute name="index" type="String" /> -->
     <aura:attribute name="currentHero" type="Account" />
     <aura:attribute name="currentCohort" type="Cohort__c" />
 
-    <!-- Event handlers -->
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <aura:handler name="UpdateCohortEvent" event="c:UpdateCohortEvent" action="{!c.handleCohort}"/>
-    <!-- might need to utilize this to call variable once the lower gets put into the Hub
-    <aura:handler name="FinalEvent" event="c:QCInterviewFinalized" action="{!c.handleComponentEvent}" /> -->
-    <!-- this should be put in the QC Hub to be able to refer to the values throughout 
-        <aura:registerEvent name="FinalEvent" type="c:QCInterviewFinalized" /> -->
+    <aura:handler name="change" value="{!v.currentCohort}" action="{!c.CohortChange}"/>
 
-    <!-- Datatable displaying a list of heroes available  -->
     <lightning:datatable keyField="id" 
                         data="{!v.heroList}" 
                         columns="{!v.columns}" 
