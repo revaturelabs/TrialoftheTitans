@@ -44,8 +44,7 @@ public class interviewQuestionClass {
         Mock_Interview_Self__c moc = new Mock_Interview_Self__c(Account__c=acc.Id, MI_Question_Pool_Soft_Skill__c=question[0].Id, 
                                                                 MI_Question_Pool_Tech_Skill__c=question[1].Id, MI_Question_Pool_Other__c=question[2].Id, Public__c=isPub);
         insert moc;
-        System.debug('THIS IS WRONG');
-        System.debug(moc.Id);
+       
         return moc.Id;
         
     }
@@ -66,7 +65,7 @@ public class interviewQuestionClass {
     public static List<Mock_Interview_Self__c> getMyInterview(){
         Account acc = [SELECT Name, (SELECT Name FROM Contacts WHERE Name=:UserInfo.GetName()) FROM Account WHERE Name=:UserInfo.GetName()  LIMIT 1];
         List<Mock_Interview_Self__c> temp = [SELECT Name, CreatedDate, Public__c FROM Mock_Interview_Self__c WHERE Account__c=:acc.Id];
-        System.debug(temp);
+        
         return temp;
     }
     
