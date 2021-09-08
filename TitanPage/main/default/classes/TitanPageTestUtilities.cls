@@ -153,7 +153,7 @@ public class TitanPageTestUtilities {
         database.insert(newQuestions);
     }
      
-    @isTest
+    @isTest //Doesnt work
     public static void createExamResults(){
         
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'User'Limit 1];

@@ -12,14 +12,5 @@ trigger UserTrigger on User (before insert, after insert, before update, after u
         when AFTER_INSERT {
             UserTriggerHandler.AssignExams( trigger.new );
         }
-        when AFTER_UPDATE {
-            
-        }
-        when AFTER_DELETE {
-            
-        }
-        when AFTER_UNDELETE {
-            
-        }
     }
 }
