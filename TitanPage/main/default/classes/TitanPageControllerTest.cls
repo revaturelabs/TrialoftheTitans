@@ -22,7 +22,7 @@
             
     	}
                 
-      //    System.AssertEquals(testUser.id; )
+      //   System.AssertEquals(testUser.Name,  )
            
             }      
           
