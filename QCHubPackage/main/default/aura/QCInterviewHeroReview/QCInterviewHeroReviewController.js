@@ -27,6 +27,7 @@
     handleCreateFlag : function(component, event, helper) {
         helper.handleCreateFlag(component, event);
         
+        helper.handleCreateFlag(component, event); 
     },
     Submit : function(component, event, helper) {
         helper.SubmitInterview(component);
