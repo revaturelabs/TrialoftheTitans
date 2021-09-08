@@ -47,7 +47,7 @@
                 <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Cohort Table:</h1>
                 
                 <!--Begin Hero List Component-->
-                <p style="text-align: center"><c:QCInterviewCohortSelection heroList = "{!v.Cohort.heroList}"/></p>
+                <p style="text-align: center"><c:QCInterviewCohortSelection heroList = "{!v.Cohort.heroList}" currentCohort="{!v.Cohort.cohort}"/></p>
                 <!--End Hero List Component-->
 
                 <!--Begin Week Selection Dropdown Menu-->
