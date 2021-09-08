@@ -4,7 +4,7 @@
                 
  		@TestSetup
             static void testSetupMethod(){
-                titanPageTestUtilities.createusers();
+                titanPageTestUtilities.createUsers();
                 titanPageTestUtilities.fullSetup();
                 
             }

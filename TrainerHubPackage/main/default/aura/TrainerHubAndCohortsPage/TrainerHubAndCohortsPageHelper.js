@@ -7,18 +7,18 @@
 /////////////////////////////////////////////////////
 
 ({
-	handleCohortIdEvent : function(cmp, event) {
-		var message = event.getParam("CohortId");
+	handleCohortIdEvent : function(component, event) {
+		let message = event.getParam("CohortId");
         // set the handler attributes based on event data
-        cmp.set("v.CohortId", message);
+        component.set("v.CohortId", message);
 
-        cmp.set("v.CohortPageActive", true);
+        component.set("v.CohortPageActive", true);
 		
 		
     },
 
-    handleClick : function(cmp) {
-        cmp.set("v.CohortPageActive", false);
+    handleClick : function(component) {
+        component.set("v.CohortPageActive", false);
     },
 
 	
