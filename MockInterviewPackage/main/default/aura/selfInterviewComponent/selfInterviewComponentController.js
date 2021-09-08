@@ -73,7 +73,7 @@
         component.set("v.isSoftSkill", true);
         component.set("v.isTechnical", false);
         component.set("v.isOther", false);
-        //event.getSource().set('v.disabled',true);
+        
         
         
 	},
@@ -83,7 +83,7 @@
         component.set("v.isTechnical", true);
     	component.set("v.isSoftSkill", false);
         component.set("v.isOther", false);
-        //event.getSource().set('v.disabled',true);
+        
 	},
     
     // visualize the other question and disable the other two question type
@@ -91,7 +91,7 @@
         component.set("v.isOther", true);
         component.set("v.isTechnical", false);
     	component.set("v.isSoftSkill", false);
-        //event.getSource().set('v.disabled',true);
+        
 	},
     
     //pop up the record window and save interview record
