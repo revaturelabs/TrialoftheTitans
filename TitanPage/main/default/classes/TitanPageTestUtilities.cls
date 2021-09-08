@@ -4,7 +4,6 @@ public class TitanPageTestUtilities {
     
     @isTest
     public static void fullSetup(){
-
         createTitans();
         createExams();
         createQuestions();
@@ -15,6 +14,8 @@ public class TitanPageTestUtilities {
     
     @isTest
     public static void createUsers(){
+
+        
         
         Profile adminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1];
         
@@ -71,6 +72,7 @@ public class TitanPageTestUtilities {
        	PermissionSetAssignment assignment = new PermissionSetAssignment(PermissionSetGroupId = groupId, AssigneeId = testUser.Id);
 
 		Database.insert(assignment);
+
         
         }
         	
@@ -78,6 +80,8 @@ public class TitanPageTestUtilities {
     
     @isTest
     public static void createWrongUser(){
+
+        
         
         Account newAccount = new Account(name='Trainer' );
         insert newAccount;
@@ -97,9 +101,13 @@ public class TitanPageTestUtilities {
 								 );
         insert newUser; 
      
+        
     }
     @isTest
     public static void createTitans(){
+
+        
+        
         
         // Create curriculum and Titans for Exams
         Curriculum__c newCurriculum = new Curriculum__c(Name='Salesforce');
@@ -117,10 +125,12 @@ public class TitanPageTestUtilities {
         }
         
         database.insert(newTitans);
+        
     }
     
     @isTest
     public static void createExams(){
+        
         List<Titan__c> titans = [SELECT Id, Name From Titan__c];
         List<Exam__c> newExams = new List<Exam__c>();
         
@@ -136,10 +146,13 @@ public class TitanPageTestUtilities {
         }
         
         database.insert(newExams);
+        
     }
     
     @isTest
     public static void createQuestions(){
+
+        
   
 		List<Exam_Question__c> newQuestions = new List<Exam_Question__C>();
                     
@@ -151,13 +164,17 @@ public class TitanPageTestUtilities {
         }
         
         database.insert(newQuestions);
+        
     }
      
     @isTest
     public static void createExamResults(){
         
-        Account testAccount = [SELECT Id FROM Account WHERE Name = 'User'Limit 1];
-       	List<Exam__c> testExams = [SELECT Id FROM Exam__c];
+
+               
+        System.debug('WHERE IS THIS???--------------------------------------');
+        Account testAccount = [SELECT Id FROM Account WHERE Name = 'User'Limit 1]; //is empty
+        List<Exam__c> testExams = [SELECT Id FROM Exam__c];
         List<Exam_Result__c> newResults = new List<Exam_Result__c>();
         
         for(Exam__c exam: testExams){
@@ -179,11 +196,13 @@ public class TitanPageTestUtilities {
         database.insert(newResults);
         
         system.debug(newResults);
+        
     }
     
     
     @isTest
     public static void createAnswers(){
+        
         
         List<Exam_Question__c> newQuestions = [SELECT Id FROM Exam_Question__c];
         List<Exam_Result__c> newResults = [SELECT Id from Exam_Result__c];
@@ -202,10 +221,12 @@ public class TitanPageTestUtilities {
         
         database.insert(newAnswers);
         
+        
     }
     
     @isTest
     public static void createTeams(){
+        
         List<Team__c> teamList = new List<Team__c>();
         
         Team__c Amplifire = new Team__c(Name='Amplifire');
