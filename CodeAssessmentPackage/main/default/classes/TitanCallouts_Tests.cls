@@ -10,10 +10,9 @@ private class TitanCallouts_Tests {
     static void testTitanCalloutReturnAccessToken(){
         HTTPMockFactory mock = new HTTPMockFactory(200, 'OK', 'Access Token', new Map<String, String>());
         Test.setMock(HttpCalloutMock.class, mock);
-        String result;
         Test.startTest();
         TitanCallouts t = new TitanCallouts();
-        result = t.ReturnAccessToken('Testing');
+        String result = t.ReturnAccessToken('Testing');
         Test.stopTest();
         system.assertEquals('Test Token Will Not Be Used!!', result);
     }
