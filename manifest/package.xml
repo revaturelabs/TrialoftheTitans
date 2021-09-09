@@ -17,6 +17,7 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 	</types>
 	<types>
         <members>QCInterview</members>
+		<members>CreateFlag</members>
         <members>QCInterviewQA</members>
 		<members>CohortButtons</members>
 		<members>QCHubHome</members>
