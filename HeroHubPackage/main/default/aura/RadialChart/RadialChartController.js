@@ -83,7 +83,7 @@
 		}
 	},
     ScriptsLoaded : function(component, event, helper){
-        console.log("radial Chart Scripts Load");
+        
 		component.set( "v.scriptsLoaded" , true )
 	},
     DrawRadialChart : function(component, event, helper) {

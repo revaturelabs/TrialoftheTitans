@@ -1,6 +1,5 @@
 ({
 	Init : function(component, event, helper) {
-	
 		helper.Init(component);
 	},
     //get Exam Result data and set the columns of the datatable

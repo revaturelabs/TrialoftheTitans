@@ -13,7 +13,11 @@
     
     navigateToMyComponent : function(component, event, helper) {
 
-	helper.navigateToMyComponent(component, event);	
+		var row = event.getParam('row');
+		var cmpEvent  = component.getEvent("cohortIdEvent");
+        cmpEvent.setParam("CohortId", row.Id);
+        
+        cmpEvent.fire();		
 
     }
 
