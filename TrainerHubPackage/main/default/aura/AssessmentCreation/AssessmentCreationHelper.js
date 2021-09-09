@@ -6,16 +6,22 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ({
-	HideComponent : function(component, event) {
+	HideComponent : function(component) {
         //Fire event for parent component to handle to hide this component
-        var changepage = component.getEvent("AssessmentCreationHideEvent");
+        let changepage = component.getEvent("AssessmentCreationHideEvent");
         changepage.setParams();
         changepage.fire();
 	},
     
-    SubmitClick : function(component, event, helper) {
+    SubmitClick : function(component) {
         //Give an alert for successful record creation and hide component
-        alert("Succesfully created record");
-        this.HideComponent(component, event);
+        let showToast = $A.get("e.force:showToast");
+        showToast.setParams({
+            "message" : "Successfully created record!",
+            "type" : "success"
+        });
+        showToast.fire();
+
+        this.HideComponent(component);
     }
 })

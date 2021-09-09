@@ -16,10 +16,12 @@
 <aura:component >
     <aura:registerEvent type="c:TitanClickedEvent" name="TitanClickedEvent"/>
     
+    <!-- Component Attributes-->
     <aura:attribute name="name" type="String"/>
     <aura:attribute name="num" type="Integer"/>
     <aura:attribute name="active" type="Boolean"/>
     
+    <!-- When the a specific titan tab is clicked, update the display to active styling in the GamePath component -->
     <div onclick="{!c.titanClicked}">
         <aura:if isTrue="{!v.active}">
             

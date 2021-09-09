@@ -10,25 +10,27 @@
 ////////////////////////////////////////////////////
 
 public with sharing class ExamListController {
-    @AuraEnabled(cacheable=true)
-    public static List<Exam_Result__c> ExamList(String cohortId){
-		String cohort = cohortId;
-        List<Exam_Result__c> examResultSearch = [SELECT Account__r.Name, Exam__r.Name, Score__c,
+    @AuraEnabled
+    public static List<Exam_Result__c> SearchExamList(String searchKey, String cohortId){
+        String name;
+        String cohort;
+        List<Exam_Result__c> examResultSearch;
+        if(String.isEmpty(searchKey)){
+        cohort = cohortId;
+        examResultSearch = [SELECT Account__r.Name, Exam__r.Name, Score__c,
                                                 Total_Correct__c, Total_Answers__c
                                                 FROM Exam_Result__c
 												WHERE Account__r.Cohort__c = :cohort];
-        return examResultSearch;
-    }
-
-    @AuraEnabled(cacheable=true)
-    public static List<Exam_Result__c> SearchExamList(String searchKey, String cohortId){
-        String name =  + searchKey + '%';
-		String cohort = cohortId;
-        List<Exam_Result__c> examResultSearch = [SELECT Account__r.Name, Exam__r.Name, Score__c,
+        }
+        else{
+        name =  + searchKey + '%';
+        cohort = cohortId;    
+        examResultSearch = [SELECT Account__r.Name, Exam__r.Name, Score__c,
                                                 Total_Correct__c, Total_Answers__c
                                                 FROM Exam_Result__c
                                                 WHERE Account__r.Name
-                                                LIKE :name and Account__r.Cohort__c = :cohort];
+                                                LIKE :name and Account__r.Cohort__c = :cohort];    
+        }
         return examResultSearch;
     }
 }
