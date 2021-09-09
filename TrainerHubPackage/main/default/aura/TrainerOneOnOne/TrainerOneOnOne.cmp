@@ -1,0 +1,7 @@
+<aura:component controller = 'TrainerOneOnOneController'>
+    <aura:attribute name = 'OneOnOneId' type = 'String'/>
+    <aura:handler name = 'init' value = '{!this}' action = '{!c.getRecordId}'/>
+    <lightning:recordForm recordId="{!v.OneOnOneId}" objectApiName="One_on_One__c" layoutType="Full" mode="Edit">
+    </lightning:recordForm>
+
+</aura:component>	
