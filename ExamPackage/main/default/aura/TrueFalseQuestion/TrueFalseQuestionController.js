@@ -1,5 +1,5 @@
 ({
-	fetchTrueFalse : function(component, event, helper) {
-		helper.fetchTrueFalse(component);
-	},
+	//fetchTrueFalse : function(component, event, helper) {
+	//	helper.fetchTrueFalse(component);
+	//},
 })

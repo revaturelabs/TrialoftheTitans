@@ -14,10 +14,9 @@
     <aura:attribute name = "questionAmount" type = "Integer"/>
     <aura:attribute name = "questionsLoaded" type = "Boolean" default = "false"/>
     <aura:attribute name = "examId" type = "String"/>
-    <!-- <aura:handler event = "c.TitanClickedEvent" action = "{!c.setTitan}"/> -->
+
     <aura:handler event = "c.TakeExamClickedEvent" action = "{!c.assignExam}"/>
     <aura:handler name = "init" value = "{!this}" action = "{!c.loadExamQuestions}"/>
-    <!--<aura:handler name = "change" value = "{!v.body}" action = "{!c.hideQuestions}"/>-->
 
     <!--Componet View-->
     <div class="slds-p-around_x-small">
@@ -28,17 +27,5 @@
             <lightning:button aura:id = "submit" label="Submit Exam" title="Submit Exam" onclick="{!c.submitClick}"/>
         </div>
     </div>
-
-    
-    <!--<aura:iteration aura:id = "iterator" items="{!v.examQuestions}" var="questions">
-        <aura:if isTrue = "{!questions.Question_Type__c == Numerical}">
-            {!questions.Question_Text__c}
-        </aura:if>
-        <aura:if isTrue = "{!questions.Question_Type__c == Matching}">
-            {!questions.Question_Text__c}
-        </aura:if>
-    </aura:iteration>-->
-
-    
 
 </aura:component>	

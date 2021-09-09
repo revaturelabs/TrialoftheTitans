@@ -32,7 +32,7 @@
         <div class="section1">
             <div class="slds-page-header" role="banner">
                 
-                <h2 id="element-with-table-label" class="slds-text-heading_medium slds-m-bottom_xx-small" style='padding-left: 3%;'>Question Table</h2>
+                <h2 id="element-with-table-label" class="slds-text-heading_medium slds-m-bottom_xx-small">Question Table</h2> <!--style='padding-left: 3%;'-->
                 <div class="slds-grid">
                     <div class="slds-col">
                         <div class="section2">
