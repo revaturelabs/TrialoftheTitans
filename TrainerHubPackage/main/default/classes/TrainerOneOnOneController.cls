@@ -1,11 +1,8 @@
 public class TrainerOneOnOneController {
     @AuraEnabled
-    public static string getOneOnOneId(String trainerId){
-        try {
-        One_on_One__c one = [SELECT Id FROM One_on_One__c WHERE Trainer__c = : trainerId];
-        return one.Id;
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
+    public static List<One_on_One__c> getOneOnOneId(String trainerId, String week){
+        List<One_on_One__c> oneList = [SELECT Id, Hero__r.Name FROM One_on_One__c WHERE Trainer__c = :trainerId AND Week__c = :week];
+        return oneList;
     }
 }
+
