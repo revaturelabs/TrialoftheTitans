@@ -5,9 +5,11 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<members>QCHubHomeAuraController</members>
 		<members>QCHubController</members>
 		<members>QCCohortWrapper</members>
+		<members>PortfolioProjectController</members>
 		<name>ApexClass</name>
 	</types>
 	<type>
+	<member>Project__c</members>
 	<member>Hero_Answer__c</members>
 		<name>CustomObject</name>
 	</type>
