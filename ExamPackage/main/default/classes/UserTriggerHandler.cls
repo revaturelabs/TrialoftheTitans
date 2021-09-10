@@ -7,6 +7,7 @@ public class UserTriggerHandler {
     
     // DESCRIPTION: Assigns relevant exams to a user upon creation of the user
     // PARAMETERS:  - userList : a list of newly created users to add exam results for
+    
     public static void AssignExams( List<User> userList ) {
         if ( userList == null || userList.size() == 0 )
             return;

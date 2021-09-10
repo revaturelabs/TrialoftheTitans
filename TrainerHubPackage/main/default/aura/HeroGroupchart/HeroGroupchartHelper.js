@@ -30,11 +30,10 @@
         
         var g = svg.append("g")
         .attr("transform", "translate(" + 30 + "," + 30 + ")");
-       
-        var categoriesNames = result.map(function(d) { return d[0]; });
-        //console.log(categoriesNames);
-        var rateNames = result[0][1].map(function(d) { return d.grpName; }); //*need update grpName//
-		//console.log(rateNames);
+
+        let categoriesNames = result.map(function(d) { return d[0]; });
+      
+        let rateNames = result[0][1].map(function(d) { return d.grpName; }); //*need update grpName//
         x0.domain(categoriesNames).paddingInner(0.1);
         x1.domain(rateNames).rangeRound([0, x0.bandwidth()]);                          
         y.domain([0, d3.max(result, function(key) { return d3.max(key[1], function(d) { return d.grpValue; }); })]); //*need update grpName//
@@ -73,17 +72,35 @@
         .attr("y", function(d) { return y(0); })
         .attr("transform",function(d) { return "translate(" + x1.bandwidth()/4 + ",0)"; })
         .attr("height", function(d) { return height - y(0); });
-       // .on("mouseover", function(d) {
-      //      d3.select(this).style("fill", d3.rgb(color(d.grpName)).darker(2));
-       // })
-       // .on("mouseout", function(d) {
-       //     d3.select(this).style("fill", color(d.grpName));
-       // });
         slice.selectAll("rect")
         .transition()
         .delay(function (d) {return Math.random()*1000;})
         .duration(1000)
         .attr("y", function(d) { return y(d.grpValue); })
         .attr("height", function(d) { return height - y(d.grpValue); });
-    }
+    },
+    	initD3Charts : function(component, event) {
+	
+        // Calling server-action to get the data
+        let action = component.get("c.getDataMap");
+        let groupData=[];
+        // Create a callback that is executed after
+        // the server-side action returns
+        action.setCallback(this, function(response) {
+            let state = response.getState();
+            if (state === "SUCCESS") {
+                
+                groupData = response.getReturnValue();
+               
+
+                // Render the returned data as a Bar chart
+                const data = JSON.stringify(groupData);
+            
+                this.renderChart( component, data );
+            }
+        });
+ 
+        $A.enqueueAction(action);
+            
+	}
 })

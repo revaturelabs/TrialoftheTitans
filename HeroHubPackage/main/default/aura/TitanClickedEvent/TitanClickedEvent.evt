@@ -1,3 +1,4 @@
+<!--Used in the TitanTab Component-->
 <aura:event type="APPLICATION">
     <aura:attribute name="titan" type="String"/>
 </aura:event>
