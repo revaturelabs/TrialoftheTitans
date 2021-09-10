@@ -18,12 +18,18 @@ public class ExamInterviewApexControllerTestClass {
         insert tExams;
     }
     @isTest
-    public static void testPullQuestions(){
+    public static void testPullQuestionsPos(){
         List<Exam__c> tExam = [SELECT Id FROM Exam__c];
         List<Exam_Question__c> prac = ExamInterviewApexController.examFinder(tExam[0].Id);
-
         System.assertEquals(49, prac.size());
     }
-
+    @isTest
+    public static void testPullQuestionsNeg(){
+        
+        List<Exam__c> tExam = [SELECT Id FROM Exam__c];
+        tExam.add(new Exam__c());
+        List<Exam_Question__c> prac = ExamInterviewApexController.examFinder(tExam[1].Id);
+        System.assertEquals(0, prac.size());
+    }
 }
 
