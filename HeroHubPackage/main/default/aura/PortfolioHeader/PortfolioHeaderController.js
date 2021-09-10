@@ -1,31 +1,41 @@
 ({
     doInit : function(component, event, helper) {
-
-        let headerName = "<h2>" + "c.getUserName" + "</h2>"; 
-        //let headerNameTemp = "<h2>" + "USER NAME" + "</h2>"; //temporary username, need Apex controller to retrieve actual name.
-
-        let titleOne = "<h3>"+"Salesforce Administrator"+"</h3>"
-        let titleTwo = "<h3>"+"Salesforce Developer"+"</h3>"
-        let titleThree = "<h3>"+"Apex Developer"+"</h3>"
         
+        let method = component.get("c.getUserName");
+        //method.setParams({inputString : 'hello'});
+        method.setCallback(this, function(response){
+            if(response.getState() === "SUCCESS"){
+                let headerName ="<h2>" + response.getReturnValue() + "</h2>"; 
+                component.set("v.userName", headerName);
+            }
+        });
+        
+        $A.enqueueAction(method);
+        
+        let titles = [];
         let titleList = [];
-           titleList.add('Salesforce Developer');
-           titleList.add('Salesforce Administrator');
-           titleList.add('Apex Developer');
+
+        let titleOne = "Salesforce Administrator"
+        let titleTwo = "Salesforce Developer"
+        let titleThree = "Apex Developer"
+        
+        
+           titles.push(titleOne);
+           titles.push(titleTwo);
+           titles.push(titleThree);
        
        
-       // for(let i = 0; i < 10; i++) {
+        for(let i = 0; i < 3; i++) {
 
-       //     let option = {
-       //         "label" : "Temp Title " + i,
-       //         "value" : "Temp Title " + i.toString()
-       //     };
+            let option = {
+                "label" : titles[i],
+                "value" : "<h3>" + titles[i] +"<h3>"
+            };
 
-       //     titleList.push(option);
+            titleList.push(option);
 
-       // }
-
-        component.set("v.userName", headerName); //change to headerName after Apex controller is made.
+        }
+        
         component.set("v.titleList", titleList);
 
     },
