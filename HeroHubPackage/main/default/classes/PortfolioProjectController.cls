@@ -24,7 +24,7 @@ public with sharing class PortfolioProjectController {
     public static PortfolioProjectController getDetails(Id userIdFromPage){
         
         //user id for testing: 0055f000000mwrOAAQ
-        //user if for reals: WHERE User__r.Id =: u
+        //user id for reals: WHERE User__r.Id = :userIdFromPage
         
         PortfolioProjectController lightningProp = new PortfolioProjectController();
         lightningProp.projectList = new List<Project__c>();

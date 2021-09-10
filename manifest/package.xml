@@ -11,6 +11,7 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 	<type>
 	<member>Project__c</members>
 	<member>Hero_Answer__c</members>
+	<member>Project__c</members>
 		<name>CustomObject</name>
 	</type>
 	<types>
