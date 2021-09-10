@@ -49,11 +49,11 @@ div.THIS .titanSlayer-Synergy-body {
 
 .THIS .titanSlayer-Synergy-title {
     width: 0;
-    color: var(--synergy-primary);
+    color: #ccc;
     font-size: 24px;
     overflow-x: hidden;
     margin: auto;
-    border-right: 4px solid var(--synergy-primary);
+    border-right: 4px solid #ccc;
     animation: 1s steps(12, end) 1s forwards typeOut, 1s linear infinite Blink;
 }
 
@@ -62,7 +62,7 @@ div.THIS .titanSlayer-Synergy-body {
 }
 
 .THIS .Synergy-results {
-    color: var(--synergy-primary);
+    color: #ccc;
     font-size: 18px;
     width: 100%;
     display: flex;
@@ -165,7 +165,7 @@ div.THIS .titanSlayer-Synergy-body {
 @keyframes Blink {
 
     from{
-        border-right: 5px solid var(--synergy-primary);
+        border-right: 5px solid #ccc;
     }
     to{
         border-right: none;
