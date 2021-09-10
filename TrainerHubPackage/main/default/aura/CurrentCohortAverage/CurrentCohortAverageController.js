@@ -9,13 +9,13 @@
 ///////////////////////////////////////////////////
 ({
 	Init : function(component, event, helper){
-        var action = component.get('c.getData');
+        let action = component.get('c.getData');
         
         action.setCallback(this, (function (response) {
-            var state = response.getState();
+            let state = response.getState();
             if (state === "SUCCESS") {
                 //have the data in the server in a variable
-                var data = response.getReturnValue();
+                let data = response.getReturnValue();
                 console.log(data[0].value);
                 helper.Chart(component,event,data);
             }

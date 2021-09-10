@@ -7,17 +7,19 @@
 */
 
 ({
+    /*fireNav() gets the MainPageNavigation event, sets its parameter to
+    the current html page of the event before firing it off.*/
     fireNav: function(component, event, helper) {
-
         const fireNav = component.getEvent("navigatePage");
-
         fireNav.setParam("page", event.currentTarget.innerHTML);
-
         fireNav.fire();
+
     },
+
+    /*onNameClick() gets the navResults event and then fires it off to navigate*/
     onNameClick: function(cmp, event, helper) {
-        const evt = cmp.getEvent("navigateToResults")
-        evt.fire()
-        console.log('fired')
+        const evt = cmp.getEvent("navigateToResults");
+        evt.fire();
+
     }
 })

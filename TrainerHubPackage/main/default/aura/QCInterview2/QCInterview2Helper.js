@@ -33,10 +33,16 @@
                 //set the new data to the table
                 component.set('v.data', data);
             } else if (state === "ERROR") {
-                var errors = response.getError();
-                console.error(errors);
+               let toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+        		 "title": "ERROR!",
+       			 "message": "Error Retrieving Data."
+   		 });
+    	toastEvent.fire();
             }
         }));
         $A.enqueueAction(action);
     },
+    
+    
 })

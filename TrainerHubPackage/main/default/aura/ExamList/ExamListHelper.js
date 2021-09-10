@@ -10,16 +10,23 @@
 ({
     // get Exam Results from the server
     fetchData : function(component) {
-        var action = component.get('c.ExamList');
-		var cohortId = component.get('v.CohortId');
+        component.set('v.columns',[
+            { label: 'Hero', fieldName: 'hero', type: 'text'},
+            { label: 'Exam Name', fieldName: 'exam', type: 'text'},
+            { label: 'Score', fieldName: 'Score__c', type: 'percentage'},
+            { label: 'Total Correct', fieldName: 'Total_Correct__c', type: 'number'},
+            { label: 'Total Answer', fieldName: 'Total_Answers__c', type: 'number'},
+        ]);
+        let action = component.get('c.SearchExamList');
+		let cohortId = component.get('v.CohortId');
 		action.setParams({
 			"cohortId": cohortId
         });
         action.setCallback(this, (function (response) {
-            var state = response.getState();
+            let state = response.getState();
             if (state === "SUCCESS") {
                 //have the data in the server in a variable
-                var data = response.getReturnValue();
+                let data = response.getReturnValue();
                 //for loop to set key for the coloumn with data
                 for( let i=0; i< data.length; i++ ){
                     //if data retrieved is null place value stating it is null
@@ -43,7 +50,7 @@
                 //set the new data to the table
                 component.set('v.data', data);
             } else if (state === "ERROR") {
-                var errors = response.getError();
+                let errors = response.getError();
                 console.error(errors);
             }
         }));
@@ -53,19 +60,19 @@
     //get specific search from server
     search : function(component){
         //variable stores the user input
-        var searchKey = component.find("searchKey").get("v.value");
-        var action = component.get("c.SearchExamList");
-		var cohortId = component.get('v.CohortId');
+        let searchKey = component.find("searchKey").get("v.value");
+        let action = component.get("c.SearchExamList");
+		let cohortId = component.get('v.CohortId');
         //set the variable for the method parameters
         action.setParams({
             "searchKey": searchKey,
 			"cohortId": cohortId
         });
         action.setCallback(this, (function(response) {
-            var state = response.getState();
+            let state = response.getState();
             if (state === "SUCCESS") {
                 //have the data in the server in a variable
-                var data = response.getReturnValue();
+                let data = response.getReturnValue();
                 //for loop to set key for the coloumn with data
                 for( let i=0; i< data.length; i++ ){
                     //if data retrieved is null place value stating it is null
@@ -89,7 +96,7 @@
                 //set the new data to the table
                 component.set('v.data', data);
             } else if (state === "ERROR") {
-                var errors = response.getError();
+                let errors = response.getError();
                 console.error(errors);
             }
         }));

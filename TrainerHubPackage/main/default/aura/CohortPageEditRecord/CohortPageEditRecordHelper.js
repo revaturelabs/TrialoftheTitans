@@ -11,7 +11,7 @@
 
 ({
     handleClick : function(cmp, event) {          
-        var cmpEvent  = cmp.getEvent("cmpReturnEvent");
+        let cmpEvent  = cmp.getEvent("cmpReturnEvent");
         cmpEvent.fire();
     },
 })

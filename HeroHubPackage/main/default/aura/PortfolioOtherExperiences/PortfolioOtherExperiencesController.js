@@ -1,11 +1,18 @@
 ({
+    /*edit() and cancel() flip the isEdit attribute on or off depending on whether edit() is called
+    - for true - or cancel() is called - for false. */
     edit : function(component, event, helper) {
         component.set('v.isEdit',true);
+
     },
 
     cancel : function(component, event, helper) {
         component.set('v.isEdit',false);
+
     },
+
+    /* save() gathers up information about the experience being created and saves the experience
+    to the database. */
 
     save : function(component, event, helper) {
         // TODO: add controller logic to database
@@ -33,5 +40,6 @@
 
 
         component.set('v.isEdit',false);
+
     }
 })

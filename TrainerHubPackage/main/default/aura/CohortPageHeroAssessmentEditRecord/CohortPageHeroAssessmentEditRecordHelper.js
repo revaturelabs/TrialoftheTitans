@@ -11,7 +11,7 @@
 
 ({
     handleClick : function(cmp, event) {          
-        var cmpEvent  = cmp.getEvent("HeroAssessmentReturnEvent");
+        let cmpEvent  = cmp.getEvent("HeroAssessmentReturnEvent");
         cmpEvent.fire();
     },
 })

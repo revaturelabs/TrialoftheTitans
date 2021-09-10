@@ -32,34 +32,40 @@ public with sharing class AssignProjectController {
     
     @AuraEnabled
     public static void assignProject(String grouping, String[] namesToAssign, String projectIdToAssign){
-        try {
-            Project__c p = [SELECT Id FROM Project__c WHERE Id=:projectIdToAssign];
+            
             if (grouping == 'individual') {
-                Account[] accs = [SELECT Name,Project__c FROM Account WHERE Name IN :namesToAssign];
-                Account[] accsToUpdate = new Account[] {};
-                for (Account a : accs) {
-                    a.Project__c = p.Id;
-                    accsToUpdate.add(a);
+                List <Account> accs = [SELECT Id, Name FROM Account WHERE Name IN :namesToAssign];
+                List <Project_Review__c> proRev = new List <Project_Review__c>();
+                for (Integer i = 0; i < accs.size(); i++) {
+                    Project_Review__c p = new Project_Review__c(Name = accs[i].name + ' Project Assignment');
+                    p.Project__c = projectIdToAssign;
+                    p.Account__c = accs[i].Id;
+                    proRev.add(p);
                 }
-                update accsToUpdate;
+                try{
+                update proRev;
+            } catch(Exception e){
+                throw new AuraHandledException(e.getMessage());
             }
+        }
             else if (grouping == 'cohort') {
-                Cohort__c[] cohs = [SELECT Name,Project__c FROM Cohort__c WHERE Name IN :namesToAssign];
-                Cohort__c[] cohsToUpdate = new Cohort__c[] {};
-                for (Cohort__c c : cohs) {
-                    c.Project__c = p.Id;
-                    cohsToUpdate.add(c);
+                List <Cohort__c> cohs = [SELECT Name,Id FROM Cohort__c WHERE Name IN :namesToAssign];
+                List <Project_Review__c> proRev = new List <Project_Review__c>();
+                for (Integer i = 0; i < cohs.size(); i++) {
+                    Project_Review__c p = new Project_Review__c(Name = cohs[i].name + ' Project Assignment');
+                    p.Project__c = projectIdToAssign;
+                    p.Account__c = cohs[i].Id;
+                    proRev.add(p);
                 }
-                update cohsToUpdate;
+                try{
+                    update proRev;
+                }catch(Exception e){
+                    throw new AuraHandledException(e.getMessage());
+                }
             }
             else {
                 //error
             }
-
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
-
+        } 
     }
 
-}
