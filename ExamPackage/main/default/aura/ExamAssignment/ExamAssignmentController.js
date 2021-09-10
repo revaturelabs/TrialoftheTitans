@@ -1,10 +1,5 @@
 ({
-    doInit : function(component, event, helper) {
-        //component.set('v.columns', [
-            //{label: 'Account Name', fieldName: 'Account__c', type: 'lookup', editable: true},
-            //{label: 'Exam Name', fieldName: "Exam__c", type:'lookup', editable: true},
-            //{label: 'Status', fieldName: "Status__c", type:'picklist', editable: true},
-        //]);
+    doInit : function(component, event, helper) {    
         helper.fetchAllExams(component);
     },
     handleCreate : function(component, event, helper) {
