@@ -29,7 +29,7 @@ public with sharing class PortfolioIndustryEquivsController {
         id UserId = UserInfo.getUserId();
         //Get list of skills from specific user
         List<Portfolio_Skill__c> PS = [SELECT Name,Months__c FROM Portfolio_Skill__c WHERE User__c =:UserId];
-        //If there are not values return default value set
+        //If there are no values return default value set
         if(PS.isEmpty()){
             for(integer i=0; i<5; i++){
                 ReturnMonth.add(i);
@@ -52,11 +52,12 @@ public with sharing class PortfolioIndustryEquivsController {
         /*
         The List of newSkills comes like ['Skill 1', 'Skill 2', 'Skill 3',...] up to 5 --- INDEX STARTS AT 0!!
         The List of newEquivs comes like [1,2,3,4,5] each month is the same index as its respective skill
-        Portfolio_Skills__c only has 3 fields. Name, Months, User
+        Portfolio_Skills__c only has 3 fields. Name, Months__c, User__c
         */
 
-        //Get a list of all the Portfolio skills in the system
-        List<Portfolio_Skill__c> OldSkills = [SELECT Name, Months__c, User__c FROM Portfolio_Skill__c ];
+        //Get a list of all the Portfolio skills in the system from running user
+        id UserId = UserInfo.getUserId();
+        List<Portfolio_Skill__c> OldSkills = [SELECT Name, Months__c, User__c FROM Portfolio_Skill__c WHERE User__c =: UserId];
 
         if(OldSkills.isEmpty()){
             //create new Skills
