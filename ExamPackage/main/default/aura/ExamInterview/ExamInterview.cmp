@@ -10,6 +10,7 @@
     <aura:attribute name = "titanName" type = "String"/>
     <aura:attribute name = "prevQuestions" type = "Exam_Question__c[]"/>
     <aura:attribute name = "examQuestions" type = "Exam_Question__c[]"/>
+    <aura:attribute name = "examAnswers" type = "Map" default="{}"/>
     <aura:attribute name = "questionNumber" type = "Integer" default = "1"/>
     <aura:attribute name = "questionAmount" type = "Integer"/>
     <aura:attribute name = "questionsLoaded" type = "Boolean" default = "false"/>

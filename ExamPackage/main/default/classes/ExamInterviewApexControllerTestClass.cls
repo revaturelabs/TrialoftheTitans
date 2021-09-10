@@ -25,7 +25,5 @@ public class ExamInterviewApexControllerTestClass {
         System.assertEquals(49, prac.size());
     }
 
-
-
 }
 

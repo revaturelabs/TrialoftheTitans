@@ -4,17 +4,17 @@
     -->
     <!--Attribute Creation-->
     <aura:attribute name = "question" type = "Exam_Question__c"/>
-    <aura:attribute name = "answer" type = "String"/>
+    <aura:attribute name = "correctAnswer" type = "String"/>
     <aura:attribute name = "questionprompt" type = "String"/>
-    <aura:attribute name = "heroAnswer" type = "Hero_Answer__c"/>
 
+    <aura:method name="answer" action= "{!c.answer}" description="saves the response" access="PUBLIC"></aura:method>
     <!--<aura:handler name = "init" value = "{!this}" action = "{!c.loadQuestion}"/>-->
 
     <!--Component View-->
     <lightning:card>
         <div class="slds-p-around_x-small">
             <h1>{!v.questionprompt}</h1>
-            <lightning:input type="number" name="input1" />
+            <lightning:input aura:id = "input" type="number" name="input1" />
         </div>
     </lightning:card>
 

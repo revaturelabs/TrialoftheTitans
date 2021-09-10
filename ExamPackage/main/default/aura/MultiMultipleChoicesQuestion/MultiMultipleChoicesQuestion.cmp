@@ -9,7 +9,10 @@
     <aura:attribute name="correctAnswer" type="String[]"/>
     <aura:attribute name="checkGroupOptions" type="String[]"/>
     <aura:attribute name="answerChoices" type="String[]"/>
+    <aura:attribute name = "submittedAnswer" type = "String" />
     
+    <aura:method name="answer" description="saves the response"></aura:method>
+
     <!--Declare Handler-->
     <aura:handler name="init" value="{!this}" action="{!c.fetchMultiChoices}"/>
     

@@ -4,6 +4,10 @@
     <aura:attribute name="question" type="Exam_Question__c"/>
     <aura:attribute name="ShortQuestion" type="String" default="Question" />
     <aura:attribute name="ShortAnswer" type="String" default="" />
+    <aura:attribute name = "submittedAnswer" type = "String" />
+
+    <aura:method name="answer" description=""></aura:method>
+
 
     <lightning:layout class="slds-page-header slds-page-header_object-home" horizontalAlign="spread" multipleRows="true">
         <lightning:layoutitem size='6' flexibility="auto">          

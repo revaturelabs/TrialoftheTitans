@@ -8,8 +8,12 @@
     <aura:attribute name = "answers" type = "String[]"/>
     <aura:attribute name = "questionprompt" type = "String"/>
     <aura:attribute name = "heroAnswer" type = "Hero_Answer__c"/>
+    <aura:attribute name = "submittedAnswer" type = "String" />
+
     <aura:handler name = "init" value = "{!this}" action = "{!c.loadOptions}"/>
     
+
+    <aura:method name="answer" description="saves the response"></aura:method>
 
     <!--Component View-->
     <lightning:card>

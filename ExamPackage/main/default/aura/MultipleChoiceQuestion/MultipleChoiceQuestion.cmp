@@ -10,7 +10,10 @@
     <aura:attribute name="radioGroupOptions" type="String[]"/>
     <aura:attribute name="correctAnswer" type="String"/>
     <aura:attribute name="answerChoice" type="String"/>
+    <aura:attribute name = "submittedAnswer" type = "String" />
     
+    <aura:method name="answer" description="saves the response"></aura:method>
+
     <!--Declare Handler-->
     <aura:handler name="init" value="{!this}" action="{!c.fetchMultiChoice}"/>
     

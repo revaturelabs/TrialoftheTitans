@@ -4,5 +4,8 @@
     "**/bower_components": true,
     "**/.sfdx": true
   },
-  "salesforcedx-vscode-core.show-cli-success-msg": false
+  "salesforcedx-vscode-core.show-cli-success-msg": false,
+  "editor.scrollbar.horizontalScrollbarSize": 15,
+  "editor.scrollbar.verticalScrollbarSize": 15,
+  "workbench.editor.titleScrollbarSizing": "large"
 }

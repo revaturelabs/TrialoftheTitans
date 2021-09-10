@@ -3,7 +3,7 @@
 // Name: Exam Interview Apex Controller
 // Author: Jayvious Williams
 // Created: 2021-06-26
-// Updated: 2021-06-26
+// Updated: 2021-09-10 Markus Metli
 // Description: Controller for our Exam Interview component.
 //              This will be pulling the exam and questions for display in Exam.
 //
@@ -34,7 +34,10 @@ public class ExamInterviewApexController {
 
     // created a new list of hero answers that is the same size as the amount of questions
     @AuraEnabled
-    public static void submitAnswers(List<Exam_Question__c> examQuestionList){
+    public static void submitAnswers(List<Exam_Question__c> examQuestionList, Map<String, String> examAnswerList){
+        System.debug(examQuestionList);
+        System.debug(examAnswerList);
+
         List<Hero_Answer__c> heroAnswers = new List<Hero_Answer__c>();
         for(integer i=0; i<examQuestionList.size(); i++){
             heroAnswers.add(new Hero_Answer__c());
@@ -42,11 +45,14 @@ public class ExamInterviewApexController {
 
         for(integer i=0; i<heroAnswers.size(); i++){
             heroAnswers[i].Exam_Question__c = examQuestionList[i].Id;
+            heroAnswers[i].Answer_Choice__c = examAnswerList.get(String.valueOf(i+1));
             heroAnswers[i].Exam_Result__c = [SELECT Id FROM Exam_Result__c ORDER BY createdDate DESC LIMIT 1].Id;
+            if(heroAnswers[i].Answer_Choice__c == examQuestionList[i].Correct_Answer_s__c){
+                heroAnswers[i].Correct__c = true;
+            }
         }
-
+        system.debug(heroAnswers);
         insert heroAnswers;
-
     }    
         
 

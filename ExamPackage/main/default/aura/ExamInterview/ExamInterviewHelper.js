@@ -68,7 +68,7 @@
                             {"aura:id" : "Question " + cntr,
                             "question" : question,
                             "questionprompt" : "Question " + cntr + " : " + question.Question_Text__c,
-                            "answer" : question.Correct_Answer_s__c}]
+                            "correctAnswer" : question.Correct_Answer_s__c}]
                         ],
 
                             function(components, status, errorMessage){
@@ -258,15 +258,25 @@
         $A.enqueueAction(getExam);
     } ,
 
-    navigateToNextQuestionHelper : function(component){
+    retrieveAnswer : function(component){
+        //retrieves aura:method from child question type component
+        var questionNumber = component.get('v.questionNumber');
+        var childCmp = component.find('Question ' + questionNumber);
+        var auraMethodResult = childCmp.answer();
+        // map questionNumber to answer
+        var examAnswersNew = {};
+        examAnswersNew[questionNumber] = auraMethodResult;
+        var examAnswers = component.get("v.examAnswers");
+        for(let [key, value] of Object.entries(examAnswers) ){
+            if(questionNumber != key){
+                examAnswersNew[key] = value;
+            }
+        }
+        component.set("v.examAnswers" , examAnswersNew);
+    },
 
-    
-
-        var questionNumber = component.get("v.questionNumber");
-        var questionAmount = component.get("v.questionAmount");
-        questionNumber++;
-        var prev = component.find("prev");
-        prev.set('v.disabled', false);
+    // displays question number that matches i
+    display : function(questionAmount, questionNumber){
         var i = 1;
         while(i <= questionAmount){
             var toggleText = document.getElementById("Question" + i);
@@ -277,19 +287,37 @@
             }
             i++;
         }
+    },
+
+    navigateToNextQuestionHelper : function(component){
+
+        this.retrieveAnswer(component);
+        var questionAmount = component.get("v.questionAmount");
+        var questionNumber = component.get("v.questionNumber");
+        questionNumber++;
+        var prev = component.find("prev");
+        prev.set('v.disabled', false);
+        
+        
+        this.display(questionAmount, questionNumber);
+
         if(questionNumber == questionAmount){
             var next = component.find("next");
             next.set('v.disabled', true);
             var submitB = document.getElementById("submitdiv");
             submitB.style.display = 'block';
+            
         }
 
         component.set("v.questionNumber", questionNumber);
+        
     },
 
     navigateToPrevQuestionHelper : function(component){
-        var questionNumber = component.get("v.questionNumber");
+
+        this.retrieveAnswer(component);
         var questionAmount = component.get("v.questionAmount");
+        var questionNumber = component.get("v.questionNumber");
         if(questionNumber == questionAmount){
             var submitB = document.getElementById("submitdiv");
             submitB.style.display = 'none';
@@ -297,17 +325,9 @@
         questionNumber--;
         var next = component.find("next");
         next.set('v.disabled', false);
-        var i = questionAmount;
 
-        while(i >= 1){
-            var toggleText = document.getElementById("Question" + i);
-            if(i == questionNumber){
-                toggleText.style.display = 'block';
-            }else{
-                toggleText.style.display = 'none';
-            }
-            i--;
-        }
+        this.display(questionAmount, questionNumber);
+
         if(questionNumber == 1){
             var prev = component.find("prev");
             prev.set('v.disabled', true);
@@ -317,7 +337,8 @@
 
     submitExam : function(component){
 
-
+        // saves the last response
+        this.retrieveAnswer(component);
 
         // insert exam results in to DB via apex controller
         var action = component.get("c.submitExam");
@@ -330,12 +351,12 @@
         });
         $A.enqueueAction(action);
 
-        // insert exam questions into apex controller method
+        // insert exam questions and submitted answers into apex controller method
         var action2 = component.get("c.submitAnswers");
-        console.log(component.get('v.examQuestions'));
-        action2.setParams({'examQuestionList' : component.get('v.examQuestions')});
+        action2.setParams({'examQuestionList' : component.get('v.examQuestions'), 'examAnswerList' : component.get('v.examAnswers')});
         $A.enqueueAction(action2);
-
+        
+        
 
         setTimeout(function () {
             alert('Reloading Page');
