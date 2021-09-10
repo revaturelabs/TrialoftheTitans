@@ -16,5 +16,17 @@
             }
         });
         $A.enqueueAction(action);
+    },
+
+    editRecord : function(cmp, event, row){
+
+    },
+
+    deleteRecord : function(cmp, event){
+
+    },
+
+    viewRecord : function(cmp, event){
+        
     }
 })

@@ -1,22 +1,26 @@
-
-
 <aura:component controller="ExperiencesController">
 
     <!-- Choose between display and edit -->
     <aura:attribute name="isEdit" type="Boolean" default="true" />
     <aura:attribute name="Experiences" type="Experience__c[]" />
+    <aura:attribute name="columns" type="List"/>
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
+
+    <!--<lightning:datatable aura:id="dataTable"
+        data="{!v.Experiences}"
+        columns="{!v.columns}"
+        keyField="id"
+        hideCheckboxColumn="true"/>-->
+
     <!-- If element that determines whether experience is in edit mode or not -->
     <aura:if isTrue="{!v.isEdit}">
-    <!-- Currently displays three but only allows editing of the first one.
-         Fixed array of 3. It is a template to show a sample visual flow of use.
-         Additional approach can include dynamic adding of rows/experiences instead of a fixed limit of 3. -->
+    <!-- Currently iterates through every experience and displays them in a lightning card. -->
 
         <!-- Card for displaying experiences -->
         <lightning:card>
-            <div class="">
+            <div class="form">
 
                 <!-- aura:iteration element iterates through the list of experiences to display all experiences associated with the user. -->
                 <aura:iteration items="{!v.Experiences}" var="Experience">
@@ -46,29 +50,31 @@
 
             <lightning:recordEditForm objectApiName="Experience__c">
                 <lightning:messages/>
-
-                <!-- Card for entering in information for a new experience -->
-                <lightning:card>
-                    <div class="slds-grid slds-gutters">
-                        <div class="slds-col slds-size_1-of-3 slds-text-align_center">
-                            <div class="slds-text-heading_medium">Experience</div>
-                            <lightning:input aura:id="c0" label="Enter company name" name="c_0" placeholder="type here..." />
-                            <lightning:input aura:id="p0" label="Enter position" name="p_0" placeholder="type here..." />
-                            <lightning:input aura:id="ds0" label="Enter start date" name="sd_0" placeholder="type here..." />
-                            <lightning:input aura:id="de0" label="Enter end date" name="se_0" placeholder="type here..." />
+                
+                <div id="edit">
+                    <!-- Card for entering in information for a new experience -->
+                    <lightning:card class="form">
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-col slds-size_1-of-3 slds-text-align_center">
+                                <div class="slds-text-heading_medium">Experience</div>
+                                <lightning:input aura:id="c0" label="Enter company name" name="c_0" placeholder="type here..." />
+                                <lightning:input aura:id="p0" label="Enter position" name="p_0" placeholder="type here..." />
+                                <lightning:input aura:id="ds0" label="Enter start date" name="sd_0" placeholder="type here..." />
+                                <lightning:input aura:id="de0" label="Enter end date" name="se_0" placeholder="type here..." />
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Cancel and Save buttons -->
-                    <lightning:buttonGroup class="slds-m-top_small">
-                        <lightning:button label="Cancel" type="reset"  onclick="{!c.cancel}" variant="brand-outline"/>
-                        <lightning:button label="Save"   type="submit" onclick="{!c.save}"   variant="brand"/>
-                    </lightning:buttonGroup>
-                    <!-- Cancel and Save buttons -->
+                        <!-- Cancel and Save buttons -->
+                        <lightning:buttonGroup class="slds-m-top_small">
+                            <lightning:button label="Cancel" type="reset"  onclick="{!c.cancel}" variant="brand-outline"/>
+                            <lightning:button label="Save"   type="submit" onclick="{!c.save}"   variant="brand"/>
+                        </lightning:buttonGroup>
+                        <!-- Cancel and Save buttons -->
 
-                </lightning:card>
-                <!-- Card for entering in information for a new experience -->
-
+                    </lightning:card>
+                    <!-- Card for entering in information for a new experience -->
+                </div>
+                
             </lightning:recordEditForm>
 
         </aura:set>
