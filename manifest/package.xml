@@ -16,6 +16,7 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<name>CustomApplication</name>
 	</types>
 	<types>
+		<members>PortfolioProjects</members>
         <members>QCInterview</members>
 		<members>CreateFlag</members>
         <members>QCInterviewQA</members>
