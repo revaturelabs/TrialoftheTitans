@@ -38,7 +38,7 @@ public with sharing class getCertificationsTest {
     @isTest
     static void getRecordNegative(){
 
-        //Returns all the certifications however their should not be any so an error is thrown and the result should be null
+        //Returns all the certifications however there should not be any so an error is thrown and the result should be null
         try{
             certs = getCertifications.Certifications();
         } catch(Exception e){
