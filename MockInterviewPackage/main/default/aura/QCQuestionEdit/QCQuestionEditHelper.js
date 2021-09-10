@@ -1,30 +1,23 @@
 ({
     editRecord : function(component, event,row) {
-
+        
         var row = event.getParam('row');
         var recordId = row.Id;
         var editRecordEvent = $A.get("e.force:editRecord");
         editRecordEvent.setParams({
             "recordId": recordId
         });
+        
         editRecordEvent.fire();
         
-      
+        
+        
     }, 
-    viewRecord : function(component, event) {
-        var row = event.getParam('row');
-        var recordId = row.Id;
-        var navEvt = $A.get("event.force:navigateToSObject");
-        navEvt.setParams({
-            "recordId": recordId,
-            "slideDevName": "detail"
-        });
-        navEvt.fire();
-    },
+   
     deleteRecord : function(component, event) {
         var action = event.getParam('action');
         var row = event.getParam('row');
-         
+        
         var action = component.get("c.deleteQCQuestion");
         action.setParams({
             "qcq": row
@@ -33,42 +26,98 @@
             var state = response.getState();
             
         });
+        this.refresh();
         $A.enqueueAction(action);
     },
     retrieveRecords: function(component,event,helper){
-
+        
         var pageSize = component.get("v.pageSize").toString();
         var pageNumber = component.get("v.pageNumber").toString();
-
+        
         var action = component.get("c.getQCQuestion");
-            action.setParams({
-                recordId: component.get("v.recordId"),
-                'pageSize' : pageSize,
-                'pageNumber' : pageNumber
-
-            });
-            action.setCallback(this, function(response) {
-                var state = response.getState();
-                 if (state === "SUCCESS") {
-                    var qcQuestionList = response.getReturnValue();
-                    if(qcQuestionList.length < component.get("v.pageSize")){
-                        component.set("v.isLastPage", true);
-                    } else{
-                        component.set("v.isLastPage", false);
-                    }
-                   
-                    
-                    $A.get('e.force:refreshView').fire();
-                    component.set("v.dataSize", qcQuestionList.length);
-                    component.set("v.qcQuestionList", response.getReturnValue());
-                }
-                 
-                
-            });
+        action.setParams({
+            recordId: component.get("v.recordId"),
+            'pageSize' : pageSize,
+            'pageNumber' : pageNumber
             
+        });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            var qcQuestionList = response.getReturnValue();
+            if (state === "SUCCESS") {
+                
+                if(qcQuestionList.length < component.get("v.pageSize")){
+                    component.set("v.isLastPage", true);
+                } else{
+                    component.set("v.isLastPage", false);
+                }
+                qcQuestionList.forEach(function(item){
+                    
+                        item.QC_Question_Deck__c= item.QC_Question_Deck__r.Name; 
+                   
+                     
+                    
+                });
+                
+                
+                
+                component.set("v.dataSize", qcQuestionList.length);
+                component.set("v.qcQuestionList", response.getReturnValue());
+            }
+            
+            
+        });
+        
+        
+        $A.enqueueAction(action);
+        
+        
+    } ,
     
-            $A.enqueueAction(action);
+    showToastEdit : function(component, event, helper) {
+        var toastEvent = $A.get("e.force:showToast");
+        toastEvent.setParams({
+            "title": "Success!",
+            "message": "The record has been updated successfully.",
+            "type": 'success',
+        });
+        toastEvent.fire();
+    },
+    
+    sortData : function(component, fieldName, sortDirection) {
+    var data = component.get("v.qcQuestionList"); 
+        var reverse = sortDirection !== 'asc';
+        data.sort(this.sortBy(fieldName, reverse))
+       component.set("v.qcQuestionList", data);
+    },
+    
+    sortBy : function(field, reverse, primer){
+      var key = primer ?
+            function(x) {return primer(x[field])} :
+            function(x) {return x[field]};
+        reverse = !reverse ? 1 : -1;
+        return function (a, b) {
+            return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+        }
+    },
+     selectedRows : function(component, event, helper ) {
+         
+         
+        var records = component.get("v.selectedRowsToDel");
+        var action = component.get("c.deleteQCQuestionRows");
+        action.setParams({
+            "sRows": records
+        });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            
+        });
+        this.refresh();
+        $A.enqueueAction(action);
+    },
+     refresh : function(component, event, helper) {        
+        $A.get('e.force:refreshView').fire();
+    },
     
     
-         } ,
 })
