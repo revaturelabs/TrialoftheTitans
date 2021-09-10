@@ -10,10 +10,10 @@
     height: 120px;
     margin-left: 12px;
 }
-.THIS .test2:hover{
+.THIS .EducationCertObject:hover{
    background-color: rgba(223, 223, 223, 0.25);
 }
-.THIS .test2{
+.THIS .EducationCertObject{
     background-color: rgba(247, 247, 247, 0.5);
     max-width: 1000px;
     border-radius: 5px;

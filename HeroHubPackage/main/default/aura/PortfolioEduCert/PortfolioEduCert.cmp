@@ -16,7 +16,7 @@
         <!-- Layout for a University Degree -->
         <!-- Iterates threw all of the Degrees for this user -->
         <aura:iteration items="{!v.data}" var="school">
-            <div class="test2 slds-grid slds-gutters slds-m-top_medium">
+            <div class="EducationCertObject slds-grid slds-gutters slds-m-top_medium">
 
                 <!-- University Logo -->
                 <div class="imagePlaceholder">
@@ -26,13 +26,13 @@
                 </div>
                 
                 <!-- Degree Info -->
-                <div class="test slds-col slds-size_3-of-6">
+                <div class="slds-col slds-size_3-of-6">
                     <div class="slds-text-heading_medium" style="padding-left: 16px;">{!school.Degree__c} - {!school.Major__c}</div>
                     <lightning:card>
                         <aura:set attribute="title">
                             <lightning:icon class="slds-m-right_xx-small" iconName="utility:knowledge_base" size="xx-small"/> <!-- Icon can change to preference -->
 
-                            Graduated from {!school.School__c} on {!school.DateGraduate__c} <!-- Possible implementations: (1) receive 3-letter month and 4-number year as attributes,
+                            Graduated from {!school.Name} on {!school.DateGraduate__c} <!-- Possible implementations: (1) receive 3-letter month and 4-number year as attributes,
                                                                                     (2) pull values from the database if they are saved there for a hero -->
                         </aura:set>
                     </lightning:card>
@@ -42,6 +42,7 @@
             </div>
         </aura:iteration>
 
+        <!--Displays the certifications-->
         <c:displayCert/>
 
     </lightning:card>

@@ -14,7 +14,7 @@
         <h2 class="slds-text-heading_large slds-m-top_medium slds-m-bottom_x-small slds-m-left_xx-small">Certifications</h2>
         <aura:iteration items="{!v.data}" var="certification">
 
-        <div class="test2 slds-grid slds-gutters slds-m-top_medium">
+        <div class="EducationCertObject slds-grid slds-gutters slds-m-top_medium">
 
             <!-- Certification Logo (Salesforce) -->
             <div class="imagePlaceholder">
@@ -22,7 +22,7 @@
             </div>
 
             <!-- Certification Info -->
-            <div class="test slds-col slds-size_3-of-6">
+            <div class="slds-col slds-size_3-of-6">
                 <div class="slds-text-heading_medium" style="padding-left: 16px;">{!certification.Name} </div>
                 <lightning:card>
                     <aura:set attribute="title">
