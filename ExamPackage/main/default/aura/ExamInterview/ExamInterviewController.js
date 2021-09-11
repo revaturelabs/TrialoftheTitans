@@ -19,7 +19,6 @@
         helper.submitExam(component);
     },
 
-    //this can probably be commented out
     setTitan : function(component, event, helper){
         helper.setTitanHelper(component, event);
     }

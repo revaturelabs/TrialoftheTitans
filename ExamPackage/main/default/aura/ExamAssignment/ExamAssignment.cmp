@@ -7,6 +7,7 @@
     <aura:attribute name="examData" type="Exam_Result__c[]"/>
     <aura:attribute name="newAssignment" type='boolean' default="false"/>
     <aura:attribute name="showList" type='boolean' default="true"/>
+    <aura:attribute name="pageSize" type="Integer" default="15"/>
 
     <aura:if isTrue="{!v.showList}">
         <lightning:card title="Exam List">
@@ -39,6 +40,16 @@
                     </aura:iteration>
                 </table>
             </p>
+            <lightning:layoutItem padding="around-small" flexibility="auto">
+                <lightning:button label="|« First" iconPosition="left"
+                                onclick="{!c.onFirst}" disabled="{! v.currentPageNumber == 1}"/>
+                <lightning:button label = "« Previous " iconPosition="left"
+                                onclick="{!c.onPrev}" disabled="{! v.currentPageNumber == 1}"/>
+                <lightning:button label = "Next »" iconPosition="right" 
+                                disabled="{! v.currentPageNumber == v.totalPages }" onclick="{!c.onNext}"/>
+                <lightning:button label="Last »|" iconPosition="right" 
+                                disabled="{! v.currentPageNumber == v.totalPages }" onclick="{!c.onLast}"/>
+        </lightning:layoutItem>
         </lightning:card>
     </aura:if>
     <aura:if isTrue="{!v.newAssignment}">
