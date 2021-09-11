@@ -13,11 +13,11 @@
 
 ({
     HandleSelectFilter : function(component, event, helper) {
-         publicVideosHelper.HandleSelectFilterHelper();
+         helper.HandleSelectFilterHelper(component, event);
      },
      
      DoInit : function(component, event, helper){
-         publicVideosHelper.DoInitHelper();
+         helper.DoInitHelper(component, event);
      }
  
  

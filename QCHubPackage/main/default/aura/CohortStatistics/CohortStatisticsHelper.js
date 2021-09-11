@@ -5,8 +5,6 @@
             height = +svg.attr("height"),
             radius = Math.min(width, height) / 2,
             g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-            console.log("ahoy");
-            console.log(svg);
         var color = d3.scaleOrdinal(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
  
         var pie = d3.pie()
@@ -38,48 +36,39 @@
 
     ExtractCohortData : function( component) {
 
-        
-        
-        
-        // Calling server-action to get the data
         var action = component.get("c.getData");
- 
-        // Create a callback that is executed after
-        // the server-side action returns
+
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
                 let data = response.getReturnValue();
-                console.log(data);
-                // Render the returned data as a pie chart
-                //return data;
             }
             else if(state === "ERROR") {
-                var errors = response.getError();
+                let errors = response.getError();
+                let showToast = $A.get("e.force:showToast");
                 if (errors) {
-                    if (errors[0] && errors[0].message) {
-                        console.log("Error message: " +
-                                    errors[0].message);
-                    }
-                } else {
-                    console.log("Unknown error");
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": errors[0].message
+                    })
+                    showToast.fire();
+                }
+                else {
+                    showToast.setParams({
+                        "title": "ERROR",
+                        "message": "Unknown error"
+                    })
+                    showToast.fire();
                 }
             }
         },
- 
         $A.enqueueAction(action)
-
-
-
         )},
     
     
     FireLaunchInterviewEvent : function(component){
-
         let liEvent = component.getEvent("LaunchInterviewEvent");
-        console.log("Firing liEvent");
         liEvent.fire();
-
     }
     
 })

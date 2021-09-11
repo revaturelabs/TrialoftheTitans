@@ -1,0 +1,65 @@
+<aura:component controller="QCQuestionEditController" implements="flexipage:availableForRecordHome,force:hasRecordId,force:appHostable,forceCommunity:availableForAllPageTypes" access="global" >
+    
+    
+    <aura:attribute name="qcQuestionList" type="Object"  />
+    <aura:attribute name="Columns" type="List" />
+    <aura:attribute name="draftValues" type="Object" default="[]"/>
+    
+    <aura:attribute name="pageNumber" type="Integer" default="1"/>
+    <aura:attribute name="pageSize" type="Integer" default="5"/>
+    <aura:attribute name="isLastPage" type="Boolean" default="false"/>
+    <aura:attribute name="dataSize" type="Integer" default="0"/> 
+    <aura:attribute name="recordId" type="List"   />
+    <aura:attribute name="selectedRowsToDel" type="List"   />
+    
+    <aura:attribute name="sortedBy"
+                    type="String" default="QC_Question_Deck__c"/>
+    <aura:attribute name="sortedDirection"
+                    type="String" default="asc" />
+    <aura:attribute name="enableInfiniteLoading" 
+                    type="Boolean" default="true"/>
+     <aura:attribute name="enableMultipleRowsButton" 
+                    type="Boolean" default="false"/>
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:handler name="change"  event="force:recordSaveSuccess"
+                  action="{!c.handleShowToast}"/>
+    
+    <lightning:accordion 
+                         aura:id="accordion" 
+                         allowMultipleSectionsOpen="true"                  > 
+        <lightning:accordionSection name="A" label="Edit QC Questions"> 
+            <lightning:card    > 
+                <lightning:datatable aura:id="qcQuestionDataTable"  
+                                     data="{!v.qcQuestionList }"
+                                     columns="{!v.Columns}"
+                                     keyField="id"
+                                     onrowaction="{!c.handleRowAction}"
+                                     hideCheckboxColumn="false"
+                                     draftValues="{! v.draftValues }"
+                                     sortedBy="{!v.sortedBy}"
+                                     sortedDirection="{!v.sortedDirection}"
+                                     onsort="{!c.updateColumnSorting}"
+                                     enableInfiniteLoading="{! v.enableInfiniteLoading }"
+                                     onrowselection="{!c.handleSelect}"
+                                     />
+                
+                <div class="slds-clearfix">
+                    <div class="slds-page-header" role="banner">
+                        <div class="slds-float_right">       
+                             <lightning:button label="Delete Multiple Rows"   iconPosition="left"
+                                              onclick="{!c.handleSelectedRows}" disabled="{! v.enableMultipleRowsButton == false }" />
+                            <lightning:button label="Prev" iconName="utility:chevronleft" iconPosition="left"
+                                              onclick="{!c.handlePrev}" disabled="{! v.pageNumber == 1}"/>
+                            <lightning:button label="Next" iconName="utility:chevronright" iconPosition="right"
+                                              disabled="{! v.isLastPage}" onclick="{!c.handleNext}"/>
+                        </div>
+                        <p class="slds-page-header__title">Page {!v.pageNumber}   |  Total of records {!v.dataSize} </p>
+                    </div>
+                </div>
+            </lightning:card>  
+        </lightning:accordionSection>
+        
+    </lightning:accordion>
+</aura:component>

@@ -12,7 +12,6 @@
         getContextInfo.setCallback(this, function(response) {
             if (response.getState() === "SUCCESS") {
                 const contextinfo = response.getReturnValue();
-                console.log("Getting User Context", contextinfo);
                 component.set("v.contextInfo", contextinfo);
             } else {
                 //User isn't signed in return to login
@@ -22,8 +21,7 @@
 
         const getTeamScores = component.get("c.getTeamScores");
         getTeamScores.setCallback(this, function(response) {
-            console.log("TeamScores Response: " + response.getState());
-            console.log(response.getReturnValue());
+            
             if (response.getState() === "SUCCESS") {
                 let teamScores = response.getReturnValue();
                 Object.keys(teamScores).forEach(category => {
@@ -40,9 +38,7 @@
 
     navigate: function(component, event, helper) {
 		let titanString = "Titans";
-        console.log('hit');
         const page = event.getParam('page');
-        console.log(page);
         component.set("v.navigate", page);
     },
 
@@ -53,6 +49,6 @@
         } else {
             cmp.set('v.nameClicked', true);
         }
-        console.log(cmp.get('v.nameClicked'))
+        
     }
 })
