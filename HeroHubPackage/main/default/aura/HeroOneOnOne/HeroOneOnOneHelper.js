@@ -1,6 +1,6 @@
 ({
     getRecords : function(component) {
-        //let heroId = $A.get("$SObjectType.CurrentUser.Id");
+        let heroId = $A.get("$SObjectType.CurrentUser.Id");
         let getMethod = component.get('c.getOneOnOneId');
         let week = component.get('v.week');
         getMethod.setParams({heroId : heroId, week : week});
