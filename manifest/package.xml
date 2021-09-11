@@ -24,6 +24,7 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<members>UpdateCohortEvent</members>
 		<!-- <members>QCInterviewCohortSelection</members> -->
 		<!-- <members>QCInterviewHeroReview</members> -->
+		<members>CreateFlag</members>
 		<members>QCInterviewHeroReviewAddRowEvent</members>
 		<members>QCInterviewHeroReviewDeleteRowEvent</members>
 		<members>QCInterviewHeroReviewFlagRow</members>

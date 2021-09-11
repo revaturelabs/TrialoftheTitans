@@ -14,7 +14,7 @@
                 component.set("v.CohortList", cohorts);
                 
                 if (component.get("v.ScriptLoaded")){
-                    helper.D3CohortOverview(component);
+                    this.D3CohortOverview(component);
                 }
                 component.set("v.DataLoaded", true);
 
