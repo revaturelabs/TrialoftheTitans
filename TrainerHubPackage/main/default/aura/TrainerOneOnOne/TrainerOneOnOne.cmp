@@ -1,0 +1,29 @@
+<aura:component controller = 'TrainerOneOnOneController'>
+    <aura:attribute name = 'OneOnOneId' type = 'String'/>
+    <aura:attribute name = 'week' type = 'String' default = 'A'/>
+    <aura:attribute name = 'data' type = 'Object'/>
+    <aura:attribute name = 'columns' type = 'List'/>
+    <aura:attribute name="showData" type="Boolean" default="false"/>
+    <aura:handler name = 'init' value = '{!this}' action = '{!c.doSearch}'/> 
+    
+    <lightning:select name="week" label="Which week?" required="true" onchange="{!c.onChange}" aura:id = "week">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+    </lightning:select>
+    <lightning:datatable keyField="Id" data="{!v.data}" columns="{!v.columns}" 
+                        onrowselection="{!c.onRowSelection}" onrowaction="{!c.onRowAction}" maxRowSelection="1">
+    </lightning:datatable>
+    <aura:if isTrue = '{!v.showData}'> 
+        <lightning:recordForm recordId="{!v.OneOnOneId}" objectApiName="One_on_One__c" layoutType="Compact" mode="edit">   
+        </lightning:recordForm>
+    </aura:if> 
+</aura:component>	

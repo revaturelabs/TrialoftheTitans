@@ -6,7 +6,7 @@
 
 -->
 
-<aura:component implements="flexipage:availableForAllPageTypes">
+<aura:component implements="flexipage:availableForAllPageTypes, force:appHostable" >
 	
 	<aura:attribute name="CohortPageActive" type ="Boolean" default="false"/>
     <aura:attribute name="CohortId" type ="String" />
@@ -20,10 +20,12 @@
 	<aura:if isTrue="{!v.CohortPageActive}">
         <c:CohortPageContainer CohortId="{!v.CohortId}"/>
     </aura:if>
-    	
+	
     <aura:if isTrue="{!!v.CohortPageActive}">
 		<c:TrainerHubTransferActiveCohortPage />
+		<c:TrainerOneOnOne/>
 	</aura:if>
+	
 	<aura:if isTrue="{!v.CohortPageActive}">
 		<lightning:button variant="brand-outline" label="Return To Trainer Hub" title="Trainer Hub" onclick="{! c.handleClick }" />
 	</aura:if>

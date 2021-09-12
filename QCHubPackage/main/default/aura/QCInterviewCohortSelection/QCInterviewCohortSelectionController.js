@@ -1,8 +1,4 @@
 ({
-    init : function(component, event, helper) {
-
-    },
-    
     handleCohort : function(component, event, helper) {
         helper.SetCohort(component, event);
     },
