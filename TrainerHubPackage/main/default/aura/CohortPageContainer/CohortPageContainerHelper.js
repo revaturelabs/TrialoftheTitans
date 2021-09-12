@@ -164,5 +164,22 @@
 		component.set( "v.scriptsLoaded" , true )
 		console.log( "Scripts Loaded" )
 		console.log( component.get( "v.scriptsLoaded" ) )
-	}
+	},
+    getCohorts : function(component){
+        let action = component.get('c.returnCohorts');
+        action.setCallback(this, (function (response) {
+            if (response.getState() === "SUCCESS") {
+                var cohorts = response.getReturnValue();
+                component.set("v.cohortList", cohorts);
+                component.set("v.CohortId", cohorts[0].Id);
+            } 
+        }));
+        $A.enqueueAction(action);
+    },
+    setCohort : function(component, event){
+        console.log(event);
+        let cohort = event.getParam('value');
+        console.debug(cohort);
+        component.set("v.CohortId", cohort);
+    }
 })

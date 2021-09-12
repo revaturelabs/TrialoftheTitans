@@ -8,8 +8,10 @@
 ///////////////////////////////////////////////////
 ({
 	Init : function(component, event, helper) {
+        console.debug("hello");
 		helper.Init(component, event);
         helper.SetExamLink(component, event);
+        helper.getCohorts(component);
 	},
     ToExamHub : function(cmp, event, helper) {
         helper.ToExamHub(cmp, event);
@@ -38,5 +40,11 @@
     },
     ScriptsLoaded : function(component, event, helper){
         helper.ScriptsLoaded(component, event);
-	}
+	},
+    handleCohortChange : function(component, event, helper){
+        helper.Init(component, event);
+    },
+    setCohort : function(component, event, helper){
+        helper.setCohort(component, event);
+    }
 })

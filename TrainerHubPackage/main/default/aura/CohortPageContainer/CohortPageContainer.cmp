@@ -8,9 +8,9 @@
 <aura:component controller="CohortPageController" implements="flexipage:availableForAllPageTypes">
     <aura:html tag="style">
         :root {
-        background-color: #9996e7;
-        --user-team-primary: #444192;
-        --user-team-secondary: #333081;
+        background-color: #ffffff;
+        --user-team-primary: #0483c7;
+        --user-team-secondary: #c4c4c4;
         }
     </aura:html>
     
@@ -30,8 +30,10 @@
     <aura:attribute name="active" type="String" default="Overall"/>
     <aura:attribute name="examURL" type="String"/>
     <aura:attribute name="currIndex" type="Integer"/>
+    <aura:attribute name="cohortList" type="Cohort__c[]"/>
     <aura:handler name="init" value="{!this}" action="{!c.Init}"/>
     <aura:handler event="c.TitanClickedEvent" action="{!c.HandleTabClick}"/>
+    <aura:handler name="change" value="{!v.CohortId}" action="{!c.handleCohortChange}" />
     
     <aura:handler name="HeroAssessmentCreationHideEvent" event="c:HeroAssessmentCreationHideEvent" action="{!c.HideNewAssessment}"/>
     <aura:handler name="AssessmentCreationHideEvent" event="c:AssessmentCreationHideEvent" action="{!c.HideNewAssessment}"/>
@@ -47,6 +49,14 @@
     -->
     
     <!-- Header -->
+    <div class="test">
+        <lightning:select name="select1" label="Current Cohort" onchange="{!c.setCohort}">
+            <option value="">select cohort...</option>
+            <aura:iteration items="{!v.cohortList}" var="c">
+                <option text="{!c.Name}" value="{!c.Id}"/>
+            </aura:iteration>
+        </lightning:select>
+    </div>
     <div class="header">
         Cohort Page
     </div>

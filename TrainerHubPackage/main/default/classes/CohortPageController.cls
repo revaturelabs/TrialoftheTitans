@@ -5,4 +5,9 @@ public with sharing class CohortPageController {
 		prefix = prefix.removeEnd('--c');
  		return 'https://' + prefix.toLowerCase() + '.lightning.force.com';
     }
+    @AuraEnabled
+    public static List<Cohort__c> returnCohorts(){
+        List<Cohort__c> cohorts = [SELECT Id, Name FROM Cohort__c WHERE Active__c = true ORDER BY QC_Interview_Count__c DESC];
+        return cohorts;
+    }
 }
