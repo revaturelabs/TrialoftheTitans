@@ -1,6 +1,7 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access = "global">
     <!--Author: Jayvious Williams
         Usage: Component for Numerical Type of Question on Exams
+        updated: 9/13/2021 Markus Metli
     -->
     <!--Attribute Creation-->
     <aura:attribute name = "questionprompt" type = "String"/>

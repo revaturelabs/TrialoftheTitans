@@ -1,6 +1,7 @@
 <!--
     Author: Tyler Curry-Wong
     Description: Aura component to display True-False Questions for Exam
+    updated: 9/13/2021 Markus Metli
 -->
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
     <!--Declare Attributes-->

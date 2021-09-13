@@ -3,6 +3,7 @@
         Usage: Holder for the Exam Interview. This will make use of each of the question component type we created.
         This is where a Hero can take the Exam. 
         NOTE: The Sumbit button does not submit all the answers into the Org.
+        Updated: 9/13/2021 Markus Metli
     -->
     <!--Aura Attributes-->
     <aura:attribute name = "exam" type = "Exam__c"/>

@@ -1,8 +1,9 @@
 <!--
     Author: Tyler Curry-Wong
     Description: Aura component to display Multi-Select Multiple Choice Questions for Exam
+    updated: markus Metli
 -->
-<aura:component>
+<aura:component >
     <!--Declare Attribute-->
     <aura:attribute name="questionprompt" type="String"/>
     <aura:attribute name="checkGroupOptions" type="String[]"/>

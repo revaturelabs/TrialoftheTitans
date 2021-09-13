@@ -1,3 +1,9 @@
+<!--
+Author: Tyler Curry-Wong
+    Description: Aura component to Short Answer Questions for Exam
+    updated: 9/13/2021 Markus Metli
+-->
+
 <aura:component 
     implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
     
