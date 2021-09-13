@@ -1,4 +1,4 @@
-<aura:component controller="QCQuestionEditController" implements="flexipage:availableForRecordHome,force:hasRecordId,force:appHostable,forceCommunity:availableForAllPageTypes" access="global" >
+<aura:component controller="QCQuestionEditController" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable,forceCommunity:availableForAllPageTypes" access="global" >
     
     
     <aura:attribute name="qcQuestionList" type="Object"  />
@@ -47,8 +47,9 @@
                 
                 <div class="slds-clearfix">
                     <div class="slds-page-header" role="banner">
-                        <div class="slds-float_right">       
-                             <lightning:button label="Delete Multiple Rows"   iconPosition="left"
+                        <div class="slds-float_right">    
+                            <lightning:button label="Export as CSV" onclick="{!c.downloadCSV}"/>   
+                            <lightning:button label="Delete Multiple Rows"   iconPosition="left"
                                               onclick="{!c.handleSelectedRows}" disabled="{! v.enableMultipleRowsButton == false }" />
                             <lightning:button label="Prev" iconName="utility:chevronleft" iconPosition="left"
                                               onclick="{!c.handlePrev}" disabled="{! v.pageNumber == 1}"/>

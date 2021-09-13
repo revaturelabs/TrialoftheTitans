@@ -118,6 +118,42 @@
      refresh : function(component, event, helper) {        
         $A.get('e.force:refreshView').fire();
     },
+    convertToCSV : function(component, questionList) {
+        var stringResult, count, keys, columnDivider, lineDivider;
+        
+        if(questionList == null || !questionList.length){
+            return null;
+        }
+        columnDivider = ',';
+        lineDivider = '\n';
+
+        keys = ['Id', 'Name', 'Question_Body__c','Expected_Answer__c','QC_Question_Deck__c.Name'];
+
+        stringResult ='';
+        stringResult += keys.join(columnDivider);
+        stringResult += lineDivider;
+
+        for(var i = 0; i < questionList.length; i++){
+            count = 0;
+
+            for(var tempKey in keys){
+                var skey = keys[tempKey];
+                if(count > 0){
+                    stringResult += columnDivider;
+                }
+
+                if(questionList[i][skey] != undefined){
+                    stringResult += '"'+questionList[i][skey] + '"';
+                }else{
+                    stringResult += '"'+''+'"';
+                }
+                
+                count++;
+            }
+            stringResult += lineDivider;
+        }
+        return stringResult;
+    }
     
     
 })
