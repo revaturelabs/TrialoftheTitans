@@ -1,0 +1,27 @@
+<!-- Name: QCQuestionsImport
+     Author: Brian McKay
+	 Description: This component allows a member of QC to upload a CSV file to import QC questions to be inserted
+                  instead of manually inserting each question.
+     Last Updated: 9-13-21 (Brian McKay)
+-->
+
+<aura:component controller="lwcCSVUploaderController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" >
+
+    <!-- Attribute for displaying contents in the imported CSV file  -->
+    <aura:attribute name="showcard" type="boolean" default="false"/>
+    
+    
+    <div>
+        <input type="file" class="file" aura:id="file" onchange="{!c.showfiledata}"/>
+        <lightning:button label="Create QC Questions" onclick="{!c.CreateRecord}" class="slds-button slds-button--brand"/>
+                
+    </div>
+    
+    <!-- Card that displays file contents is only shown after the file is uploaded -->
+    <aura:if isTrue = "{!v.showcard}">
+        <lightning:card>
+            <div id="divCSV">
+            </div>  
+        </lightning:card>
+    </aura:if>
+</aura:component>
