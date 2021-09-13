@@ -21,5 +21,9 @@
         const evt = cmp.getEvent("navigateToResults");
         evt.fire();
 
+    },
+    onPortClick: function(cmp,event,helper){
+        const evt = cmp.getEvent("navigateToPortfolio");
+        evt.fire();
     }
 })

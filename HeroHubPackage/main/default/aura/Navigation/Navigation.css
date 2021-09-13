@@ -30,3 +30,6 @@
 .THIS li.navbar-quote {
     justify-self: center;
 }
+.THIS li.pointer{
+    cursor: pointer;
+}

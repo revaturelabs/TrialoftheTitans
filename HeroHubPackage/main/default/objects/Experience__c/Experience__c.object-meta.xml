@@ -143,25 +143,24 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <enableActivities>true</enableActivities>
+    <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>true</enableHistory>
+    <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
-    <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
-    <label>Equivalency</label>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <label>Experience</label>
     <nameField>
-        <displayFormat>A-{0000}</displayFormat>
-        <label>Equivalency</label>
-        <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
+        <label>Experience Name</label>
+        <type>Text</type>
     </nameField>
-    <pluralLabel>Equivalencies</pluralLabel>
+    <pluralLabel>Experiences</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
+    <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>
 </CustomObject>

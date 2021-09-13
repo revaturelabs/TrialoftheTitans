@@ -38,12 +38,36 @@
         
         component.set("v.titleList", titleList);
 
+        // set up init for persisting the job name
+        let jobmethod = component.get("c.getJob");
+        jobmethod.setCallback(this, function(response){
+            if(response.getState() === "SUCCESS"){
+                if(response.getReturnValue() != null) {
+                component.set("v.selectedTitle", response.getReturnValue());
+                component.set("v.editMode", false);
+                }
+            }
+        });
+        
+        $A.enqueueAction(jobmethod);
+
     },
 
     setTitle : function(component, event) {
 
         let selectedOption = event.getParam("value");
         component.set("v.selectedTitle", selectedOption);
+
+        // set up init for persisting the job name
+        let jobsetmethod = component.get("c.setJob");
+        jobsetmethod.setParams({ job : component.get("v.selectedTitle") });
+        jobsetmethod.setCallback(this, function(response){
+            if(response.getState() === "SUCCESS"){
+              //  alert('set job')
+            }
+        });
+        
+        $A.enqueueAction(jobsetmethod);
 
     },
 
