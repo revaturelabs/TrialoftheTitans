@@ -5,16 +5,24 @@
 */
 /* Define header styling */
 .THIS.header{
-    background-color: black;
-	color:white;
-    padding-top:20px;
-    padding-bottom:20px;
-    text-align: center;
-    font-size:30px;
+  background-color: #1798c1;
+  color:black;
+  padding-top:20px;
+  padding-bottom:20px;
+  text-align: center;
+  font-size:30px;
+  float:initial;
 }
 /* Define body styling */
 #overall-body.THIS {
 
-	padding: 3% 5% 0% 5%;
+padding: 3% 5% 0% 5%;
 
+}
+
+.THIS.selectFormat{
+background-color: #1798c1;
+text-align: left;
+float:left;
+padding-left:20px;
 }
