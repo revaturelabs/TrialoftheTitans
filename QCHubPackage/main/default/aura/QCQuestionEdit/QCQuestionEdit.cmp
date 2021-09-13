@@ -38,12 +38,6 @@
         <aura:handler name="change"  event="force:recordSaveSuccess"
                       action="{!c.handleShowToast}"/>
         
-        <lightning:accordion 
-                             aura:id="accordion" 
-                             allowMultipleSectionsOpen="true"
-                             activeSectionName="A"
-                             > 
-            <lightning:accordionSection name="A" label="Edit QC Questions"> 
                 <aura:if isTrue="{!v.EditPopUp==false}"> 
                     <lightning:card    > 
                         <lightning:datatable aura:id="qcQuestionDataTable"  
@@ -131,7 +125,4 @@
                     </section>
                     <div class="slds-backdrop slds-backdrop_open"></div>
                 </aura:if>
-            </lightning:accordionSection>
-            
-        </lightning:accordion>
     </aura:component>

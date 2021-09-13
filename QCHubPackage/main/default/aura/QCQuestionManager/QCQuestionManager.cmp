@@ -1,0 +1,13 @@
+<aura:component implements = "force:appHostable">
+    <lightning:tabset variant="vertical">
+        <lightning:tab label="Create Question">
+            <c:QCQuestionCreate />
+        </lightning:tab>
+        <lightning:tab label="Edit/Delete/Export Questions">
+            <c:QCQuestionEdit />
+        </lightning:tab>
+        <lightning:tab label="Import Questions">
+            Question Importer
+        </lightning:tab>
+    </lightning:tabset>
+</aura:component>
