@@ -1,3 +1,12 @@
+/////////////////////////////////////////////////////
+//
+//  Name: ExperiencesContTest
+//  Author: Will Harris
+//  Created: 9/8/2021
+//  Updated: 9//2021
+//  Description: Unit Tests for ExperiencesController
+//  
+///////////////////////////////////////////////////
 @isTest
 private with sharing class ExperiencesConTest {
     
@@ -27,17 +36,7 @@ private with sharing class ExperiencesConTest {
         //Create six experiences
         List<Experience__c> experiences = new List<Experience__c>();
 
-        for(Integer i = 0; i < 6; i++){
-            experiences.add(new Experience__c(
-                Account__c= account.Id,
-                Company__c='Test Company ' + i,
-                Position__c='Tester',
-                Start_Date__c= Date.valueOf('2011-11-11'),
-                End_Date__c= Date.today()
-            ));
-        }
-
-        insert experiences;
+        
     }
 
     /*createExperienceCloudUser() creates an Experience Cloud User to test the functionaility of
@@ -81,7 +80,28 @@ private with sharing class ExperiencesConTest {
 
         List<Experience__c> experiences = new List<Experience__c>();
         
-        experiences = ExperiencesController.getExperiences(testUser.Id);
+        Contact contact = [SELECT Id, AccountId FROM Contact WHERE Email = 'testemail123@gmail.com'];
+
+        Account account = [SELECT Id FROM Account WHERE Name = 'test name'];
+
+        for(Integer i = 0; i < 6; i++){
+            experiences.add(new Experience__c(
+                //Account__c= account.Id,
+                User__c = testUser.Id,
+                Company__c='Test Company ' + i,
+                Position__c='Tester',
+                Start_Date__c= Date.valueOf('2011-11-11'),
+                End_Date__c= Date.today()
+            ));
+        }
+
+        insert experiences;
+
+        experiences = null;
+        
+        System.runAs(testUser){
+            experiences = ExperiencesController.getExperiences();
+        }
         
         //Size of experiences should be six
         System.assertEquals(6, experiences.size());
@@ -93,10 +113,15 @@ private with sharing class ExperiencesConTest {
 
         Contact contact = [SELECT Id, AccountId FROM Contact WHERE Email = 'testemail123@gmail.com'];
 
-        //Create additional experiences to test bulk loading of experiences
-        for(Integer i = 6; i < 200; i++){
+        Account account = [SELECT Id FROM Account WHERE Name = 'test name'];
+
+        User testUser = createExperienceCloudUser();
+
+        //large number of experiences for bulk test
+        for(Integer i = 0; i < 200; i++){
             experiences.add(new Experience__c(
-                Account__c= contact.AccountId,
+                //Account__c= account.Id,
+                User__c = testUser.Id,
                 Company__c='Test Company ' + i,
                 Position__c='Tester',
                 Start_Date__c= Date.valueOf('2011-11-11'),
@@ -110,26 +135,12 @@ private with sharing class ExperiencesConTest {
 
         experiences = null;
 
-        User testUser = createExperienceCloudUser();
         
-        experiences = ExperiencesController.getExperiences(testUser.Id);
+        System.runAs(testUser){
+            experiences = ExperiencesController.getExperiences();
+        }
         
         //Size of experiences should be 200 here.
         System.assertEquals(200, experiences.size());
-    }
-
-    @isTest
-    static void negTest(){
-        Id testUser = null;
-
-        //Simulate no valid user id, or method ran in system mode
-        List<Experience__c> experiences = ExperiencesController.getExperiences(testUser);
-
-        /*Right now, we check for a size of 6 because the only way to
-        view component in a system context is to hardcode experiences
-        to return. In the future, this may not be needed and we can do something else
-        in this negative case. This test for now tests to see if the hardcoded
-        case works properly.*/
-        System.assertEquals(6, experiences.size());
     }
 }

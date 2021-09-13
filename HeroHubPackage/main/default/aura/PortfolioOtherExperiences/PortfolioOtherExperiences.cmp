@@ -12,15 +12,25 @@
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
+    <aura:attribute name="fields" type="String[]" 
+        default="['Company__c', 'Position__c', 'Start_Date__c', 'End_Date__c']"/>
 
-    <lightning:datatable aura:id="dataTable"
-        data="{!v.ExperienceList}"
-        columns="{!v.columns}"
-        keyField="id"
-        onrowaction="{!c.handleRowAction}"
-        onSave="{!c.onSave}"
-        hideCheckboxColumn="true"
-        draftValues="{! v.draftValues }"/>
+    <!--Element meant to easily allow editing of experiences without apex.
+        Could never get it to display experiences.
+        
+        <lightning:card title="Experiences">
+            <lightning:datatable aura:id="dataTable"
+            data="{!v.ExperienceList}"
+            columns="{!v.columns}"
+            keyField="id"
+            onSave="{!c.onSave}"
+            hideCheckboxColumn="true"
+            draftValues="{! v.draftValues }"
+            />
+        </lightning:card>-->
+    
+    <lightning:notificationsLibrary aura:id="notifLib" />
+
 
     <!-- If element that determines whether experience is in edit mode or not -->
     <aura:if isTrue="{!v.isEdit}">
@@ -32,6 +42,7 @@
 
                 <!-- aura:iteration element iterates through the list of experiences to display all experiences associated with the user. -->
                 <aura:iteration items="{!v.Experiences}" var="Experience">
+
                     <div class="slds-grid slds-gutters slds-text-align_center">
                         <div class="slds-col slds-size_1-of-2">
                             <div class="slds-text-heading_large"><lightning:formattedText name="c0" value="{!Experience.Company__c}"/></div>
@@ -56,35 +67,27 @@
         <!-- Edit -->
         <aura:set attribute="else">
 
-            <lightning:recordEditForm objectApiName="Experience__c">
-                <lightning:messages/>
-                
-                <div id="edit">
-                    <!-- Card for entering in information for a new experience -->
-                    <lightning:card class="form">
-                        <div class="slds-grid slds-gutters">
-                            <div class="slds-col slds-size_1-of-3 slds-text-align_center">
-                                <div class="slds-text-heading_medium">Experience</div>
-                                <lightning:input aura:id="c0" label="Enter company name" name="c_0" placeholder="type here..." />
-                                <lightning:input aura:id="p0" label="Enter position" name="p_0" placeholder="type here..." />
-                                <lightning:input aura:id="ds0" label="Enter start date" name="sd_0" placeholder="type here..." />
-                                <lightning:input aura:id="de0" label="Enter end date" name="se_0" placeholder="type here..." />
-                            </div>
-                        </div>
+            <lightning:card>
+                <!-- Add new experience to records -->
+                <lightning:recordEditForm
+                    objectApiName="Experience__c"
+                    onsuccess="{!c.edit}"
+                    onerror="{!c.handleError}">
 
-                        <!-- Cancel and Save buttons -->
-                        <lightning:buttonGroup class="slds-m-top_small">
-                            <lightning:button label="Cancel" type="reset"  onclick="{!c.cancel}" variant="brand-outline"/>
-                            <lightning:button label="Save"   type="submit" onclick="{!c.save}"   variant="brand"/>
-                        </lightning:buttonGroup>
-                        <!-- Cancel and Save buttons -->
+                    <lightning:inputField fieldName="Company__c" />
+                    <lightning:inputField fieldName="Position__c" />
+                    <lightning:inputField fieldName="Start_Date__c" />
+                    <lightning:inputField fieldName="End_Date__c" />
 
-                    </lightning:card>
-                    <!-- Card for entering in information for a new experience -->
-                </div>
-                
-            </lightning:recordEditForm>
+                    <br/>
 
+                    <lightning:button class="slds-m-top_small" type="cancel" onclick="{!c.edit}" label="Cancel"/>
+                    <lightning:button class="slds-m-top_small" type="submit" variant="Brand" label="Create new"/>
+
+                </lightning:recordEditForm>
+                <!-- Add new experience to records -->
+            </lightning:card>
+            
         </aura:set>
         <!-- Edit -->
 

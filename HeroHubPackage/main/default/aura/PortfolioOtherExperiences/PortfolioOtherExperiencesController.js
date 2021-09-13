@@ -3,35 +3,17 @@
     and calls the doGetExperience() method from the helper file, passing in component */
     doInit : function(component, event, helper){
 
-        var actions = [
-            {label: 'Edit', name: 'edit'},
-            {label: 'Delete', name: 'delete'},
-        ];
         component.set("v.Columns", [
             {label:"Company", fieldName:"Company__c", type:"text",editable:'true' },
             {label:"Position", fieldName:"Position__c", type:"text",editable:'true' },
-            {label:"Start Date", fieldName:"Start_Date__c", type:"text",editable:'true'},
-            {label:"End Date", fieldName:"End_Date__c", type:"text",editable:'true'},
-            {label:"Location Type", fieldName:"Location_Type__c", type:"text" ,editable:'true'},
-            {type: 'action', typeAttributes: { rowActions: actions } } 
+            {label:"Start Date", fieldName:"Start_Date__c", type:"date-local",editable:'true'},
+            {label:"End Date", fieldName:"End_Date__c", type:"date-local",editable:'true'}
 
         ]);
 
         helper.doGetExperiences(component);
     },
 
-    handleRowAction: function (component, event, helper) {
-        var action = event.getParam('action');
-        var row = event.getParam('row');
-        switch (action.name) {
-            case 'edit':
-                helper.editRecord(component, event,row);
-                break;
-            case 'delete':
-                helper.deleteRecord(component, event);
-                break;
-        }
-    },
 
     onSave : function(component, event, helper){
         helper.handleSave(component, event);
@@ -45,5 +27,9 @@
 
     cancel : function(component, event, helper) {
         component.set('v.isEdit', true);
+    },
+
+    handleError : function(component, event, helper){
+        helper.showErrorToast(component, event);
     }
 })
