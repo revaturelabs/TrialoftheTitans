@@ -1,65 +1,137 @@
-<aura:component controller="QCQuestionEditController" implements="flexipage:availableForRecordHome,force:hasRecordId,force:appHostable,forceCommunity:availableForAllPageTypes" access="global" >
+<!--Name: QCQuestionEdit
+    Author: Christian Aviles Lopez, Denver Leyba
+    Description: This component is in charge of displaying a list of records from the QC_Question__c object. 
+    The main purpose of this component is to edit and/or delete,import and export records of the mentioned 
+    object. It also has an aura: if to render the object's record list or render the display 
+    screen to edit a record. -->
+
+
+    <aura:component controller="QCQuestionEditController" implements="flexipage:availableForRecordHome,force:hasRecordId,force:appHostable,forceCommunity:availableForAllPageTypes" access="global" >
     
     
-    <aura:attribute name="qcQuestionList" type="Object"  />
-    <aura:attribute name="Columns" type="List" />
-    <aura:attribute name="draftValues" type="Object" default="[]"/>
-    
-    <aura:attribute name="pageNumber" type="Integer" default="1"/>
-    <aura:attribute name="pageSize" type="Integer" default="5"/>
-    <aura:attribute name="isLastPage" type="Boolean" default="false"/>
-    <aura:attribute name="dataSize" type="Integer" default="0"/> 
-    <aura:attribute name="recordId" type="List"   />
-    <aura:attribute name="selectedRowsToDel" type="List"   />
-    
-    <aura:attribute name="sortedBy"
-                    type="String" default="QC_Question_Deck__c"/>
-    <aura:attribute name="sortedDirection"
-                    type="String" default="asc" />
-    <aura:attribute name="enableInfiniteLoading" 
-                    type="Boolean" default="true"/>
-     <aura:attribute name="enableMultipleRowsButton" 
-                    type="Boolean" default="false"/>
-    
-    
-    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
-    <aura:handler name="change"  event="force:recordSaveSuccess"
-                  action="{!c.handleShowToast}"/>
-    
-    <lightning:accordion 
-                         aura:id="accordion" 
-                         allowMultipleSectionsOpen="true"                  > 
-        <lightning:accordionSection name="A" label="Edit QC Questions"> 
-            <lightning:card    > 
-                <lightning:datatable aura:id="qcQuestionDataTable"  
-                                     data="{!v.qcQuestionList }"
-                                     columns="{!v.Columns}"
-                                     keyField="id"
-                                     onrowaction="{!c.handleRowAction}"
-                                     hideCheckboxColumn="false"
-                                     draftValues="{! v.draftValues }"
-                                     sortedBy="{!v.sortedBy}"
-                                     sortedDirection="{!v.sortedDirection}"
-                                     onsort="{!c.updateColumnSorting}"
-                                     enableInfiniteLoading="{! v.enableInfiniteLoading }"
-                                     onrowselection="{!c.handleSelect}"
-                                     />
-                
-                <div class="slds-clearfix">
-                    <div class="slds-page-header" role="banner">
-                        <div class="slds-float_right">       
-                             <lightning:button label="Delete Multiple Rows"   iconPosition="left"
-                                              onclick="{!c.handleSelectedRows}" disabled="{! v.enableMultipleRowsButton == false }" />
-                            <lightning:button label="Prev" iconName="utility:chevronleft" iconPosition="left"
-                                              onclick="{!c.handlePrev}" disabled="{! v.pageNumber == 1}"/>
-                            <lightning:button label="Next" iconName="utility:chevronright" iconPosition="right"
-                                              disabled="{! v.isLastPage}" onclick="{!c.handleNext}"/>
-                        </div>
-                        <p class="slds-page-header__title">Page {!v.pageNumber}   |  Total of records {!v.dataSize} </p>
-                    </div>
-                </div>
-            </lightning:card>  
-        </lightning:accordionSection>
+        <aura:attribute name="qcQuestionList" type="Object"  />
+        <aura:attribute name="Columns" type="List" />
+        <aura:attribute name="draftValues" type="Object" default="[]"/>
         
-    </lightning:accordion>
-</aura:component>
+        <aura:attribute name="pageNumber" type="Integer" default="1"/>
+        <aura:attribute name="pageSize" type="Integer" default="5"/>
+        <aura:attribute name="isLastPage" type="Boolean" default="false"/>
+        <aura:attribute name="dataSize" type="Integer" default="0"/> 
+        <aura:attribute name="recordId" type="List"   />
+        <aura:attribute name="selectedRowsToDel" type="List"   />
+        
+        <aura:attribute name="sortedBy"
+                        type="String" default="QC_Question_Deck__c"/>
+        <aura:attribute name="sortedDirection"
+                        type="String" default="asc" />
+        <aura:attribute name="enableInfiniteLoading" 
+                        type="Boolean" default="true"/>
+        <aura:attribute name="enableMultipleRowsButton" 
+                        type="Boolean" default="false"/>
+        <aura:attribute name="EditPopUp" 
+                        type="Boolean" default="false"/>
+        <aura:attribute name="qcQuestionSelectEditID" type="ID"  />
+        <aura:attribute name="EnableEditPopUp" 
+                        type="Boolean" default="false"/>
+        
+        <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+        <aura:handler name="change"  event="force:recordSaveSuccess"
+                      action="{!c.handleShowToast}"/>
+        
+        <lightning:accordion 
+                             aura:id="accordion" 
+                             allowMultipleSectionsOpen="true"
+                             activeSectionName="A"
+                             > 
+            <lightning:accordionSection name="A" label="Edit QC Questions"> 
+                <aura:if isTrue="{!v.EditPopUp==false}"> 
+                    <lightning:card    > 
+                        <lightning:datatable aura:id="qcQuestionDataTable"  
+                                             data="{!v.qcQuestionList }"
+                                             columns="{!v.Columns}"
+                                             keyField="id"
+                                             onrowaction="{!c.handleRowAction}"
+                                             hideCheckboxColumn="false"
+                                             draftValues="{! v.draftValues }"
+                                             sortedBy="{!v.sortedBy}"
+                                             sortedDirection="{!v.sortedDirection}"
+                                             onsort="{!c.updateColumnSorting}"
+                                             enableInfiniteLoading="{! v.enableInfiniteLoading }"
+                                             onrowselection="{!c.handleSelect}"
+                                             />
+                        
+                        <div class="slds-clearfix">
+                            <div class="slds-page-header" role="banner">
+                                <div class="slds-float_right"> 
+                                    <lightning:button label="Export as CSV" onclick="{!c.downloadCSV}" 
+                                                      disabled="{! v.enableMultipleRowsButton == false }" />
+                                    <lightning:button label="Edit"   iconPosition="left"
+                                                      onclick="{!c.handlePopUp}"  disabled="{! v.EnableEditPopUp == false }" /> 
+                                    <lightning:button label="Delete Rows"   iconPosition="left"
+                                                      onclick="{!c.handleSelectedRows}" disabled="{! v.enableMultipleRowsButton == false }" />
+                                    <lightning:button label="Prev" iconName="utility:chevronleft" iconPosition="left"
+                                                      onclick="{!c.handlePrev}" disabled="{! v.pageNumber == 1}"/>
+                                    <lightning:button label="Next" iconName="utility:chevronright" iconPosition="right"
+                                                      disabled="{! v.isLastPage}" onclick="{!c.handleNext}"/>
+                                </div>
+                                <p class="slds-page-header__title">Page {!v.pageNumber}     </p>
+                            </div>
+                        </div>
+                    </lightning:card>  
+                </aura:if>
+                <aura:if isTrue="{!v.EditPopUp}">
+                    
+                    
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container">
+                            
+                            <header class="slds-modal__header">
+                                <lightning:buttonIcon iconName="utility:close"
+                                                      onclick="{!c.handlePopUp}"
+                                                      alternativeText="close"
+                                                      variant="bare-inverse"
+                                                      class="slds-modal__close"/>
+                                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Edit</h2>
+                            </header>
+                            
+                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                <lightning:card    >
+                                    
+                                    
+                                    
+                                    <lightning:recordEditForm objectApiName="QC_Question__c"
+                                                              onsuccess="{!c.handleReset}"
+                                                              aura:id="EdiQuestionRecordForm"  
+                                                              onsubmit="{!c.handleSubmit}" 
+                                                              
+                                                              recordId="{!v.qcQuestionSelectEditID}"
+                                                              >
+                                            
+                                        <lightning:inputField fieldName="Name" aura:id="Name"/>
+                                        <lightning:inputField fieldName="Question_Body__c" aura:id="QuestionBody" />
+                                        <lightning:inputField fieldName="Expected_Answer__c" aura:id="ExpectedAnswer"/>
+                                        <lightning:inputField fieldName="QC_Question_Deck__c" aura:id="QuestionDeck" />
+                                           
+                                        <div class="slds-align_absolute-center" > 
+                                        <lightning:button class="slds-m-top_small"  variant="neutral"
+                                                  label="Cancel"
+                                                  title="Cancel"
+                                                  onclick="{!c.handlePopUp}"/>     
+                                        <lightning:button class="slds-m-top_small" variant="brand"  onclick="{!c.handleSubmitUpdatePopUp}" 
+                                                          type="submit" name="update" label="Update" />
+                                        </div>	
+                                    </lightning:recordEditForm>
+                                    
+                                </lightning:card>
+                            </div>
+                            
+                           
+                             
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </aura:if>
+            </lightning:accordionSection>
+            
+        </lightning:accordion>
+    </aura:component>
