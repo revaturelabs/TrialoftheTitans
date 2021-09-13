@@ -11,7 +11,7 @@
 	Init : function(component, event) {
 		let tabs = [];
         let titan = null;
-        for(let i = 1;i<7;i++){
+        for(let i = 1;i<9;i++){
             switch(i){
                 case 1:
                     titan = {name:"Hero List"};
@@ -29,8 +29,14 @@
                     titan = {name:"Coding Assessments"};
                     break;
                 case 6:
+                    titan = {name:"One-on-One"};
+                    break; 
+                case 7:
                     titan = {name:"QC Scores"};
-                    break;     
+                    break;    
+                case 8:
+                    titan = {name:"Exam Assignments"};
+                    break; 
                 default:
                     titan = {name:"View "+i};
             }
@@ -39,8 +45,7 @@
             titan.buttonDisabled = false;
             tabs.push(titan);
         }
-        component.set( "v.currIndex", 0);
-        component.set( "v.active", 'Hero List');                
+        component.set( "v.currIndex", 0);               
         component.set( "v.tabs", tabs);
 	},
     SetExamLink : function(component, event) {

@@ -7,7 +7,7 @@ public with sharing class CohortPageController {
     }
     @AuraEnabled
     public static List<Cohort__c> returnCohorts(){
-        List<Cohort__c> cohorts = [SELECT Id, Name FROM Cohort__c WHERE Active__c = true ORDER BY QC_Interview_Count__c DESC];
+        List<Cohort__c> cohorts = [SELECT Id, Name FROM Cohort__c ORDER BY Active__c DESC];
         return cohorts;
     }
 }

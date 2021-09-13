@@ -9,7 +9,7 @@
     <aura:html tag="style">
         :root {
         background-color: #ffffff;
-        --user-team-primary: #0483c7;
+        --user-team-primary: #1798c1;
         --user-team-secondary: #c4c4c4;
         }
     </aura:html>
@@ -27,7 +27,7 @@
     <aura:attribute name="CohortId" type ="String" default=""/>
     
     <aura:attribute name="tabs" type="List"/>
-    <aura:attribute name="active" type="String" default="Overall"/>
+    <aura:attribute name="active" type="String" default="Hero List"/>
     <aura:attribute name="examURL" type="String"/>
     <aura:attribute name="currIndex" type="Integer"/>
     <aura:attribute name="cohortList" type="Cohort__c[]"/>
@@ -51,14 +51,13 @@
     <!-- Header -->
     <div class="test">
         <lightning:select name="select1" label="" onchange="{!c.setCohort}" aura:id="selectCohort">
-            <option value="">select cohort...</option>
             <aura:iteration items="{!v.cohortList}" var="c">
                 <option text="{!c.Name}" value="{!c.Id}"/>
             </aura:iteration>
         </lightning:select>
     </div>
     <div class="header">
-        Cohort Page
+        Trainer Hub
     </div>
     <!-- Header -->
     
@@ -217,6 +216,22 @@
                     </aura:if>
                     <!-- Coding Assessment List Tab -->
                     
+                    <!-- One-on-One Tab -->
+                    <aura:if isTrue="{!v.active == 'One-on-One'}">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                            <div class="slds-m-horizontal_small slds-m-bottom_small">
+                                <div class="slds-m-top_medium">
+                                    <c:ExamAssignment CohortId="{!v.CohortId}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Table/Chart -->
+                                            
+                    </aura:if>
+                    <!-- One-on-One Tab -->
+
                     <!-- QC Scores Tab -->
                     <aura:if isTrue="{!v.active == 'QC Scores'}">
                         
@@ -232,6 +247,22 @@
                         
                     </aura:if>
                     <!-- QC Scores Tab -->
+
+                    <!-- Exam Assignments Tab -->
+                    <aura:if isTrue="{!v.active == 'Exam Assignments'}">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                            <div class="slds-m-horizontal_small slds-m-bottom_small">
+                                <div class="slds-m-top_medium">
+                                    <c:ExamAssignment CohortId="{!v.CohortId}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Table/Chart -->
+                                            
+                    </aura:if>
+                    <!-- Exam Assignments Tab -->
                     
                 </aura:if>
             </aura:iteration>
