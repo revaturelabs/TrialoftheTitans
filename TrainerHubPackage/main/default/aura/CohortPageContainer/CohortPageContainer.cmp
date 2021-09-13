@@ -223,7 +223,7 @@
                         <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
                             <div class="slds-m-horizontal_small slds-m-bottom_small">
                                 <div class="slds-m-top_medium">
-                                    <c:ExamAssignment CohortId="{!v.CohortId}"/>
+                                    <c:TrainerOneOnOne CohortId="{!v.CohortId}"/>
                                 </div>
                             </div>
                         </div>
