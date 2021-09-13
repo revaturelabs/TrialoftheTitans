@@ -20,9 +20,10 @@
     getRecords : function(component) {
         this.createColumns(component);
         let trainerId = $A.get("$SObjectType.CurrentUser.Id");
-        let getMethod = component.get('c.getOneOnOneId');
         let week = component.get('v.week');
-        getMethod.setParams({trainerId : trainerId, week : week});
+        let cohortId = component.get('v.CohortId');
+        let getMethod = component.get('c.getOneOnOneId');
+        getMethod.setParams({trainerId : trainerId, week : week, cohortId: cohortId});
         getMethod.setCallback(this, function (response) {
             let state = response.getState();
             if(state === 'SUCCESS'){

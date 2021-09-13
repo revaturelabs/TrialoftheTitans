@@ -18,8 +18,7 @@
         console.log("exam assigned? " + exam.assigned);
         component.set("v.exam", exam);
 
-        //todo: change below conditional statement to exam.assigned == false
-        if(exam.assigned == true){
+        if(exam.assigned == false){
             component.set("v.assigned", false);
         }else{
             if(exam.highScore != null){

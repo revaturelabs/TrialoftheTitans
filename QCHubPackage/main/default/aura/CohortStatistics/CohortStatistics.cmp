@@ -3,16 +3,6 @@
     <aura:registerEvent name="LaunchInterviewEvent" type="c:LaunchInterviewEvent"/>
 
     <aura:attribute name="ActiveCohort" type="Cohort__c"/>
-
-    <!-- <p>Active cohort: {!v.ActiveCohort.Name}</p> -->
-    
-<!-- Pull in the necessary libraries to build charts -->
-                <!-- <ltng:require
-                scripts="{!$Resource.d3 + '/d3.js'}"
-                afterScriptsLoaded ="{!c.Chart}"
-                />
-
-                <div id="svg"></div>> -->
     
     <lightning:button value="{!ActiveCohort}" onclick="{!c.LaunchEvent}">Interview Cohort</lightning:button>
 

@@ -7,12 +7,12 @@
 /////////////////////////////////////////////////////
 ({
 	
-	handleCohortIdEvent : function(component, event, helper) {
-		helper.handleCohortIdEvent(component, event);
+	handleCohortIdEvent : function(cmp, event, helper) {
+		helper.handleCohortIdEvent(cmp, event);
     },
 
-    handleClick : function(component, event, helper) {
-       helper.handleClick(component);
+    handleClick : function(cmp, event, helper) {
+       helper.handleClick(cmp);
     },
 
 })

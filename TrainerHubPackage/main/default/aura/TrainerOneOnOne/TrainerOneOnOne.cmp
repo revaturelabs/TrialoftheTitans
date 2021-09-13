@@ -1,5 +1,6 @@
 <aura:component controller = 'TrainerOneOnOneController'>
     <aura:attribute name = 'OneOnOneId' type = 'String'/>
+    <aura:attribute name = 'CohortId' type = 'String' />
     <aura:attribute name = 'week' type = 'String' default = 'A'/>
     <aura:attribute name = 'data' type = 'Object'/>
     <aura:attribute name = 'columns' type = 'List'/>

@@ -7,10 +7,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ({
 	HideComponent : function(component, event, helper) {
-        helper.HideComponent(component, event);
+        helper.HideComponent(component);
 	},
     
     SubmitClick : function(component, event, helper) {
-        helper.SubmitClick(component, event);
+        helper.SubmitClick(component);
     }
 })

@@ -3,7 +3,7 @@ public class CommunicationControllerTest {
     
     @TestSetup
     private static void SetupCommunicationTests() {
-
+        //Setting up two different users
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
 
         User testUser = new User();
@@ -39,7 +39,8 @@ public class CommunicationControllerTest {
         testGroup.collaborationType = 'Public';
 
         Insert testGroup;
-
+        //The testUser being refrenced here is the testUser with the lastname as 'Code Tester' 
+        //Only adding 'Code Tester' to the Collaboration group 'testGroup'
         CollaborationGroupMember groupMember = new CollaborationGroupMember();
         groupMember.memberId = testUser.id;
         groupMember.CollaborationGroupId = testGroup.id;
@@ -58,6 +59,7 @@ public class CommunicationControllerTest {
         
         List<CollaborationGroup> allGroups = [SELECT name FROM CollaborationGroup];
         for ( Integer i = 0; i < userGroups.size(); i++ ) {
+            //AssertingEquals to confirm that 'Code Tester' is in the list of allGroups
             System.assertEquals( allGroups.get( i ), userGroups.get( i ) );
         }
 
@@ -65,7 +67,7 @@ public class CommunicationControllerTest {
         System.runAs( runningUser ) {
             userGroups = CommunicationController.GetGroups();
         }
-
+        //AssertingEquals to confirm that 'Nonmember' is not in a userGroup
         System.assertEquals( 0, userGroups.size() );
     }
 
@@ -100,7 +102,6 @@ public class CommunicationControllerTest {
     @isTest
     private static void TN_GetGroupContent() {
         List<ConnectAPI.FeedElement> results = CommunicationController.GetGroupContent( '' );
-
         System.assertEquals( 0, results.size() );
     }
 
@@ -111,13 +112,14 @@ public class CommunicationControllerTest {
         string message = 'This is a test message!';
 
         ConnectAPI.FeedElement result = CommunicationController.PostMessageToGroup( groupId, message );
+        //Asserting equals to confirm the message got posted in the group board using the CommunicationController class.
         System.assertEquals( message, result.body.text );
     }
 
     @isTest
     private static void TN_PostMessageToGroup() {
         ConnectAPI.FeedElement result = CommunicationController.PostMessageToGroup( '', 'Doesnt matter' );
-
+        //Negative Test for posting a message to group.
         System.assertEquals( null, result );
     }
     

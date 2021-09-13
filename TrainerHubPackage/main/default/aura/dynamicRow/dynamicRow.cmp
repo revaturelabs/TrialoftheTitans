@@ -22,8 +22,8 @@ Description:Wrapper to hold rows in equivalency component
         <div class="slds-page-header__title">Current Equivalencies</div> 
         <aura:iteration items="{!v.currentEquivalencies}" var="equiv">
           <div class="slds-box slds-box_x-small">
-            <div>Skill: {!equiv.Skill__r.Name}</div>
-            <div>Months: {!equiv.Skill_Equivalency__c}</div>
+            <div><p>Skill: {!equiv.Skill__r.Name}</p></div>
+            <div><p>Months: {!equiv.Skill_Equivalency__c}</p></div>
           </div>
         </aura:iteration>
       </aura:if>
