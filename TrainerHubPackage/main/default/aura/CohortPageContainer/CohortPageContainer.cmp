@@ -49,7 +49,7 @@
     -->
     
     <!-- Header -->
-    <div class="test">
+    <div class="selectFormat">
         <lightning:select name="select1" label="" onchange="{!c.setCohort}" aura:id="selectCohort">
             <aura:iteration items="{!v.cohortList}" var="c">
                 <option text="{!c.Name}" value="{!c.Id}"/>
