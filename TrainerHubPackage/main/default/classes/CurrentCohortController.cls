@@ -8,7 +8,7 @@
 //	
 ///////////////////////////////////////////////////
 public class CurrentCohortController {
-	@AuraEnabled(cacheable=true)
+	@AuraEnabled
     public static List<Pair> getData(){
         List<Pair> pr = new List<Pair>();
         
