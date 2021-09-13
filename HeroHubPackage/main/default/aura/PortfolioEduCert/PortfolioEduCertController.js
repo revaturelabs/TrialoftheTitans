@@ -9,5 +9,17 @@
             }
         });
         $A.enqueueAction(schoolInfo);
+    },
+    addEdu : function(component){
+        component.set('v.addEdu', 'true')
+    },
+    doneEdu : function(component){
+        component.set('v.addEdu', 'false')
+    },
+    editEdu : function(component){
+        component.set('v.editEdu', 'true')
+    },
+    doneEditEdu : function(component){
+        component.set('v.editEdu', 'false')
     }
 })

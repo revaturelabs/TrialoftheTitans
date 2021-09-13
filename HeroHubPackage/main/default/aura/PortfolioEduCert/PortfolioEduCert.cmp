@@ -1,18 +1,16 @@
+<!--This component provides the code for the Education information and calls the displayCert component to display the certifications of a user-->
 <aura:component implements="flexipage:availableForAllPageTypes" controller = "getEducation">
     <!-- Degree related values -->
-    <aura:attribute name="degree" type="String" default="Degree here" />
-    <aura:attribute name="major" type="String" default="Major here" />
-    <aura:attribute name="university" type="String" default="Salesforce Univeristy" />
-    <aura:attribute name="dateGraduated" type="String" default="Jan 1990" />
-    <aura:attribute name="gpa" type="Decimal" default="9.99" />
+    <aura:attribute name="addEdu" type="Boolean" default="false" />
+    <aura:attribute name="editEdu" type="Boolean" default="false" />
     <aura:attribute name="data" type="Object"></aura:attribute>
 
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"></aura:handler>
 
     <!-- Education and Certifications layout -->
     <lightning:card class="slds-m-horizontal_medium">
-        <h1 class="slds-text-heading_large slds-m-top_medium slds-m-bottom_x-small slds-m-left_xx-small">Education</h1>
-
+        <h1 class="mainStyle slds-text-heading_large slds-m-top_medium slds-m-bottom_x-small slds-m-left_xx-small">Education</h1>
+    
         <!-- Layout for a University Degree -->
         <!-- Iterates threw all of the Degrees for this user -->
         <aura:iteration items="{!v.data}" var="school">
@@ -26,8 +24,8 @@
                 </div>
                 
                 <!-- Degree Info -->
-                <div class="slds-col slds-size_3-of-6">
-                    <div class="slds-text-heading_medium" style="padding-left: 16px;">{!school.Degree__c} - {!school.Major__c}</div>
+                <div class="mainStyle slds-col slds-size_3-of-6">
+                    <div class="mainStyle DegreeMajorBar slds-text-heading_medium" style="padding-left: 16px;">{!school.Degree__c} - {!school.Major__c}</div>
                     <lightning:card>
                         <aura:set attribute="title">
                             <lightning:icon class="slds-m-right_xx-small" iconName="utility:knowledge_base" size="xx-small"/> <!-- Icon can change to preference -->
@@ -40,7 +38,21 @@
                     <!-- Add an edit button and use the Id to edit the record -->
                 </div>
             </div>
+            <!--Displays the edit component-->
+            <aura:if isTrue="{!v.editEdu}">
+                <c:editEdu recordId="{!school.Id}"></c:editEdu>
+                <lightning:button label="Done" title="Neutral action" onclick="{! c.doneEditEdu}"/>
+            </aura:if>
         </aura:iteration>
+        <!--Toggles the edit funcationality-->
+        <lightning:button label="Edit" title="Neutral action" onclick="{! c.editEdu}"/>
+        <!--Calls createEducation component to create a new education record-->
+        <aura:if isTrue="{!v.addEdu}">
+            <c:createEducation/>
+            <lightning:button label="Done" title="Neutral action" onclick="{! c.doneEdu }"/>
+        </aura:if>
+        <!--Toggles the view to show the CreateEducation Component-->
+        <lightning:button label="Add" title="Neutral action" onclick="{! c.addEdu }"/>
 
         <!--Displays the certifications-->
         <c:displayCert/>
