@@ -1,6 +1,5 @@
 ({
     loadHelper : function(component) {
-        //var eachQuestion = component.get("v.question");
         var options = component.get("v.options");
         options = options.split("||");
         options.unshift("Select Answer...");

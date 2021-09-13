@@ -25,6 +25,7 @@
                     if(i == 0){toggleClass = "toggle0"} else toggleClass = "toggle";
                     var question = exam[i];
                     console.log(question.Question_Text__c);
+                    // creates question of different type for eachif statement
                     if(question.Question_Type__c === "Matching"){
                         $A.createComponents([
                             ["aura:html", {
@@ -263,7 +264,8 @@
         var questionNumber = component.get('v.questionNumber');
         var childCmp = component.find('Question ' + questionNumber);
         var auraMethodResult = childCmp.answer();
-        // map questionNumber to answer
+        console.log(auraMethodResult);
+        // map questionNumber to answer ans sets new map to attribute examanswers
         var examAnswersNew = {};
         examAnswersNew[questionNumber] = auraMethodResult;
         var examAnswers = component.get("v.examAnswers");
@@ -337,7 +339,7 @@
 
     submitExam : function(component){
 
-        // saves the last response
+        // saves the response for the last question
         this.retrieveAnswer(component);
 
         // insert exam results in to DB via apex controller

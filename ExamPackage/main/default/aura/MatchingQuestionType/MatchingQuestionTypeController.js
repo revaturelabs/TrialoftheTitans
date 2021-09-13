@@ -3,9 +3,10 @@
         helper.loadHelper(component);
 
     },
+    // returns answer to the examinterview component
     answer : function(cmp) {
         
-        var answer = cmp.find("input").get("v.value");
+        var answer = cmp.get("v.answers");
         return answer;
     }
 })

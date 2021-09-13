@@ -4,14 +4,11 @@
 -->
 <aura:component>
     <!--Declare Attribute-->
-    <aura:attribute name="question" type="Exam_Question__c"/>
     <aura:attribute name="questionprompt" type="String"/>
-    <aura:attribute name="correctAnswer" type="String[]"/>
     <aura:attribute name="checkGroupOptions" type="String[]"/>
     <aura:attribute name="answerChoices" type="String[]"/>
-    <aura:attribute name = "submittedAnswer" type = "String" />
     
-    <aura:method name="answer" description="saves the response"></aura:method>
+    <aura:method name="answer" action= "{!c.answer}" description="saves the response" access="PUBLIC"></aura:method>
 
     <!--Declare Handler-->
     <aura:handler name="init" value="{!this}" action="{!c.fetchMultiChoices}"/>
@@ -20,11 +17,12 @@
     <lightning:card>
         <div class="slds-m-around--xx-large">
             <div>
-                <lightning:checkboxGroup name="{!v.questionprompt}"  
+                <lightning:checkboxGroup aura:id="input" 
+                                      name="{!v.questionprompt}"  
                                       label="{!v.questionprompt}"   
                                       options="{!v.checkGroupOptions}"  
                                       value="{!v.answerChoices}"
-                                      />  <!--onchange="{! c.handleChange }"-->
+                                      /> 
             </div>         
         </div>   
     </lightning:card>    	

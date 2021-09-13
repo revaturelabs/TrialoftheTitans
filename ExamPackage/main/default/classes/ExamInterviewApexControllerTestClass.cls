@@ -79,8 +79,9 @@ public class ExamInterviewApexControllerTestClass {
         update testResult;
         system.AssertNotEquals('Assigned', testResult.Status__c);
     }
+    /*
     @isTest
-    public static void testSubmitExamSinglePosBulk(){
+    public static void testSubmitExamPosBulk(){
         Exam__c testExam = new Exam__c(Name='test');
         insert testExam;
         Account testAccount = new Account(Name='Gladius Maximus');
@@ -98,6 +99,45 @@ public class ExamInterviewApexControllerTestClass {
         ExamInterviewApexController.submitExam(testExam.Id);
         update testResults;
         system.AssertEquals(200,testResults.size());
+    }
+    */
+    /*
+    @isTest
+    public static void testSubmitExamNegBulk(){
+        Exam__c testExam = new Exam__c(Name='test');
+        insert testExam;
+        Account testAccount = new Account(Name='Gladius Maximus');
+        insert testAccount;
+        List<Exam_Result__c> testResults = new List<Exam_Result__c>();
+        for(integer i=0; i<200; i++){
+            testResults.add(new Exam_Result__c(Account__c = testAccount.Id, Exam__c = testExam.Id, Status__c='Assigned'));
+        }
+        insert testResults;
+        for(integer count=0; count<200; count++) {
+            integer o = 0;
+            testResults[o].Status__c='Completed';
+            o++;  
+        }
+        ExamInterviewApexController.submitExam(testExam.Id);
+        update testResults;
+        system.AssertEquals(200,testResults.size());
+    }
+    */
+    @isTest
+    public static void testSubmitAnswersSinglePos(){
+
+    }
+    @isTest
+    public static void testSubmitAnswersSingleNeg(){
+        
+    }
+    @isTest
+    public static void testSubmitAnswersBulkPos(){
+        
+    }
+    @isTest
+    public static void testSubmitAnswersBulkNeg(){
+        
     }
 }
 
