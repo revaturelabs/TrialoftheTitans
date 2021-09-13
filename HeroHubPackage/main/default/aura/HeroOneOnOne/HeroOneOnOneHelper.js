@@ -7,6 +7,7 @@
         getMethod.setCallback(this, function (response) {
             let state = response.getState();
             if(state === 'SUCCESS'){
+                component.set('v.showData', true);
                 component.set('v.OneOnOneId',response.getReturnValue().Id);
             }
         })
