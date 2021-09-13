@@ -177,9 +177,7 @@
         $A.enqueueAction(action);
     },
     setCohort : function(component, event){
-        console.log(event);
-        let cohort = event.getParam('value');
-        console.debug(cohort);
+        let cohort = component.find("selectCohort").get("v.value");
         component.set("v.CohortId", cohort);
     }
 })

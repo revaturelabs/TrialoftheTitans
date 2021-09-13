@@ -50,7 +50,7 @@
     
     <!-- Header -->
     <div class="test">
-        <lightning:select name="select1" label="Current Cohort" onchange="{!c.setCohort}">
+        <lightning:select name="select1" label="" onchange="{!c.setCohort}" aura:id="selectCohort">
             <option value="">select cohort...</option>
             <aura:iteration items="{!v.cohortList}" var="c">
                 <option text="{!c.Name}" value="{!c.Id}"/>
