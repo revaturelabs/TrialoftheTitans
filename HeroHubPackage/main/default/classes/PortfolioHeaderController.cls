@@ -28,6 +28,7 @@ public with sharing class PortfolioHeaderController {
            insert setjob;
          } else {
              jobs[0].Name = job;
+             update jobs;
          }
     }
 }

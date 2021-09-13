@@ -33,7 +33,7 @@ public class PortfolioHeaderControllerTest {
         String input = 'new job';
         PortfolioHeaderController.setJob(input);
         List<Job__c> jobs = [SELECT Name FROM Job__c WHERE User__c = :UserId];
-        System.assertEquals('Stuff', jobs[0].Name);
+        System.assertEquals('new job', jobs[0].Name);
     }
 
 }
