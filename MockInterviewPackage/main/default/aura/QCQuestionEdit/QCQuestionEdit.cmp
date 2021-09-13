@@ -48,7 +48,7 @@
                 <div class="slds-clearfix">
                     <div class="slds-page-header" role="banner">
                         <div class="slds-float_right">    
-                            <lightning:button label="Export as CSV" onclick="{!c.downloadCSV}"/>   
+                            <lightning:button label="Export as CSV" onclick="{!c.downloadCSV}" disabled="{! v.enableMultipleRowsButton == false }" />   
                             <lightning:button label="Delete Multiple Rows"   iconPosition="left"
                                               onclick="{!c.handleSelectedRows}" disabled="{! v.enableMultipleRowsButton == false }" />
                             <lightning:button label="Prev" iconName="utility:chevronleft" iconPosition="left"
