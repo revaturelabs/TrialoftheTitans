@@ -6,7 +6,7 @@ public with sharing class PortfolioIndustryEquivsController {
         List<String> ReturnName = new List<String>();
         id UserId = UserInfo.getUserId();
         //Get list of skills from specific user
-        List<Portfolio_Skill__c> PortSkill = [SELECT Name, Months__c FROM Portfolio_Skill__c WHERE User__c =:UserId];
+        List<Equivalency__c> PortSkill = [SELECT Name, Skill_Equivalency__c FROM Equivalency__c WHERE User__c =:UserId];
         //If there are not values return default value set
         if(PortSkill.isEmpty()){
             for(integer i=0; i<5; i++){
@@ -16,7 +16,7 @@ public with sharing class PortfolioIndustryEquivsController {
         }
         //If there are records replace default value set with already saved records
         else{
-            for(Portfolio_Skill__c PK : PortSkill){
+            for(Equivalency__c PK : PortSkill){
                 ReturnName.add(PK.Name);
             }
         }
@@ -28,7 +28,7 @@ public with sharing class PortfolioIndustryEquivsController {
         List<Decimal> ReturnMonth = new List<Decimal>();
         id UserId = UserInfo.getUserId();
         //Get list of skills from specific user
-        List<Portfolio_Skill__c> PS = [SELECT Name,Months__c FROM Portfolio_Skill__c WHERE User__c =:UserId];
+        List<Equivalency__c> PS = [SELECT Name,Skill_Equivalency__c FROM Equivalency__c WHERE User__c =:UserId];
         //If there are no values return default value set
         if(PS.isEmpty()){
             for(integer i=0; i<5; i++){
@@ -38,8 +38,8 @@ public with sharing class PortfolioIndustryEquivsController {
         }
         //If there are records replace default value set with already saved records
         else{
-            for(Portfolio_Skill__c PK: PS){
-                ReturnMonth.add(PK.Months__c);
+            for(Equivalency__c PK: PS){
+                ReturnMonth.add(PK.Skill_Equivalency__c);
             }
         }
         return ReturnMonth;
@@ -52,19 +52,19 @@ public with sharing class PortfolioIndustryEquivsController {
         /*
         The List of newSkills comes like ['Skill 1', 'Skill 2', 'Skill 3',...] up to 5 --- INDEX STARTS AT 0!!
         The List of newEquivs comes like [1,2,3,4,5] each month is the same index as its respective skill
-        Portfolio_Skills__c only has 3 fields. Name, Months__c, User__c
+        Portfolio_Skills__c only has 3 fields. Name, Skill_Equivalency__c, User__c
         */
 
         //Get a list of all the Portfolio skills in the system from running user
         id UserId = UserInfo.getUserId();
-        List<Portfolio_Skill__c> OldSkills = [SELECT Name, Months__c, User__c FROM Portfolio_Skill__c WHERE User__c =: UserId];
+        List<Equivalency__c> OldSkills = [SELECT Name, Skill_Equivalency__c, User__c FROM Equivalency__c WHERE User__c =: UserId];
 
         if(OldSkills.isEmpty()){
             //create new Skills
             for(integer i=0; i < 5; i++){
-                Portfolio_Skill__c PortSkill = new Portfolio_Skill__c();
+                Equivalency__c PortSkill = new Equivalency__c();
                 PortSkill.Name = newSkills[i];
-                PortSkill.Months__c = newEquivs[i];
+                PortSkill.Skill_Equivalency__c = newEquivs[i];
                 PortSkill.User__c = UserInfo.getUserId();
                 insert PortSkill;
             }
@@ -73,18 +73,18 @@ public with sharing class PortfolioIndustryEquivsController {
         else{
             //update the skills in place
             //creating new List of the inputed values
-            List<Portfolio_Skill__c> NewSkillList = new List<Portfolio_Skill__c>();
+            List<Equivalency__c> NewSkillList = new List<Equivalency__c>();
             for(integer i=0; i<5; i++){
-                Portfolio_Skill__c SingleNewSkill = new Portfolio_Skill__c();
+                Equivalency__c SingleNewSkill = new Equivalency__c();
                 SingleNewSkill.Name = newSkills[i];
-                SingleNewSkill.Months__c = newEquivs[i];
+                SingleNewSkill.Skill_Equivalency__c = newEquivs[i];
                 SingleNewSkill.User__c = UserInfo.getUserId();
                 NewSkillList.add(SingleNewSkill);
             }
             //Updating the old list with the new values 
             for(integer i=0; i<5; i++){
                 OldSkills[i].name = NewSkillList[i].name;
-                OldSkills[i].Months__c = newSkillList[i].Months__c;
+                OldSkills[i].Skill_Equivalency__c = newSkillList[i].Skill_Equivalency__c;
                 OldSkills[i].User__c = NewSkillList[i].User__c; 
             }
             update OldSkills;

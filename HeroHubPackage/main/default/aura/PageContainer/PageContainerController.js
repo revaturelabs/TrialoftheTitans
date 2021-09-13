@@ -50,5 +50,12 @@
             cmp.set('v.nameClicked', true);
         }
         
+    },
+    navigateToPort: function(cmp, event, helper){
+        if (cmp.get('v.PortClicked') == true){
+            cmp.set('v.PortClicked', false);
+        } else {
+            cmp.set('v.PortClicked', true);
+        }
     }
 })

@@ -30,7 +30,7 @@ public with sharing class PortfolioProjectController {
         lightningProp.projectList = new List<Project__c>();
         for(Project__c projObj: [SELECT id, Name, Description__c, Roles_Responsibilities__c, Technologies__c, User__c 
                                  FROM Project__c
-                                 WHERE User__r.Id = '0055f000000mwrOAAQ'
+                                 WHERE User__r.Id =:userIdFromPage
                                  ORDER BY Name ASC
                                 ]){
             lightningProp.projectList.add(projObj);

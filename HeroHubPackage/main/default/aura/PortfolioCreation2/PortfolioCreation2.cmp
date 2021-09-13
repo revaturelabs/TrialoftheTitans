@@ -1,0 +1,23 @@
+<aura:component access="global" implements="force:appHostable, forceCommunity:availableForAllPageTypes">
+
+    <lightning:card class="Header">
+        <c:PortfolioHeader/>
+    </lightning:card>
+
+    <lightning:card class="Indu">
+        <c:PortfolioIndustryEquivs/>
+    </lightning:card>
+
+    <lightning:card class="Education">
+        <c:PortfolioEduCert/>
+    </lightning:card>
+
+    <lightning:card class="Exp">
+        <c:PortfolioOtherExperiences/>
+    </lightning:card>
+
+    <lightning:card class="Project">
+        <c:PortfolioProjects/>
+    </lightning:card>
+
+</aura:component>	
