@@ -1,3 +1,4 @@
+
 ({
     editRecord : function(component, event,row) {
         
@@ -13,7 +14,7 @@
         
         
     }, 
-   
+    
     deleteRecord : function(component, event) {
         var action = event.getParam('action');
         var row = event.getParam('row');
@@ -53,9 +54,9 @@
                 }
                 qcQuestionList.forEach(function(item){
                     
-                        item.QC_Question_Deck__c= item.QC_Question_Deck__r.Name; 
-                   
-                     
+                    item.QC_Question_Deck__c= item.QC_Question_Deck__r.Name; 
+                    
+                    
                     
                 });
                 
@@ -85,24 +86,24 @@
     },
     
     sortData : function(component, fieldName, sortDirection) {
-    var data = component.get("v.qcQuestionList"); 
+        var data = component.get("v.qcQuestionList"); 
         var reverse = sortDirection !== 'asc';
         data.sort(this.sortBy(fieldName, reverse))
-       component.set("v.qcQuestionList", data);
+        component.set("v.qcQuestionList", data);
     },
     
     sortBy : function(field, reverse, primer){
-      var key = primer ?
+        var key = primer ?
             function(x) {return primer(x[field])} :
-            function(x) {return x[field]};
+        function(x) {return x[field]};
         reverse = !reverse ? 1 : -1;
         return function (a, b) {
             return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
         }
     },
-     selectedRows : function(component, event, helper ) {
-         
-         
+    selectedRows : function(component, event, helper ) {
+        
+        
         var records = component.get("v.selectedRowsToDel");
         var action = component.get("c.deleteQCQuestionRows");
         action.setParams({
@@ -115,9 +116,69 @@
         this.refresh();
         $A.enqueueAction(action);
     },
-     refresh : function(component, event, helper) {        
+    refresh : function(component, event, helper,row) {        
         $A.get('e.force:refreshView').fire();
     },
+    popUp: function(component, event, helper) { 
+        
+        
+        var boolVal = component.get("v.EditPopUp");
+        
+        
+        if(boolVal==true){
+            
+            component.set("v.EditPopUp", false);
+            
+        }
+        else{
+            component.set("v.EditPopUp", true);
+            
+        }
+    },
+    editUsingPopup: function(component, event, helper) {  
+        event.preventDefault();  
+        var fields = event.getParam("fields");
+        component.find('EdiQuestionRecordForm').submit(fields);
+        this.refresh();
+        
+    },
+	 selectRowHandle: function(component, event, helper) {  
+         
+        
+           
+        var selectedRows = event.getParam('selectedRows'); 
+        var setRows = [];
+        for ( var i = 0; i < selectedRows.length; i++ ) {
+            
+            setRows.push(selectedRows[i]);
+            
+        }
+        component.set("v.selectedRowsToDel", setRows);
+        if( selectedRows.length == 0    ){
+            
+             component.set("v.enableMultipleRowsButton", false);
+             component.set("v.EnableEditPopUp", false);
+        }
+        else {
+            
+            component.set("v.enableMultipleRowsButton", true);
+            
+            
+        }
+        if(selectedRows.length == 1){
+            for (var i = 0; i < selectedRows.length; i++){
+                
+                component.set("v.qcQuestionSelectEditID",selectedRows[i].Id);
+                
+            }
+             component.set("v.EnableEditPopUp", true);  
+            
+        }
+       else if(selectedRows.length > 1){
+                component.set("v.EnableEditPopUp", false);
+            }  
+        
+    },    
     convertToCSV : function(component, questionList) {
         var stringResult, count, keys, columnDivider, lineDivider;
         
@@ -154,6 +215,5 @@
         }
         return stringResult;
     }
-    
     
 })

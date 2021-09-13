@@ -37,7 +37,7 @@
             case 'delete':
                 helper.deleteRecord(component, event);
                 break;
-           
+                
         }
     },  
     handleShowToast : function(component, event, helper) {        
@@ -53,30 +53,24 @@
         component.set("v.sortedDirection", sortDirection);
         helper.sortData(component, fieldName, sortDirection);
     }, 
-   
+    refresh : function(component, event, helper) {        
+        $A.get('e.force:refreshView').fire();
+    },
     handleSelectedRows : function(component, event, helper) {        
-         helper.selectedRows(component, event,helper);
+        helper.selectedRows(component, event,helper);
     },
     handleSelect : function(component, event, helper) {
+         helper.selectRowHandle(component, event,helper);
+      
         
-        var selectedRows = event.getParam('selectedRows'); 
-        var setRows = [];
-        for ( var i = 0; i < selectedRows.length; i++ ) {
-            
-            setRows.push(selectedRows[i]);
-
-        }
-        component.set("v.selectedRowsToDel", setRows);
-        if( selectedRows.length == 0 ){
-            
-             component.set("v.enableMultipleRowsButton", false);
-            
-        }
-        else{
-            
-            component.set("v.enableMultipleRowsButton", true);
-        }
+    },
+    handlePopUp  : function(component, event, helper) {     
         
+        helper.popUp(component, event,helper);
+    },
+    handleSubmitUpdatePopUp: function(component, event, helper) {     
+        
+        helper.editUsingPopup(component, event,helper);
     },
     downloadCSV : function(component, event, helper) {
         var questions = component.get('v.selectedRowsToDel');
@@ -91,6 +85,5 @@
         document.body.appendChild(hiddenElement);
         hiddenElement.click();
     }
-    
     
 })
