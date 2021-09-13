@@ -343,20 +343,20 @@
         this.retrieveAnswer(component);
 
         // insert exam results in to DB via apex controller
-        var action = component.get("c.submitExam");
+        var submitExamAction = component.get("c.submitExam");
         console.log(component.get('v.examId'));
-        action.setParams({'examId' : component.get('v.examId')});
-        action.setCallback(this, function (a) {
+        submitExamAction.setParams({'examId' : component.get('v.examId')});
+        submitExamAction.setCallback(this, function (a) {
             var state = a.getState();
             if(state == 'SUCCESS'){
             }
         });
-        $A.enqueueAction(action);
+        $A.enqueueAction(submitExamAction);
 
         // insert exam questions and submitted answers into apex controller method
-        var action2 = component.get("c.submitAnswers");
-        action2.setParams({'examQuestionList' : component.get('v.examQuestions'), 'examAnswerList' : component.get('v.examAnswers')});
-        $A.enqueueAction(action2);
+        var insertQuestionsAction = component.get("c.submitAnswers");
+        insertQuestionsAction.setParams({'examQuestionList' : component.get('v.examQuestions'), 'examAnswerList' : component.get('v.examAnswers')});
+        $A.enqueueAction(insertQuestionsAction);
         
         
 

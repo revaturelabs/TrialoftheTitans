@@ -42,6 +42,7 @@ public class ExamInterviewApexController {
             heroAnswers.add(new Hero_Answer__c());
         }
         system.debug(heroAnswers.size());
+        system.debug(examAnswerList);
         // fills out fields for each hero answer in the hero aanswers list
         for(integer i=0; i<heroAnswers.size(); i++){
             heroAnswers[i].Exam_Question__c = examQuestionList[i].Id;
@@ -50,6 +51,7 @@ public class ExamInterviewApexController {
             if(heroAnswers[i].Answer_Choice__c.contains('Correct_Answer_s__c') == examQuestionList[i].Correct_Answer_s__c.contains('Answer_Choice__c')){
                 heroAnswers[i].Correct__c = true;
             }
+            
         }
         insert heroAnswers; 
     }    

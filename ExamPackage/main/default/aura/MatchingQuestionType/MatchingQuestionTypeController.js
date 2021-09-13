@@ -5,16 +5,19 @@
     },
     answer : function(cmp) {
         // retrieves array object of selected values
-        var answer = cmp.find('test').get("v.value");
-        console.log(answer);
+        var answer = cmp.find('answers');
+        var newAnswers = [];
+        for(let a of answer){
+            newAnswers.push(a.get("v.value"));
+
+        }
+        
         //converts all answers from array into a single string
         var answerString = "";
-        for(let i = 0; i < answer.length - 1; i++){
-            answerString += answer[i] + "||" ;
+        for(let i = 0; i < newAnswers.length - 1; i++){
+            answerString += newAnswers[i] + "||" ;
         }
-        answerString += answer[answer.length - 1];
-
-        console.log(answerString);
-        return answerString;
+        answerString += newAnswers[newAnswers.length - 1];
+        return answerString;  
     }
 })
