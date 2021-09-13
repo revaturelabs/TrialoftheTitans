@@ -1,18 +1,26 @@
-<aura:component controller="ExperiencesController">
+<aura:component controller="ExperiencesController" implements="force:hasRecordId,forceCommunity:availableForAllPageTypes">
 
     <!-- Choose between display and edit -->
     <aura:attribute name="isEdit" type="Boolean" default="true" />
+    <!-- Choose between display and edit -->
+
     <aura:attribute name="Experiences" type="Experience__c[]" />
+    <aura:attribute name="ExperienceList" type="Object"/>
     <aura:attribute name="columns" type="List"/>
+    
+    <aura:attribute name="draftValues" type="Object" default="[]"/>
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
 
-    <!--<lightning:datatable aura:id="dataTable"
-        data="{!v.Experiences}"
+    <lightning:datatable aura:id="dataTable"
+        data="{!v.ExperienceList}"
         columns="{!v.columns}"
         keyField="id"
-        hideCheckboxColumn="true"/>-->
+        onrowaction="{!c.handleRowAction}"
+        onSave="{!c.onSave}"
+        hideCheckboxColumn="true"
+        draftValues="{! v.draftValues }"/>
 
     <!-- If element that determines whether experience is in edit mode or not -->
     <aura:if isTrue="{!v.isEdit}">

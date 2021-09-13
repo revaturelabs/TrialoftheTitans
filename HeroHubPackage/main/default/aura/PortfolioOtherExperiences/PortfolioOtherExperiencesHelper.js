@@ -13,20 +13,28 @@
             if(response.getState()==='SUCCESS'){
                 console.log('action fired');
                 cmp.set('v.Experiences', response.getReturnValue());
+                cmp.set('v.ExperienceList', response.getReturnValue());
             }
         });
         $A.enqueueAction(action);
     },
 
-    editRecord : function(cmp, event, row){
+    handleSave : function(cmp, event){
+        
+    },
 
+    editRecord : function(component, event,row) {
+
+        var row = event.getParam('row');
+        var recordId = row.Id;
+        var editRecordEvent = $A.get("e.force:editRecord");
+        editRecordEvent.setParams({
+            "recordId": recordId
+        });
+        editRecordEvent.fire();
     },
 
     deleteRecord : function(cmp, event){
 
-    },
-
-    viewRecord : function(cmp, event){
-        
     }
 })

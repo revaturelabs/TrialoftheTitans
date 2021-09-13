@@ -6,7 +6,6 @@
         var actions = [
             {label: 'Edit', name: 'edit'},
             {label: 'Delete', name: 'delete'},
-            {label: 'View', name: 'view'}
         ];
         component.set("v.Columns", [
             {label:"Company", fieldName:"Company__c", type:"text",editable:'true' },
@@ -31,10 +30,11 @@
             case 'delete':
                 helper.deleteRecord(component, event);
                 break;
-            case 'view':
-                helper.viewRecord(component, event);
-                break;
         }
+    },
+
+    onSave : function(component, event, helper){
+        helper.handleSave(component, event);
     },
     
     /*edit() and cancel() flip the isEdit attribute on or off depending on whether edit() is called
