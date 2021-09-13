@@ -25,5 +25,9 @@
     onPortClick: function(cmp,event,helper){
         const evt = cmp.getEvent("navigateToPortfolio");
         evt.fire();
+    },
+    onOneClick: function(cmp,event,helper){
+        const evt = cmp.getEvent("navigateToOneOnOne");
+        evt.fire();
     }
 })
