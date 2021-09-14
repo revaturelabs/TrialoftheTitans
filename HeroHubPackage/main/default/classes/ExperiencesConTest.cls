@@ -1,11 +1,24 @@
+/////////////////////////////////////////////////////
+//
+//  Name: ExperiencesContTest
+//  Author: Will Harris
+//  Created: 9/8/2021
+//  Updated: 9//2021
+//  Description: Unit Tests for ExperiencesController
+//  
+///////////////////////////////////////////////////
 @isTest
 private with sharing class ExperiencesConTest {
     
     @TestSetup
     static void makeExperiences(){
+        //Query for a user that's a System Admin
         User SysAdmin = [SELECT Id FROM User WHERE Profile.Name='System Administrator' Limit 1];
         Account account;
         
+        //Create account for Experience Cloud User
+        //Important! Account needs to be made by a user with a role
+        //in order to create an experience cloud user.
         System.runAs(SysAdmin){
             account = new Account(Name = 'test name');
             insert account;
@@ -20,29 +33,23 @@ private with sharing class ExperiencesConTest {
 
         insert contact;
 
+        //Create six experiences
         List<Experience__c> experiences = new List<Experience__c>();
 
-        for(Integer i = 0; i < 6; i++){
-            experiences.add(new Experience__c(
-                Account__c= account.Id,
-                Company__c='Test Company ' + i,
-                Position__c='Tester',
-                Start_Date__c= Date.valueOf('2011-11-11'),
-                End_Date__c= Date.today()
-            ));
-        }
-
-        insert experiences;
+        
     }
 
     /*createExperienceCloudUser() creates an Experience Cloud User to test the functionaility of
-    Other Experiences. */
+    Other Experiences. Kept separate from TestSetup because you cannot create a user in the same context you 
+    create an account or contact, and vice versa.*/
     private static User createExperienceCloudUser(){
         Id profileId = [SELECT Id FROM Profile WHERE Name ='Hero'].Id;
         Id contact = [SELECT Id FROM Contact WHERE LastName = 'name'].Id;
 
         User testUser;
         
+        //You must create an experience cloud user as a System Admin. Otherwise, the compiler
+        //will hate you
         User SysAdmin = [SELECT Id FROM User WHERE Profile.Name='System Administrator' Limit 1];
 
         System.runAs(SysAdmin){
@@ -73,8 +80,30 @@ private with sharing class ExperiencesConTest {
 
         List<Experience__c> experiences = new List<Experience__c>();
         
-        experiences = ExperiencesController.getExperiences(testUser.Id);
+        Contact contact = [SELECT Id, AccountId FROM Contact WHERE Email = 'testemail123@gmail.com'];
+
+        Account account = [SELECT Id FROM Account WHERE Name = 'test name'];
+
+        for(Integer i = 0; i < 6; i++){
+            experiences.add(new Experience__c(
+                //Account__c= account.Id,
+                User__c = testUser.Id,
+                Company__c='Test Company ' + i,
+                Position__c='Tester',
+                Start_Date__c= Date.valueOf('2011-11-11'),
+                End_Date__c= Date.today()
+            ));
+        }
+
+        insert experiences;
+
+        experiences = null;
         
+        System.runAs(testUser){
+            experiences = ExperiencesController.getExperiences();
+        }
+        
+        //Size of experiences should be six
         System.assertEquals(6, experiences.size());
     }
 
@@ -84,10 +113,15 @@ private with sharing class ExperiencesConTest {
 
         Contact contact = [SELECT Id, AccountId FROM Contact WHERE Email = 'testemail123@gmail.com'];
 
-        //Create additional experiences to test bulk loading of experiences
-        for(Integer i = 6; i < 200; i++){
+        Account account = [SELECT Id FROM Account WHERE Name = 'test name'];
+
+        User testUser = createExperienceCloudUser();
+
+        //large number of experiences for bulk test
+        for(Integer i = 0; i < 200; i++){
             experiences.add(new Experience__c(
-                Account__c= contact.AccountId,
+                //Account__c= account.Id,
+                User__c = testUser.Id,
                 Company__c='Test Company ' + i,
                 Position__c='Tester',
                 Start_Date__c= Date.valueOf('2011-11-11'),
@@ -101,19 +135,12 @@ private with sharing class ExperiencesConTest {
 
         experiences = null;
 
-        User testUser = createExperienceCloudUser();
         
-        experiences = ExperiencesController.getExperiences(testUser.Id);
+        System.runAs(testUser){
+            experiences = ExperiencesController.getExperiences();
+        }
         
+        //Size of experiences should be 200 here.
         System.assertEquals(200, experiences.size());
-    }
-
-    @isTest
-    static void negTest(){
-        Id testUser = null;
-
-        List<Experience__c> experiences = ExperiencesController.getExperiences(testUser);
-
-        System.assertEquals(6, experiences.size());
     }
 }
