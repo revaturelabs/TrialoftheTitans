@@ -14,20 +14,18 @@
 
     <aura:attribute name="fields" type="String[]" 
         default="['Company__c', 'Position__c', 'Start_Date__c', 'End_Date__c']"/>
-
-    <!--Element meant to easily allow editing of experiences without apex.
-        Could never get it to display experiences.-->
         
-    <!--<lightning:card title="Experiences">
-        <lightning:datatable aura:id="dataTable"
+    <lightning:card title="Experiences">
+        <lightning:datatable
             data="{!v.ExperienceList}"
             columns="{!v.columns}"
-            keyField="id"
-            onSave="{!c.onSave}"
+            keyField="Id"
+            onsave="{!c.onSave}"
             hideCheckboxColumn="true"
             draftValues="{! v.draftValues }"
+            showRowNumberColumn="false"
         />
-    </lightning:card>-->
+    </lightning:card>
 
     <!-- If element that determines whether experience is in edit mode or not -->
     <aura:if isTrue="{!v.isEdit}">
@@ -35,29 +33,7 @@
 
         <!-- Card for displaying experiences -->
         <lightning:card>
-            <div class="form">
-
-                <!-- aura:iteration element iterates through the list of experiences to display all experiences associated with the user. -->
-                <aura:iteration items="{!v.Experiences}" var="Experience">
-
-                    <div class="slds-grid slds-gutters slds-text-align_center">
-                        <div class="slds-col slds-size_1-of-2">
-                            <div class="slds-text-heading_large"><lightning:formattedText name="c0" value="{!Experience.Company__c}"/></div>
-                            <div class="slds-text-heading_medium"><lightning:formattedText name="p0" value="{!Experience.Position__c}"/></div>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2 slds-text-heading_medium">
-                            <p><lightning:formattedText name="ds0" value="{!Experience.Start_Date__c}" /> 
-                                 - <lightning:formattedText name="de0" value="{!Experience.End_Date__c}" /></p>
-                        </div>
-                    </div>
-
-                    <hr/>
-                    
-                </aura:iteration>
-                <!-- aura:iteration element iterates through the list of experiences to display all experiences associated with the user. -->
-
-            </div>
-            <lightning:button label="Edit" class="slds-m-left_small" onclick="{! c.edit}" variant="brand-outline"/>
+            <lightning:button label="Add New Experience" class="slds-m-left_small" onclick="{! c.edit}" variant="brand-outline"/>
         </lightning:card>
         <!-- Card for displaying experiences -->
 
@@ -69,6 +45,7 @@
                 <!-- Add new experience to records -->
                 <lightning:recordEditForm objectApiName="Experience__c"
                     onsuccess="{!c.cancel}">
+                    <!-- A possible addition would be showing toasts or messages in cases of errors or success -->
 
                     <lightning:inputField fieldName="Company__c" />
                     <lightning:inputField fieldName="Position__c" />
