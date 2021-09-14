@@ -1,3 +1,12 @@
+/////////////////////////////////////////////////////
+//
+//  Name: ExperienceTriggerHandlerTest
+//  Author: Will Harris
+//  Created: 9/13/2021
+//  Updated: 9/14/2021
+//  Description: Tests that ExperienceTriggerHandler works as expected
+//  
+///////////////////////////////////////////////////
 @isTest
 private with sharing class ExperienceTriggerHandlerTest {
     public ExperienceTriggerHandlerTest() {
