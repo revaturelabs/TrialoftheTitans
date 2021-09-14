@@ -180,7 +180,7 @@
         
     },    
     convertToCSV : function(component, questionList) {
-        var stringResult, count, keys, columnDivider, lineDivider;
+        var stringResult, count, headers, keys, columnDivider, lineDivider;
         
         if(questionList == null || !questionList.length){
             return null;
@@ -188,10 +188,11 @@
         columnDivider = ',';
         lineDivider = '\n';
 
-        keys = ['Id', 'Name', 'Question_Body__c','Expected_Answer__c','QC_Question_Deck__c.Name'];
+        keys = ['Name', 'Question_Body__c','Expected_Answer__c'];
+        headers = ['Name', 'QuestionBody', 'ExpectedAnswer'];
 
         stringResult ='';
-        stringResult += keys.join(columnDivider);
+        stringResult += headers.join(columnDivider);
         stringResult += lineDivider;
 
         for(var i = 0; i < questionList.length; i++){
@@ -204,9 +205,9 @@
                 }
 
                 if(questionList[i][skey] != undefined){
-                    stringResult += '"'+questionList[i][skey] + '"';
+                    stringResult += questionList[i][skey];
                 }else{
-                    stringResult += '"'+''+'"';
+                    stringResult +='';
                 }
                 
                 count++;

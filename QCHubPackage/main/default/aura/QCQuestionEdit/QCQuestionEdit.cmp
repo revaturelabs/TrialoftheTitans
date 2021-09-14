@@ -1,9 +1,10 @@
 <!--Name: QCQuestionEdit
     Author: Christian Aviles Lopez, Denver Leyba
     Description: This component is in charge of displaying a list of records from the QC_Question__c object. 
-    The main purpose of this component is to edit and/or delete,import and export records of the mentioned 
-    object. It also has an aura: if to render the object's record list or render the display 
-    screen to edit a record. -->
+    The main purpose of this component is to edit, delete and/or export records of the mentioned 
+    object. It also has an aura: if to render the object's record list or render the display screen to edit a record.
+
+    Known issue: All questions must have all fields assigned for any rows to appear, even if the fields are not required. -->
 
 
     <aura:component controller="QCQuestionEditController" implements="flexipage:availableForRecordHome,force:hasRecordId,force:appHostable,forceCommunity:availableForAllPageTypes" access="global" >

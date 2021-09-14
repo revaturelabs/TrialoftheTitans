@@ -1,4 +1,4 @@
-public with sharing class QCQuestionExportApexController {
+public class QCQuestionExportApexController {
     @AuraEnabled
     public static List<QC_Question__c> getQCQuestions() {
         List<QC_Question__c> questions = new List<QC_Question__c>();

@@ -2,6 +2,9 @@
      Author: Brian McKay
 	 Description: This component allows a member of QC to upload a CSV file to import QC questions to be inserted
                   instead of manually inserting each question.
+
+     Known Issue: Confirmation pop-up doesn't appear on button press.
+     
      Last Updated: 9-13-21 (Brian McKay)
 -->
 

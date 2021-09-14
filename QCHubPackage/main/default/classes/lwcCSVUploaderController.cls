@@ -20,10 +20,10 @@ public class lwcCSVUploaderController {
         for(fieldWrapper wrapper: datalist){
             QC_Question__c q = new QC_Question__c();
             q.Name = wrapper.Name;
-            q.Question_Body__c = wrapper.questionBody;
+            q.Question_Body__c = wrapper.QuestionBody;
             q.Expected_Answer__c = wrapper.ExpectedAnswer;
             
-            qcq.add(q);            
+            qcq.add(q);
         }
         
         if(qcq.size() > 0){
@@ -39,11 +39,10 @@ public class lwcCSVUploaderController {
     }
     
     //class used to associate field values with deserialized values from the input string
-    public class fieldWrapper{        
+    public class fieldWrapper{
         public String Name;       
-        public String questionBody;
+        public String QuestionBody;
         public String ExpectedAnswer;
-        
     }
 
 }

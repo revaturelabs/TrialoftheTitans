@@ -1,5 +1,5 @@
 <aura:component implements = "force:appHostable">
-    <lightning:tabset variant="vertical">
+    <lightning:tabset variant="scoped">
         <lightning:tab label="Create Question">
             <c:QCQuestionCreate />
         </lightning:tab>
@@ -7,7 +7,7 @@
             <c:QCQuestionEdit />
         </lightning:tab>
         <lightning:tab label="Import Questions">
-            Question Importer
+            <c:QCQuestionsImport />
         </lightning:tab>
     </lightning:tabset>
 </aura:component>
