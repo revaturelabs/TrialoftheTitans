@@ -12,7 +12,7 @@
         
         for(var a of answers){
             $A.createComponent(
-                "lightning:select", {"aura:id" : "answers", "label" : a, "value" : a}
+                "lightning:select", {"aura:id" : "answers", "label" : a, "value" : "select"}
             ,
                 function(newSelect, status, errorMessage){
                     if(status === "SUCCESS"){

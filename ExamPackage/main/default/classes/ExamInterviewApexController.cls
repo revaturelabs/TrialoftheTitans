@@ -26,7 +26,7 @@ public class ExamInterviewApexController {
         Account account = [SELECT Id FROM Account WHERE Name = 'Gladius Maximus' LIMIT 1];
         
         Exam_Result__c examResult = [SELECT Id FROM Exam_Result__c WHERE Account__c = :account.Id AND Status__c = 'Assigned' AND Exam__c = :examId];
-        examResult.Status__c = 'Assigned';
+        examResult.Status__c = 'Completed';
         update examResult;
 
 
@@ -41,15 +41,25 @@ public class ExamInterviewApexController {
         for(integer i=0; i<examQuestionList.size(); i++){
             heroAnswers.add(new Hero_Answer__c());
         }
-        system.debug(heroAnswers.size());
-        system.debug(examAnswerList);
+        //system.debug(heroAnswers.size());
+        //system.debug(examAnswerList);
         // fills out fields for each hero answer in the hero aanswers list
         for(integer i=0; i<heroAnswers.size(); i++){
             heroAnswers[i].Exam_Question__c = examQuestionList[i].Id;
             heroAnswers[i].Answer_Choice__c = examAnswerList.get(String.valueOf(i+1));
             heroAnswers[i].Exam_Result__c = [SELECT Id FROM Exam_Result__c ORDER BY lastModifiedDate DESC LIMIT 1].Id;
-            if(heroAnswers[i].Answer_Choice__c.contains('Correct_Answer_s__c') == examQuestionList[i].Correct_Answer_s__c.contains('Answer_Choice__c')){
+            if(ExamQuestionList[i].Question_Type__c == 'Multiple Choice - multiple answers') {
+                Set<String> heroSet = new Set<String>(heroAnswers[i].Answer_Choice__c.split('||'));
+                Set<String> answerSet = new Set<String>(examQuestionList[i].Correct_Answer_s__c.split('||'));
+                system.debug(heroSet);
+                system.debug(answerSet);
+                if(heroSet.Equals(answerSet)){
+                    heroAnswers[i].Correct__c = true;
+                }
+            }
+            else if(heroAnswers[i].Answer_Choice__c == examQuestionList[i].Correct_Answer_s__c){
                 heroAnswers[i].Correct__c = true;
+                
             }
             
         }
