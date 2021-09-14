@@ -50,7 +50,8 @@
     
     <!-- Header -->
     <div class="selectFormat">
-        <lightning:select name="select1" label="" onchange="{!c.setCohort}" aura:id="selectCohort">
+        <b>Select Cohort:</b>
+        <lightning:select name="select1" label="" onchange="{!c.setCohort}" aura:id="selectCohort" class="nolabel">
             <aura:iteration items="{!v.cohortList}" var="c">
                 <option text="{!c.Name}" value="{!c.Id}"/>
             </aura:iteration>
@@ -220,7 +221,7 @@
                     <aura:if isTrue="{!v.active == 'One-on-One'}">
                         
                         <!-- Table/Chart -->
-                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_9-of-12">
                             <div class="slds-m-horizontal_small slds-m-bottom_small">
                                 <div class="slds-m-top_medium">
                                     <c:TrainerOneOnOne CohortId="{!v.CohortId}"/>
