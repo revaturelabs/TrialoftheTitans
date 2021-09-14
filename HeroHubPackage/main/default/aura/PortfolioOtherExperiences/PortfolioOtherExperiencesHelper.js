@@ -14,17 +14,5 @@
             }
         });
         $A.enqueueAction(action);
-    },
-
-    showErrorToast : function(component, event){
-        component.find('notifLib').showToast({
-            "title": "Something has gone wrong when creating an Experience!",
-            "message": event.getParam("message"),
-            "variant": "error"
-        });
-    },
-
-    handleSave : function(cmp, event){
-        
-    },
+    }
 })

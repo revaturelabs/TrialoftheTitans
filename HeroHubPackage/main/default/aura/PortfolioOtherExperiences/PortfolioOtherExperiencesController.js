@@ -13,23 +13,17 @@
 
         helper.doGetExperiences(component);
     },
-
-
-    onSave : function(component, event, helper){
-        helper.handleSave(component, event);
-    },
     
     /*edit() and cancel() flip the isEdit attribute on or off depending on whether edit() is called
-    - for true - or cancel() is called - for false. After setting that attribute, the page refreshes. */
+    - for true - or cancel() is called - for false. After setting that attribute, the page should update to reflect 
+    experiences added to our records. */
     edit : function(component, event, helper) {
         component.set('v.isEdit', false);
+
     },
 
     cancel : function(component, event, helper) {
         component.set('v.isEdit', true);
-    },
-
-    handleError : function(component, event, helper){
-        helper.showErrorToast(component, event);
+        helper.doGetExperiences(component);
     }
 })

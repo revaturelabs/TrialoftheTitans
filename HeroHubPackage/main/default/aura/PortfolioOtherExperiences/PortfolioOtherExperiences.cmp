@@ -16,21 +16,18 @@
         default="['Company__c', 'Position__c', 'Start_Date__c', 'End_Date__c']"/>
 
     <!--Element meant to easily allow editing of experiences without apex.
-        Could never get it to display experiences.
+        Could never get it to display experiences.-->
         
-        <lightning:card title="Experiences">
-            <lightning:datatable aura:id="dataTable"
+    <lightning:card title="Experiences">
+        <lightning:datatable aura:id="dataTable"
             data="{!v.ExperienceList}"
             columns="{!v.columns}"
             keyField="id"
             onSave="{!c.onSave}"
             hideCheckboxColumn="true"
             draftValues="{! v.draftValues }"
-            />
-        </lightning:card>-->
-    
-    <lightning:notificationsLibrary aura:id="notifLib" />
-
+        />
+    </lightning:card>
 
     <!-- If element that determines whether experience is in edit mode or not -->
     <aura:if isTrue="{!v.isEdit}">
@@ -67,12 +64,11 @@
         <!-- Edit -->
         <aura:set attribute="else">
 
-            <lightning:card>
+            <lightning:card class="form">
+
                 <!-- Add new experience to records -->
-                <lightning:recordEditForm
-                    objectApiName="Experience__c"
-                    onsuccess="{!c.edit}"
-                    onerror="{!c.handleError}">
+                <lightning:recordEditForm objectApiName="Experience__c"
+                    onsuccess="{!c.cancel}">
 
                     <lightning:inputField fieldName="Company__c" />
                     <lightning:inputField fieldName="Position__c" />
@@ -81,11 +77,12 @@
 
                     <br/>
 
-                    <lightning:button class="slds-m-top_small" type="cancel" onclick="{!c.edit}" label="Cancel"/>
+                    <lightning:button class="slds-m-top_small" type="cancel" onclick="{!c.cancel}" variant="destructive" label="Cancel"/>
                     <lightning:button class="slds-m-top_small" type="submit" variant="Brand" label="Create new"/>
 
                 </lightning:recordEditForm>
                 <!-- Add new experience to records -->
+
             </lightning:card>
             
         </aura:set>
