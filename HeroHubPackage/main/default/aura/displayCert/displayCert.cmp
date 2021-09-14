@@ -1,17 +1,15 @@
 <aura:component implements="flexipage:availableForAllPageTypes" controller = "getCertifications">
 
 <!-- Certification related values -->
-<aura:attribute name="cert" type="String" default="Salesforce Certified XYZ" />
-<aura:attribute name="assessor" type="String" default="Webassessor" />
-<aura:attribute name="dateIssued" type="String" default="Jan 01, 1990" />
-<aura:attribute name="verifySite" type="String" default="URL_for_credentials_verification_here.com/verify" />
+<aura:attribute name="addCert" type="Boolean" default="false" />
+<aura:attribute name="editCert" type="Boolean" default="false" />
 <aura:attribute name="data" type="Object"></aura:attribute>
 
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"></aura:handler>
 
         <!-- Layout for a Certification -->
         <!-- Iterates threw all of the Certifications for this user -->
-        <h2 class="slds-text-heading_large slds-m-top_medium slds-m-bottom_x-small slds-m-left_xx-small">Certifications</h2>
+        <h2 class="mainStyle slds-text-heading_large slds-m-top_medium slds-m-bottom_x-small slds-m-left_xx-small">Certifications</h2>
         <aura:iteration items="{!v.data}" var="certification">
 
         <div class="EducationCertObject slds-grid slds-gutters slds-m-top_medium">
@@ -38,5 +36,21 @@
                 </div>
             </div>
         </div>
+        <!--Calls the editCert funcationality-->
+        <aura:if isTrue="{!v.editCert}">
+            <c:editCert recordId="{!certification.Id}"></c:editCert>
+            <!--Toggles the edit funcationality-->
+            <lightning:button label="Done" title="Neutral action" onclick="{! c.doneEditCert }"/>
+        </aura:if>
         </aura:iteration>
+        <!--Toggles the edit funcationality-->
+        <lightning:button label="Edit" title="Neutral action" onclick="{! c.editCert}"/>
+        <!--Allows for edits to be made to the certifications by calling the createCertification component once the aura:if isTrue-->
+        <aura:if isTrue="{!v.addCert}">
+            <c:createCertification/>
+            <!--Changes the aura:if to false-->
+            <lightning:button label="Done" title="Neutral action" onclick="{! c.doneCert }"/>
+        </aura:if>
+            <!--Shows the Component createCertification. Changes the aura:if to true-->
+            <lightning:button label="Add" title="Neutral action" onclick="{! c.addCert }"/>
 </aura:component>	

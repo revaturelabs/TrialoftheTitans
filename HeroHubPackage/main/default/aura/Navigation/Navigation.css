@@ -33,3 +33,9 @@
 .THIS li.pointer{
     cursor: pointer;
 }
+.THIS .pointer:Hover{
+    border-bottom: red;
+}
+.THIS .Accent{
+    border-bottom: red;/*dynamic*/
+}

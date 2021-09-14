@@ -9,5 +9,17 @@
             }
         });
         $A.enqueueAction(getCertifications);
+    },
+    addCert : function(component){
+        component.set('v.addCert', 'true')
+    },
+    doneCert : function(component){
+        component.set('v.addCert', 'false')
+    },
+    editCert : function(component){
+        component.set('v.editCert', 'true')
+    },
+    doneEditCert : function(component){
+        component.set('v.editCert', 'false')
     }
 })
