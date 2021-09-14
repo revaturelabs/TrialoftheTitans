@@ -11,12 +11,12 @@
     
     //randomize the question for each question type, and capture the list of current interview for this user
     doInit : function(component, event, helper) {
-        selfInterviewComponentHelper.doInitHelper();
+        helper.doInitHelper(component, event);
     },
     
     //make the choose record to be public
     updatePublic : function(component, event, helper){
-        selfInterviewComponentHelper.updatePublicHelper();
+        helper.updatePublicHelper(component, event);
     },
     
     
@@ -48,7 +48,7 @@
     
     //pop up the record window and save interview record
     recordSkill : function(component, event, helper){
-        selfInterviewComponentHelper.recordSkillHelper();
+        helper.recordSkillHelper(component, event);
     },
     
     //set the public option for interview 
@@ -68,7 +68,7 @@
     
     //submit the feedback for the self interview
     submitFeedback : function(component, event, helper){
-        selfInterviewComponentHelper.submitFeedbackHelper();
+        helper.submitFeedbackHelper(component, event);
     }
     
 })
