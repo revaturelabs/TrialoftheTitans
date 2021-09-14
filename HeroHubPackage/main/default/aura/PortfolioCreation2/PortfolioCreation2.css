@@ -24,4 +24,17 @@
     background-color: #3f3f3f;
     color: #D3d4d4;
 }
+.THIS.WholePortfolioCreation{
+    background-color: #3f3f3f;
+    color:#D3d4d4;
+	border: 15px solid var(--user-team-primary);
+    border-radius: 0px 5px 5px 5px;
+    height: auto;
+    margin-right: 15px;
+    min-width: 375px;
+    min-height: 700px;    
+    padding: 15px 10px 25px 15px;
+    width: 100%;
+    transition: .5s;
+}
 
