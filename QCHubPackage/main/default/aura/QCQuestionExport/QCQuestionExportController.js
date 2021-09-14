@@ -1,3 +1,14 @@
+///////////////////////////////////////////////
+//
+// Name:QCQuestionExportController.js
+// Author: Denver Leyba
+// Description: Controller for the QCQuestionExport component, contains two action method
+//              getQCQuestionList that will get a list of question from the org and 
+//              downloadCSV that will turn the list of questions into a string and then will
+//              turn it into a CSV file
+// 
+//////////////////////////////////////////////
+
 ({
     getQCQuestionList : function(component, event, helper){
         helper.loadQuestionList(component, event);

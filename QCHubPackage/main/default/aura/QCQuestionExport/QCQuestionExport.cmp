@@ -1,3 +1,11 @@
+<!-- ////////////////////////////////
+//
+//  Name:QCQuestionExport.cmp
+//  Author: Denver Leyba
+//  Description: The component file for the export button
+//
+//////////////////////////////////-->
+
 <aura:component controller="QCQuestionExportApexController" implements="flexipage:availableForAllPageTypes" access="global">
     <aura:handler name="init" value="{!this}" action="{!c.getQCQuestionList}"/>
     <aura:attribute name="questionList" type="QC_Question__c[]"/>

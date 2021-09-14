@@ -1,3 +1,14 @@
+///////////////////////////////////////////////
+//
+// Name:QCQuestionExportHelper.js
+// Author: Denver Leyba
+// Description: Helper for the QCQuestionExport controller, contains two action method
+//              loadQuestionList and convertToCSV that will turn the list of questions into a string and return it
+//              to downloadCSV and then will turn it into a CSV file
+// 
+//////////////////////////////////////////////
+
+
 ({
     loadQuestionList : function(component, event, helper){
         var action = component.get('c.getQCQuestions');
