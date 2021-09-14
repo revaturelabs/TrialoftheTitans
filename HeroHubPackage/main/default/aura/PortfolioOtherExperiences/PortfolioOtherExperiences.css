@@ -3,8 +3,25 @@
     color: black;
 }
 
-.THIS.slds-page-header{
+.THIS .slds-card_header-title{
     font-size: large;
+}
+
+.THIS #dt{
+    background-color: #3f3f3f;
+    color: #d3d4d4;
+}
+
+.THIS .slds-table_header{
+    color: #d3d4d4;
+}
+
+.THIS .slds-cell{
+    
+}
+
+.THIS .slds-truncate{
+    color: black;
 }
 
 .THIS .slds-form {

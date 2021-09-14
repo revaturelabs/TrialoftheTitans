@@ -3,7 +3,7 @@
 //  Name: ExperiencesController
 //  Author: Will Harris
 //  Created: 9/8/2021
-//  Updated: 9//2021
+//  Updated: 9/14/2021
 //  Description: ExperiencesController allows for the 
 //  other experiences component to communicate with the
 //  database.
