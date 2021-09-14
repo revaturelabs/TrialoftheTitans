@@ -2,9 +2,7 @@
   ProgressChart : function(component) {   
     var examInfo = component.get("v.contextInfo").userExams;
     var teamColors = [component.get('v.contextInfo').team.Primary_Color__c, component.get('v.contextInfo').team.Secondary_Color__c];
-    console.log("Ready to generate chart...");
-    console.log(Object.entries(examInfo));
-
+    
     let data = [];
   
 
@@ -14,8 +12,7 @@
       let passedExams = 0;
       let progress = 0;
       let recentProgress = 0;
-      console.log(titanName);
-
+      
       for (let exam of titan[1]){
         exam.isPassed ? ( exam.currentResults ? recentPassedExams++ : passedExams++ ): null;
       };
@@ -31,46 +28,14 @@
       data.push(newData);
     }
     
-    console.log(data);
-
+    
     var userColors ={
       "Amplifire":["#ef6363","#c24747"],
       "Alchemy":["#84b059","#539951"],
       "Synergy":["#ffdd00","#fbb034"],
       "Vanquish":["#7aa7e9","#5f70b0"],
     };
-    // var data = [
-    //     {
-    //       "Titan": "Data Model",
-    //       "Value": 1,
-    //       "RecentProgress": 0
-    //     },
-    //     {
-    //       "Titan": "Security",
-    //       "Value": 0.6,
-    //       "RecentProgress": .15
-    //     },
-    //     {
-    //       "Titan": "Process Automation",
-    //       "Value": 0.3,
-    //       "RecentProgress": 0.1
-    //     },
-    //     {
-    //       "Titan": "APEX",
-    //       "Value": 1,
-    //       "RecentProgress": 0
-    //     },
-    //     {
-    //       "Titan": "Visualforce",
-    //       "Value": 0.1,
-    //       "RecentProgress": 0.1
-    //     },
-    //     {
-    //       "Titan": "Lightning Components",
-    //       "Value": 0.6,
-    //       "RecentProgress": 0.2
-    //     }
-    //   ]
+    
 
     var margin = {top: 60, right: 60, bottom: 60, left: 60},
     width = 500 - margin.left - margin.right,
@@ -98,9 +63,7 @@
         .align(0)                  // This does nothing ?
         .domain( data.map(function(d) { return d.Titan; }) ); // The domain of the X axis is the list of Titans.
 
-        // console.log("data map")
-        // console.log(data.map(function(d) { return d.Titan; }))
-
+        
     // Y scale
     var y = d3.scaleRadial()
         .range([innerRadius, outerRadius])   // Domain will be define later.
@@ -110,7 +73,7 @@
         .range(teamColors) // Range of Z is the colors each section or the arc will be assigned
         .domain(["Value", "RecentProgress"]); // Domain of Z is the data key of the sections each arc is divided into
     
-    console.log(data.map(function(d){return [d.Value, d.RecentProgress]}))
+   // console.log(data.map(function(d){return [d.Value, d.RecentProgress]}))
     
     svg.append("circle")
           .attr("fill", "#29292A")
@@ -157,7 +120,7 @@
             .padAngle(0.01)
             .padRadius(innerRadius))
         .attr("fill", "none")
-        .attr("stroke", "#d4d5d5")
+        .attr("stroke", "black")
         .attr("stroke-width", "1%");
         
     // Border Rings
@@ -188,7 +151,7 @@
     
       yTick.append("circle")
           .attr("fill", "none")
-          .attr("stroke", "#d4d5d5")
+          .attr("stroke", "black")
           .attr("stroke-width", "1%")
           .attr("r", y);
     

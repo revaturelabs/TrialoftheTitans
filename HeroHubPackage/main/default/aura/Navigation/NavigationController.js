@@ -21,5 +21,21 @@
         const evt = cmp.getEvent("navigateToResults");
         evt.fire();
 
+    },
+    onPortClick: function(cmp,event,helper){
+        const evt = cmp.getEvent("navigateToPortfolio");
+        evt.fire();
+    },
+    onOneClick: function(cmp,event,helper){
+        const evt = cmp.getEvent("navigateToOneOnOne");
+        evt.fire();
+    },
+    onHover: function(cmp,event,helper){
+        let element = document.querySelectorAll("navbar");
+        for(let i=0; i<element.length; i++){
+            element[i].classList.add("Accent");
+
+        }
+        
     }
 })

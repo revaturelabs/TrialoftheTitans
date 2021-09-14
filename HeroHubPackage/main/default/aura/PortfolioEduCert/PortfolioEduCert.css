@@ -1,0 +1,38 @@
+.THIS .mainStyle{
+    background-color: #c9c7c7;
+    color: black;
+}
+.THIS .educationImage{
+    max-width:  85%;
+    max-height: 85%;
+    display: block;
+    margin: auto;
+    margin-top: 8px;
+    background-color: #c9c7c7;
+    color: black;
+}
+.THIS .imagePlaceholder{
+    width:  120px;
+    height: 120px;
+    margin-left: 12px;
+}
+.THIS .EducationCertObject{
+    background-color: #c9c7c7;
+    color: black;
+    max-width: 1000px;
+    border-radius: 5px;
+    padding-top: 10px;
+    max-height: 140px;
+    border-radius: 5px;
+    margin-left: 5px;
+ }
+ .THIS .slds-card__header{
+    background-color: #c9c7c7;
+    color: black;
+ }
+ .THIS .slds-card__body{
+    background-color:#c9c7c7;
+ }
+ .THIS .slds-card{
+    background-color: #c9c7c7;
+ }

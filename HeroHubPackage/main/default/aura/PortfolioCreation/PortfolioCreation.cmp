@@ -1,0 +1,28 @@
+<aura:component access="global" implements="force:appHostable, forceCommunity:availableForAllPageTypes">
+
+    <lightning:card class="Header">
+        <c:PortfolioHeader/>
+    </lightning:card>   
+    <lightning:card class="Body">
+        <lightning:accordion class="WholeAccordion" allowMultipleSectionsOpen="true" onsectiontoggle="{!c.handleSectionToggle}">
+
+            <lightning:accordionSection class="A" label="Industry Equivalency">
+                <c:PortfolioIndustryEquivs/>
+            </lightning:accordionSection>
+
+            <lightning:accordionSection class="B" label="Education and Certificates">
+                <c:PortfolioEduCert/>
+            </lightning:accordionSection>
+
+            <lightning:accordionSection class="C" label="Other Experiences">
+                <c:PortfolioOtherExperiences/>
+            </lightning:accordionSection>
+
+            <lightning:accordionSection class="D" label="Projects">
+                <c:PortfolioProjects/>
+            </lightning:accordionSection>
+
+        </lightning:accordion>
+    </lightning:card>
+
+</aura:component>	

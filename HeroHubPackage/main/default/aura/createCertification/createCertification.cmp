@@ -1,0 +1,8 @@
+<!--Allows for additional certifications to be added from the displayCert Component-->
+<aura:component>
+    <aura:attribute name="fields"
+                    type="String[]"
+                    default="['Name', 'Assessor__c', 'Date_Issued__c', 'Verification_Site__c', 'Image_URL__c']"/>
+    <lightning:recordForm objectApiName="Certification__c"
+                          fields="{!v.fields}"/>
+</aura:component>

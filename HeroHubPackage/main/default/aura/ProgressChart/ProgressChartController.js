@@ -8,8 +8,7 @@
 	},
 	ScriptsLoaded : function(component, event, helper){
 		component.set( "v.scriptsLoaded" , true )
-		console.log( "Scripts Loaded" )
-		console.log( component.get( "v.scriptsLoaded" ) )
+		
 	},
 	handleClick : function(component, event, helper){
 		$A.util.toggleClass(event.currentTarget, 'shrunk-chart');

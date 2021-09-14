@@ -5,6 +5,7 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<members>QCHubHomeAuraController</members>
 		<members>QCHubController</members>
 		<members>QCCohortWrapper</members>
+		<members>PortfolioProjectController</members>
 		<name>ApexClass</name>
 	</types>
 	<type>
@@ -17,7 +18,9 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<name>CustomApplication</name>
 	</types>
 	<types>
+		<members>PortfolioProjects</members>
         <members>QCInterview</members>
+		<members>CreateFlag</members>
         <members>QCInterviewQA</members>
 		<members>CohortButtons</members>
 		<members>QCHubHome</members>
