@@ -1,6 +1,5 @@
 <aura:component controller="PortfolioIndustryEquivsController" implements="force:appHostable, forceCommunity:availableForAllPageTypes" access="global">
-    <!--This component must be able to know which user is editing the component-->
-    <!--Want to create/update 5 diffrent records at the same time and save them onto the Portfolio_Skills Object-->
+
     <!-- Choose between display and edit -->
     <aura:attribute name="isEdit" type="Boolean" default="false" />
     <aura:attribute name="sigmaIcon" type="String" default="utility:advanced_function" />
@@ -12,7 +11,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <aura:if isTrue="{!!v.isEdit}">
-
+    <!--Display card-->
     <lightning:card title="Industry Equivalency" class="Card">
         <div class="slds-grid slds-gutters">
 
@@ -84,7 +83,7 @@
     </lightning:card>
 
 
-    <!-- Edit -->
+    <!-- Edit card-->
     <aura:set attribute="else">
 
         <lightning:card title="Industry Equivalency" class="EditCard">
