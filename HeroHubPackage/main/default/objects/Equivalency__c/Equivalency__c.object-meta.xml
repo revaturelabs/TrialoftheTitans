@@ -155,10 +155,9 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Equivalency</label>
     <nameField>
-        <displayFormat>A-{0000}</displayFormat>
         <label>Equivalency</label>
         <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Equivalencies</pluralLabel>
     <searchLayouts/>
