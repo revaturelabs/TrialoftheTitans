@@ -28,9 +28,7 @@ public class ExamInterviewApexController {
         Exam_Result__c examResult = [SELECT Id FROM Exam_Result__c WHERE Account__c = :account.Id AND Status__c = 'Assigned' AND Exam__c = :examId];
         examResult.Status__c = 'Completed';
         update examResult;
-
-
-    }  
+    }
 
     // created a new list of hero answers that is the same size as the amount of questions
     @AuraEnabled
