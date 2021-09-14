@@ -52,7 +52,7 @@ public with sharing class PortfolioIndustryEquivsController {
         /*
         The List of newSkills comes like ['Skill 1', 'Skill 2', 'Skill 3',...] up to 5 --- INDEX STARTS AT 0!!
         The List of newEquivs comes like [1,2,3,4,5] each month is the same index as its respective skill
-        Portfolio_Skills__c only has 3 fields. Name, Skill_Equivalency__c, User__c
+        Equivalency__c only has 3 fields. Name, Skill_Equivalency__c, User__c
         */
 
         //Get a list of all the Portfolio skills in the system from running user

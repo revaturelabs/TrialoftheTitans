@@ -1,4 +1,10 @@
-/*.THIS.Header{
+.THIS.Welcome{
+    color:#D3d4d4;
+    font-size: xx-large;
+    text-align: center;
+
+}
+.THIS.Header{
     background-color: #3f3f3f;
     color: #D3d4d4;
 }
@@ -17,5 +23,5 @@
 .THIS.Project {
     background-color: #3f3f3f;
     color: #D3d4d4;
-}*/
+}
 

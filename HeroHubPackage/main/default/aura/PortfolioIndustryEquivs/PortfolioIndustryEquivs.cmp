@@ -13,13 +13,14 @@
 
     <aura:if isTrue="{!!v.isEdit}">
 
-    <lightning:card title="Industry Equivalency">
+    <lightning:card title="Industry Equivalency" class="Card">
         <div class="slds-grid slds-gutters">
 
             <div class="slds-col slds-size_1-of-5 slds-text-align_center">
                 <div>
-                    <lightning:icon iconName="{!v.sigmaIcon}" />
+                    <lightning:icon iconName="{!v.sigmaIcon}"/>
                 </div>
+
                 <div>
                     <p>Skill name:&nbsp;</p> <lightning:formattedText name="skill_0" value="{!v.skills[0]}" />
                 </div>
@@ -86,12 +87,14 @@
     <!-- Edit -->
     <aura:set attribute="else">
 
-        <lightning:card title="Industry Equivalency">
+        <lightning:card title="Industry Equivalency" class="EditCard">
             <div class="slds-grid slds-gutters">
 
                 <div class="slds-col slds-size_1-of-5 slds-text-align_center">
                     <div class="slds-text-heading_medium">Skill #1</div>
+                    
                     <lightning:input aura:id="skillInput_0" label="Enter skill name" name="skillInput_0" value="{!v.skills[0]}" />
+                    
                     <lightning:input aura:id="equivInput_0" label="Enter months" name="equivInput_0" type="number" value="{!v.equivs[0]}" />
                 </div>
 

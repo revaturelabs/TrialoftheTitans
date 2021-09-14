@@ -1,5 +1,7 @@
 <aura:component access="global" implements="force:appHostable, forceCommunity:availableForAllPageTypes">
 
+    <h1 class="Welcome">Tell Your War Stories With Portfolio Creation!</h1>
+
     <lightning:card class="Header">
         <c:PortfolioHeader/>
     </lightning:card>

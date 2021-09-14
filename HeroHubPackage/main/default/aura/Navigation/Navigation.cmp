@@ -10,11 +10,12 @@
     <aura:registerEvent name="navigatePage" type="c:MainPageNavigation" />
     <aura:registerEvent name="navigateToResults" type="c:NavResultsEvent" />
     <aura:registerEvent name="navigateToPortfolio" type="c:PortfolioEvent" />
+    <aura:registerEvent name="navigateToOneOnOne" type="c:OneOnOneEvent" />
     <aura:attribute name="navigate" type="String" />
     <aura:attribute name="contextInfo" type="UserContextInfo" />
 
     <!-- Main Navigation Bar -->
-    <div class="navbar">
+    <div class="navbar" onHover="{!c.onHover}">
         <ul>
             <li>{!v.contextInfo.squad.Name}</li>
             <li onclick="{!c.onNameClick}" class="navbar-quote">{!v.contextInfo.acc.Name}</li>
@@ -28,6 +29,8 @@
                 <!-- Switch between Titan and HeroHub -->
                 
             </li>
+            <!--Add a hover event in order to see the accents-->
+            <li class="pointer" onclick="{!c.onOneClick}">One on One</li>
             <li class="pointer" onclick="{!c.onPortClick}">Portfolio Creation</li>
             <li>Logout</li>
         </ul>
