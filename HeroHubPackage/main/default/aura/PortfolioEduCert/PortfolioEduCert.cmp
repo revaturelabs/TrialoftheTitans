@@ -8,56 +8,58 @@
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"></aura:handler>
 
     <!-- Education and Certifications layout -->
-    <lightning:card class="slds-m-horizontal_medium">
-        <h1 class="mainStyle slds-text-heading_large slds-m-top_medium slds-m-bottom_x-small slds-m-left_xx-small">Education</h1>
-    
-        <!-- Layout for a University Degree -->
-        <!-- Iterates threw all of the Degrees for this user -->
-        <aura:iteration items="{!v.data}" var="school">
-            <div class="EducationCertObject slds-grid slds-gutters slds-m-top_medium">
+    <div>
+        <lightning:card class="slds-m-horizontal_medium">
+            <h1 class="mainStyle slds-text-heading_large slds-m-top_medium slds-m-bottom_x-small slds-m-left_xx-small">Education</h1>
+        
+            <!-- Layout for a University Degree -->
+            <!-- Iterates threw all of the Degrees for this user -->
+            <aura:iteration items="{!v.data}" var="school">
+                <div class="EducationCertObject slds-grid slds-gutters slds-m-top_medium">
 
-                <!-- University Logo -->
-                <div class="imagePlaceholder">
-                    <!-- Logo image - Possible implementations: (1) Reference a static resource image that a hero uploads,
-                                                                (2) Input form where hero provides the URL for that image -->
-                    <img class="educationImage" src="{!school.Image_URL__c}" alt="University Logo here" />
-                </div>
-                
-                <!-- Degree Info -->
-                <div class="mainStyle slds-col slds-size_3-of-6">
-                    <div class="mainStyle DegreeMajorBar slds-text-heading_medium" style="padding-left: 16px;">{!school.Degree__c} - {!school.Major__c}</div>
-                    <lightning:card>
-                        <aura:set attribute="title">
-                            <lightning:icon class="slds-m-right_xx-small" iconName="utility:knowledge_base" size="xx-small"/> <!-- Icon can change to preference -->
+                    <!-- University Logo -->
+                    <div class="imagePlaceholder">
+                        <!-- Logo image - Currently pulling from image URL need to make CSP trusted site in order 
+                                            to see the image on the HeroHub -->
+                        <img class="educationImage" src="{!school.Image_URL__c}" alt="University Logo here" />
+                    </div>
+                    
+                    <!-- Degree Info -->
+                    <div class="mainStyle slds-col slds-size_3-of-6">
+                        <div class="mainStyle DegreeMajorBar slds-text-heading_medium" style="padding-left: 16px;">{!school.Degree__c} - {!school.Major__c}</div>
+                        <lightning:card>
+                            <aura:set attribute="title">
+                                <lightning:icon class="slds-m-right_xx-small" iconName="utility:knowledge_base" size="xx-small"/> <!-- Icon can change to preference -->
 
-                            Graduated from {!school.Name} on {!school.DateGraduate__c} <!-- Possible implementations: (1) receive 3-letter month and 4-number year as attributes,
-                                                                                    (2) pull values from the database if they are saved there for a hero -->
-                        </aura:set>
-                    </lightning:card>
-                    <div style="padding-left: 16px;">GPA: {!school.Gpa__c}</div> <!-- This is an optional value -->
-                    <!-- Add an edit button and use the Id to edit the record -->
+                                Graduated from {!school.Name} on {!school.DateGraduate__c} <!-- Possible implementations: (1) receive 3-letter month and 4-number year as attributes,
+                                                                                        (2) pull values from the database if they are saved there for a hero -->
+                            </aura:set>
+                        </lightning:card>
+                        <div style="padding-left: 16px;">GPA: {!school.Gpa__c}</div> <!-- This is an optional value -->
+                        <!-- Add an edit button and use the Id to edit the record -->
+                    </div>
                 </div>
-            </div>
-            <!--Displays the edit component-->
-            <aura:if isTrue="{!v.editEdu}">
-                <c:editEdu recordId="{!school.Id}"></c:editEdu>
-                <lightning:button label="Done" title="Neutral action" onclick="{! c.doneEditEdu}"/>
+                <!--Displays the edit component-->
+                <aura:if isTrue="{!v.editEdu}">
+                    <c:editEdu recordId="{!school.Id}"></c:editEdu>
+                    <lightning:button label="Done" title="Neutral action" onclick="{! c.doneEditEdu}"/>
+                </aura:if>
+            </aura:iteration>
+            <!--Toggles the edit funcationality-->
+            <lightning:button label="Edit" title="Neutral action" onclick="{! c.editEdu}"/>
+            <!--Calls createEducation component to create a new education record-->
+            <aura:if isTrue="{!v.addEdu}">
+                <c:createEducation/>
+                <lightning:button label="Done" title="Neutral action" onclick="{! c.doneEdu }"/>
             </aura:if>
-        </aura:iteration>
-        <!--Toggles the edit funcationality-->
-        <lightning:button label="Edit" title="Neutral action" onclick="{! c.editEdu}"/>
-        <!--Calls createEducation component to create a new education record-->
-        <aura:if isTrue="{!v.addEdu}">
-            <c:createEducation/>
-            <lightning:button label="Done" title="Neutral action" onclick="{! c.doneEdu }"/>
-        </aura:if>
-        <!--Toggles the view to show the CreateEducation Component-->
-        <lightning:button label="Add" title="Neutral action" onclick="{! c.addEdu }"/>
+            <!--Toggles the view to show the CreateEducation Component-->
+            <lightning:button label="Add" title="Neutral action" onclick="{! c.addEdu }"/>
 
-        <!--Displays the certifications-->
-        <c:displayCert/>
+            <!--Displays the certifications-->
+            <c:displayCert/>
 
-    </lightning:card>
+        </lightning:card>
+    </div>  
     <!-- End layout -->
 
 </aura:component>	

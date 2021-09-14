@@ -1,8 +1,13 @@
 <aura:component access="global" implements="force:appHostable, forceCommunity:availableForAllPageTypes">
-    <div class="WholePortfolioCreation">
-        <div class="Welcome">
+
+        <img class="Chimera" src="{!$Resource.TitanResources + '/TitanResources/Chimera.gif' }"/>
+    
+
+        <div class="fire">
             <h1>Tell Your War Stories With Portfolio Creation!</h1>
         </div>
+
+        <!--<img class="Hydra" src="{!$Resource.TitanResources + '/TitanResources/Hydra.gif' }"/>-->
 
         <lightning:card class="Header">
             <c:PortfolioHeader/>
@@ -23,5 +28,5 @@
         <lightning:card class="Project">
             <c:PortfolioProjects/>
         </lightning:card>
-    </div>
+   
 </aura:component>	
