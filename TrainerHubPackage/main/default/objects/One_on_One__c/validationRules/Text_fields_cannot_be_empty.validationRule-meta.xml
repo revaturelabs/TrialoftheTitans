@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Text_fields_cannot_be_empty</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR( ISBLANK(Personal_Comments__c), ISBLANK( Internal_Comments__c ) )</errorConditionFormula>
+    <errorMessage>Comment fields must both be filled out</errorMessage>
+</ValidationRule>
