@@ -100,8 +100,10 @@
 
                 <div class="slds-col slds-size_1-of-5 slds-text-align_center">
                     <div class="slds-text-heading_medium">Skill #2</div>
-                    <lightning:input aura:id="skillInput_1" label="Enter skill name" name="skillInput_1" value="{!v.skills[1]}" />
-                    <lightning:input aura:id="equivInput_1" label="Enter months" name="equivInput_1" type="number" value="{!v.equivs[1]}" />
+                    <div>
+                        <lightning:input class="EditColor" aura:id="skillInput_1" label="Enter skill name" name="skillInput_1" value="{!v.skills[1]}" />
+                        <lightning:input aura:id="equivInput_1" label="Enter months" name="equivInput_1" type="number" value="{!v.equivs[1]}" />
+                    </div>
                 </div>
 
                 <div class="slds-col slds-size_1-of-5 slds-text-align_center">

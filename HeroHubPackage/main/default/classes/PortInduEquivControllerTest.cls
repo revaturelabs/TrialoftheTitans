@@ -14,15 +14,15 @@ public class PortInduEquivControllerTest {
         PortfolioIndustryEquivsController.InputPortSkills(TestSkills, TestMonths);
 
         //System Assert Equals to test if 5 records were succesfully added to the Org
-        List<Portfolio_Skill__c> TestPort = [SELECT Name, Months__c FROM Portfolio_Skill__c];
+        List<Equivalency__c> TestPort = [SELECT Name, Skill_Equivalency__c FROM Equivalency__c];
         system.assertEquals(5, TestPort.size());
 
     }
     @isTest
     private static void UpdatingNewSkills(){
         for(integer i=0; i<5; i++){
-            Portfolio_Skill__c PK = new Portfolio_Skill__c(Name='Test'+i,
-                                                            Months__c = i,
+            Equivalency__c PK = new Equivalency__c(Name='Test'+i,
+                                                            Skill_Equivalency__c = i,
                                                             User__c = UserInfo.getUserId());
             insert PK;
         }
@@ -36,17 +36,17 @@ public class PortInduEquivControllerTest {
 
         PortfolioIndustryEquivsController.InputPortSkills(TestSkills, TestMonths);
         //System assert Equals to confirm list size has not increased with the updated records and update was succesful
-        List<Portfolio_Skill__c> TestPort = [SELECT Name, Months__c FROM Portfolio_Skill__c];
+        List<Equivalency__c> TestPort = [SELECT Name, Skill_Equivalency__c FROM Equivalency__c];
         system.assertEquals(5, TestPort.size());
     }
     @isTest
     private static void ReturnSkillsTests(){
         test.startTest();
-        List<Portfolio_Skill__c> PortSkillsFull = new List<Portfolio_Skill__c>();
+        List<Equivalency__c> PortSkillsFull = new List<Equivalency__c>();
         for(integer i=0;i<5;i++){
-            Portfolio_Skill__c PKsingle = new Portfolio_Skill__c();
+            Equivalency__c PKsingle = new Equivalency__c();
             PKsingle.Name = 'Test Name '+ i;
-            PKsingle.Months__c =i ;
+            PKsingle.Skill_Equivalency__c =i ;
             PKsingle.User__c = UserInfo.getUserId();
             PortSkillsFull.add(PKsingle);
         }

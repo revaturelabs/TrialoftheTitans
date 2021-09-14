@@ -17,10 +17,10 @@
     <!-- Main Navigation Bar -->
     <div class="navbar" onHover="{!c.onHover}">
         <ul>
-            <li>{!v.contextInfo.squad.Name}</li>
+            <li class="pointer">{!v.contextInfo.squad.Name}</li>
             <li onclick="{!c.onNameClick}" class="navbar-quote">{!v.contextInfo.acc.Name}</li>
             <li class="navbar-quote">{!v.contextInfo.team.Slogan__c}</li>
-            <li onclick="{!c.fireNav}">
+            <li class="pointer" onclick="{!c.fireNav}">
 
                 <!-- Switch between Titan and HeroHub -->
                 <aura:if isTrue="{!v.navigate != 'Titans'}">Titans
@@ -32,7 +32,7 @@
             <!--Add a hover event in order to see the accents-->
             <li class="pointer" onclick="{!c.onOneClick}">One on One</li>
             <li class="pointer" onclick="{!c.onPortClick}">Portfolio Creation</li>
-            <li>Logout</li>
+            <li class="pointer">Logout</li>
         </ul>
     </div>
     <!-- Main Navigation Bar-->
