@@ -8,7 +8,7 @@ public class NumericalQuestionTypeApexController {
 //Description: Temporary Controller for NumericalQuestionType Component
 //
 //////////////////////////////////////////
-
+/*
 @AuraEnabled
     public static List<Exam_Question__c> pullNumericalQuestions(){
         List<Exam_Question__c> questionH = [SELECT Question_Type__c, Question_Text__c, Correct_Answer_s__c FROM Exam_Question__c WHERE Question_Type__c = 'Numerical'];
@@ -18,6 +18,6 @@ public class NumericalQuestionTypeApexController {
         }else {
             return null;
         }
-    }
+    }*/
 }
 
