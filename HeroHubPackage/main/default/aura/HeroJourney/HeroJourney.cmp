@@ -44,13 +44,17 @@
         <!-- Overview & GamePath Column -->
         <aura:if isTrue="{!v.active == 'Overview'}">
             <!-- Overview Display -->
-            <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
-                <h3 class="chart-title">{!v.currentChart}</h3>
-                <div class="chartBox">
-                    <c:ProgressChart currentChart="{!v.currentChart}" contextInfo="{!v.contextInfo}"/>
-                    <c:RadialChart currentChart="{!v.currentChart}" contextInfo="{!v.contextInfo}"/>
+            
+            <div style="background:#d4d3d3; border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                <div class="wholeChart">
+                    <h3 class="chart-title">{!v.currentChart}</h3>
+                    <div class="chartBox">
+                        <c:ProgressChart currentChart="{!v.currentChart}" contextInfo="{!v.contextInfo}"/>
+                        <c:RadialChart currentChart="{!v.currentChart}" contextInfo="{!v.contextInfo}"/>
+                    </div>
                 </div>
             </div>
+           
             <!-- Overview Display -->
 
             <aura:set attribute="else">

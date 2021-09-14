@@ -120,7 +120,7 @@
             .padAngle(0.01)
             .padRadius(innerRadius))
         .attr("fill", "none")
-        .attr("stroke", "#d4d5d5")
+        .attr("stroke", "black")
         .attr("stroke-width", "1%");
         
     // Border Rings
@@ -151,7 +151,7 @@
     
       yTick.append("circle")
           .attr("fill", "none")
-          .attr("stroke", "#d4d5d5")
+          .attr("stroke", "black")
           .attr("stroke-width", "1%")
           .attr("r", y);
     
