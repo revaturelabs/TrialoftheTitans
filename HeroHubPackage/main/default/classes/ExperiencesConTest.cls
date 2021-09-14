@@ -106,17 +106,28 @@ private with sharing class ExperiencesConTest {
         //Size of experiences should be six
         System.assertEquals(6, experiences.size());
 
+
+        //Test updateExperiences() method
         for(Experience__c experience : experiences){
             experience.Start_Date__c = Date.valueOf('2012-12-12');
         }
 
         System.runAs(testUser){
-            update experiences;
+            ExperiencesController.updateExperiences(experiences);
         }
 
         for(Experience__c experience : experiences){
             System.assertEquals(Date.valueOf('2012-12-12'), experience.Start_Date__c);
-        }        
+        }
+        
+        //Test deleteExperience() method
+        ExperiencesController.deleteExperience(experiences[5]);
+
+        System.runAs(testUser){
+            experiences = ExperiencesController.getExperiences();
+        }
+
+        System.assertEquals(5, experiences.size());
     }
 
     @isTest

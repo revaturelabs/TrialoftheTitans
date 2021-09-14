@@ -11,9 +11,6 @@
     <aura:attribute name="draftValues" type="Object" default="[]"/>
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-
-    <aura:attribute name="fields" type="String[]" 
-        default="['Company__c', 'Position__c', 'Start_Date__c', 'End_Date__c']"/>
         
     <lightning:card title="Experiences">
         <lightning:datatable
@@ -22,8 +19,8 @@
             keyField="Id"
             onsave="{!c.onSave}"
             hideCheckboxColumn="true"
-            draftValues="{! v.draftValues }"
-            showRowNumberColumn="false"
+            draftValues="{!v.draftValues}"
+            onrowaction="{!c.handleRowAction}"
         />
     </lightning:card>
 

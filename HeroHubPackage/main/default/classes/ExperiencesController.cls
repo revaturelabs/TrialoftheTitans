@@ -34,6 +34,15 @@ public with sharing class ExperiencesController {
     experiences: experiences to update*/
     @AuraEnabled
     public static void updateExperiences(List<Experience__c> experiences){
-        update experiences;
+        if(experiences != null){
+            update experiences;
+        }
+    }
+
+    /*deleteExperience() deletes experiences in the database
+    experiences: experiences to delete */
+    @AuraEnabled
+    public static void deleteExperience(Experience__c experience){
+        delete experience;
     }
 }
