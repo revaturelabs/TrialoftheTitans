@@ -1,25 +1,27 @@
 <aura:component access="global" implements="force:appHostable, forceCommunity:availableForAllPageTypes">
+    <div class="WholePortfolioCreation">
+        <div class="Welcome">
+            <h1>Tell Your War Stories With Portfolio Creation!</h1>
+        </div>
 
-    <h1 class="Welcome">Tell Your War Stories With Portfolio Creation!</h1>
+        <lightning:card class="Header">
+            <c:PortfolioHeader/>
+        </lightning:card>
 
-    <lightning:card class="Header">
-        <c:PortfolioHeader/>
-    </lightning:card>
+        <lightning:card class="Indu">
+            <c:PortfolioIndustryEquivs/>
+        </lightning:card>
 
-    <lightning:card class="Indu">
-        <c:PortfolioIndustryEquivs/>
-    </lightning:card>
+        <lightning:card class="Education">
+            <c:PortfolioEduCert/>
+        </lightning:card>
 
-    <lightning:card class="Education">
-        <c:PortfolioEduCert/>
-    </lightning:card>
+        <lightning:card class="Exp">
+            <c:PortfolioOtherExperiences/>
+        </lightning:card>
 
-    <lightning:card class="Exp">
-        <c:PortfolioOtherExperiences/>
-    </lightning:card>
-
-    <lightning:card class="Project">
-        <c:PortfolioProjects/>
-    </lightning:card>
-
+        <lightning:card class="Project">
+            <c:PortfolioProjects/>
+        </lightning:card>
+    </div>
 </aura:component>	
