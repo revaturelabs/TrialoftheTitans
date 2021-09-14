@@ -8,9 +8,9 @@
 <aura:component controller="CohortPageController" implements="flexipage:availableForAllPageTypes">
     <aura:html tag="style">
         :root {
-        background-color: #9996e7;
-        --user-team-primary: #444192;
-        --user-team-secondary: #333081;
+        background-color: #ffffff;
+        --user-team-primary: #1798c1;
+        --user-team-secondary: #c4c4c4;
         }
     </aura:html>
     
@@ -27,11 +27,13 @@
     <aura:attribute name="CohortId" type ="String" default=""/>
     
     <aura:attribute name="tabs" type="List"/>
-    <aura:attribute name="active" type="String" default="Overall"/>
+    <aura:attribute name="active" type="String" default="Hero List"/>
     <aura:attribute name="examURL" type="String"/>
     <aura:attribute name="currIndex" type="Integer"/>
+    <aura:attribute name="cohortList" type="Cohort__c[]"/>
     <aura:handler name="init" value="{!this}" action="{!c.Init}"/>
     <aura:handler event="c.TitanClickedEvent" action="{!c.HandleTabClick}"/>
+    <aura:handler name="change" value="{!v.CohortId}" action="{!c.handleCohortChange}" />
     
     <aura:handler name="HeroAssessmentCreationHideEvent" event="c:HeroAssessmentCreationHideEvent" action="{!c.HideNewAssessment}"/>
     <aura:handler name="AssessmentCreationHideEvent" event="c:AssessmentCreationHideEvent" action="{!c.HideNewAssessment}"/>
@@ -47,8 +49,16 @@
     -->
     
     <!-- Header -->
+    <div class="selectFormat">
+        <b>Select Cohort:</b>
+        <lightning:select name="select1" label="" onchange="{!c.setCohort}" aura:id="selectCohort" class="nolabel">
+            <aura:iteration items="{!v.cohortList}" var="c">
+                <option text="{!c.Name}" value="{!c.Id}"/>
+            </aura:iteration>
+        </lightning:select>
+    </div>
     <div class="header">
-        Cohort Page
+        Trainer Hub
     </div>
     <!-- Header -->
     
@@ -207,6 +217,22 @@
                     </aura:if>
                     <!-- Coding Assessment List Tab -->
                     
+                    <!-- One-on-One Tab -->
+                    <aura:if isTrue="{!v.active == 'One-on-One'}">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_9-of-12">
+                            <div class="slds-m-horizontal_small slds-m-bottom_small">
+                                <div class="slds-m-top_medium">
+                                    <c:TrainerOneOnOne CohortId="{!v.CohortId}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Table/Chart -->
+                                            
+                    </aura:if>
+                    <!-- One-on-One Tab -->
+
                     <!-- QC Scores Tab -->
                     <aura:if isTrue="{!v.active == 'QC Scores'}">
                         
@@ -222,6 +248,22 @@
                         
                     </aura:if>
                     <!-- QC Scores Tab -->
+
+                    <!-- Exam Assignments Tab -->
+                    <aura:if isTrue="{!v.active == 'Exam Assignments'}">
+                        
+                        <!-- Table/Chart -->
+                        <div style="background:var(--user-team-primary); border-radius: 0px 5px 5px 5px;" class="slds-col slds-size_6-of-7">
+                            <div class="slds-m-horizontal_small slds-m-bottom_small">
+                                <div class="slds-m-top_medium">
+                                    <c:ExamAssignment CohortId="{!v.CohortId}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Table/Chart -->
+                                            
+                    </aura:if>
+                    <!-- Exam Assignments Tab -->
                     
                 </aura:if>
             </aura:iteration>

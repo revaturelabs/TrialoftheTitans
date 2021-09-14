@@ -1,0 +1,12 @@
+.THIS.form {
+    background-color: white;
+}
+
+.THIS.padding{
+    padding-top:20px;
+}
+
+.THIS .nolabel .slds-form-element__label{
+    display: none; 
+    visibility: hidden;
+}
