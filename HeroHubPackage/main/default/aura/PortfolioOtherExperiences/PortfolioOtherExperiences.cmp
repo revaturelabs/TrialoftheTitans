@@ -18,7 +18,7 @@
     <!--Element meant to easily allow editing of experiences without apex.
         Could never get it to display experiences.-->
         
-    <lightning:card title="Experiences">
+    <!--<lightning:card title="Experiences">
         <lightning:datatable aura:id="dataTable"
             data="{!v.ExperienceList}"
             columns="{!v.columns}"
@@ -27,7 +27,7 @@
             hideCheckboxColumn="true"
             draftValues="{! v.draftValues }"
         />
-    </lightning:card>
+    </lightning:card>-->
 
     <!-- If element that determines whether experience is in edit mode or not -->
     <aura:if isTrue="{!v.isEdit}">
