@@ -1,45 +1,51 @@
-/*
-    CREATED BY: Murrai Scanlon
-    USAGE: This class is used to interface with the server in order to retrieve hero/user Portfolio Project data.
-           Functionality is working, but I still need to add validation and error handling.
-*/
+/////////////////////////////////////////////////////
+//
+//  Name: PortfolioProjectController
+//  Author: Murrai Scanlon
+//  Description: This controller queries Project data needed to display on the Portfolio Project Aura component.
+//  	It also allows the user to create a new project from the Portfolio Project Aura component. However, the
+//  	Save functionality for a project Update is not currently working.
+//  
+//
+///////////////////////////////////////////////////
 
-public with sharing class PortfolioProjectController {
-   
-    @AuraEnabled
-    public String user{get; set;}
-    @AuraEnabled
-    public String description{get; set;}
-    @AuraEnabled
-    public String roles{get; set;}
-    @AuraEnabled
-    public String technologies{get; set;}
-    @AuraEnabled
-    public String name{get; set;}
-    @AuraEnabled
-    public List<Project__c> projectList{get; set;}
+public class PortfolioProjectController {
     
+
     
     @AuraEnabled
-    public static PortfolioProjectController getDetails(Id userIdFromPage){
+    // Get the Project data for the running user
+    public static List<Project__c> getProjects(Id userIdFromPage){
         
-        //user id for testing: 0055f000000mwrOAAQ
-        //user id for reals: WHERE User__r.Id = :userIdFromPage
+        //Testing specific hero user: 0055f000000mwrOAAQ
+        //Testing sys admin id: 0055f000000mn0YAAQ
+        //Testing running user: :userIdFromPage
         
-        PortfolioProjectController lightningProp = new PortfolioProjectController();
-        lightningProp.projectList = new List<Project__c>();
-        for(Project__c projObj: [SELECT id, Name, Description__c, Roles_Responsibilities__c, Technologies__c, User__c 
+        List<Project__c> projects = new List<Project__c>();
+        
+        projects = [SELECT id, Name, Description__c, Roles_Responsibilities__c, Technologies__c, User__c 
                                  FROM Project__c
-                                 WHERE User__r.Id =:userIdFromPage
+                                 WHERE User__r.Id = :userIdFromPage
                                  ORDER BY Name ASC
-                                ]){
-            lightningProp.projectList.add(projObj);
+                                ];
+        
+        return projects;
+    }
+    
+    @AuraEnabled
+    // Create or update project information provided by the Portfolio Projects Aura component
+    // The creation functionality is working, but the update functionality is not
+    public static String createProject(Project__c projObj, Boolean updateParam){
+        
+        projObj.User__c = UserInfo.getUserId(); // Assign running user to new project
+        
+        if(updateParam){
+            update projObj; // If the incoming parameter indicates and update, perform update DML
+        } else {
+            upsert projObj; // otherwise, create a new project
         }
-        lightningProp.Name = lightningProp.projectList.get(0).Name;
-        lightningProp.description = lightningProp.projectList.get(0).Description__c;
-        lightningProp.roles = lightningProp.projectList.get(0).Roles_Responsibilities__c;
-        lightningProp.technologies = lightningProp.projectList.get(0).Technologies__c;
-        return lightningProp;
+        
+        return projObj.Id; //return the new project Id for display in the Aura component
     }
 
 }
