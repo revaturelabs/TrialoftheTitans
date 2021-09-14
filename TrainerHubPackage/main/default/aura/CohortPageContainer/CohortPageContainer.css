@@ -6,12 +6,13 @@
 /* Define header styling */
 .THIS.header{
   background-color: #1798c1;
-  color:black;
+  color:white;
   padding-top:20px;
   padding-bottom:20px;
   text-align: center;
   font-size:30px;
   float:initial;
+  font-weight: bold;
 }
 /* Define body styling */
 #overall-body.THIS {
@@ -25,4 +26,10 @@ background-color: #1798c1;
 text-align: left;
 float:left;
 padding-left:20px;
+padding-top:10px;
+}
+
+.THIS .nolabel .slds-form-element__label{
+  display: none; 
+  visibility: hidden;
 }

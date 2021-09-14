@@ -8,7 +8,6 @@
 ///////////////////////////////////////////////////
 ({
 	Init : function(component, event, helper) {
-        console.debug("hello");
 		helper.Init(component, event);
         helper.SetExamLink(component, event);
         helper.getCohorts(component);
