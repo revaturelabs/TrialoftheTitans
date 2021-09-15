@@ -17,8 +17,7 @@
     <aura:attribute name="ScriptLoaded" type="Boolean" default="false"/>
     <aura:attribute name="DataLoaded" type="Boolean" default="false"/>
 
-    <aura:attribute name="ScriptLoaded" type="Boolean" default="false" />
-    <aura:attribute name="DataLoaded" type="Boolean" default="false" />
+
 
     <ltng:require scripts="{!$Resource.d3 + '/d3.js'}" afterScriptsLoaded="{!c.D3}" />
 
