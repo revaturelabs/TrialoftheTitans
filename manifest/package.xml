@@ -1,7 +1,11 @@
-QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-
 	<types>
+		<member>AssignExams</member>
+		<name>Flow</name>
+	</types>
+
+	<!--<types>
 		<members>QCHubHomeAuraController</members>
 		<members>QCHubController</members>
 		<members>QCCohortWrapper</members>
@@ -37,6 +41,6 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<members>LaunchInterviewEvent</members>
 		<members>QCQuestionEdit</members>
 		<name>AuraDefinitionBundle</name>
-	</types>
+	</types>-->
 	<version>51.0</version>
 </Package>

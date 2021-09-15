@@ -12,7 +12,7 @@
             "package": "ExamPackage",
             "versionName": "ver 1.0",
             "versionNumber": "1.0.0.NEXT",
-            "default": false,
+            "default": true,
             "dependencies": [
                 {
                     "package": "CorePackage@1.0.0-1"
