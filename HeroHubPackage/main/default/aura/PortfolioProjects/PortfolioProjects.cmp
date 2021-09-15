@@ -3,41 +3,134 @@
 //
 //  Name: PortfolioProjects Aura Component
 //  Author: Steven Magnin
-//  Description: Component for the projects section of the Hero portfolio. No functionality due to not enough time, just an idea of where to go for iteration 4.
+//  Description: Component for Project Creation section of the Hero portfolio. Currently displays 
+//  	a section for the user to create and save to projects. All projects relevant to the user will
+//      be displayed on the same screen. User Edit button is currently not persisting. 
+//  
+//		
 //
 ///////////////////////////////////////////////////
 -->
 
-<aura:component implements="forceCommunity:availableForAllPageTypes">
-    <!-- Lists here should be retrieved from Project__c on server -->
-    <aura:attribute name="projectList" type="List" default="['Test Project 1', 'Test Project 2', 'Test Project 3']"/>
-    <aura:attribute name="projectDescList" type="List" default="['Test Project 1 Description', 'Test Project 2 Description', 'Test Project 3 Description']"/>
 
-    <!-- replicate for project 2 and 3 -->
-    <aura:attribute name="editOne" type="Boolean"/>
-    <aura:attribute name="projectOneRoles" type="String"/>
+<aura:component controller="PortfolioProjectController" 
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                access="global" >
+    
+     
+    <!-- Variables to be displayed or used in logic -->
+    <aura:attribute name="projects" type="Project__c[]"  />
+    <aura:attribute name="isEmpty" type="Boolean" default="true" />
+    <aura:attribute name="isEdit" type="Boolean" default="true" />
+    <aura:attribute name="projectId" type="String"  />
+    <aura:attribute name="userId" type="String"  />
+    <aura:attribute name="projectObj" type="Project__c" default="{'sobjectType': 'Project__c',
+                                                                   'Name' : '',
+                                                                   'Description__c' : '',
+                                                                   'Roles_Responsibilities__c' : '',
+                                                                   'Technologies__c' : ''}" />
+    
+    
+    
+    <!-- Initializing action upon page load-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    
+    
+	 <h1 class="Header">Projects</h1>
+    <!-- Container for everything on the page. Need to change the background color-->
+	<div class="slds-box "> 
+            
+        	<!-- Display empty fields for user to create and save a new project. THIS LOOKS LIKE GARBAGE. . .FIX IT-->
+    		<p>Project Name:&nbsp;</p> 
+        	<lightning:input  value="{!v.projectObj.Name}"  placeholder="Enter the project name. . ." class="slds-m-bottom_medium"/>
+    		<p>Description:&nbsp;</p> 
+    		<lightning:inputRichText  value="{!v.projectObj.Description__c}" label="Description" placeholder="Enter a description. . ." class="slds-m-bottom_medium"/>
+    		<p>Roles and Responsibilities:&nbsp;</p> 
+    		<lightning:inputRichText  value="{!v.projectObj.Roles_Responsibilities__c}" label="Roles and Responsibilities" placeholder="Enter roles and responsibilities. . ." class="slds-m-bottom_medium"/>
+    		<p>Technologies and Environments:&nbsp;</p> 
+    		<lightning:inputRichText  value="{!v.projectObj.Technologies__c}" label="Technologies/Enviroments" placeholder="Enter technolgies and environments. . ." class="slds-m-bottom_medium"/>
 
-    <!-- replicate for project 2 and 3 -->
-    <div class="slds-box slds-theme_default">
-        <h1 class="slds-text-heading_large">Projects</h1>
-        <div>
-            <h3 class="slds-m-top_medium slds-text-heading_medium">{!v.projectList[0]}</h3>
-            <aura:if isTrue="{!v.editOne}">
-            <lightning:inputRichText aura:id="projOneRolesInput" value="{!v.projectOneRoles}"/>
-            <lightning:button variant="brand" label="Save" onclick="{!c.saveProjOneRoles}"/>
-                <aura:set attribute="else">
-                    <lightning:formattedText value="{!v.projectDescList[0]}"/>
-                    <h5 class="slds-m-top_small slds-text-heading_small">Roles and Responsibilities</h5>
-                    <lightning:formattedRichText class="slds-m-top_small" value="{!v.projectOneRoles}"/>
-                    <div>
-                        <lightning:button variant="base" label="edit" onclick="{!c.editProjOneRoles}"/>
-                    </div>
-                    <h5 class="slds-m-top_small slds-text-heading_small">Environment / Technologies</h5>
-                    <!-- List should be retrieved from Equivalency__c on server -->
-                    <lightning:formattedText class="slds-m-top_small" value="placeholder technology 1, placeholder technology 2, placeholder technology 3"/>
-                </aura:set>
-            </aura:if>
-        </div>
-    </div>
+    		
+            <lightning:buttonGroup class="slds-m-top_small">
+                <lightning:button label="Save" title="Save" onclick="{! c.doSave}" variant="brand-outline" class="slds-m-bottom_x-large"/>
+        	</lightning:buttonGroup>
+            
 
-</aura:component>	
+        <!-- Display all projects associated with the running user -->
+        <aura:if isTrue="{!v.isEdit}"> 
+        <aura:iteration items="{!v.projects}" var="item">
+
+            <!-- Each project is held in its own card-->
+            <lightning:card title="{!'Project Name: ' + item.Name}">
+                <div class="slds-card"> 
+                    
+                    <!-- Each section of the project goes in a specific tab -->
+                    <lightning:tabset selectedTabId="one"> 
+                        <lightning:tab label="Description" id="one">
+                            <div class="slds-m-top_medium slds-text-heading_small slds-m-left_small">
+                                <lightning:formattedRichText value= "{!item.Description__c}" />
+                            </div>
+                        </lightning:tab>
+                        
+                        <lightning:tab label="Roles and Responsibilities" id="two">
+                            <div class="slds-m-top_medium slds-text-heading_small slds-m-left_small">
+                                <lightning:formattedRichText value= "{!item.Roles_Responsibilities__c}" />
+                            </div>
+                        </lightning:tab>
+                        
+                        <lightning:tab label="Technologies/Environments" id="three">
+                            <div class="slds-m-top_medium slds-text-heading_small slds-m-left_small">
+                                <lightning:formattedRichText value= "{!item.Technologies__c}" />
+                            </div>
+                        </lightning:tab>
+                        
+                         <lightning:button label="Edit" onclick="{!c.doEdit}" class="slds-m-left_small" variant="brand-outline"/>
+                    </lightning:tabset>  
+                </div>    
+            </lightning:card>
+        </aura:iteration>
+        
+        <!-- Edit button has been clicked, display project fields as editable -->    
+        <aura:set attribute="else">
+            <aura:iteration items="{!v.projects}" var="item">
+
+            <!-- Each project is held in its own card-->
+            <lightning:card title="{!'Project Name: ' + item.Name}">
+                <div class="slds-card"> 
+                    
+                    <!-- Each section of the project goes in a specific tab -->
+                    <lightning:tabset selectedTabId="one"> 
+                        <lightning:tab label="Description" id="one">
+                            <div class="slds-m-top_medium slds-text-heading_small slds-m-left_small">
+                                <lightning:inputRichText value= "{!item.Description__c}" />
+                            </div>
+                        </lightning:tab>
+                        
+                        <lightning:tab label="Roles and Responsibilities" id="two">
+                            <div class="slds-m-top_medium slds-text-heading_small slds-m-left_small">
+                                <lightning:inputRichText value= "{!item.Roles_Responsibilities__c}" />
+                            </div>
+                        </lightning:tab>
+                        
+                        <lightning:tab label="Technologies/Environments" id="three">
+                            <div class="slds-m-top_medium slds-text-heading_small slds-m-left_small">
+                                <lightning:inputRichText value= "{!item.Technologies__c}" />
+                            </div>
+                        </lightning:tab>
+                    </lightning:tabset>
+                    
+                <lightning:button label="Save" title="Save" onclick="{! c.doReSave}" variant="brand-outline" class="slds-m-left_medium"/>
+                <lightning:button label="Cancel" title="Cancel" class="slds-m-left_medium" onclick="{! c.doCancel}" variant="brand-outline"/>
+                    
+                </div>    
+            </lightning:card>
+        </aura:iteration>
+        
+        
+        </aura:set> 
+
+
+    </aura:if>
+</div>        
+</aura:component>

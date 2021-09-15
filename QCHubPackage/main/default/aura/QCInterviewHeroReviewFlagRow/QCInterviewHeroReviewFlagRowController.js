@@ -10,10 +10,5 @@
         helper.deleteRow(component);
        
     }, 
-    //Pass the info of the newly created Flag to the handler to be incorporated
-    submit : function(component, event, helper) {
-        helper.submit(component);
-        
-    }
   
 })

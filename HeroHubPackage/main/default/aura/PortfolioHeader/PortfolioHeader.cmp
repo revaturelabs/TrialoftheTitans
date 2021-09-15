@@ -8,7 +8,7 @@
 ///////////////////////////////////////////////////
 -->
 
-<aura:component implements="forceCommunity:availableForAllPageTypes">
+<aura:component controller="PortfolioHeaderController" implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes">
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <!-- Need Apex controller to retrieve current user -->
@@ -28,4 +28,4 @@
     </aura:if>
 
 
-</aura:component>	
+</aura:component>

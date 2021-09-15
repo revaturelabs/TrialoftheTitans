@@ -1,15 +1,25 @@
 ({
-    editEduCert : function(component, event, helper) {
-        component.set('v.isEdit',true);
+    doInit : function(component) {
+
+        let schoolInfo = component.get('c.getSchools');
+        schoolInfo.setCallback(this, function(response){
+            if(response.getState()==='SUCCESS') {
+                //Sets the education in the database to attribute data
+                component.set('v.data', response.getReturnValue())
+            }
+        });
+        $A.enqueueAction(schoolInfo);
     },
-
-    cancelEdit : function(component, event, helper) {
-        component.set('v.isEdit',false);
+    addEdu : function(component){
+        component.set('v.addEdu', 'true')
     },
-
-    submitEdit : function(component, event, helper) {
-        // TODO: add controller logic to database
-
-        component.set('v.isEdit',false);
+    doneEdu : function(component){
+        component.set('v.addEdu', 'false')
+    },
+    editEdu : function(component){
+        component.set('v.editEdu', 'true')
+    },
+    doneEditEdu : function(component){
+        component.set('v.editEdu', 'false')
     }
 })

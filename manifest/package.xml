@@ -9,11 +9,13 @@
 		<members>QCHubHomeAuraController</members>
 		<members>QCHubController</members>
 		<members>QCCohortWrapper</members>
-		<members>QCQuestionEditController</members>
+		<members>PortfolioProjectController</members>
 		<name>ApexClass</name>
 	</types>
 	<type>
-	<member>Hero_Answer__c</members>
+		<member>Hero_Answer__c</members>
+		<member>Experience__c</members>
+		<member>Project__c</members>
 		<name>CustomObject</name>
 	</type>
 	<types>
@@ -21,7 +23,9 @@
 		<name>CustomApplication</name>
 	</types>
 	<types>
+		<members>PortfolioProjects</members>
         <members>QCInterview</members>
+		<members>CreateFlag</members>
         <members>QCInterviewQA</members>
 		<members>CohortButtons</members>
 		<members>QCHubHome</members>

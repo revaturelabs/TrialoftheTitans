@@ -1,24 +1,55 @@
 ({
     doInit : function(component, event, helper) {
-
-        //let headerName = "<h2>" + "c.getUserName" + "</h2>"; Will be used when controller is written.
-        let headerNameTemp = "<h2>" + "USER NAME" + "</h2>"; //temporary username, need Apex controller to retrieve actual name.
-
-        //temporary loop to make mock titles to populate picklist. Should be retrieved from server in actual implementation.
+        
+        let method = component.get("c.getUserName");
+        //method.setParams({inputString : 'hello'});
+        method.setCallback(this, function(response){
+            if(response.getState() === "SUCCESS"){
+                let headerName ="<h2>" + response.getReturnValue() + "</h2>"; 
+                component.set("v.userName", headerName);
+            }
+        });
+        
+        $A.enqueueAction(method);
+        
+        let titles = [];
         let titleList = [];
-        for(let i = 0; i < 10; i++) {
+
+        let titleOne = "Salesforce Administrator"
+        let titleTwo = "Salesforce Developer"
+        let titleThree = "Apex Developer"
+        
+        
+           titles.push(titleOne);
+           titles.push(titleTwo);
+           titles.push(titleThree);
+       
+       
+        for(let i = 0; i < 3; i++) {
 
             let option = {
-                "label" : "Temp Title " + i,
-                "value" : "Temp Title " + i.toString()
+                "label" : titles[i],
+                "value" : "<h3>" + titles[i] +"<h3>"
             };
 
             titleList.push(option);
 
         }
-
-        component.set("v.userName", headerNameTemp); //change to headerName after Apex controller is made.
+        
         component.set("v.titleList", titleList);
+
+        // set up init for persisting the job name
+        let jobmethod = component.get("c.getJob");
+        jobmethod.setCallback(this, function(response){
+            if(response.getState() === "SUCCESS"){
+                if(response.getReturnValue() != null) {
+                component.set("v.selectedTitle", response.getReturnValue());
+                component.set("v.editMode", false);
+                }
+            }
+        });
+        
+        $A.enqueueAction(jobmethod);
 
     },
 
@@ -26,6 +57,17 @@
 
         let selectedOption = event.getParam("value");
         component.set("v.selectedTitle", selectedOption);
+
+        // set up init for persisting the job name
+        let jobsetmethod = component.get("c.setJob");
+        jobsetmethod.setParams({ job : component.get("v.selectedTitle") });
+        jobsetmethod.setCallback(this, function(response){
+            if(response.getState() === "SUCCESS"){
+              //  alert('set job')
+            }
+        });
+        
+        $A.enqueueAction(jobsetmethod);
 
     },
 

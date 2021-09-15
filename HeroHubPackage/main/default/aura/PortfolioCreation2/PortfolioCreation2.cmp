@@ -1,0 +1,35 @@
+<!--THIS MOTHERSHIP COMPONENT IS DISPLAYED ON THE HERO HUB PAGE. LOOK AT PAGECONTAINER TO SEE WHERE-->
+<!--All Components are binded to running USER-->
+<!--Need all other components deployed below in order to deply this component-->
+<aura:component access="global" implements="force:appHostable, forceCommunity:availableForAllPageTypes">
+
+        <img class="Chimera" src="{!$Resource.TitanResources + '/TitanResources/Chimera.gif' }"/>
+    
+
+        <div class="fire">
+            <h1>Tell Your War Stories With Portfolio Creation!</h1>
+        </div>
+
+        <!--<img class="Hydra" src="{!$Resource.TitanResources + '/TitanResources/Hydra.gif' }"/>-->
+
+        <lightning:card class="Header">
+            <c:PortfolioHeader/>
+        </lightning:card>
+
+        <lightning:card class="Indu">
+            <c:PortfolioIndustryEquivs/>
+        </lightning:card>
+
+        <lightning:card class="Education">
+            <c:PortfolioEduCert/>
+        </lightning:card>
+
+        <lightning:card class="Exp">
+            <c:PortfolioOtherExperiences/>
+        </lightning:card>
+
+        <lightning:card class="Project">
+            <c:PortfolioProjects/>
+        </lightning:card>
+   
+</aura:component>	
