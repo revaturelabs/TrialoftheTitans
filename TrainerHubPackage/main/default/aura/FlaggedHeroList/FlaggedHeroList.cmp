@@ -14,7 +14,7 @@
 -->
 
 <aura:component controller="FlaggedHeroController" implements="flexipage:availableForAllPageTypes">
-    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="data" type="Object[]" />
     <aura:attribute name="columns" type="List" />
 
     <aura:handler name="init" value="{!this}" action="{!c.fetchData}" />
@@ -23,6 +23,5 @@
         data = "{!v.data}"
         columns = "{!v.columns}"
         keyField = "id"
-		onrowaction="{! c.updateSelected }"
         hideCheckboxColumn="true" />
 </aura:component>

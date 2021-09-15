@@ -1,26 +1,25 @@
 <!--
     Author: Tyler Curry-Wong
     Description: Aura component to display True-False Questions for Exam
+    updated: 9/13/2021 Markus Metli
 -->
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
     <!--Declare Attributes-->
-    <aura:attribute name="question" type="Exam_Question__c"/>
     <aura:attribute name="questionprompt" type="String"/>
-    <aura:attribute name="correctAnswer" type="String"/>
     <aura:attribute name="options" type="List" default="[
     {'label': 'True', 'value': 'option1'},
     {'label': 'False', 'value': 'option2'}
     ]"/>
     <aura:attribute name="value" type="String" default="option1"/>
     
-    <!--Declare Handler-->
-    <aura:handler name="init" value="{!this}" action="{!c.fetchTrueFalse}"/>
-    
+    <aura:method name="answer" action= "{!c.answer}" description="saves the response" access="PUBLIC"></aura:method>
+
     <!--Component Here-->
     <lightning:card>
         <div class="slds-m-around--xx-large">
             <div>
-    			<lightning:radioGroup name="{!v.questionprompt}"  
+    			<lightning:radioGroup 
+                aura:id = "input"     name="{!v.questionprompt}"  
                                       label="{!v.questionprompt}"
                           			  options="{!v.options}"
                           			  value="{!v.value}"

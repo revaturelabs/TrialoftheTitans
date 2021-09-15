@@ -11,7 +11,7 @@
 }
 
 .THIS .pass {
-    color: green;
+    color: rgb(131, 253, 131);
     pointer-events: none;
     font-weight: 800;
 }

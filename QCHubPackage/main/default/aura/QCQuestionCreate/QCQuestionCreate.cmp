@@ -1,0 +1,29 @@
+<!--
+    Author: Tylar Harmon
+    Description: Component that creates QC questions within the QC Hub
+    Date: 9-9-2021
+-->
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+ <!--Attribute that is true when a question has been created, to conditionally display the create new question button.-->   
+<aura:attribute name="questionCreated" type="Boolean" default="false"/>
+<!--Question Creation Section.-->
+    <lightning:card>
+        <div class="recordFormSection">
+                <div>
+                    <lightning:recordForm objectApiName="QC_Question__c" 
+                                          layoutType="Full"
+                                          columns="1"
+                                          mode=""
+                                          aura:id="recordForm"
+                                          recordId=""
+                                          onsuccess="{!c.HandleSuccess}"/>
+                </div>
+        </div>
+        <!--Create new question button that displays after a question is first created.-->
+        <div style="text-align:center">
+             <aura:if isTrue="{!v.questionCreated}">
+                <lightning:button variant="brand" label="Create New Question" onclick="{!c.handleCreateNewQuestion}"/>
+             </aura:if>
+        </div>
+    </lightning:card>
+</aura:component>	

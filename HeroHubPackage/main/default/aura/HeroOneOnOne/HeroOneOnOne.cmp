@@ -26,4 +26,4 @@
             <lightning:recordForm recordId="{!v.OneOnOneId}" objectApiName="One_on_One__c" layoutType="Compact" mode="readonly"/>   
         </aura:if> 
     </lightning:card>
-</aura:component>	
+</aura:component>
