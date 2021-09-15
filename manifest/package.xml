@@ -9,6 +9,7 @@
 		<members>QCHubHomeAuraController</members>
 		<members>QCHubController</members>
 		<members>QCCohortWrapper</members>
+		<members>QCQuestionEditController</members>
 		<name>ApexClass</name>
 	</types>
 	<type>
@@ -26,8 +27,9 @@
 		<members>QCHubHome</members>
 		<members>QCInterviewHeader</members>
 		<members>UpdateCohortEvent</members>
-		<members>QCInterviewCohortSelection</members>
-		<members>QCInterviewHeroReview</members>
+		<!-- <members>QCInterviewCohortSelection</members> -->
+		<!-- <members>QCInterviewHeroReview</members> -->
+		<members>CreateFlag</members>
 		<members>QCInterviewHeroReviewAddRowEvent</members>
 		<members>QCInterviewHeroReviewDeleteRowEvent</members>
 		<members>QCInterviewHeroReviewFlagRow</members>
@@ -37,6 +39,7 @@
 		<members>QCInterviewEnd</members>
 		<members>UpdateCohortEvent</members>
 		<members>LaunchInterviewEvent</members>
+		<members>QCQuestionEdit</members>
 		<name>AuraDefinitionBundle</name>
 	</types>-->
 	<version>51.0</version>

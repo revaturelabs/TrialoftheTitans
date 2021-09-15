@@ -2,9 +2,9 @@
 
     <aura:registerEvent name="UpdateCohortEvent" type="c:UpdateCohortEvent"/>
     <aura:attribute name="CohortList" type="Cohort__c[]"/>
-
+ <lightning:card variant="Narrow">
     <aura:iteration items="{!v.CohortList}" var="Cohort">
-        <lightning:button value="{!Cohort}" onclick="{!c.SelectCohort}">{!Cohort.Name}</lightning:button>
+        <lightning:button variant="Brand" value="{!Cohort}" onclick="{!c.SelectCohort}">{!Cohort.Name}</lightning:button>
     </aura:iteration>
-
+</lightning:card>
 </aura:component>

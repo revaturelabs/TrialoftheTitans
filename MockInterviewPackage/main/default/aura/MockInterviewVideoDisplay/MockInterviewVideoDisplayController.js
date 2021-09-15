@@ -18,15 +18,15 @@
 
 ({
     displayFile : function(component, event, helper) {
-        MockInterviewVideoDisplayHelper.displayFileHelper();
+        helper.displayFileHelper(component, event);
 
     },
     
     videoCloseButton : function(component, event, helper){
-        MockInterviewVideoDisplayHelper.videoCloseButtonHelper();
+        helper.videoCloseButtonHelper(component, event);
     },
     handleUploadFinished : function(component, event, helper) {
-        MockInterviewVideoDisplayHelper.handleUploadFinishedHelper();
+        helper.handleUploadFinishedHelper(component, event);
         
     }
     
