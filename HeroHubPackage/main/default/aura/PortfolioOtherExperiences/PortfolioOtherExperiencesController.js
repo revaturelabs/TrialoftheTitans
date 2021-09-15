@@ -1,45 +1,54 @@
 ({
-    /*edit() and cancel() flip the isEdit attribute on or off depending on whether edit() is called
-    - for true - or cancel() is called - for false. */
-    edit : function(component, event, helper) {
-        component.set('v.isEdit',true);
+    /*doInit() sets the attribute columns for datatable
+    and calls the doGetExperience() method from the helper file, passing in component */
+    doInit : function(component, event, helper){
 
+        var actions = [
+            { label: 'Delete', name: 'delete' }
+        ];
+
+        component.set("v.columns", [
+            {label:"Company", fieldName:"Company__c", type:"text",editable:true },
+            {label:"Position", fieldName:"Position__c", type:"text",editable:true },
+            {label:"Start Date", fieldName:"Start_Date__c", type:"date-local",editable:true },
+            {label:"End Date", fieldName:"End_Date__c", type:"date-local",editable:true },
+            { type: 'action', typeAttributes: { rowActions: actions } }
+        ]);
+
+        helper.doGetExperiences(component);
+    },
+
+    /*onSave() handles saving records edited through inline editing, and updates experiences using doGetExperiences() */
+    onSave : function(component, event, helper){
+        var draftValues = event.getParam('draftValues');
+
+        helper.saveExperience(component, draftValues);
+        helper.doGetExperiences(component);
+    },
+
+    /*handleRowAction() handles different row actions. Currently, there is only a delete action, but the method is set up to handle
+    different row actions */
+    handleRowAction : function (component, event, helper) {
+        var action = event.getParam('action');
+        var row = event.getParam('row');
+
+        switch (action.name) {
+            case 'delete':
+                helper.removeExperience(component, row);
+                break;
+        }
+        helper.doGetExperiences(component);
+    },
+    
+    /*edit() and cancel() flip the isEdit attribute on or off depending on whether edit() is called
+    - for true - or cancel() is called - for false. After setting that attribute, the page should update to reflect 
+    experiences added to our records. */
+    edit : function(component, event, helper) {
+        component.set('v.isEdit', false);
     },
 
     cancel : function(component, event, helper) {
-        component.set('v.isEdit',false);
-
-    },
-
-    /* save() gathers up information about the experience being created and saves the experience
-    to the database. */
-
-    save : function(component, event, helper) {
-        // TODO: add controller logic to database
-        // TODO: Validation needs to be done (e.g. check for blanks, duplicates, negatives, etc.)
-
-        let c = component.find('c0').get('v.value');
-        let p = component.find('p0').get('v.value');
-        let ds = component.find('ds0').get('v.value');
-        let de = component.find('de0').get('v.value');
-
-        let co = component.get('v.company');
-        let po = component.get('v.position');
-        let dsv = component.get('v.dateStart');
-        let dev = component.get('v.dateEnd');
-
-        co[0] = c;
-        po[0] = p;
-        dsv[0] = ds;
-        dev[0] = de;
-
-        component.set('v.company', co);
-        component.set('v.position', po);
-        component.set('v.dateStart', dsv);
-        component.set('v.dateEnd', dev);
-
-
-        component.set('v.isEdit',false);
-
+        component.set('v.isEdit', true);
+        helper.doGetExperiences(component);
     }
 })

@@ -12,13 +12,20 @@
     <!--Attributes: contextUser, userTeam, leadTeam,-->
     <aura:attribute name="contextInfo" type="UserContextInfo" />
     <aura:attribute name="leadTeams" type="Map" />
+
     <aura:attribute name="nameClicked" type="Boolean" default="false" />
+    <aura:attribute name="PortClicked" type="Boolean" default="false" />
+    <aura:attribute name="OneClicked" type="Boolean" default="false" />
+
     <aura:attribute name="navigate" type="String" default="" />
     <aura:attribute name="TitansText" type="String" default="Titans " />
+
     <aura:handler name="navigatePage" event="c:MainPageNavigation" action="{!c.navigate}" />
     <aura:handler name="navigateToResults" event="c:NavResultsEvent" action="{!c.navigateToResults}" />
+    <aura:handler name="navigateToPortfolio" event="c:PortfolioEvent" action="{!c.navigateToPort}" />
+    <aura:handler name="navigateToOneOnOne" event="c:OneOnOneEvent" action="{!c.navigateToOneOnOne}" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-	    
+        
     <!--Set dynamic colors for teams-->
     <aura:html tag="style">
         :root { --user-team-primary: {!v.contextInfo.team.Primary_Color__c}; --user-team-secondary: {!v.contextInfo.team.Secondary_Color__c}; --lead-team-primary: {!v.leadTeams.team[0].primary_color__c}; --lead-team-secondary: {!v.leadTeams.team[0].secondary_color__c};
@@ -36,7 +43,7 @@
     
     <div id="main">
         <aura:if isTrue="{!v.nameClicked}">
-            <c:HeroResultPage contextInfo="{!v.contextInfo}"/>
+            <c:HeroResultPage />
             <aura:set attribute="else">
                 <aura:if isTrue="{!v.navigate == 'Titans'}">
                     <c:TitansPageLanding />
@@ -47,17 +54,28 @@
                               <aura:if isTrue="{!v.navigate == 'Mock Feedback'}">
                                 <c:publicVideos />
                                 <aura:set attribute="else">
-                                   <c:TitanSlayer leadTeams="{!v.leadTeams}" />
-                                   <c:HeroJourney contextInfo="{!v.contextInfo}" />
+                                    <aura:if isTrue="{!v.PortClicked}">
+                                        <c:PortfolioCreation2/>
+                                        <aura:set attribute="else">
+                                            <aura:if isTrue="{!v.OneClicked}">
+                                                <c:HeroOneOnOne/>
+                                                <aura:set attribute="else">
+                                                    <c:TitanSlayer leadTeams="{!v.leadTeams}" />
+                                                    <c:HeroJourney contextInfo="{!v.contextInfo}" />
+                                                </aura:set>
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
                                 </aura:set>
-                             </aura:if>
-                           </aura:set>
-                        </aura:if>
-                   </aura:set>
-                </aura:if>
+                            </aura:if>
+                        </aura:set>
+                   </aura:if>
+                </aura:set>
+            </aura:if>
             </aura:set>
         </aura:if>
     </div>
 
     <c:Communication />
 </aura:component>
+

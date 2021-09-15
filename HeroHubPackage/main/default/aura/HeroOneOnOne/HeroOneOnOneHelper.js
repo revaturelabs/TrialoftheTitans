@@ -20,6 +20,3 @@
         this.getRecords(component);
     },
 })
-
-
-
