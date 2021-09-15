@@ -28,7 +28,7 @@
                 </aura:if>
                 <aura:if isTrue="{!v.examClicked}">
                         <div class="back-exams-btn" onclick="{!c.onBackBtnClick}">Back to exam list</div>
-                </aura:if>
+                </aura:if> 
             
             </div>
             

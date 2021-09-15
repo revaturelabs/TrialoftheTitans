@@ -7,9 +7,16 @@
 ////////////////////////////////////////////////////
 
 public class TitanCallouts{
+
+
+    private static final StaticResource keySR = [SELECT Id, Body FROM StaticResource WHERE Name = 'TitanCalloutResource' LIMIT 1];
     
-    private final String clientId = '3MVG98RqVesxRgQ4xmwdKHqEpPwavMpbMNBmDTS5Lqxgw44NbKyL1H3cGPhvJkPk2ki4Bb1Tqsb1mHPgTed0J';
-    private final String url = 'https://sandbox-ability-agility-36642-dev-ed-17a635bfc7f.cs18.force.com';
+    private static final String clientId = keySR.Body.toString().substringBefore('\n').trim();
+    private static final String urls = keySR.Body.toString().substringAfter('\n');
+
+    private static final String url =  urls.substringAfter('\n').trim(); // Experience site url/2nd retrieved
+    private static final String orgUrl =  urls.substringBefore('\n').trim(); // Org url/1st retrieved
+    
     private String username;
     
     public TitanCallouts(){
@@ -47,7 +54,7 @@ public class TitanCallouts{
         String accessToken = a1.returnAccessToken(username);
         
         if(accessToken != null){
-            String endPoint = 'https://ability-agility-36642-dev-ed.cs18.my.salesforce.com/services/apexrest/code-assessment/results';
+            String endPoint = orgUrl + '/services/apexrest/code-assessment/results';
             
             TestResultsJSON testResults = new TestResultsJSON();
             testResults.resultList = new List<TestResult>();

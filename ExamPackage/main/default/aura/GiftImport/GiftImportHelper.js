@@ -29,6 +29,33 @@
         $A.enqueueAction( action );
     },
 
+    HandleUpload : function(component, event, helper) {
+        let fileName = 'No File Selected..';
+        let fileContents = '';
+
+        if (event.getSource().get( "v.files" ).length > 0) {
+            
+            var file = event.getSource().get( "v.files" )[0];
+
+            fileName = file['name'];
+            component.set( "v.fileName", fileName );
+            
+            var reader = new FileReader();
+            reader.onload = function( e ) {
+                fileContents = reader.result;
+                let helperResult = helper.SplitString( component, fileContents );
+                component.set( "v.submitList", helperResult );
+                component.set( "v.showQuestions", true );
+                component.set( "v.toImport", helperResult.length );
+                // console.log( fileContents );
+            }
+            
+            // allow the file content to be turn into text
+            reader.readAsText( file );
+            let test = reader;
+        }
+    },
+
     // SplitString(): Split each question in text file to its own object and put it in a list.
     //          Send the list along with titan and technology to ApexController.
     // theString: the uploaded file in string form
