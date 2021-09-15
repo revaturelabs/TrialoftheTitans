@@ -57,7 +57,7 @@
             "package": "QCHubPackage",
             "versionName": "ver 1.0",
             "versionNumber": "1.0.0.NEXT",
-            "default": false,
+            "default": true,
             "dependencies": [
                 {
                     "package": "CorePackage@1.0.0-1"
@@ -99,7 +99,7 @@
             "package": "TrainerHubPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true,
+            "default": false,
             "dependencies": [
                 {
                     "package": "CorePackage@1.0.0-1"
