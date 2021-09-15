@@ -74,34 +74,6 @@
         $A.enqueueAction(WeekListInit);
 
     },
-    
-    LoadHeros : function(component) {
-        let loadHeros = component.get("c.HeroList");
-        loadHeros.setCallback(this, function(response) {
-           let state = response.getState();
-            if (state === "SUCCESS") {
-                component.set("v.HeroList", response.getReturnValue());
-            } else {
-                let errors = response.getError();
-                let showToast = $A.get("e.force:showToast");
-                if (errors) {
-                    showToast.setParams({
-                        "title": "ERROR",
-                        "message": errors[0].message
-                    })
-                    showToast.fire();
-                }
-                else {
-                    showToast.setParams({
-                        "title": "ERROR",
-                        "message": "Unknown error"
-                    })
-                    showToast.fire();
-                }
-            }
-        });
-        $A.enqueueAction(loadHeros);
-    },
 
     LoadCohortData : function(component, selectedCohort){
         let CohortInit = component.get("c.RetrieveCohortData");

@@ -1,14 +1,21 @@
-QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-
 	<types>
+		<member>AssignExams</member>
+		<name>Flow</name>
+	</types>
+
+	<!--<types>
 		<members>QCHubHomeAuraController</members>
 		<members>QCHubController</members>
 		<members>QCCohortWrapper</members>
+		<members>PortfolioProjectController</members>
 		<name>ApexClass</name>
 	</types>
 	<type>
-	<member>Hero_Answer__c</members>
+		<member>Hero_Answer__c</members>
+		<member>Experience__c</members>
+		<member>Project__c</members>
 		<name>CustomObject</name>
 	</type>
 	<types>
@@ -16,7 +23,9 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<name>CustomApplication</name>
 	</types>
 	<types>
+		<members>PortfolioProjects</members>
         <members>QCInterview</members>
+		<members>CreateFlag</members>
         <members>QCInterviewQA</members>
 		<members>CohortButtons</members>
 		<members>QCHubHome</members>
@@ -24,6 +33,7 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<members>UpdateCohortEvent</members>
 		<!-- <members>QCInterviewCohortSelection</members> -->
 		<!-- <members>QCInterviewHeroReview</members> -->
+		<members>CreateFlag</members>
 		<members>QCInterviewHeroReviewAddRowEvent</members>
 		<members>QCInterviewHeroReviewDeleteRowEvent</members>
 		<members>QCInterviewHeroReviewFlagRow</members>
@@ -33,7 +43,8 @@ QCHubPackage/main/default/aura/QCInterviewHeader/<?xml version="1.0" encoding="U
 		<members>QCInterviewEnd</members>
 		<members>UpdateCohortEvent</members>
 		<members>LaunchInterviewEvent</members>
+		<members>QCQuestionEdit</members>
 		<name>AuraDefinitionBundle</name>
-	</types>
+	</types>-->
 	<version>51.0</version>
 </Package>

@@ -1,7 +1,7 @@
 <!--
 /////////////////////////////////////////////////////
 //
-//  Name: videoUploaderComponent.cmp
+//  Name: MockInterviewVideoDisplay.cmp
 //  Author: Kenny Gonzalez
 //  Description: This aura component adds a file upload feature
 //               and a video display feature. Several attributes are
@@ -13,6 +13,8 @@
 //               communities CSP trusted sites when getting the src from the
 //               video tag. Lastly, to remedy this limitation, a lightning:fileCard 
 //               was added to be able to download the video
+//
+//  Last Updated: 9/3/21 (Brian McKay) - added code from duplicate component (videoUploaderComponent) and deleted duplicate
 //
 ///////////////////////////////////////////////////
 -->
@@ -29,6 +31,13 @@
     <!--attrubute needed for lightning:fileCard-->
     <aura:attribute name="contentFile" type="String"/>
 
+    <lightning:fileUpload label="Attach receipt"
+        name="fileUploader"
+        multiple="true"
+        accept="{!v.filetype}"
+        recordId="{!v.recordId}"
+        onuploadfinished="{!c.handleUploadFinished}" />
+        
     <!--attribute needed to conditionally render components on page-->
     <aura:attribute name="display" type="Boolean" default="false"/>
     <aura:attribute name="display4" type="Boolean" default="true"/>

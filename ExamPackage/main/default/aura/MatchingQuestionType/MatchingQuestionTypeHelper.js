@@ -1,6 +1,5 @@
 ({
     loadHelper : function(component) {
-        //var eachQuestion = component.get("v.question");
         var options = component.get("v.options");
         options = options.split("||");
         options.unshift("Select Answer...");
@@ -13,7 +12,7 @@
         
         for(var a of answers){
             $A.createComponent(
-                "lightning:select", {"aura:id" : "answers", "label" : a, "value" : a}
+                "lightning:select", {"aura:id" : "answers", "label" : a, "value" : "select"}
             ,
                 function(newSelect, status, errorMessage){
                     if(status === "SUCCESS"){
@@ -35,4 +34,5 @@
             }
 
     }
+
 })

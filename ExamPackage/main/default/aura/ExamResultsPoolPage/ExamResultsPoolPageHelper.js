@@ -1,5 +1,5 @@
 ({ 
-   //toggles the visibility for the pool percentages
+   //toggles the visibility for the pool percentages - not functioning yet
    ToggleExamPoolPercentage : function(component, event, helper) {
         // component.set("v.TogglePoolInfo", component.get("v.TogglePoolInfo"));
     },

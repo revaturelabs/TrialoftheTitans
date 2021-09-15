@@ -12,7 +12,7 @@
             "package": "ExamPackage",
             "versionName": "ver 1.0",
             "versionNumber": "1.0.0.NEXT",
-            "default": false,
+            "default": true,
             "dependencies": [
                 {
                     "package": "CorePackage@1.0.0-1"
@@ -39,7 +39,7 @@
             "package": "HeroHubPackage",
             "versionName": "ver 1.0",
             "versionNumber": "1.0.0.NEXT",
-            "default": false,
+            "default": true,
             "dependencies": [
                 {
                     "package": "CorePackage@1.0.0-1"
@@ -58,6 +58,27 @@
             "versionName": "ver 1.0",
             "versionNumber": "1.0.0.NEXT",
             "default": true,
+            "dependencies": [
+                {
+                    "package": "CorePackage@1.0.0-1"
+                },
+                {
+                    "package": "ExamPackage@1.0.0-3"
+                },
+                {
+                    "package": "TitanPage@1.0.0-4"
+                },
+                {
+                    "package": "HeroHubPackage@1.0.0-3"
+                }
+            ]
+        },
+        {
+            "path": "CodeAssessmentPackage",
+            "package": "CodeAssessmentPackage",
+            "versionName": "ver 1.0",
+            "versionNumber": "1.0.0.NEXT",
+            "default": false,
             "dependencies": [
                 {
                     "package": "CorePackage@1.0.0-1"
