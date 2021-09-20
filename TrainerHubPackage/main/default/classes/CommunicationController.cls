@@ -81,6 +81,7 @@ public with sharing class CommunicationController {
         if ( !Test.isRunningTest()) {
             
             feedElement = ConnectAPI.ChatterFeeds.postFeedElement( null, feedInput ); 
+        }
 
         /* THIS ELSE STATEMENT IS ONLY FOR TESTS DO NOT REMOVE UNLESS YOU KNOW WHAT YOU'RE DOING */ 
         else {

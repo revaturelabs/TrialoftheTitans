@@ -58,12 +58,12 @@
         
             <!--Techskill Session -->
         <aura:if isTrue="{!v.isTechnical}">
-                <c.interviewQuestionComponent question="{!v.techSkillQuestions}" />
+                <c:interviewQuestionComponent question="{!v.techSkillQuestions}" />
         </aura:if>
         
             <!--Other Session -->
         <aura:if isTrue="{!v.isOther}">
-        <c.interviewQuestionComponent question="{!v.otherSkillQuestions}" />
+        <c:interviewQuestionComponent question="{!v.otherSkillQuestions}" />
         </aura:if>
         <br/>
         <br/>
