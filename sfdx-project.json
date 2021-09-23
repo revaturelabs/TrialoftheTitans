@@ -138,7 +138,7 @@
         }        
     ],
     "namespace": "",
-    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sfdcLoginUrl": "https://creative-badger-fyx6uc-dev-ed.my.salesforce.com/",
     "sourceApiVersion": "51.0",
     "packageAliases": {
         "CorePackage": "0Ho5e00000000eDCAQ",
