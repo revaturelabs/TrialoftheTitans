@@ -25,7 +25,6 @@
   - Stated working on pulling the project
   - Working on an LWC badge to becomme more familiar with them
 - John
-  - 
 - Andrew G
   - Working on something seperate for Caroline
 - Johnny
