@@ -32,12 +32,18 @@ export default class MultipleChoiceQuestionLWC extends LightningElement {
     }
 
     //Called when a choice is selected from the radio button group
-    answer(event){
+    changeAnswer(event){
 
         let tempAns = event.detail.value;
         this.answerChoice = tempAns;
         return tempAns;
 
+    }
+
+    //Returns the answer to the parent
+    @api
+    answer(){
+        return this.answerChoice;
     }
 
 }
