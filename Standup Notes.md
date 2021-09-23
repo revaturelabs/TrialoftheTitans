@@ -11,7 +11,7 @@
   - Having issues with that
   - Should be done by the end of the day
 - Nolan
-  - Left early for certificatiom
+  - Left early for certification
 - Andrew C
   - Able to open scratch org and open code
   - Trying to create a new app to hold the two components he is creating
