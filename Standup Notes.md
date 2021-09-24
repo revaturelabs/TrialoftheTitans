@@ -132,3 +132,79 @@
 - Jacob
   - Converted first LWC and working on second
   - Having issues with variable changes over, but working with them slowly
+
+## 9/24/2021
+
+### Alchemy
+- Hamza
+  - Did some LWC work
+  - A lot of work on portfolio
+  - Not feeling well
+- Huguette
+  - Worked on the superbadge for LWC
+  - Started on the project
+    - Going to use flex hours to work on it
+- Nolan
+  - Studied for PD1
+  - Worked on trailhead for LWC
+  - Need to work on portfolio
+  - Catching up on LWC over the weekend
+- Andrew C
+  - Focusing on PD1 tests
+  - Need to fix conflicts
+- Heejin
+  - Been working on portfolio and trailhead
+  - Will continue to work on trailhead and exam certification over the weekend
+
+### Synergy
+- Lisa
+  - ADM is in an hour
+    - Studying all day
+  - Work on LWC badge this weekend
+  - Start on project on Monday if not earlier
+- John
+  - Finished deploying today
+  - Checking out LWC to convert
+  - Finishing portfolio later
+- Andrew G
+  - Still working on badges
+  - Hoping to work on P3 stuff Monday or Tuesday
+- Johnny
+  - Completed portfoio
+  - Studied for PD1
+  - Continued on LWC trail
+  - Converting part early next week
+  - Made a personal branch on Github
+
+### Vanquish
+- Austin
+  - Took a few topic exams for PD1
+  - Finished portfolio
+  - Finished 2.5 badges for LWC badges
+    - Need to do Aura to LWC
+- Daniel
+  - Needs to work on portfolio
+    - Not able to add a degree but found a workaround
+  - Going through trailheads
+  - Not on setting up vs code yet
+- Rayshawn
+  - Created portfolio
+  - Did topic quizzes for ADM
+  - Starting on PD1 as well
+  - Working on the project over the weekend
+- Max
+  - Successfully deployed
+  - Started on P3
+    - Trying to understand how the org works
+    - Jumping down the rabbit hole
+    - Want to try to finish it on Sundau
+  - Worked on portfolio
+
+### Scrum Masters
+- Emanuel
+  - Studied for PD1 a lot
+  - Need to work on portfolio
+- Jacob
+  - Working on second LWC
+    - Taking a really long time due to the sheer size and complexity
+  - Helped out with deployment things as well
