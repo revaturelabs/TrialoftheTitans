@@ -61,7 +61,6 @@
                     };
                     rows.push(items);
                 }
-                debugger;
                 component.set("v.pools", rows);
             } else if (state === "ERROR") {
                 var errors = response.getError();
