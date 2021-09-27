@@ -2,8 +2,6 @@ import { LightningElement, api  } from 'lwc';
 import { createRecord } from 'lightning/uiRecordApi';
 import { getRecord } from 'lightning/uiRecordApi';
 import Exam_Object from '@salesforce/schema/Exam__c';
-//import getTitan from '@salesforce/apex/ExamCreationComponentController.getTitan';
-//import getExam from '@salesforce/apex/ExamCreationComponentController.getExam';
 
 
 //Importing Fields
@@ -26,14 +24,6 @@ export default class ExamCreation extends LightningElement {
     name = '';
     DPG = 0;
     DTL = 0;
-    //@api titanRecordId;
-    
-    //@wire(getTitan)
-   // @wire(getExam) exam;
-
-
-    handleSuccess(event){
-    }
 
     handleExamName(event){
         this.examId = undefined;
@@ -69,9 +59,11 @@ export default class ExamCreation extends LightningElement {
         createRecord(record).then((account) => {this.examId = examId; this.dispatchEvent(new ShowToastEvent({title: "Success", message: "Account Created", variant: "success"})
         );
     })
+
     .catch((error) => {this.dispatchEvent(new ShowToastEvent({title: "Error in Creating Record", message: error.body.message, variant: "error"})
     );
 });
+
     }
 
     
