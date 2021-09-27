@@ -5,7 +5,7 @@
 		<name>Flow</name>
 	</types>
 
-	<!--<types>
+	<types>
 		<members>QCHubHomeAuraController</members>
 		<members>QCHubController</members>
 		<members>QCCohortWrapper</members>
@@ -31,8 +31,8 @@
 		<members>QCHubHome</members>
 		<members>QCInterviewHeader</members>
 		<members>UpdateCohortEvent</members>
-		<!-- <members>QCInterviewCohortSelection</members> -->
-		<!-- <members>QCInterviewHeroReview</members> -->
+		<members>QCInterviewCohortSelection</members>
+		<members>QCInterviewHeroReview</members>
 		<members>CreateFlag</members>
 		<members>QCInterviewHeroReviewAddRowEvent</members>
 		<members>QCInterviewHeroReviewDeleteRowEvent</members>
@@ -45,6 +45,6 @@
 		<members>LaunchInterviewEvent</members>
 		<members>QCQuestionEdit</members>
 		<name>AuraDefinitionBundle</name>
-	</types>-->
+	</types>
 	<version>51.0</version>
 </Package>
