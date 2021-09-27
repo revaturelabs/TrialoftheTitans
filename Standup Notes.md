@@ -208,3 +208,72 @@
   - Working on second LWC
     - Taking a really long time due to the sheer size and complexity
   - Helped out with deployment things as well
+
+## 9/27/2021
+
+### Alchemy
+- Hamza
+  - Having issues with getting the Aura component to work
+    - Nolan figured it out
+  - The apex and component are now reliable
+  - Now working on getting the LWC to work
+  - Going to do some pair programming tomorrow
+- Huguette
+  - 
+- Nolan
+  - Hamza + 
+  - Worked on LWC stuff this morning
+  - Tried to understand the Aura component he was given
+  - Wanted to understand how to transfer it over
+- Andrew C
+  - Pretty much done with first component
+- Heejin
+  - Started working on first LWC for P3
+  - Studing for certification exam
+  - Working on trailhead to be more familiar with LWC
+
+### Synergy
+- Lisa
+  - Have deployed and can work on LWC
+  - Finished almost 3 LWC badges
+- John
+  - Started LWC
+    - Looked at documentation
+  - Fixed old aura compoennt
+  - Passed PD1
+- Andrew G
+  - Playing catch up with some other things
+- Johnny
+  - This morning, studied data management for PD1
+  - This afternoon, finished trailhead for aura to lightning
+  - Slowly converting aura component
+
+### Vanquish
+- Austin
+  - Got everything deployed for P3
+  - Finished some portfolio changes
+  - Started a plan with Daniel on converting Aura component
+  - Studying for QC this afternoon
+- Daniel
+  - 
+- Rayshawn
+  - Studying for exams
+  - Working on deploying to the org
+  - LWC component is done
+  - Needs to be pushed to Github
+- Max
+  - Completed first LWC
+  - Inbetween studing for QC and portfolio work
+  - Worried about QC tomorrow
+  - Filled out end of training survey
+
+### Scrum Masters
+- Emanuel
+  - Worked on LWC
+  - Tested both LWC that are converted
+  - Need to add documentation
+  - Trying to study for QC
+- Jacob
+  - Worked on personal LWC
+  - Helped a lot of people with their issues with LWC
+  - Added kanban cards
