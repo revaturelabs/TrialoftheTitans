@@ -9,14 +9,19 @@
     border-style:solid;
     font-size: 16px;
     font-weight: bold;
+    padding:10px;
+    padding-left: 25px;
+    font-weight: bold;
 
 }
 
 .green{
     background-color: #3DEA39;
     border:1px;
-    border-style:solid;
+    border-style: solid;
     font-size: 16px;
+    padding:10px;
+    padding-left: 25px;
     font-weight: bold;
 }
 
