@@ -49,13 +49,13 @@
                         
                         <div class="answer-choice">
                             <template if:true={hr.Correct__c}>
-                                <div class="green" title={hr.Exam_Question__r.Answer_Choice__c}>
-                                    Your Answer:  {hr.Exam_Question__r.Answer_Choice__c} 
+                                <div class="green" title={hr.Answer_Choice__c}>
+                                    Your Answer:  {hr.Answer_Choice__c} 
                                 </div>
                             </template>
                             <template if:false={hr.Correct__c}>
-                                <div class="red" title={hr.Exam_Question__r.Answer_Choice__c}>
-                                    Your Answer:  {hr.Exam_Question__r.Answer_Choice__c} 
+                                <div class="red" title={hr.Answer_Choice__c}>
+                                    Your Answer:  {hr.Answer_Choice__c} 
                                 </div>
                             </template>
                         </div>
@@ -69,6 +69,19 @@
                             <template if:false={hr.Correct__c}>
                                 <div class="red" title={hr.Exam_Question__r.Correct_Answer_s__c}>
                                     Correct Answer:  {hr.Exam_Question__r.Correct_Answer_s__c} 
+                                </div>
+                            </template>
+                            
+                        </div>
+                        <div>
+                            <template if:true={hr.Correct__c}>
+                                <div class="green" title={hr.Exam_Question__r.Answer_Explanation__c}>
+                                    Answer Explanation:  {hr.Exam_Question__r.Answer_Explanation__c} 
+                                </div>
+                            </template>
+                            <template if:false={hr.Correct__c}>
+                                <div class="red" title={hr.Exam_Question__r.Answer_Explanation__c}>
+                                    Answer Explanation:  {hr.Exam_Question__r.Answer_Explanation__c} 
                                 </div>
                             </template>
                         </div>
