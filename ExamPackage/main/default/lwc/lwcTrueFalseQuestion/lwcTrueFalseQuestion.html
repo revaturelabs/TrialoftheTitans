@@ -1,0 +1,15 @@
+<template>
+    <lightning-card>
+        <div class="slds-m-around--xx-large">
+            <div>
+    			<lightning-radio-group id = "input"     
+                name={questionprompt} 
+                label={questionprompt}
+                options={options}
+                value={value}
+                onchange={changeValue}
+                type="radio"></lightning-radio-group>
+            </div>
+        </div>
+    </lightning-card>   
+</template>
