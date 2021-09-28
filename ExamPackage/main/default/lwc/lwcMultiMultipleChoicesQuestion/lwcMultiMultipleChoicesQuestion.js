@@ -15,10 +15,9 @@ export default class LwcMultiMultipleChoicesQuestion extends LightningElement {
         if(!this.checkGroupOptions){
             return null;
         }
+        //this is to make sure the check group options is formatted correctly when displaying
         var options = this.checkGroupOptions;
-        console.log(options);
         options = options.split('||');
-        console.log(options);
         let optionsArray = [];
         for (let i = 0; i< options.length; i++) {
             let myObject = {
@@ -27,7 +26,6 @@ export default class LwcMultiMultipleChoicesQuestion extends LightningElement {
             };
             optionsArray.push(myObject);
         }
-        console.log(optionsArray);
         this.checkGroupOptions= optionsArray;
 	}
     
