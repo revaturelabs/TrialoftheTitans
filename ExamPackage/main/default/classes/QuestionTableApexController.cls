@@ -31,12 +31,14 @@ public class QuestionTableApexController {
     
     
     //=================================================Get Question List================================    
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List <TableRow> GetQues(String searchKeyword,Integer pageSize, Integer pageNumber){
         
         // Wrapper instantiate
         List <TableRow> RowList = new List <TableRow> ();
         TableRow tr;
+
+        system.debug(searchKeyword + ' ' + pageSize + ' ' + pageNumber);
         
         //convert offset                                             
         Integer offset = (pageNumber - 1) * pageSize;
@@ -51,6 +53,9 @@ public class QuestionTableApexController {
             tr.ques.add(q);
             RowList.add(tr);
         }
+
+        system.debug(RowList);
+
         return RowList;
     }
     public class TableRow{
@@ -61,7 +66,7 @@ public class QuestionTableApexController {
     }
     
     //=======================================================Get Pool List================================
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List <TableRow2> GetPool(){
         
         // Wrapper instantiate
@@ -76,6 +81,7 @@ public class QuestionTableApexController {
             tr.assignedQues.add(q);
             RowList.add(tr);
         }
+        system.debug(RowList);
         return RowList;
     }
     public class TableRow2{
