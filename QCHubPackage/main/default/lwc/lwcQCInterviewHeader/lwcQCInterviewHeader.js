@@ -1,8 +1,8 @@
 import { LightningElement, api } from 'lwc';
 
 export default class LwcQCInterviewHeader extends LightningElement {
-    CurrentStage = "Start";
-    getStart()
+    @api CurrentStage = "Start";
+    get getStart()
     {
         if(this.CurrentStage == "Start")
         {
@@ -14,7 +14,7 @@ export default class LwcQCInterviewHeader extends LightningElement {
             return false;
         }
     }
-    getInterview()
+    get getInterview()
     {
         if(this.CurrentStage == "Interview")
         {
@@ -26,7 +26,7 @@ export default class LwcQCInterviewHeader extends LightningElement {
             return false;
         }
     }
-    getEnd()
+    get getEnd()
     {
         if(this.CurrentStage == "End")
         {
