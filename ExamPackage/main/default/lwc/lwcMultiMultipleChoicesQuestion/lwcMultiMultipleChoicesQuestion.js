@@ -15,6 +15,7 @@ export default class LwcMultiMultipleChoicesQuestion extends LightningElement {
         if(!this.checkGroupOptions){
             return null;
         }
+        //this is to make sure the check group options is formatted correctly when displaying
         var options = this.checkGroupOptions;
         console.log(options);
         options = options.split('||');
