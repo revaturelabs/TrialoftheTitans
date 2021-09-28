@@ -3,10 +3,14 @@ import {ShowToastEvent} from 'lightning/platformShowToastEvent';
 import GetQues from "@salesforce/apex/QuestionTableApexController.GetQues";
 import GetPool from '@salesforce/apex/QuestionTableApexController.GetPool';
 import addQues2Pool from '@salesforce/apex/QuestionTableApexController.addQues2Pool';
+import getQCQuestion from '@salesforce/apex/QCQuestionEditController.getQCQuestion';
+import TickerSymbol from '@salesforce/schema/Account.TickerSymbol';
 
 export default class QuestionTableLWC extends LightningElement {
 
     //Variable declarations
+    objectApi;
+
     @track mydata;
     pools;
     mycolumns = [
@@ -17,9 +21,13 @@ export default class QuestionTableLWC extends LightningElement {
     selectedPools = [];
     selectedRows = [];
     enableToast = true;
+
     searchKeyword  = '';
+
+    //Added by me
     minNum;
     maxNum;
+
     pageSize = 10;
     pageNumber = 0;
     isLastPage;
@@ -37,7 +45,6 @@ export default class QuestionTableLWC extends LightningElement {
 
         if(this.dataSize == 0){
             this.maxNum = 0;
-            this.isLastPage = true;
         }else{
             this.maxNum = this.dataSize - 1;
         }
@@ -53,19 +60,17 @@ export default class QuestionTableLWC extends LightningElement {
             this.searchKeyword = event.detail.value;
         }
 
-        this.pageNumber = this.pageNumber + 1;
-
         //Calls out to the apex controller for the questions
-        GetQues({ searchKeyword: this.searchKeyword, pageSize : this.pageSize, pageNumber : this.pageNumber })
+        GetQues({ searchKeyword: '$searchKeyword' }, { pageSize: '$pageSize' }, { pageNumber: '$pageNumber' })
         .then((result) =>{
-            this.pageNumber = this.pageNumber - 1;
+
             let rows = [];
             for (let i = 0; i < result.length; i++) {
                 let items = {
-                    Id: result[i].ques[0].Id,
-                    Name: result[i].ques[0].Name,
-                    Question_Text: result[i].ques[0].Question_Text__c,
-                    Question_Type: result[i].ques[0].Question_Type__c
+                    Id: resultData[i].ques[0].Id,
+                    Name: resultData[i].ques[0].Name,
+                    Question_Text: resultData[i].ques[0].Question_Text__c,
+                    Question_Type: resultData[i].ques[0].Question_Type__c
                 };
                 rows.push(items);
             }
@@ -75,7 +80,7 @@ export default class QuestionTableLWC extends LightningElement {
 
         })
         .catch((result) =>{
-            console.log(result);
+            console.log(error);
         })
         
 
@@ -86,16 +91,14 @@ export default class QuestionTableLWC extends LightningElement {
     pool({ error, data }) {
 
         if (error) {
-            console.log('Pool error');
             console.log(error);
         } else if (data) {
 
             let rows = [];
-            for (let i = 0; i < data.length; i++) {
+            for (let i = 0; i < resultData2.length; i++) {
                 let items = {
-                    value: data[i].assignedQues[0].Id,
-                    label: data[i].assignedQues[0].Name,
-                    Id: data[i].assignedQues[0].Id
+                    Id: resultData2[i].assignedQues[0].Id,
+                    Name: resultData2[i].assignedQues[0].Name
                 };
                 rows.push(items);
             }
@@ -108,32 +111,35 @@ export default class QuestionTableLWC extends LightningElement {
     //Adds question to the selected pool in the apex controller
     addQuestion2Pool() {
 
-        let arrayTextPools = this.selectedPools;
-        let selectedObjectPools = [];
+        console.log('In add question 2 pool function');
+        console.log(this.selectedPools.length);
 
         if (this.selectedPools.length > 0) {
+            let arrayTextPools = this.selectedPools[0].split(';');
+            var selectedObjectPools = [];
 
-            //Adds to new list to be able to insert it
+            console.log('First if');
+
             for (let i = 0; i < arrayTextPools.length; i++) {
                 for (let j = 0; j < this.pools.length; j++) {
-                    
-                    if (arrayTextPools[i] == this.pools[j].value) {
+                    if (arrayTextPools[i] == this.pools[j].Name) {
                         selectedObjectPools.push(this.pools[j]);
                     }
                 }
             }
         }else {
             selectedObjectPools = null;
+            console.log('First else');
         }
 
-        //Detects if the user should not be able to add add questions to pools
-        if(selectedObjectPools.length <= 0 || this.selectedRows <= 0 || selectedObjectPools == null){
+        if(this.selectedRows.length <= 0 || this.selectedPools.length <= 0){
             
             selectedObjectPools = null;
             this.selectedRows = null;
 
             //Toast message
             if(this.enableToast){
+                console.log('Nested if');
                 const event = new ShowToastEvent({
                     variant : "error",
                     header : "Invalid selections!",
@@ -147,7 +153,7 @@ export default class QuestionTableLWC extends LightningElement {
         }
 
         //Calls out to the apex controller
-        addQues2Pool({pools: selectedObjectPools, questions : this.selectedRows})
+        addQues2Pool({pools: 'selectedObjectPools'}, {questions : 'questions'})
         .then((result) => {
             const event = new ShowToastEvent({
                 title : 'Successfully added Questions to Pools',
@@ -162,7 +168,6 @@ export default class QuestionTableLWC extends LightningElement {
         })
         .catch((error) => {
         
-            console.log(error);
             const event = new ShowToastEvent({
                 title : 'Some of the questions are already in the pool',
                 message: 'Duplicate Questions in pools will not be added !!!',
@@ -177,13 +182,12 @@ export default class QuestionTableLWC extends LightningElement {
     }
 
 
-    //Used to update the questions
+    //Updates selection when 
     updateSelectedRows(event) {
-        var selectedRows = event.target.getSelectedRows();
+        var selectedRows = event.detail.value;
         this.selectedRows = selectedRows;
     }
 
-    //Used to update the pools
     onMultiSelectChange(event){
         let selectedPools = event.detail.value;
         this.selectedPools = selectedPools;
