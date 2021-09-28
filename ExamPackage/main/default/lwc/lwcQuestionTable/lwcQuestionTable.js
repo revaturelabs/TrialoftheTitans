@@ -72,6 +72,7 @@ export default class QuestionTableLWC extends LightningElement {
 
             this.dataSize = rows.length;
             this.mydata = rows;
+            this.changePage(0);
 
         })
         .catch((result) =>{
@@ -193,6 +194,7 @@ export default class QuestionTableLWC extends LightningElement {
     changePage(i){
 
         let tempPage = this.pageNumber + i;
+        console.log(this.dataSize);
 
         if(tempPage <= 0){
             this.pageNumber = 0;
