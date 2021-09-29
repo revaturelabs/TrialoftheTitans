@@ -1,0 +1,70 @@
+
+<!--
+Author: Andrew Clark
+Date: 9-27-21
+Function: Displays the QCInterviewHeroReview component (It seems the original Aura version was incomplete and there was supposed to be other functionality,
+ so I kept it as-is)
+Required Parameters:
+String week,
+QC_Question_Answer__c answers,
+String cohortId
+String heroId
+String heroName
+
+-->
+
+<template>
+    
+<!--  Top Box  -->
+    <!-- <div class="slds-grid slds-gutters slds-align_absolute-center">
+        <div class="topbox slds-grid slds-grid_vertical slds-size_12-of-12 slds-m-horizontal_xx-small"> -->
+            
+<!--  QC Interview Header  -->
+            <!-- <c:QCInterviewHeader/>
+        </div>
+    </div> -->
+    
+
+    
+<!--  Lower Main Box  -->
+    <div class="slds-grid slds-gutters slds-align_absolute-center">
+        
+       
+        
+        
+<!--  Lower LEFT Main Box  -->
+        <div class=" slds-grid slds-grid_vertical slds-col slds-size_4-of-12 slds-m-horizontal_xx-small">            
+            <div class="leftbox slds-box slds-col slds-m-vertical_x-small">
+
+                
+<!--  QC Interview Cohort Selection Component  -->   
+                <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Select a Cohort:</h1>
+                <!-- <c-lwc-q-c-interview-hero-review week={week} answers={answers} cohort-id={cohortId}
+                                            hero-id={heroId} hero-name={heroName}></c-lwc-q-c-interview-hero-review>
+                -->                           
+            </div>
+        </div>
+        
+        
+<!--  Lower RIGHT Main Box  -->
+        <div class=" slds-col slds-size_8-of-12 slds-m-horizontal_xx-small "> 
+
+            
+<!--  Upper Box  (Lower RIGHT Main Box) -->
+            <div class="rightboxes slds-box slds-col slds-m-vertical_x-small">
+                <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">QC Score:</h1>
+                
+                <p style="text-align: center">NOTE: not sure if this is the correct componenet but i can replace if nessesary.</p>
+                <p style="text-align: center; margin-top:20px; color:red">NOTE: Reason Comp goes here.</p>
+                <p style="text-align: center; margin-top:20px; color:red">NOTE: BUTTON goes here.</p>
+
+            </div>   
+            
+<!--  Lower Box  (Lower RIGHT Main Box) -->
+            <div class="rightboxes slds-box slds-col slds-m-vertical_x-small">                
+                <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Question Overview:</h1>
+                            <p style="text-align: center; color:red">NOTE: Need the Question Overview Comp.</p>
+            </div>    
+        </div> 
+     </div>    
+</template>
