@@ -1,0 +1,47 @@
+<template>
+    <!--
+
+    Author: Austin Ulberg, Daniel Boice
+    Date Modified: 1/1/1111
+    Description: Creates questions and allows users to submit to the server
+-->
+    <div class="slds-p-around_x-small">
+        
+             
+ 
+          
+            <lightning-card title={questionNumberTitleText}>
+                <template if:true="{displayMatchingType}">
+                    <c-lwc-matching-question-type question={quest} ></c-lwc-matching-question-type>
+                </template>
+                <template if:true="{displayShortType}">
+                    <c-lwc-short-answer-type-question question={quest} ></c-lwc-short-answer-type-question>
+                </template>
+                <template if:true="{displayMultipleChoiceType}">
+                    <c-lwc-multiple-choice-question question={quest} ></c-lwc-multiple-choice-question>
+                </template>
+                <template if:true="{displayMultiMultipleChoiceType}">
+                    <c-lwc-multi-multiple-choices-question question={quest} ></c-lwc-multi-multiple-choices-question>
+                </template>
+                <template if:true="{displayTrueType}">
+                    <c-lwc-true-false-question question={quest} ></c-lwc-true-false-question>
+                </template>
+                <template if:true="{displayNumberType}">
+                    <c-lwc-numerical-question-type question={quest} ></c-lwc-numerical-question-type>
+                </template>
+            
+                <template if:true="{displayEssayType}">
+                    <c-lwc-essay-type-question question={quest} ></c-lwc-essay-type-question>
+                </template>
+            
+            </lightning-card>
+           
+           
+ 
+        <lightning-button class="slds-float_left" id="prev" label="Previous Question" title="Previous Question" onclick={prevClick} disabled="true"></lightning-button>
+        <lightning-button class="slds-float_right" id=t"next" label="Next Question" title="Next Question" onclick={nextClick}></lightning-button>
+        <div class="submitdiv" id="submitdiv">
+            <lightning-button id="submit" label="Submit Exam" title="Submit Exam" onclick={submitClick}></lightning-button>
+        </div>
+    </div>
+</template>
