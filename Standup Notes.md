@@ -278,3 +278,76 @@
   - Worked on personal LWC
   - Helped a lot of people with their issues with LWC
   - Added kanban cards
+
+## 9/28/2021
+
+### Alchemy
+- Hamza
+  - Looked at LWC trailhead while Nolan was working on troubleshooting
+  - Got the component to look like aura one
+  - Functionality starts tomorrow
+- Huguette
+  - Completed component
+  - Pushing to org
+- Nolan
+  - Spent a long time getting previous aura compoent working
+  - Got done with formatting for component done
+  - Will add functionality tomorrow
+- Andrew C
+  - Finished QC interview header component
+  - Did well on QC
+  - Spent time studying for PD1
+- Heejin
+  - Working on P3
+    - Same plan for tomorrow
+  - Studying for certificaiton
+  - Working on trailhead
+
+### Synergy
+- Lisa
+  - Completed a couple more LWC badges
+  - Started to familiarize with the project
+- John
+  - Started on component
+  - Not able to preview yet
+- Andrew G
+  - Finished the personal assignment
+  - Started on LWC badges
+- Johnny
+  - Slow day
+  - Hard to get going
+  - Will work on it tonight
+
+### Vanquish
+- Austin
+  - Worked on compoent all day
+  - Knocked out 95% of it
+  - Spent time studying for QC
+- Daniel
+  - Studied for QC
+  - Finished portfolio
+  - Worked on component with Austin
+  - Going to finish it up soon
+  - Goint to study for PD1
+- Rayshawn
+  - Pushed code to github
+  - Finished portfolio
+- Max
+  - Spent a long time studying for QC
+    - Got burnt out over it
+  - Studied for PD1
+  - Started search for next component
+  - Working between PD1 and P3
+
+### Scrum Masters
+- Emanuel
+  - Finalized 2 components
+  - Put documentation on them
+  - Pushed to teams branch
+  - Studied for PD1
+  - Spent time helping people
+  - Learned a lot of things while helping people
+- Jacob
+  - Tested 2 components
+  - Picked up a third
+  - Helped people all day as they needed it
