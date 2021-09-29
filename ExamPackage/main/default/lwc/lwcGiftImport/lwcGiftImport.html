@@ -1,0 +1,75 @@
+<!--
+    Authors: Hamza Khan, Nolan Toole
+    Date Modified: 9/29/2021
+    Description: 
+-->
+<template>
+    <div class="container">
+        <template if:false={submitScreen}>
+            <div class="title">
+                <table>
+                    <tr>
+                        <td width="1%"><lightning-icon icon-name="utility:database" alternative-text="Event" title="Event"></lightning-icon></td>
+                        <td><h1>Import GIFT-Formatted Questions</h1></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="messages">
+                <i>{initMessage}</i><br />
+                <!--<template if:true={}>
+                    <b>File Successfully Imported!</b><br />
+                    <i>Imported {} questions - Updated {} questions</i>
+                </template>-->
+            </div>
+            <div class="slds-box">
+                <lightning-combobox name="TitanId" label="Select a Titan:" value={valueTitan} options={titanOptions} onchange={handleChange}>
+                </lightning-combobox>
+            </div>
+            <div class="slds-box">
+                <lightning-combobox name="TechnologyID" label="Titan's Technology:" value={valueTech} options={techOptions} disabled=true>
+                </lightning-combobox>
+            </div>
+            <div class="slds-box">
+                <lightning-button variant="brand" label="Next" title="Next" onclick={handleNext} ></lightning-button>
+            </div>
+        </template>
+        <template if:true={submitScreen}>
+            <div class="title">
+                <table id="title__table">
+                    <tr>
+                        <td width="1%"><lightning-icon icon-name="doctype:txt" alternative-text="Event" title="Event"></lightning-icon></td>
+                        <td><h1>File Submission</h1></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="slds-box">
+                <span class="errorText">{submitError}</span>
+                <div class="slds-text-body_small slds-text-color_black" style="white-space: pre-line;">
+                    <table style="max-width:80%;margin:25px auto;">
+                        <tr>
+                            <td width="20%">
+                                <b>File to Import:</b>&nbsp;{fileName}<br />
+                                <b>Number of questions: {toImport}</b><br />
+                            </td>
+                            <td class="td__upload">
+                                <!-- file uploader -->
+                                <lightning-input type="file" lablel="Upload Text Document" multiple="false" accept='.txt' onchange={HandleUploadFile} ></lightning-input> 
+                                <!-- /file uploader -->
+                            </td>
+                            <td class="td__buttons">
+                                <!-- cancel button -->
+                                <lightning-button variant="neutral" label="Cancel" title="Cancel" onclick={HandleCancel}></lightning-button>
+                                <!-- /cancel button -->
+                            </td>
+                            <td class="td__buttons">
+                                <!-- submit button -->
+                                <lightning-button variant="brand" label="Submit" title="Submit" onclick={HandleSubmit}></lightning-button>
+                                <!-- /submit button -->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>
