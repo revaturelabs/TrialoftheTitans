@@ -1,0 +1,17 @@
+.boxGrid {
+
+    background-color:#fef8ec;
+    border-radius: 5px;
+    border-style: groove;
+
+}
+
+
+.boxBackground {
+
+    background-color:#fef8ec;
+    border-radius: 5px;
+    border-style: ridge;
+
+
+}
