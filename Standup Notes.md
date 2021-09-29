@@ -351,3 +351,69 @@
   - Tested 2 components
   - Picked up a third
   - Helped people all day as they needed it
+
+## 9/29/2021
+
+### Alchemy
+- Hamza
+  - Studied this morning
+  - Worked on getting the picklists going in the LWC
+- Huguette
+  - Able to complete LWC
+  - Merged to branch
+  - Worked on portfolio
+- Nolan
+  - Finished up portfolio
+  - Studied for PD1
+  - Worked on getting the picklists going in the LWC
+- Andrew C
+  - Finished converting WCInterview
+  - Studied most of the afternoon
+- Heejin
+  - Working on portfolio and trailhead
+  - Started working on project
+
+### Synergy
+- Lisa
+  - Got portfolio approved
+  - Worked on P3
+    - Have a real handle on what is going on
+- John
+  - Worked on P3
+  - Having some conceptual issues but will be resolved soon
+- Andrew G
+  - Started working on LWC badge
+  - Trying to have portfolio done by the end of the day
+- Johnny
+  - Finished portfolio and submitted it
+    - Have not gotten feedback on it yet
+  - Created pull request
+  - Hopefully ready for next one tomrrow
+
+### Vanquish
+- Austin  
+  - Finished portfolio and got it approved
+  - Studied for PD1
+  - Finished up some details with Daniel on the project
+- Daniel
+  - Portfolio work
+  - Studied for PD1 exam
+  - Did some trailhead badges
+- Rayshawn
+  - Worked on portfolio and made corrections
+  - Studied for exam
+    - Passed ADM
+  - Just submitted portfolio
+- Max
+  - Converted a very small LWC
+  - Studied for PD1 for most of the day
+
+### Scrum Masters
+- Emanuel
+  - Able to work on and complete another LWC
+    - Finished testing
+  - Studied for PD1
+  - Helped others with their portions of the project
+- Jacob
+  - Worked on LWC and tried to convert proprietary Aura feature to LWC
+  - Helped groups with lots of smaller issues all day
