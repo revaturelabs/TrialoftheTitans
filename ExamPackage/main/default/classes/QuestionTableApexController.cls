@@ -37,8 +37,6 @@ public class QuestionTableApexController {
         // Wrapper instantiate
         List <TableRow> RowList = new List <TableRow> ();
         TableRow tr;
-
-        system.debug(searchKeyword + ' ' + pageSize + ' ' + pageNumber);
         
         //convert offset                                             
         Integer offset = (pageNumber - 1) * pageSize;
@@ -53,8 +51,6 @@ public class QuestionTableApexController {
             tr.ques.add(q);
             RowList.add(tr);
         }
-
-        system.debug(RowList);
 
         return RowList;
     }
@@ -81,7 +77,6 @@ public class QuestionTableApexController {
             tr.assignedQues.add(q);
             RowList.add(tr);
         }
-        system.debug(RowList);
         return RowList;
     }
     public class TableRow2{
