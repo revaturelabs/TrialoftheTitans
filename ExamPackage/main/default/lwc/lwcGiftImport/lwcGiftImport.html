@@ -1,11 +1,14 @@
 <!--
     Authors: Hamza Khan, Nolan Toole
-    Date Modified: 9/29/2021
-    Description: 
+    Date Modified: 9/30/2021
+    Description: Lightning Web Component for being able to save questions from a GIFT formatted file to the exam questions custom object
 -->
+
 <template>
     <div class="container">
+        <!--This is the first page shown, is displayed again after clicking the submit or cancel button on the submit screen-->
         <template if:false={submitScreen}>
+            <!--Header-->
             <div class="title">
                 <table>
                     <tr>
@@ -14,26 +17,33 @@
                     </tr>
                 </table>
             </div>
+            <!--/Header-->
+            <!--Shows the initial message, conditionally shows a message for how many questions were imported or updated after pressing submit button-->
             <div class="messages">
                 <i>{initMessage}</i><br />
-                <!--<template if:true={}>
+                <template if:true={successMessage}>
                     <b>File Successfully Imported!</b><br />
-                    <i>Imported {} questions - Updated {} questions</i>
-                </template>-->
+                    <i>Imported {imported} questions - Updated {updated} questions</i>
+                </template>
             </div>
+            <!--Picklist for selecting the titan that questions will be imported for-->
             <div class="slds-box">
                 <lightning-combobox name="TitanId" label="Select a Titan:" value={valueTitan} options={titanOptions} onchange={handleChange}>
                 </lightning-combobox>
             </div>
+            <!--Displays the technology of the selected titan-->
             <div class="slds-box">
                 <lightning-combobox name="TechnologyID" label="Titan's Technology:" value={valueTech} options={techOptions} disabled=true>
                 </lightning-combobox>
             </div>
+            <!--Button for advancing to the submission screen-->
             <div class="slds-box">
                 <lightning-button variant="brand" label="Next" title="Next" onclick={handleNext} ></lightning-button>
             </div>
         </template>
+        <!--The submit screen, shown after pressing the next button-->
         <template if:true={submitScreen}>
+            <!--Header-->
             <div class="title">
                 <table id="title__table">
                     <tr>
@@ -42,32 +52,59 @@
                     </tr>
                 </table>
             </div>
+            <!--/Header-->
+            <!--Box for the main display of the submit screen, split into three-->
             <div class="slds-box">
                 <span class="errorText">{submitError}</span>
                 <div class="slds-text-body_small slds-text-color_black" style="white-space: pre-line;">
                     <table style="max-width:80%;margin:25px auto;">
                         <tr>
+                            <!--Show file name and how many questions are in the file-->
                             <td width="20%">
                                 <b>File to Import:</b>&nbsp;{fileName}<br />
                                 <b>Number of questions: {toImport}</b><br />
                             </td>
                             <td class="td__upload">
                                 <!-- file uploader -->
-                                <lightning-input type="file" lablel="Upload Text Document" multiple="false" accept='.txt' onchange={HandleUploadFile} ></lightning-input> 
+                                <lightning-input type="file" label="Upload Text Document" multiple="false" accept='.txt' onchange={handleUploadFile} ></lightning-input> 
                                 <!-- /file uploader -->
                             </td>
                             <td class="td__buttons">
                                 <!-- cancel button -->
-                                <lightning-button variant="neutral" label="Cancel" title="Cancel" onclick={HandleCancel}></lightning-button>
+                                <lightning-button variant="neutral" label="Cancel" title="Cancel" onclick={handleCancel}></lightning-button>
                                 <!-- /cancel button -->
                             </td>
                             <td class="td__buttons">
                                 <!-- submit button -->
-                                <lightning-button variant="brand" label="Submit" title="Submit" onclick={HandleSubmit}></lightning-button>
+                                <lightning-button variant="brand" label="Submit" title="Submit" onclick={handleSubmit}></lightning-button>
                                 <!-- /submit button -->
                             </td>
                         </tr>
                     </table>
+                    <!--Conditional table showing the question title, question, and answer when a file is uploaded-->
+                    <template if:true={showQuestions}>
+                        <h2>Questions to Import:</h2>
+                        <table class="import">
+                            <tr>
+                                <th width="20%">Question Title</th>
+                                <th width="40%">Question Text</th>
+                                <th width="40%">Question Answer</th>
+                            </tr>
+                            <template for:each={submitList} for:item='q'>
+                                <tr key={q.qtitle}>
+                                    <td>
+                                        {q.qTitle}
+                                    </td>
+                                    <td>
+                                        {q.qText}
+                                    </td>
+                                    <td>
+                                        {q.qAnswer}
+                                    </td>
+                                </tr>
+                            </template>
+                        </table>
+                    </template>
                 </div>
             </div>
         </template>

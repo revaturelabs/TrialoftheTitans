@@ -35,7 +35,7 @@ h2 {
     margin-bottom: 28px;
 }
 
-/*#import {
+.import {
     border-collapse: separate;
     border-radius: 6px;
     -moz-border-radius: 6px;
@@ -44,17 +44,17 @@ h2 {
     border: 1px solid #555;
     border-radius: 5px;
 }
-#import th {
+.import th {
     text-align: center;
     background-color: #eee;
     border-left: 1px solid #555;
     border-top:none
 }
-#import td {
+.import td {
     border-left: 1px dashed #555;
     border-top: 1px solid #555;
     padding: 4px;
 }
-#import td:first-child,   #import th:first-child {
+.import td:first-child,   .import th:first-child {
     border-left: none;
-}*/
+}
