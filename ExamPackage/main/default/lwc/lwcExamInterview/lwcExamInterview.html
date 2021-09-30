@@ -16,16 +16,18 @@
  
           
             <lightning-card title="Test question number ">
+               <!--
                 <template if:true={examQuestions}>
                     <template for:each={examQuestions} for:item="quest">
                         <p key={quest.Id}>{quest.Question_Text__c}</p>
                     </template>
                 </template>
-                <!--
+            -->  
+                 <!--
                 <template if:true={displayMultipleChoiceType}>
-                    <c-lwc-multiple-choice-question question={question} ></c-lwc-multiple-choice-question>
-                </template>-->
-                <!--
+                    <c-lwc-multiple-choice-question question={question}  ></c-lwc-multiple-choice-question>
+                </template>
+               
                 <template if:true={displayMatchingType}>
                     <c-lwc-matching-question-type question={question} ></c-lwc-matching-question-type>
                 </template>
@@ -42,11 +44,11 @@
                 <template if:true={displayNumberType}>
                     <c-lwc-numerical-question-type question={question} ></c-lwc-numerical-question-type>
                 </template>
-            
+            -->
                 <template if:true={displayEssayType}>
-                    <c-lwc-essay-type-question question={question} ></c-lwc-essay-type-question>
+                    <c-lwc-essay-type-questions question={question} ></c-lwc-essay-type-questions>
                 </template>
-                -->
+                
             </lightning-card>
            
            

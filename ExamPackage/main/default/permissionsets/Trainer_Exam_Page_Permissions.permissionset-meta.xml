@@ -168,6 +168,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Exam_Result__c.Score__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Exam_Result__c.Show_Answer_Explanations__c</field>
         <readable>true</readable>
@@ -211,6 +216,11 @@
         <editable>true</editable>
         <field>Exam__c.Titan__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Hero_Answer__c.Answer_Choice__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

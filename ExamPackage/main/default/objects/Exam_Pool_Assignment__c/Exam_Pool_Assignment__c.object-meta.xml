@@ -162,7 +162,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Exam Pool Assignments</pluralLabel>
-    <searchLayouts></searchLayouts>
+    <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>

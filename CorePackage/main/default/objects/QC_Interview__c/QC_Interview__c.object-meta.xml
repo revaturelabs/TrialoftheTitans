@@ -161,7 +161,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>QC Interviews</pluralLabel>
-    <searchLayouts></searchLayouts>
+    <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

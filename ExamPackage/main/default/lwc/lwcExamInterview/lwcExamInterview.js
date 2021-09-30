@@ -46,13 +46,13 @@ examId;
 question;
 questionType;
 questionNumberTitleText="test";
-displayMatchingType;
-displayShortType;
-displayMultipleChoiceType=true;
-displayMultiMultipleChoiceType;
-displayTrueType;
-displayNumberType;
-displayEssayType;
+displayMatchingType=false;
+displayShortType=false;
+displayMultipleChoiceType=false;
+displayMultiMultipleChoiceType=false;
+displayTrueType=false;
+displayNumberType=false;
+displayEssayType=false;
 
 
 
@@ -64,6 +64,8 @@ wiredExamQuestions({ error, data }) {
     console.log(data);
     this.examQuestions = data;
     this.error = undefined;
+    this.question=data[0];
+    this.setDisplayBoolValues();
   } else if (error) {
     this.error = error;
     this.examQuestions = undefined;
@@ -87,18 +89,17 @@ connectedCallback() {
 
     get question(){}
    
-    /*
+  
 //Set Display values based on question type to conditionally render question type components
 
 setDisplayBoolValues(){
-    if(typeof question !='undefined'){
-            
-      
-    
-        switch (this.question.QuestionType) {
+    console.log('set display bool values function fired');
+    if(typeof this.question !='undefined'){
+        console.log("question defined");
+        console.log(this.question.Question_Type__c)
+        switch (this.question.Question_Type__c) {
             case "Matching":
                 if(!this.displayMatchingType){
-                   
                     switch(true){
                         case this.displayShortType:
                             this.displayShortType = false;
@@ -121,82 +122,161 @@ setDisplayBoolValues(){
                     this.displayMatchingType = true;
                 }
                 break;
-
             case "Numerical":
-            
-                this.displayNumberType = true;
-                this.displayMatchingType = false;
-                this.displayShortType = false;
-                this.displayMultipleChoiceType = false;
-                this.displayMultiMultipleChoiceType = false;
-                this.displayTrueType = false;
-                this.displayEssayType = false;
-
+                if(!this.displayNumberType){
+                    switch(true){
+                        case this.displayShortType:
+                            this.displayShortType = false;
+                            break;
+                        case this.displayMatchingType:
+                            this.displayMatchingType = false;
+                            break;
+                        case  this.displayMultipleChoiceType:
+                            this.displayMultipleChoiceType = false;
+                            break;
+                        case this.displayMultiMultipleChoiceType:
+                            this.displayMultiMultipleChoiceType = false;
+                            break;
+                        case this.displayTrueType:
+                            this.displayTrueType = false;
+                            break;
+                        case this.displayNumberType:
+                            this.displayNumberType = false;
+                            break;
+                        case  this.displayEssayType:
+                            this.displayEssayType = false;
+                    }
+                    this.displayNumberType = true;
+                }
                 break;   
             case "Essay":
-                if(! this.displayEssayType){
-                this.displayEssayType = false;
-                this.displayMatchingType = false;
-                this.displayShortType = false;
-                this.displayMultipleChoiceType = false;
-                this.displayMultiMultipleChoiceType = false;
-                this.displayTrueType = false;
-                this.displayNumberType = false;
+                if(!this.displayEssayType){
+                    switch(true){
+                        case this.displayShortType:
+                            this.displayShortType = false;
+                            break;
+                        case this.displayMatchingType:
+                            this.displayMatchingType = false;
+                            break;
+                        case  this.displayMultipleChoiceType:
+                            this.displayMultipleChoiceType = false;
+                            break;
+                        case this.displayMultiMultipleChoiceType:
+                            this.displayMultiMultipleChoiceType = false;
+                            break;
+                        case this.displayTrueType:
+                            this.displayTrueType = false;
+                            break;
+                        case this.displayNumberType:
+                            this.displayNumberType = false;
+                            break;
+                        case  this.displayEssayType:
+                            this.displayEssayType = false;   
+                    }
+                    this.displayEssayType = true;
+                    console.log('set display essay type to '+this.displayEssayType);
                 }
-
                 break;
             case "Short answer":
                 if(!this.displayShortType){
+                    switch(true){
+                        case this.displayMatchingType:
+                            this.displayMatchingType = false;
+                            break;
+                        case  this.displayMultipleChoiceType:
+                            this.displayMultipleChoiceType = false;
+                            break;
+                        case this.displayMultiMultipleChoiceType:
+                            this.displayMultiMultipleChoiceType = false;
+                            break;
+                        case this.displayTrueType:
+                            this.displayTrueType = false;
+                            break;
+                        case this.displayNumberType:
+                            this.displayNumberType = false;
+                            break;
+                        case  this.displayEssayType:
+                            this.displayEssayType = false;
+                    }
                     this.displayShortType = true;
-                    this.displayEssayType = false;
-                    this.displayMatchingType = false;
-                    this.displayMultipleChoiceType = false;
-                    this.displayMultiMultipleChoiceType = false;
-                    this.displayTrueType = false;
-                    this.displayNumberType = false;
-                    this.displayEssayType = true;
             }
                 break;
             case "Multiple Choice":
                 if(!this.displayMultipleChoiceType){
+                    switch(true){
+                        case this.displayShortType:
+                            this.displayShortType = false;
+                            break;
+                        case  this.displayMatchingType:
+                            this.displayMultipleChoiceType = false;
+                            break;
+                        case this.displayMultiMultipleChoiceType:
+                            this.displayMultiMultipleChoiceType = false;
+                            break;
+                        case this.displayTrueType:
+                            this.displayTrueType = false;
+                            break;
+                        case this.displayNumberType:
+                            this.displayNumberType = false;
+                            break;
+                        case  this.displayEssayType:
+                            this.displayEssayType = false;
+                    }
                     this.displayMultipleChoiceType = true;
-                    this.displayEssayType = false;
-                    this.displayMatchingType = false;
-                    this.displayShortType = false;
-                    this.displayMultiMultipleChoiceType = false;
-                    this.displayTrueType = false;
-                    this.displayNumberType = false;
-                    this.displayEssayType = false;
                 }
                 break;
             case "Multiple Choice - multiple answers":
                 if(!this.displayMultiMultipleChoiceType){
+                    switch(true){
+                        case this.displayShortType:
+                            this.displayShortType = false;
+                            break;
+                        case  this.displayMatchingType:
+                            this.displayMultipleChoiceType = false;
+                            break;
+                        case this.displayMultipleChoiceType:
+                            this.displayMultipleChoiceType = false;
+                            break;
+                        case this.displayTrueType:
+                            this.displayTrueType = false;
+                            break;
+                        case this.displayNumberType:
+                            this.displayNumberType = false;
+                            break;
+                        case  this.displayEssayType:
+                            this.displayEssayType = false;
+                    }
                     this.displayMultiMultipleChoiceType = true;
-                    this.displayEssayType = false;
-                    this.displayMatchingType = false;
-                    this.displayShortType = false;
-                    this.displayMultipleChoiceType = false;
-                    this.displayTrueType = false;
-                    this.displayNumberType = false;
-                    this.displayEssayType = true;
                 }
                 break;
             case "True-false":
                 if(!this.displayTrueType){
+                   
+                    switch(true){
+                        case this.displayShortType:
+                            this.displayShortType = false;
+                            break;
+                        case  this.displayMatchingType:
+                            this.displayMultipleChoiceType = false;
+                            break;
+                        case this.displayMultipleChoiceType:
+                            this.displayMultipleChoiceType = false;
+                            break;
+                        case this.displayMultiMultipleChoiceType:
+                            this.displayMultiMultipleChoiceType = false;
+                            break;
+                        case this.displayNumberType:
+                            this.displayNumberType = false;
+                            break;
+                        case  this.displayEssayType:
+                            this.displayEssayType = false;
+                    }
                     this.displayTrueType = true;
-                    this.displayEssayType = false;
-                    this.displayMatchingType = false;
-                    this.displayShortType = false;
-                    this.displayMultipleChoiceType = false;
-                    this.displayMultiMultipleChoiceType = false;
-                    this.displayNumberType = false;
-                    this.displayEssayType = false;
-                }
-                break;                        
+                }                       
             default:
                 break;
         }
-}
+    }
         
     }
    //Create map  mapping current answers to question number 
@@ -230,6 +310,6 @@ submitExam(){
 
 
 }
-*/
+
 }
 

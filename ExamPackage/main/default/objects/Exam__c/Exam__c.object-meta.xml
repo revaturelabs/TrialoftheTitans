@@ -163,7 +163,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Exams</pluralLabel>
-    <searchLayouts></searchLayouts>
+    <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

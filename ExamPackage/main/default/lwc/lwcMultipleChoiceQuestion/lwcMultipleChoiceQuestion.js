@@ -1,3 +1,13 @@
+/**
+ * @description       : 
+ * @author            : Daniel Boice
+ * @group             : 
+ * @last modified on  : 09-30-2021
+ * @last modified by  : Daniel Boice 
+ * Modifications Log
+ * Ver   Date         Author         Modification
+ * 1.0   09-30-2021   Daniel Boice   Initial Version
+**/
 import { api, LightningElement } from 'lwc';
 
 export default class MultipleChoiceQuestionLWC extends LightningElement {
@@ -10,7 +20,8 @@ export default class MultipleChoiceQuestionLWC extends LightningElement {
     questionprompt = '';
     @api
     radioGroupOptions;
-
+    @api
+    question
     //Called at startup to populate the values
     connectedCallback(){
 

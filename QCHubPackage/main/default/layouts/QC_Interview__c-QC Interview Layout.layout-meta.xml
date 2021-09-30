@@ -15,7 +15,7 @@
                 <field>Account__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Cohort__c</field>
             </layoutItems>
             <layoutItems>
@@ -31,8 +31,7 @@
                 <field>Finalized__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns>
-        </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>

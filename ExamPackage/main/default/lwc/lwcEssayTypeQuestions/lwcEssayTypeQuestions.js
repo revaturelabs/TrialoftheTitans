@@ -1,6 +1,16 @@
-import { api, LightningElement } from 'lwc';
+/**
+ * @description       : 
+ * @author            : Rayshawn
+ * @group             : 
+ * @last modified on  : 09-30-2021
+ * @last modified by  : Daniel Boice
+ * Modifications Log
+ * Ver   Date         Author         Modification
+ * 1.0   09-30-2021   Rayshawn   Initial Version
+**/
+import {api, LightningElement } from 'lwc';
 
-export default class EssayTypeQuestions extends LightningElement {
+export default class LwcEssayTypeQuestions extends LightningElement {
     @api question = {
         Question_Type__c: '',
         Missing_Word__c: '',
