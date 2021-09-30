@@ -25,7 +25,7 @@
   - Stated working on pulling the project
   - Working on an LWC badge to becomme more familiar with them
 - John
--   Studying for PD1 and doing LWC badge
+  - Studying for PD1 and doing LWC badge
 - Andrew G
   - Working on something seperate for Caroline
 - Johnny
@@ -219,8 +219,6 @@
   - The apex and component are now reliable
   - Now working on getting the LWC to work
   - Going to do some pair programming tomorrow
-- Huguette
-  - 
 - Nolan
   - Hamza + 
   - Worked on LWC stuff this morning
@@ -255,8 +253,6 @@
   - Finished some portfolio changes
   - Started a plan with Daniel on converting Aura component
   - Studying for QC this afternoon
-- Daniel
-  - 
 - Rayshawn
   - Studying for exams
   - Working on deploying to the org
@@ -417,3 +413,74 @@
 - Jacob
   - Worked on LWC and tried to convert proprietary Aura feature to LWC
   - Helped groups with lots of smaller issues all day
+
+## 9/24/2021
+
+### Alchemy
+- Hamza
+  - Finished first LWC with Nolan
+  - Been studying for the rest of the day
+- Huguette
+  - Still working on second LWC
+    - Will work on it tonight
+  - Studying over the weekend for certifications
+- Nolan
+  - Finished first LWC with Nolan
+  - Been studying for the rest of the day for PD1
+  - Seleted another component to work on next
+- Andrew C
+  - Finished a LWC
+  - Got portfolio accepted
+  - Studying for PD1
+- Heejin
+  - Been working pn P3
+  - Will be working on second component either tomorrow or this weekend
+  - Also studying for the certificaiton over the weekend
+
+### Synergy
+- Lisa
+  - Got LWC almost done (knock on wood)
+    - Will finish it tonight
+  - May start on another one tomorrow
+- John
+  - Finished ExamHub component
+  - Working on a QCHub component now
+    - Hopefully finishing tomorrow
+- Andrew G
+  - Finished portfolio
+  - Working on LWC badges
+- Johnny
+  - Got portfolio accpeted this morning
+  - Studied for PD1 in the morning
+  - Had to troubleshoot some merge conflicts
+  - Got a new LWC and will hopefully finish tomorrow
+
+### Vanquish
+- Austin
+  - Did one focus on force topic tests
+  - Working with Daniel on project all day
+- Daniel
+  - Loading data into the components
+  - May be done by the end of the day
+  - Portfolio was approved
+- Rayshawn
+  - Got portfolio approved
+  - Studied for PD1
+  - Started on covert buttons LWC
+    - Not yet finished
+- Max
+  - Selected a new LWC to work on the weekend
+  - Devoting the next few days to studying
+    - Will do LWC over the weekend
+  - Took topic exams and others on focus on force
+
+### Scrum Masters
+- Emanuel
+  - Finished another component
+  - Creted and merged pull request
+  - Studied for PD1
+  - Helped people with their components
+- Jacob
+  - Finished up a LWC
+  - Helped people with bugs and issues
+  - Lots of pull request parsing
