@@ -5,7 +5,7 @@
 		<name>Flow</name>
 	</types>
 
-	<!--<types>
+	<types>
 		<members>QCHubHomeAuraController</members>
 		<members>QCHubController</members>
 		<members>QCCohortWrapper</members>
