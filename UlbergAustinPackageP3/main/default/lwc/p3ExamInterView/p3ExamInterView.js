@@ -9,6 +9,7 @@ import exam from '@salesforce/schema/Exam__c';
 import titan from '@salesforce/schema/Titan__c';
 import Question from '@salesforce/schema/Exam_Question__c';
 import QuestionType from '@salesforce/schema/Exam_Question__c.Question_Type__c'
+import QuestionAnswer from '@salesforce/schema/Hero_Answer__c.Answer_Choice__c'
 import getExam from '@salesforce/apex/ExamInterviewApexController.examFinder';
 
 const FIELDS =[
@@ -25,7 +26,7 @@ examQuestions;
 examAnswers;
 
 //Index for questions
-questionNumber;
+questionNumber = 0;
 questionAmount;
 questionsLoaded;
 examId;
@@ -147,10 +148,28 @@ setDisplayBoolValues(){
 }
         
     }
-   
+   //Create map  mapping current answers to question number 
+   //has to get the answer from child component we render for the question type
+   // they use a sosl query to get the child component and then get its answer
+   //need to create a new varible to hold the current component that is currently rendered
+   //so we can call the answer function on the childcomponent to get the answer and map it to the map
+
+    retrieveAnswer(){
+      this.examAnswers.map(getAnswers)
+      function getAnswers(answer, questionNumber){
+       answer =  question.answer;
+       return[questionNumber, answer];
+
+      }
+      console.log(this.examAnswers)
+       // this.examAnswers[this.questionNumber]
+
+    }    
+
     prevClicked(){
         this.questionNumber--;
         this.question = this.examQuestions[this.questionNumber];
+        
     }
     nextClicked(){
         this.questionNumber++;
