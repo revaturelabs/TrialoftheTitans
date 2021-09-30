@@ -7,6 +7,7 @@ export default class LwcShortAnswerTypeQuestion extends LightningElement {
     @api 
     answer(cmp){
         var answer = cmp.find("input").value;
+        console.log(answer);
         return answer;
     }
 }
