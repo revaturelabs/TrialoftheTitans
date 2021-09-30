@@ -1,16 +1,18 @@
-////////////////////////////////////////////////////
-//
-// Name: Exam Interview Apex Controller
-// Author: Jayvious Williams
-// Created: 2021-06-26
-// Updated: 2021-09-10 Markus Metli
-// Description: Controller for our Exam Interview component.
-//              This will be pulling the exam and questions for display in Exam.
-//
-////////////////////////////////////////////////////
+/**
+ * @name              :  Exam Interview Apex Controller
+ * @description       :  Controller for our Exam Interview component.This will be      pulling the exam and questions for display in Exam.
+ * @author            : Jayvious Williams
+ * @group             : 
+ * @last modified on  : 09-30-2021
+ * @last modified by  : Daniel Boice
+ * Modifications Log
+ * Ver   Date         Author         Modification
+ * 1.0   2021-06-26   Jayvious Williams   Initial Version
+**/
+
 public class ExamInterviewApexController {
     // loads exam questions usind examID
-    @AuraEnabled(catchable=true)
+    @AuraEnabled(cacheable=true)
     public static List<Exam_Question__c> examFinder(String examID){
         List<Exam_Question__c> theExam = [SELECT Question_Text__c, Question_Type__c, Options__c, Correct_Answer_s__c FROM Exam_Question__c WHERE Titan__c != null];
         //exam = theExam[0].Exam__c;
