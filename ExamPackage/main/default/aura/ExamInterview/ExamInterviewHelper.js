@@ -284,7 +284,8 @@
             var toggleText = document.getElementById("Question" + i);
             if(i == questionNumber){
                 toggleText.style.display = 'block';
-            }else{
+            }
+            else{
                 toggleText.style.display = 'none';
             }
             i++;
