@@ -135,7 +135,14 @@
                     "package": "HeroHubPackage@1.0.0-1"
                 }
             ]
-        }        
+        },
+        {
+            "path": "Project3",
+            "package": "Project3",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        }
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
@@ -154,6 +161,7 @@
         "QCHubPackage@1.0.0-1": "04t5e000000aOJuAAM",
         "TrainerHubPackage@1.0.0-1": "04t5e000000aOJzAAM",
         "MockInterviewPackage@1.0.0-1": "04t5e000000aOKEAA2",
-        "HeroHubPackage@1.0.0-1": "04t5e000000aOL7AAM"
+        "HeroHubPackage@1.0.0-1": "04t5e000000aOL7AAM",
+        "Project3": "0Ho5f000000k9diCAA"
     }
 }
