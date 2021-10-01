@@ -11,7 +11,8 @@
 import { api, LightningElement } from 'lwc';
 
 export default class LwcQuestion extends LightningElement {
-    @api question;
+    @api 
+    question;
    
   
     @api
@@ -76,6 +77,7 @@ export default class LwcQuestion extends LightningElement {
     @api
     setDisplayQuestionTypeBoolValues(){
         console.log('set display bool values function fired');
+        console.log(typeof question);
         if(typeof this.question !='undefined'){
             console.log("question defined");
             console.log(this.question.Question_Type__c)

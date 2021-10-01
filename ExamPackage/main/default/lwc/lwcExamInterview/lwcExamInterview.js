@@ -73,12 +73,18 @@ wiredExamQuestions({ error, data }) {
         console.log(error);
   }
 }
+@api
 setDisplayBoolValues(){
+    console.log('set display bool values fired in interview');
     const questionComponent = this.template.querySelector('c-lwc-question');
         if(questionComponent){
-           
+           console.log(this.question);
+           questionComponent.question=this.question;
             questionComponent.setDisplayQuestionTypeBoolValues();
-           this.setEssayTextAreaWithTitanAnswerForQuestion();
+            this.setEssayTextAreaWithTitanAnswerForQuestion();
+        }
+        else{
+            console.log('question component not loaded');
         }
 }
 connectedCallback() {
