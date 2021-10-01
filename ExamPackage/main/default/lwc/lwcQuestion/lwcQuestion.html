@@ -1,0 +1,58 @@
+<!--
+  @description       : 
+  @author            : Daniel Boice
+  @group             : 
+  @last modified on  : 10-01-2021
+  @last modified by  : Daniel Boice
+  Modifications Log
+  Ver   Date         Author         Modification
+  1.0   10-01-2021   Daniel Boice   Initial Version
+-->
+<template>
+    <lightning-layout class="slds-page-header slds-page-header_object-home" horizontal-align="spread" multiple-rows="true">
+        <lightning-layout-item size='6' flexibility="auto">        
+            <template if:true={question}>
+                <h1>
+                    {question.Question_Text__c}
+                </h1>
+            </template>
+            <template if:true={displayTextarea}>
+                 <div>  
+                    <lightning-textarea name="answertextarea" label="Enter answer here." onkeyup={inputAnswer} placeholder="Enter essay answer here..."></lightning-textarea>                    
+                </div>
+            </template>
+            <template if:true={displayInput}>
+                <div class="slds-p-around_x-small">
+                    <lightning-input  name="input1" type="number"
+                     label="Number"
+                     onchange={handleChange}>
+                    
+                    </lightning-input>
+            </div>
+            </template>
+        <!--
+            <template if:true={displayRadioGroup}>
+                <div class="slds-m-around--xx-large">
+                    <div>
+                        <lightning-radio-group  name="radiogroup" 
+                            options={radioGroupOptions} value={radioAnswerChoice} type="radio" onchange={inputAnswer}>
+                        </lightning-radio-group>
+                    </div>
+                </div>
+            </template>
+            -->
+           
+            <!--
+            <template if:true={displayCheckboxGroup}>
+                <div>
+                    <lightning-checkboxGroup options={checkGroupOptions} onchange={handleChange}>
+                    </lightning-checkboxGroup>                 > 
+                </div>
+            </template>
+            -->
+            <div class="slds-m-vertical_medium">
+                <p>You Answered: <span class="slds-text-heading_small">{essayAnswer}</span></p>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
