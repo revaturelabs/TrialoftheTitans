@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Boice
   @group             : 
-  @last modified on  : 09-30-2021
+  @last modified on  : 10-01-2021
   @last modified by  : Daniel Boice
   Modifications Log
   Ver   Date         Author         Modification
@@ -24,7 +24,7 @@
                         <p>
                             {question.Question_Text__c}
                         </p>
-                        <lightning-textarea name="Answer" label="Enter answer here." onchange={inputAnswer}></lightning-textarea>                    
+                        <lightning-textarea name="answertextarea" label="Enter answer here." onchange={inputAnswer} placeholder="Enter essay answer here..."></lightning-textarea>                    
                     </div>
                     <div class="slds-m-vertical_medium">
                         <p>You Answered: <span class="slds-text-heading_small">{essayAnswer}</span></p>
