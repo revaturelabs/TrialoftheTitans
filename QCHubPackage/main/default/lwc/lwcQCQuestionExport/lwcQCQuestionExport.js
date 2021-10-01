@@ -1,9 +1,15 @@
+/*
+    Author: Nolan Toole
+    Date Modified: 10/1/21
+    Description: JS controller for getting the list of QC questions, converting them to a csv file, then downloading the csv
+*/
 import { api, LightningElement } from 'lwc';
 import getQCQuestions from '@salesforce/apex/QCQuestionExportApexController.getQCQuestions';
 
 export default class LwcQCQuestionExport extends LightningElement {
     @api questionList = [];
 
+    // Retrieve the list of questions from the QC_Questions__c object
     connectedCallback() {
         getQCQuestions().then((result) => {
             this.questionList = result;
@@ -11,6 +17,7 @@ export default class LwcQCQuestionExport extends LightningElement {
         })
     }
 
+    // passes the question list to the convertToCSV function to make a csv file, then downloads the file
     @api
     downloadCSV(event) {
         var questions = this.questionList;
@@ -27,6 +34,7 @@ export default class LwcQCQuestionExport extends LightningElement {
         hiddenElement.click();
     }
 
+    // Converts the list to a csv file and passes back to the downloadCSV function
     @api
     convertToCSV(questionList) {
         var stringResult, count, keys, columnDivider, lineDivider;
