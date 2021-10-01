@@ -484,3 +484,69 @@
   - Finished up a LWC
   - Helped people with bugs and issues
   - Lots of pull request parsing
+
+## 10/1/2021
+
+### Alchemy
+- Hamza
+  - Studied for PD1 this morning
+  - Looking at LWC this afternoon
+    - Will start soon
+- Huguette
+  - Finished LWC
+  - Studying for PD1
+- Nolan
+  - Started and finished QCQuestionExport
+  - Did some studying for PD1
+- Andrew C
+  - Finished converting a LWC
+  - Spent time studying
+- Heejin
+  - Working on LWC
+  - Planning to study for exam tonight and over the weekend
+
+### Synergy
+- Lisa
+  - Finished exam component last night
+  - Spent time on documentation
+  - Started on another LWC
+- John
+  - Working on converting component
+    - Will be finished soon
+- Andrew G
+  - Got portfolio approved
+  - Started on LWC badges
+  - Will try to convert a component
+  - Will work on documentation over the weekend
+  - Trying to get 3 components done by Sunday
+- Johnny
+  - Worked on LWC all day
+  - Focused on converting events for the component
+
+### Vanquish
+- Austin
+  - Down to refactoring submit of apex controller
+  - Lots of hard-coding into it
+  - Didn't work in aura
+- Daniel
+  - Down to refactoring submit of apex controller
+  - Lots of hard-coding into it
+  - Didn't work in aura
+  - Studying for exam over the weekend
+- Rayshawn
+  - Completed the cohort button migration
+  - Needs testing though
+- Max
+  - Studied for PD1 all day
+  - Cert is tomorrow afternoon
+  - Picking up new component over the weekend
+    - One Saturday, Sunday and Monday
+
+### Scrum Masters
+- Emanuel
+  - Merging components
+  - Worked on setting up demo
+- Jacob
+  - Merging components
+  - Worked on setting up demo
+  - Helping others on their components
