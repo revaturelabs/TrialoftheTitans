@@ -35,6 +35,7 @@ examQuestions;
 answer="";
 examAnswers={};
 
+prevButtonDisabled=true;
 //Index for questions
 questionNumber = 0;
 questionAmount;
@@ -83,11 +84,8 @@ connectedCallback() {
     });
 }
 
- 
-
     get question(){}
    
-  
 //Set Display values based on question type to conditionally render question type components
 
 setDisplayBoolValues(){
@@ -178,15 +176,9 @@ setDisplayBoolValues(){
                     this.displayEssayType = true;
                     console.log('set display essay type to '+this.displayEssayType);
                 }
-                else{
-                    const textarea = this.template.querySelectorAll('answertextarea');
-                   
-                    if(textarea[0]){
-                        textarea.focus();
-                        textarea.setRangeText('Some new text');
-                      
-                    }
-                }
+                
+                this.clearEssayTextArea();
+                this.setEssayTextAreaWithTitanAnswerForQuestion();
                 break;
             case "Short answer":
                 if(!this.displayShortType){
@@ -290,6 +282,24 @@ setDisplayBoolValues(){
     }
         
     }
+
+    clearEssayTextArea(){
+     
+        const essayQuestionComponent = this.template.querySelector('c-lwc-essay-type-questions');
+        if(essayQuestionComponent){
+            essayQuestionComponent.handelTextAreaReset();
+        }
+       
+    }
+    setEssayTextAreaWithTitanAnswerForQuestion(){
+     
+        const essayQuestionComponent = this.template.querySelector('c-lwc-essay-type-questions');
+        if(essayQuestionComponent){
+            essayQuestionComponent.handelTextAreaSetTitanAnswer(this.examAnswers[this.questionNumber]);
+        }
+       
+    }
+    handelTextAreaSetTitanAnswer
    //Create map  mapping current answers to question number 
    //has to get the answer from child component we render for the question type
    // they use a sosl query to get the child component and then get its answer
@@ -300,31 +310,42 @@ setDisplayBoolValues(){
         console.log("received answer updated event");
         //console.log(event.detail);
         this.answer = event.detail;
-        
         console.log(this.answer);
 
     }
     retrieveAnswer(){
         
-       console.log('retrieve answer fired');
-      
+        console.log('retrieve answer fired');
         this.examAnswers[this.questionNumber] = this.answer;
-       
-        
-    
         console.log(this.examAnswers)
        
 
     }    
 
+    setPrevDisabled(){
+       if (this.questionNumber<1){
+            console.log('prevbutton disabled to true');
+            
+            this.prevButtonDisabled=true;
+        }
+        else{
+            console.log('prevbutton disabled to false');
+           
+            this.prevButtonDisabled=false;
+      }
+    }
     prevClicked(){
+        
         if(this.questionNumber>0){
             this.questionNumber--;
             this.question = this.examQuestions[this.questionNumber];
             this.setDisplayBoolValues();
+            
         }
-       
+        this.setPrevDisabled();
+        
     }
+    
     nextClicked(){
         this.retrieveAnswer();
        
@@ -335,6 +356,7 @@ setDisplayBoolValues(){
             this.answer="";
         }
         this.setDisplayBoolValues();
+        this.setPrevDisabled();
     }
     submitExam(){
 

@@ -16,7 +16,26 @@ export default class LwcEssayTypeQuestions extends LightningElement {
     @api essayQuestion ='Question';
     @api essayAnswer ='No answer provided';
 
-    
+    @api
+    handelTextAreaReset(){
+      console.log("handle text area reset fired")
+      const textarea = this.template.querySelector('lightning-textarea');
+   
+      if (textarea){
+        console.log('textarea value setting to null');
+        textarea.value= null;
+      }
+    }
+    @api
+    handelTextAreaSetTitanAnswer(answer){
+      console.log("handle text area set answer fired")
+      const textarea = this.template.querySelector('lightning-textarea');
+   
+      if (textarea){
+        console.log('textarea value setting current answer given by titan in exam');
+        textarea.value= answer;
+      }
+    }
     inputAnswer(event) {
       this.essayAnswer = event.target.value;
       event.preventDefault();
@@ -27,5 +46,6 @@ export default class LwcEssayTypeQuestions extends LightningElement {
       // Dispatches the event.
       this.dispatchEvent(answerEvent);
     }
+   
 
 }

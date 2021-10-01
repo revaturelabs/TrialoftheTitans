@@ -53,8 +53,8 @@
            
            
  
-        <lightning-button class="slds-float_left" id="prev" label="Previous Question" title="Previous Question" onclick={prevClicked} disabled="true"></lightning-button>
-        <lightning-button class="slds-float_right" id="next" label="Next Question" title="Next Question" onclick={nextClicked}></lightning-button>
+        <lightning-button class="slds-float_left" name="prevButton" label="Previous Question" title="Previous Question" onclick={prevClicked} disabled={prevButtonDisabled}></lightning-button>
+        <lightning-button class="slds-float_right" name="nextButton" label="Next Question" title="Next Question" onclick={nextClicked}></lightning-button>
         <div class="submitdiv" id="submitdiv">
             <lightning-button id="submit" label="Submit Exam" title="Submit Exam" onclick={submitClick}></lightning-button>
         </div>
