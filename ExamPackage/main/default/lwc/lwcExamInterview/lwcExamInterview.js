@@ -55,9 +55,6 @@ displayTrueType=false;
 displayNumberType=false;
 displayEssayType=false;
 
-
-
-
 @wire(examFinder, {examID:null})
 wiredExamQuestions({ error, data }) {
     console.log('wired exam questions function called');
@@ -99,6 +96,74 @@ connectedCallback() {
 
     get question(){}
    
+    answerUpdated(event){
+        console.log("received answer updated event");
+        //console.log(event.detail);
+        this.answer = event.detail;
+        console.log(this.answer);
+
+    }
+    retrieveAnswer(){
+        
+        console.log('retrieve answer fired');
+
+      
+        this.examAnswers[this.questionNumber] = this.answer;
+        console.log(this.examAnswers)
+       
+
+    }    
+
+    setPrevNextDisabled(){
+
+        this.prevButtonDisabled=this.questionNumber<1;
+        this.nextButtonDisabled=this.questionNumber===this.examQuestions.length-1;
+     
+    }
+    prevClicked(){
+        
+        this.retrieveAnswer();
+        if(this.questionNumber>0){
+            this.questionNumber--;
+            this.question = this.examQuestions[this.questionNumber];
+            this.questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
+        }
+        this.setCurrentAnswer();
+        this.setDisplayBoolValues();
+        this.setPrevNextDisabled();
+        
+    }
+    
+    setCurrentAnswer(){
+        
+        console.log(this.answer);
+        console.log("answer setting to null")
+        this.answer="";
+
+        if(this.examAnswers[this.questionNumber]){
+            console.log("setting answer to "+this.examAnswers[this.questionNumber]);
+            this.answer=this.examAnswers[this.questionNumber];
+        }
+    }
+
+    nextClicked(){
+        this.retrieveAnswer();
+       
+        if(this.questionNumber<this.examQuestions.length-1){
+            console.log("question number is "+ this.questionNumber)
+            this.questionNumber++;
+            this.question = this.examQuestions[this.questionNumber];
+            this.questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
+        }
+       
+        this.setCurrentAnswer();
+        this.setDisplayBoolValues();
+        this.setPrevNextDisabled();
+    }
+    submitExam(){
+
+    }
+
     //Set Display values based on question type to conditionally render question type components
    
    
@@ -322,73 +387,6 @@ setDisplayBoolValues(){
    //need to create a new varible to hold the current component that is currently rendered
    //so we can call the answer function on the childcomponent to get the answer and map it to the map
 
-    answerUpdated(event){
-        console.log("received answer updated event");
-        //console.log(event.detail);
-        this.answer = event.detail;
-        console.log(this.answer);
-
-    }
-    retrieveAnswer(){
-        
-        console.log('retrieve answer fired');
-
-      
-        this.examAnswers[this.questionNumber] = this.answer;
-        console.log(this.examAnswers)
-       
-
-    }    
-
-    setPrevNextDisabled(){
-
-        this.prevButtonDisabled=this.questionNumber<1;
-        this.nextButtonDisabled=this.questionNumber===this.examQuestions.length-1;
-     
-    }
-    prevClicked(){
-        
-        this.retrieveAnswer();
-        if(this.questionNumber>0){
-            this.questionNumber--;
-            this.question = this.examQuestions[this.questionNumber];
-            this.questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
-        }
-        this.setCurrentAnswer();
-        this.setDisplayBoolValues();
-        this.setPrevNextDisabled();
-        
-    }
-    
-    setCurrentAnswer(){
-        
-        console.log(this.answer);
-        console.log("answer setting to null")
-        this.answer="";
-
-        if(this.examAnswers[this.questionNumber]){
-            console.log("setting answer to "+this.examAnswers[this.questionNumber]);
-            this.answer=this.examAnswers[this.questionNumber];
-        }
-    }
-
-    nextClicked(){
-        this.retrieveAnswer();
-       
-        if(this.questionNumber<this.examQuestions.length-1){
-            console.log("question number is "+ this.questionNumber)
-            this.questionNumber++;
-            this.question = this.examQuestions[this.questionNumber];
-            this.questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
-        }
-       
-        this.setCurrentAnswer();
-        this.setDisplayBoolValues();
-        this.setPrevNextDisabled();
-    }
-    submitExam(){
-
-    }
-
+ 
 }
 
