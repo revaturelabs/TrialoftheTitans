@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Datatable Example" icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+            
+                <lightning-datatable
+                    key-field="Id"
+                    data={qcQuestions}
+                    columns={columns}
+                    onsave={handleSave}
+                    draft-values={draftValues}>
+                </lightning-datatable>
+            <!--
+            <template if:true={QC_Question__c.error}>
+                handle Apex error
+            </template> -->
+        </div>
+    </lightning-card>
+</template>

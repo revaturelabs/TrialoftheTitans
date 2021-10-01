@@ -1,6 +1,6 @@
 public with sharing  class QCQuestionEditController {
      
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
      public static List<QC_Question__c> getQCQuestion(ID recordID ,Integer pageSize, Integer pageNumber) {
          Integer offset = (pageNumber - 1) * pageSize;
          List<QC_Question__c> qcQuestionList = new List<QC_Question__c>();
