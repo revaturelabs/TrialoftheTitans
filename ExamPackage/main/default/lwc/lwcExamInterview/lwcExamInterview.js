@@ -20,79 +20,79 @@ import examFinder from '@salesforce/apex/ExamInterviewApexController.examFinder'
 export default class LwcExamInterview extends LightningElement {
 
 
-exam;
-titan;
-titanName;
-error;
+    exam;
+    titan;
+    titanName;
+    error;
 
-@track
-examQuestionsI;
-@track
-errorI;
+    @track
+    examQuestionsI;
+    @track
+    errorI;
 
 
-examQuestions;
-answer="";
-examAnswers={};
-nextButtonDisabled=false;
-prevButtonDisabled=true;
-//Index for questions
-questionNumber = 0;
-questionAmount;
-questionsLoaded;
-examId;
-question;
-questionType;
+    examQuestions;
+    answer="";
+    examAnswers={};
+    nextButtonDisabled=false;
+    prevButtonDisabled=true;
+    //Index for questions
+    questionNumber = 0;
+    questionAmount;
+    questionsLoaded;
+    examId;
+    question;
+    questionType;
 
-questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
+    questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
 
-//these display the components based on question type  
-displayMatchingType=false;
-displayShortType=false;
-displayMultipleChoiceType=false;
-displayMultiMultipleChoiceType=false;
-displayTrueType=false;
-displayNumberType=false;
-displayEssayType=false;
+    //these display the components based on question type  
+    displayMatchingType=false;
+    displayShortType=false;
+    displayMultipleChoiceType=false;
+    displayMultiMultipleChoiceType=false;
+    displayTrueType=false;
+    displayNumberType=false;
+    displayEssayType=false;
 
-@wire(examFinder, {examID:null})
-wiredExamQuestions({ error, data }) {
-    console.log('wired exam questions function called');
-    if (data) {
-        console.log(data);
-        this.examQuestions = data;
-        this.error = undefined;
-        this.question=data[0];
-        this.setDisplayBoolValues();
-  } else if (error) {
-        this.error = error;
-        this.examQuestions = undefined;
-        console.log(error);
-  }
-}
-@api
-setDisplayBoolValues(){
-    console.log('set display bool values fired in interview');
-    const questionComponent = this.template.querySelector('c-lwc-question');
-        if(questionComponent){
-           console.log(this.question);
-           questionComponent.question=this.question;
-            questionComponent.setDisplayQuestionTypeBoolValues();
-            this.setEssayTextAreaWithTitanAnswerForQuestion();
-        }
-        else{
-            console.log('question component not loaded');
-        }
-}
-connectedCallback() {
-  examFinder()
-    .then((result) => {
-      this.examQuestionsI = result;
-    })
-    .catch((error) => {
-      this.errorI = error;
-    });
-}
+    @wire(examFinder, {examID:null})
+    wiredExamQuestions({ error, data }) {
+        console.log('wired exam questions function called');
+        if (data) {
+            console.log(data);
+            this.examQuestions = data;
+            this.error = undefined;
+            this.question=data[0];
+            this.setDisplayBoolValues();
+    } else if (error) {
+            this.error = error;
+            this.examQuestions = undefined;
+            console.log(error);
+    }
+    }
+    @api
+    setDisplayBoolValues(){
+        console.log('set display bool values fired in interview');
+        const questionComponent = this.template.querySelector('c-lwc-question');
+            if(questionComponent){
+            console.log(this.question);
+            questionComponent.question=this.question;
+                questionComponent.setDisplayQuestionTypeBoolValues();
+                this.setEssayTextAreaWithTitanAnswerForQuestion();
+            }
+            else{
+                console.log('question component not loaded');
+            }
+    }
+    connectedCallback() {
+        examFinder()
+            .then((result) => {
+            this.examQuestionsI = result;
+            })
+            .catch((error) => {
+            this.errorI = error;
+            });
+    }
 
     get question(){}
    
@@ -101,27 +101,17 @@ connectedCallback() {
         //console.log(event.detail);
         this.answer = event.detail;
         console.log(this.answer);
-
     }
     retrieveAnswer(){
-        
         console.log('retrieve answer fired');
-
-      
         this.examAnswers[this.questionNumber] = this.answer;
-        console.log(this.examAnswers)
-       
-
+        console.log(this.examAnswers);
     }    
-
     setPrevNextDisabled(){
-
         this.prevButtonDisabled=this.questionNumber<1;
         this.nextButtonDisabled=this.questionNumber===this.examQuestions.length-1;
-     
     }
     prevClicked(){
-        
         this.retrieveAnswer();
         if(this.questionNumber>0){
             this.questionNumber--;
@@ -131,15 +121,12 @@ connectedCallback() {
         this.setCurrentAnswer();
         this.setDisplayBoolValues();
         this.setPrevNextDisabled();
-        
     }
     
     setCurrentAnswer(){
-        
         console.log(this.answer);
         console.log("answer setting to null")
         this.answer="";
-
         if(this.examAnswers[this.questionNumber]){
             console.log("setting answer to "+this.examAnswers[this.questionNumber]);
             this.answer=this.examAnswers[this.questionNumber];
@@ -148,21 +135,29 @@ connectedCallback() {
 
     nextClicked(){
         this.retrieveAnswer();
-       
         if(this.questionNumber<this.examQuestions.length-1){
             console.log("question number is "+ this.questionNumber)
             this.questionNumber++;
             this.question = this.examQuestions[this.questionNumber];
             this.questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
         }
-       
         this.setCurrentAnswer();
         this.setDisplayBoolValues();
         this.setPrevNextDisabled();
     }
+    
+    setEssayTextAreaWithTitanAnswerForQuestion(){
+        //this.clearEssayTextArea();
+        const essayQuestionComponent = this.template.querySelector('c-lwc-question');
+        if(essayQuestionComponent){
+            essayQuestionComponent.handleTextAreaSetTitanAnswer(this.examAnswers[this.questionNumber]);
+        }
+    }
+
     submitExam(){
 
     }
+
 
     //Set Display values based on question type to conditionally render question type components
    
@@ -369,17 +364,7 @@ setDisplayBoolValues(){
        
     }
     */
-    setEssayTextAreaWithTitanAnswerForQuestion(){
-     
-
-        //this.clearEssayTextArea();
-        const essayQuestionComponent = this.template.querySelector('c-lwc-question');
-        if(essayQuestionComponent){
-            
-            essayQuestionComponent.handleTextAreaSetTitanAnswer(this.examAnswers[this.questionNumber]);
-        }
-       
-    }
+    
   
    //Create map  mapping current answers to question number 
    //has to get the answer from child component we render for the question type
