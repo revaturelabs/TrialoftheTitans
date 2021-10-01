@@ -72,10 +72,6 @@
         <name>TrainerHub</name>
         <type>CustomApplication</type>
     </appMenuItems>
-    <appMenuItems>
-        <name>Portfolio_Hub</name>
-        <type>CustomApplication</type>
-    </appMenuItems>
     <!--appMenuItems>
         <name>TrialoftheTitan</name>
         <type>Network</type>
