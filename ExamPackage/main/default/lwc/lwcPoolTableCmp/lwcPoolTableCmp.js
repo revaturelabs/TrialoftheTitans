@@ -111,7 +111,7 @@ export default class LwcPoolTableCmp extends LightningElement {
                     let items = {
                         value: data[i].assignnedQues[0].Id,
                         label: data[i].assignedQues[0].Name,
-                        Id:data[i].assignedQues[0].Id //????
+                        Id: data[i].assignedQues[0].Id //????
                     };
                     rows.push(items);
                 }
