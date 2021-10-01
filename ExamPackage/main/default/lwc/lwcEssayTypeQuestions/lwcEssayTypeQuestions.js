@@ -17,7 +17,7 @@ export default class LwcEssayTypeQuestions extends LightningElement {
     @api essayAnswer ='No answer provided';
 
     @api
-    handelTextAreaReset(){
+    handleTextAreaReset(){
       console.log("handle text area reset fired")
       const textarea = this.template.querySelector('lightning-textarea');
    
@@ -27,7 +27,7 @@ export default class LwcEssayTypeQuestions extends LightningElement {
       }
     }
     @api
-    handelTextAreaSetTitanAnswer(answer){
+    handleTextAreaSetTitanAnswer(answer){
       console.log("handle text area set answer fired")
       const textarea = this.template.querySelector('lightning-textarea');
    
@@ -35,11 +35,13 @@ export default class LwcEssayTypeQuestions extends LightningElement {
         console.log('textarea value setting current answer given by titan in exam');
         textarea.value= answer;
       }
+      this.essayAnswer = answer;
     }
     inputAnswer(event) {
-      this.essayAnswer = event.target.value;
-      event.preventDefault();
      
+      console.log('input answer fired in essaytype component');
+      event.preventDefault();
+      this.essayAnswer = event.target.value;
       // Creates the event with the essay answer data.
       const answerEvent = new CustomEvent('answerupdated', { detail: this.essayAnswer });
 

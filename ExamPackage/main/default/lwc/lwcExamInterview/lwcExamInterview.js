@@ -34,7 +34,7 @@ errorI;
 examQuestions;
 answer="";
 examAnswers={};
-
+nextButtonDisabled=false;
 prevButtonDisabled=true;
 //Index for questions
 questionNumber = 0;
@@ -175,9 +175,11 @@ setDisplayBoolValues(){
                     
                     this.displayEssayType = true;
                     console.log('set display essay type to '+this.displayEssayType);
+
                 }
                 
-                this.clearEssayTextArea();
+                
+               
                 this.setEssayTextAreaWithTitanAnswerForQuestion();
                 break;
             case "Short answer":
@@ -287,15 +289,17 @@ setDisplayBoolValues(){
      
         const essayQuestionComponent = this.template.querySelector('c-lwc-essay-type-questions');
         if(essayQuestionComponent){
-            essayQuestionComponent.handelTextAreaReset();
+            essayQuestionComponent.handleTextAreaReset();
         }
        
     }
     setEssayTextAreaWithTitanAnswerForQuestion(){
      
+
+        //this.clearEssayTextArea();
         const essayQuestionComponent = this.template.querySelector('c-lwc-essay-type-questions');
         if(essayQuestionComponent){
-            essayQuestionComponent.handelTextAreaSetTitanAnswer(this.examAnswers[this.questionNumber]);
+            essayQuestionComponent.handleTextAreaSetTitanAnswer(this.examAnswers[this.questionNumber]);
         }
        
     }
@@ -316,36 +320,48 @@ setDisplayBoolValues(){
     retrieveAnswer(){
         
         console.log('retrieve answer fired');
+
+      
         this.examAnswers[this.questionNumber] = this.answer;
         console.log(this.examAnswers)
        
 
     }    
 
-    setPrevDisabled(){
-       if (this.questionNumber<1){
-            console.log('prevbutton disabled to true');
-            
-            this.prevButtonDisabled=true;
-        }
-        else{
-            console.log('prevbutton disabled to false');
-           
-            this.prevButtonDisabled=false;
-      }
+    setPrevNextDisabled(){
+
+        this.prevButtonDisabled=this.questionNumber<1;
+        this.nextButtonDisabled=this.questionNumber===this.examQuestions.length-1;
+     
     }
     prevClicked(){
         
+        this.retrieveAnswer();
         if(this.questionNumber>0){
             this.questionNumber--;
             this.question = this.examQuestions[this.questionNumber];
-            this.setDisplayBoolValues();
-            
+            this.questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
         }
-        this.setPrevDisabled();
+        this.setCurrentAnswer();
+        this.setDisplayBoolValues();
+        this.setPrevNextDisabled();
         
     }
     
+    setCurrentAnswer(){
+        
+        console.log(this.answer);
+        console.log("answer setting to null")
+        this.answer="";
+
+        if(this.examAnswers[this.questionNumber]){
+            console.log("setting answer to "+this.examAnswers[this.questionNumber]);
+            this.answer=this.examAnswers[this.questionNumber];
+        }
+       
+       
+    }
+
     nextClicked(){
         this.retrieveAnswer();
        
@@ -353,10 +369,12 @@ setDisplayBoolValues(){
             console.log("question number is "+ this.questionNumber)
             this.questionNumber++;
             this.question = this.examQuestions[this.questionNumber];
-            this.answer="";
+            this.questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
         }
+       
+        this.setCurrentAnswer();
         this.setDisplayBoolValues();
-        this.setPrevDisabled();
+        this.setPrevNextDisabled();
     }
     submitExam(){
 
