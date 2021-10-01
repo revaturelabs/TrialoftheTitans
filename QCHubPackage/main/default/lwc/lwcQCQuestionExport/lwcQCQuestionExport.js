@@ -11,6 +11,7 @@ export default class LwcQCQuestionExport extends LightningElement {
         })
     }
 
+    @api
     downloadCSV(event) {
         var questions = this.questionList;
         var csv = this.convertToCSV(questions);
@@ -26,6 +27,7 @@ export default class LwcQCQuestionExport extends LightningElement {
         hiddenElement.click();
     }
 
+    @api
     convertToCSV(questionList) {
         var stringResult, count, keys, columnDivider, lineDivider;
         
