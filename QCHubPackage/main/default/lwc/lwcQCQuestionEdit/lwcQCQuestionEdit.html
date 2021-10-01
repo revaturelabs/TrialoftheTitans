@@ -1,18 +1,35 @@
+<!--
+    Created by: John Ngo
+    Date: 9/30/2021
+    Desciption: 
+
+
+-->
+
+
 <template>
-    <lightning-card title="Datatable Example" icon-name="custom:custom63">
+    <lightning-card title="QC Question Edit" icon-name="custom:custom63">
         <div class="slds-m-around_medium">
-            
+            <template if:true={Questions.data}>
                 <lightning-datatable
                     key-field="Id"
-                    data={qcQuestions}
+                    data={data}
                     columns={columns}
                     onsave={handleSave}
                     draft-values={draftValues}>
                 </lightning-datatable>
-            <!--
-            <template if:true={QC_Question__c.error}>
-                handle Apex error
-            </template> -->
+            </template>
+            <template if:true={Questions.error}>
+                <p>error no query</p>
+            </template>
+
+            <div>
+                <lightning-card>
+                    <lightning-button variant="brand" label="Export CVS" title="Export Now" onclick={exportClick} class="slds-m-left_x-small"></lightning-button>
+                </lightning-card>
+            </div>
+
+
         </div>
     </lightning-card>
 </template>

@@ -7,10 +7,18 @@
     description: This component is for showing Matching questions on an Exam.
 
   -->
-
-
+  <header>
+    <p>
+      created by: John Ngo</p>
+      <p>
+      date: 9/29/2021 </p>
+      <p>
+      Desciption: This is a component that Display Matching Questions type on an Exam
+    </p>
+  </header>
 
   <template for:each= {options} for:item = "option" >
+
   <lightning-combobox key = {option}
           name="progress"
           label={option}

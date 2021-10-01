@@ -1,12 +1,16 @@
 import { LightningElement, track, wire, api } from 'lwc';
 
-import getQCQuestion from "@salesforce/apex/QCQuestionEditController.getQCQuestion";
+import getQuestion from '@salesforce/apex/QCQuestionEditController.getQuestion';
+
+import { updateRecord } from 'lightning/uiRecordApi';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { refreshApex } from '@salesforce/apex';
 
 const COLS = [
-    { label: 'QC Question Name', fieldName: 'Name', editable: true },
-    { label: 'Question Body', fieldName: 'Question_Body__c', editable: true },
-    { label: 'Expected Answer', fieldName: 'Expected_Answer__c' },
-    { label: 'QC Question Deck', fieldName: 'QC_Question_Deck__c' },
+    {label:"QC Question Name", fieldName:"Name", type:"text", editable: true },
+    {label:"Question Body", fieldName:"Question_Body__c", type: 'text', editable: true},
+    {label:"Expected Answer", fieldName:"Expected_Answer__c", type:"text", editable: true },
+    {label:"QC Question Deck ", fieldName:"QC_Question_Deck__c", type: "lookup" }
 ];
 
 export default class LwcQCQuestionEdit extends LightningElement {
@@ -14,57 +18,81 @@ export default class LwcQCQuestionEdit extends LightningElement {
     @api recordId;
     columns = COLS;
     draftValues = [];
-    qcQuestions;
+    test= [1,2,3];
+    @track error;
+     @wire(getQuestion)
+     Questions;
+     @track data;
+     saveDraftValues = [];
 
-    qcQuestions;
-    error;
-
-    @wire(getQCQuestion)
-    wiredqcQuestions({ error, data }) {
-        if (data) {
-            this.qcQuestions = data;
+     constructor() {
+        super();
+        this.getallQuestion();
+    }
+    getallQuestion() {
+        getQuestion()
+        .then(result => {
+            this.data = result;
             this.error = undefined;
-            console.log(this.qcQuestions);
-        } else if (error) {
+        })
+        .catch(error => {
             this.error = error;
-            this.qcQuestions = undefined;
-        }
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Error while getting Accounts', 
+                    message: error.message, 
+                    variant: 'error'
+                }),
+            );
+            this.data = undefined;
+        });
     }
 
+
+
     handleSave(event) {
+        this.saveDraftValues = event.detail.draftValues;
+        const recordInputs = this.saveDraftValues.slice().map(draft => {
+            const fields = Object.assign({}, draft);
+            return { fields };
+        });
 
-        const fields = {}; 
-        fields[ID_FIELD.fieldApiName] = event.detail.draftValues[0].Id;
-        fields[NAME_FIELD.fieldApiName] = event.detail.draftValues[0].Name;
-        fields[Question_Body__c_FIELD.fieldApiName] = event.detail.draftValues[0].Question_Body__c;
-
-        const recordInput = {fields};
-
-        updateRecord(recordInput)
-        .then(() => {
+        // Updateing the records using the UiRecordAPi
+        const promises = recordInputs.map(recordInput => updateRecord(recordInput));
+        Promise.all(promises).then(res => {
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Success',
-                    message: 'Contact updated',
+                    message: 'Records Updated Successfully!!',
                     variant: 'success'
                 })
             );
-            // Display fresh data in the datatable
-            return refreshApex(this.contact).then(() => {
-
-                // Clear all draft values in the datatable
-                this.draftValues = [];
-
-            });
+            this.saveDraftValues = [];
+            return this.refresh();
         }).catch(error => {
             this.dispatchEvent(
                 new ShowToastEvent({
-                    title: 'Error updating or reloading record',
-                    message: error.body.message,
+                    title: 'Error',
+                    message: 'An Error Occured!!',
                     variant: 'error'
                 })
             );
+        }).finally(() => {
+            this.saveDraftValues = [];
         });
+    }
+
+    // This function is used to refresh the table once data updated
+    async refresh() {
+        await refreshApex(this.data);
+ 
+    }
+
+    exportClick(event){
+
+
+
+        
     }
 
     connectedCallback() {
