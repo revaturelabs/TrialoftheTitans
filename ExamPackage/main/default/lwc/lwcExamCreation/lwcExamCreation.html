@@ -1,0 +1,22 @@
+<!--
+
+    Author: Max Chervinsky
+    Date Modified: 9/27/2021
+    Description: This is a component that allows users to create an exam in the ExamHub. 
+
+    -->
+<template>
+    <lightning-card>
+        <lightning-record-form object-api-name={objectApiName} fields={fields} onsuccess={handleSuccess}>
+        </lightning-record-form>
+
+
+        <lightning-input label="Name" onchange={handleExamName}></lightning-input>
+        <lightning-input label="Titan" onchange={handleTitanInput}></lightning-input>
+        <lightning-input label="Next Exam" onchange={handleNextExamInput}></lightning-input>
+        <lightning-input label="Default Passing Grade" onchange={handleDefaultPassingGradeInput}></lightning-input>
+        <lightning-input label="Default Time Limit" onchange={handleDefaultTimeLimitInput}></lightning-input>
+        <lightning-button label="Create Exam" variant = "brand" onclick={createExam}></lightning-button>
+    </lightning-card>
+    
+</template>
