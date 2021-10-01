@@ -1,0 +1,21 @@
+<template>
+    
+
+   <div class="block">
+   
+        <div class="input"> 
+            <lightning-input type="number" name="scorebox" value={HeroScore} placeholder={HeroScore} label="Hero Score"></lightning-input>
+        </div>
+         
+        <div class="buttons">
+
+            <lightning-button variant="brand" class="slds-button_stretch" label="-" title="minus" onclick={MinusClick} ></lightning-button>
+
+            <lightning-button variant="brand" class="slds-button_stretch" label="+" title="plus" onclick={PlusClick} ></lightning-button>
+            
+            
+
+        </div>  
+    </div>    
+        <!-- use onChange to run a function-->
+</template>
