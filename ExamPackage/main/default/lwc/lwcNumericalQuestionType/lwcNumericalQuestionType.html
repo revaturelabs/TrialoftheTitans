@@ -1,0 +1,12 @@
+<template>
+  <!--Author: Huguette Mpudi Kipasa
+    Creation Date : 09/29/2021
+    Usage: Component for Numerical Type of Question on Exams
+  -->
+  <lightning-card icon-name="standard:quick_text" title="Numerical Question Type">
+    <div>
+      <h1>{questionprompt}</h1>
+      <input type="text" id="input" name="input1" placeholder="type your question..." class="slds-input" onchange={showMe}/>
+    </div>
+  </lightning-card>
+</template>

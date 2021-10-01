@@ -41,6 +41,7 @@
 
                 <div class="question-option">
                     <aura:if isTrue="{!equals(HR.Correct__c,true)}">
+                        
                         <div class="green" title="{!HR.Exam_Question__r.Options__c}">
                             {!HR.Exam_Question__r.Options__c} </div>
                     </aura:if>
