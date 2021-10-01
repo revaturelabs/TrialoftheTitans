@@ -83,6 +83,7 @@ export default class LwcQuestion extends LightningElement {
             console.log(this.question.Question_Type__c)
             
             switch (this.question.Question_Type__c) {
+                //matching needs to be done
                 case "Matching":
                     if(!this.displayInput){
                         switch(true){
@@ -114,10 +115,11 @@ export default class LwcQuestion extends LightningElement {
                                 break;
                             
                         }
-                         this.displayTextarea = true;
+                         this.displayInput = true;
                     }
                     this.handleTextAreaSetTitanAnswer();  
                 case "Essay":
+                case "Short answer":
                     if(!this.displayTextarea){
                         switch(true){
                             case this.displayRadioGroup:
@@ -133,45 +135,8 @@ export default class LwcQuestion extends LightningElement {
                         }
                          this.displayTextarea = true;
                     }
-                   
-                   
                     this.handleTextAreaSetTitanAnswer();
                     break;
-                case "Short answer":
-                    if(!this.displayTextarea){
-                        switch(true){
-                            case this.displayRadioGroup:
-                                this.displayRadioGroup = false;
-                                break;
-                            case  this.displayCheckboxGroup:
-                                this.displayCheckboxGroup = false;
-                                break;
-                            case this.displayInput:
-                                this.displayInput = false;
-                                break;
-                        }
-                         this.displayTextarea = true;
-                    }
-                    this.handleTextAreaSetTitanAnswer();
-                    break;
-                case "Multiple Choice":
-                    if(!this.displayRadioGroup){
-                        switch(true){
-                            case this.displayTextarea:
-                                this.displayTextarea = false;
-                                break;
-                            case  this.displayCheckboxGroup:
-                                this.displayCheckboxGroup = false;
-                                break;
-                            case this.displayInput:
-                                this.displayInput = false;
-                                break;
-                        }
-                         this.displayRadioGroup = true;
-                    }
-                    this.setMultipleChoiceQuestions();
-                    break;
-                   
                 case "Multiple Choice - multiple answers":
                     if(!this.displayCheckboxGroup){
                         switch(true){
@@ -189,6 +154,7 @@ export default class LwcQuestion extends LightningElement {
                     }
                     break;
                 case "True-false":
+                case "Multiple Choice":
                     if(!this.displayRadioGroup){
                         switch(true){
                             case this.displayTextarea:
