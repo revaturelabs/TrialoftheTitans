@@ -2,7 +2,7 @@
   @description       : Creates questions and allows users to submit to the server
   @author            : Austin Ulberg, Daniel Boice
   @group             : 
-  @last modified on  : 09-30-2021
+  @last modified on  : 10-01-2021
   @last modified by  : Daniel Boice
   Modifications Log
   Ver   Date         Author         Modification
@@ -15,7 +15,7 @@
              
  
           
-            <lightning-card title="Test question number ">
+            <lightning-card title={questionNumberTitleText}>
                <!--
                 <template if:true={examQuestions}>
                     <template for:each={examQuestions} for:item="quest">
@@ -46,15 +46,15 @@
                 </template>
             -->
                 <template if:true={displayEssayType}>
-                    <c-lwc-essay-type-questions question={question} ></c-lwc-essay-type-questions>
+                    <c-lwc-essay-type-questions onanswerupdated={answerUpdated} question={question} ></c-lwc-essay-type-questions>
                 </template>
                 
             </lightning-card>
            
            
  
-        <lightning-button class="slds-float_left" id="prev" label="Previous Question" title="Previous Question" onclick={prevClick} disabled="true"></lightning-button>
-        <lightning-button class="slds-float_right" id="next" label="Next Question" title="Next Question" onclick={nextClick}></lightning-button>
+        <lightning-button class="slds-float_left" id="prev" label="Previous Question" title="Previous Question" onclick={prevClicked} disabled="true"></lightning-button>
+        <lightning-button class="slds-float_right" id="next" label="Next Question" title="Next Question" onclick={nextClicked}></lightning-button>
         <div class="submitdiv" id="submitdiv">
             <lightning-button id="submit" label="Submit Exam" title="Submit Exam" onclick={submitClick}></lightning-button>
         </div>

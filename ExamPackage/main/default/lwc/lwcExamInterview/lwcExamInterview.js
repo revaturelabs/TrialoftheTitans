@@ -2,7 +2,7 @@
  * @description       : Creates questions and allows users to submit to the server
  * @author            : Austin Ulberg, Daniel Boice
  * @group             : 
- * @last modified on  : 09-30-2021
+ * @last modified on  : 10-01-2021
  * @last modified by  : Daniel Boice
  * Modifications Log
  * Ver   Date         Author         Modification
@@ -16,10 +16,6 @@ import QuestionType from '@salesforce/schema/Exam_Question__c.Question_Type__c'
 import QuestionAnswer from '@salesforce/schema/Hero_Answer__c.Answer_Choice__c'
 import examFinder from '@salesforce/apex/ExamInterviewApexController.examFinder';
 
-const FIELDS =[
-    'Exam_Question__c.Question_Type__c',
-    'Exam_Question__c.Id'
-] 
 
 export default class LwcExamInterview extends LightningElement {
 
@@ -36,7 +32,8 @@ errorI;
 
 
 examQuestions;
-examAnswers;
+answer="";
+examAnswers={};
 
 //Index for questions
 questionNumber = 0;
@@ -45,7 +42,10 @@ questionsLoaded;
 examId;
 question;
 questionType;
-questionNumberTitleText="test";
+
+questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
+
+//these display the components based on question type  
 displayMatchingType=false;
 displayShortType=false;
 displayMultipleChoiceType=false;
@@ -74,8 +74,6 @@ wiredExamQuestions({ error, data }) {
 }
 
 connectedCallback() {
- 
-
   examFinder()
     .then((result) => {
       this.examQuestionsI = result;
@@ -97,6 +95,9 @@ setDisplayBoolValues(){
     if(typeof this.question !='undefined'){
         console.log("question defined");
         console.log(this.question.Question_Type__c)
+        
+       
+
         switch (this.question.Question_Type__c) {
             case "Matching":
                 if(!this.displayMatchingType){
@@ -173,8 +174,18 @@ setDisplayBoolValues(){
                         case  this.displayEssayType:
                             this.displayEssayType = false;   
                     }
+                    
                     this.displayEssayType = true;
                     console.log('set display essay type to '+this.displayEssayType);
+                }
+                else{
+                    const textarea = this.template.querySelectorAll('answertextarea');
+                   
+                    if(textarea[0]){
+                        textarea.focus();
+                        textarea.setRangeText('Some new text');
+                      
+                    }
                 }
                 break;
             case "Short answer":
@@ -285,31 +296,49 @@ setDisplayBoolValues(){
    //need to create a new varible to hold the current component that is currently rendered
    //so we can call the answer function on the childcomponent to get the answer and map it to the map
 
-    retrieveAnswer(){
-      this.examAnswers.map(getAnswers)
-      function getAnswers(answer, questionNumber){
-       answer =  question.answer;
-       return[questionNumber, answer];
+    answerUpdated(event){
+        console.log("received answer updated event");
+        //console.log(event.detail);
+        this.answer = event.detail;
+        
+        console.log(this.answer);
 
-      }
-      console.log(this.examAnswers)
-       // this.examAnswers[this.questionNumber]
+    }
+    retrieveAnswer(){
+        
+       console.log('retrieve answer fired');
+      
+        this.examAnswers[this.questionNumber] = this.answer;
+       
+        
+    
+        console.log(this.examAnswers)
+       
 
     }    
 
     prevClicked(){
-        this.questionNumber--;
-        this.question = this.examQuestions[this.questionNumber];
-        
+        if(this.questionNumber>0){
+            this.questionNumber--;
+            this.question = this.examQuestions[this.questionNumber];
+            this.setDisplayBoolValues();
+        }
+       
     }
     nextClicked(){
-        this.questionNumber++;
-        this.question = this.examQuestions[this.questionNumber];
+        this.retrieveAnswer();
+       
+        if(this.questionNumber<this.examQuestions.length-1){
+            console.log("question number is "+ this.questionNumber)
+            this.questionNumber++;
+            this.question = this.examQuestions[this.questionNumber];
+            this.answer="";
+        }
+        this.setDisplayBoolValues();
     }
-submitExam(){
+    submitExam(){
 
-
-}
+    }
 
 }
 
