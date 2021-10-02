@@ -3,7 +3,7 @@
  * @description       :  Controller for our Exam Interview component.This will be      pulling the exam and questions for display in Exam.
  * @author            : Jayvious Williams
  * @group             : 
- * @last modified on  : 09-30-2021
+ * @last modified on  : 10-02-2021
  * @last modified by  : Daniel Boice
  * Modifications Log
  * Ver   Date         Author         Modification
@@ -21,20 +21,34 @@ public class ExamInterviewApexController {
 
     // insert hero answers using answered exam questions
     @AuraEnabled
-    public static void submitExam(String examId){
-        
+    public static void submitExam(String examId, String acctId){
+        System.debug('submitted exam');
+        System.debug(examId);
         // inserts exam related to the hero that took it and updates the exam result
-        Exam__c submittedExam = [SELECT Id FROM Exam__c WHERE Id = :examId LIMIT 1];
-        Account account = [SELECT Id FROM Account WHERE Name = 'Gladius Maximus' LIMIT 1];
+        //Exam__c submittedExam = [SELECT Id FROM Exam__c WHERE Id = :examId LIMIT 1];
+       
+        //Account account = [SELECT Id FROM Account WHERE Name = 'Gladius Maximus' LIMIT 1];
+       // System.debug(account);
+       
+        List<Exam_Result__c> examResult = [SELECT Id FROM Exam_Result__c WHERE Account__c = :acctId AND Status__c = 'Assigned' AND Exam__c = :examId];
         
-        Exam_Result__c examResult = [SELECT Id FROM Exam_Result__c WHERE Account__c = :account.Id AND Status__c = 'Assigned' AND Exam__c = :examId];
-        examResult.Status__c = 'Completed';
-        update examResult;
+        if(examResult!=null && examResult.size()>0){
+            System.debug(examResult[0]);
+            Exam_Result__c myExamResult = (Exam_Result__c) examResult[0];
+            myExamResult.Status__c = 'Completed';
+            update myExamResult;
+        }
     }
 
     // created a new list of hero answers that is the same size as the amount of questions
     @AuraEnabled
     public static void submitAnswers(List<Exam_Question__c> examQuestionList, Map<String, String> examAnswerList){
+        System.debug('submit answers in apex controller');
+        System.debug(examQuestionList);
+        System.debug(examQuestionList.size());
+        System.debug(examQuestionList[0]);
+        System.debug(examAnswerList.keySet());
+        System.debug(examAnswerList.size());
 
         // creates and populates a list of hero answers that are the same size as the number of wuestions
         List<Hero_Answer__c> heroAnswers = new List<Hero_Answer__c>();
