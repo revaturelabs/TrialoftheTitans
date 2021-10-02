@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Boice
   @group             : 
-  @last modified on  : 10-01-2021
+  @last modified on  : 10-02-2021
   @last modified by  : Daniel Boice
   Modifications Log
   Ver   Date         Author         Modification
@@ -12,9 +12,9 @@
     <lightning-layout class="slds-page-header slds-page-header_object-home" horizontal-align="spread" multiple-rows="true">
         <lightning-layout-item size='6' flexibility="auto">        
             <template if:true={question}>
-                <h1>
-                    {question.Question_Text__c}
-                </h1>
+                <div class="slds-text-heading_large"> {question.Question_Text__c}</div>
+                   
+                
             </template>
             <template if:true={displayTextarea}>
                  <div>  
@@ -51,8 +51,9 @@
             </template>
             -->
             <div class="slds-m-vertical_medium">
-                <p>You Answered: <span class="slds-text-heading_small">{essayAnswer}</span></p>
+                <p>You Answered: <span class="slds-text-heading_small">{titanAnswer}</span></p>
             </div>
         </lightning-layout-item>
     </lightning-layout>
+   
 </template>
