@@ -2,7 +2,7 @@
     myAction : function(component, event, helper) {
         
         var actions = [
-            
+            {label: 'Edit', name: 'edit'},
             {label: 'Delete', name: 'delete'},
             
         ];
