@@ -1,7 +1,8 @@
-<!--
+
+<!-- 
     Created by: John Ngo
-    Date: 9/30/2021
-    Desciption: 
+    Date:9/30/2021
+    Desciption: This is an edit page where you can edit all the questions and 
 
 
 -->
@@ -16,6 +17,7 @@
                     data={data}
                     columns={columns}
                     onsave={handleSave}
+                    onrowaction={handleRowAction}
                     draft-values={draftValues}>
                 </lightning-datatable>
             </template>
@@ -25,8 +27,12 @@
 
             <div>
                 <lightning-card>
-                    <lightning-button variant="brand" label="Export CVS" title="Export Now" onclick={exportClick} class="slds-m-left_x-small"></lightning-button>
+                    <c-lwc-question-export variant="brand" ></c-lwc-question-export>
+                    
+
+
                 </lightning-card>
+
             </div>
 
 

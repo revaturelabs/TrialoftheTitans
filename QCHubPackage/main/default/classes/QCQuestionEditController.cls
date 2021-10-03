@@ -15,7 +15,7 @@ public with sharing class QCQuestionEditController {
         }
          return  qcQuestionList;
     }
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static void deleteQCQuestion( QC_Question__c qcq ){
 
         delete qcq;
@@ -23,7 +23,7 @@ public with sharing class QCQuestionEditController {
 
     }
     
-    @AuraEnabled 
+    @AuraEnabled(cacheable=true)
     public static void deleteQCQuestionRows( List<QC_Question__c> sRows ){
 
         delete sRows;
@@ -54,6 +54,23 @@ public with sharing class QCQuestionEditController {
            }
             return  questionList;
         
+    }
+
+    @AuraEnabled
+    public static void deleteQuestions(list<Id> questions){
+        try {
+            list<QC_Question__c> questionIdsToDelete = new list<QC_Question__c>();
+            System.debug('questionIds ====> '+questions);
+            for(Id qc : questions) {
+                questionIdsToDelete.add(new QC_Question__c(Id = qc));
+            }
+            if(!questionIdsToDelete.isEmpty()) {
+                delete questionIdsToDelete;
+            }
+        }
+        catch(Exception ex) {
+            throw new AuraHandledException(ex.getMessage());
+        }
     }
 
 

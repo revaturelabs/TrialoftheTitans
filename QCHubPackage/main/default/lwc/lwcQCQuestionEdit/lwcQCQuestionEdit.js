@@ -1,16 +1,26 @@
 import { LightningElement, track, wire, api } from 'lwc';
 
 import getQuestion from '@salesforce/apex/QCQuestionEditController.getQuestion';
+import deleteQuestions from '@salesforce/apex/QCQuestionEditController.deleteQuestions';
+import deleteQCQuestionRows from '@salesforce/apex/QCQuestionEditController.deleteQCQuestionRows';
+
 
 import { updateRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 
+var actions = [
+    
+    {label: 'delete', name: 'delete'},
+    
+];
+
 const COLS = [
-    {label:"QC Question Name", fieldName:"Name", type:"text", editable: true },
+    {label:"QC Question Name", fieldName:"Name", type:'text', editable: true },
     {label:"Question Body", fieldName:"Question_Body__c", type: 'text', editable: true},
-    {label:"Expected Answer", fieldName:"Expected_Answer__c", type:"text", editable: true },
-    {label:"QC Question Deck ", fieldName:"QC_Question_Deck__c", type: "lookup" }
+    {label:"Expected Answer", fieldName:"Expected_Answer__c", type:'text', editable: true },
+    //{label:"QC Question Deck ", fieldName:"QC_Question_Deck__c.Name", type:"lookup",sortable : true},
+    {type: 'action', typeAttributes: { rowActions: actions } }
 ];
 
 export default class LwcQCQuestionEdit extends LightningElement {
@@ -18,37 +28,14 @@ export default class LwcQCQuestionEdit extends LightningElement {
     @api recordId;
     columns = COLS;
     draftValues = [];
-    test= [1,2,3];
     @track error;
      @wire(getQuestion)
      Questions;
      @track data;
      saveDraftValues = [];
-
-     constructor() {
-        super();
-        this.getallQuestion();
-    }
-    getallQuestion() {
-        getQuestion()
-        .then(result => {
-            this.data = result;
-            this.error = undefined;
-        })
-        .catch(error => {
-            this.error = error;
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Error while getting Accounts', 
-                    message: error.message, 
-                    variant: 'error'
-                }),
-            );
-            this.data = undefined;
-        });
-    }
-
-
+     clickedButton;
+     selectedRecords = [];
+  
 
     handleSave(event) {
         this.saveDraftValues = event.detail.draftValues;
@@ -88,18 +75,70 @@ export default class LwcQCQuestionEdit extends LightningElement {
  
     }
 
-    exportClick(event){
-
-
-
-        
-    }
+getallQuestion() {
+    getQuestion()
+    .then(result => {
+        this.data = result;
+        this.error = undefined;
+    })
+    .catch(error => {
+        this.error = error;
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title: 'Error while getting Accounts', 
+                message: error.message, 
+                variant: 'error'
+            }),
+        );
+        this.data = undefined;
+    });
+}
 
     connectedCallback() {
         // initialize component
 
+        this.getallQuestion();
+        
 
     }
+
+    handleRowAction(event) {
+        const action = event.detail.action;
+        const row = event.detail.row;
+        switch (action.name) {
+
+                case 'delete':
+                    this.deleteQC(row);
+     }
+
+ }
+
+    deleteQC(currentRow) {
+        let currentRecord = [];
+        currentRecord.push(currentRow.Id);
+
+    // calling apex class method to delete the selected contact
+        deleteQuestions({questions: currentRecord})
+            .then(result => {
+         window.console.log('result ====> ' + result);
+
+        // refreshing table data using refresh apex
+         return alert("Record is deleted")
+
+    })
+    .catch(error => {
+        window.console.log('Error ====> '+error);
+        this.dispatchEvent(new ShowToastEvent({
+            title: 'Error!!', 
+            message: error.message, 
+            variant: 'error'
+        }),);
+    });
+}
+
+
+    
+
 
 
 
