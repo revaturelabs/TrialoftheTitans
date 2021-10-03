@@ -30,10 +30,8 @@ export default class LwcExamInterview extends LightningElement {
     titanName;
     error;
 
-    @track
-    examQuestionsI;
-    @track
-    errorI;
+    
+  
     
     //hard coded an exam id and account id for testing, set by parent component
     @api
@@ -50,8 +48,7 @@ export default class LwcExamInterview extends LightningElement {
     //Index for questions
     @track
     questionNumber = 1;
-    questionAmount;
-    questionsLoaded;
+    
     question_;
     questionI;
     questionType;
@@ -69,24 +66,14 @@ export default class LwcExamInterview extends LightningElement {
         }
         else{
             return "Questions not loaded";
-
         }
     }
     get answer(){
         return this.answer_;
     }
-  
-   
     set answer(answerText){
         this.answer_ = answerText;
     }
-    
-    // get examQuestionsLength(){
-    //     if(this.examQuestions){
-    //         return Object.keys(this.examQuestions).length;
-    //     } 
-    //     return null;
-    // }
     //show celebrate button after submitting exam
     showCelebrateButton=false;
     submitButtonDisabled=false;
@@ -108,7 +95,7 @@ export default class LwcExamInterview extends LightningElement {
     wiredExamQuestions({ error, data }) {
         console.log('wired exam questions function called');
         if (data) {
-            console.log(data);
+           
             this.examQuestions = data;
             this.numberOfQuestions = Object.keys(data).length;
             this.error = undefined;
@@ -121,89 +108,49 @@ export default class LwcExamInterview extends LightningElement {
             console.log(error);
     }
     }
-    /*
-    @wire(submitExam, {examId:'$examId'})
-    submitExam
-    
-    @wire(submitAnswers, {examQuestionList:'$examQuestionList',examAnswerList:'$examAnswers'})
-    submitAnswers
-    */
+   
     set currentQuestion(question_){
-        
         this.question_=question_;
-       
-        
     }
     get currentQuestion(){
         return this.question_;
-        
     }
     updateQuestionComponent(){
-        console.log('set display bool values fired in interview');
         const questionComponent = this.template.querySelector('c-lwc-question');
         if(questionComponent && this.questionNumber<this.numberOfQuestions+1){
-            console.log(this.currentQuestion);
-            
             this.currentQuestion= this.examQuestions[this.questionNumber-1];
-        
             questionComponent.question=this.currentQuestion;
-            console.log("setting handle set answer to "+typeof this.answer);
             questionComponent.handleSetAnswer(this.answer);
-        
         }
             
     }
-    // connectedCallback() {
-    //     examFinder()
-    //         .then((result) => {
-    //         this.examQuestionsI = result;
-    //         })
-    //         .catch((error) => {
-    //         this.errorI = error;
-    //         });
-    // }
+   
     @track confirmation;
     
-    submitConfirmationDetails = {
-        text: 'Are you sure you want to submit your exam now?',
-        confirmButtonLabel: 'Submit',
-        confirmButtonVariant: 'neutral',
-        cancelButtonLabel: 'Not Yet!',
-        header: 'Confirm Submit'
-    };
-            
-    
-    
+    // submitConfirmationDetails = {
+    //     text: 'Are you sure you want to submit your exam now?',
+    //     confirmButtonLabel: 'Submit',
+    //     confirmButtonVariant: 'neutral',
+    //     cancelButtonLabel: 'Not Yet!',
+    //     header: 'Confirm Submit'
+    // };
+ 
     // We pass the event to the function imported from the utility class along with the confirmation object
     handleModalButtonClick(event) {
         handleConfirmationButtonClick(event, this.confirmation);
     }
-    
-    
-    //get question(){}
-   
     answerUpdated(event){
-        console.log("received answer updated event");
-        //console.log(event.detail);
         if(this.updateAnswers){
             this.answer = event.detail;
         }
-        console.log(this.answer);
     }
     setExamAnswerToAnswerProvided(){
-        console.log('setExamAnswerToAnswerProvided fired');
-        console.log('type of this exam answers is '+ typeof this.examAnswers);
         this.examAnswers[`${this.questionNumber}`] = this.answer;
-        console.log(this.examAnswers);
     }    
     
     setCurrentAnswerToPreviouslyAnswered(){
-        console.log(this.answer);
-        console.log("answer setting to null")
         this.answer="";
-
         if( this.questionNumber<Object.keys(this.examAnswers).length+1){
-            console.log("setting answer to "+this.examAnswers[`${this.questionNumber}`]);
             this.answer=this.examAnswers[`${this.questionNumber}`];
         }
     }
@@ -215,8 +162,6 @@ export default class LwcExamInterview extends LightningElement {
         this.setExamAnswerToAnswerProvided();
         if(this.questionNumber>1){
             this.questionNumber--;
-            //this.questionI = this.examQuestions[this.questionNumber];
-           // this.questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
         }
         this.setCurrentAnswerToPreviouslyAnswered();
         this.updateQuestionComponent();
@@ -225,40 +170,14 @@ export default class LwcExamInterview extends LightningElement {
     nextClicked(){
         this.setExamAnswerToAnswerProvided();
         if(this.questionNumber<this.numberOfQuestions){
-            console.log("question number is "+ this.questionNumber)
             this.questionNumber++;
-            //this.questionI = this.examQuestions[this.questionNumber];
-            //this.questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
         }
         this.setCurrentAnswerToPreviouslyAnswered();
         this.updateQuestionComponent();
         this.setPrevNextDisabled();
     }
-    
-    /*
-    setAnswerForQuestion(){
-        //this.clearEssayTextArea();
-        const essayQuestionComponent = this.template.querySelector('c-lwc-question');
-        if(essayQuestionComponent){
-            essayQuestionComponent.handleSetAnswer(this.examAnswers[this.questionNumber.toString()]);
-        }
-    }
-    */
-    handleSubmitClick(event) {
-        /*this.confirmation = getConfirmation(
-            this.submitConfirmationDetails, // modal configurations
-            () => this.handleSubmit(), // callback function when user 'confirm' clicks confirm
-            // optional: () => this.handleCancel()
-        );
-        */
-    }
     handleSubmit() {
-        //event.preventDefault();
-        console.log('handle submit button clicked')
         this.setExamAnswerToAnswerProvided();
-       
-        console.log(this.examId)
-        console.log()
         submitExam({examId:this.examId, acctId:this.accId})
             .then((result) => {
                 this.toastMessage = 'Exam submitted successfully.';
@@ -289,12 +208,9 @@ export default class LwcExamInterview extends LightningElement {
     }
     
     handleSubmitAnswers() {
-        
         submitAnswers({ examQuestionList: this.examQuestions ,examAnswerList:this.examAnswers, examId:this.examId })
         .then((result) => {
-            console.log(result);
             this.error = undefined;
-            console.log("success submitting answers!");
             this.submitButtonDisabled=true;
             const confirmationComponent = this.template.querySelector('c-lwc-slds-modal');
             confirmationComponent.showButtonDisabled=true;
@@ -373,15 +289,11 @@ export default class LwcExamInterview extends LightningElement {
     }
     fireworks() {
         var end = Date.now() + 8 * 1000;
-    
-    
         // eslint-disable-next-line @lwc/lwc/no-async-operation
         let interval = setInterval(function() {
           if (Date.now() > end) {
             return clearInterval(interval);
           }
-    
-    
           // eslint-disable-next-line no-undef
           confetti({
             startVelocity: 30,
@@ -396,15 +308,4 @@ export default class LwcExamInterview extends LightningElement {
         }, 200);
       }
     }
-
-
-  
-   //Create map  mapping current answers to question number 
-   //has to get the answer from child component we render for the question type
-   // they use a sosl query to get the child component and then get its answer
-   //need to create a new varible to hold the current component that is currently rendered
-   //so we can call the answer function on the childcomponent to get the answer and map it to the map
-
- 
-//}
 
