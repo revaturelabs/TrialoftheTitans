@@ -8,6 +8,13 @@
  * Ver   Date         Author         Modification
  * 1.0   10-01-2021   Daniel Boice   Initial Version
 **/
+
+/*
+if we had more time I would do it slightly differently, but it works for now.  with things scattered around and everybody working on other things, it was the best way to do it for now I think to get it working, without making or updating the other components.  This was useful for testing the exam interview component without having the other components available.
+
+It would be easier have separate components for textarea, number, checkbox, radio and combo box, and pass in the question to each of them and have them display conditionally based on question type in each component when the question updates. that would make more sense. but we would have to update all those components, and not have much time right now to finish that right now. it was a good learning exercise and practice though.
+
+*/
 import { api, track, LightningElement } from 'lwc';
 
 export default class LwcQuestion extends LightningElement {
@@ -31,9 +38,10 @@ export default class LwcQuestion extends LightningElement {
       value = '';
     @api
     handleSetAnswer(answer){
-      //to set the control to to the answer or clear the field
-      // answerSelectorType should be a string either lightning-textarea
-      //  lightning-input, lightning-radio-group or lightning-checkboxGroup
+      //to set the control to to the answer format or clear the field
+      //  based on lightning-textarea, lightning-combobox
+      //  lightning-input, lightning-radio-group or lightning-combobox
+      // could be done in separate components if passed in when the question updates
       
         this.setDisplayQuestionTypeBoolValues();
         if ( typeof this.question!=='undefined' && this.question){
@@ -62,6 +70,7 @@ export default class LwcQuestion extends LightningElement {
         this.displayAnswerGiven  = answer;
     }
     
+    // takes string and formats for displaying in control 
     createOptionsArrayFromString(optionsString){
         if(optionsString.length){
            let options = optionsString.split('||');
@@ -76,6 +85,7 @@ export default class LwcQuestion extends LightningElement {
            return optionsArray;
         }
     }
+    //made these getters and setters during testing to insert console logs when setting the options, but they could be just properties.  useful for debugging.
     get radioCheckboxGroupComboBoxOptions(){
         return this.radioCheckboxGroupComboBoxOptions_; 
     }
@@ -94,6 +104,8 @@ export default class LwcQuestion extends LightningElement {
     set answersForComboBox(myanswers){
         this.optionsForComboBox_=myanswers;
     }
+
+    //sends up the answer in the correct format based on question type
     handleInputAnswer(event) {
       let typeOfValue = typeof event.target.value;
       var stringToSend='';
@@ -115,6 +127,8 @@ export default class LwcQuestion extends LightningElement {
       // Dispatches the event.
       this.dispatchEvent(answerEvent);
     }
+
+    //switches on or off displaying the type fields when question updates based on question type
     setDisplayQuestionTypeBoolValues(){
         if(typeof this.question !='undefined'){
             switch (this.question.Question_Type__c) {
