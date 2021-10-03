@@ -24,10 +24,12 @@ import CONFETTI from "@salesforce/resourceUrl/confetti";
 
 export default class LwcExamInterview extends LightningElement {
 
-
+    //not implemented yet
     exam;
     titan;
     titanName;
+
+    //for displaying errors
     error;
 
     
@@ -39,13 +41,23 @@ export default class LwcExamInterview extends LightningElement {
     @api
     accId='0010R00001LpBFRQA3';
 
+    //for switching off the update after exam is submitted
     updateAnswers=true;
+    
+    //holds the list of exam questions
     examQuestions;
     
+    //holds the list of exam questions
     examAnswers={};
+    
+    //disabling buttons
     nextButtonDisabled=false;
     prevButtonDisabled=true;
+     //show celebrate button after submitting exam
+     showCelebrateButton=false;
+     submitButtonDisabled=false;
     //Index for questions
+   
     @track
     questionNumber = 1;
     
@@ -59,7 +71,9 @@ export default class LwcExamInterview extends LightningElement {
     //questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
     numberOfQuestions=0;
     answer_='';
-   
+    //for the modal confirmation
+    @track confirmation;
+
     get questionNumberTitleText(){
         if(this.numberOfQuestions){
             return "Question " + this.questionNumber +" (of "+ this.numberOfQuestions+"):";
@@ -68,29 +82,22 @@ export default class LwcExamInterview extends LightningElement {
             return "Questions not loaded";
         }
     }
+    //useful for debugging
     get answer(){
         return this.answer_;
     }
     set answer(answerText){
         this.answer_ = answerText;
     }
-    //show celebrate button after submitting exam
-    showCelebrateButton=false;
-    submitButtonDisabled=false;
-    //these display the components based on question type  
-    displayMatchingType=false;
-    displayShortType=false;
-    displayMultipleChoiceType=false;
-    displayMultiMultipleChoiceType=false;
-    displayTrueType=false;
-    displayNumberType=false;
-    displayEssayType=false;
-    
+   
+   
+    //so that they have the same number when submitting answers
     createBlankExamAnswersList(){
         for(let i=0; i<Object.keys(this.examQuestions).length;i++){
             this.examAnswers[`${i+1}`]='';
         }
     }
+    //retrieve the exam from the database and set variables
     @wire(examFinder, {examID:'$examId'})
     wiredExamQuestions({ error, data }) {
         console.log('wired exam questions function called');
@@ -108,13 +115,14 @@ export default class LwcExamInterview extends LightningElement {
             console.log(error);
     }
     }
-   
+   //useful for debugging
     set currentQuestion(question_){
         this.question_=question_;
     }
     get currentQuestion(){
         return this.question_;
     }
+    //updating the child component when go to next or previous question
     updateQuestionComponent(){
         const questionComponent = this.template.querySelector('c-lwc-question');
         if(questionComponent && this.questionNumber<this.numberOfQuestions+1){
@@ -125,8 +133,8 @@ export default class LwcExamInterview extends LightningElement {
             
     }
    
-    @track confirmation;
     
+    //this might be useful for setting the details of the modal popup component for confirmation when submitting the exam.  for future.  now they are in the modal component in the html, this could be developed further
     // submitConfirmationDetails = {
     //     text: 'Are you sure you want to submit your exam now?',
     //     confirmButtonLabel: 'Submit',
@@ -135,7 +143,7 @@ export default class LwcExamInterview extends LightningElement {
     //     header: 'Confirm Submit'
     // };
  
-    // We pass the event to the function imported from the utility class along with the confirmation object
+   
     handleModalButtonClick(event) {
         handleConfirmationButtonClick(event, this.confirmation);
     }
@@ -176,6 +184,8 @@ export default class LwcExamInterview extends LightningElement {
         this.updateQuestionComponent();
         this.setPrevNextDisabled();
     }
+
+    //submit exam to apex controller
     handleSubmit() {
         this.setExamAnswerToAnswerProvided();
         submitExam({examId:this.examId, acctId:this.accId})
@@ -207,6 +217,7 @@ export default class LwcExamInterview extends LightningElement {
             
     }
     
+    //submit exam answers to the apex controller.  not sure why they did it with two separate calls at the same time... but we are not trying to change the apex controllers too much now, could be combined later.
     handleSubmitAnswers() {
         submitAnswers({ examQuestionList: this.examQuestions ,examAnswerList:this.examAnswers, examId:this.examId })
         .then((result) => {
