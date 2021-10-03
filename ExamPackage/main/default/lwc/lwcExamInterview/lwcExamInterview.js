@@ -2,7 +2,7 @@
  * @description       : Creates questions and allows users to submit to the server
  * @author            : Austin Ulberg, Daniel Boice
  * @group             : 
- * @last modified on  : 10-02-2021
+ * @last modified on  : 10-03-2021
  * @last modified by  : Daniel Boice
  * Modifications Log
  * Ver   Date         Author         Modification
@@ -43,16 +43,16 @@ export default class LwcExamInterview extends LightningElement {
 
     updateAnswers=true;
     examQuestions;
-    answer="";
+    
     examAnswers={};
     nextButtonDisabled=false;
     prevButtonDisabled=true;
     //Index for questions
     @track
-    questionNumber = 0;
+    questionNumber = 1;
     questionAmount;
     questionsLoaded;
-   
+    question_;
     questionI;
     questionType;
     confirmation='are you sure?';
@@ -60,18 +60,33 @@ export default class LwcExamInterview extends LightningElement {
     toastTitle ='';
     toastVariant='';
     //questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
-    numberOfQuestions;
-
-    
+    numberOfQuestions=0;
+    answer_='';
+   
     get questionNumberTitleText(){
         if(this.numberOfQuestions){
-            return "Question " + (this.questionNumber + 1) +" (of "+ this.numberOfQuestions+"):";
+            return "Question " + this.questionNumber +" (of "+ this.numberOfQuestions+"):";
         }
         else{
             return "Questions not loaded";
 
         }
     }
+    get answer(){
+        return this.answer_;
+    }
+  
+   
+    set answer(answerText){
+        this.answer_ = answerText;
+    }
+    
+    // get examQuestionsLength(){
+    //     if(this.examQuestions){
+    //         return Object.keys(this.examQuestions).length;
+    //     } 
+    //     return null;
+    // }
     //show celebrate button after submitting exam
     showCelebrateButton=false;
     submitButtonDisabled=false;
@@ -84,16 +99,22 @@ export default class LwcExamInterview extends LightningElement {
     displayNumberType=false;
     displayEssayType=false;
     
+    createBlankExamAnswersList(){
+        for(let i=0; i<Object.keys(this.examQuestions).length;i++){
+            this.examAnswers[`${i+1}`]='';
+        }
+    }
     @wire(examFinder, {examID:'$examId'})
     wiredExamQuestions({ error, data }) {
         console.log('wired exam questions function called');
         if (data) {
             console.log(data);
             this.examQuestions = data;
-            this.numberOfQuestions = data.length;
+            this.numberOfQuestions = Object.keys(data).length;
             this.error = undefined;
-            this.questionI=data[0];
-            this.setDisplayBoolValues();
+            this.createBlankExamAnswersList();
+            //this.questionI=data[0];
+            this.updateQuestionComponent();
     } else if (error) {
             this.error = error;
             this.examQuestions = undefined;
@@ -107,20 +128,30 @@ export default class LwcExamInterview extends LightningElement {
     @wire(submitAnswers, {examQuestionList:'$examQuestionList',examAnswerList:'$examAnswers'})
     submitAnswers
     */
-    
-    @api
-    setDisplayBoolValues(){
+    set currentQuestion(question_){
+        
+        this.question_=question_;
+       
+        
+    }
+    get currentQuestion(){
+        return this.question_;
+        
+    }
+    updateQuestionComponent(){
         console.log('set display bool values fired in interview');
         const questionComponent = this.template.querySelector('c-lwc-question');
-            if(questionComponent){
-            console.log(this.questionI);
-            questionComponent.question=this.questionI;
-                questionComponent.setDisplayQuestionTypeBoolValues();
-                this.setEssayTextAreaWithTitanAnswerForQuestion();
-            }
-            else{
-                console.log('question component not loaded');
-            }
+        if(questionComponent && this.questionNumber<this.numberOfQuestions+1){
+            console.log(this.currentQuestion);
+            
+            this.currentQuestion= this.examQuestions[this.questionNumber-1];
+        
+            questionComponent.question=this.currentQuestion;
+            console.log("setting handle set answer to "+typeof this.answer);
+            questionComponent.handleSetAnswer(this.answer);
+        
+        }
+            
     }
     // connectedCallback() {
     //     examFinder()
@@ -159,57 +190,60 @@ export default class LwcExamInterview extends LightningElement {
         }
         console.log(this.answer);
     }
-    retrieveAnswer(){
-        console.log('retrieve answer fired');
-        this.examAnswers[this.questionNumber.toString()] = this.answer;
+    setExamAnswerToAnswerProvided(){
+        console.log('setExamAnswerToAnswerProvided fired');
+        console.log('type of this exam answers is '+ typeof this.examAnswers);
+        this.examAnswers[`${this.questionNumber}`] = this.answer;
         console.log(this.examAnswers);
     }    
-    setPrevNextDisabled(){
-        this.prevButtonDisabled=this.questionNumber<1;
-        this.nextButtonDisabled=this.questionNumber===this.examQuestions.length-1;
-    }
-    prevClicked(){
-        this.retrieveAnswer();
-        if(this.questionNumber>0){
-            this.questionNumber=parseInt(this.questionNumber, 10)-1;
-            this.questionI = this.examQuestions[this.questionNumber];
-           // this.questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
-        }
-        this.setCurrentAnswer();
-        this.setDisplayBoolValues();
-        this.setPrevNextDisabled();
-    }
     
-    setCurrentAnswer(){
+    setCurrentAnswerToPreviouslyAnswered(){
         console.log(this.answer);
         console.log("answer setting to null")
         this.answer="";
-        if(this.examAnswers[this.questionNumber.toString()]){
-            console.log("setting answer to "+this.examAnswers[this.questionNumber.toString()]);
-            this.answer=this.examAnswers[this.questionNumber.toString()];
+
+        if( this.questionNumber<Object.keys(this.examAnswers).length+1){
+            console.log("setting answer to "+this.examAnswers[`${this.questionNumber}`]);
+            this.answer=this.examAnswers[`${this.questionNumber}`];
         }
     }
-
+    setPrevNextDisabled(){
+        this.prevButtonDisabled=this.questionNumber<2;
+        this.nextButtonDisabled=this.questionNumber+1>this.numberOfQuestions;
+    }
+    prevClicked(){
+        this.setExamAnswerToAnswerProvided();
+        if(this.questionNumber>1){
+            this.questionNumber--;
+            //this.questionI = this.examQuestions[this.questionNumber];
+           // this.questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
+        }
+        this.setCurrentAnswerToPreviouslyAnswered();
+        this.updateQuestionComponent();
+        this.setPrevNextDisabled();
+    }
     nextClicked(){
-        this.retrieveAnswer();
-        if(this.questionNumber<this.examQuestions.length-1){
+        this.setExamAnswerToAnswerProvided();
+        if(this.questionNumber<this.numberOfQuestions){
             console.log("question number is "+ this.questionNumber)
-            this.questionNumber=parseInt(this.questionNumber, 10)+1;
-            this.questionI = this.examQuestions[this.questionNumber];
+            this.questionNumber++;
+            //this.questionI = this.examQuestions[this.questionNumber];
             //this.questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
         }
-        this.setCurrentAnswer();
-        this.setDisplayBoolValues();
+        this.setCurrentAnswerToPreviouslyAnswered();
+        this.updateQuestionComponent();
         this.setPrevNextDisabled();
     }
     
-    setEssayTextAreaWithTitanAnswerForQuestion(){
+    /*
+    setAnswerForQuestion(){
         //this.clearEssayTextArea();
         const essayQuestionComponent = this.template.querySelector('c-lwc-question');
         if(essayQuestionComponent){
-            essayQuestionComponent.handleTextAreaSetTitanAnswer(this.examAnswers[this.questionNumber.toString()]);
+            essayQuestionComponent.handleSetAnswer(this.examAnswers[this.questionNumber.toString()]);
         }
     }
+    */
     handleSubmitClick(event) {
         /*this.confirmation = getConfirmation(
             this.submitConfirmationDetails, // modal configurations
@@ -221,7 +255,7 @@ export default class LwcExamInterview extends LightningElement {
     handleSubmit() {
         //event.preventDefault();
         console.log('handle submit button clicked')
-        this.retrieveAnswer();
+        this.setExamAnswerToAnswerProvided();
        
         console.log(this.examId)
         console.log()
@@ -236,7 +270,7 @@ export default class LwcExamInterview extends LightningElement {
                 this.handleSubmitAnswers();
             })
             .catch((error) => {
-                this.toastMessage = "Error occured submitting exam " + error.message;
+                this.toastMessage = "Error occured submitting exam " + error;
                 this.toastTitle ='Oops! Error occured';
                 this.toastVariant='error';
                 this.console.log(toastMessage);
@@ -256,7 +290,7 @@ export default class LwcExamInterview extends LightningElement {
     
     handleSubmitAnswers() {
         
-        submitAnswers({ examQuestionList: this.examQuestions ,examAnswerList:this.examAnswers })
+        submitAnswers({ examQuestionList: this.examQuestions ,examAnswerList:this.examAnswers, examId:this.examId })
         .then((result) => {
             console.log(result);
             this.error = undefined;
@@ -275,6 +309,10 @@ export default class LwcExamInterview extends LightningElement {
             this.toastTitle ='Oops! Error occured';
             this.toastVariant='error';
             console.log(this.toastMessage);
+            console.error(error.message);
+            console.error('e.name => ' + error.name );
+            console.error('e.message => ' + error.message );
+            console.error('e.stack => ' + error.stack );
             this.error = error;
         //this.contacts = undefined;
         })
@@ -360,212 +398,6 @@ export default class LwcExamInterview extends LightningElement {
     }
 
 
-    //Set Display values based on question type to conditionally render question type components
-   
-   
-/*
-setDisplayBoolValues(){
-    console.log('set display bool values function fired');
-    if(typeof this.question !='undefined'){
-        console.log("question defined");
-        console.log(this.question.Question_Type__c)
-        switch (this.question.Question_Type__c) {
-            case "Matching":
-                if(!this.displayMatchingType){
-                    switch(true){
-                        case this.displayShortType:
-                            this.displayShortType = false;
-                            break;
-                        case  this.displayMultipleChoiceType:
-                            this.displayMultipleChoiceType = false;
-                            break;
-                        case this.displayMultiMultipleChoiceType:
-                            this.displayMultiMultipleChoiceType = false;
-                            break;
-                        case this.displayTrueType:
-                            this.displayTrueType = false;
-                            break;
-                        case this.displayNumberType:
-                            this.displayNumberType = false;
-                            break;
-                        case  this.displayEssayType:
-                            this.displayEssayType = false;
-                    }
-                    this.displayMatchingType = true;
-                }
-                break;
-            case "Numerical":
-                if(!this.displayNumberType){
-                    switch(true){
-                        case this.displayShortType:
-                            this.displayShortType = false;
-                            break;
-                        case this.displayMatchingType:
-                            this.displayMatchingType = false;
-                            break;
-                        case  this.displayMultipleChoiceType:
-                            this.displayMultipleChoiceType = false;
-                            break;
-                        case this.displayMultiMultipleChoiceType:
-                            this.displayMultiMultipleChoiceType = false;
-                            break;
-                        case this.displayTrueType:
-                            this.displayTrueType = false;
-                            break;
-                        case this.displayNumberType:
-                            this.displayNumberType = false;
-                            break;
-                        case  this.displayEssayType:
-                            this.displayEssayType = false;
-                    }
-                    this.displayNumberType = true;
-                }
-                break;   
-            case "Essay":
-                if(!this.displayEssayType){
-                    switch(true){
-                        case this.displayShortType:
-                            this.displayShortType = false;
-                            break;
-                        case this.displayMatchingType:
-                            this.displayMatchingType = false;
-                            break;
-                        case  this.displayMultipleChoiceType:
-                            this.displayMultipleChoiceType = false;
-                            break;
-                        case this.displayMultiMultipleChoiceType:
-                            this.displayMultiMultipleChoiceType = false;
-                            break;
-                        case this.displayTrueType:
-                            this.displayTrueType = false;
-                            break;
-                        case this.displayNumberType:
-                            this.displayNumberType = false;
-                            break;
-                        case  this.displayEssayType:
-                            this.displayEssayType = false;   
-                    }
-                    
-                    this.displayEssayType = true;
-                    console.log('set display essay type to '+this.displayEssayType);
-
-                }
-                
-                this.setEssayTextAreaWithTitanAnswerForQuestion();
-                break;
-            case "Short answer":
-                if(!this.displayShortType){
-                    switch(true){
-                        case this.displayMatchingType:
-                            this.displayMatchingType = false;
-                            break;
-                        case  this.displayMultipleChoiceType:
-                            this.displayMultipleChoiceType = false;
-                            break;
-                        case this.displayMultiMultipleChoiceType:
-                            this.displayMultiMultipleChoiceType = false;
-                            break;
-                        case this.displayTrueType:
-                            this.displayTrueType = false;
-                            break;
-                        case this.displayNumberType:
-                            this.displayNumberType = false;
-                            break;
-                        case  this.displayEssayType:
-                            this.displayEssayType = false;
-                    }
-                    this.displayShortType = true;
-            }
-                break;
-            case "Multiple Choice":
-                if(!this.displayMultipleChoiceType){
-                    switch(true){
-                        case this.displayShortType:
-                            this.displayShortType = false;
-                            break;
-                        case  this.displayMatchingType:
-                            this.displayMultipleChoiceType = false;
-                            break;
-                        case this.displayMultiMultipleChoiceType:
-                            this.displayMultiMultipleChoiceType = false;
-                            break;
-                        case this.displayTrueType:
-                            this.displayTrueType = false;
-                            break;
-                        case this.displayNumberType:
-                            this.displayNumberType = false;
-                            break;
-                        case  this.displayEssayType:
-                            this.displayEssayType = false;
-                    }
-                    this.displayMultipleChoiceType = true;
-                }
-                break;
-            case "Multiple Choice - multiple answers":
-                if(!this.displayMultiMultipleChoiceType){
-                    switch(true){
-                        case this.displayShortType:
-                            this.displayShortType = false;
-                            break;
-                        case  this.displayMatchingType:
-                            this.displayMultipleChoiceType = false;
-                            break;
-                        case this.displayMultipleChoiceType:
-                            this.displayMultipleChoiceType = false;
-                            break;
-                        case this.displayTrueType:
-                            this.displayTrueType = false;
-                            break;
-                        case this.displayNumberType:
-                            this.displayNumberType = false;
-                            break;
-                        case  this.displayEssayType:
-                            this.displayEssayType = false;
-                    }
-                    this.displayMultiMultipleChoiceType = true;
-                }
-                break;
-            case "True-false":
-                if(!this.displayTrueType){
-                   
-                    switch(true){
-                        case this.displayShortType:
-                            this.displayShortType = false;
-                            break;
-                        case  this.displayMatchingType:
-                            this.displayMultipleChoiceType = false;
-                            break;
-                        case this.displayMultipleChoiceType:
-                            this.displayMultipleChoiceType = false;
-                            break;
-                        case this.displayMultiMultipleChoiceType:
-                            this.displayMultiMultipleChoiceType = false;
-                            break;
-                        case this.displayNumberType:
-                            this.displayNumberType = false;
-                            break;
-                        case  this.displayEssayType:
-                            this.displayEssayType = false;
-                    }
-                    this.displayTrueType = true;
-                }                       
-            default:
-                break;
-        }
-    }
-        
-    }
-
-    clearEssayTextArea(){
-     
-        const essayQuestionComponent = this.template.querySelector('c-lwc-essay-type-questions');
-        if(essayQuestionComponent){
-            essayQuestionComponent.handleTextAreaReset();
-        }
-       
-    }
-    */
-    
   
    //Create map  mapping current answers to question number 
    //has to get the answer from child component we render for the question type

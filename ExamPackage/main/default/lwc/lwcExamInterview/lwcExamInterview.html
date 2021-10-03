@@ -2,7 +2,7 @@
   @description       : Creates questions and allows users to submit to the server
   @author            : Austin Ulberg, Daniel Boice
   @group             : 
-  @last modified on  : 10-02-2021
+  @last modified on  : 10-03-2021
   @last modified by  : Daniel Boice
   Modifications Log
   Ver   Date         Author         Modification
@@ -49,7 +49,13 @@
                   -->
                  
             </lightning-card>
-           
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                    <span class="slds-assistive-text">error</span>
+                    <h2>Application Error:{error.message}
+                    </h2>
+                  </div>
+            </template>
            
  
         <lightning-button class="slds-float_left" name="prevButton" label="Previous Question" title="Previous Question" onclick={prevClicked} disabled={prevButtonDisabled}></lightning-button>
@@ -65,6 +71,6 @@
         <!--</div>-->
     </div >
     <!--<div class="slds-modal__content slds-p-around_medium" onbuttonclick={handleModalButtonClick}></div>-->
-    <c-lwc-slds-modal show-button-text="Submit Exam Confirmation" close-button-text="Cancel" close-button-label= "No, Not Yet! Take me back!" modal-header="Submit Exam" modal-content="Are you sure you are ready to submit your exam now?" confirm-button-label="Yes, I'm ready to submit my exam now" onconfirmationclick={handleSubmit} ></c-lwc-slds-modal>
+    <c-lwc-slds-modal show-button-text="Submit Exam Confirmation" close-button-text="Cancel" close-button-label= "No, Not Yet! Take me back!" modal-header="Confirm Submit Exam" modal-content="Are you sure you are ready to submit your exam now?" confirm-button-label="Yes, I'm ready to submit my exam now" onconfirmationclick={handleSubmit} ></c-lwc-slds-modal>
   
 </template>

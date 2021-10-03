@@ -3,7 +3,7 @@
  * @description       :  Controller for our Exam Interview component.This will be      pulling the exam and questions for display in Exam.
  * @author            : Jayvious Williams
  * @group             : 
- * @last modified on  : 10-02-2021
+ * @last modified on  : 10-03-2021
  * @last modified by  : Daniel Boice
  * Modifications Log
  * Ver   Date         Author         Modification
@@ -42,41 +42,56 @@ public class ExamInterviewApexController {
 
     // created a new list of hero answers that is the same size as the amount of questions
     @AuraEnabled
-    public static void submitAnswers(List<Exam_Question__c> examQuestionList, Map<String, String> examAnswerList){
+    public static void submitAnswers(List<Exam_Question__c> examQuestionList, Map<String, String> examAnswerList, String examId){
         System.debug('submit answers in apex controller');
         System.debug(examQuestionList);
         System.debug(examQuestionList.size());
         System.debug(examQuestionList[0]);
         System.debug(examAnswerList.keySet());
         System.debug(examAnswerList.size());
-
+        List<Exam_Result__c> myExamList =[SELECT Id FROM Exam_Result__c ORDER BY lastModifiedDate DESC LIMIT 1];
+        Exam_Result__c myExam;
+        if (myExamList.size()>0){
+            myExam=myExamList[0];
+        }
         // creates and populates a list of hero answers that are the same size as the number of wuestions
         List<Hero_Answer__c> heroAnswers = new List<Hero_Answer__c>();
         for(integer i=0; i<examQuestionList.size(); i++){
-            heroAnswers.add(new Hero_Answer__c());
-        }
-        Exam_Result__c examId = [SELECT Id FROM Exam_Result__c ORDER BY lastModifiedDate DESC LIMIT 1];
-        // fills out fields for each hero answer in the hero aanswers list
-        for(integer i=0; i<heroAnswers.size(); i++){
-            heroAnswers[i].Exam_Question__c = examQuestionList[i].Id;
-            heroAnswers[i].Answer_Choice__c = examAnswerList.get(String.valueOf(i+1));
-            heroAnswers[i].Exam_Result__c = examId.Id;
-            if(ExamQuestionList[i].Question_Type__c == 'Multiple Choice - multiple answers') {
-                //system.debug(examQuestionList[i]);
-                Set<String> heroSet = new Set<String>(heroAnswers[i].Answer_Choice__c.split('||'));
-                //system.debug(heroAnswers);
-                Set<String> answerSet = new Set<String>(examQuestionList[i].Correct_Answer_s__c.split('||'));
-                //system.debug(answerSet);
-                if(heroSet.Equals(answerSet)){
-                    heroAnswers[i].Correct__c = true;
-                }
+           Hero_Answer__c myHeroAnswer =new Hero_Answer__c(Exam_Question__c=examQuestionList[i].Id, Answer_Choice__c=examAnswerList.get(String.valueOf(i+1)));
+          
+            
+            myHeroAnswer.Exam_Result__c =myExam.Id;
+            
+           if(myHeroAnswer.Answer_Choice__c == examQuestionList[i].Correct_Answer_s__c){
+                myHeroAnswer.Correct__c = true;
             }
-            else if(heroAnswers[i].Answer_Choice__c == examQuestionList[i].Correct_Answer_s__c){
-                heroAnswers[i].Correct__c = true;
-                
-            }
+            heroAnswers.add(myHeroAnswer);
             
         }
         insert heroAnswers; 
+        //this needs to be reworked
+        //Exam_Result__c examId = [SELECT Id FROM Exam_Result__c ORDER BY lastModifiedDate DESC LIMIT 1];
+        // fills out fields for each hero answer in the hero aanswers list
+        //for(integer i=0; i<heroAnswers.size(); i++){
+           // heroAnswers[i].Exam_Question__c = examQuestionList[i].Id;
+            //heroAnswers[i].Answer_Choice__c = examAnswerList.get(String.valueOf(i+1));
+            //heroAnswers[i].Exam_Result__c = examId.Id;
+            // if(ExamQuestionList[i].Question_Type__c == 'Multiple Choice - multiple answers') {
+            //     //system.debug(examQuestionList[i]);
+            //     Set<String> heroSet = new Set<String>(heroAnswers[i].Answer_Choice__c.split('||'));
+            //     //system.debug(heroAnswers);
+            //     Set<String> answerSet = new Set<String>(examQuestionList[i].Correct_Answer_s__c.split('||'));
+            //     //system.debug(answerSet);
+            //     if(heroSet.Equals(answerSet)){
+            //         heroAnswers[i].Correct__c = true;
+            //     }
+            // }
+            // else if(heroAnswers[i].Answer_Choice__c == examQuestionList[i].Correct_Answer_s__c){
+            //     heroAnswers[i].Correct__c = true;
+                
+            // }
+            
+       // }
+       
     }    
 }
