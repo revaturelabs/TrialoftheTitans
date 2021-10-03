@@ -14,6 +14,7 @@ if we had more time I would do it slightly differently, but it works for now.  w
 
 It would be easier have separate components for textarea(shortanswer and essay), number, checkbox group, radio, and combo box, and pass in the question to each of them and have them display conditionally based on question type in each component when the question updates, and send up an event to the interview component with the correct answer format. that would make more sense. but we would have to update or make all those components, and not have much time to finish that right now. it was a good learning exercise and practice though.
 
+have each of the child components take in the question and set the question text, and display their template when the question updates if the question type is correct. but there is no need for duplicate components for textarea (short answer and essay) and (truefalse and multiple choice) question types.
 */
 import { api, track, LightningElement } from 'lwc';
 
