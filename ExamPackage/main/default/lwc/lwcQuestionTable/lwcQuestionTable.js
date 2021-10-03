@@ -193,6 +193,10 @@ export default class QuestionTableLWC extends LightningElement {
     //Does all logic to safely change pages
     changePage(i){
 
+        //i should be what direction the page should change
+        //If i == 1, page increases by 1
+        //If i == -1, page decreases by 1
+        //No other value should be passed aside from 0 during setup
         let tempPage = this.pageNumber + i;
 
         if(tempPage <= 0){
