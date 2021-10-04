@@ -1,6 +1,6 @@
 public class QCHubController {
     
-    @AuraEnabled
+    @AuraEnabled (cacheable=true)
     public static List<Cohort__c> getData(){
        
          List<Cohort__c> cohortData = [SELECT Id, Name, Curriculum__r.Name FROM Cohort__c];
