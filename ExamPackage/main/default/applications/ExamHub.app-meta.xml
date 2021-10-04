@@ -41,9 +41,9 @@
     <tabs>Exam_Result__c</tabs>
     <tabs>Exam__c</tabs>
     <tabs>Hero_Answer__c</tabs>
+    <tabs>Import_Questions_LWC</tabs>
     <tabs>Question_Assignment__c</tabs>
     <tabs>Question_Pool__c</tabs>
-    <tabs>Import_Questions</tabs>
     <tabs>Exam_Pool_Assignment__c</tabs>
     <tabs>standard-OtherUserProfile</tabs>
     <uiType>Lightning</uiType>

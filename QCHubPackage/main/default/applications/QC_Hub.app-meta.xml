@@ -21,7 +21,7 @@
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
     <tabs>QC_Interview__c</tabs>
-    <tabs>Question_Manager</tabs>
+    <tabs>Question_Manager_LWC</tabs>
     <tabs>QC_Question__c</tabs>
     <tabs>QC_Question_Deck__c</tabs>
     <uiType>Lightning</uiType>
