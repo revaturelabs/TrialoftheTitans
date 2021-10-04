@@ -25,27 +25,33 @@ export default class ExamCreation extends LightningElement {
     DPG = 0;
     DTL = 0;
 
+    //Handler for the exam name for when Hero inputs data into input field
     handleExamName(event){
         this.examId = undefined;
         this.name = event.target.value;
     }
 
+    //Handler for the Titan(a technology a hero (Account) would like to conquer) for when Hero inputs data into input field
     handleTitanInput(event){
         this.titan = event.target.value;
     }
 
+    //Handler for the Nextexam name for when Hero inputs data into input field
     handleNextExamInput(event){
         this.exam = event.target.value;
     }
 
+    //Handler for the Default Passing Grade for when Hero inputs data into input field
     handleDefaultPassingGradeInput(event){
         this.DPG = event.target.value;
     }
 
+    //Handler for the Default Time Limit for when Hero inputs data into input field
     handleDefaultTimeLimitInput(event){
         this.DTL = event.target.value;
     }
 
+    //Button submition that creates actual exam record.
     createExam(){
         const fields = {};
         fields[NAME_FIELD.fieldApiName] = this.name;
