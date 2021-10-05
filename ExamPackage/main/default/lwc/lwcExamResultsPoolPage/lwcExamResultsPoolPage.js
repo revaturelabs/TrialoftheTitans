@@ -30,7 +30,9 @@ export default class LwcExamResultsPoolPage extends LightningElement {
         if (data) {
             console.log("collected correctly answered questions:",data);
             this.correctQuestions = data;
-            if (this.readyToRun) {
+          
+            if (this.readyToRun) { // if statement insures 
+
                 this.CalculatePoolPercentage(this.correctQuestions);                  
             }
             else{
