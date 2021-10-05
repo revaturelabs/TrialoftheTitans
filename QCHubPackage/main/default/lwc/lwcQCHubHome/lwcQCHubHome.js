@@ -1,10 +1,10 @@
 import { LightningElement,wire, api } from 'lwc';
-import  retrieveCohorts from "@salesforce/apex/lwcQCHubHomeAuraController.retrieveCohorts";
-import   retrieveWeeks  from "@salesforce/apex/lwcQCHubHomeAuraController.retrieveWeeks";
-import   retrieveCohortData  from "@salesforce/apex/lwcQCHubHomeAuraController.retrieveCohortData";
+import  RetrieveCohorts from "@salesforce/apex/QCHubHomeAuraController.RetrieveCohorts";
+import   RetrieveWeeks  from "@salesforce/apex/QCHubHomeAuraController.RetrieveWeeks";
+import   RetrieveCohortData  from "@salesforce/apex/QCHubHomeAuraController.RetrieveCohortData";
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
-import d3JS from "@salesforce/resourceUrl/d3";
+import * as d3JS from "@salesforce/resourceUrl/d3";
 export default class LwcQCHubHome extends LightningElement
  {
      
@@ -24,7 +24,7 @@ export default class LwcQCHubHome extends LightningElement
     ScriptLoaded=false;
   
     DataLoaded=false;
-    @wire(retrieveCohorts) cohorts({error, data})
+    @wire(RetrieveCohorts) cohorts({error, data})
     {
        
         if(data)
@@ -48,7 +48,7 @@ export default class LwcQCHubHome extends LightningElement
        
         
     }
-    @wire(retrieveWeeks) weeks({error, data})
+    @wire(RetrieveWeeks) weeks({error, data})
     {
         if(data)
         {
@@ -65,7 +65,7 @@ export default class LwcQCHubHome extends LightningElement
         
     }
     UpdateCohort(event){
-        retrieveCohortData({cohortStr : JSON.stringify(event.SelectedCohort)})
+        RetrieveCohortData({cohortStr : JSON.stringify(event.SelectedCohort)})
         .then(data =>
         {
             
