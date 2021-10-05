@@ -2,7 +2,7 @@
   @description       : 
   @author            : Daniel Boice
   @group             : 
-  @last modified on  : 10-03-2021
+  @last modified on  : 10-04-2021
   @last modified by  : Daniel Boice
   Modifications Log
   Ver   Date         Author         Modification
@@ -50,12 +50,14 @@
             
             <!-- this isn't working , may be the sample data format for the combo box-->
             <template if:true={displayComboBox}>
-                <template for:each={optionsForCombobox} for:item = "option" >
-                    <lightning-combobox key = {option}
-                            name="combobox"
+                <template for:each={optionsForCombobox} for:item = "option" for:index="index" >
+                    <lightning-combobox key={option}
+                      class={option}
+                    name={option}
                             label={option}
                             placeholder="Select Answer(s)"
                             options={answersForComboBox}
+                            
                             onchange={handleInputAnswer} ></lightning-combobox>
                 </template>
             </template>

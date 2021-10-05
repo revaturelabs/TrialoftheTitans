@@ -4,9 +4,11 @@
 		<members>*</members>
 		<name>LightningComponentBundle</name>
 	</types>
+	<!--
 	<types>
 		<members>confetti</members>
 		<name>StaticResource</name>
 	</types>
+	-->
 	<version>52.0</version>
 </Package>
