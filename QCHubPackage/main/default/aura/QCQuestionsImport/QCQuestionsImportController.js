@@ -22,15 +22,15 @@
     //function for reading an imported CSV file
 CreateRecord: function (component, event, helper) {
         var fileInput = component.find("file").getElement();
+        alert(fileInput);
         var file = fileInput.files[0];
-        
+        alert (file)
         if (file){
             
             var reader = new FileReader();
             reader.readAsText(file, "UTF-8");
             reader.onload = function (evt) {
-                
-                
+  
                 var csv = evt.target.result;
                 
                 //calls a function to parse the CSV contents

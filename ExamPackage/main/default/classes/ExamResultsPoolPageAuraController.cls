@@ -7,7 +7,7 @@ public class ExamResultsPoolPageAuraController {
 //  the second retrieves all correct questions answered. Both retrieve respective pool names for each question.
 ///////////////////////////////////////////////////
 
-@AuraEnabled
+@AuraEnabled(cacheable=true)
 public static List<String> GetAllExamResultPoolQuestions(String examResultId){
 
     List<String> allExamResultPoolQuestions = new List<String>();
@@ -24,7 +24,7 @@ public static List<String> GetAllExamResultPoolQuestions(String examResultId){
     return allExamResultPoolQuestions;
 }
 
-@AuraEnabled
+@AuraEnabled(cacheable=true)
 public static List<String> GetCorrectExamResultPoolQuestions(String examResultId){
 
     List<String> correctExamResultPoolQuestions = new List<String>();

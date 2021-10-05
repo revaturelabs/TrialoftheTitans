@@ -18,6 +18,7 @@ export default class LwcExamResultsPoolPage extends LightningElement {
     //upon component connected, retrieve all questions from exam results that are 
     //  within a question pool and set to an attribute
     connectedCallback() {
+
         this.examResultId = this.recordId; // <--- this one is required for the page to work
         this.ToggleExamPoolPercentage();    
     }
@@ -29,7 +30,9 @@ export default class LwcExamResultsPoolPage extends LightningElement {
         if (data) {
             console.log("collected correctly answered questions:",data);
             this.correctQuestions = data;
+          
             if (this.readyToRun) { // if statement insures 
+
                 this.CalculatePoolPercentage(this.correctQuestions);                  
             }
             else{

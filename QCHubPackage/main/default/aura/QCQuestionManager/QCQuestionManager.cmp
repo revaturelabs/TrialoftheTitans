@@ -1,4 +1,4 @@
-<aura:component implements = "force:appHostable">
+<aura:component implements = "force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId">
     <lightning:tabset variant="scoped">
         <lightning:tab label="Create Question">
             <c:QCQuestionCreate />
