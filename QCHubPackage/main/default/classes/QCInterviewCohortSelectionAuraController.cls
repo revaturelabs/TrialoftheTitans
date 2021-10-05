@@ -9,7 +9,7 @@
 public with sharing class QCInterviewCohortSelectionAuraController {
 
     // used to initialize the hero list based off of selected cohort param
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<Account> getHeroes(Cohort__c cohort){
             String cid = cohort.id;
             List<Account> a = [SELECT Name, Cohort__r.Name, Squad__r.Name
@@ -21,7 +21,7 @@ public with sharing class QCInterviewCohortSelectionAuraController {
     }
 
     // queries for interview instances related to list of heroes in params
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<QC_Interview__c> getInterviews(List<Account> heroes){
             List<Id> hid = new List<Id>();
             for(Account h : heroes) {
