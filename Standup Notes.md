@@ -550,3 +550,76 @@
   - Merging components
   - Worked on setting up demo
   - Helping others on their components
+
+## 10/4/2021
+
+### Alchemy
+- Hamza
+  - PD1 was this morning
+  - Looked over GIFTImport documentation
+  - Looking at QA component
+    - Struggling with that
+    - Trying to study the code
+- Huguette
+  - Working on LWC parent and child
+  - Testing the parent and working on the child
+  - Will be done by end of the day
+- Nolan
+- Andrew C
+  - Finished QCHubHome
+    - With Max's help
+    - Looks fine
+    - Requires a lot of child components so is hard to test
+- Heejin
+  - Pushed code and created pull request
+  - Studeied for PD1 tomorrow
+
+### Synergy
+- Lisa
+  - Worked on LWC
+  - Finished up problems
+  - Haven't been able to test as much
+  - Might be done?
+  - Almost done with QCHub documentation outline
+    - Should be easy to find where people need to add their part
+- John
+  - Spent day helping team
+  - Finished component and pushed yesterday
+    - Was going to add functionality but due to time, did not
+- Andrew G
+  - Should be done
+  - Fairly simple
+    - Tested in lots of ways
+  - Going to spend the afternoon studying for PD1
+- Johnny
+  - Studying for PD1 this morning
+  - Worked alongside group to help
+
+### Vanquish
+- Austin
+- Daniel
+  - Studying most of the day
+  - Interview question types had a bug
+- Rayshawn
+  - Studying for PD1 tomorrow
+- Max
+  - Spent most of today working with Andrew C
+  - Lots of questions with the component
+  - Added documentation
+    - Have more to do
+  - Started on cohort selection
+    - Very confused
+    - Will work on it tonight to try to get it prepared for the code freeze
+    - Lots of moving pieces
+
+### Scrum Masters
+- Emanuel
+  - Worked on presentation
+  - Tried debugging experience cloud site
+  - Studied for PD1 tomorrow
+  - Helping debug code
+- Jacob
+  - Deployed experience cloud site this morning
+  - Need to study for PD1
+  - Worked on presentation
+  - Helped debug code
