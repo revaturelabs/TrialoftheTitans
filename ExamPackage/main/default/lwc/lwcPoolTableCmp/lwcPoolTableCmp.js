@@ -109,10 +109,11 @@ export default class LwcPoolTableCmp extends LightningElement {
                 let rows = [];
                 for(let i=0; i<data.length; i++){
                     let items = {
-                        value: data[i].assignnedQues[0].Id,
+                        value: data[i].assignedQues[0].Id,
                         label: data[i].assignedQues[0].Name,
                         Id: data[i].assignedQues[0].Id //????
                     };
+                    console.log(items);
                     rows.push(items);
                 }
                 this.pools = rows;

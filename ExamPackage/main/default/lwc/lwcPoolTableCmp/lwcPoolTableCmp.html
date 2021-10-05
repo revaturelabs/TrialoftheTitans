@@ -79,14 +79,8 @@
                         <div class="row">
                             
                             
-                            <select class="slds-select"  name="poolDisplayId" id="poolDisplayId"  onchange={displayPoolQues}>
-                                <option value=""> &lt; Choose one pool to display questions... &gt;</option>
-                                <template for:each={pools} for:item="pool">
-                                    <div key={pool.Name}>
-                                        <option>{pool.Name}</option>
-                                    </div>
-                                </template>
-                            </select>
+                            <lightning-checkbox-group id="PoolSelect" name="Pool Select" label="" options={pools}
+                                value={pools} onchange={onMultiSelectChange}></lightning-checkbox-group>
                             <!--</ui-inputSelect>-->
                         </div>
                         <div style="margin-top:10px">
