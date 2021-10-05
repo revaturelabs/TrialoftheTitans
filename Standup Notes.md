@@ -623,3 +623,47 @@
   - Need to study for PD1
   - Worked on presentation
   - Helped debug code
+
+## 10/1/2021
+
+### Alchemy
+- Hamza
+  - Worked on presntation
+  - Wrote out script
+    - Need to practice more
+  - Studying for panel
+- Huguette
+- Nolan
+  - Finished documentation for components
+- Andrew C
+  - Studied for panel
+- Heejin
+  - Trying to add more code to component
+  - Prepared for presentation
+
+### Synergy
+- Lisa
+  - Studied for and took certification
+  - Wrote down some scripting for presentation
+- John
+  - Helped with experience cloud site
+- Andrew G
+  - Studied for and passed PD1
+- Johnny
+
+### Vanquish
+- Austin
+- Daniel
+- Rayshawn
+- Max
+  - Wrote out script for presentation
+  - Looked over stuff for panel tomorrow
+  - 
+
+### Scrum Masters
+- Emanuel
+- Jacob
+  - Worked on experience cloud site and QC hub
+
+### Everyone
+- Did a few run throughs
