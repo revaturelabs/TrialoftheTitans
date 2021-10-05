@@ -11,7 +11,7 @@ public with sharing class QCHubHomeAuraController {
 
 
     // Apex controller method fired from QCHubHome Init event - retrieves data about active cohorts
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<Cohort__c> RetrieveCohorts(){
         
         return [SELECT Id, Name, QC_Interview_Sum__c, QC_Interview_Count__c FROM Cohort__c WHERE Active__c = true];
@@ -19,7 +19,7 @@ public with sharing class QCHubHomeAuraController {
     }
 
     // Return the global picklist value set of weeks used in the org
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<String> RetrieveWeeks(){
         System.debug(QC_Interview__c.Week__c.getDescribe().getPicklistValues());
 
@@ -36,7 +36,7 @@ public with sharing class QCHubHomeAuraController {
     
     // Apex controller method fired from QCHubHome UpdateCohortEvent event - retrieves detailed data about a
     // single cohort.
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static QCCohortWrapper RetrieveCohortData(String cohortStr){
     // QCCohortWrapper contains the following properties: Cohort__c cohort, Map<String, List<Account>> squadMap, and
     // List<QCSquadWrapper> squadList. squadMap (initialized with the above map) probably will not be necessary in the
