@@ -1,0 +1,54 @@
+<!--
+
+Name: Add Equivalency
+Author: Nathan Tellez
+Description: Layout for adding and deleting equivalencies and related fields, also handles setting the values
+             for the equivalency object.
+
+-->
+<aura:component controller="addEquivalencyComponentAuraController">
+    <aura:attribute name="projectId" type="String"/>
+    <aura:attribute name="equivalencyInstance" type="Equivalency__c"/>
+    <aura:attribute name="rowIndex" type="String"/>
+    <aura:attribute name="skillList" type="Skill__c[]" default="[]"/>
+    
+    <aura:registerEvent name="DeleteRowEvent" type="c:DeleteRowEvent"/>
+    <aura:registerEvent name="AddRowEvent" type="c:AddNewRowEvent"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+	<lightning:card>
+        <lightning:layout class="slds-align_absolute-center">
+            <lightning:layoutItem class="slds-p-horizontal_medium slds-m-top_medium">
+                {!v.rowIndex + 1}
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem class="slds-p-horizontal_medium">
+                <lightning:select aura:id="skills" name="skills" label="Skill" value="{!v.equivalencyInstance.Skill__c}">
+                     <option text="Choose a skill" value=""/>
+                    <aura:iteration items="{!v.skillList}" var="skill">
+                        <option value="{!skill.Id}">{!skill.Name}</option>
+                    </aura:iteration>
+                </lightning:select>
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem class="slds-p-horizontal_medium">
+                <lightning:input name="skillEquivalency" value="{!v.equivalencyInstance.Skill_Equivalency__c}" label="Equivalency"/>
+            </lightning:layoutItem>
+            
+            <lightning:layoutItem class="slds-p-horizontal_medium">
+                <!--
+                 conditionally Display Add or Delete Icons
+             	if rowIndex is 0 then show Add New Row Icon else show delete Icon
+        		-->
+                <aura:if isTrue="{!v.rowIndex == 0}">
+                    <lightning:buttonIcon class="slds-m-top_large" iconName="utility:add" variant="border-filled" size="small" onclick="{!c.addNewRow}" alternativeText="Add"/>
+                    <aura:set attribute="else">
+                        <lightning:buttonIcon class="slds-m-top_large" iconName="utility:delete" variant="border-filled" size="small" onclick="{!c.removeRow}" alternativeText="Delete"/>
+                    </aura:set> 
+                </aura:if>
+            </lightning:layoutItem>
+            
+        </lightning:layout>
+    </lightning:card>
+</aura:component>

@@ -11,7 +11,6 @@
     <aura:registerEvent name="UpdateStageEvent" type="c:UpdateStageEvent"/>
     <aura:registerEvent name="StartInterviewEvent" type="c:StartInterviewEvent"/>
     <aura:registerEvent name="SetWeekEvent" type="c:SetWeekEvent"/>
-    <!--aura:handler name="SelectHeroEvent" type="c:SelectHeroEvent" action="c.StartInterview"/-->
 
     <!--InterviewHeroEvent is launched from the child QCInterviewCohortSelection component, but update stage
     even is launched from here-->
@@ -48,15 +47,13 @@
                 <h1 style="text-align: center; margin-bottom: 5px; font-weight: bolder">Cohort Table:</h1>
                 
                 <!--Begin Hero List Component-->
-                <p style="text-align: center"><c:QCInterviewCohortSelection heroList = "{!v.Cohort.heroList}"/></p>
+                <p style="text-align: center"><c:QCInterviewCohortSelection heroList = "{!v.Cohort.heroList}" currentCohort="{!v.Cohort.cohort}"/></p>
                 <!--End Hero List Component-->
-
-                <!--lightning:button onclick="{!c.TESTNEXT}">TestNext</lightning:button-->
 
                 <!--Begin Week Selection Dropdown Menu-->
                 <lightning:select name="WeekSelection" aura:id="WeekSelection" label="Week" onchange="{!c.WeekSelect}">
                     <aura:iteration items="{!v.WeekList}" var="w">
-                        <option value="{!w}" text="{!w}"></option>
+                        <option value="{!w}" text="{!w.value}"></option>
                     </aura:iteration>
                 </lightning:select>
                 <!--End Week Selection Dropdown Menu-->

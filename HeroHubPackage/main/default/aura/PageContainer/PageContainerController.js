@@ -12,7 +12,6 @@
         getContextInfo.setCallback(this, function(response) {
             if (response.getState() === "SUCCESS") {
                 const contextinfo = response.getReturnValue();
-                console.log("Getting User Context", contextinfo);
                 component.set("v.contextInfo", contextinfo);
             } else {
                 //User isn't signed in return to login
@@ -22,15 +21,14 @@
 
         const getTeamScores = component.get("c.getTeamScores");
         getTeamScores.setCallback(this, function(response) {
-            console.log("TeamScores Response: " + response.getState());
-            console.log(response.getReturnValue());
+            
             if (response.getState() === "SUCCESS") {
                 let teamScores = response.getReturnValue();
                 Object.keys(teamScores).forEach(category => {
                     teamScores[category] = Object.entries(teamScores[category])
                 });
                 // teamScores.Team[0][0] = "Synergy";
-                console.log(teamScores);
+                console.log('TeamScores:' + teamScores);
                 component.set('v.leadTeams', teamScores);
             }
         });
@@ -39,21 +37,40 @@
     },
 
     navigate: function(component, event, helper) {
-
-        console.log('hit');
+		let titanString = "Titans";
         const page = event.getParam('page');
-        console.log(page);
         component.set("v.navigate", page);
-
     },
 
     navigateToResults: function(cmp, event, helper) {
-
+        cmp.set('v.PortClicked', false);
+        cmp.set('v.OneClicked', false);
+        
         if (cmp.get('v.nameClicked') == true) {
             cmp.set('v.nameClicked', false);
         } else {
             cmp.set('v.nameClicked', true);
         }
-        console.log(cmp.get('v.nameClicked'))
+        
+    },
+    navigateToPort: function(cmp, event, helper){
+        cmp.set('v.nameClicked', false);
+        cmp.set('v.OneClicked', false);
+
+        if (cmp.get('v.PortClicked') == true){
+            cmp.set('v.PortClicked', false);
+        } else {
+            cmp.set('v.PortClicked', true);
+        }
+    },
+    navigateToOneOnOne: function(cmp,event,helper){
+        cmp.set('v.nameClicked', false);
+        cmp.set('v.PortClicked', false);
+
+        if(cmp.get('v.OneClicked')==true){
+            cmp.set('v.OneClicked',false);
+        }else{
+            cmp.set('v.OneClicked', true);
+        }
     }
 })

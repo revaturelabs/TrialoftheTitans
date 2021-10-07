@@ -2,6 +2,8 @@
     // get question pools from server
     // currently getting all of them
     // unless searchbar is triggered
+
+    // kyle notes - all functions in the controller stayed put for the time being
     GetQuestionPools : function(component) {
         let action = component.get("c.GetQuestionPool");
         let searchKeyword = component.get("v.searchKeyword");

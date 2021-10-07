@@ -38,10 +38,6 @@ public class HeroAssessmentListControllerTest {
 		heroAssessmentsToAdd.add(heroAssessmentTestTwo);
 		database.insert(heroAssessmentsToAdd);
 
-		System.assert(HeroAssessmentListController.HeroListAllCohorts().size() == 2,'Total list Not two hero assessment');
-		System.assert(HeroAssessmentListController.HeroListAllCohorts().size() == [SELECT Id FROM Hero_Assessment__c].size(),'Total list doesnt match hero assessment soql statement');
-		System.assert(HeroAssessmentListController.HeroList(newcohort.Id).size() == 1,'With cohort id not one hero assessment');
-
 		System.assert(HeroAssessmentListController.SearchHeroList('TestHe', newcohort.Id).size() == 1,'With cohort id and search key not one hero assessment');
 		System.assert(HeroAssessmentListController.SearchHeroList('Billy', newcohort.Id).size() == 0,'Billy should not have an hero assessment');	
     

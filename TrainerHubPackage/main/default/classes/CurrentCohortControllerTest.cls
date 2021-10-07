@@ -17,7 +17,7 @@ public class CurrentCohortControllerTest {
     static void PositiveTest(){
         AssessmentSetup.associateCohort();
         AssessmentSetup.Setup();
-        List<CurrentCohortController.Pair> data = CurrentCohortController.getData();
+        List<Pair> data = CurrentCohortController.getData();
          
         System.assertEquals(4,data.size());
     }
@@ -27,7 +27,7 @@ public class CurrentCohortControllerTest {
         AssessmentSetup.associateCohort();
         AssessmentSetup.Setup();
         AssessmentSetup.QCSetup('QC');
-        List<CurrentCohortController.Pair> data = CurrentCohortController.getData();
+        List<Pair> data = CurrentCohortController.getData();
          
         System.assertNotEquals(4,data.size());
     }

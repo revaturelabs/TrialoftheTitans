@@ -67,9 +67,9 @@ public class Test_QCInterviewQAAuraController {
         System.assert(check!=null);
 
         //executes getQuestion method, with system.asserts to verify
-        List<QC_Question__c> questions = QCInterviewQAAuraController.getQuestion(decks);
+        /*List<QC_Question__c> questions = QCInterviewQAAuraController.getQuestion(decks);
 
-        System.assertEquals(deckQuery.Id, questions[0].QC_Question_Deck__c);
+        System.assertEquals(deckQuery.Id, questions[0].QC_Question_Deck__c);*/
     }
 
 }

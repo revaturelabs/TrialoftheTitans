@@ -1,0 +1,27 @@
+*
+{
+   
+    background-color: white;
+}
+lightning-button
+{
+    font-size: 24px;
+    margin:5px;
+    padding:5px;
+    font-weight: bold;
+}
+.block
+{
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+} 
+lightning-input
+{
+    font-size:16px;
+}
+.buttons
+{
+    text-align: center;
+}

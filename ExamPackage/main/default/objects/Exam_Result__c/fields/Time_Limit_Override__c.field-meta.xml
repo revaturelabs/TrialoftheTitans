@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Time_Limit_Override__c</fullName>
+    <deprecated>false</deprecated>
     <externalId>false</externalId>
     <label>Time Limit Override</label>
     <precision>18</precision>

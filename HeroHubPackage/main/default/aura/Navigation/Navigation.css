@@ -29,4 +29,14 @@
 
 .THIS li.navbar-quote {
     justify-self: center;
+    cursor: pointer;
+}
+.THIS li.navbar-quote:hover{
+    border-bottom: 1px solid var(--user-team-primary);
+}
+.THIS li.pointer{
+    cursor: pointer;
+}
+.THIS li.pointer:hover{
+    border-bottom: 1px solid var(--user-team-primary);
 }

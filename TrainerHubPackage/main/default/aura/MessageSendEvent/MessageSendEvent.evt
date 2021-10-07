@@ -1,0 +1,5 @@
+<!-- MessageSendEvent sends a message to another component as well as what tab fired the event -->
+<aura:event type="COMPONENT" description="Event template" >
+    <aura:attribute name = "message" type = "String" />
+    <aura:attribute name = "activeTab" type = "String" />
+</aura:event>

@@ -17,11 +17,6 @@
 
     submitClick : function(component, event, helper){
         helper.submitExam(component);
-    },
-
-    setTitan : function(component, event, helper){
-        helper.setTitanHelper(component, event);
     }
-
     
 })

@@ -22,7 +22,8 @@
     <aura:attribute name="isFeedback" type="Boolean" default ="false" />
     <aura:attribute name="isError" type="Boolean" default ="false" />
     <aura:attribute name="isSucc" type="Boolean" default ="false" />
-
+    
+    
     <div class="slds-grid slds-gutters slds-wrap myinterstyle" >
     <!-- INTERVIEW PROCESS START -->
     <aura:if isTrue="{!v.isInterviewing}">
@@ -57,12 +58,12 @@
         
             <!--Techskill Session -->
         <aura:if isTrue="{!v.isTechnical}">
-                <c.interviewQuestionComponent question="{!v.techSkillQuestions}" />
+                <c:interviewQuestionComponent question="{!v.techSkillQuestions}" />
         </aura:if>
         
             <!--Other Session -->
         <aura:if isTrue="{!v.isOther}">
-        <c.interviewQuestionComponent question="{!v.otherSkillQuestions}" />
+        <c:interviewQuestionComponent question="{!v.otherSkillQuestions}" />
         </aura:if>
         <br/>
         <br/>

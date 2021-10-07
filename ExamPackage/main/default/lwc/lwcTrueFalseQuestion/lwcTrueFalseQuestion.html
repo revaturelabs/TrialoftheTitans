@@ -1,0 +1,21 @@
+<!--
+    Created By: Emanuel Botello Urbina
+    Last edited: September 28, 2021
+    Description: Component created to view a question with true or false as the options
+-->
+
+<template>
+    <lightning-card>
+        <div class="slds-m-around--xx-large">
+            <div>
+    			<lightning-radio-group id = "input"     
+                name={questionprompt} 
+                label={questionprompt}
+                options={options}
+                value={value}
+                onchange={changeValue}
+                type="radio"></lightning-radio-group>
+            </div>
+        </div>
+    </lightning-card>   
+</template>

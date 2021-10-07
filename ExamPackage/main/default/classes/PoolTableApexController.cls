@@ -1,6 +1,6 @@
 public class PoolTableApexController { 
     //=================================================Get Question List================================    
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List <TableRow> GetQues(String searchKeyword,Integer pageSize, Integer pageNumber, List <Question_Pool__c> pools){
         // Wrapper instantiate
         List <TableRow> RowList = new List <TableRow> ();
@@ -39,7 +39,6 @@ public class PoolTableApexController {
             tr.Question_Type	= q.Exam_Question__r.Question_Type__c;
             RowList.add(tr);
         }
-        //System.debug('*****RowList'+ RowList);
         return RowList;
     }
     public class TableRow{
@@ -50,7 +49,7 @@ public class PoolTableApexController {
     }
     
     //=======================================================Get Pool List================================
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List <TableRow2> GetPool(){
         
         // Wrapper instantiate
@@ -75,10 +74,8 @@ public class PoolTableApexController {
     }
     
     //=============================================Delete Question from Pool================================   
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static Integer deleteQuesPool(List <Question_Pool__c> pools, List <Exam_Question__c> questions){
-        //System.debug('***question '+questions);
-        //System.debug('***pool '+pools);
         // Exatracting Ids from pools and question list
         Set<ID> poolIds=new Set <ID> () ;
         Set<ID> questionIds=new Set <ID> () ;
@@ -100,10 +97,8 @@ public class PoolTableApexController {
                 }
             } 	
         }
-        //System.debug('***delete question '+delRecs);
         //Allow paritally sucess to avoid duplication in the records
-        Database.delete(delRecs,false);
-        //System.debug('***newRecs '+newRecs); 
+        Database.delete(delRecs,false); 
         return 0;
     }
     

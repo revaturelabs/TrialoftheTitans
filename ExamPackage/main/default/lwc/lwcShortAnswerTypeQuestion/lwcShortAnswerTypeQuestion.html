@@ -1,0 +1,21 @@
+<!--
+    Author: Johnny Ly
+    Date Modified: 9/29/2021
+    Description: Conversion of the ShortAnswerTypeQuestion aura component for Exam package to lightning web component. Returns answer to the examinterview component
+-->
+
+<template>
+    <lightning-layout class="slds-page-header slds-page-header_object-home">
+        <lightning-layoutitem size='6' flexibility="auto">          
+                <div class="slds-form-element slds-form-element_stacked">
+                    <h4 class="slds-text-heading_small">Short Question</h4>
+                </div>
+                <div class="slds-form-element slds-form-element_stacked">
+                    <p>
+                        {ShortQuestion}
+                    </p>
+                    <lightning-textarea id="input" placeholder="Enter a short answer type question" ></lightning-textarea>
+                </div>
+        </lightning-layoutitem>
+    </lightning-layout>
+</template>

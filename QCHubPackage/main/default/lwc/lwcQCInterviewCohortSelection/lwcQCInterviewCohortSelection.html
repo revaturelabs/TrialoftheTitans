@@ -1,0 +1,25 @@
+<template>
+    <!--
+
+    Author: Max Chervinsky
+    Date Modified: 9/29/2021
+    Description: This component is a header for the QCHub.
+
+    -->
+
+
+    <lightning-card>
+        <div>
+            <lightning-datatable
+                key-field="Id"
+                data={account.data}
+                columns={Columns}
+                onrowselection={handleRowSelection}
+                hide-checkbox-column="true"
+                suppress-bottom-bar="true"
+                onrowaction={launchInterview}
+            >
+            </lightning-datatable>
+        </div>
+    </lightning-card>
+</template>
