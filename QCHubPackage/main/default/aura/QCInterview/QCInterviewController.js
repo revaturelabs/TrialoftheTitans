@@ -20,6 +20,6 @@
 
 
 	SetWeek : function(component, event, helper){
-		helper(component, event);
+		helper.SetWeek(component, event);
 	}
 })

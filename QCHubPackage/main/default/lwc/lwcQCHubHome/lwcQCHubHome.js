@@ -4,12 +4,11 @@ import   RetrieveWeeks  from "@salesforce/apex/QCHubHomeAuraController.RetrieveW
 import   RetrieveCohortData  from "@salesforce/apex/QCHubHomeAuraController.RetrieveCohortData";
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
-import * as d3JS from "@salesforce/resourceUrl/d3";
+//import * as d3JS from "@salesforce/resourceUrl/d3";
 export default class LwcQCHubHome extends LightningElement
- {
+{
      
-
-    CorhortList=[{}];
+    /*CorhortList=[{}];
 
     SelectedCohort={};
     
@@ -111,7 +110,7 @@ export default class LwcQCHubHome extends LightningElement
         scaleFactor = 10,
         barWidth = 150;
 
-        var cOverview = d3JS.select(".svgCohortOverview").append("svg")
+        //var cOverview = d3JS.select(".svgCohortOverview").append("svg")
                             .attr("height", height).attr("width", barWidth*data.length);
 
 
@@ -174,5 +173,5 @@ export default class LwcQCHubHome extends LightningElement
             this.D3CohortOverview(component);
         }
         this.ScriptLoaded=true;
-    }
+    }*/
  }

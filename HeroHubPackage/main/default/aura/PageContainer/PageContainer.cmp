@@ -43,7 +43,7 @@
     
     <div id="main">
         <aura:if isTrue="{!v.nameClicked}">
-            <c:lwcHeroResultPage />
+            <c:HeroResultPage />
             <aura:set attribute="else">
                 <aura:if isTrue="{!v.navigate == 'Titans'}">
                     <c:TitansPageLanding />
@@ -78,4 +78,3 @@
 
     <c:Communication />
 </aura:component>
-

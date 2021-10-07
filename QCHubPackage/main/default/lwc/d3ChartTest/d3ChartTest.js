@@ -3,12 +3,15 @@
 import { LightningElement } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
-import D3 from '@salesforce/resourceUrl/d37';
+//import D3 from '@salesforce/resourceUrl/d37';
 import DATA from './data';
 
 export default class LibsD3 extends LightningElement {
     svgWidth = 400;
     svgHeight = 400;
+    
+    //Delete this and uncomment D3 at 6
+    D3;
 
     d3Initialized = false;
 

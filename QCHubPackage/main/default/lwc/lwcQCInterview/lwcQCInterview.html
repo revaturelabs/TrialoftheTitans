@@ -9,27 +9,28 @@
      
     <!--Handle Event-->
 
-    <c-lwc-q-c-interview-start-view onupdatestage={UpdateStage} onstartinterviewevent={SetHero} onsetweekevent={Setweek}>
+    <!--<c-lwc-q-c-interview-start-view onupdatestage={UpdateStage} onstartinterviewevent={SetHero} onsetweekevent={Setweek}>
 
-     </c-lwc-q-c-interview-start-view>
+     </c-lwc-q-c-interview-start-view>-->
    
-    <c-lwc-q-c-interview-q-a onupdateqalistevent={AddQuestionAnswer} onupdatestage={UpdateStage}>
+     <!-- This needs to be completed in a future iteration. This component is not complete.-->
+    <!--<c-lwc-q-c-interview-q-a onupdateqalistevent={AddQuestionAnswer} onupdatestage={UpdateStage}>
 
-    </c-lwc-q-c-interview-q-a>
+    </c-lwc-q-c-interview-q-a>-->
  
 
      <!--Begin component display (depends on CurrentStage attribute)-->
      <div>
         <template if:true={startView}>
-            <c-lwc-q-c-interview-start-view cohort={Cohort} weeklist={WeekList}>
-            </c-lwc-q-c-interview-start-view>
+            <!--<c-lwc-q-c-interview-start-view cohort={Cohort} weeklist={WeekList}>
+            </c-lwc-q-c-interview-start-view>-->
         </template>
     </div>
     
     <div>
         <template if:true={interviewQA}>  
-            <c-lwc-q-c-interview-q-a cohortid={Cohort.cohort.Id} hero = {CurrentHero} week = {Week}>
-            </c-lwc-q-c-interview-q-a>
+            <!--<c-lwc-q-c-interview-q-a cohortid={Cohort.cohort.Id} hero = {CurrentHero} week = {Week}>
+            </c-lwc-q-c-interview-q-a>-->
         </template>
     </div> 
     

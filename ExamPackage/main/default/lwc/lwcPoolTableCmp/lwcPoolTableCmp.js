@@ -61,7 +61,7 @@ export default class LwcPoolTableCmp extends LightningElement {
         this.pageNumber = this.pageNumber + 1;
 
         // Getting Values from the client to send to server
-        let arrayTexPools = this.selectedPools;
+        let arrayTextPools = this.selectedPools;
         let selectedObjectPools=[];
         
         if(this.selectedPools.length > 0){
@@ -80,10 +80,11 @@ export default class LwcPoolTableCmp extends LightningElement {
 
 
         //Calls out to the apex controller for the questions
-        GetQues({searchKeyword: this.searchKeyword, pageSize:this.pageSize, pageNumber:this.pageNumber})
+        GetQues({searchKeyword: this.searchKeyword, pageSize:this.pageSize, pageNumber:this.pageNumber, pools:this.pools})
         .then((result) =>{
-            this.pageNumber = this.pageNumber + 1;
+            this.pageNumber = this.pageNumber - 1;
             let rows = [];
+            console.log(result);
             for(let i = 0 ; i <result.length; i++){
                 let items = {
                     Id:result[i].ques[0].Id,
@@ -113,7 +114,6 @@ export default class LwcPoolTableCmp extends LightningElement {
                         label: data[i].assignedQues[0].Name,
                         Id: data[i].assignedQues[0].Id //????
                     };
-                    console.log(items);
                     rows.push(items);
                 }
                 this.pools = rows;
@@ -188,7 +188,6 @@ export default class LwcPoolTableCmp extends LightningElement {
     changePage(i){
 
         let tempPage = this.pageNumber + i;
-        console.log(this.dataSize);
 
         if(tempPage <= 0){
             this.pageNumber = 0;

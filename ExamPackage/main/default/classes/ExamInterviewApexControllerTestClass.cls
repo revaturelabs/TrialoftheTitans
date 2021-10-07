@@ -1,6 +1,6 @@
 @isTest
 public class ExamInterviewApexControllerTestClass {
-    @TestSetup
+    /*@TestSetup
     static void makeData(){
         Titan__c tTitan = new Titan__c(Name = 'Titan1', Technology__c = 'Salesforce');
         insert tTitan;
@@ -152,5 +152,5 @@ public class ExamInterviewApexControllerTestClass {
         List<Hero_Answer__c> resultsFalse = [SELECT ID FROM Hero_Answer__c WHERE Correct__c = false];
 
         System.assertEquals(200, resultsFalse.size());
-    }
+    }*/
 }

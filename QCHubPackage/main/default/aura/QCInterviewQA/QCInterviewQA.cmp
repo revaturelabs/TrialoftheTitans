@@ -89,8 +89,8 @@
             <!--End Question Box-->
 
 
-            <!-- <p>{!v.CurrentQuestion.Question__c}</p>
-            <p>{!v.HeroAnswer.Question__c}</p> -->
+            <p>{!v.CurrentQuestion.Question__c}</p>
+            <p>{!v.HeroAnswer.Question__c}</p>
 
 
             <div class="slds-align_absolute-center">
@@ -109,7 +109,7 @@
                                     placeholder="Hero's answer..." class="QuestionBox slds-align_absolute-center"/>
             </div>
 
-            <!-- <p>{!v.HeroAnswer.Answer__c}</p> -->
+            <p>{!v.HeroAnswer.Answer__c}</p>
             
             <!--End Answer Box-->
             

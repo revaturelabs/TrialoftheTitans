@@ -3,6 +3,8 @@
 			let myPageRef = component.get("v.pageReference");
 			let sessionCohort = myPageRef.state.c__Cohort;
 			component.set("v.Cohort", sessionCohort);
+			let sessionWeeks = myPageRef.state.c__WeekList.target;
+			component.set("v.WeekList", sessionWeeks);
 	},
 	
 	UpdateStage : function(component, event){

@@ -126,7 +126,7 @@
             }
     
         }
-        
+        console.log(interviewReference);
         navService.navigate(interviewReference);
     },
 

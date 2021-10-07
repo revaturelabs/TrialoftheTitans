@@ -53,7 +53,7 @@
                 <!--Begin Week Selection Dropdown Menu-->
                 <lightning:select name="WeekSelection" aura:id="WeekSelection" label="Week" onchange="{!c.WeekSelect}">
                     <aura:iteration items="{!v.WeekList}" var="w">
-                        <option value="{!w}" text="{!w}"></option>
+                        <option value="{!w}" text="{!w.value}"></option>
                     </aura:iteration>
                 </lightning:select>
                 <!--End Week Selection Dropdown Menu-->
