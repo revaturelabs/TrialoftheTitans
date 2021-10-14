@@ -46,3 +46,4 @@ $RECYCLE.BIN/
 sfdx-project.json
 
 manifest\package.xml
+package-lock.json

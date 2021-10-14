@@ -139,7 +139,7 @@
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "51.0",
+    "sourceApiVersion": "49.0",
     "packageAliases": {
         "CorePackage": "0Ho5e00000000eDCAQ",
         "TitanPage": "0Ho5e00000000eNCAQ",
