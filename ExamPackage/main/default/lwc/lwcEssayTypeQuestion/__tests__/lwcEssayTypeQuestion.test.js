@@ -20,7 +20,6 @@ describe("c-lwc-essay-type-question", () => {
 
     // Setting the essay question to hello world
     let q = (element.essayQuestion = "Hello, World!");
-
     // setting the text area to an variable
     const elementChange =
       element.shadowRoot.querySelector("lightning-textarea");
