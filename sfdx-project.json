@@ -12,7 +12,7 @@
             "package": "ExamPackage",
             "versionName": "ver 1.0",
             "versionNumber": "1.0.0.NEXT",
-            "default": false,
+            "default": true,
             "dependencies": [
                 {
                     "package": "CorePackage@1.0.0-1"
@@ -69,7 +69,7 @@
             "package": "MockInterviewPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true,
+            "default": false,
             "dependencies": [
                 {
                     "package": "CorePackage@1.0.0-1"
@@ -87,14 +87,61 @@
                     "package": "TrainerHubPackage@1.0.0-1"
                 }
             ]
-        }       
+        },
+        {
+            "path": "HeroHubPackage",
+            "package": "HeroHubPackage",
+            "versionName": "ver 1.0",
+            "versionNumber": "1.0.0.NEXT",
+            "default": false,
+            "dependencies": [
+                {
+                    "package": "CorePackage@1.0.0-1"
+                },
+                {
+                    "package": "ExamPackage@1.0.0-1"
+                },
+                {
+                    "package": "TitanPage@1.0.0-1"
+                },
+                {
+                    "package": "QCHubPackage@1.0.0-1"
+                },
+                {
+                    "package": "TrainerHubPackage@1.0.0-1"
+                },
+                {
+                    "package": "MockInterviewPackage@1.0.0-1"
+                }
+            ]
+        },
+        {
+            "path": "CodeAssessmentPackage",
+            "package": "CodeAssessmentPackage",
+            "versionName": "ver 1.0",
+            "versionNumber": "1.0.0.NEXT",
+            "default": false,
+            "dependencies": [
+                {
+                    "package": "CorePackage@1.0.0-1"
+                },
+                {
+                    "package": "ExamPackage@1.0.0-1"
+                },
+                {
+                    "package": "TitanPage@1.0.0-1"
+                },
+                {
+                    "package": "HeroHubPackage@1.0.0-1"
+                }
+            ]
+        }
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "51.0",
     "packageAliases": {
         "CorePackage": "0Ho5e00000000eDCAQ",
-        "ExamPackage": "0Ho5e00000000eICAQ",
         "TitanPage": "0Ho5e00000000eNCAQ",
         "QCHubPackage": "0Ho5e00000000eSCAQ",
         "TrainerHubPackage": "0Ho5e00000000eXCAQ",
@@ -106,6 +153,7 @@
         "QCHubPackage@1.0.0-1": "04t5e000000aOJuAAM",
         "TrainerHubPackage@1.0.0-1": "04t5e000000aOJzAAM",
         "MockInterviewPackage@1.0.0-1": "04t5e000000aOKEAA2",
-        "HeroHubPackage@1.0.0-1": "04t5e000000aOL7AAM"
+        "HeroHubPackage@1.0.0-1": "04t5e000000aOL7AAM",
+        "ExamPackage": "0Ho5f000000GmpRCAS"
     }
 }
