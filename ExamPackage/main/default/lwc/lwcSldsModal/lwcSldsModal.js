@@ -1,13 +1,13 @@
 /**
- * @description       : 
+ * @description       :
  * @author            : Daniel Boice
- * @group             : 
+ * @group             :
  * @last modified on  : 10-02-2021
  * @last modified by  : Daniel Boice
  * Modifications Log
  * Ver   Date         Author         Modification
  * 1.0   10-02-2021   Daniel Boice   Initial Version
-**/
+ **/
 import { LightningElement, track, api } from "lwc";
 
 export default class LwcSldsModal extends LightningElement {
@@ -44,13 +44,18 @@ export default class LwcSldsModal extends LightningElement {
   can be used instead of the above two methods - showModal() & closeModal()
   just toggles the isModalOpen property - true if false, false if true 
   */
+
+  // Veselin Georgiev - 10/15/21 -- this function is not used at all
+  /*
  @api
   toggleModal() {
     this.isModalOpen = !this.isModalOpen;
   }
-
-  handleConfirmClick(event){
-    const confirmEvent = new CustomEvent('confirmationclick', { detail: event.target.value });
+*/
+  handleConfirmClick(event) {
+    const confirmEvent = new CustomEvent("confirmationclick", {
+      detail: event.target.value
+    });
 
     // Dispatches the event.
     this.dispatchEvent(confirmEvent);
@@ -65,5 +70,4 @@ export default class LwcSldsModal extends LightningElement {
   get modalBackdropClass() {
     return `slds-backdrop ${this.isModalOpen ? "slds-backdrop_open" : ""}`;
   }
-
 }
