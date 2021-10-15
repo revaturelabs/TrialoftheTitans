@@ -45,13 +45,19 @@
             <c:TitansPageLanding />
         </aura:if>
 
+        <!-- 
+        taking these out for now. mock interview package
+        isn't ready for primetime yet. Switching focus to the hero
+        user experience - iteration 6
+
         <aura:if isTrue="{!v.navigate == 'Mock Interview'}">
             <c:selfInterviewComponent />
         </aura:if>
 
         <aura:if isTrue="{!v.navigate == 'Mock Feedback'}">
-                <c:publicVideos />
+                <c:OraclePublicVideos />
         </aura:if>
+        -->
 
         <aura:if isTrue="{!v.navigate == 'Portfolio Creation'}">
             <c:PortfolioCreation2/>
