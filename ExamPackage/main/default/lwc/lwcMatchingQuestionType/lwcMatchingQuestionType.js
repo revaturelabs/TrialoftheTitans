@@ -12,7 +12,7 @@ export default class MultipleChoiceQuestionLWC extends LightningElement {
     @api
     questionprompt = "can you come here";
     @api
-    options;  // use = [1,2,3] to test component in salesforce by itself
+    options; // use = [1,2,3] to test component in salesforce by itself
     @api answers; //use = [4,5,6] to test component in salesforce by itself
     //Called at startup to populate the values
 
