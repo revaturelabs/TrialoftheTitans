@@ -30,4 +30,4 @@
                         onrowaction="{!c.LaunchInterview}"/>
 
 
-</aura:component>	
+</aura:component>

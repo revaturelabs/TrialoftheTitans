@@ -11,4 +11,4 @@
 
     <lightning:button onclick="{!c.TESTNEXT}">TestNext</lightning:button>
 
-</aura:component>	
+</aura:component>
