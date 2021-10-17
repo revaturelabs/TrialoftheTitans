@@ -18,7 +18,7 @@ describe('c-lwc-numerical-question-type', () => {
     // declare the element variable
     let element;
 
-    // before each test, set element to be an instance of the lwcMatchingQuestionType component
+    // before each test, set element to be an instance of the lwcNumericalQuestionType component
     beforeEach(() => {
         element = createElement('c-lwc-numerical-question-type', {
             is: LwcNumericalQuestionType

@@ -3,6 +3,7 @@ import { api, LightningElement } from 'lwc';
 export default class MultipleChoiceQuestionLWC extends LightningElement {
 
     //Variable declaration
+    @api
     answerChoice;
 
     //These should be passed by the parent

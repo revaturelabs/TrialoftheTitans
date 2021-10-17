@@ -11,6 +11,12 @@ import TITAN_FIELD from '@salesforce/schema/Exam__C.Titan__c';
 import DPG_FIELD from '@salesforce/schema/Exam__C.Default_Passing_Grade__c';
 import DTL_FIELD from '@salesforce/schema/Exam__C.Default_Time_Limit__c';
 
+/*
+    Modified By: William Rembish
+    Date: 10/17/2021
+    Attempted to get it working enough to run test on at the very least, wasn't able to fully get it working yet but its closer than it was
+*/
+
 export default class ExamCreation extends LightningElement {
     @api examObj = Exam_Object;
     @api examId;

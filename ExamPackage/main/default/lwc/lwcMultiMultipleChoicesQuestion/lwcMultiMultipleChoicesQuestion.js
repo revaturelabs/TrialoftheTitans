@@ -2,6 +2,7 @@ import { api, LightningElement } from 'lwc';
 
 export default class LwcMultiMultipleChoicesQuestion extends LightningElement {
 
+    @api
     answerChoices;
 
     @api
