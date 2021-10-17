@@ -42,6 +42,18 @@ public class QCHubDataFactory {
         
 		insert QCInterviewList;
         
+        List<QC_Question__c> QCQuestionsList = new List<QC_Question__c>();
+        for (QC_Interview__c QCInt : QCInterviewList){
+            for (integer qcQstCount=0; qcQstCount<5; ++qcQstCount){
+                QC_Question__c qcQst = new QC_Question__c(Name='Question' + qcQstCount, Question_Body__c='The question ');
+                QCQuestionsList.add(qcQst);
+                
+            }
+            
+        }
+        
+        insert QCQuestionsList;
+
         List<QC_Question_Answer__c> QCAnswersList = new List<QC_Question_Answer__c>();
         for (QC_Interview__c QCInt : QCInterviewList){
             for (integer qcAnsCount=0; qcAnsCount<5; ++qcAnsCount){
