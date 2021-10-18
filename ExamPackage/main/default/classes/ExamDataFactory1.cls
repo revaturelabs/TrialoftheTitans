@@ -19,7 +19,7 @@ public class ExamDataFactory1 {
   ) {
     Account testAccount = new Account(Name = 'Account');
     insert testAccount;
-    Titan__c titanTest = new Titan__c(Name = 'Titan');
+    Titan__c titanTest = new Titan__c(Name = 'Titan', Technology__c = 'Java');
     insert titanTest;
     Exam__c examTest = new Exam__c(
       Name = examName,
