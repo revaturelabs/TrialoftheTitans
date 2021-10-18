@@ -4,7 +4,7 @@ import LwcQCInterview from 'c/lwcQCInterview';
 /*
     Created By: William Rembish
     date: 10/17/2021
-    test coverage: %
+    test coverage: 100%
 */
 describe('c-lwc-q-c-interview', () => {
     // after each test, reset the DOM
