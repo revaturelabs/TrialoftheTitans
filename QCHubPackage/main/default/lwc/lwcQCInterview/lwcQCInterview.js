@@ -12,7 +12,9 @@ export default class LwcQCInterview extends LightningElement {
 @api Cohort;
 @api pageReference;
 
-
+/*
+ * Commented out by William Rembish on 10/17/2021
+ * Reason unused and untestable
 get startView(){
     return this.Stage=='Start' ? true : false;  
 }
@@ -24,6 +26,7 @@ get interviewQA(){
 get interviewEnd(){
     return this.Stage=='End' ? true : false;
 }
+*/
 
 //LoadSessionData()
 connectedCallback(){
@@ -32,7 +35,9 @@ connectedCallback(){
     this.Cohort = sessionCohort; */
 }
     
-
+/*
+ * Commented out by William Rembish on 10/17/2021
+ * Reason unused and untestable
 UpdateStage(event){
     this.Stage= event.detail.value;
     console.log(event);
@@ -51,5 +56,6 @@ AddQuestionAnswer(event){
 
     this.CurrentQAList.push(questionAnswer);
 }
+*/
     
 }
