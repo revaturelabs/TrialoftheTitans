@@ -2,24 +2,17 @@ import { LightningElement,api ,track} from 'lwc';
 
 export default class NumericalQuestionType extends LightningElement {
   //replaces the public attributes above
-@api questionprompt = '';
-@track name;
-/*
-showMe(event) {
-  this.name=event.target.value;
-  alert(this.name); 
-  
-}
-*/
-//same as remove item above
-@api
-answer() {
-  if(element.name=="input1"){
-    this.name=element.value;
+  @api questionprompt = '';
+  @api answerText;
+  /*
+  showMe(event) {
+    this.name=event.target.value;
+    alert(this.name); 
   }
-  this.answer = element.value;
-
-    
-}
-
+  */
+  //same as remove item above
+  @api
+  answer(event) {
+    this.answerText = event.detail.value;
+  }
 }

@@ -19,17 +19,12 @@
 
   <template for:each= {options} for:item = "option" >
 
-  <lightning-combobox key = {option}
+    <lightning-combobox key = {option}
           name="progress"
           label={option}
           value={answers}
           placeholder="Select an Answer"
           options={answers}
           onchange={changeAnswer} ></lightning-combobox>
-
-
-
-</template>
-
-
+  </template>
 </template>
