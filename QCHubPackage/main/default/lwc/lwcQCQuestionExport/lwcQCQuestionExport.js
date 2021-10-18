@@ -7,6 +7,9 @@ import { api, LightningElement } from 'lwc';
 import getQCQuestions from '@salesforce/apex/QCQuestionExportApexController.getQCQuestions';
 
 export default class LwcQCQuestionExport extends LightningElement {
+    /*
+     * Commented out by William Rembish on 10/17/2021
+     * Reason: This is a duplicate component of lwcQuestionExport and lwcQuestionExport is the one actually used as a child in another component
     @api questionList = [];
 
     // Retrieve the list of questions from the QC_Questions__c object
@@ -72,4 +75,5 @@ export default class LwcQCQuestionExport extends LightningElement {
         }
         return stringResult;
     }
+    */
 }
