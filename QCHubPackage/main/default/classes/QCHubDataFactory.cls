@@ -2,9 +2,10 @@
 //
 //	Name: QCHubDataFactory
 //	Author: Alexander Dzhitenov
-//	Description: Creates data for testing functionality related to the
+//	Additions By: Omer Sade
+//  Description: Creates data for testing functionality related to the
 //				 QC App.
-//
+//  
 /////////////////////////////////////////////////////////////////////////////
 
 public class QCHubDataFactory {
@@ -35,7 +36,7 @@ public class QCHubDataFactory {
         List<QC_Interview__c> QCInterviewList = new List<QC_Interview__c>();
         for (Account a : testAcct){
         	QC_Interview__c newInterview = new QC_Interview__c(Name=a.Name+'QC '+namePrefix,
-                                                               Cohort__c=testCohort.Id, Account__c=a.Id);
+                                                               Cohort__c=testCohort.Id, Account__c=a.Id, QC_Score__c = Math.random() * 5);
             QCInterviewList.add(newInterview);
             
         }
