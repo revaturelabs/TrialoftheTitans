@@ -12,6 +12,7 @@ export default class LwcQCQuestionExport extends LightningElement {
     // Retrieve the list of questions from the QC_Questions__c object
     connectedCallback() {
         getQCQuestions().then((result) => {
+            console.log(result.toString())
             this.questionList = result;
             console.log(this.questionList);
         })
