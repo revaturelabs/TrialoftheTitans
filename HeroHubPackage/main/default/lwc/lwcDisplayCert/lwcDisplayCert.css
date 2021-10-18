@@ -1,0 +1,11 @@
+p
+{
+    text-align: center;
+}
+.cert-title
+{
+    border: 1px solid #d2955d;
+    border-radius: .25rem; 
+    display: block; 
+    text-align: center; 
+}
