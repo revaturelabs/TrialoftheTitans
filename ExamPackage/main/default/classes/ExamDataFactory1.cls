@@ -19,7 +19,7 @@ public class ExamDataFactory1{
     public static void dataFactory(String examName, String questionPool, Integer timeLimit, Integer passingGrade) {
         Account testAccount = new Account(Name='Account');
         insert testAccount;
-        Titan__c titanTest = new Titan__c(Name='Titan');
+        Titan__c titanTest = new Titan__c(Name='Titan', Technology__c='Java');
         insert titanTest;
         Exam__c examTest = new Exam__c(Name = examName, Default_Time_Limit__c = timeLimit, Default_Passing_Grade__c = passingGrade);
         insert examTest;
