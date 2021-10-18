@@ -1,0 +1,16 @@
+<template>
+  <lightning-card>
+    <div class="recordFormSection">
+      <div>
+        <lightning-record-form
+          object-api-name="Certification__c"
+          layout-type="Full"
+          columns="1"
+          mode="edit"
+          data-id="CerticicationForm"
+          onsuccess={handleSuccess}
+        ></lightning-record-form>
+      </div>
+    </div>
+  </lightning-card>
+</template>
