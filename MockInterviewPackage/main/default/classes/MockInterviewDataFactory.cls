@@ -39,7 +39,7 @@ public class MockInterviewDataFactory
         {
             for(integer i = 0; i < 2; i++)
             {
-                testFeedbacks.add(new Feedback__c(Mock_Interview_Self__c = m.Id));
+                testFeedbacks.add(new Feedback__c(Mock_Interview_Self__c = m.Id, Fluence__c = i));
             }
         }
         insert testFeedbacks;
