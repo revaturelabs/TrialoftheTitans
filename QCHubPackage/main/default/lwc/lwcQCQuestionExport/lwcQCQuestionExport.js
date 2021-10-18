@@ -3,11 +3,11 @@
     Date Modified: 10/1/21
     Description: JS controller for getting the list of QC questions, converting them to a csv file, then downloading the csv
 */
-import { api, LightningElement } from 'lwc';
-import getQCQuestions from '@salesforce/apex/QCQuestionExportApexController.getQCQuestions';
+import { api, LightningElement } from "lwc";
+import getQCQuestions from "@salesforce/apex/QCQuestionExportApexController.getQCQuestions";
 
 export default class LwcQCQuestionExport extends LightningElement {
-    /*
+  /*
      * Commented out by William Rembish on 10/17/2021
      * Reason: This is a duplicate component of lwcQuestionExport and lwcQuestionExport is the one actually used as a child in another component
     @api questionList = [];

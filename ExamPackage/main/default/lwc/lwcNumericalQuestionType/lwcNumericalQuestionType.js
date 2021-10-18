@@ -1,8 +1,8 @@
-import { LightningElement,api ,track} from 'lwc';
+import { LightningElement, api, track } from "lwc";
 
 export default class NumericalQuestionType extends LightningElement {
   //replaces the public attributes above
-  @api questionprompt = '';
+  @api questionprompt = "";
   @api answerText;
   /*
   showMe(event) {

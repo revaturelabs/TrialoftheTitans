@@ -1,18 +1,17 @@
-import { LightningElement ,api} from 'lwc';
+import { LightningElement, api } from "lwc";
 
 export default class LwcQCInterview extends LightningElement {
+  @api Stage = "Start";
+  //@api CompanyAuthorizedDate;
 
-@api Stage='Start';
-//@api CompanyAuthorizedDate;
+  @api CurrentHero;
+  @api WeekList = [];
+  @api Week;
+  @api CurrentQAList;
+  @api Cohort;
+  @api pageReference;
 
-@api CurrentHero;
-@api WeekList=[];
-@api Week;
-@api CurrentQAList;
-@api Cohort;
-@api pageReference;
-
-/*
+  /*
  * Commented out by William Rembish on 10/17/2021
  * Reason unused and untestable
 get startView(){
@@ -28,14 +27,14 @@ get interviewEnd(){
 }
 */
 
-//LoadSessionData()
-connectedCallback(){
- /*   let myPageRef = pageReference;
+  //LoadSessionData()
+  connectedCallback() {
+    /*   let myPageRef = pageReference;
     let sessionCohort = myPageRef.state.c__Cohort;
     this.Cohort = sessionCohort; */
-}
-    
-/*
+  }
+
+  /*
  * Commented out by William Rembish on 10/17/2021
  * Reason unused and untestable
 UpdateStage(event){
@@ -57,5 +56,4 @@ AddQuestionAnswer(event){
     this.CurrentQAList.push(questionAnswer);
 }
 */
-    
 }
