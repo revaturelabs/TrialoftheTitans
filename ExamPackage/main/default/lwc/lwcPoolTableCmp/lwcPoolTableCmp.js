@@ -1,4 +1,4 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire, track, api } from 'lwc';
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
 import GetQues from "@salesforce/apex/PoolTableApexController.GetQues";
 import GetPool from "@salesforce/apex/PoolTableApexController.GetPool";
@@ -20,13 +20,13 @@ export default class LwcPoolTableCmp extends LightningElement {
     selectedPools = [];
     selectedRows=[];
     enableToast = true;
-    searchKeyword='';
-    minNum;
-    maxNum; 
-    pageSize = 10;
+    @api searchKeyword='';
+    @api minNum;
+    @api maxNum; 
+    @api pageSize = 10;
     
     //the current page number
-    pageNumber = 0;
+    @api pageNumber = 0;
     
     isLastPage;
     dataSize = 0;
