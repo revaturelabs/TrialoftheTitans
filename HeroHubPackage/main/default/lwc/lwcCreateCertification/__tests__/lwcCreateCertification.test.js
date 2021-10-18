@@ -1,12 +1,13 @@
+/*
+    Created By: Liam Hunt
+    Date: 10/17/2021
+    Tests the Create Certification LWC
+    Coverage: 100%
+*/
+
 import { createElement } from "lwc";
 import LwcCreateCertification from "c/lwcCreateCertification";
 
-/*
-    Created By: Liam Hunt
-    date: 10/17/2021
-    Tests the Create Certification LWC
-    Coverage: 
-*/
 describe("c-lwc-create-certification", () => {
   // after each test, reset the DOM
   afterEach(() => {
