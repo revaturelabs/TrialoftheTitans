@@ -2,9 +2,10 @@
 //
 //	Name: QCHubDataFactory
 //	Author: Alexander Dzhitenov
-//	Description: Creates data for testing functionality related to the
+//	Additions By: Omer Sade
+//  Description: Creates data for testing functionality related to the
 //				 QC App.
-//
+//  
 /////////////////////////////////////////////////////////////////////////////
 
 public class QCHubDataFactory {
@@ -35,13 +36,25 @@ public class QCHubDataFactory {
         List<QC_Interview__c> QCInterviewList = new List<QC_Interview__c>();
         for (Account a : testAcct){
         	QC_Interview__c newInterview = new QC_Interview__c(Name=a.Name+'QC '+namePrefix,
-                                                               Cohort__c=testCohort.Id, Account__c=a.Id);
+                                                               Cohort__c=testCohort.Id, Account__c=a.Id, QC_Score__c = Math.random() * 5);
             QCInterviewList.add(newInterview);
             
         }
         
 		insert QCInterviewList;
         
+        List<QC_Question__c> QCQuestionsList = new List<QC_Question__c>();
+        for (QC_Interview__c QCInt : QCInterviewList){
+            for (integer qcQstCount=0; qcQstCount<5; ++qcQstCount){
+                QC_Question__c qcQst = new QC_Question__c(Name='Question' + qcQstCount, Question_Body__c='The question ');
+                QCQuestionsList.add(qcQst);
+                
+            }
+            
+        }
+        
+        insert QCQuestionsList;
+
         List<QC_Question_Answer__c> QCAnswersList = new List<QC_Question_Answer__c>();
         for (QC_Interview__c QCInt : QCInterviewList){
             for (integer qcAnsCount=0; qcAnsCount<5; ++qcAnsCount){
