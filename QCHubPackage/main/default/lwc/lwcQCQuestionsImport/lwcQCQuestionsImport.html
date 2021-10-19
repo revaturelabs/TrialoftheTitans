@@ -7,25 +7,23 @@
     -->
      <!-- Card that displays a form to upload csv file and import data -->
     <lightning-card icon-name="standard:individual" title="Import CSV File">
-        <lightning-input type="file" 
+        <lightning-input type="file"
             accept=".csv"
             label="" onchange={showFileData}></lightning-input>
         
         <lightning-button variant="brand" label="Create QC Questions" title="Create QC Questions" onclick={createRecord} class="slds-m-left_x-small"></lightning-button>
          
         <template if:true={error}>
-            {error}
-         </template>     
+            <p>{error}</p>
+        </template>
    
     <!-- Card that displays file contents is only shown after the file is uploaded -->
     <template if:true={showcard}>
-       
       <lightning-datatable
       key-field="id"
       data={results}
       columns={columnsQuestion}>
-    </lightning-datatable>  
-   
+    </lightning-datatable>
     </template>
 </lightning-card>
 </template>

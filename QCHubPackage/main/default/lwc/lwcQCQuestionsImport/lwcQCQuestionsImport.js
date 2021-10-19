@@ -25,6 +25,7 @@ export default class LwcQCQuestionsImport extends LightningElement {
 showFileData(event){
     this.showcard=true;
     this.file = event.target.files[0];
+    console.log(this.file)
     //alert(this.file);
     if(this.file) {
         this.reader = new FileReader();
@@ -38,7 +39,7 @@ showFileData(event){
             //this.createRecord(this.getResults);  
           
         });  
-       
+        
         }
     }
    
@@ -71,7 +72,6 @@ createRecord(){
 if(this.getResults) {
 insertData({strfromle: this.getResults})
     .then(result => {
-        window.console.log('result ===> '+result);
         this.data = result;
         this.dispatchEvent(
             new ShowToastEvent({
