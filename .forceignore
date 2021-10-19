@@ -1,3 +1,8 @@
+# List files or directories below to ignore them when running force:source:push, force:source:pull, and force:source:status
+# More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
+
+# .forceignore v2
+
 # LWC configuration files
 **/jsconfig.json
 **/.eslintrc.json
@@ -8,3 +13,10 @@
 
 # Fixes error to get rid of it ¯\_(ツ)_/¯
 **/appMenus
+**/sites
+**/networks
+**/networkBranding
+**/experiences
+
+
+**/profiles
