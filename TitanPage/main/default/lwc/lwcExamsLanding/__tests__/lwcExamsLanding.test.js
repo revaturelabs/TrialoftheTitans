@@ -9,25 +9,13 @@ const EXAMS = require("./data/exams.json");
 const getExamsAdapter = registerApexTestWireAdapter(getExams);
 
 describe("c-lwc-exams-landing", () => {
-  beforeAll(() => {
-    // We use fake timers as setTimeout is used in the JavaScript file.
-    jest.useFakeTimers();
-  });
 
   afterEach(() => {
     // The jsdom instance is shared across test cases in a single file so reset the DOM
     while (document.body.firstChild) {
       document.body.removeChild(document.body.firstChild);
     }
-    // Prevent data saved on mocks from leaking between tests
-    jest.clearAllMocks();
   });
-
-  // Helper function to wait until the microtask queue is empty. This is needed for promise
-  // timing when calling imperative Apex.
-  async function flushPromises() {
-    return Promise.resolve();
-  }
 
   it("renders titan name", () => {
     const NAME = "Titan Exams";
@@ -58,6 +46,7 @@ describe("c-lwc-exams-landing", () => {
   });
 
   it("renders exam data", async () => {
+    const MPG = 'Minimum Passing Grade: ';
     const element = createElement("c-lwc-exams-landing", {
       is: LwcExamsLanding
     });
@@ -66,9 +55,13 @@ describe("c-lwc-exams-landing", () => {
 
     getExamsAdapter.emit(EXAMS);
 
-    await flushPromises();
+    await Promise.resolve();
 
     const pEls = element.shadowRoot.querySelectorAll("p");
-    expect(pEls.lenght).toBe(2);
+    expect(pEls.length).toBe(4);
+    expect(pEls[0].textContent).toBe(EXAMS[0].Name);
+    expect(pEls[1].textContent).toBe(MPG + EXAMS[0].Default_Passing_Grade__c);
+    expect(pEls[2].textContent).toBe(EXAMS[1].Name);
+    expect(pEls[3].textContent).toBe(MPG + EXAMS[1].Default_Passing_Grade__c);
   });
 });
