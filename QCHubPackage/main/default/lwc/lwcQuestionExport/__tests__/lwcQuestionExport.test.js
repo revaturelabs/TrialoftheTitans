@@ -2,6 +2,13 @@ import { createElement } from 'lwc';
 import LwcQuestionExport from 'c/lwcQuestionExport';
 import getQCQuestions from '@salesforce/apex/QCQuestionExportApexController.getQCQuestions';
 
+/*
+    Created By: William Rembish
+    date: 10/18/2021
+    test coverage: 100%
+*/
+
+// get the mock data JSON files
 const mockGetQCQuestion = require('./data/getQCQuestions.json');
 const mockGetQCQuestionNoReturns = require('./data/getQCQuestionsNoReturn.json');
 
@@ -16,11 +23,6 @@ jest.mock(
     { virtual: true }
 );
 
-/*
-    Created By: William Rembish
-    date: 10/17/2021
-    test coverage: 93.75%
-*/
 describe('c-lwc-question-export', () => {
     // after each test, reset the DOM
     afterEach(() => {
@@ -30,14 +32,14 @@ describe('c-lwc-question-export', () => {
     });
 
     // declare the element variable
-  let element;
+    let element;
 
-  // before each test, set element to be an instance of the lwcExamCreation component
-  beforeEach(() => {
-    element = createElement('c-lwc-question-export', {
-        is: LwcQuestionExport
+    // before each test, set element to be an instance of the lwcQuestionExport component
+    beforeEach(() => {
+        element = createElement('c-lwc-question-export', {
+            is: LwcQuestionExport
+        });
     });
-  });
 
     // Helper function to wait until the microtask queue is empty. This is needed for promise
     // timing when calling imperative Apex.
@@ -57,7 +59,7 @@ describe('c-lwc-question-export', () => {
         await flushPromises();
 
         // test to make sure the connected callback function properly calls the apex method and assigns the values to the questionList variable
-        expect(element.questionList).toStrictEqual([{Name: 'Hello', Question_Body__c: 'World', Id: 'a0KJ000000JaLP4MAN'}, {Name: 'Test', Question_Body__c: 'Test Question', Id: 'a0KJ000000JaLTwMAN'}]);
+        expect(element.questionList).toStrictEqual([{Name: 'Hello', Question_Body__c: 'World', Id: 'a0KJ000000JaLP4MAN', Expected_Answer__c:"Hello World"}, {Name: 'Test', Question_Body__c: 'Test Question', Id: 'a0KJ000000JaLTwMAN'}]);
     });
 
     it('Test button press on no records returned', async () => {
@@ -98,7 +100,7 @@ describe('c-lwc-question-export', () => {
         await flushPromises();
 
         // test to make sure the connected callback function properly calls the apex method and assigns the values to the questionList variable
-        expect(element.questionList).toStrictEqual([{Name: 'Hello', Question_Body__c: 'World', Id: 'a0KJ000000JaLP4MAN'}, {Name: 'Test', Question_Body__c: 'Test Question', Id: 'a0KJ000000JaLTwMAN'}]);
+        expect(element.questionList).toStrictEqual([{Name: 'Hello', Question_Body__c: 'World', Id: 'a0KJ000000JaLP4MAN', Expected_Answer__c:"Hello World"}, {Name: 'Test', Question_Body__c: 'Test Question', Id: 'a0KJ000000JaLTwMAN'}]);
 
         const button = element.shadowRoot.querySelector("lightning-button");
         button.click();
