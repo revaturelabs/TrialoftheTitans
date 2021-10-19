@@ -18,6 +18,13 @@ package.xml
 # LWC Jest
 **/__tests__/**
 
+# Temp
+#**/applications/**
+#**/flexipages/**
+#**/tabs/**
+#**/permissionsets/**
+#**/permissionsetgroups/**
+
 # added ignores
 **/profiles
 **/layouts
