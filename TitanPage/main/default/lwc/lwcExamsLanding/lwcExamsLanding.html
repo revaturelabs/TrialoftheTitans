@@ -1,0 +1,27 @@
+<!--
+
+  Title: lwcLandingSkills
+  Author: Colin Poirier
+  Created date: 10/16/2021
+  Description: HTML file for component. Displays a list of examss and name of Titan
+  Modified date: 10/19/2021
+  Modified by: Colin Poirier
+
+-->
+
+<template>
+  <div class="container slds-p-around_large">
+    <lightning-card title={cardTitle}>
+      <div class="slds-p-around_medium">
+        <div if:false={hasData}>{noExams}</div>
+        <template for:each={listData} for:item="exam">
+          <div key={exam.Name}>
+            <p class="slds-text-heading_medium">{exam.Name}</p>
+            <p>Minimum Passing Grade: {exam.Default_Passing_Grade__c}</p>
+            <br />
+          </div>
+        </template>
+      </div>
+    </lightning-card>
+  </div>
+</template>
