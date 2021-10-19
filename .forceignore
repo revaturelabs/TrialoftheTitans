@@ -17,6 +17,18 @@
 **/networks
 **/networkBranding
 **/experiences
+**/navigationMenus
+**/audience
 
+#All this stuff you may want to enable to disable
+#depending on what you are wanting to pull/push
 
+#**/aura
+#**/components
+#**/pages
+#**/classes
+#!**/profiles/Admin.profile-meta.xml
+#!**/profiles/Hero.profile-meta.xml
+#!**/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
+#!**/profiles/Trial-of-the-Titans-User.profile-meta.xml
 **/profiles
