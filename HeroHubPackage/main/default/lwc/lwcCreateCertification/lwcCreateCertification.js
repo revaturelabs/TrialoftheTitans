@@ -1,8 +1,37 @@
-import { LightningElement } from "lwc";
+/*
+/*
+    Author: Liam Hunt
+    Edited By: Julia Weakley
+    Date Last Modified: 10/20/2021
+    Description:  
+        Js file to allow functionality for users to create/add certifications
+
+*/
+
+*/
+
+import { LightningElement, api } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 export default class LwcCreateCertification extends LightningElement {
 
- 
+ @api create = false;
+
+ handleCreate(event)
+  {
+    if (this.create == false)
+    {
+      this.create = true;
+    }
+    else
+    {
+      this.create = false; 
+    }
+    console.log(this.create);
+  }
+
+  
+
+
   handleSuccess() {
    
     //Show that record has been added to the database
@@ -21,8 +50,12 @@ export default class LwcCreateCertification extends LightningElement {
         const editForm = this.template.querySelector("lightning-record-form");
         editForm.recordId = null;
 
-       
+      
  
   }
+  
+ 
+
+
  
 }

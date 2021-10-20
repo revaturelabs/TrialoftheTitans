@@ -8,11 +8,10 @@
     <lightning-card title ="Certifications">
    
         <div class="slds-card__body_inner">
+     
+                <c-lwc-Create-Certification ></c-lwc-Create-Certification>
            
-           
-           
-           
-               
+             
             <template if:true={certs.data}>
                 <lightning-layout multiple-rows="true" pull-to-boundary="small">
                 <template for:each={certs.data} for:item="cert">
@@ -24,16 +23,7 @@
                                 <div class="slds-media">    
                                    <div class="slds-media__body"> 
                                    
-                                     <!--   <template if:true={cert.Image_URL__c}>
-                                            <img src={cert.Image_URL__c}/>
-                                        </template>
-                                        <p class="slds-var-m-bottom_xx-small">  {cert.Name}</p>
-                                        <p class="slds-var-m-bottom_xx-small"> Accessor: {cert.Accessor__c}</p>
-                                       
-                                         <p class="slds-var-m-bottom_xx-small"> Verification Site: {cert.Verification_Site__c}</p> 
-                                        <p class="slds-var-m-bottom_xx-small"> Date Issued: {cert.Date_Issued__c}</p>
-                                        <p class="slds-var-m-bottom_xx-small">   </p>
-                                     -->
+                                     
                                         <c-lwc-Edit-Cert certid={cert.Id}  certimage={cert.Image_URL__c} ></c-lwc-Edit-Cert>
                                     </div>
                                 </div>
@@ -47,11 +37,7 @@
             </template>
             
             
-            <lightning-button variant="Neutral" label="Add New Certification" title="addCert" class="slds-m-right_x-small " onclick={handleCreate}></lightning-button>
-            <template if:true={create}>
-                <lightning-button variant="Neutral" label="Quit" title="Quit" class="slds-m-right_x-small " onclick={handleCreate}></lightning-button> 
-                <c-lwc-Create-Certification  class="slds-show slds-is-relative" viewvalue= create onsuccess={handleSuccess} ></c-lwc-Create-Certification>
-            </template>
+            
 
 
             </div>
