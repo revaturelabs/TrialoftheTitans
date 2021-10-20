@@ -4,7 +4,7 @@
   Author: Colin Poirier
   Created date: 10/16/2021
   Description: Js file for component that fetches org data
-  Modified date: 10/19/2021
+  Modified date: 10/20/2021
   Modified by: Colin Poirier
 
 */
@@ -45,7 +45,7 @@ export default class LwcExamsLanding extends LightningElement {
 
   // used to display no exams message
   get hasData() {
-    return this.listData.length == 0 ? false : true;
+    return this.listData.length != 0;
   }
 
   // message displayed when no data is available
