@@ -1,7 +1,7 @@
-import { LightningElement, api } from "lwc";
+import { LightningElement } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 export default class LwcCreateCertification extends LightningElement {
-@api viewvalue;
+
  
   handleSuccess() {
    
@@ -21,10 +21,7 @@ export default class LwcCreateCertification extends LightningElement {
         const editForm = this.template.querySelector("lightning-record-form");
         editForm.recordId = null;
 
-        // Julia 
-        // will want to communicate this new value to parent 
-        this.viewvalue = false; 
-      console.log(this.viewvalue)
+       
  
   }
  
