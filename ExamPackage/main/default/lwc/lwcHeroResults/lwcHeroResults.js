@@ -1,4 +1,3 @@
-
 import { LightningElement, wire, api } from 'lwc';
 
 import getHeroResults from '@salesforce/apex/HeroAnswerResults.getHeroResults';

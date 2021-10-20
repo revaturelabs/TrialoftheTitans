@@ -6,7 +6,7 @@
 
 -->
 
-<aura:component implements="flexipage:availableForAllPageTypes, force:appHostable" >
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" >
 	
 	<aura:attribute name="CohortPageActive" type ="Boolean" default="false"/>
     <aura:attribute name="CohortId" type ="String" />

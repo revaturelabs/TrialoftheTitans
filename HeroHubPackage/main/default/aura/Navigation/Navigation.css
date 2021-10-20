@@ -1,8 +1,9 @@
 /*
 
   Name: Navigation
-  Author: Josh Miccolo
-  Description: Navigation Bar for Hero Hub 
+  Author: Josh Miccolo, Ethan Wilson
+  Description: header and navigation
+  Last Updated: 10/14/21
 
 */
 
@@ -15,28 +16,17 @@
     font-weight: bold;
     font-size: 20px;
     line-height: 20px;
-}
-
-.THIS.navbar ul {
-    margin: 0;
-    width: 100%;
-    list-style-type: none;
+    padding: 10px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    padding: var(--padding);
-    box-sizing: border-box;
+    align-items: center;
 }
 
-.THIS li.navbar-quote {
-    justify-self: center;
-    cursor: pointer;
-}
-.THIS li.navbar-quote:hover{
-    border-bottom: 1px solid var(--user-team-primary);
-}
 .THIS li.pointer{
     cursor: pointer;
 }
+
 .THIS li.pointer:hover{
     border-bottom: 1px solid var(--user-team-primary);
 }
