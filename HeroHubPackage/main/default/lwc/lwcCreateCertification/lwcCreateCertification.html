@@ -1,0 +1,28 @@
+<!--
+    Author: Liam Hunt
+    Description: LWC component that creates a new Certification in the Hero hub
+    Date Created: 10/17/21
+-->
+
+<template>
+  <template if:true={viewvalue}>
+  <lightning-card>
+    <div class="recordFormSection">
+      <div>
+        <lightning-record-form
+          object-api-name="Certification__c"
+          layout-type="Full"
+          columns="1"
+          mode=""
+          data-id="CertificationForm"
+          onsuccess={handleSuccess}
+         
+        >
+        
+      </lightning-record-form>
+       
+      </div>
+    </div>
+  </lightning-card>
+  </template>
+</template>

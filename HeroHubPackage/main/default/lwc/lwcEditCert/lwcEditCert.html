@@ -1,0 +1,66 @@
+<!--
+    Author: Julia Weakley
+    Date Last Modified: 10/18/2021
+    Description:  
+        HTML file for lwcEditCert component. Users are able to edit their certifications information
+-->
+<template>
+    
+    <!-- If button was not clicked or the submit button was  clicked -->
+    <template if:false={edit}>
+        <!-- If Cert image exists show it -->
+        <template if:true={certimage}>
+           
+            <img src={certimage}/>
+
+        </template>
+
+        <lightning-record-view-form
+            object-api-name="Certification__c"
+            record-id={certid}>
+    
+           
+            <lightning-output-field field-name="Name"></lightning-output-field>
+            <lightning-output-field field-name="Assessor__c"></lightning-output-field>
+            <lightning-output-field field-name="Verification_Site__c"></lightning-output-field>
+            <lightning-output-field field-name="Date_Issued__c"></lightning-output-field>
+
+        </lightning-record-view-form>
+
+        <lightning-button variant="Neutral" label="Edit" title="EditCert" class="slds-m-right_x-small " onclick={handleClick}></lightning-button> 
+    </template>
+    
+    <!-- if button was clisked show edit record for certification-->
+    <template if:true={edit}>
+      
+      <lightning-record-edit-form 
+      object-api-name="Certification__c"
+      record-id={certid}
+      onsubmit={handleClick}
+      >
+      
+      <lightning-input-field field-name="Image_URL__c"></lightning-input-field>
+            <lightning-input-field field-name="Name"></lightning-input-field>
+            <lightning-input-field field-name="Assessor__c"></lightning-input-field>
+            <lightning-input-field field-name="Verification_Site__c"></lightning-input-field>
+            <lightning-input-field field-name="Date_Issued__c"></lightning-input-field>
+        <div class="slds-var-m-top_medium">
+           
+            <lightning-button variant="Neutral" label="Quit" title="QuitEditCert" class="slds-m-right_x-small " onclick={handleClick}></lightning-button>
+            <lightning-button
+            class="slds-m-top_small"
+            variant="brand"
+            type="submit"
+            name="update"
+            label="Update"  
+           
+            >
+            </lightning-button>
+        </div>
+          
+      </lightning-record-edit-form>
+     
+      
+   </template>
+
+</template>
