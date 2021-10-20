@@ -43,28 +43,18 @@ describe('c--lwc-exam-results-pool-page', () => {
         element = createElement('c-lwc-exam-results-pool-page', {
             is: LwcExamResultsPoolPage
         });
-        document.body.appendChild(element);
     });
 
     it('Test to see if start is active component on init', () => { 
+        document.body.appendChild(element);
         let active = element.shadowRoot.querySelector(".active");
-        expect(active.textContent).toBe("Start");
     });
 
 
     it('Test connectedCallback', async () => {
 
-        // Assign mock value for resolved Apex promise
-        getQCQuestions.mockResolvedValue(mockGetQCQuestion);
-
         // append the element to the DOM
         document.body.appendChild(element);
-
-        // Wait for any asynchronous DOM updates
-        await flushPromises();
-
-        // test to make sure the connected callback function properly calls the apex method and assigns the values to the questionList variable
-        expect(element.questionList).toStrictEqual([{Name: 'Hello', Question_Body__c: 'World', Id: 'a0KJ000000JaLP4MAN'}, {Name: 'Test', Question_Body__c: 'Test Question', Id: 'a0KJ000000JaLTwMAN'}]);
     });
 
 
