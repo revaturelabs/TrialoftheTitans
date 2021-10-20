@@ -5,8 +5,9 @@ import getTitanList from '@salesforce/apex/HeroResultPageController.getTitanList
 export default class LwcHeroResultPage extends LightningElement {
 
     //Variable declarations
+    
     titanTabPanel;
-    examListPanel;
+    examListPanel; 
     resultList;
     examResultId;
     currentPage;
@@ -18,6 +19,7 @@ export default class LwcHeroResultPage extends LightningElement {
     results;
     
     //Gets all titans associated with the hard-coded value in apex
+    /*
     @wire(getTitanList)
     titanList({error, data}){
 
@@ -32,15 +34,16 @@ export default class LwcHeroResultPage extends LightningElement {
 
             }
     }
+    */
 
     //Gets exam results for the specified exam
     @wire(getResultList)
-    resultList({error, data}){
+    resultListfunc({error, data}){
 
         if(error){
             console.log(error);
         }else if(data){
-            const resultList = data;
+           const resultList = data;  
             this.examListPanel = resultList;
             console.log(resultList);
         }
