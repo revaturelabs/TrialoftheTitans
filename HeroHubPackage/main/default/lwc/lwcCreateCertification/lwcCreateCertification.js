@@ -1,4 +1,4 @@
-/*
+
 /*
     Author: Liam Hunt
     Edited By: Julia Weakley
@@ -7,8 +7,6 @@
         Js file to allow functionality for users to create/add certifications
 
 */
-
-
 
 import { LightningElement, api } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
