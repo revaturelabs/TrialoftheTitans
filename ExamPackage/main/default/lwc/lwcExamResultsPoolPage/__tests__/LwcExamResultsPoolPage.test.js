@@ -40,8 +40,8 @@ describe('c--lwc-exam-results-pool-page', () => {
     let element;
 
     beforeEach(() => {
-        element = createElement('c-lwc-q-c-interview-header', {
-            is: LwcQCInterviewHeader
+        element = createElement('c-lwc-exam-results-pool-page', {
+            is: LwcExamResultsPoolPage
         });
         document.body.appendChild(element);
     });
