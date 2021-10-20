@@ -5,6 +5,7 @@
 -->
 
 <template>
+  <template if:true={viewvalue}>
   <lightning-card>
     <div class="recordFormSection">
       <div>
@@ -15,8 +16,13 @@
           mode=""
           data-id="CertificationForm"
           onsuccess={handleSuccess}
-        ></lightning-record-form>
+         
+        >
+        
+      </lightning-record-form>
+       
       </div>
     </div>
   </lightning-card>
+  </template>
 </template>

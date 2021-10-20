@@ -8,12 +8,17 @@
     <lightning-card title ="Certifications">
    
         <div class="slds-card__body_inner">
+           
+           
+           
+           
+               
             <template if:true={certs.data}>
                 <lightning-layout multiple-rows="true" pull-to-boundary="small">
                 <template for:each={certs.data} for:item="cert">
                   
                     
-                    <lightning-layout-item key={cert.Id} size="6" class="slds-var-p-around_x-small">
+                    <lightning-layout-item key={cert.Id} size="3" class="slds-var-p-around_x-small">
                         <lightning-card title={cert.Name} class="cert-title">
                             <div class="slds-var-horizontal_small cert-title-body">
                                 <div class="slds-media">    
@@ -40,6 +45,15 @@
                     </template>
                </lightning-layout>
             </template>
+            
+            
+            <lightning-button variant="Neutral" label="Add New Certification" title="addCert" class="slds-m-right_x-small " onclick={handleCreate}></lightning-button>
+            <template if:true={create}>
+                <lightning-button variant="Neutral" label="Quit" title="Quit" class="slds-m-right_x-small " onclick={handleCreate}></lightning-button> 
+                <c-lwc-Create-Certification  class="slds-show slds-is-relative" viewvalue= create onsuccess={handleSuccess} ></c-lwc-Create-Certification>
+            </template>
+
+
             </div>
             </lightning-card>
            

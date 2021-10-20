@@ -7,7 +7,10 @@
 */
 import { LightningElement, wire, track, api } from 'lwc';
 import Id from '@salesforce/user/Id';
+
+
 import NAME from '@salesforce/schema/User.Name';
+
 
 const fields =[NAME];
 
@@ -15,7 +18,6 @@ export default class LwcEditCert extends LightningElement
 {
    
     @api recordId; 
-    
     // current user id
     userId = Id;
     // helps determine what record form should be shown 
@@ -25,11 +27,11 @@ export default class LwcEditCert extends LightningElement
     @api certimage; 
  
    // event to handle button clicks 
-   handleClick(event)
-   {
+ handleClick(event)
+  {
      // if current value of edit is true change it to false 
      // else set edit to true
-      if(this.edit == true)
+     if(this.edit == true)
       {
          this.edit =false; 
       } // end of if
@@ -38,5 +40,5 @@ export default class LwcEditCert extends LightningElement
         this.edit = true; 
       } // end of else
      
-   } // end of button functionality   
+  } // end of button functionality   
 }
