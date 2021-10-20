@@ -1,4 +1,4 @@
-import { LightningElement, wire, api } from 'lwc';
+import { LightningElement, wire, api } from 'lwc'; 
 import GetCorrectExamResultPoolQuestions from '@salesforce/apex/ExamResultsPoolPageAuraController.GetCorrectExamResultPoolQuestions';
 import GetAllExamResultPoolQuestions from '@salesforce/apex/ExamResultsPoolPageAuraController.GetAllExamResultPoolQuestions';
 

@@ -19,6 +19,8 @@ export default class LwcTrueFalseQuestion extends LightningElement {
         return tempAns;
     }
 
+    //This is very bad... lol 
+
     @api
     answer(){
         return this.value;
