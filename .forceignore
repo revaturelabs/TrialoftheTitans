@@ -19,7 +19,7 @@ package.xml
 **/__tests__/**
 
 # added ignores
-**/profiles
+#**/profiles
 **/layouts
 **/flows
 **/permissionsets
@@ -125,3 +125,4 @@ package.xml
 !**/Hero.profile-meta.xml
 !**/TitanTrainer.profile-meta.xml
 !**/Admin.profile-meta.xml
+**/Squad__c.object-meta.xml
