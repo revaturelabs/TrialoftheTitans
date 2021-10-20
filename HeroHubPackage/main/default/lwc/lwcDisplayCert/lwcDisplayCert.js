@@ -15,11 +15,6 @@ export default class DisplayCert extends LightningElement
     
     @wire(Certifications) certs; 
 
-    get name()
-    {
-        
-        return getFieldValue(this.user.data, NAME);
-    }
 
    
 

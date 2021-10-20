@@ -2,7 +2,7 @@
     Author: Julia Weakley
     Date Last Modified: 10/18/2021
     Description:  
-        Tests for lwcEditCert component. 100% code coverage
+        Tests for lwcEditCert component.  code coverage
 */ 
 
 import { createElement } from "lwc";
