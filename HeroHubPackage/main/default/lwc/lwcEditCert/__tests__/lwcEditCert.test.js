@@ -2,11 +2,12 @@
     Author: Julia Weakley
     Date Last Modified: 10/18/2021
     Description:  
-        Tests for lwcEditCert component.  code coverage
+        Tests for lwcEditCert component.  100% code coverage
 */ 
 
 import { createElement } from "lwc";
 import LwcEditCert from 'c/lwcEditCert';
+
 
 describe('c-lwc-Edit-Cert', ()=> {
     afterEach(()=> {
@@ -56,5 +57,31 @@ describe('c-lwc-Edit-Cert', ()=> {
         expect(form.submit).toBeTruthy(); 
         
         });
+
     });
+    it("buttonclicked",()=>{
+        document.body.appendChild(element);
+        element.edit = true; 
+        const button = element.shadowRoot.querySelector('lightning-button');
+        button.dispatchEvent(new CustomEvent('click'));
+        
+       
+       return Promise.resolve().then(() => {
+       expect(element.edit).toBe(false); 
+       });
+
+    });
+    it("buttonclickedfalse",()=>{
+        document.body.appendChild(element);
+        element.edit = false; 
+        const button = element.shadowRoot.querySelector('lightning-button');
+        button.dispatchEvent(new CustomEvent('click'));
+        
+       
+       return Promise.resolve().then(() => {
+       expect(element.edit).toBe(true); 
+       });
+
+    });
+
 });
