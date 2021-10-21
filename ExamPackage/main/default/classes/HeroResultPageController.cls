@@ -22,7 +22,11 @@ public with sharing class HeroResultPageController {
     @AuraEnabled(cacheable=true)
     public static List<String> getTitanList() {
         String[] result = new List<String>();
-        for(Exam__c theExam : [SELECT Titan__r.Name FROM Exam__c WHERE Id IN (SELECT Exam__c FROM Exam_Result__c WHERE Account__r.Name = 'Gladius Maximus')]) { 
+        for(Exam__c theExam : [
+            SELECT Titan__r.Name 
+            FROM Exam__c 
+            WHERE Id 
+            IN (SELECT Exam__c FROM Exam_Result__c WHERE Account__r.Name = 'Gladius Maximus')]) { 
             String name = theExam.Titan__r.Name;
             if(!result.contains(name))
             result.add(name);
