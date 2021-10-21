@@ -13,3 +13,5 @@
 **/aura/**/*.tokens
 **/aura/**/*.xml
 .sfdx
+
+**/lwc**

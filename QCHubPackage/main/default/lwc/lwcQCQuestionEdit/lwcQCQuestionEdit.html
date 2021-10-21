@@ -11,10 +11,22 @@
 <template>
     <lightning-card title="QC Question Edit" icon-name="custom:custom63">
         <div class="slds-m-around_medium">
-            <template if:true={Questions.data}>
+            <!--
+                <template if:true={Questions.data}>
                 <lightning-datatable
                     key-field="Id"
                     data={data}
+                    columns={columns}
+                    onsave={handleSave}
+                    onrowaction={handleRowAction}
+                    draft-values={draftValues}>
+                </lightning-datatable>
+            </template>
+            -->
+            <template if:true={Questions.data}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={Questions.data}
                     columns={columns}
                     onsave={handleSave}
                     onrowaction={handleRowAction}
@@ -27,8 +39,12 @@
 
             <div>
                 <lightning-card>
+                    <!--
+                        Commented out by William Rembish on 10/20/2021
+                        Reason: No propert "variant" on c-lwc-question-export
                     <c-lwc-question-export variant="brand" ></c-lwc-question-export>
-                    
+                    -->
+                    <c-lwc-question-export></c-lwc-question-export>
 
 
                 </lightning-card>
