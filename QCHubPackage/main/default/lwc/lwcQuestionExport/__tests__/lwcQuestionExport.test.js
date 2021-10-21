@@ -111,19 +111,7 @@ describe("c-lwc-question-export", () => {
     await flushPromises();
 
     // test to make sure the connected callback function properly calls the apex method and assigns the values to the questionList variable
-    expect(element.questionList).toStrictEqual([
-      {
-        Name: "Hello",
-        Question_Body__c: "World",
-        Id: "a0KJ000000JaLP4MAN",
-        Expected_Answer__c: "Hello World"
-      },
-      {
-        Name: "Test",
-        Question_Body__c: "Test Question",
-        Id: "a0KJ000000JaLTwMAN"
-      }
-    ]);
+    expect(element.questionList).toStrictEqual(mockGetQCQuestion);
 
     const button = element.shadowRoot.querySelector("lightning-button");
     button.click();

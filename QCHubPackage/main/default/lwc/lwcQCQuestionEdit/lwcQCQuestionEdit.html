@@ -11,22 +11,10 @@
 <template>
     <lightning-card title="QC Question Edit" icon-name="custom:custom63">
         <div class="slds-m-around_medium">
-            <!--
-                <template if:true={Questions.data}>
-                <lightning-datatable
-                    key-field="Id"
-                    data={data}
-                    columns={columns}
-                    onsave={handleSave}
-                    onrowaction={handleRowAction}
-                    draft-values={draftValues}>
-                </lightning-datatable>
-            </template>
-            -->
             <template if:true={Questions.data}>
                 <lightning-datatable
                     key-field="Id"
-                    data={Questions.data}
+                    data={data}
                     columns={columns}
                     onsave={handleSave}
                     onrowaction={handleRowAction}

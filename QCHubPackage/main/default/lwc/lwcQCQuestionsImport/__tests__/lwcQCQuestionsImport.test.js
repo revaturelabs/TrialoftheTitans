@@ -20,7 +20,7 @@ jest.mock(
 );
 
 // Sample error for imperative Apex call
-const APEX_CONTACTS_ERROR = {
+const APEX_ERROR = {
   body: { message: "An internal server error has occurred" },
   ok: false,
   status: 400,
@@ -120,7 +120,7 @@ describe("c-lwc-q-c-questions-import", () => {
 
   it("Test failure button click", async () => {
     // Passing mock value for rejected Apex promise
-    const handler = insertData.mockRejectedValue(APEX_CONTACTS_ERROR);
+    const handler = insertData.mockRejectedValue(APEX_ERROR);
 
     element.getResults = "test failure";
     // append element to the DOM

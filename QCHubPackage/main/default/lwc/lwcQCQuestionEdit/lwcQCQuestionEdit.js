@@ -114,6 +114,7 @@ export default class LwcQCQuestionEdit extends LightningElement {
   handleRowAction(event) {
     const action = event.detail.action;
     const row = event.detail.row;
+    console.log(event.detail)
     switch (action.name) {
       case "delete":
         this.deleteQC(row);
