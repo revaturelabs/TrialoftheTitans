@@ -2,7 +2,7 @@
  * lwcQuestionTable Jest Testing
  * Author: Wayne He
  * Last modified: 10/22/2021
- * Code coverage: 39.24%
+ * Code coverage: 49.36%
  */
 
 import { createElement } from "lwc";
@@ -94,7 +94,7 @@ describe("c-lwc-question-table", () => {
     expect(dataTable.data.length).toBe(0);
   });
 
-  it("Search Questions", async () => {
+  it("Search All Questions", async () => {
     document.body.appendChild(element);
 
     const examInput = element.shadowRoot.querySelector("lightning-input");
