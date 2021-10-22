@@ -19,23 +19,23 @@ export default class LwcHeroResultPage extends LightningElement {
     results;
 
     //Gets all titans associated with the hard-coded value in apex
-    
-    @wire(getTitanList)
-    titanList({error, data}){
 
-        if(error){
+    @wire(getTitanList)
+    titanList({ error, data }) {
+
+        if (error) {
 
             console.log(error);
 
-        }else if(data){
+        } else if (data) {
 
             const titanList = data;
             this.titanTabPanel = titanList;
             console.log(data);
 
-            }
+        }
     }
-    
+
 
     //Gets exam results for the specified exam
     @wire(getResultList)
@@ -55,19 +55,13 @@ export default class LwcHeroResultPage extends LightningElement {
         //Gets results from Apex controller
         getResultList()
             .then((result) => {
-
                 this.caClicked = true;
                 this.results = result;
-
             })
             .catch((error) => {
-
-
                 console.log('There was an error in the onCAClick function with retrieveResults');
                 this.results = null;
-
             })
-
     }
 
     onExamClick(event) {
@@ -104,7 +98,6 @@ export default class LwcHeroResultPage extends LightningElement {
                     : 'none'
             })
         }
-
     }
 
     onBackBtnClick() {

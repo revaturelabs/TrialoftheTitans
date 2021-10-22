@@ -24,6 +24,14 @@ const getTitansAdapter = registerApexTestWireAdapter(getTitanList);
 //REGISTER WIRE getResultList
 const getListAdapter = registerApexTestWireAdapter(getResultList);
 
+// Sample error for imperative Apex call
+const APEX_ERROR = {
+    body: { message: 'An internal server error has occurred' },
+    ok: false,
+    status: 400,
+    statusText: 'Bad Request'
+};
+
 
 // Mocking imperative Apex method call
 jest.mock(
@@ -117,33 +125,58 @@ describe("c-lwc-hero-result-page TESTING", () => {
     })
 
     describe('Testing function onCAClick', () => {
-        /*
-        it('first one', () => {
-           getResultList.mockResolvedValue(mockGetResultList);
 
-            
+        it('Checking if I am receiving the right length of divs ', async () => {
+            getResultList.mockResolvedValue(mockGetResultList);
 
+            const myDiv = component.shadowRoot.querySelector('.onCAClick');
+            //myDiv.dispatchEvent(new CustomEvent("click"));
+            myDiv.click();
+
+            await flushPromises();
+            const divs = component.shadowRoot.querySelectorAll('.kor');
+            expect(divs.length).toBe(2);
+
+        })
+
+        it('Checking the error console.log is throwing ', async () => {
+            const consoleSpy = jest.spyOn(console, "log");
+            getResultList.mockRejectedValue(APEX_ERROR);
             const myDiv = component.shadowRoot.querySelector('.onCAClick');
             myDiv.click();
 
-            // await flushPromises();
-            return new Promise(setImmediate).then(() => {
-                const divs = component.shadowRoot.querySelectorAll('.kor');
-                expect(divs.length).toBe(mockGetResultList.length);
-              
-            })
+            await flushPromises();
+            expect(consoleSpy).toHaveBeenCalledWith("There was an error in the onCAClick function with retrieveResults");
         })
-        */
+
     })
 
     describe('On exam Click function', () => {
-        it('first one', () => {
-            const examDivs = component.shadowRoot.querySelectorAll('.teest');
-            examDivs.click()
+            /*
+        it('first one', async () => {
+            const consoleSpy = jest.spyOn(console, "log");
+            await getListAdapter.emit(mockGetResultList);
 
-            return Promise.resolve().then(() => {
-                console.log('tests')
-            })
+            //  await flushPromises();
+
+            const examDivs = component.shadowRoot.querySelectorAll('.teest');
+            examDivs[0].dispatchEvent(new CustomEvent("click"));
+            //  examDivs[0].click()
+
+            debugger;
+            await flushPromises();
+
+            expect(examDivs[0].textContent).toBe('siii')
+            //  expect(consoleSpy).toHaveBeenCalledWith("teeest");
+            console.log('aaaa ', examDivs[0]);
+
+        })
+            */
+    })
+
+    describe('on Titan click ', () => {
+        it('first one', () => {
+            
         })
     })
 
