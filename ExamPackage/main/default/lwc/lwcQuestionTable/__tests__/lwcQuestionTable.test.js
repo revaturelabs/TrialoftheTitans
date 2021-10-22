@@ -5,7 +5,7 @@ const mockQuestions = require("./data/getQues.json");
 const mockPool = require("./data/getPool.json");
 
 import addQues2Pool from "@salesforce/apex/QuestionTableApexController.addQues2Pool";
-import getPool from "@salesforce/apex/QuestionTableApexController.GetQues";
+import getPool from "@salesforce/apex/QuestionTableApexController.GetPool";
 import getQues from "@salesforce/apex/QuestionTableApexController.GetQues";
 
 jest.mock(
