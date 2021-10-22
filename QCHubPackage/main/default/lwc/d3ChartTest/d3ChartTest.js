@@ -3,7 +3,7 @@
 import { LightningElement } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
-//import D3 from '@salesforce/resourceUrl/d37';
+import d3 from '@salesforce/resourceUrl/d37';
 import DATA from './data';
 
 export default class LibsD3 extends LightningElement {
@@ -11,7 +11,7 @@ export default class LibsD3 extends LightningElement {
     svgHeight = 400;
     
     //Delete this and uncomment D3 at 6
-    D3;
+    // d3;
 
     d3Initialized = false;
 
@@ -22,8 +22,8 @@ export default class LibsD3 extends LightningElement {
         this.d3Initialized = true;
 
         Promise.all([
-            loadScript(this, D3 + '/d3-7.0.0.tgz'),
-            loadStyle(this, D3 + '/style.css')
+            loadScript(this, d3 + '/d3-7.0.0.tgz'),
+            loadStyle(this, d3 + '/style.css')
         ])
             .then(() => {
                 this.initializeD3();
