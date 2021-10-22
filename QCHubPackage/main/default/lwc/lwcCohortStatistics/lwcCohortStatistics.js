@@ -17,6 +17,9 @@ export default class LwcCohortStatistics extends LightningElement {
         this.ExtractCohortData();
     }
 
+    /*
+     Commented out by William Rembish on 10/22/2021
+     Reason: none of this code was used anywhere so I've decided to depricate it for now
     Chart(){
         console.log("Chart ...")
         let data = [];
@@ -112,11 +115,13 @@ export default class LwcCohortStatistics extends LightningElement {
         .text(function(d) { return d.data.name; });
         console.log("Chart Rendered")
     }
+    */
 
     ExtractCohortData() {
         console.log("Extracting Data...");
         getData()
         .then(result => {
+            console.log(result)
             this.ActiveCohort = result;
             this.error = undefined;
         })
