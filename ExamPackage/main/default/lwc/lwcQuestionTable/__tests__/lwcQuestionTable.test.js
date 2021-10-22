@@ -60,7 +60,7 @@ jest.mock(
  * All tests go in here.
  */
 describe("c-lwc-question-table", () => {
-  var element;
+  var element, examInput, dataTable, poolSelection, addToPoolButton;
 
   afterEach(() => {
     // The jsdom instance is shared across test cases in a single file so reset the DOM
@@ -84,6 +84,28 @@ describe("c-lwc-question-table", () => {
     return Promise.resolve();
   }
 
+  /*
+   * Helper function to search questions and bind elements to global variables.
+   */
+  async function searchAndBind(searchTerms = "") {
+    examInput = element.shadowRoot.querySelector("lightning-input");
+    examInput.dispatchEvent(
+      new CustomEvent("change", {
+        detail: {
+          value: searchTerms
+        }
+      })
+    );
+
+    await flushPromises();
+
+    dataTable = element.shadowRoot.querySelector("lightning-datatable");
+    poolSelection = element.shadowRoot.querySelector(
+      "lightning-checkbox-group"
+    );
+    addToPoolButton = element.shadowRoot.querySelector("lightning-button");
+  }
+
   it("Initial load with tests predefined in input textbox", async () => {
     getQues.mockResolvedValue([]);
     document.body.appendChild(element);
@@ -97,18 +119,8 @@ describe("c-lwc-question-table", () => {
   it("Search All Questions", async () => {
     document.body.appendChild(element);
 
-    const examInput = element.shadowRoot.querySelector("lightning-input");
-    examInput.dispatchEvent(
-      new CustomEvent("change", {
-        detail: {
-          value: ""
-        }
-      })
-    );
+    await searchAndBind();
 
-    await flushPromises();
-
-    const dataTable = element.shadowRoot.querySelector("lightning-datatable");
     expect(dataTable.data.length).toBe(mockQuestions.length);
     expect(dataTable.data[0].Name).toBe(mockQuestions[0].ques[0].Name);
   });
@@ -125,5 +137,11 @@ describe("c-lwc-question-table", () => {
       "lightning-checkbox-group"
     );
     expect(poolSelection.options.length).toBe(mockPool.length);
+  });
+
+  it("Attempt to add Zero Questions to Pool", async () => {
+    document.body.appendChild(element);
+
+    await searchAndBind();
   });
 });
