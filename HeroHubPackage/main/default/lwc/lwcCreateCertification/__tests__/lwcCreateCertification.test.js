@@ -42,4 +42,29 @@ describe("c-lwc-create-certification", () => {
       expect(form.recordId).toBeFalsy();
     });
   });
+    
+  // Julia's tests for added button 
+  // Tests for if button was clicked 
+  it("buttonclicked", () => {
+    document.body.appendChild(element);
+    element.create = true;
+    const button = element.shadowRoot.querySelector("lightning-button");
+    button.dispatchEvent(new CustomEvent("click"));
+    return Promise.resolve().then(() => {
+      expect(element.create).toBe(false);
+    });
+  });
+   // Tests for if button was not clickec
+  it("buttonclickedfalse", () => {
+    document.body.appendChild(element);
+    element.create = false;
+    const button = element.shadowRoot.querySelector("lightning-button");
+    button.dispatchEvent(new CustomEvent("click"));
+
+    return Promise.resolve().then(() => {
+      expect(element.create).toBe(true);
+    });
+  });
+
+    
 });
