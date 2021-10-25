@@ -5,37 +5,34 @@
 -->
 
 <template>
-
-  <!-- Julia added create certification" and "Quit" buttons to match functionaluty of editCert. Allows component to take up less space when it is not being used -->
+  <!-- Julia added "add New certification"  button to match functionaluty of editCert. Allows component to take up less space when it is not being used -->
   <template if:false={create}>
-  <lightning-button variant="Neutral" label="Add New Certification" title="addCert" class="slds-m-right_x-small " onclick={handleCreate}></lightning-button>
-  </template> 
-  
+    <lightning-button
+      variant="Neutral"
+      label="Add New Certification"
+      title="addCert"
+      class="slds-m-right_x-small"
+      onclick={handleCreate}
+    ></lightning-button>
+  </template>
+
+  <!-- Liam's code for CreateCertification component-->
   <template if:true={create}>
-    <lightning-button variant="Neutral" label="Quit" title="exitAddCert" class="slds-m-right_x-small " onclick={handleCreate}></lightning-button>
-    </template>
-
-
-
-   <!-- Liam's code for CreateCertification component-->
-  <template if:true={create}>
-  <lightning-card>
-    <div class="recordFormSection">
-      <div>
-        <lightning-record-form
-          object-api-name="Certification__c"
-          layout-type="Full"
-          columns="1"
-          mode=""
-          data-id="CertificationForm"
-          onsuccess={handleSuccess}
-          oncancel={handleCreate}
-        >
-        
-      </lightning-record-form>
-       
+    <lightning-card>
+      <div class="recordFormSection">
+        <div>
+          <lightning-record-form
+            object-api-name="Certification__c"
+            layout-type="Full"
+            columns="1"
+            mode=""
+            data-id="CertificationForm"
+            onsuccess={handleSuccess}
+            oncancel={handleCreate}
+          >
+          </lightning-record-form>
+        </div>
       </div>
-    </div>
-  </lightning-card>
+    </lightning-card>
   </template>
 </template>

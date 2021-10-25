@@ -1,17 +1,25 @@
 /* 
     Author: Julia Weakley
-    Date Last Modified: 10/18/2021
+    Date Last Modified: 10/25/2021
     Description:  
-        Tests for lwcEditCert component. 100% code coverage
+        Tests for lwcDisplayCert component.  100% code coverage
 */
-import LwcDisplayCert from "c/lwcDisplayCert";
-import { createElement } from "lwc";
-import { registerApexTestWireAdapter } from "@salesforce/wire-service-jest-util";
-import { getCRecord } from "@salesforce/apex/getCertifications.Certifications";
 
-const getList = require("./data/getRecord.json");
-//const getCertsAdapter = registerApexTestWireAdapter(getCRecord);
-describe("c-lwc-Display-Cert", () => {
+import { createElement } from "lwc";
+import LwcDisplayCert from "c/lwcDisplayCert";
+import { registerApexTestWireAdapter } from "@salesforce/sfdx-lwc-jest";
+import Certifications from "@salesforce/apex/getCertifications.Certifications";
+
+// empty list of data
+const mockGetCerts = require("./data/certsList.json");
+
+// list of certification records
+const mockGetAllCerts = require("./data/certsWithDataList.json");
+
+// adapter
+const getCertsListAdapter = registerApexTestWireAdapter(Certifications);
+
+describe("c-lwc-display-cert", () => {
   afterEach(() => {
     while (document.body.firstChild) {
       document.body.removeChild(document.body.firstChild);
@@ -19,48 +27,52 @@ describe("c-lwc-Display-Cert", () => {
     jest.clearAllMocks();
   });
 
-  it("shows records", () => {
-    const element = createElement("c-lwcDisplayCert", {
-      is: LwcDisplayCert
+  // tests that when there are not certs no data should appear
+  describe("Certifications @wire data", () => {
+    it("renders no records", () => {
+      const element = createElement("c-lwc-display-cert", {
+        is: LwcDisplayCert
+      });
+
+      document.body.appendChild(element);
+      getCertsListAdapter.emit(mockGetCerts);
+
+      return Promise.resolve().then(() => {
+        const certElements = element.shadowRoot.querySelectorAll(
+          "lightning-layout-item"
+        );
+        expect(certElements.length).toBe(mockGetCerts.length);
+      });
     });
-    element.certs = getList;
-    document.body.appendChild(element);
+
+    // test that will have data when there are multple records
+    it("renders all existing records", () => {
+      const element = createElement("c-lwc-display-cert", {
+        is: LwcDisplayCert
+      });
+
+      document.body.appendChild(element);
+      getCertsListAdapter.emit(mockGetAllCerts);
+
+      return Promise.resolve().then(() => {
+        const certElements = element.shadowRoot.querySelectorAll(
+          "lightning-layout-item"
+        );
+        expect(certElements.length).toBe(mockGetAllCerts.length);
+      });
+    });
   });
-});
-/*
-const mockRecord = require('./data/getRecord.json');
-const mockNoRecords = require('./data/getNoRecords.json');
-const getRecordAdapter = registerApexTestWireAdapter(getCRecord);
-describe('c-lwc-Display-Cert', ()=> 
-{
-    afterEach(()=> 
-    {
-        while(document.body.firstChild)
-        {
-            document.body.removeChild(document.body.firstChild);
-        }
-    });
-  
-    describe('getCertifications @wire data', ()=>{ 
-        const element = createElement('c-lwc-Display-Cert',{
-                is:LwcDisplayCert
-            });
-        it('renders records', ()=>{
-           
-            document.body.appendChild(element);
 
-            getRecordAdapter.emit(mockRecord);
-
-            return Promise.resolve().then(()=>{
-                const nameElement = element.shadowRoot.querySelectorAll('lightning-layout-item'); 
-                expect(certificationElements.length).toBe(mockRecord.length); 
-
-            });
-
+  /*it('display', () => {
+        let element = createElement('c-lwc-display-cert', {
+            is: LwcDisplayCert
         });
-
+        document.body.appendChild(element);
+       
+        return Promise.resolve().then(() => {
+            expect(1).toBe(2);
+          });
+      
     });
- 
-   
+    */
 });
-*/
