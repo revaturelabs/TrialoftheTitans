@@ -31,7 +31,7 @@ public class ExamDataFactory1{
         insert poolTest;
         List<Exam_Question__c> questionList = new List<Exam_Question__c>();
         for(Integer i=0; i<41;i++){
-            Exam_Question__c examQuestionTest = new Exam_Question__c(Name='Test' + i);
+            Exam_Question__c examQuestionTest = new Exam_Question__c(Name='Test' + i, Question_Type__c = 'Matching', Question_Text__c = 'This is a text ' + i);
             questionList.add(examQuestionTest);
         }
         insert questionList;
@@ -47,7 +47,7 @@ public class ExamDataFactory1{
         insert answerList;
         List<Question_Assignment__c> assignmentList = new List<Question_Assignment__c>();
         for(Integer k=0;k<20;k++){
-            Question_Assignment__c questionAssignmentTest = new Question_Assignment__c(Exam_Question__c=questionList[k].Id, Question_Pool__c=questionPoolTest.Id, Question_Assignment__c.Exam_Question__r.Question_Type__c = 'Matching', Question_Assignment__c.Exam_Question__r.Name = questionList[k], Question_Assignment__c.Exam_Question__r.Question_Text__c = 'This is a text ' + k);
+            Question_Assignment__c questionAssignmentTest = new Question_Assignment__c(Exam_Question__c=questionList[k].Id, Question_Pool__c=questionPoolTest.Id);
             assignmentList.add(questionAssignmentTest);
         }
         insert assignmentList;
