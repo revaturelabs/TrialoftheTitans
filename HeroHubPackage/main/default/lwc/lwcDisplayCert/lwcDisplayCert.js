@@ -1,40 +1,15 @@
-import { LightningElement, wire, api, track } from 'lwc';
-import Id from '@salesforce/user/Id';
+import { LightningElement, wire, api, track } from "lwc";
+import Id from "@salesforce/user/Id";
 
+/* 
+    Author: Julia Weakley
+    Date Last Modified: 10/25/2021
+    Description:  
+        Method that grabs the data needed for the component
+*/
+import Certifications from "@salesforce/apex/getCertifications.Certifications";
 
-import NAME from '@salesforce/schema/User.Name';
-import {getRecord, getFieldValue} from 'lightning/uiRecordApi';
-import Certifications from '@salesforce/apex/getCertifications.Certifications'
-const fields =[NAME];
-export default class DisplayCert extends LightningElement 
-{
-    @api create = false; 
-    @api recordId; 
-    userId = Id;
-    @wire (getRecord, {recordId: '$userId', fields}) user; 
-    
-    @wire(Certifications) certs; 
-
-    get name()
-    {
-        
-        return getFieldValue(this.user.data, NAME);
-    }
-
-    
-    handleCreate(event)
-    {
-            
-            if(this.create == false)
-            {
-                this.create = true; 
-            }
-            else
-            {
-                this.create = false; 
-            }
-            console.log(this.create); 
-    }
-
-    
+export default class DisplayCert extends LightningElement {
+  //method that grabs existing certifications for user
+  @wire(Certifications) certs;
 }
