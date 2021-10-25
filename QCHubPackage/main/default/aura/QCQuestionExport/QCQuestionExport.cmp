@@ -11,4 +11,4 @@
     <aura:attribute name="questionList" type="QC_Question__c[]"/>
     <lightning:button label="Export as CSV" onclick="{!c.downloadCSV}"/>
     
-</aura:component>	
+</aura:component>

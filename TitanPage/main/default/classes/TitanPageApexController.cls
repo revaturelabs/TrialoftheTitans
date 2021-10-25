@@ -2,15 +2,29 @@ public without sharing class TitanPageApexController {
     public TitanPageApexController() {
     }
     
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static String fetchUser() {
         //Method for retrieving Current User information
         return userInfo.getName();
     }
     
+    // Method added by 8/16 cohort.
+    // Return a list of Titan__c object that are in the Curriculum that is attached to the current user.
+    // THe current user is a hero(Account object).
+    @AuraEnabled(cacheable=true)
+    public static List<Titan__c> getTitansList() {
+        // Get the name of the curriculum attached to the current user.
+        // SELECT Curriculum__r.Name, Id FROM Account WHERE OwnerId = '0051700000Aq9LdAAJ'
+        Account acc = [SELECT Curriculum__r.Name, Id FROM Account WHERE OwnerId = :UserInfo.getUserId() LIMIT 1];
+        String nameOfCurriculum = acc.Curriculum__r.Name;
+
+        // Use the name of the curriculum to query the Titans.
+        // SELECT Name, Id, Technology__c, OwnerId FROM Titan__c WHERE Curriculum__r.Name = 'C1'
+        List<Titan__c> titanList = [SELECT Name, Id, Technology__c, OwnerId FROM Titan__c WHERE Curriculum__r.Name = :nameOfCurriculum];
+        return titanList;
+    }
     
-    
-    
+
     @AuraEnabled
     public static List<Titan__c> getTitans() {
         //Method for retrieving list of titans
@@ -40,7 +54,7 @@ public without sharing class TitanPageApexController {
         return skillsList; 
     }
     
-    
+     
 }
 
 

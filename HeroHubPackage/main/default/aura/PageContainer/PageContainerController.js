@@ -1,13 +1,14 @@
 /////////////////////
 //
 //  Name:PageContainerController
-//  Author: Josh Miccolo
-//  Description: Controller for Hero Hub Page
+//  Author: Josh Miccolo, Ethan Wilson
+//  Description: Controller for Page Container
 //  returns user context info and navigates to pages
-//
+//  Last Updated: 10/14/2021
 /////////////////////
 ({
     doInit: function(component, event, helper) {
+
         const getContextInfo = component.get("c.getUserInfo");
         getContextInfo.setCallback(this, function(response) {
             if (response.getState() === "SUCCESS") {
@@ -18,6 +19,15 @@
             }
         });
         $A.enqueueAction(getContextInfo);
+
+        const getUserName = component.get("c.getUserName");
+        getUserName.setCallback(this, function(response) {
+            if (response.getState() === "SUCCESS") {
+                const userName = response.getReturnValue();
+                component.set("v.userName", userName);
+            } 
+        });
+        $A.enqueueAction(getUserName);
 
         const getTeamScores = component.get("c.getTeamScores");
         getTeamScores.setCallback(this, function(response) {
@@ -37,40 +47,8 @@
     },
 
     navigate: function(component, event, helper) {
-		let titanString = "Titans";
         const page = event.getParam('page');
         component.set("v.navigate", page);
-    },
-
-    navigateToResults: function(cmp, event, helper) {
-        cmp.set('v.PortClicked', false);
-        cmp.set('v.OneClicked', false);
-        
-        if (cmp.get('v.nameClicked') == true) {
-            cmp.set('v.nameClicked', false);
-        } else {
-            cmp.set('v.nameClicked', true);
-        }
-        
-    },
-    navigateToPort: function(cmp, event, helper){
-        cmp.set('v.nameClicked', false);
-        cmp.set('v.OneClicked', false);
-
-        if (cmp.get('v.PortClicked') == true){
-            cmp.set('v.PortClicked', false);
-        } else {
-            cmp.set('v.PortClicked', true);
-        }
-    },
-    navigateToOneOnOne: function(cmp,event,helper){
-        cmp.set('v.nameClicked', false);
-        cmp.set('v.PortClicked', false);
-
-        if(cmp.get('v.OneClicked')==true){
-            cmp.set('v.OneClicked',false);
-        }else{
-            cmp.set('v.OneClicked', true);
-        }
     }
+
 })
