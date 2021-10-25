@@ -59,4 +59,4 @@
             </lightning:recordEditForm>
         </lightning:card>
     </aura:if>
-</aura:component>	
+</aura:component>
