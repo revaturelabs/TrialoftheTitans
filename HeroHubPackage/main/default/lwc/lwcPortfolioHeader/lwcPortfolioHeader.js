@@ -3,6 +3,7 @@
 //  Name: PortfolioHeader lwc
 //  Author: Ethan Wilson
 //  Description: Component for the header section of the Hero portfolio. 
+//                It gets the user name and allows the user to prefix a title
 //  Last Updated: 10/20/21
 //
 ///////////////////////////////////////////////////

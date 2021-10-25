@@ -1,53 +1,56 @@
+<!--
+    Author: Ethan Wilson
+    Last updated: 10/25/2021
+
+    notes: jest tests have issues. wasn't able to visually confirm this
+            component. But it *should* work and be all converted. 
+-->
+
 <template>
         
-    <lightning-card title="Experiences">
+    <lightning-card title="Experiences Data Table">
         <lightning-datatable data-id="dt"
             data={experienceList}
             columns={columns}
-            keyfield="Id"
+            key-field="Id"
             class="dataTable"
             onsave={onSave}
-            hidecheckboxcolumn=true
-            draftvalues={draftValues}
+            hide-checkbox-column=true
             onrowaction={handleRowAction}>
         </lightning-datatable>
     </lightning-card>
 
     <!-- If element that determines whether experience is in edit mode or not -->
     <template if:true={isEdit}>
-    <!-- Currently iterates through every experience and displays them in a lightning card. -->
-
-        <!-- Card for displaying experiences -->
-        <lightning-card>
-            <lightning-button label="Add New Experience" class="slds-m-left_small" onclick={edit} variant="brand-outline">
-            </lightning-button>
-        </lightning-card>
-        <!-- Card for displaying experiences -->
+       
+        <lightning-button title="Add New Experience" label="Add New Experience" class="slds-m-left_small addXpButton" onclick={edit} variant="brand-outline">
+        </lightning-button>
+       
     </template>
     <!-- If element that determines whether experience is in edit mode or not -->
     <!-- Edit -->
     <template if:false={isEdit}>
+        <div>
+            <lightning-card class="form">
+                
+                <!-- Add new experience to records -->
+                <lightning-record-edit-form object-api-name="Experience__c"
+                    onsuccess={cancel} title="Experience Edit Form" class="recordEditForm">
+                    
+                    <lightning-messages></lightning-messages>
+                    <lightning-input-field class="companyInput" title="Company" field-name="Company__c" ></lightning-input-field>
+                    <lightning-input-field class="positionInput" title="Position" field-name="Position__c" ></lightning-input-field>
+                    <lightning-input-field class="startInput" title="Start Date" field-name="Start_Date__c" ></lightning-input-field>
+                    <lightning-input-field class="endInput" title="End Date" field-name="End_Date__c" ></lightning-input-field>
 
-        <lightning-card class="form">
+                    <lightning-button title="Cancel" class="slds-m-top_small cancelButton" type="cancel" onclick={cancel} variant="destructive" label="Cancel"></lightning-button>
+                    <lightning-button title="Submit" class="slds-m-top_small submitButton" type="submit" variant="Brand" label="Save"></lightning-button>
 
-            <!-- Add new experience to records -->
-            <lightning-recordEditForm objectapiname="Experience__c"
-                onsuccess={cancel}>
-                <!-- A possible addition would be showing toasts or messages in cases of errors or success -->
+                </lightning-record-edit-form>
+                <!-- Add new experience to records -->
 
-                <lightning-inputField fieldname="Company__c" ></lightning-inputField>
-                <lightning-inputField fieldname="Position__c" ></lightning-inputField>
-                <lightning-inputField fieldname="Start_Date__c" ></lightning-inputField>
-                <lightning-inputField fieldname="End_Date__c" ></lightning-inputField>
-
-                <lightning-button class="slds-m-top_small" type="cancel" onclick={cancel} variant="destructive" label="Cancel"></lightning-button>
-                <lightning-button class="slds-m-top_small" type="submit" variant="Brand" label="Create new"></lightning-button>
-
-            </lightning-recordEditForm>
-            <!-- Add new experience to records -->
-
-        </lightning-card>
-        
+            </lightning-card>
+        </div>
     </template>
     <!-- Edit -->
 

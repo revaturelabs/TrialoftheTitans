@@ -8,27 +8,29 @@ export default class LwcPortfolioOtherExperiences extends LightningElement {
     isEdit = true;
     draftValues = [];
     experienceToDelete;
+
+    
     columns = [
         {label:"Company", fieldName:"Company__c", type:"text",editable:true },
         {label:"Position", fieldName:"Position__c", type:"text",editable:true },
         {label:"Start Date", fieldName:"Start_Date__c", type:"date-local",editable:true },
         {label:"End Date", fieldName:"End_Date__c", type:"date-local",editable:true },
-        { type: 'action', typeAttributes: { rowActions: actions } }
+        { type: 'action', typeAttributes: { rowActions: { label: 'Delete', name: 'delete' } } }
     ];
     
     //wire to update the data table
-    @wire(updateExperiences, { "experiences" : $draftValues})
+    @wire(updateExperiences, { "experiences" : '$draftValues' })
     updateExperienceList;
 
     @wire(getExperiences)
     experienceList;
 
-    @wire(deleteExperience, { "experience" : $experienceToDelete})
+    @wire(deleteExperience, { "experience" : '$experienceToDelete' })
     deleteExperience;
 
     //saves the records on inline edit of data table
     onSave(event){
-        this.draftValues = event.getParam('draftValues');
+        this.draftValues = event.detail.draftValues;
         this.template.querySelector('dataTable').draftValues = [];
     }
 

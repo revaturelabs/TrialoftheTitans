@@ -1,11 +1,10 @@
 import lwcPortfolioHeader  from 'c/lwcPortfolioHeader';
 import { createElement } from 'lwc';
 import getUserName from '@salesforce/apex/PortfolioHeaderController.getUserName';
-import { createApexTestWireAdapter } from '@salesforce/wire-service-jest-util';
-import { expect } from '@jest/globals';
+import { registerApexTestWireAdapter } from '@salesforce/wire-service-jest-util';
 
-
-const myAdapter = createApexTestWireAdapter();
+const mockData = require('./data/mockData.json');
+const myAdapter = registerApexTestWireAdapter(getUserName);
 
 describe('lwcPortfolioHeader component suite', () => {
 
@@ -33,13 +32,12 @@ describe('lwcPortfolioHeader component suite', () => {
     //Keeps returning [Object object] inside myHeader.textContent
     it('Testing for getUserName', async () => {
         const element = document.querySelector('c-lwc-portfolio-header');
-        const mockData = { data: 'John' };
         
-        myAdapter.emit(mockData);
+        myAdapter.emit(mockData[0].data);
         
         await flushPromises();
         const myHeader = element.shadowRoot.querySelector('.userName');
-        expect(myHeader.textContent).toBe(mockData.data);
+        expect(myHeader.textContent).toBe(mockData[0].data);
     
     });
 
@@ -62,10 +60,9 @@ describe('lwcPortfolioHeader component suite', () => {
     it('turning off edit mode after setting a title', async () => {
 
         const element = document.querySelector('c-lwc-portfolio-header');
-        const mockData = { data: 'John' };
         const editButtonOn = element.shadowRoot.querySelector('.editButtonOn');
         
-        myAdapter.emit(mockData);
+        myAdapter.emit(mockData[0].data);
         
         editButtonOn.click();
 
@@ -82,7 +79,7 @@ describe('lwcPortfolioHeader component suite', () => {
         const editModeOff = element.shadowRoot.querySelector('.editModeOff');
         expect(editModeOff).not.toBe(null);
         const nameTitle = element.shadowRoot.querySelector('.titleAndName');
-        expect(nameTitle).toBe('Warrior John');
+        expect(nameTitle.textContent).toBe('Warrior John');
        
     });
 })
