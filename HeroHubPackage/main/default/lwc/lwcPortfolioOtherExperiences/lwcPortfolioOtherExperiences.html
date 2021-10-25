@@ -1,0 +1,54 @@
+<template>
+        
+    <lightning-card title="Experiences">
+        <lightning-datatable data-id="dt"
+            data={experienceList}
+            columns={columns}
+            keyfield="Id"
+            class="dataTable"
+            onsave={onSave}
+            hidecheckboxcolumn=true
+            draftvalues={draftValues}
+            onrowaction={handleRowAction}>
+        </lightning-datatable>
+    </lightning-card>
+
+    <!-- If element that determines whether experience is in edit mode or not -->
+    <template if:true={isEdit}>
+    <!-- Currently iterates through every experience and displays them in a lightning card. -->
+
+        <!-- Card for displaying experiences -->
+        <lightning-card>
+            <lightning-button label="Add New Experience" class="slds-m-left_small" onclick={edit} variant="brand-outline">
+            </lightning-button>
+        </lightning-card>
+        <!-- Card for displaying experiences -->
+    </template>
+    <!-- If element that determines whether experience is in edit mode or not -->
+    <!-- Edit -->
+    <template if:false={isEdit}>
+
+        <lightning-card class="form">
+
+            <!-- Add new experience to records -->
+            <lightning-recordEditForm objectapiname="Experience__c"
+                onsuccess={cancel}>
+                <!-- A possible addition would be showing toasts or messages in cases of errors or success -->
+
+                <lightning-inputField fieldname="Company__c" ></lightning-inputField>
+                <lightning-inputField fieldname="Position__c" ></lightning-inputField>
+                <lightning-inputField fieldname="Start_Date__c" ></lightning-inputField>
+                <lightning-inputField fieldname="End_Date__c" ></lightning-inputField>
+
+                <lightning-button class="slds-m-top_small" type="cancel" onclick={cancel} variant="destructive" label="Cancel"></lightning-button>
+                <lightning-button class="slds-m-top_small" type="submit" variant="Brand" label="Create new"></lightning-button>
+
+            </lightning-recordEditForm>
+            <!-- Add new experience to records -->
+
+        </lightning-card>
+        
+    </template>
+    <!-- Edit -->
+
+</template>
