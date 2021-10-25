@@ -319,4 +319,3 @@ export default class LwcExamInterview extends LightningElement {
         }, 200);
       }
     }
-

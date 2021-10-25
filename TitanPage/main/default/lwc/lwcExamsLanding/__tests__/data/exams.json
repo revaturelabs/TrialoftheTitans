@@ -1,0 +1,10 @@
+[
+  {
+    "Name": "First",
+    "Default_Passing_Grade__c": "85"
+  },
+  {
+    "Name": "Second",
+    "Default_Passing_Grade__c": "75"
+  }
+]
