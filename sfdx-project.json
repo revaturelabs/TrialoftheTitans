@@ -78,10 +78,31 @@
           "package": "ExamPackage@1.0.0-1"
         },
         {
-          "package": "TitanPage@1.0.0-1"
+          "path": "TitanPage",
+          "package": "TitanPage",
+          "versionName": "ver 0.1",
+          "versionNumber": "1.0.0.NEXT",
+          "default": true,
+          "dependencies": [
+            {
+              "package": "CorePackage@1.0.0-1"
+            },
+            {
+              "package": "ExamPackage@1.0.0-1"
+            }
+          ]
         },
         {
-          "package": "QCHubPackage@1.0.0-1"
+          "path": "QCHubPackage",
+          "package": "QCHubPackage",
+          "versionName": "ver 1.0",
+          "versionNumber": "1.0.0.NEXT",
+          "default": false,
+          "dependencies": [
+            {
+              "package": "CorePackage@1.0.0-1"
+            }
+          ]
         },
         {
           "package": "TrainerHubPackage@1.0.0-1"
@@ -139,7 +160,7 @@
   ],
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "49.0",
+  "sourceApiVersion": "51.0",
   "packageAliases": {
     "CorePackage": "0Ho5e00000000eDCAQ",
     "TitanPage": "0Ho5e00000000eNCAQ",

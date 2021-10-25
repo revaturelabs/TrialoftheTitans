@@ -1,5 +1,14 @@
+/*
+    
+    Author: Liam Hunt
+    Description: Js for certificate creation component
+    Date Created: 10/17/21
+
+*/
+
 import { LightningElement } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
+
 export default class LwcCreateCertification extends LightningElement {
 
  
