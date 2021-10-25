@@ -4,124 +4,199 @@
 	Description: Handling the creating process for Mock interview and doing feedback after completing mock interview record 
 -->
 
-<aura:component controller ="interviewQuestionClass" implements="flexipage:availableForAllPageTypes,force:appHostable,forceCommunity:availableForAllPageTypes" access="global">
-    <aura:attribute name="myInterviews" type="Mock_Interview_Self__c[]" />
-    <aura:attribute name="softSkillQuestions" type="MI_Question_Pool__c" />
-    <aura:attribute name="techSkillQuestions" type="MI_Question_Pool__c" />
-    <aura:attribute name="otherSkillQuestions" type="MI_Question_Pool__c" />
-    <aura:attribute name="mockID" type="Id" />
-    <aura:attribute name="feedback" type="Feedback__c" default = "{'Confidence__c':0,'Fluency__c':0, 'Eye_Contact__c':0, 'Body_Language__c':0, 'Comments__c':''}"/>
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    
-    <aura:attribute name="isSoftSkill" type="Boolean" default ="false" />
-    <aura:attribute name="isTechnical" type="Boolean" default ="false" />
-    <aura:attribute name="isOther" type="Boolean" default ="false" />
-    <aura:attribute name="isRecording" type="Boolean" default ="false" />
-    <aura:attribute name="isPublic" type="Boolean" default ="false" />
-    <aura:attribute name="isInterviewing" type="Boolean" default ="true" />
-    <aura:attribute name="isFeedback" type="Boolean" default ="false" />
-    <aura:attribute name="isError" type="Boolean" default ="false" />
-    <aura:attribute name="isSucc" type="Boolean" default ="false" />
-    
-    
-    <div class="slds-grid slds-gutters slds-wrap myinterstyle" >
+<aura:component
+  controller="interviewQuestionClass"
+  implements="flexipage:availableForAllPageTypes,force:appHostable,forceCommunity:availableForAllPageTypes"
+  access="global"
+>
+  <aura:attribute name="myInterviews" type="Mock_Interview_Self__c[]" />
+  <aura:attribute name="softSkillQuestions" type="MI_Question_Pool__c" />
+  <aura:attribute name="techSkillQuestions" type="MI_Question_Pool__c" />
+  <aura:attribute name="otherSkillQuestions" type="MI_Question_Pool__c" />
+  <aura:attribute name="mockID" type="Id" />
+  <aura:attribute
+    name="feedback"
+    type="Feedback__c"
+    default="{'Confidence__c':0,'Fluency__c':0, 'Eye_Contact__c':0, 'Body_Language__c':0, 'Comments__c':''}"
+  />
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <aura:attribute name="isSoftSkill" type="Boolean" default="false" />
+  <aura:attribute name="isTechnical" type="Boolean" default="false" />
+  <aura:attribute name="isOther" type="Boolean" default="false" />
+  <aura:attribute name="isRecording" type="Boolean" default="false" />
+  <aura:attribute name="isPublic" type="Boolean" default="false" />
+  <aura:attribute name="isInterviewing" type="Boolean" default="true" />
+  <aura:attribute name="isFeedback" type="Boolean" default="false" />
+  <aura:attribute name="isError" type="Boolean" default="false" />
+  <aura:attribute name="isSucc" type="Boolean" default="false" />
+
+  <div class="slds-grid slds-gutters slds-wrap myinterstyle">
     <!-- INTERVIEW PROCESS START -->
     <aura:if isTrue="{!v.isInterviewing}">
-        <div  class="slds-col slds-size_2-of-7  ">
-        	<h1 class="slds-card">Your current interviews:</h1>
-            <aura:iteration items="{!v.myInterviews}" var="inter">
-                <lightning:recordEditForm recordId="{!inter.Id}" objectApiName="Mock_Interview_Self__c">
-                    <div id="myIn" class="slds-card">
-                    <lightning:outputField fieldName="Name" />
-                    <lightning:outputField fieldName="CreatedDate" />
-                    <lightning:inputField fieldName="Public__c" />
-                    <lightning:button class="slds-m-top_small mybutton2" variant="brand" type="submit" name="update" label="Update" />
-                    </div>
-                </lightning:recordEditForm>
-                    
-            </aura:iteration>
-        </div>
-        
-        
-        
-        <div class="slds-size_4-of-7 quessec" id="rec">
-          
-        <h2 >What type of question would you like to answer?</h2>
-        <lightning:button class="mybutton2" variant="brand" label="Soft Skill" onclick="{!c.softSkillChoice}"/>
-        <lightning:button class="mybutton2" variant="brand" label="Technical" onclick="{!c.techSkillChoice}" />
-        <lightning:button class="mybutton2" variant="brand" label="Other" onclick="{!c.otherChoice}" />
-    	
-            <!--Softskill Session -->
-        <aura:if isTrue="{!v.isSoftSkill}">
-           <c.interviewQuestionComponent question="{!v.softSkillQuestions}" />
-        </aura:if>
-        
-            <!--Techskill Session -->
-        <aura:if isTrue="{!v.isTechnical}">
-                <c:interviewQuestionComponent question="{!v.techSkillQuestions}" />
-        </aura:if>
-        
-            <!--Other Session -->
-        <aura:if isTrue="{!v.isOther}">
-        <c:interviewQuestionComponent question="{!v.otherSkillQuestions}" />
-        </aura:if>
-        <br/>
-        <br/>
-        <div class="slds-m-around--large">
-            <div class="slds-form-element">
-                <label class="slds-checkbox_toggle slds-grid">
-                <span class="slds-form-element__label slds-m-bottom_none">Public?</span>
-                <ui:inputCheckbox change="{!c.makePublic}"/>
-                <span id="toggle-desc" class="slds-checkbox_faux_container" aria-live="assertive">
-                    <span class="slds-checkbox_faux"></span>
-                    <span class="slds-checkbox_on">Yes</span>
-                    <span class="slds-checkbox_off">No</span>
-                </span>
-                </label>
-              </div>
+      <div class="slds-col slds-size_2-of-7">
+        <h1 class="slds-card">Your current interviews:</h1>
+        <aura:iteration items="{!v.myInterviews}" var="inter">
+          <lightning:recordEditForm
+            recordId="{!inter.Id}"
+            objectApiName="Mock_Interview_Self__c"
+          >
+            <div id="myIn" class="slds-card">
+              <lightning:outputField fieldName="Name" />
+              <lightning:outputField fieldName="CreatedDate" />
+              <lightning:inputField fieldName="Public__c" />
+              <lightning:button
+                class="slds-m-top_small mybutton2"
+                variant="brand"
+                type="submit"
+                name="update"
+                label="Update"
+              />
             </div>
-        <!-- record session -->
-        <lightning:button class="mybutton2" label="Upload Your Video" variant="brand"  onclick="{!c.recordSkill}"/>
-        <aura:if isTrue="{!v.isRecording}">
-            <c:videoUploaderComponent recordId="{!v.mockID}" />
-            <lightning:button class="mybutton2" label="Complete" variant="brand" onclick="{!c.submitInterview}"/>
+          </lightning:recordEditForm>
+        </aura:iteration>
+      </div>
+
+      <div class="slds-size_4-of-7 quessec" id="rec">
+        <h2>What type of question would you like to answer?</h2>
+        <lightning:button
+          class="mybutton2"
+          variant="brand"
+          label="Soft Skill"
+          onclick="{!c.softSkillChoice}"
+        />
+        <lightning:button
+          class="mybutton2"
+          variant="brand"
+          label="Technical"
+          onclick="{!c.techSkillChoice}"
+        />
+        <lightning:button
+          class="mybutton2"
+          variant="brand"
+          label="Other"
+          onclick="{!c.otherChoice}"
+        />
+
+        <!--Softskill Session -->
+        <aura:if isTrue="{!v.isSoftSkill}">
+          <c:interviewQuestionComponent question="{!v.softSkillQuestions}" />
         </aura:if>
-        </div>    
-    </aura:if>
-    </div>
-    <!-- INTERVIEW PROCESS END -->
-    
-    <!--FEEDBACK PROCESS START -->
-    
-    
-    <aura:if isTrue="{!v.isFeedback}">
-        <div >
-          <div class="myfeedstyle">
-        	<p class="feedTitle">Feedback</p>
-            <h3>From 1 to 5, Please Rating This Interview</h3>
-            <label for="confidence">Confidence: </label>
-            <lightning:input id="confidence" type="number" min="1" max="5" value="{!v.feedback.Confidence__c}" /><br/>
-            <label for="fluency">Fluency: </label>
-            <lightning:input id="fluency" type="number" min="1" max="5" value="{!v.feedback.Fluency__c}" /> <br/>
-            <label for="eyecon">Eye Contact: </label>
-            <lightning:input id="eyecon" type="number"  min="1" max="5" value="{!v.feedback.Eye_Contact__c}" /> <br/>
-            <label for="bodylang">Body Language: </label>
-            <lightning:input id="bodylang" type="number"  min="1" max="5" value="{!v.feedback.Body_Language__c}" /> <br/>
-            <label for="comment">Comments: </label>
-            <lightning:textarea id="comment" value="{!v.feedback.Comments__c}" /> <br/>
-            
-            <lightning:button class="mybutton" label="Submit" variant="brand" onclick="{!c.submitFeedback}"/>
-            <aura:if isTrue="{!v.isError}">
-            	<h2>Please fill information with valid input!</h2>
-            </aura:if>
-              </div>
+
+        <!--Techskill Session -->
+        <aura:if isTrue="{!v.isTechnical}">
+          <c:interviewQuestionComponent question="{!v.techSkillQuestions}" />
+        </aura:if>
+
+        <!--Other Session -->
+        <aura:if isTrue="{!v.isOther}">
+          <c:interviewQuestionComponent question="{!v.otherSkillQuestions}" />
+        </aura:if>
+        <br />
+        <br />
+        <div class="slds-m-around--large">
+          <div class="slds-form-element">
+            <label class="slds-checkbox_toggle slds-grid">
+              <span class="slds-form-element__label slds-m-bottom_none"
+                >Public?</span
+              >
+              <ui:inputCheckbox change="{!c.makePublic}" />
+              <span
+                id="toggle-desc"
+                class="slds-checkbox_faux_container"
+                aria-live="assertive"
+              >
+                <span class="slds-checkbox_faux"></span>
+                <span class="slds-checkbox_on">Yes</span>
+                <span class="slds-checkbox_off">No</span>
+              </span>
+            </label>
+          </div>
         </div>
+        <!-- record session -->
+        <lightning:button
+          class="mybutton2"
+          label="Upload Your Video"
+          variant="brand"
+          onclick="{!c.recordSkill}"
+        />
+        <aura:if isTrue="{!v.isRecording}">
+          <c:videoUploaderComponent recordId="{!v.mockID}" />
+          <lightning:button
+            class="mybutton2"
+            label="Complete"
+            variant="brand"
+            onclick="{!c.submitInterview}"
+          />
+        </aura:if>
+      </div>
     </aura:if>
-        
+  </div>
+  <!-- INTERVIEW PROCESS END -->
+
+  <!--FEEDBACK PROCESS START -->
+
+  <aura:if isTrue="{!v.isFeedback}">
     <div>
-    <aura:if isTrue="{!v.isSucc}" >
-    	<h2 class="myform">Thank You For Your Feedback</h2>
-    </aura:if>
+      <div class="myfeedstyle">
+        <p class="feedTitle">Feedback</p>
+        <h3>From 1 to 5, Please Rating This Interview</h3>
+        <label for="confidence">Confidence: </label>
+        <lightning:input
+          id="confidence"
+          type="number"
+          min="1"
+          max="5"
+          value="{!v.feedback.Confidence__c}"
+        /><br />
+        <label for="fluency">Fluency: </label>
+        <lightning:input
+          id="fluency"
+          type="number"
+          min="1"
+          max="5"
+          value="{!v.feedback.Fluency__c}"
+        />
+        <br />
+        <label for="eyecon">Eye Contact: </label>
+        <lightning:input
+          id="eyecon"
+          type="number"
+          min="1"
+          max="5"
+          value="{!v.feedback.Eye_Contact__c}"
+        />
+        <br />
+        <label for="bodylang">Body Language: </label>
+        <lightning:input
+          id="bodylang"
+          type="number"
+          min="1"
+          max="5"
+          value="{!v.feedback.Body_Language__c}"
+        />
+        <br />
+        <label for="comment">Comments: </label>
+        <lightning:textarea id="comment" value="{!v.feedback.Comments__c}" />
+        <br />
+
+        <lightning:button
+          class="mybutton"
+          label="Submit"
+          variant="brand"
+          onclick="{!c.submitFeedback}"
+        />
+        <aura:if isTrue="{!v.isError}">
+          <h2>Please fill information with valid input!</h2>
+        </aura:if>
+      </div>
     </div>
-    <!--FEEDBACK PROCESS END -->
+  </aura:if>
+
+  <div>
+    <aura:if isTrue="{!v.isSucc}">
+      <h2 class="myform">Thank You For Your Feedback</h2>
+    </aura:if>
+  </div>
+  <!--FEEDBACK PROCESS END -->
 </aura:component>

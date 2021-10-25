@@ -1,0 +1,84 @@
+<template>
+
+    <!-- / Welcome Header \ -->
+    <div class="with-background-color">
+        <span class="slds-text-heading_large slds-align_absolute-center" id="Header" style="font-size:xxx-large;">
+            <h5> Welcome {userName.data} </h5>
+        </span>
+    </div>
+    <!-- \ Welcome Header / -->
+
+
+    <!-- / Constellation Image \ -->
+    <div class="slds-grid slds-col slds-size_12-of-12 bannerDiv">
+    </div>
+    <!-- \ Constellation Image / -->
+
+
+    <!-- / Titan Info Div \ -->
+    <div class="slds-grid slds-col slds-size_12-of-12 with-background-color">
+
+        <!-- / Left Decorative Image - Valkyrie \ -->
+        <div class="slds-size_1-of-3 slds-align_absolute-center">
+            <img src={valkyrieUrl} alt="Valkyrie" />
+        </div>
+        <!-- \ Left Decorative Image - Valkyrie / -->
+
+        <!-- / Titan Info \ -->
+        <div class="slds-col slds-size_1-of-3 titanListDiv">
+
+            <!-- / "Titans to Conquer" Header \ -->
+            <div>
+                <p class='titanToConquerP'>
+                    Titans to Conquer
+                </p>
+            </div>
+            <!-- \ "Titans to Conquer" Header / -->
+
+            <!-- / Titan List \ -->
+            <div>
+                <template if:true={titans.data}>
+                    <template for:each={titans.data} for:item="titan">
+                        <p key={titan.Id} class="titanListP">
+                            {titan.Name}
+                        </p>
+                    </template>
+                </template>
+                <template if:true={titans.error}>
+                    <div>
+                        <p>
+                            {titans.error}
+                        </p>
+                    </div>
+                </template>
+            </div>
+            <!-- \ Titan List / -->
+
+        </div>
+        <!-- \ Titan Info / -->
+
+        <!-- / Right Decorative Image - Chimera \ -->
+        <div class="slds-size_1-of-3 slds-align_absolute-center">
+            <img src={chimeraUrl} alt="Chimera" />
+        </div>
+        <!-- \ Right Decorative Image - Chimera / -->
+
+    </div>
+    <!-- \ Titan Info Div / -->
+
+
+
+    <!-- Add Examslanding and LandingSkills component below-->
+    <!-- Pass the Titan list to those components. -->
+    <!-- The Titan list is: {titans.data} -->
+
+
+
+
+
+
+
+
+
+
+</template>

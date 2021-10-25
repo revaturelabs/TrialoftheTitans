@@ -4,29 +4,30 @@
   Author: Colin Poirier
   Created date: 10/16/2021
   Description: Js file for component that fetches org data
-  Modified date: 10/20/2021
+  Modified date: 10/19/2021
   Modified by: Colin Poirier
 
 */
 
 import { LightningElement, api, wire } from "lwc";
-import getSkills from "@salesforce/apex/TitanPageApexController.getSkills";
+import getExams from "@salesforce/apex/TitanPageApexController.getExams";
 
-export default class LwcLandingSkills extends LightningElement {
+export default class LwcExamsLanding extends LightningElement {
   @api
   activetitan;
 
-  @wire(getSkills, { titanId: "$Id" })
-  skillsList;
+  @wire(getExams, { titanId: "$Id" })
+  examsList;  
 
   // had to make getter to satisfy testing even
   // thought passing activetitan.Id in directly
   // worked fine in the org
   get Id() {
-    if (this.activetitan) {
+    if(this.activetitan){
       return this.activetitan.Id;
     }
-  }  
+    return 'HI';
+  }
 
   // give default name to titan
   get name() {
@@ -37,30 +38,30 @@ export default class LwcLandingSkills extends LightningElement {
     return titanName;
   }
 
-  // appends skills to titan name
+  // appends exams to titan name
   get cardTitle() {
-    return this.name + " Skills";
+    return this.name + " Exams";
   }
 
-  // used to display no skills message
+  // used to display no exams message
   get hasData() {
-    return this.listData.length != 0;
+    return this.listData.length == 0 ? false : true;
   }
 
   // message displayed when no data is available
-  get noSkills() {
-    return "No skills associated with " + this.name;
+  get noExams() {
+    return "No exams associated with " + this.name;
   }
 
-  // return skill data if exists or empty array
+  // return exam data if exists or empty array
   get listData() {
     let data = [];
     if (
-      this.skillsList &&
-      this.skillsList.data &&
-      Array.isArray(this.skillsList.data)
+      this.examsList &&
+      this.examsList.data &&
+      Array.isArray(this.examsList.data)
     ) {
-      data = this.skillsList.data;
+      data = this.examsList.data;
     }
     return data;
   }
