@@ -9,13 +9,6 @@
 
 # LWC Jest
 **/__tests__/**
-**/pages
-**/layouts
-**/profiles
-**/networks
-**/sites
-**/experiences
-**/networkBranding
 
 # Fixes error to get rid of it ¯\_(ツ)_/¯
 **/appMenus
@@ -38,3 +31,4 @@
 #!**/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
 #!**/profiles/Trial-of-the-Titans-User.profile-meta.xml
 **/profiles
+**/layouts

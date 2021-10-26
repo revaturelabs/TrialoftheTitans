@@ -17,16 +17,11 @@ public with sharing class ExperiencesController {
     */
     @AuraEnabled(cacheable=true)
     public static List<Experience__c> getExperiences(){
-        List<Experience__c> experiences = [
-                                            SELECT Id, Company__c, Position__c, Start_Date__c, End_Date__c 
-                                            FROM Experience__c
-                                            ];
+        return [SELECT Id, Company__c, Position__c, Start_Date__c, End_Date__c 
+                    FROM Experience__c];
 
         //There could possibly be cases for when we are returning null experiences.
         //So some functionaility to throw exceptions or errors in those cases, maybe.
-
-        return experiences;
-
     }
 
     /*updateExperiences() updates experiences in the database
@@ -42,6 +37,6 @@ public with sharing class ExperiencesController {
     experiences: experiences to delete */
     @AuraEnabled(cacheable=true)
     public static void deleteExperience(Experience__c experience){
-        delete experience;
+        Database.delete(experience);
     }
 }

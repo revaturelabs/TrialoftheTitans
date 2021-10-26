@@ -1,47 +1,40 @@
-import deleteExperience from '@salesforce/apex/ExperiencesController.deleteExperience';
+import { deleteRecord } from 'lightning/uiRecordApi';
 import getExperiences from '@salesforce/apex/ExperiencesController.getExperiences';
-import updateExperiences from '@salesforce/apex/ExperiencesController.updateExperiences';
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
+import { refreshApex } from '@salesforce/apex';
 
 export default class LwcPortfolioOtherExperiences extends LightningElement {
 
     isEdit = true;
-    draftValues = [];
-    experienceToDelete;
+    @track xp;
+    @track wireRes;
 
-    
     columns = [
-        {label:"Company", fieldName:"Company__c", type:"text",editable:true },
-        {label:"Position", fieldName:"Position__c", type:"text",editable:true },
-        {label:"Start Date", fieldName:"Start_Date__c", type:"date-local",editable:true },
-        {label:"End Date", fieldName:"End_Date__c", type:"date-local",editable:true },
-        { type: 'action', typeAttributes: { rowActions: { label: 'Delete', name: 'delete' } } }
+        {label:"Company", fieldName:"Company__c", type:"text",editable:false },
+        {label:"Position", fieldName:"Position__c", type:"text",editable:false },
+        {label:"Start Date", fieldName:"Start_Date__c", type:"date-local",editable:false },
+        {label:"End Date", fieldName:"End_Date__c", type:"date-local",editable:false },
+        { type: 'action', typeAttributes: { rowActions: [{ label: 'Delete', name: 'delete' }] } }
     ];
-    
-    //wire to update the data table
-    @wire(updateExperiences, { "experiences" : '$draftValues' })
-    updateExperienceList;
 
     @wire(getExperiences)
-    experienceList;
+    experienceList(res) {
+        const { data, error } = res;
+        this.xp = data;
+        this.wireRes = res;
+    };
 
-    @wire(deleteExperience, { "experience" : '$experienceToDelete' })
-    deleteExperience;
-
-    //saves the records on inline edit of data table
-    onSave(event){
-        this.draftValues = event.detail.draftValues;
-        this.template.querySelector('dataTable').draftValues = [];
-    }
 
     //setup to handle more row actions in the future
     handleRowAction(event) {
-        var action = event.getParam('action');
-        var row = event.getParam('row');
-
+        var action = event.detail.action;
+        var row = event.detail.row;
         switch (action.name) {
             case 'delete':
-                this.experienceToDelete = row;
+                deleteRecord(row.Id)
+                .then(() => {
+                    refreshApex(this.wireRes);
+                });
                 break;
         }
     }
@@ -50,7 +43,10 @@ export default class LwcPortfolioOtherExperiences extends LightningElement {
         this.isEdit = false;
     }
 
+    //this is called on record form success and when hitting cancel button
+    //so refreshing apex here to refresh the dataTable
     cancel() {
         this.isEdit = true;
+        refreshApex(this.wireRes);
     }
 }

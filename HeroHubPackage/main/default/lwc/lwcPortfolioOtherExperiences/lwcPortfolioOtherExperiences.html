@@ -10,11 +10,10 @@
         
     <lightning-card title="Experiences Data Table">
         <lightning-datatable data-id="dt"
-            data={experienceList}
+            data={xp}
             columns={columns}
             key-field="Id"
             class="dataTable"
-            onsave={onSave}
             hide-checkbox-column=true
             onrowaction={handleRowAction}>
         </lightning-datatable>

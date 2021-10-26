@@ -13,7 +13,7 @@
         <!--<img class="Hydra" src="{!$Resource.TitanResources + '/TitanResources/Hydra.gif' }"/>-->
 
         <lightning:card class="Header">
-            <c:PortfolioHeader/>
+            <c:lwcPortfolioHeader/>
         </lightning:card>
 
         <lightning:card class="Indu">
@@ -25,7 +25,7 @@
         </lightning:card>
 
         <lightning:card class="Exp">
-            <c:PortfolioOtherExperiences/>
+            <c:lwcPortfolioOtherExperiences/>
         </lightning:card>
 
         <lightning:card class="Project">

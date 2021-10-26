@@ -8,7 +8,7 @@
 <aura:component access="global" implements="force:appHostable, forceCommunity:availableForAllPageTypes">
 
     <lightning:card class="Header">
-        <c:PortfolioHeader/>
+        <c:lwcPortfolioHeader/>
     </lightning:card>   
     <lightning:card class="Body">
         <lightning:accordion class="WholeAccordion" allowMultipleSectionsOpen="true" onsectiontoggle="{!c.handleSectionToggle}">
@@ -22,7 +22,7 @@
             </lightning:accordionSection>
 
             <lightning:accordionSection class="C" label="Other Experiences">
-                <c:PortfolioOtherExperiences/>
+                <c:lwcPortfolioOtherExperiences/>
             </lightning:accordionSection>
 
             <lightning:accordionSection class="D" label="Projects">

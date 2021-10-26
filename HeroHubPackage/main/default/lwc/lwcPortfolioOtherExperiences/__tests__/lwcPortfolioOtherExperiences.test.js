@@ -25,7 +25,7 @@ describe('lwcPortfolioOtherExperiences test suite', () => {
         return Promise.resolve();
     }
 
-    // tests the add/cancel buttons. this works
+    // tests the add/cancel buttons
     it('test add new experience/cancel buttons', async () => {
         
         const element = document.querySelector('c-lwc-portfolio-other-experiences');
@@ -43,10 +43,10 @@ describe('lwcPortfolioOtherExperiences test suite', () => {
         expect( element.shadowRoot.childNodes[1].label).toBe('Add New Experience');
     });
 
-    //tests adding a new experince, makes sure it appears on datatable
-    // and then tests for a row action
+    //tests adding a new experience, makes sure it appears on datatable, then row action
     it('test adding new experience and datatable', async () => {
         
+        //adding new experience
         const element = document.querySelector('c-lwc-portfolio-other-experiences');
         const addExButton = element.shadowRoot.querySelector('.addXpButton');
         addExButton.click();
@@ -61,29 +61,41 @@ describe('lwcPortfolioOtherExperiences test suite', () => {
         const startInput = element.shadowRoot.querySelector('.startInput');
         const endInput = element.shadowRoot.querySelector('.endInput');
         const submitButton = element.shadowRoot.querySelector('.submitButton');
-        const dataTable = element.shadowRoot.querySelector('.dataTable');
 
         companyInput.value = 'ABC';
         positionInput.value = 'Test';
         startInput.value = '2021-10-25';
         endInput.value = '2021-10-25';
         submitButton.click();
-
+    
         await flushPromises();
 
-        //this fails. Can't get to work. 
-        //dataTable.data returns undefined for some reason
-        expect(dataTable.data).toBe('ABC');
+        //seeing it's in the datable
+        const dataTable = element.shadowRoot.querySelector('lightning-datatable');
 
-        //need to check the row action here once the above is sorted out
-        /*
-        const rowActionEvent = new CustomEvent('rowaction', {
-            detail: {
-                action: { name: "delete" },
-                row: {}
-            }
-        });
+        //this fails before submitting the record but not after, telling me the test
+        //accurately tests for the record being added to datatable
+        expect(dataTable).not.toBe(null);
+
+        /*testing delete row action
+        need to get the table data to iterate over and run the rowaction event
+        for each record to delete, then assert datable is null to show no records
+
+        Not working. dataTable.data returns undefined. This is written how other 
+        documentation is online so idk... 
         */
+        const rows = dataTable.data;
+
+        rows.forEach(function(record){
+            dataTable.dispatchEvent(new CustomEvent('rowaction', 
+            { detail:  
+                { action: { name: 'delete' }, row: { id: record.id }}
+            })
+            );
+        });
+
+        
+
     });
 
 })

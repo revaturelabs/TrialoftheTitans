@@ -1,3 +1,3 @@
 <aura:application extends="force:slds">
-    <c:lwcPortfolioHeader/>
+    <c:lwcPortfolioOtherExperiences/>
 </aura:application>	
