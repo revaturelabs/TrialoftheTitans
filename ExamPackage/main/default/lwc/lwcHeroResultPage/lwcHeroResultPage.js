@@ -28,11 +28,10 @@ export default class LwcHeroResultPage extends LightningElement {
             console.log(error);
 
         } else if (data) {
-
+            console.log('data : ')
+            console.log(data)
             const titanList = data;
             this.titanTabPanel = titanList;
-            console.log(data);
-
         }
     }
 
@@ -46,7 +45,6 @@ export default class LwcHeroResultPage extends LightningElement {
         } else if (data) {
             const resultList = data;
             this.examListPanel = resultList;
-            console.log(resultList);
         }
     }
 

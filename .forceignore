@@ -27,8 +27,8 @@ package.xml
 **/workflows
 **/quickActions
 **/matchingRules
-#**/flexipages
-#**/staticresources
+**/flexipages
+**/staticresources
 **/appMenus
 **/components
 **/experiences

@@ -51,10 +51,4 @@ public class ExamDataFactory1{
         Question_Flow_Helper__c flowTest = new Question_Flow_Helper__c(Name='Test');
         insert flowTest;
     }
-    insert assignmentList;
-    Question_Flow_Helper__c flowTest = new Question_Flow_Helper__c(
-      Name = 'Test'
-    );
-    insert flowTest;
-  }
 }
