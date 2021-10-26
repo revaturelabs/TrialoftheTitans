@@ -33,12 +33,7 @@
             </div>
             <!--Displays the technology of the selected titan-->
             <div class="slds-box">
-                <!--
-                    Commented out by William Rembish on 10/20/2021
-                    Reason: cannot set "disabled" to equal a boolean, if its included its true, if its ommited its false
-                    <lightning-combobox name="TechnologyID" label="Titan's Technology:" value={valueTech} options={techOptions} disabled=true>
-                    -->
-                <lightning-combobox name="TechnologyID" label="Titan's Technology:" value={valueTech} options={techOptions} disabled>
+                <lightning-combobox name="TechnologyID" label="Titan's Technology:" value={valueTech} options={techOptions} disabled="true">
                 </lightning-combobox>
             </div>
             <!--Button for advancing to the submission screen-->
@@ -71,12 +66,7 @@
                             </td>
                             <td class="td__upload">
                                 <!-- file uploader -->
-                                <!--
-                                    Commented out by William Rembish on 10/20/2021
-                                    Reason: cannot do 'multiple="false"', must ommit attribute entirely in order to set it to false
-                                    <lightning-input type="file" label="Upload Text Document" multiple="false" accept=".txt" onchange={handleUploadFile} ></lightning-input>
-                                --> 
-                                <lightning-input type="file" label="Upload Text Document" accept=".txt" onchange={handleUploadFile} ></lightning-input>
+                                <lightning-input type="file" label="Upload Text Document" multiple="false" accept='.txt' onchange={handleUploadFile} ></lightning-input> 
                                 <!-- /file uploader -->
                             </td>
                             <td class="td__buttons">
@@ -100,7 +90,7 @@
                                 <th width="40%">Question Text</th>
                                 <th width="40%">Question Answer</th>
                             </tr>
-                            <template for:each={submitList} for:item="q">
+                            <template for:each={submitList} for:item='q'>
                                 <tr key={q.qtitle}>
                                     <td>
                                         {q.qTitle}
