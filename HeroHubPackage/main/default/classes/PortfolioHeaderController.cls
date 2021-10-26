@@ -2,7 +2,7 @@ public with sharing class PortfolioHeaderController {
 
     public static String jobname;
     
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static String getUserName() {
         //Method for retrieving Current User information
         return userInfo.getName();

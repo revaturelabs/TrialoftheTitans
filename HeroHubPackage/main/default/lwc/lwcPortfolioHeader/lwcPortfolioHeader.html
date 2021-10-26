@@ -1,0 +1,35 @@
+<!--
+/////////////////////////////////////////////////////
+//
+//  Name: PortfolioHeader lwc
+//  Author: Ethan Wilson
+//  Description: Component for the header section of the Hero portfolio. 
+//                It gets the user name and allows the user to prefix a title
+//  Last Updated: 10/20/21
+//
+///////////////////////////////////////////////////
+-->
+
+<template>
+
+    <template if:false={selectedTitle}>
+        <h2 title="user name" class="userName">{userName.data}</h2>
+    </template>
+
+    <template if:false={editMode}>
+        <div class="editModeOff">
+            <template if:true={selectedTitle}>
+                <h2 class="titleAndName" title="Selected Title and name">{selectedTitle} {userName.data}</h2>
+            </template>
+            <lightning-button class="editButtonOn" variant="base" title="Set Edit Mode" label="edit" onclick={setEdit}></lightning-button>
+        </div>
+    </template>
+
+    <template if:true={editMode}>
+        <div class="editModeOn">
+            <lightning-combobox title="Title Selection" class="titleSelect" name="Title Select" label="Select a Title" placeholder="--Select an Option--" options={titleList} onchange={setTitle}></lightning-combobox>
+        <lightning-button class="editButtonOff" variant="brand" title="Exit Edit Mode" label="Save" onclick={setEdit}></lightning-button>
+        </div>
+    </template>
+
+</template>

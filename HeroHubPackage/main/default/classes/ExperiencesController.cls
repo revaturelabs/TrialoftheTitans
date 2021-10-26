@@ -1,27 +1,26 @@
 /////////////////////////////////////////////////////
 //
 //  Name: ExperiencesController
-//  Author: Will Harris
+//  Author: Will Harris, Ethan Wilson
 //  Created: 9/8/2021
-//  Updated: 9/14/2021
+//  Updated: 10/25/2021
 //  Description: ExperiencesController allows for the 
 //  other experiences component to communicate with the
-//  database.
+//  database. (Edited to work with LWC)
 //  
 ///////////////////////////////////////////////////
 public with sharing class ExperiencesController {
 
     /*getExperiences() queries a list of experiences based on the user invoking it.
-    userId: id of the user invoking the method. Parameter is passed on from JavaScript helper */
-    @AuraEnabled
+    userId: id of the user invoking the method. Parameter is passed on from JavaScript helper 
+     -- iteration 6 removed this. idk why they just didn't use with sharing
+    */
+    @AuraEnabled(cacheable=true)
     public static List<Experience__c> getExperiences(){
-        List<Experience__c> experiences = new List<Experience__c>();
-
-        String curUser = UserInfo.getUserId();
-
-        experiences = [SELECT Id, Company__c, Position__c, Start_Date__c, End_Date__c 
-                                FROM Experience__c
-                                WHERE User__r.Id = :curUser];
+        List<Experience__c> experiences = [
+                                            SELECT Id, Company__c, Position__c, Start_Date__c, End_Date__c 
+                                            FROM Experience__c
+                                            ];
 
         //There could possibly be cases for when we are returning null experiences.
         //So some functionaility to throw exceptions or errors in those cases, maybe.
@@ -32,7 +31,7 @@ public with sharing class ExperiencesController {
 
     /*updateExperiences() updates experiences in the database
     experiences: experiences to update*/
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static void updateExperiences(List<Experience__c> experiences){
         if(experiences != null){
             update experiences;
@@ -41,7 +40,7 @@ public with sharing class ExperiencesController {
 
     /*deleteExperience() deletes experiences in the database
     experiences: experiences to delete */
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static void deleteExperience(Experience__c experience){
         delete experience;
     }
