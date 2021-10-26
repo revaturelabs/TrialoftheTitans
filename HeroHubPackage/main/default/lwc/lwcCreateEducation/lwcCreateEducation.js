@@ -1,3 +1,10 @@
+/*
+    Author: Matthew Kim
+    Description: LWC component that creates a new education
+    Date Created: 10/17/21
+    Date Edited: 10/18/21
+*/
+
 import { LightningElement, api } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import NAME_FIELD from "@salesforce/schema/Education__c.Name";

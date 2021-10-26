@@ -1,0 +1,32 @@
+<!--
+    Author: Matthew Kim
+    Description: LWC component that checks feedback
+    Date Created: 10/21/21
+    Date Edited: 10/22/21
+-->
+
+<template>
+  <div class="header">
+    <h1>Check The Feedback From Previous Battles!</h1>
+  </div>
+  <lightning-card class="WholeComponent">
+    <lightning-combobox
+      options={options}
+      name="week"
+      label="Which week?"
+      required
+      value={week}
+      onchange={onchange}
+    >
+    </lightning-combobox>
+    <template class="display" if:true={showData}>
+      <lightning-record-form
+        record-id={OneonOneId}
+        object-api-name="One_on-One__c"
+        layout-type="Compact"
+        mode="readonly"
+      >
+      </lightning-record-form>
+    </template>
+  </lightning-card>
+</template>
