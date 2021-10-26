@@ -11,7 +11,7 @@ const mockGetQuestion = require("./data/getQuestionMock.json");
 const mockGetQCQuestion = require("./data/getQCQuestions.json");
 
 // Register a standard test wire adapter.
-const currentPageReferenceAdapter = registerTestWireAdapter(getQuestion);
+const mockGetQuestionWire = registerTestWireAdapter(getQuestion);
 
 // mocking imperative call to getQCQuestions apex method for child component
 jest.mock(
@@ -57,8 +57,6 @@ jest.mock(
   { virtual: true }
 );
 
-
-
 // Sample error for imperative Apex call
 const APEX_ERROR = {
   body: { message: "An internal server error has occurred" },
@@ -99,7 +97,7 @@ describe("c-lwc-q-c-question-edit", () => {
 
   it("Test initialization of the component", async () => {
     // Emit data from @wire
-    currentPageReferenceAdapter.emit({ data: mockGetQuestion, error: null });
+    mockGetQuestionWire.emit({ data: mockGetQuestion, error: null });
 
     // Assign mock value for resolved Apex promise for child component
     getQCQuestions.mockResolvedValue(mockGetQCQuestion);
@@ -122,7 +120,7 @@ describe("c-lwc-q-c-question-edit", () => {
 
   it("Test if the wire resolves with an error", async () => {
     // Emit data from @wire
-    currentPageReferenceAdapter.emit({ data: null, error: true });
+    mockGetQuestionWire.emit({ data: null, error: true });
 
     // Assign mock value for resolved Apex promise for child component
     getQCQuestions.mockResolvedValue(mockGetQCQuestion);
@@ -139,12 +137,14 @@ describe("c-lwc-q-c-question-edit", () => {
     // make sure that when an error is returned by the wire, the lighnting-datatable is not rendered but the error paragraph is
     expect(element.shadowRoot.querySelector("lightning-datatable")).toBeNull();
     expect(element.shadowRoot.querySelector("p")).not.toBeFalsy();
-    expect(element.shadowRoot.querySelector("p").textContent).toBe("error no query");
+    expect(element.shadowRoot.querySelector("p").textContent).toBe(
+      "error no query"
+    );
   });
 
   it("Test if an error is thrown in the imperative apex call of getQuestion()", async () => {
     // Emit data from @wire
-    currentPageReferenceAdapter.emit({ data: mockGetQuestion, error: null });
+    mockGetQuestionWire.emit({ data: mockGetQuestion, error: null });
 
     // Assign mock value for resolved Apex promise for child component
     getQCQuestions.mockResolvedValue(mockGetQCQuestion);
@@ -160,12 +160,14 @@ describe("c-lwc-q-c-question-edit", () => {
 
     // check that the element didn't break when an error was thrown
     expect(element).not.toBeFalsy();
-    expect(element.shadowRoot.querySelector("lightning-datatable").data).toBeFalsy();
+    expect(
+      element.shadowRoot.querySelector("lightning-datatable").data
+    ).toBeFalsy();
   });
 
   it("Test successful save of edits", async () => {
     // Emit data from @wire
-    currentPageReferenceAdapter.emit({ data: mockGetQuestion, error: null });
+    mockGetQuestionWire.emit({ data: mockGetQuestion, error: null });
 
     // Assign mock value for resolved Apex promise for child component
     getQCQuestions.mockResolvedValue(mockGetQCQuestion);
@@ -197,12 +199,12 @@ describe("c-lwc-q-c-question-edit", () => {
     );
     await flushPromises();
 
-      expect(handler).toHaveBeenCalled();
+    expect(handler).toHaveBeenCalled();
   });
 
   it("Test failed save of edits", async () => {
     // Emit data from @wire
-    currentPageReferenceAdapter.emit({ data: mockGetQuestion, error: null });
+    mockGetQuestionWire.emit({ data: mockGetQuestion, error: null });
 
     // Assign mock value for resolved Apex promise for child component
     getQCQuestions.mockResolvedValue(mockGetQCQuestion);
@@ -239,7 +241,7 @@ describe("c-lwc-q-c-question-edit", () => {
 
   it("Test that deleting a row with the onrowaction delete action works as expected", async () => {
     // Emit data from @wire
-    currentPageReferenceAdapter.emit({ data: mockGetQuestion, error: null });
+    mockGetQuestionWire.emit({ data: mockGetQuestion, error: null });
 
     // Assign mock value for resolved Apex promise for child component
     getQCQuestions.mockResolvedValue(mockGetQCQuestion);
@@ -281,7 +283,7 @@ describe("c-lwc-q-c-question-edit", () => {
 
   it("Test that an error in the delete action in the onrowaction is handled as expected", async () => {
     // Emit data from @wire
-    currentPageReferenceAdapter.emit({ data: mockGetQuestion, error: null });
+    mockGetQuestionWire.emit({ data: mockGetQuestion, error: null });
 
     // Assign mock value for resolved Apex promise for child component
     getQCQuestions.mockResolvedValue(mockGetQCQuestion);

@@ -25,14 +25,7 @@ describe('c-d3-chart-test', () => {
         });
     });
 
-  // Helper function to wait until the microtask queue is empty. This is needed for promise
-  // timing when calling imperative Apex.
-  async function flushPromises() {
-    return Promise.resolve();
-  }
-
-    it('T ', () => {
-        element.d3Initialized = true;
+    it('Test ', () => {
         document.body.appendChild(element);
 
     });

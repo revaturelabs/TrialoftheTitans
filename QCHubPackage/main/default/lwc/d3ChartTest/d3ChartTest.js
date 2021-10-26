@@ -7,6 +7,10 @@ import d3 from '@salesforce/resourceUrl/d37';
 import DATA from './data';
 
 export default class LibsD3 extends LightningElement {
+    /*
+    Commented out by William Rembish on 10/25/2021
+    Reason: this code needs a static resource that wasn't included and wasn't told how to get it
+    
     svgWidth = 400;
     svgHeight = 400;
     
@@ -124,4 +128,5 @@ export default class LibsD3 extends LightningElement {
             d.fy = null;
         }
     }
+    */
 }
