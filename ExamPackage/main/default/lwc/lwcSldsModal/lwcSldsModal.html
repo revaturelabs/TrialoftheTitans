@@ -7,8 +7,11 @@
   Modifications Log
   Ver   Date         Author         Modification
   1.0   10-02-2021   Daniel Boice   Initial Version
+  Modified Date: 10/26/2021
+  Modified By: Iteration VI Styling and Data
 -->
 <template>
+   <div class="container slds-p-around_large">
     <lightning-button variant="brand" label={showButtonText} title={showButtonText} onclick={showModal}
        class="slds-m-left_x-small" disabled={showButtonDisabled}></lightning-button>
  
@@ -40,4 +43,5 @@
        </div>
     </section>
     <div class={modalBackdropClass}></div>
+    </div>
  </template>

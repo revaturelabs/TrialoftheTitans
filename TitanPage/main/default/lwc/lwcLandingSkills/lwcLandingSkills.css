@@ -1,3 +1,6 @@
+@import 'c/titanPageStyle';
+
+
 /*
 
   Title: lwcLandingSkills
@@ -7,7 +10,6 @@
   Modified date: 10/19/2021
   Modified by: Colin Poirier
 
-*/
 
 div {
   color: white;
@@ -20,3 +22,4 @@ div {
 lightning-card {
   --sds-c-card-color-background: var(--background-color);
 }
+*/

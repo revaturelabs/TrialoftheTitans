@@ -7,62 +7,34 @@
   Modifications Log
   Ver   Date         Author         Modification
   1.0   09-30-2021   Daniel Boice   Initial Version
+  Modified Date: 10/26/2021
+  Modified By: Iteration VI Styling and Data
 -->
 <template>
-  <div class="slds-p-around_x-small">
-    <lightning-card title={questionNumberTitleText}>
-      <c-lwc-question
-        onanswerupdated={answerUpdated}
-        question={question}
-      ></c-lwc-question>
-    </lightning-card>
-    <template if:true={error}>
-      <div
-        class="
-          slds-notify slds-notify_alert
-          slds-theme_alert-texture slds-theme_error
-        "
-        role="alert"
-      >
-        <span class="slds-assistive-text">error</span>
-        <h2>Application Error:{error.message}</h2>
-      </div>
-    </template>
-
-    <lightning-button
-      class="slds-float_left"
-      name="prevButton"
-      label="Previous Question"
-      title="Previous Question"
-      onclick={prevClicked}
-      disabled={prevButtonDisabled}
-    ></lightning-button>
-    <lightning-button
-      class="slds-float_right"
-      name="nextButton"
-      label="Next Question"
-      title="Next Question"
-      onclick={nextClicked}
-      disabled={nextButtonDisabled}
-    ></lightning-button>
-    <template if:true={showCelebrateButton}>
-      <lightning-button
-        id="celebratebutton"
-        label="Celebrate!"
-        title="Non-primary action"
-        onclick={fireworks}
-        class="slds-m-left_x-small"
-      ></lightning-button>
-    </template>
-  </div>
-
-  <c-lwc-slds-modal
-    show-button-text="Submit Exam Confirmation"
-    close-button-text="Cancel"
-    close-button-label="No, Not Yet! Take me back!"
-    modal-header="Confirm Submit Exam"
-    modal-content="Are you sure you are ready to submit your exam now?"
-    confirm-button-label="Yes, I'm ready to submit my exam now"
-    onconfirmationclick={handleSubmit}
-  ></c-lwc-slds-modal>
+   
+    <div class="slds-p-around_large container ">
+  
+            <lightning-card title={questionNumberTitleText}>
+                <c-lwc-question onanswerupdated={answerUpdated} question={question}></c-lwc-question>
+            </lightning-card>
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                    <span class="slds-assistive-text">error</span>
+                    <h2>Application Error:{error.message}
+                    </h2>
+                  </div>
+            </template>
+           
+ 
+        <lightning-button class="slds-float_left" name="prevButton" label="Previous Question" title="Previous Question" onclick={prevClicked} disabled={prevButtonDisabled}></lightning-button>
+        <lightning-button class="slds-float_right" name="nextButton" label="Next Question" title="Next Question" onclick={nextClicked} disabled={nextButtonDisabled}></lightning-button>
+            <template if:true={showCelebrateButton}>
+                    <lightning-button id="celebratebutton" label="Celebrate!" title="Non-primary action" onclick={fireworks} class="slds-m-left_x-small"></lightning-button>
+            </template>
+            
+      
+    </div >
+    
+    <c-lwc-slds-modal show-button-text="Submit Exam Confirmation" close-button-text="Cancel" close-button-label= "No, Not Yet! Take me back!" modal-header="Confirm Submit Exam" modal-content="Are you sure you are ready to submit your exam now?" confirm-button-label="Yes, I'm ready to submit my exam now" onconfirmationclick={handleSubmit} ></c-lwc-slds-modal>
+  
 </template>

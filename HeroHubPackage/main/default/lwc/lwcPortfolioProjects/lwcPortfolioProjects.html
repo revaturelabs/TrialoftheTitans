@@ -3,75 +3,49 @@
     Description: LWC component that allows you to create Project records and edit existing ones. Current issue
     where the update feature only allows you to update one of the existing projects.
     Date Created: 10/23/21
+    Modified Date: 10/26/21
+    Modified By: Iteration VI Styling and Data
 -->
 
 <template>
-  <lightning-card>
-    <div class="recordFormSection">
-      <!--using standard lightning record form to input a new record-->
-      <lightning-record-form
-        object-api-name="Project__c"
-        layout-type="Full"
-        columns="1"
-        mode=""
-        data-id="ProjectForm"
-        onsuccess={handleSuccess}
-      ></lightning-record-form>
-    </div>
-  </lightning-card>
-  <!--iterate through projects for current user-->
-  <template if:true={projects.data}>
-    <template for:each={projects.data} for:item="proj">
-      <lightning-card key={proj.Id} title={proj.Name}>
-        <!--creates 3 tabs for each text input field to edit-->
-        <lightning-tabset>
-          <lightning-tab title="Description Tab" label="Description">
-            <div>
-              <!--ideally wouldn't have this disabled ID field, but this is how it's currently working-->
-              <lightning-input
-                label="Id"
-                disabled
-                value={proj.Id}
-                data-field="Id"
-              ></lightning-input>
-              <lightning-input-rich-text
-                title="Description"
-                value={proj.Description__c}
-                data-field="Description"
-              ></lightning-input-rich-text>
-            </div>
-          </lightning-tab>
-          <lightning-tab
-            title="Roles and Responsibilities tab"
-            label="Roles and Responsibilities"
-          >
-            <div>
-              <lightning-input-rich-text
-                title="Roles and Responsibilities"
-                value={proj.Roles_Responsibilities__c}
-                data-field="Roles"
-              ></lightning-input-rich-text>
-            </div>
-          </lightning-tab>
-          <lightning-tab title="Technologies Tab" label="Technologies">
-            <div>
-              <lightning-input-rich-text
-                title="Technologies"
-                value={proj.Technologies__c}
-                data-field="Technologies"
-              ></lightning-input-rich-text>
-            </div>
-          </lightning-tab>
-          <!--updates project record-->
-          <lightning-button
-            title="Update"
-            label="Update"
-            onclick={updateProject}
-            class="slds-m-left_small"
-            variant="brand-outline"
-          ></lightning-button>
-        </lightning-tabset>
-      </lightning-card>
+    <div class="container slds-p-around_large">
+    <lightning-card>
+        <div class="recordFormSection">
+            <!--using standard lightning record form to input a new record-->
+            <lightning-record-form
+              object-api-name="Project__c"
+              layout-type="Full"
+              columns="1"
+              mode=""
+              data-id="ProjectForm"
+              onsuccess={handleSuccess}
+            ></lightning-record-form>
+        </div>
+    </lightning-card>
+    <template if:true={projects.data}>
+        <template for:each={projects.data} for:item='proj'>
+            <lightning-card key={proj.Id} title={proj.Name}>
+                <lightning-tabset>
+                    <lightning-tab label="Description" dataid="one">
+                        <div>
+                            <lightning-input label="Id" disabled value={proj.Id} data-field="Id"></lightning-input>
+                            <lightning-input-rich-text value= "{proj.Description__c}" data-field="Description"></lightning-input-rich-text>
+                        </div>
+                    </lightning-tab>
+                    <lightning-tab label="Roles and Responsibilities">
+                        <div>
+                            <lightning-input-rich-text value= "{proj.Roles_Responsibilities__c}" data-field="Roles"></lightning-input-rich-text>
+                        </div>
+                    </lightning-tab>
+                    <lightning-tab label="Technologies">
+                        <div>
+                            <lightning-input-rich-text value= "{proj.Technologies__c}" data-field="Technologies"></lightning-input-rich-text>
+                        </div>
+                    </lightning-tab>
+                    <lightning-button label="Update" onclick={updateProject} class="slds-m-left_small" variant="brand-outline"></lightning-button>
+                </lightning-tabset> 
+            </lightning-card>
+        </template>
     </template>
-  </template>
+    </div>
 </template>

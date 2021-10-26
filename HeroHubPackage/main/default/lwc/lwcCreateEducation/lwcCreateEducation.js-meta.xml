@@ -15,9 +15,9 @@
         <!--<target>lightningSnapin__Minimized</target>-->
         <!--<target>lightningSnapin__PreChat</target>-->
         <!--<target>lightningSnapin__ChatHeader</target>-->
-        <!--<target>lightningCommunity__Page</target>-->
-        <!--<target>lightningCommunity__Default</target>-->
-        <!--<target>lightningCommunity__Page_Layout</target>-->
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+        <target>lightningCommunity__Page_Layout</target>
         <!--<target>lightningCommunity__Theme_Layout</target>-->
     </targets>
 </LightningComponentBundle>

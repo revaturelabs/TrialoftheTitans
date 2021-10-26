@@ -5,13 +5,14 @@
 //  Author: Ethan Wilson
 //  Description: Component for the header section of the Hero portfolio. 
 //                It gets the user name and allows the user to prefix a title
-//  Last Updated: 10/20/21
+//  Last Updated: 10/26/21
+//  Last Updated By: Iteration VI Styling and Data
 //
 ///////////////////////////////////////////////////
 -->
 
 <template>
-
+    <div class="container slds-p-around_large">
     <template if:false={selectedTitle}>
         <h2 title="user name" class="userName">{userName.data}</h2>
     </template>
@@ -31,5 +32,5 @@
         <lightning-button class="editButtonOff" variant="brand" title="Exit Edit Mode" label="Save" onclick={setEdit}></lightning-button>
         </div>
     </template>
-
+    </div>
 </template>

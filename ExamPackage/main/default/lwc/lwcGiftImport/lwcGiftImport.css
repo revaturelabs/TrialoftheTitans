@@ -1,4 +1,15 @@
-.container {
+/*
+  Author: Iteration VI - Style & Data
+  Created date: 10/26/2021
+  Description: css file. a simplification of aura component css
+  Modified date: 
+  Modified by:
+
+*/
+
+@import 'c/examStyle';
+
+/* .container {
     background-color: #FAFAF9;
 }
 h1 {
@@ -57,4 +68,4 @@ h2 {
 }
 .import td:first-child,   .import th:first-child {
     border-left: none;
-}
+} */
