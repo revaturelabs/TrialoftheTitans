@@ -83,9 +83,10 @@ describe('lwcPortfolioOtherExperiences test suite', () => {
 
         Not working. dataTable.data returns undefined. This is written how other 
         documentation is online so idk... 
-        */
+        
         const rows = dataTable.data;
 
+       
         rows.forEach(function(record){
             dataTable.dispatchEvent(new CustomEvent('rowaction', 
             { detail:  
@@ -93,7 +94,7 @@ describe('lwcPortfolioOtherExperiences test suite', () => {
             })
             );
         });
-
+        */
         
 
     });

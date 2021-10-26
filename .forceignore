@@ -1,0 +1,35 @@
+# List files or directories below to ignore them when running force:source:push, force:source:pull, and force:source:status
+# More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
+
+# .forceignore v2
+
+# LWC configuration files
+**/jsconfig.json
+**/.eslintrc.json
+
+# LWC Jest
+**/__tests__/**
+
+
+# Fixes error to get rid of it ¯\_(ツ)_/¯
+**/appMenus
+**/sites
+**/networks
+**/networkBranding
+**/experiences
+**/navigationMenus
+**/audience
+
+#All this stuff you may want to enable to disable
+#depending on what you are wanting to pull/push
+
+#**/aura
+#**/components
+#**/pages
+#**/classes
+#!**/profiles/Admin.profile-meta.xml
+#!**/profiles/Hero.profile-meta.xml
+#!**/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
+#!**/profiles/Trial-of-the-Titans-User.profile-meta.xml
+**/profiles
+**/layouts

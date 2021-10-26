@@ -42,7 +42,7 @@
         </aura:if>
 
         <aura:if isTrue="{!v.navigate == 'Titans'}">
-            <c:TitansPageLanding />
+            <c:lwcTitansPageLanding />
         </aura:if>
 
         <!-- 

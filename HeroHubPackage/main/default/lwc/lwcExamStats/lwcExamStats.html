@@ -18,13 +18,13 @@
             <!-- Display for an exam that has yet to be attempted -->
             <template if:true={examDisplay}>
                 <h1> Ready to take on the {examName} minion? </h1>
-                <lightning-button variant="brand" class="slds-button" label="Take Exam!" data-id="Take_Exam_Button" onclick={takeExame}/>
+                <lightning-button variant="brand" class="slds-button" label="Take Exam!" data-id="Take_Exam_Button" onclick={takeExame}></lightning-button>
             </template>
 
             <!-- Display that shows the results of the "most recent" exam having been taken -->
             <template if:true={resultsDisplay}>
                 <h1> {examName} Results </h1>
-                <div class="line"/>
+                <div class="line"></div>
                 <br/>
                 <h3>Last Attempt: </h3>
                 <br/>
@@ -33,7 +33,7 @@
                 <br/>
                 <h1>{score}%</h1>
                 <br/>
-                <lightning-button variant="brand" class="slds-button" label="Retake Exam!" data-id="Retake_Exam_Button" onclick={takeExame}/>
+                <lightning-button variant="brand" class="slds-button" label="Retake Exam!" data-id="Retake_Exam_Button" onclick={takeExame}></lightning-button>
             </template>
         </div>
     </template>
