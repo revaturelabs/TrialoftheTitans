@@ -16,7 +16,7 @@ export default class LwcExamsLanding extends LightningElement {
   @api
   activetitan;
 
-  @wire(getExams, { titanId: "$Id" })
+  @wire(getExams, { titanId: "$Id" }) 
   examsList;  
 
   // had to make getter to satisfy testing even
