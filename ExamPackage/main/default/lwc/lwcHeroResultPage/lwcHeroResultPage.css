@@ -1,4 +1,15 @@
-.wrapper {
+ /*
+  Author: Iteration VI - Style & Data
+  Created date: 10/26/2021
+  Description: css file. a simplification of aura component css
+  Modified date: 
+  Modified by:
+
+*/
+
+@import 'c/examStyle';
+ 
+ /* .wrapper {
     width: 90vw;
     color: darkgrey;
     min-height: 100vh;
@@ -21,18 +32,18 @@
 
 .flex-wrapper .titan-tabs {
     min-width: 20vw;
-    /* border: 1px solid red; */
+    /* border: 1px solid red; 
 }
 
 .flex-wrapper .right-panel {
     min-width: 20vw;
-    /* border: 1px solid red; */
+    /* border: 1px solid red; 
 }
 
 .exam-btn-group {
     display: grid;
     grid-template-rows: repeat(1fr);
-    /* width: 60%; */
+    /* width: 60%; 
     gap: 0.5em;
     margin: 0 auto;
 }
@@ -41,7 +52,7 @@
     padding: 5px;
     border: 2px solid white;
     background: white;
-    /* width: 100px; */
+    /* width: 100px; 
     display: flex;
     flex-direction: column;
     height: 30px;
@@ -50,7 +61,7 @@
     cursor: pointer;
     align-items: center;
     justify-content: center;
-    /* align-content: center; */
+    /* align-content: center; 
 }
 
 .exam-btn:hover {
@@ -134,4 +145,4 @@
 
 .disabled {
     opacity: 0.5;
-}
+} */
