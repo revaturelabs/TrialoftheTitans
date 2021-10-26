@@ -9,7 +9,9 @@
     <targets>
         
         <target>lightning__AppPage</target>
-        
+         <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Page_Layout</target>
+        <target>lightningCommunity__Default</target>
     </targets>
     
 </LightningComponentBundle>

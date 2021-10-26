@@ -4,27 +4,31 @@
     Date Created: 10/20/21
 -->
 <template>
-  <lightning-record-edit-form
-    record-id={recordId}
-    object-api-name="Education__c"
-  >
-    <!--show User field of Education record; represents hero-->
-    <lightning-output-field field-name="User__c"> </lightning-output-field>
-    <!--allow editing of fields before updating record-->
-    <lightning-input-field field-name="Name"> </lightning-input-field>
-    <lightning-input-field field-name="Degree__c"> </lightning-input-field>
-    <lightning-input-field field-name="Major__c"> </lightning-input-field>
-    <lightning-input-field field-name="DateGraduate__c"></lightning-input-field>
-    <lightning-input-field field-name="Gpa__c"></lightning-input-field>
-    <lightning-input-field field-name="Image_URL__c"></lightning-input-field>
-    <!--button to actually facilitate record update-->
-    <lightning-button
-      class="slds-m-top_small"
-      variant="brand"
-      type="submit"
-      name="update"
-      label="Update"
-    >
-    </lightning-button>
-  </lightning-record-edit-form>
+  <div class="container slds-p-around_large">
+    <lightning-card>
+      <lightning-record-edit-form
+        record-id={recordId}
+        object-api-name="Education__c"
+      >
+        <!--show User field of Education record; represents hero-->
+        <lightning-output-field field-name="User__c"> </lightning-output-field>
+        <!--allow editing of fields before updating record-->
+        <lightning-input-field field-name="Name"> </lightning-input-field>
+        <lightning-input-field field-name="Degree__c"> </lightning-input-field>
+        <lightning-input-field field-name="Major__c"> </lightning-input-field>
+        <lightning-input-field field-name="DateGraduate__c"></lightning-input-field>
+        <lightning-input-field field-name="Gpa__c"></lightning-input-field>
+        <lightning-input-field field-name="Image_URL__c"></lightning-input-field>
+        <!--button to actually facilitate record update-->
+        <lightning-button
+          class="slds-m-top_small"
+          variant="brand"
+          type="submit"
+          name="update"
+          label="Update"
+        >
+        </lightning-button>
+      </lightning-record-edit-form>
+    </lightning-card>
+  </div>
 </template>

@@ -5,7 +5,8 @@
     created by: John Ngo
     date: 9/29/2021
     description: This component is for showing Matching questions on an Exam.
-
+    Comment: Iteration VI tried to style component but ran into issues. <div> in iterator needs unique key value.
+    Comment Date: 10/26/2021
   -->
   <header>
     <p>
@@ -18,7 +19,7 @@
   </header>
 
   <template for:each= {options} for:item = "option" >
-
+  <!-- <div class="container slds-p-around_large"> -->
   <lightning-combobox key = {option}
           name="progress"
           label={option}
@@ -28,7 +29,7 @@
           onchange={changeAnswer} ></lightning-combobox>
 
 
-
+<!-- </div> -->
 </template>
 
 

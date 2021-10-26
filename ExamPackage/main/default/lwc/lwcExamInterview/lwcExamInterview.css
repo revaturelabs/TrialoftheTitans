@@ -1,4 +1,15 @@
-.confettiCanvas{
+/*
+  Author: Iteration VI - Style & Data
+  Created date: 10/26/2021
+  Description: css file. a simplification of aura component css
+  Modified date: 
+  Modified by:
+
+*/
+
+@import 'c/examStyle';
+
+/* .confettiCanvas{
     position: fixed;
 }
 p{
@@ -7,4 +18,4 @@ p{
 }
 .hide{
     display:none;
-}
+} */
