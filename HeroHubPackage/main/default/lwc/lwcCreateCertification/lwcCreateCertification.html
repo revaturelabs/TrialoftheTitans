@@ -2,9 +2,12 @@
     Author: Liam Hunt
     Description: LWC component that creates a new Certification in the Hero hub
     Date Created: 10/17/21
+    Modified Date: 10/25/2021
+    Modified By: Iteration VI - Styling & Data
 -->
 
 <template>
+  <div class="container slds-p-around_large">
   <!-- Julia added "add New certification"  button to match functionaluty of editCert. Allows component to take up less space when it is not being used -->
   <template if:false={create}>
     <lightning-button
@@ -35,4 +38,5 @@
       </div>
     </lightning-card>
   </template>
+  </div>
 </template>
