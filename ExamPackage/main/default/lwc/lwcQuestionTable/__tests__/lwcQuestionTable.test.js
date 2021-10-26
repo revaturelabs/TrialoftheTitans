@@ -178,7 +178,7 @@ describe("c-lwc-question-table", () => {
     await flushPromises();
     addToPoolButton.click();
     await flushPromises();
-    var selectedQuestions = dataTable.getSelectedRows();
+    var selectedQuestions = dataTable.selectedRows;
     console.log(selectedQuestions);
     debugger;
     expect(selectedQuestions[0].Name).toBe(mockQuestions[0].ques[0].Name);
