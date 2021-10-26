@@ -91,7 +91,7 @@
       />
       <!--Calls createEducation component to create a new education record-->
       <aura:if isTrue="{!v.addEdu}">
-        <c:createEducation />
+        <c:lwcCreateEducation />
         <lightning:button
           label="Done"
           title="Neutral action"
