@@ -9,6 +9,7 @@ const mockQuestions = require("./data/data.json");
     test coverage:81.48%
 */
 
+//test setup
 describe("c-lwc-question", () => {
   afterEach(() => {
     while (document.body.firstChild) {
@@ -20,12 +21,14 @@ describe("c-lwc-question", () => {
   //declare the element variable
   let element;
 
+  //element creation
   beforeEach(() => {
     element = createElement("c-lwc-question", {
       is: lwcQuestion
     });
   });
 
+  //make async work
   async function flushPromises() {
     return Promise.resolve();
   }
@@ -69,6 +72,7 @@ describe("c-lwc-question", () => {
   });
 
   //setDisplayQuestionTypeBoolValues
+  //testing each of the cases in the switch
   test("text-area", async () => {
     element.question = mockQuestions[2];
     document.body.appendChild(element);
