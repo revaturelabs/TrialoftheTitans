@@ -22,14 +22,17 @@ export default class LwcExamStats extends LightningElement {
 
     @api score;
 
+    //Display for attempting to access exam not yet assigned 
     get attemptDisplay() {
         return !this.assigned && !this.attempted;
     }
 
+    //Display for an exam that has yet to be attempted
     get examDisplay() {
         return this.assigned && !this.attempted;
     }
 
+    //Display that shows the results of the "most recent" exam having been taken
     get resultsDisplay() {
         return this.assigned && this.attempted;
     }
