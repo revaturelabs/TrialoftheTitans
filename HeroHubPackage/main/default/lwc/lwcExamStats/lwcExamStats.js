@@ -41,6 +41,9 @@ export default class LwcExamStats extends LightningElement {
         this.dispatchEvent(clickedExam);
     }
 
+    // helps display the information related to an exam clicked on by the user
+    // There are 3 different views that are possible, all depending on the assigned and isPassed variables
+    // event: allows the event parameter containing the exam information to be passed through
     examClicked = (event) => {
         
         let exam = event.detail;

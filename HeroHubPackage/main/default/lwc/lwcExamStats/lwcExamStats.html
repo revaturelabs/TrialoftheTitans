@@ -9,16 +9,19 @@
 <template>
     <template if:true={display} >
         <div>
+            <!-- Display for attempting to access exam not yet assigned -->
             <template if:true={attemptDisplay}>
                 <h1>Slow your pegasus! </h1>
                 <h1>You still have some minions to get through first! </h1>
             </template>
 
+            <!-- Display for an exam that has yet to be attempted -->
             <template if:true={examDisplay}>
                 <h1> Ready to take on the {examName} minion? </h1>
                 <lightning-button variant="brand" class="slds-button" label="Take Exam!" data-id="Take_Exam_Button" onclick={takeExame}/>
             </template>
 
+            <!-- Display that shows the results of the "most recent" exam having been taken -->
             <template if:true={resultsDisplay}>
                 <h1> {examName} Results </h1>
                 <div class="line"/>
