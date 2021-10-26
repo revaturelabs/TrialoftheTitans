@@ -26,7 +26,6 @@ export default class LwcExamsLanding extends LightningElement {
     if(this.activetitan){
       return this.activetitan.Id;
     }
-    return 'HI';
   }
 
   // give default name to titan
