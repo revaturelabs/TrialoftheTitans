@@ -1,6 +1,6 @@
-import { createElement } from 'lwc';
-import LwcQCQuestionsImport from 'c/lwcQCQuestionsImport';
-import insertData from '@salesforce/apex/lwcCSVUploaderController.insertData';
+import { createElement } from "lwc";
+import LwcQCQuestionsImport from "c/lwcQCQuestionsImport";
+import insertData from "@salesforce/apex/lwcCSVUploaderController.insertData";
 
 /*
     Created By: William Rembish
@@ -10,130 +10,130 @@ import insertData from '@salesforce/apex/lwcCSVUploaderController.insertData';
 */
 
 jest.mock(
-    '@salesforce/apex/lwcCSVUploaderController.insertData',
-    () => {
-        return {
-            default: jest.fn()
-        };
-    },
-    { virtual: true }
+  "@salesforce/apex/lwcCSVUploaderController.insertData",
+  () => {
+    return {
+      default: jest.fn()
+    };
+  },
+  { virtual: true }
 );
 
 // Sample error for imperative Apex call
-const APEX_CONTACTS_ERROR = {
-    body: { message: 'An internal server error has occurred' },
-    ok: false,
-    status: 400,
-    statusText: 'Bad Request'
+const APEX_ERROR = {
+  body: { message: "An internal server error has occurred" },
+  ok: false,
+  status: 400,
+  statusText: "Bad Request"
 };
 
-
-describe('c-lwc-q-c-questions-import', () => {
-    // after each test, reset the DOM
-    afterEach(() => {
-        while (document.body.firstChild) {
-            document.body.removeChild(document.body.firstChild);
-        }
-    });
-
-    // declare the element variable
-    let element;
-
-    // before each test, set element to be an instance of the lwcQCQuestionImport component
-    beforeEach(() => {
-        element = createElement('c-lwc-q-c-questions-import', {
-            is: LwcQCQuestionsImport
-        });
-    });
-
-    // Helper function to wait until the microtask queue is empty. This is needed for promise
-    // timing when calling imperative Apex.
-    async function flushPromises() {
-        return Promise.resolve();
+describe("c-lwc-q-c-questions-import", () => {
+  // after each test, reset the DOM
+  afterEach(() => {
+    while (document.body.firstChild) {
+      document.body.removeChild(document.body.firstChild);
     }
+  });
 
-    it('Test default values for js variables ', () => {
+  // declare the element variable
+  let element;
 
-        // append the element to the DOM
-        document.body.appendChild(element);
-
-        // check each variable from the js file with no inputs or events happening
-        expect(element.showcard).toBeFalsy();
-        expect(element.file).toBeUndefined();
-        expect(element.lines).toBeUndefined();
-        expect(element.getResults).toBeUndefined();
-        expect(element.results).toBeUndefined();
-        expect(element.content).toBeUndefined();
-        expect(element.fileContents).toBeUndefined();
-        expect(element.reader).toBeUndefined();
-        expect(element.recordId).toBeUndefined();
-        expect(element.error).toBeUndefined();
-        expect(element.columnsQuestion).toBeUndefined();
-        expect(element.uploadedFile).toStrictEqual([]);
+  // before each test, set element to be an instance of the lwcQCQuestionImport component
+  beforeEach(() => {
+    element = createElement("c-lwc-q-c-questions-import", {
+      is: LwcQCQuestionsImport
     });
+  });
 
-    it('Test lightning-input element', async () => {
-        
-        // append element to the DOM
-        document.body.appendChild(element);
+  // Helper function to wait until the microtask queue is empty. This is needed for promise
+  // timing when calling imperative Apex.
+  async function flushPromises() {
+    return Promise.resolve();
+  }
 
-        // create a csv file to 'upload'
-        const str = "Name,Question_Body__c,Expected_Answer__c\nHello,World,HelloWorld\nTest,TestQuestion,TestQuestion";
-        const blob = new Blob([str]);
-        const file = new File([blob], 'mockExams.csv', {type:'.csv'});
-        File.prototype.text = jest.fn().mockResolvedValueOnce(str);
+  it("Test default values for js variables ", () => {
+    // append the element to the DOM
+    document.body.appendChild(element);
 
+    // check each variable from the js file with no inputs or events happening
+    expect(element.showcard).toBeFalsy();
+    expect(element.file).toBeUndefined();
+    expect(element.lines).toBeUndefined();
+    expect(element.getResults).toBeUndefined();
+    expect(element.results).toBeUndefined();
+    expect(element.content).toBeUndefined();
+    expect(element.fileContents).toBeUndefined();
+    expect(element.reader).toBeUndefined();
+    expect(element.recordId).toBeUndefined();
+    expect(element.error).toBeUndefined();
+    expect(element.columnsQuestion).toBeUndefined();
+    expect(element.uploadedFile).toStrictEqual([]);
+  });
 
-        // select the lightning-input from the DOM
-        const inputFile = element.shadowRoot.querySelector("lightning-input");
+  it("Test lightning-input element", async () => {
+    // append element to the DOM
+    document.body.appendChild(element);
 
-        // simulate uploading a file and the calling of the onchange event
-        inputFile.files = [file];
-        inputFile.dispatchEvent(new CustomEvent("change"));
+    // create a csv file to 'upload'
+    const str =
+      "Name,Question_Body__c,Expected_Answer__c\nHello,World,HelloWorld\nTest,TestQuestion,TestQuestion";
+    const blob = new Blob([str]);
+    const file = new File([blob], "mockExams.csv", { type: ".csv" });
+    File.prototype.text = jest.fn().mockResolvedValueOnce(str);
 
-        // wait for all promises to resolve
-        await flushPromises();
+    // select the lightning-input from the DOM
+    const inputFile = element.shadowRoot.querySelector("lightning-input");
 
-        // test that the scv2Json function returns the expected value
-        expect(element.csv2Json(str)).toBe("[{\"Name\":\"Hello\",\"Question_Body__c\":\"World\",\"Expected_Answer__c\":\"HelloWorld\"},{\"Name\":\"Test\",\"Question_Body__c\":\"TestQuestion\",\"Expected_Answer__c\":\"TestQuestion\"}]");
-    });
+    // simulate uploading a file and the calling of the onchange event
+    inputFile.files = [file];
+    inputFile.dispatchEvent(new CustomEvent("change"));
 
-    it('Test successful button click ', async () => {
-        // set the getResults of the element to a value that would actually be set there
-        element.getResults = "[{\"Name\":\"Hello\",\"Question_Body__c\":\"World\",\"Expected_Answer__c\":\"HelloWorld\"},{\"Name\":\"Test\",\"Question_Body__c\":\"TestQuestion\",\"Expected_Answer__c\":\"TestQuestion\"}]";
-        // Passing mock value for successful Apex promise
-        const handler = insertData.mockResolvedValue("success");
+    // wait for all promises to resolve
+    await flushPromises();
 
-        // append element to the DOM
-        document.body.appendChild(element);
+    // test that the scv2Json function returns the expected value
+    expect(element.csv2Json(str)).toBe(
+      '[{"Name":"Hello","Question_Body__c":"World","Expected_Answer__c":"HelloWorld"},{"Name":"Test","Question_Body__c":"TestQuestion","Expected_Answer__c":"TestQuestion"}]'
+    );
+  });
 
-        // simulate clicking the create records button
-        const button = element.shadowRoot.querySelector("lightning-button");
-        button.click();
+  it("Test successful button click ", async () => {
+    // set the getResults of the element to a value that would actually be set there
+    element.getResults =
+      '[{"Name":"Hello","Question_Body__c":"World","Expected_Answer__c":"HelloWorld"},{"Name":"Test","Question_Body__c":"TestQuestion","Expected_Answer__c":"TestQuestion"}]';
+    // Passing mock value for successful Apex promise
+    const handler = insertData.mockResolvedValue("success");
 
-        // wait for all promises to resolve
-        await flushPromises();
+    // append element to the DOM
+    document.body.appendChild(element);
 
-        // expect that the mock function was called
-        expect(handler).toHaveBeenCalled();
-    });
+    // simulate clicking the create records button
+    const button = element.shadowRoot.querySelector("lightning-button");
+    button.click();
 
-    it('Test failure button click', async () => {
-        // Passing mock value for rejected Apex promise
-        const handler = insertData.mockRejectedValue(APEX_CONTACTS_ERROR);
+    // wait for all promises to resolve
+    await flushPromises();
 
-        element.getResults = "test failure";
-        // append element to the DOM
-        document.body.appendChild(element);
+    // expect that the mock function was called
+    expect(handler).toHaveBeenCalled();
+  });
 
-        // simulate clicking the create records button
-        const button = element.shadowRoot.querySelector("lightning-button");
-        button.click();
+  it("Test failure button click", async () => {
+    // Passing mock value for rejected Apex promise
+    const handler = insertData.mockRejectedValue(APEX_ERROR);
 
-        // wait for all promises to resolve
-        await flushPromises();
+    element.getResults = "test failure";
+    // append element to the DOM
+    document.body.appendChild(element);
 
-        // expect that the mock function was called
-        expect(handler).toHaveBeenCalled();
-    })
+    // simulate clicking the create records button
+    const button = element.shadowRoot.querySelector("lightning-button");
+    button.click();
+
+    // wait for all promises to resolve
+    await flushPromises();
+
+    // expect that the mock function was called
+    expect(handler).toHaveBeenCalled();
+  });
 });

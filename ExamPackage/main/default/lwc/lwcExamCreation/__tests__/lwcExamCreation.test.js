@@ -1,11 +1,33 @@
 import { createElement } from "lwc";
 import LwcExamCreation from "c/lwcExamCreation";
+import { createRecord } from "lightning/uiRecordApi";
 
 /*
     Created By: William Rembish
     date: 10/17/2021
     test coverage: 93.75%
 */
+const createRecordMock = require("./data/createRecord.json");
+
+jest.mock(
+  "lightning/uiRecordApi.createRecord",
+  () => {
+    return {
+      default: jest.fn()
+    };
+  },
+  { virtual: true }
+);
+
+// Sample error for imperative Apex call
+const APEX_ERROR = {
+  body: { message: "An internal server error has occurred" },
+  ok: false,
+  status: 400,
+  statusText: "Bad Request"
+};
+
+
 describe("c-lwc-exam-creation", () => {
   // after each test, reset the DOM
   afterEach(() => {
@@ -23,6 +45,12 @@ describe("c-lwc-exam-creation", () => {
       is: LwcExamCreation
     });
   });
+
+  // Helper function to wait until the microtask queue is empty. This is needed for promise
+  // timing when calling imperative Apex.
+  async function flushPromises() {
+    return Promise.resolve();
+  }
 
   it("Test all of the default values for variables in the js file", () => {
     // append the element to the DOM
@@ -159,13 +187,15 @@ describe("c-lwc-exam-creation", () => {
     });
   });
 
-  it("Test createRecord button on success", () => {
+  it("Test createRecord button on success", async () => {
     // set values for all the necessary variables to create an exam
     element.name = "TEST EXAM";
     element.DPG = 50;
     element.DTL = 5;
     // append the element to the DOM
     document.body.appendChild(element);
+
+    const handler = createRecord.mockResolvedValue(createRecordMock);
 
     // ensure the button is propery being selected to test on
     const createExamButton =
@@ -175,14 +205,12 @@ describe("c-lwc-exam-creation", () => {
     // simulate an onclick event for the button
     createExamButton.dispatchEvent(new CustomEvent("click"));
 
-    // check to make sure the event was fired and the exam creation went through
-    return Promise.resolve().then(() => {
-      // currently the component doesn't actually succeed even when it says it does
-      //expect(element.examId).toBeDefined();
-    });
+    await flushPromises();
+
+    expect(handler).toHaveBeenCalled();
   });
 
-  it("Test createRecord button on failure", () => {
+  it("Test createRecord button on failure", async () => {
     // set values for all the necessary variables to create an exam
     element.name = "TEST EXAM";
     element.DPG = 50;
@@ -190,6 +218,8 @@ describe("c-lwc-exam-creation", () => {
     // set an improper value for the titan field
     element.titan = "This will fail";
 
+    const handler = createRecord.mockRejectedValue(APEX_ERROR);
+
     // append the element to the DOM
     document.body.appendChild(element);
 
@@ -201,10 +231,8 @@ describe("c-lwc-exam-creation", () => {
     // simulate an onclick event for the button
     createExamButton.dispatchEvent(new CustomEvent("click"));
 
-    // check to make sure the event failed and didn't set a record Id
-    return Promise.resolve().then(() => {
-      // currently the component doesn't seem to fail when given improper data for creating an exam
-      // expect(element.examId).toBeUndefined();
-    });
+    await flushPromises();
+
+    expect(handler).toHaveBeenCalled();
   });
 });

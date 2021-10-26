@@ -11,64 +11,89 @@
   Modified By: Iteration VI Styling and Data
 -->
 <template>
-    <div class="container slds-p-around_large">
-    <lightning-layout class="slds-page-header slds-page-header_object-home" horizontal-align="spread" multiple-rows="true">
-        <lightning-layout-item size='6' flexibility="auto">        
-            <template if:true={question}>
-                <div class="slds-text-heading_large"> {question.Question_Text__c}</div>
-            </template>
-            <template if:true={displayTextarea}>
-                 <div>  
-                    <lightning-textarea name="answertextarea" value={answer} label="Enter answer here." onkeyup={handleInputAnswer} placeholder="Enter essay answer here..."></lightning-textarea>                    
-                </div>
-            </template>
-            <template if:true={displayInput}>
-                <div class="slds-p-around_x-small">
-                    <lightning-input  name="input1" type="number" value={answer}
-                     label="Number"
-                     onchange={handleInputAnswer}>
-                    
-                    </lightning-input>
-            </div>
-            </template>
-            <template if:true={displayRadioGroup}>
-                <div class="slds-m-around--xx-large">
-                    <div>
-                        <lightning-radio-group  name="radiogroup" 
-                            options={radioCheckboxGroupComboBoxOptions} type="radio" onchange={handleInputAnswer} value={answer}>
-                        </lightning-radio-group>
-                    </div>
-                </div>
-            </template>
-            <template if:true={displayCheckboxGroup}>
-                <div>
-                    <lightning-checkbox-group name="Checkbox Group"
-                    label="Checkbox Group"
-                    options={radioCheckboxGroupComboBoxOptions}
-                    value={answer}
-                    onchange={handleInputAnswer}></lightning-checkbox-group>
-                    
-                </div>
-            </template>
-            
-            <!-- this isn't working , may be the sample data format for the combo box-->
-            <template if:true={displayComboBox}>
-                <template for:each={optionsForCombobox} for:item = "option" for:index="index" >
-                    <lightning-combobox key={option}
-                      class={option}
-                    name={option}
-                            label={option}
-                            placeholder="Select Answer(s)"
-                            options={answersForComboBox}
-                            
-                            onchange={handleInputAnswer} ></lightning-combobox>
-                </template>
-            </template>
-            
-            <div class="slds-m-vertical_medium">
-                <p>You Answered: <span class="slds-text-heading_small">{displayAnswerGiven}</span></p>
-            </div>
-        </lightning-layout-item>
-    </lightning-layout>
-    </div>
+  <lightning-layout
+    class="slds-page-header slds-page-header_object-home"
+    horizontal-align="spread"
+    multiple-rows="true"
+  >
+    <lightning-layout-item size="6" flexibility="auto">
+      <template if:true={question}>
+        <div class="slds-text-heading_large">{question.Question_Text__c}</div>
+      </template>
+      <template if:true={displayTextarea}>
+        <div>
+          <lightning-textarea
+            name="answertextarea"
+            value={answer}
+            label="Enter answer here."
+            onkeyup={handleInputAnswer}
+            placeholder="Enter essay answer here..."
+          ></lightning-textarea>
+        </div>
+      </template>
+      <template if:true={displayInput}>
+        <div class="slds-p-around_x-small">
+          <lightning-input
+            name="input1"
+            type="number"
+            value={answer}
+            label="Number"
+            onchange={handleInputAnswer}
+          >
+          </lightning-input>
+        </div>
+      </template>
+      <template if:true={displayRadioGroup}>
+        <div class="slds-m-around--xx-large">
+          <div>
+            <lightning-radio-group
+              name="radiogroup"
+              options={radioCheckboxGroupComboBoxOptions}
+              type="radio"
+              onchange={handleInputAnswer}
+              value={answer}
+            >
+            </lightning-radio-group>
+          </div>
+        </div>
+      </template>
+      <template if:true={displayCheckboxGroup}>
+        <div>
+          <lightning-checkbox-group
+            name="Checkbox Group"
+            label="Checkbox Group"
+            options={radioCheckboxGroupComboBoxOptions}
+            value={answer}
+            onchange={handleInputAnswer}
+          ></lightning-checkbox-group>
+        </div>
+      </template>
+
+      <!-- this isn't working , may be the sample data format for the combo box-->
+      <template if:true={displayComboBox}>
+        <template
+          for:each={optionsForCombobox}
+          for:item="option"
+          for:index="index"
+        >
+          <lightning-combobox
+            key={option}
+            class={option}
+            name={option}
+            label={option}
+            placeholder="Select Answer(s)"
+            options={answersForComboBox}
+            onchange={handleInputAnswer}
+          ></lightning-combobox>
+        </template>
+      </template>
+
+      <div class="slds-m-vertical_medium">
+        <p>
+          You Answered:
+          <span class="slds-text-heading_small">{displayAnswerGiven}</span>
+        </p>
+      </div>
+    </lightning-layout-item>
+  </lightning-layout>
 </template>

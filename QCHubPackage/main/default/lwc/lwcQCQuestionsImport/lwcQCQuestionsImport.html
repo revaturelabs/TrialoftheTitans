@@ -1,29 +1,39 @@
 <template>
-    <!--Author: Huguette Mpudi Kipasa
+  <!--Author: Huguette Mpudi Kipasa
      Creation Date : 09/30/2021
      Name: lwcQCQuestionsImport
 	 Description: This component allows a member of QC to upload a CSV file to import QC questions to be inserted
      instead of manually inserting each question.
     -->
-     <!-- Card that displays a form to upload csv file and import data -->
-    <lightning-card icon-name="standard:individual" title="Import CSV File">
-        <lightning-input type="file"
-            accept=".csv"
-            label="" onchange={showFileData}></lightning-input>
-        
-        <lightning-button variant="brand" label="Create QC Questions" title="Create QC Questions" onclick={createRecord} class="slds-m-left_x-small"></lightning-button>
-         
-        <template if:true={error}>
-            <p>{error}</p>
-        </template>
-   
+  <!-- Card that displays a form to upload csv file and import data -->
+  <lightning-card icon-name="standard:individual" title="Import CSV File">
+    <lightning-input
+      type="file"
+      accept=".csv"
+      label=""
+      onchange={showFileData}
+    ></lightning-input>
+
+    <lightning-button
+      variant="brand"
+      label="Create QC Questions"
+      title="Create QC Questions"
+      onclick={createRecord}
+      class="slds-m-left_x-small"
+    ></lightning-button>
+
+    <template if:true={error}>
+      <p>{error}</p>
+    </template>
+
     <!-- Card that displays file contents is only shown after the file is uploaded -->
     <template if:true={showcard}>
       <lightning-datatable
-      key-field="id"
-      data={results}
-      columns={columnsQuestion}>
-    </lightning-datatable>
+        key-field="id"
+        data={results}
+        columns={columnsQuestion}
+      >
+      </lightning-datatable>
     </template>
-</lightning-card>
+  </lightning-card>
 </template>

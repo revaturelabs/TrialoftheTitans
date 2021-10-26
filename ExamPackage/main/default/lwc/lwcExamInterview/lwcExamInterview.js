@@ -19,7 +19,7 @@ import submitAnswers from "@salesforce/apex/ExamInterviewApexController.submitAn
 import submitExam from "@salesforce/apex/ExamInterviewApexController.submitExam";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { loadScript } from "lightning/platformResourceLoader";
-//import CONFETTI from '@salesforce/resourceUrl/confetti';
+import CONFETTI from "@salesforce/resourceUrl/confetti";
 
 export default class LwcExamInterview extends LightningElement {
   //not implemented yet
@@ -32,9 +32,9 @@ export default class LwcExamInterview extends LightningElement {
 
   //hard coded an exam id and account id for testing, set by parent component
   @api
-  examId = "a0A0R000005gFOzUAM";
+  examId = "a0A1700000G0szsEAB";
   @api
-  accId = "0010R00001LpBFRQA3";
+  accId = "0011700001PRbtRAAT";
 
   //for switching off the update after exam is submitted
   updateAnswers = true;
@@ -64,6 +64,7 @@ export default class LwcExamInterview extends LightningElement {
   toastTitle = "";
   toastVariant = "";
   //questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
+  @api
   numberOfQuestions = 0;
   answer_ = "";
   //for the modal confirmation
@@ -82,6 +83,11 @@ export default class LwcExamInterview extends LightningElement {
       return "Questions not loaded";
     }
   }
+
+  /*
+   Commented out by William Rembish on 10/25/2021
+   Reason: not used for the actual component
+
   //useful for debugging
   get answer() {
     return this.answer_;
@@ -89,6 +95,7 @@ export default class LwcExamInterview extends LightningElement {
   set answer(answerText) {
     this.answer_ = answerText;
   }
+  */
 
   //so that they have the same number when submitting answers
   createBlankExamAnswersList() {
@@ -99,8 +106,8 @@ export default class LwcExamInterview extends LightningElement {
   //retrieve the exam from the database and set variables
   @wire(examFinder, { examID: "$examId" })
   wiredExamQuestions({ error, data }) {
-    console.log("wired exam questions function called");
     if (data) {
+      console.log(data);
       this.examQuestions = data;
       this.numberOfQuestions = Object.keys(data).length;
       this.error = undefined;
@@ -113,6 +120,10 @@ export default class LwcExamInterview extends LightningElement {
       console.log(error);
     }
   }
+  /*
+   Commented out by William Rembish on 10/25/2021
+   Reason: not used for the actual component
+   
   //useful for debugging
   set currentQuestion(question_) {
     this.question_ = question_;
@@ -120,12 +131,15 @@ export default class LwcExamInterview extends LightningElement {
   get currentQuestion() {
     return this.question_;
   }
+  */
   //updating the child component when go to next or previous question
   updateQuestionComponent() {
     const questionComponent = this.template.querySelector("c-lwc-question");
     if (questionComponent && this.questionNumber < this.numberOfQuestions + 1) {
       this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       questionComponent.question = this.currentQuestion;
+      console.log('test')
+      console.log(this.answer)
       questionComponent.handleSetAnswer(this.answer);
     }
   }
@@ -139,9 +153,14 @@ export default class LwcExamInterview extends LightningElement {
   //     header: 'Confirm Submit'
   // };
 
+  /*
+   Commented out by William Rembish on 10/25/2021
+   Reason: this isn't currently used anywhere
+
   handleModalButtonClick(event) {
     handleConfirmationButtonClick(event, this.confirmation);
   }
+  */
   answerUpdated(event) {
     if (this.updateAnswers) {
       this.answer = event.detail;
@@ -197,9 +216,8 @@ export default class LwcExamInterview extends LightningElement {
         this.toastMessage = "Error occured submitting exam " + error;
         this.toastTitle = "Oops! Error occured";
         this.toastVariant = "error";
-        this.console.log(toastMessage);
+        console.log(this.toastMessage);
         this.error = error;
-        //this.contacts = undefined;
       })
       .finally(() => {
         const toastEvent = new ShowToastEvent({
@@ -255,16 +273,14 @@ export default class LwcExamInterview extends LightningElement {
     4. click upload file and select the confetti.browser.min.js file you saved in step one.
     5. click save
 
-    
-    myconfetti;
+    */
+  myconfetti;
 
-    confettiAvailable=false;
-    connectedCallback() {
-      Promise.all([
-        loadScript(this, CONFETTI )
-      ])
-        .then(() => {
-            
+  confettiAvailable = false;
+  connectedCallback() {
+    Promise.all([loadScript(this, CONFETTI)])
+      .then(() => {
+        /*
           this.dispatchEvent(
             new ShowToastEvent({
               title: "Success",
@@ -272,22 +288,22 @@ export default class LwcExamInterview extends LightningElement {
               variant: "Success"
             })
           );
-          
-        this.confettiAvailable=true;
-          this.setUpCanvas();
-        })
-        .catch(error => {
-          this.dispatchEvent(
-            new ShowToastEvent({
-              title: "confetti unavailable",
-              message: "upload Static confetti resource for confetti on submit!",
-              variant: "info"
-            })
-            
-          );
-          this.confettiAvailable=false;
-        });
-    }*/
+          */
+        this.confettiAvailable = true;
+        this.setUpCanvas();
+      })
+      .catch((error) => {
+          console.log(error)
+        this.dispatchEvent(
+          new ShowToastEvent({
+            title: "confetti unavailable",
+            message: "upload Static confetti resource for confetti on submit!",
+            variant: "info"
+          })
+        );
+        this.confettiAvailable = false;
+      });
+  }
 
   setUpCanvas() {
     var confettiCanvas = this.template.querySelector("canvas.confettiCanvas");

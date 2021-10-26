@@ -73,6 +73,7 @@ export default class ExamCreation extends LightningElement {
 
     createRecord(recordInput)
       .then((exam) => {
+        console.log(exam);
         this.examId = exam.id;
         this.dispatchEvent(
           new ShowToastEvent({

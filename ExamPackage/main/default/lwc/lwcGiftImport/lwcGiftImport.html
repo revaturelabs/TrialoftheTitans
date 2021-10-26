@@ -35,7 +35,7 @@
             </div>
             <!--Displays the technology of the selected titan-->
             <div class="slds-box">
-                <lightning-combobox name="TechnologyID" label="Titan's Technology:" value={valueTech} options={techOptions} disabled=true>
+                <lightning-combobox name="TechnologyID" label="Titan's Technology:" value={valueTech} options={techOptions} disabled>
                 </lightning-combobox>
             </div>
             <!--Button for advancing to the submission screen-->
@@ -68,7 +68,7 @@
                             </td>
                             <td class="td__upload">
                                 <!-- file uploader -->
-                                <lightning-input type="file" label="Upload Text Document" multiple="false" accept='.txt' onchange={handleUploadFile} ></lightning-input> 
+                                <lightning-input type="file" label="Upload Text Document" accept='.txt' onchange={handleUploadFile} ></lightning-input> 
                                 <!-- /file uploader -->
                             </td>
                             <td class="td__buttons">

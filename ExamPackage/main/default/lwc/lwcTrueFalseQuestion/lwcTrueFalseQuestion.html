@@ -9,15 +9,14 @@
 <template>
     <div class="container slds-p-around_large">
     <lightning-card>
-        <div class="slds-m-around--xx-large">
+        <div class="slds-m-around--xx-large">  
             <div>
     			<lightning-radio-group id = "input"     
-                name={questionprompt} 
                 label={questionprompt}
                 options={options}
                 value={value}
                 onchange={changeValue}
-                type="radio"></lightning-radio-group>
+                type="radio"></lightning-radio-group> <!-- name={questionprompt}  Attribute was removed to make page function - Matthew/Will 10/22/21 -->
             </div>
         </div>
     </lightning-card>
