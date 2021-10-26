@@ -75,7 +75,7 @@
         </div>
         <!--Displays the edit component-->
         <aura:if isTrue="{!v.editEdu}">
-          <c:editEdu recordId="{!school.Id}"></c:editEdu>
+          <c:lwcEditEdu recordId="{!school.Id}"></c:lwcEditEdu>
           <lightning:button
             label="Done"
             title="Neutral action"
