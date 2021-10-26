@@ -13,7 +13,7 @@ public class PortfolioProjectController {
     
 
     
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     // Get the Project data for the running user
     public static List<Project__c> getProjects(Id userIdFromPage){
         
