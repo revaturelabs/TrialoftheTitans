@@ -5,7 +5,6 @@
     Date Edited: 10/22/21
 -->
 
-<!--select which week to see feedback from-->
 <template>
   <div class="header">
     <h1>Check The Feedback From Previous Battles!</h1>
@@ -20,7 +19,6 @@
       onchange={onchange}
     >
     </lightning-combobox>
-    <!--shows feedback if there is any for the week selected-->
     <template class="display" if:true={showData}>
       <lightning-record-form
         record-id={OneonOneId}
