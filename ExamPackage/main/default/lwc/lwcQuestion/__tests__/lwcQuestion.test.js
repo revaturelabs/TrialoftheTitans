@@ -5,8 +5,8 @@ const mockQuestions = require("./data/data.json");
 
 /*
     Created by: Alex Bashaw
-    date:
-    test coverage:
+    date: 10/26/21
+    test coverage:81.48%
 */
 
 describe("c-lwc-question", () => {
@@ -36,11 +36,6 @@ describe("c-lwc-question", () => {
   test("handleSetAnswer", () => {
     //expect(element.shadowRoot.querySelector("p")).not.toBeFalsy();
   });
-  //createOptionsArrayFromString
-
-  //get radioCheckboxGroupComboBoxOptions
-
-  //set radioCheckboxGroupComboBoxOptions
 
   //handleInputAnswer
   test("handeInputAnswer", async () => {
