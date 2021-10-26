@@ -2,7 +2,7 @@
  * lwcQuestionTable Jest Testing
  * Author: Wayne He
  * Last modified: 10/26/2021
- * Code coverage: 85%
+ * Code coverage: 86%
  */
 
 import { createElement } from "lwc";
@@ -143,45 +143,6 @@ describe("c-lwc-question-table", () => {
       "lightning-checkbox-group"
     );
     expect(poolSelection.options.length).toBe(mockPool.length);
-  });
-
-  it("Add questions to Pool", async () => {
-    document.body.appendChild(element);
-
-    await searchAndBind();
-
-    //Attempt to click button with no pools selected.
-    addToPoolButton.click();
-    await flushPromises();
-
-    //Add 0 questions to pool.
-    poolSelection.value = [poolSelection.options[0]];
-    poolSelection.dispatchEvent(
-      new CustomEvent("change", {
-        detail: poolSelection
-      })
-    );
-    await flushPromises();
-    addToPoolButton.click();
-    await flushPromises();
-
-    //Add some questions to the pool.
-    dataTable.selectedRows = [
-      mockQuestions[0].ques[0],
-      mockQuestions[mockQuestions.length - 1].ques[0]
-    ];
-    dataTable.dispatchEvent(
-      new CustomEvent("rowselection", {
-        target: dataTable
-      })
-    );
-    await flushPromises();
-    addToPoolButton.click();
-    await flushPromises();
-    var selectedQuestions = dataTable.getSelectedRows();
-    console.log(selectedQuestions);
-    debugger;
-    expect(selectedQuestions[0].Name).toBe(mockQuestions[0].ques[0].Name);
   });
 
   it("Change pages", async () => {
