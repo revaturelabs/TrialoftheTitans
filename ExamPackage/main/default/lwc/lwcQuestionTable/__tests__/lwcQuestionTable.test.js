@@ -12,7 +12,6 @@ const mockQuestions = require("./data/getQues.json");
 const mockPool = require("./data/getPool.json");
 
 import { registerApexTestWireAdapter } from "@salesforce/sfdx-lwc-jest";
-import addQues2Pool from "@salesforce/apex/QuestionTableApexController.addQues2Pool";
 import getPool from "@salesforce/apex/QuestionTableApexController.GetPool";
 import getQues from "@salesforce/apex/QuestionTableApexController.GetQues";
 
@@ -150,6 +149,10 @@ describe("c-lwc-question-table", () => {
     document.body.appendChild(element);
 
     await searchAndBind();
+
+    //Attempt to click button with no pools selected.
+    addToPoolButton.click();
+    await flushPromises();
 
     //Add 0 questions to pool.
     poolSelection.value = [poolSelection.options[0]];
