@@ -14,7 +14,7 @@ describe('c-lwc-gift-import', () => {
         const element = createElement('c-lwc-gift-import', {
             is: LwcGiftImport
         });
-        document.body.appendChild(component);
+        document.body.appendChild(element);
     });
 
     it('displays header', () => {
