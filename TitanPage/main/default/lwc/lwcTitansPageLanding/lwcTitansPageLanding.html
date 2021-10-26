@@ -72,8 +72,20 @@
     <!-- Pass the Titan list to those components. -->
     <!-- The Titan list is: {titans.data} -->
 
+    <div>
+        <template for:each={titans.data} for:item="titan">
+            <c-lwc-exams-landing key={titan.id} activetitan={titan}>
+            </c-lwc-exams-landing>
+        </template>
+    </div>
+  
 
-
+    <div>
+        <template for:each={titans.data} for:item="titan">
+            <c-lwc-landing-skills key={titan.id} activetitan={titan}>
+            </c-lwc-landing-skills>
+        </template> 
+    </div>
 
 
 
