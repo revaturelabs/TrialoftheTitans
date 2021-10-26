@@ -184,10 +184,10 @@ describe("c-lwc-exam-interview", () => {
 
     // make sure that console.log was called with the error value I passed in the mock @wire
     expect(consoleSpy).toHaveBeenCalledWith(true);
-    
+
     // grab the span that is rendered if an error is thrown and test to make sure it says 'error'
     const span = element.shadowRoot.querySelector("span");
-    expect(span.textContent).toBe('error');
+    expect(span.textContent).toBe("error");
 
     // grab the h2 that is rendered if an error is thrown and test to make sure it displays the correct thing
     const header2 = element.shadowRoot.querySelector("h2");
@@ -198,7 +198,7 @@ describe("c-lwc-exam-interview", () => {
     // create a spy to see if console.log is called
     const consoleLogSpy = jest.spyOn(console, "log");
     // create a spy to see if console.error is called
-    const consoleErrorSpy = jest.spyOn(console, 'error');
+    const consoleErrorSpy = jest.spyOn(console, "error");
     // set the examId and accId for the component
     element.examId = "a0A1700000G0szsEAB";
     element.accId = "0011700001PRbtRAAT";
@@ -226,10 +226,9 @@ describe("c-lwc-exam-interview", () => {
     expect(consoleLogSpy).toHaveBeenCalledWith(mockExamFinder);
 
     // check to make sure console.error was called the expected ways
-    expect(consoleErrorSpy).toHaveBeenCalledWith('BAD');
+    expect(consoleErrorSpy).toHaveBeenCalledWith("BAD");
     expect(consoleErrorSpy).toHaveBeenLastCalledWith("e.stack => undefined");
     expect(consoleErrorSpy).toHaveBeenCalledTimes(5);
-
   });
 
   it("Test if submitExam returns an error", async () => {
