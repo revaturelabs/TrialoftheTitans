@@ -106,7 +106,7 @@
       />
 
       <!--Displays the certifications-->
-      <c:displayCert />
+      <c:lwcDisplayCert />
     </lightning:card>
   </div>
   <!-- End layout -->
