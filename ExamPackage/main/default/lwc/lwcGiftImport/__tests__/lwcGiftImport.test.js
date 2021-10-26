@@ -30,9 +30,7 @@ describe("c-lwc-gift-import", () => {
 
     return Promise.resolve().then(() => {
       const iTag = element.shadowRoot.querySelector("i");
-      expect(iTag.textContent).toEqual(
-        "Imported 10 questions - Updated 5 questions"
-      );
+      expect(iTag.textContent).toEqual("Ready to Import Questions");
     });
   });
 });
