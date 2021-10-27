@@ -1,6 +1,7 @@
 .THIS .mainStyle{
-    background-color: #c9c7c7;
+    background-color: #474c55;
     color: black;
+    
 }
 .THIS .educationImage{
     max-width:  85%;
@@ -8,7 +9,7 @@
     display: block;
     margin: auto;
     margin-top: 8px;
-    background-color: #c9c7c7;
+    background-color: #474c55;
     color: black;
 }
 .THIS .imagePlaceholder{
@@ -17,7 +18,7 @@
     margin-left: 12px;
 }
 .THIS .EducationCertObject{
-    background-color: #c9c7c7;
+    background-color: #474c55;
     color: black;
     max-width: 1000px;
     border-radius: 5px;
@@ -25,14 +26,16 @@
     max-height: 140px;
     border-radius: 5px;
     margin-left: 5px;
+    margin-right: 5px;
+
  }
  .THIS .slds-card__header{
-    background-color: #c9c7c7;
+    background-color: #b9b9ba;
     color: black;
  }
  .THIS .slds-card__body{
-    background-color:#c9c7c7;
+    background-color:#b9b9ba;
  }
  .THIS .slds-card{
-    background-color: #c9c7c7;
+    background-color: #b9b9ba;
  }

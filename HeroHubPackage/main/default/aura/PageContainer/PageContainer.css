@@ -30,13 +30,13 @@
 }
 
 .THIS :root {
-    background-color: #3f3f3f;
+    background-color: #474c55;
 }
 /* root variables accessible from any part of application */
 .THIS {
     --text-color: #302f30;
     --light-text: #D3d4d4;
-    --background-color: #3f3f3f;
+    --background-color: #474c55;
     --vanquish-primary: #7aa7e9;
     --vanquish-secondary: #5f70b0;
     --amplifire-primary: #ef6363;

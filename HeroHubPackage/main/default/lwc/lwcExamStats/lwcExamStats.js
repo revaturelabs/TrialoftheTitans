@@ -4,6 +4,13 @@
         the exam depending on whether the exam has been
         attempted, assigned, or unavailable to take yet.
     Date Created: 10/17/21
+
+    Notes for Future iterations:
+        - Date: 10/25/21
+        - Note From: Iteration VI
+        - will need LWC metrics (b/c is what is passing in the event)
+        - this is functional, but doesn't display
+        - is a build-off-of component for future iterations
 */
 
 import { LightningElement, api } from 'lwc';
@@ -86,3 +93,4 @@ export default class LwcExamStats extends LightningElement {
         }
     }
 }
+

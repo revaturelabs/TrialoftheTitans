@@ -5,10 +5,10 @@
   access="global"
   implements="force:appHostable, forceCommunity:availableForAllPageTypes"
 >
-  <img
+  <!--<img
     class="Chimera"
     src="{!$Resource.TitanResources + '/TitanResources/Chimera.gif' }"
-  />
+  />-->
 
   <div class="fire">
     <h1>Tell Your War Stories With Portfolio Creation!</h1>

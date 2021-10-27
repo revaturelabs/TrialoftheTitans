@@ -18,9 +18,8 @@
 **/experiences
 **/navigationMenus
 **/audience
-**/applications
-**/flows
-**/flexipages
+#**/staticresources
+
 
 #All this stuff you may want to enable to disable
 #depending on what you are wanting to pull/push
@@ -33,5 +32,8 @@
 #!**/profiles/Hero.profile-meta.xml
 #!**/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
 #!**/profiles/Trial-of-the-Titans-User.profile-meta.xml
-**/profiles
-**/layouts
+#**/profiles
+#**/layouts
+**/applications
+**/flows
+**/flexipages
