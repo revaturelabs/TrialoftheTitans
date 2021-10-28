@@ -1,5 +1,5 @@
 .THIS .mainStyle{
-    background-color: #474c55;
+    background-color: white;
     color: black;
     
 }
@@ -23,19 +23,20 @@
     max-width: 1000px;
     border-radius: 5px;
     padding-top: 10px;
+    padding-bottom: 10px;
     max-height: 140px;
     border-radius: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 20%;
+    margin-right: 15%;
 
  }
  .THIS .slds-card__header{
-    background-color: #b9b9ba;
+    background-color: #72a4c2;
     color: black;
  }
  .THIS .slds-card__body{
-    background-color:#b9b9ba;
+    background-color:#72a4c2;
  }
  .THIS .slds-card{
-    background-color: #b9b9ba;
+    background-color: #72a4c2;
  }

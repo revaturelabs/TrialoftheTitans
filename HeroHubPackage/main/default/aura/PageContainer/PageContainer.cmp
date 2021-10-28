@@ -22,7 +22,7 @@
     <!--Set dynamic colors for teams, this should not be inline, wasn't us - note from Iteration 6 -->
     <aura:html tag="style">
         :root { --user-team-primary: {!v.contextInfo.team.Primary_Color__c}; --user-team-secondary: {!v.contextInfo.team.Secondary_Color__c}; --lead-team-primary: {!v.leadTeams.team[0].primary_color__c}; --lead-team-secondary: {!v.leadTeams.team[0].secondary_color__c};
-        background-color: #474c55; }
+        background-color: #72a4c2; }
     </aura:html>
 
     <!-- Animated Header and Navigation goes here -->

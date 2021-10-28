@@ -25,7 +25,7 @@ public without sharing class TitanPageApexController {
     }
     
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<Titan__c> getTitans() {
         //Method for retrieving list of titans
       
@@ -38,7 +38,7 @@ public without sharing class TitanPageApexController {
     
     //Id titanId = 'a041100000HhiF6AAJ';
     
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<Exam__c> getExams(Id titanId) {
         //Method for retrieving list of associated exams
         
@@ -47,7 +47,7 @@ public without sharing class TitanPageApexController {
     }
     
    
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<Skill__c> getSkills(Id titanId) {
         //Method for retrieving list of associated skills
         List<Skill__c> skillsList = [SELECT Name, Skill_Breakdown__c, Titan__c FROM Skill__c WHERE Titan__r.Id = :titanId];

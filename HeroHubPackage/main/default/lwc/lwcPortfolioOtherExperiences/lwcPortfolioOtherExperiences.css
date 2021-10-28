@@ -8,3 +8,7 @@
 */
 
 @import 'c/heroHubStyle';
+
+html{
+  color: black;
+}
