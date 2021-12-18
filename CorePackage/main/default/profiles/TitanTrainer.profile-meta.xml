@@ -837,14 +837,6 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
-        <tab>Assessment__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Coding_Assessment__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>Cohort__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -853,43 +845,7 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Equivalency__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Hero_Apex_Test_Result__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Hero_Assessment__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>Previous_Cohorts</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Project__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>QC_Interview__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>QC_Question_Deck__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>QC_Question__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Question_Manager</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Question_Manager_LWC</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
