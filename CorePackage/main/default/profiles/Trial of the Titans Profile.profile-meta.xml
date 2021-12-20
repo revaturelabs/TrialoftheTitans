@@ -1474,10 +1474,12 @@
     <layoutAssignments>
         <layout>Titan__c-Titan Layout</layout>
     </layoutAssignments>
+    <!--
     <pageAccesses>
         <apexPage>AnswersHome</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
+    -->
     <pageAccesses>
         <apexPage>BandwidthExceeded</apexPage>
         <enabled>true</enabled>
