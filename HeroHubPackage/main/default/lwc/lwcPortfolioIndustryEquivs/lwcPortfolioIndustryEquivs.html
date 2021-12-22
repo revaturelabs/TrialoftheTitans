@@ -1,3 +1,76 @@
 <template>
-    
+
+    <!--IF set to edit records-->
+    <template if:false={isEdit}>
+        <lightning-card title="Industry Equivalency" class="card">
+            <div class="slds-grid slds-gutters">
+
+                <div class="slds-col slds-size_1-of-5 slds-text-align_center">
+
+
+<!-- 
+
+
+                            Things to note. 
+                            in aura these were created: 
+                            Bool = isEdit
+                            sigmaIcon = utility:advanced_function
+
+                            list: name 'skills' ('skill 1, skill 2, skill 3')
+                            list: name 'equivs' ('0, 0, 0')
+-->
+
+                    <template for:each={skillList.data} for:item="skills">
+                        
+                        <lightning-card
+                        key={skills}
+                        title="Skill Name:&nbsp;">
+
+                        <lightning-formatted-text value={skills}></lightning-formatted-text>
+                        </lightning-card>
+
+                    </template>
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+
+
+
+
+    <!--If Set to Display Records-->
+    <template if:true={isEdit}>
+
+
+
+
+
+
+
+
+        <!--Save or Cancel Edit buttons-->
+        <lightning-button-group class="slds-m-top_small">
+            <lightning-button label="Cancel" onclick={cancel} variant="brand-outline" class="slds-m-left_small"></lightning-button>
+            <lightning-button label="Save" onclick={save} variant="brand"></lightning-button>
+        </lightning-button-group>
+    </template>
+
+
+
+
+
+
+
 </template>
