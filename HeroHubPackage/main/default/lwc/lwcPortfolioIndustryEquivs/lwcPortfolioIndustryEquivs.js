@@ -16,6 +16,10 @@ populateData({error, data}){
     }
 }
 
+edit(event){
+    this.isEdit = !this.isEdit;
+}
+
 
 
 
