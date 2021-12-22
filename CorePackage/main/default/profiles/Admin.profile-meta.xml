@@ -20,7 +20,6 @@
         <default>false</default>
         <visible>true</visible>
     </applicationVisibilities>
-    <!--
     <classAccesses>
         <apexClass>ChangePasswordController</apexClass>
         <enabled>true</enabled>
@@ -29,7 +28,6 @@
         <apexClass>ChangePasswordControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    -->
     <classAccesses>
         <apexClass>CommunitiesLandingController</apexClass>
         <enabled>true</enabled>
@@ -1239,7 +1237,6 @@
         <object>Titan__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <!--
     <pageAccesses>
         <apexPage>AnswersHome</apexPage>
         <enabled>true</enabled>
@@ -1248,7 +1245,6 @@
         <apexPage>BandwidthExceeded</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    -->
     <pageAccesses>
         <apexPage>ChangePassword</apexPage>
         <enabled>true</enabled>
