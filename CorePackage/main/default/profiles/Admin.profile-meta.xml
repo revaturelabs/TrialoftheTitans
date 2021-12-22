@@ -1244,11 +1244,11 @@
         <apexPage>AnswersHome</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    -->
     <pageAccesses>
         <apexPage>BandwidthExceeded</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    -->
     <pageAccesses>
         <apexPage>ChangePassword</apexPage>
         <enabled>true</enabled>
@@ -1278,18 +1278,6 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>ExportQuestionPool</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>ExportQuestions</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>ExportedTextFile</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>FileNotFound</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -1299,10 +1287,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>ForgotPasswordConfirm</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>GIFTImportTester</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>

@@ -128,6 +128,22 @@
         <apexClass>UserTriggerHandlerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <pageAccesses>
+        <apexPage>ExportedTextFile</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>ExportQuestionPool</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>ExportQuestions</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>GIFTImportTester</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <tabVisibilities>
         <tab>Exam__c</tab>
         <visibility>DefaultOn</visibility>

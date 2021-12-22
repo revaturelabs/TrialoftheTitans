@@ -12,7 +12,7 @@
              In this case, it should display a button that the user can click to flag the question.
          -->
         <template if:true={flagState}>
-            <lightning-buttonIcon iconName="utility:report_issue" variant="brand" onclick="{flagButtonClicked}" alternativeText="Flag for Review" title="Flag for Review" />
+            <lightning-buttonIcon icon-name="utility:report_issue" variant="brand" onclick={flagButtonClicked} alternative-text="Flag for Review" title="Flag for Review"></lightning-buttonIcon>
         </template>
         <!-- The Note state is displayed after the Flag button has been clicked. This is the most complex state.
              There are a few things that need to be displayed:
@@ -22,16 +22,11 @@
              4 - A submit button, to notify the Salesforce org that the question was flagged.
          -->
         <template if:true={noteState}>
-            <lightning-buttonIcon iconName="utility:report_issue" variant="bare" onclick="{unflagButtonClicked}" alternativeText="Cancel Flag" title="Cancel Flag" />
-            <lightning-select name="select" label="Reason for Review" onchange="{flagReasonChanged}">
-                <template for:each={reviewReasons} for:item="reason">
-                    <option key="reason.id" value="{reason}">{reason}</option>
-                </template>
-            </lightning-select>
-            <template if:true={flagReason="Other"}>
-                <lightning-textarea name="flagNotesInput" required="false" value="" placeholder="Add Notes" maxlength="{maxNotesLength}" messageWhenTooLong="Maximum length of notes is {maxNotesLength} characters" />
-            </template>
-            <lightning-button variant="success" label="Submit" title="Submit" onclick="{submitButtonClicked}"/>
+            <lightning-buttonIcon icon-name="utility:report_issue" variant="bare" onclick={unflagButtonClicked} alternative-text="Cancel Flag" title="Cancel Flag"></lightning-buttonIcon>
+            <lightning-combobox name="categoty" label="Category" options={reviewReasons} onchange={reviewReasonChanged}></lightning-combobox>
+            <lightning-combobox name="subcategoty" label="Subcategory" ></lightning-combobox>
+            <lightning-textarea name="flagNotesInput" required="false" value="" placeholder="Add Notes" maxlength={maxNotesLength} message-when-too-long="Maximum length of notes is {maxNotesLength} characters"></lightning-textarea>
+            <lightning-button variant="success" label="Submit" title="Submit" onclick={submitButtonClicked}></lightning-button>
         </template>
         <!-- The Submitted state is displayed after the Submit button has been clicked.
              In this case, a message should be displayed, confirming the submission.

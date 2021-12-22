@@ -7,6 +7,7 @@ export default class QuestionFlag extends LightningElement {
     submittedState = false;
     flagReason;
     reviewReasons = [];
+    reviewSubReasons = [];
 
     flagButtonClicked(){
 
