@@ -5,28 +5,27 @@
         <lightning-card title="Industry Equivalency" class="card">
             <div class="slds-grid slds-gutters">
 
+
+                <lightning-formatted-text value={NameList.NameData}></lightning-formatted-text>
+
+
                 <div class="slds-col slds-size_1-of-5 slds-text-align_center">
 
 
-<!-- 
 
 
-                            Things to note. 
-                            in aura these were created: 
-                            Bool = isEdit
-                            sigmaIcon = utility:advanced_function
 
-                            list: name 'skills' ('skill 1, skill 2, skill 3')
-                            list: name 'equivs' ('0, 0, 0')
--->
 
-                    <template for:each={skillList.data} for:item="skills">
+
+                    
+
+                    <template for:each={NameList.NameData} for:item="Names">
                         
                         <lightning-card
-                        key={skills}
+                        key={Names}
                         title="Skill Name:&nbsp;">
 
-                        <lightning-formatted-text value={skills}></lightning-formatted-text>
+                        <lightning-formatted-text value={Names}></lightning-formatted-text>
                         </lightning-card>
 
                     </template>

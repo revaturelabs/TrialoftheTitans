@@ -1,11 +1,12 @@
 public with sharing class lwcPortFolioIndustryEquivs {
 
     @AuraEnabled(cacheable=true)
-    public static List<Equivalency__c> getSkillList() {
+    public static List<Equivalency__c> returnSkillNames() {
+        Id UserId = UserInfo.getUserid();
+        List<Equivalency__c> PortSkill = [SELECT Name, Skill_Equivalency__c FROM Equivalency__c WHERE User__c =:UserId];
+        return PortSkill;
+       
 
-
-        //implement security  restrictions to only return data from the active user
-        return[SELECT Name, Skill__c FROM Equivalency__c];
 
     }
 }
