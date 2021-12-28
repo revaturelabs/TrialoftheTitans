@@ -12,6 +12,8 @@
     <columns>Flag_Categories__c</columns>
     <columns>Flag_Subcategories__c</columns>
     <columns>Flag_Notes__c</columns>
+    <columns>Flag_IsActive__c</columns>
+    <columns>Flag_IsFlagged__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>
