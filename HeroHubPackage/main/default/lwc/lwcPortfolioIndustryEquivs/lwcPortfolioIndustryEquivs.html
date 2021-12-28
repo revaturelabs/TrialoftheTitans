@@ -3,39 +3,23 @@
     <!--IF set to edit records-->
     <template if:false={isEdit}>
         <lightning-card title="Industry Equivalency" class="card">
+            <p>Current User ID: {userId}</p>
             <div class="slds-grid slds-gutters">
-
-
-                <lightning-formatted-text value={NameList.NameData}></lightning-formatted-text>
-
-
+                <lightning-formatted-text value={strList}></lightning-formatted-text>
+                <lightning-formatted-text value={strData}></lightning-formatted-text>
                 <div class="slds-col slds-size_1-of-5 slds-text-align_center">
 
 
 
 
-
-
-
-                    
-
-                    <template for:each={NameList.NameData} for:item="Names">
-                        
+                    <template for:each={NameList.data} for:item="Names">
                         <lightning-card
                         key={Names}
                         title="Skill Name:&nbsp;">
-
-                        <lightning-formatted-text value={Names}></lightning-formatted-text>
+                        <lightning-formatted-text value={Names.Name}></lightning-formatted-text>
+                        <lightning-formatted-number value={Names.Skill_Equivalency__c}></lightning-formatted-number>
                         </lightning-card>
-
                     </template>
-
-
-
-
-
-
-
 
 
 
@@ -46,30 +30,14 @@
         </lightning-card>
     </template>
 
-
-
-
     <!--If Set to Display Records-->
     <template if:true={isEdit}>
-
-
-
-
-
-
-
-
         <!--Save or Cancel Edit buttons-->
         <lightning-button-group class="slds-m-top_small">
             <lightning-button label="Cancel" onclick={cancel} variant="brand-outline" class="slds-m-left_small"></lightning-button>
             <lightning-button label="Save" onclick={save} variant="brand"></lightning-button>
         </lightning-button-group>
     </template>
-
-
-
-
-
 
 <lightning-button label="Edit" onclick={edit} variant="neutral"></lightning-button>
 </template>
