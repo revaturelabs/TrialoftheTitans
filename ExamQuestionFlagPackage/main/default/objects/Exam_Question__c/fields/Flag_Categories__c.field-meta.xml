@@ -5,14 +5,11 @@
     <description>This is the category picklist for flagging a question for review</description>
     <externalId>false</externalId>
     <label>Flag Categories</label>
-    <referenceTo>Flag_Categories__C</referenceTo>
-    <relationshipLabel>Exam_Questions__c</relationshipLabel>
-    <relationshipName>Exam Questions</relationshipName>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Picklist</type>
     <valueSet>
-        <restricted>false</restricted>
+        <restricted>true</restricted>
         <valueSetName>Flag_Category_Picklist</valueSetName>
     </valueSet>
 </CustomField>

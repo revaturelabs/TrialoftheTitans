@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Flag_Subategories__c</fullName>
+    <fullName>Flag_Subcategories__c</fullName>
     <deprecated>false</deprecated>
     <description>This is the sub-category picklist for flagging a question for review</description>
     <externalId>false</externalId>
     <label>Flag Sub-Categories</label>
-    <referenceTo>Flag_Subcategories__C</referenceTo>
-    <relationshipLabel>Exam_Questions__c</relationshipLabel>
-    <relationshipName>Exam Questions</relationshipName>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Picklist</type>
     <valueSet>
-        <restricted>false</restricted>
+        <restricted>true</restricted>
         <valueSetName>Flag_Subcategory_Picklist</valueSetName>
     </valueSet>
 </CustomField>

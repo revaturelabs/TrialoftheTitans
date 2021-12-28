@@ -83,7 +83,7 @@
     <customValue>
         <fullName>Text-Cut Off Early</fullName>
         <default>false</default>
-        <label>Unclear Wording</label>
+        <label>Cut Off Early</label>
     </customValue>
     <customValue>
         <fullName>Other</fullName>
