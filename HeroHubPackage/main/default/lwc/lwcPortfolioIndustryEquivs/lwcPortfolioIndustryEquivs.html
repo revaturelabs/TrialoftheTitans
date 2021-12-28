@@ -1,28 +1,24 @@
 <template>
 
-    <!--IF set to edit records-->
+    <!-- IF directive to display records.-->
     <template if:false={isEdit}>
+
+        <!--Lightning card as the LWC's view window-->
         <lightning-card title="Industry Equivalency" class="card">
-            <p>Current User ID: {userId}</p>
             <div class="slds-grid slds-gutters">
-                <lightning-formatted-text value={strList}></lightning-formatted-text>
-                <lightning-formatted-text value={strData}></lightning-formatted-text>
                 <div class="slds-col slds-size_1-of-5 slds-text-align_center">
 
-
-
-
+                    <!--Iterates over the entire returned list of Skill Names and Month equivalencies.-->
                     <template for:each={NameList.data} for:item="Names">
                         <lightning-card
                         key={Names}
                         title="Skill Name:&nbsp;">
                         <lightning-formatted-text value={Names.Name}></lightning-formatted-text>
+                        <br>
+                        <lightning-formatted-text value="Months: "></lightning-formatted-text>
                         <lightning-formatted-number value={Names.Skill_Equivalency__c}></lightning-formatted-number>
                         </lightning-card>
                     </template>
-
-
-
 
 
                 </div>
@@ -30,8 +26,11 @@
         </lightning-card>
     </template>
 
-    <!--If Set to Display Records-->
+    <!--If directive to edit records.-->
     <template if:true={isEdit}>
+        <!--Lightning Input field or record edit form to edit the Skill name and month equivalency for each of the skills.-->
+
+
         <!--Save or Cancel Edit buttons-->
         <lightning-button-group class="slds-m-top_small">
             <lightning-button label="Cancel" onclick={cancel} variant="brand-outline" class="slds-m-left_small"></lightning-button>
