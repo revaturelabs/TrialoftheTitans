@@ -1,4 +1,7 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
+import lookupQuestion from '@salesforce/apex/QuestionFlagUpdates.lookupQuestion';
+import flagQuestion from '@salesforce/apex/QuestionFlagUpdates.flagQuestion';
+
 
 export default class QuestionFlag extends LightningElement {
     @api recordId;
