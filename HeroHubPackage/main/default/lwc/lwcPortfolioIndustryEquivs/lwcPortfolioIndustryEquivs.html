@@ -34,7 +34,7 @@
                     <div class="slds-col slds-size_1-of-5 slds-text-align_center">
                     
                     <template for:each={recordIdList.data} for:item="recId">
-                        <lightning-record-edit-form key={recId} object-api-name={objectApiName} record-id={recId} onsuccess={handleSuccess}>
+                        <lightning-record-edit-form key={recId} object-api-name={objectApiName} record-id={recId}>
                             <lightning-input-field field-name={name}></lightning-input-field>
                             <lightning-input-field field-name={equiv}></lightning-input-field>
                             <lightning-button type="submit" label="Save" variant="brand"></lightning-button>

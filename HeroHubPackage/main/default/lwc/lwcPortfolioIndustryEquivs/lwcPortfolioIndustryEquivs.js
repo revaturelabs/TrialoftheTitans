@@ -25,14 +25,5 @@ export default class LwcPortfolioIndustryEquivs extends LightningElement {
     edit(event){
         this.isEdit = !this.isEdit;
     }
-
-    handleSuccess(){
-        const toastEvent = new ShowToastEvent({
-            title: "Saved",
-            message: "Record Saved",
-            variant: "success"
-        });
-        this.dispatchEvent(toastEvent);
-    }
 }
 
