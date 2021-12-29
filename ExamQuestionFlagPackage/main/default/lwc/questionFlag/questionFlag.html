@@ -12,7 +12,7 @@
              In this case, it should display a button that the user can click to flag the question.
          -->
         <template if:true={flagState}>
-            <lightning-buttonIcon icon-name="utility:report_issue" variant="brand" onclick={flagButtonClicked} alternative-text="Flag for Review" title="Flag for Review"></lightning-buttonIcon>
+            <lightning-button-icon icon-name="utility:report_issue" variant="brand" onclick={flagButtonClicked} alternative-text="Flag for Review" title="Flag for Review"></lightning-button-icon>
         </template>
         <!-- The Note state is displayed after the Flag button has been clicked. This is the most complex state.
              There are a few things that need to be displayed:
@@ -22,7 +22,7 @@
              4 - A submit button, to notify the Salesforce org that the question was flagged.
          -->
         <template if:true={noteState}>
-            <lightning-buttonIcon icon-name="utility:report_issue" variant="bare" onclick={unflagButtonClicked} alternative-text="Cancel Flag" title="Cancel Flag"></lightning-buttonIcon>
+            <lightning-button-icon icon-name="utility:report_issue" variant="bare" onclick={unflagButtonClicked} alternative-text="Cancel Flag" title="Cancel Flag"></lightning-button-icon>
             <lightning-combobox name="category" label="Category" options={reviewReasons} onchange={reviewReasonChanged}></lightning-combobox>
             <lightning-combobox name="subcategory" label="Subcategory" ></lightning-combobox>
             <lightning-textarea name="flagNotesInput" required="false" value="" placeholder="Add Notes" maxlength={maxNotesLength} message-when-too-long="Maximum length of notes is {maxNotesLength} characters"></lightning-textarea>
