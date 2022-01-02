@@ -13,6 +13,8 @@ public with sharing class lwcPortFolioIndustryEquivs {
                     Name = 'Skill No. '+i,
                     Skill_Equivalency__c = i + 6));
             }
+            //If There are no records for the active user,  create new records for the user to use. 
+            insert PortSkill;
         }
         return PortSkill;
     }
