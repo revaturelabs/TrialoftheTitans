@@ -42,7 +42,7 @@
         </aura:if>
 
         <aura:if isTrue="{!v.navigate == 'Titans'}">
-            <c:lwcTitansPageLanding />
+            <c:TitansPageLanding />
         </aura:if>
 
         <!-- 
@@ -62,10 +62,11 @@
         <aura:if isTrue="{!v.navigate == 'Portfolio Creation'}">
             <c:PortfolioCreation2/>
         </aura:if>
-    
+
         <aura:if isTrue="{!v.navigate == 'One on One'}">
             <c:HeroOneOnOne/>
             <c:TitanSlayer leadTeams="{!v.leadTeams}" />
+            <c:lwcTitanSlayer leadTeams="{!v.leadTeams}" />
             <c:HeroJourney contextInfo="{!v.contextInfo}" />
         </aura:if>
 
