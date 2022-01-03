@@ -7,7 +7,7 @@
                 <!--Iterates over the entire returned list of Skill Names and Month equivalencies.-->
                 <template for:each={NameList.data} for:item="Names">
                     <div key={Names} class="slds-col slds-size_1-of-5 slds-text-align_center">
-                        <lightning-card key={Names}>
+                        <lightning-card key={Names} class="Card">
                                 <lightning-formatted-text value="Skill Name:&nbsp;"></lightning-formatted-text>
                                 <br>
                                 <lightning-formatted-text value={Names.Name}></lightning-formatted-text>
@@ -25,8 +25,9 @@
     <!--If directive to edit records.-->
     <template if:true={isEdit}>
         <!--Lightning Input field or record edit form to edit the Skill name and month equivalency for each of the skills.-->
-        <lightning-card title="Industry Equivalency" class="EditCard">
+        <lightning-card title="Industry Equivalency" class="Card">
                 <div class="slds-grid slds-gutters">
+                    <!--Iterates over all records a user should have.  currently save button gets re-rendered for each item. Having save button outside of the template loop causes it to do nothing.-->
                     <template for:each={recordIdList.data} for:item="recId">
                         <div key={recId} class="slds-col slds-size_1-of-5 slds-text-align_center">
                             <lightning-record-edit-form key={recId} object-api-name={objectApiName} record-id={recId}>
@@ -36,9 +37,10 @@
                             </lightning-record-edit-form>
                         </div>
                     </template>
-                    <!--save and cancel buttons. cancel takes you out of edit and back to view mode.-->                        
+                      
                 </div>
-                    <br>                    
+                    <br>
+                        <!--Cancel button for edit view-->                    
                         <lightning-button label="Cancel" onclick={edit} variant="neutral"></lightning-button>
             </lightning-card> 
     </template>

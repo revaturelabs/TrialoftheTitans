@@ -1,9 +1,6 @@
-.THIS.Card{
-background-color: #72a4c2;
- color:black;    
+.Card{
+--sds-c-card-color-background: #72a4c2;
+--sds-c-card-color-border: #72a4c2;
+--sds-c-card-footer-color-border: #72a4c2;
 }
-.THIS.EditCard{
-    background-color: #72a4c2;
-    color: black;
-
-}
+/* CSS is not applying to the card as intended*/
