@@ -23,7 +23,7 @@
          -->
         <template if:true={noteState}>
             <lightning-button-icon icon-name="utility:report_issue" variant="bare" onclick={unflagButtonClicked} alternative-text="Cancel Flag" title="Cancel Flag"></lightning-button-icon>
-            <lightning-combobox name="category" label="Category" options={reviewReasons} onchange={reviewReasonChanged}></lightning-combobox>
+            <lightning-combobox name="category" label="Category" options={categoryList} onchange={categoryChanged}></lightning-combobox>
             <lightning-combobox name="subcategory" label="Subcategory" ></lightning-combobox>
             <lightning-textarea name="flagNotesInput" required="false" value="" placeholder="Add Notes" maxlength={maxNotesLength} message-when-too-long="Maximum length of notes is {maxNotesLength} characters"></lightning-textarea>
             <lightning-button variant="success" label="Submit" title="Submit" onclick={submitButtonClicked}></lightning-button>
