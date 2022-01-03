@@ -1,6 +1,6 @@
 <template>
     <!-- This component allows the user to flag a question for review. -->
-    <lightning-card variant="Narrow" title="Flag For Review">
+    <lightning-card variant="Narrow" title="Flag For Review" footer={errorMessage}>
         <!-- The Await state is displayed when this component doesn't have an Exam Question's Id connected.
              In this case, it should gracefully fail to function until it gets an Id.
              A message is displayed to indicate that it cannot function yet.
