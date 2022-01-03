@@ -7,8 +7,8 @@
   Last Updated: 10/26/21
 -->
 
-<aura:component controller="HeroHubController" implements="forceCommunity:themeLayout" access="global">
-
+<aura:component controller="HeroHubController" extensible="true" implements="forceCommunity:themeLayout,force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
+   
     <!--Attributes: contextUser, userTeam, leadTeam,-->
     <aura:attribute name="contextInfo" type="UserContextInfo" />
     <aura:attribute name="userName" type="String" />
@@ -58,16 +58,16 @@
                 <c:OraclePublicVideos />
         </aura:if>
         -->
-
+ 
         <aura:if isTrue="{!v.navigate == 'Portfolio Creation'}">
             <c:PortfolioCreation2/>
         </aura:if>
-
-        <!--<aura:if isTrue="{!v.navigate == 'One on One'}">
+    
+        <aura:if isTrue="{!v.navigate == 'One on One'}">
             <c:HeroOneOnOne/>
             <c:TitanSlayer leadTeams="{!v.leadTeams}" />
             <c:HeroJourney contextInfo="{!v.contextInfo}" />
-        </aura:if>-->
+        </aura:if>
 
     </div>
 

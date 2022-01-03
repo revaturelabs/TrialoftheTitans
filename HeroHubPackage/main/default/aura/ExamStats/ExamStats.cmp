@@ -9,7 +9,7 @@
 ///////////////////////////////////////////////////
 -->
 
-<aura:component>
+<aura:component implements="forceCommunity:themeLayout,force:appHostable,flexipage:availableForAllPageTypes" access="global">
     <aura:attribute name="exam" type="Object"/>
     <aura:attribute name="totalAnswers" type="Integer"/>
     <aura:attribute name="correctAnswers" type="Integer"/>
