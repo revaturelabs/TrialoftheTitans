@@ -54,7 +54,8 @@ export default class QuestionFlag extends LightningElement {
     }
 
     reviewReasonChanged(){
-
+        const categoryDropdown = this.template.querySelector('[data-name="category"]');
+        const subcategoryDropdown = this.template.querySelector('[data-name="subcategory"]');
     }
 
     submitButtonClicked(){

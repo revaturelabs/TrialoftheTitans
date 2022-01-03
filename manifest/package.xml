@@ -2,27 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
 		<members>*</members>
-		<name>ActionLinkGroupTemplate</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>AnimationRule</name>
-	</types>
-	<types>
-		<members>*</members>
 		<name>ApexClass</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ApexComponent</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ApexEmailNotifications</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ApexPage</name>
 	</types>
 	<types>
 		<members>*</members>
@@ -34,10 +14,6 @@
 	</types>
 	<types>
 		<members>*</members>
-		<name>AppMenu</name>
-	</types>
-	<types>
-		<members>*</members>
 		<name>ApprovalProcess</name>
 	</types>
 	<types>
@@ -46,95 +22,7 @@
 	</types>
 	<types>
 		<members>*</members>
-		<name>Audience</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>AuraDefinitionBundle</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>AuthProvider</name>
-	</types>
-	<types>
-		<members>*</members>
 		<name>AutoResponseRules</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>BrandingSet</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CMSConnectSource</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CallCenter</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>Certificate</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ChannelLayout</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ChatterExtension</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CleanDataService</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>Community</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CommunityTemplateDefinition</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CommunityThemeDefinition</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ConnectedApp</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ContentAsset</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CorsWhitelistOrigin</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CspTrustedSite</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CustomApplication</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CustomApplicationComponent</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CustomFeedFilter</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CustomHelpMenuSection</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>CustomLabels</name>
 	</types>
 	<types>
 		<members>*</members>
@@ -165,48 +53,12 @@
 		<name>CustomTab</name>
 	</types>
 	<types>
-		<members>*</members>
-		<name>DataCategoryGroup</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>DelegateGroup</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>DuplicateRule</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>EclairGeoData</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>EntitlementProcess</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>EntitlementTemplate</name>
-	</types>
-	<types>
 		<members>Case</members>
 		<name>EscalationRules</name>
 	</types>
 	<types>
 		<members>*</members>
 		<name>ExperienceBundle</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ExternalDataSource</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ExternalServiceRegistration</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>FlexiPage</name>
 	</types>
 	<types>
 		<members>*</members>
@@ -242,15 +94,7 @@
 	</types>
 	<types>
 		<members>*</members>
-		<name>IframeWhiteListUrlSettings</name>
-	</types>
-	<types>
-		<members>*</members>
 		<name>InstalledPackage</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>KeywordList</name>
 	</types>
 	<types>
 		<members>*</members>
@@ -274,59 +118,7 @@
 	</types>
 	<types>
 		<members>*</members>
-		<name>ManagedContentType</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ManagedTopics</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>MatchingRules</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>MilestoneType</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ModerationRule</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>MyDomainDiscoverableLogin</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>NamedCredential</name>
-	</types>
-	<types>
-		<members>*</members>
 		<name>NavigationMenu</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>Network</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>NetworkBranding</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>NotificationTypeConfig</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>OauthCustomScope</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>PathAssistant</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>PaymentGatewayProvider</name>
 	</types>
 	<types>
 		<members>*</members>
@@ -338,19 +130,11 @@
 	</types>
 	<types>
 		<members>*</members>
-		<name>PlatformCachePartition</name>
-	</types>
-	<types>
-		<members>*</members>
 		<name>PlatformEventChannel</name>
 	</types>
 	<types>
 		<members>*</members>
 		<name>PlatformEventChannelMember</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>PostTemplate</name>
 	</types>
 	<types>
 		<members>*</members>
@@ -366,31 +150,7 @@
 	</types>
 	<types>
 		<members>*</members>
-		<name>Prompt</name>
-	</types>
-	<types>
-		<members>*</members>
 		<name>Queue</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>QuickAction</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>RecommendationStrategy</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>RecordActionDeployment</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>RedirectWhitelistUrl</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>RemoteSiteSetting</name>
 	</types>
 	<types>
 		<members>*</members>
@@ -399,14 +159,6 @@
 	<types>
 		<members>*</members>
 		<name>Role</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>SamlSsoConfig</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>Scontrol</name>
 	</types>
 	<types>
 		<members>*</members>
@@ -422,35 +174,7 @@
 	</types>
 	<types>
 		<members>*</members>
-		<name>SiteDotCom</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>Skill</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>StandardValueSetTranslation</name>
-	</types>
-	<types>
-		<members>*</members>
 		<name>StaticResource</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>SynonymDictionary</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>TimeSheetTemplate</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>TopicsForObjects</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>TransactionSecurityPolicy</name>
 	</types>
 	<types>
 		<members>*</members>
