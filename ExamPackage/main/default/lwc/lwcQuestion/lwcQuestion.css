@@ -8,3 +8,23 @@
 */
 
 @import 'c/examStyle';
+
+lightning-layout.question_layout {
+  background-color: #BDBDBD;
+}
+
+div.question_text {
+  color:#111111;
+}
+
+lightning-textarea {
+  color: #111111;
+}
+
+span.user_answer {
+  font-style: italic;
+}
+
+p {
+  color: #111111;
+}

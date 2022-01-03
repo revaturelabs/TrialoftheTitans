@@ -7,25 +7,24 @@
   Modifications Log
   Ver   Date         Author         Modification
   1.0   10-01-2021   Daniel Boice   Initial Version
-  Modified Date:10/26/2021
-  Modified By: Iteration VI Styling and Data
+  2.0   10-26-2021   Iteration VI   Styling and Data          
+  3.0   12-30-2021   Iteration VII  Styling
 -->
 <template>
   <lightning-layout
-    class="slds-page-header slds-page-header_object-home"
+    class="slds-page-header slds-page-header_object-home question_layout"
     horizontal-align="spread"
     multiple-rows="true"
   >
     <lightning-layout-item size="6" flexibility="auto">
       <template if:true={question}>
-        <div class="slds-text-heading_large">{question.Question_Text__c}</div>
+        <div class="slds-text-heading_large question_text">{question.Question_Text__c}</div>
       </template>
       <template if:true={displayTextarea}>
         <div>
           <lightning-textarea
             name="answertextarea"
             value={answer}
-            label="Enter answer here."
             onkeyup={handleInputAnswer}
             placeholder="Enter essay answer here..."
           ></lightning-textarea>
@@ -84,14 +83,15 @@
             placeholder="Select Answer(s)"
             options={answersForComboBox}
             onchange={handleInputAnswer}
-          ></lightning-combobox>
+          >
+          </lightning-combobox>
         </template>
       </template>
 
       <div class="slds-m-vertical_medium">
         <p>
-          You Answered:
-          <span class="slds-text-heading_small">{displayAnswerGiven}</span>
+          You Answered: &nbsp;
+          <span class="slds-text-heading_small user_answer">{displayAnswerGiven}</span>
         </p>
       </div>
     </lightning-layout-item>

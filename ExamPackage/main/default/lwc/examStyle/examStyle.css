@@ -23,7 +23,7 @@ div { /*body (under title)*/
   
 lightning-card { /*title (above body)*/
     --sds-c-card-color-background: var(--background-color);
-    --sds-c-card-text-color: #f26925;
+    --sds-c-card-text-color: lightgray;
     font-family: futurabold;
     font-size: 2 em;
 }

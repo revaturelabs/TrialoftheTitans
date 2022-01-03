@@ -11,9 +11,10 @@
   Modified By: Iteration VI Styling and Data
 -->
 <template>
-  <div class="slds-p-around_x-small">
+  <div class="slds-p-around_x-small exam_layout">
     <lightning-card title={questionNumberTitleText}>
       <c-lwc-question
+        class="question_overview"
         onanswerupdated={answerUpdated}
         question={question}
       ></c-lwc-question>
@@ -31,22 +32,26 @@
       </div>
     </template>
 
-    <lightning-button
-      class="slds-float_left prev"
-      name="prevButton"
-      label="Previous Question"
-      title="Previous Question"
-      onclick={prevClicked}
-      disabled={prevButtonDisabled}
-    ></lightning-button>
-    <lightning-button
-      class="slds-float_right next"
-      name="nextButton"
-      label="Next Question"
-      title="Next Question"
-      onclick={nextClicked}
-      disabled={nextButtonDisabled}
-    ></lightning-button>
+    <div class="button_container">
+      <div class="button_holder">
+        <lightning-button
+          class="slds-float_left button"
+          name="prevButton"
+          label="Previous Question"
+          title="Previous Question"
+          onclick={prevClicked}
+          disabled={prevButtonDisabled}
+        ></lightning-button>
+        <lightning-button
+          class="slds-float_right next button"
+          name="nextButton"
+          label="Next Question"
+          title="Next Question"
+          onclick={nextClicked}
+          disabled={nextButtonDisabled}
+        ></lightning-button>
+      </div> 
+    </div>
     <template if:true={showCelebrateButton}>
       <lightning-button
         id="celebratebutton"
@@ -59,12 +64,13 @@
   </div>
 
   <c-lwc-slds-modal
-    show-button-text="Submit Exam Confirmation"
+    class="button"
+    show-button-text="Submit Exam"
     close-button-text="Cancel"
     close-button-label="No, Not Yet! Take me back!"
-    modal-header="Confirm Submit Exam"
-    modal-content="Are you sure you are ready to submit your exam now?"
-    confirm-button-label="Yes, I'm ready to submit my exam now"
+    modal-header="Face The Titan?"
+    modal-content="Are you sure you are ready to submit your exam to the titan?"
+    confirm-button-label="Yes, I'm ready."
     onconfirmationclick={handleSubmit}
   ></c-lwc-slds-modal>
 </template>
