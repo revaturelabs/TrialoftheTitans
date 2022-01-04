@@ -25,9 +25,9 @@
                 <lightning:menuItem class="pointer" value="Titans" label="Titans" />
                 <!-- this functionality isn't ready for primetime; switching focus to hero user experience - iteration 6
                 <lightning:menuItem class="pointer" value="Mock Interview" label="Mock Interview" />
-                <lightning:menuItem class="pointer" value="Mock Feedback" label="Mock Feedback" />
+                <lightning:menuItem class="pointer" value="Mock Feedback" label="Mock Feedback" />-->
                 
-                <lightning:menuItem class="pointer" value="One on One" label="One on One" />-->
+                <lightning:menuItem class="pointer" value="One on One" label="One on One" />
                 <lightning:menuItem class="pointer" value="Portfolio Creation" label="Portfolio Creation" />
             </lightning:buttonMenu>
         </div>

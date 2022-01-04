@@ -11,6 +11,12 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <aura:if isTrue="{!!v.isEdit}">
+
+
+
+
+
+
     <!--Display card-->
     <lightning:card title="Industry Equivalency" class="Card">
         <div class="slds-grid slds-gutters">
@@ -27,6 +33,9 @@
                     <p>Months:&nbsp;</p> <lightning:formattedNumber name="equiv_0" value="{!v.equivs[0]}" />
                 </div>
             </div>
+
+
+
 
             <div class="slds-col slds-size_1-of-5 slds-text-align_center">
                 <div>

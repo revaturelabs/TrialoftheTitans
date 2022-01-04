@@ -21,7 +21,7 @@
   </lightning:card>
 
   <lightning:card class="Indu">
-    <c:PortfolioIndustryEquivs />
+    <c:lwcPortfolioIndustryEquivs />
   </lightning:card>
 
   <lightning:card class="Education">

@@ -1,0 +1,84 @@
+<!--
+
+    Name: Titan Slayer
+    Author: Douglas Lee, Daniel Ferraro, Emmanuel Edamwen
+    Description: Titan Slayer displays scores for leading team,
+    cohorts, and squads.
+
+-->
+
+<template>
+    <!-- container for Synergy's style but works for any team in the lead-->
+    <div class="titanSlayer">
+        <!-- Computer screen closes and opens -->
+        <div class="titanSlayer-Synergy">
+            <div class="Synergy-topBar"><h6>Titan Slayer</h6><span>x</span></div>
+            <div class="titanSlayer-Synergy-body">
+                <div class="titanSlayer-Synergy-title">
+                    <h2>Titan Slayers</h2>
+                </div>
+                <div class="Synergy-results">
+                    <div class="scoreWrapper">
+                        <h3>Team Scores</h3>
+                        <div class="progressBars">
+                            <!--leadTeams is Datatype Map(String, Map) -->
+                            <template for:each={leadTeams} for:item="teamName">
+                                <div key={teamName.Team}>
+                                    <div class="Synergy-Scores + {teamName.Team}">
+                                        <template for:each={teamName.Team} for:item="team" for:index="index">
+                                            <div key={team.index}>
+                                                <h3>{team}</h3>
+                                                    <lightning-progress-bar class={team} value={team.index} max="100">{team.index}%</lightning-progress-bar>
+                                                <h3>{team.Score}</h3>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="scoreWrapper">
+                        <h3>Cohort Scores</h3>
+                        <template for:each={leadTeams} for:item="cohort" >
+                            <div key={leadTeams.cohort}>
+                                <div class="Synergy-Scores  + {leadTeams.cohort}" >
+                                    <template for:each={leadTeams.cohort} for:item="cohortName" for:index="index">
+                                        <div key={cohortName.index}>
+                                            <h3>{cohort}</h3>
+                                                <lightning-progress-bar class={cohort} value={cohort.index} max="100">{cohort.index}%</lightning-progress-bar>
+                                            <h3>{cohort}%</h3>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </div> 
+                </div>
+            </div>
+            <div class="titanSlayer-Synergy-body2">
+                <div class="titanSlayer-Synergy-title">
+                    <h2>Squad Leaders</h2>
+                </div>
+                <div class="Synergy-results">
+                    <div class="scoreWrapper">
+                        <div class="progressBars">
+                            <template for:each={leadTeams} for:item="squad" >
+                                <div key={leadTeams.squad}>
+                                    <div class="Synergy-Scores  + {leadTeams.squad}" >
+                                        <template for:each={leadTeams.squad} for:item="squadName" for:index="index">
+                                            <div key={squadName.index}>
+                                                <h3>{cohort}</h3>
+                                                    <lightning-progress-bar class={squad} value={squad.index} max="100">{cohort.index}%</lightning-progress-bar>
+                                                <h3>{cohort}%</h3>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

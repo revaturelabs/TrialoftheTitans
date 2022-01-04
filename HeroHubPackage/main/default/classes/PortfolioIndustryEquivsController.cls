@@ -2,7 +2,11 @@ public with sharing class PortfolioIndustryEquivsController {
 
     //Takes the records (if any) of the specific user and replaces the default attribute list with the records
     @AuraEnabled
+
+
+
     public static List<String> ReturnNames(){
+
         List<String> ReturnName = new List<String>();
         id UserId = UserInfo.getUserId();
         //Get list of skills from specific user
@@ -22,6 +26,8 @@ public with sharing class PortfolioIndustryEquivsController {
         }
         return ReturnName;
     }
+
+
     //Same exact method as above except returns the respective months 
     @AuraEnabled
     public static List<Decimal> ReturnMonths(){
