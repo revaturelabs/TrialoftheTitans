@@ -45,7 +45,7 @@
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <criteriaItems>
-            <field>Exam_Question__c.Flag_IsFlagged__c</field>
+            <field>Exam_Question__c.IsFlagged__c</field>
             <operation>equals</operation>
             <value>True</value>
         </criteriaItems>
