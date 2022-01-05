@@ -48,7 +48,7 @@ Technologies used for this project include: **Salesforce, Apex, Lightning Aura C
   - [ ] QC will have access to the QC hub
   - [ ] QC will be able to conduct one-on-one interviews
   - [ ] QC will be able to see one-on-one interview results
-  - [ ] QC will be able to create and manage their own set of questions
+  - [x] QC will be able to create and manage their own set of questions
   - [ ] QC will be able to see the Curricula
   - [ ] QC will have the ability to review interviews
 
