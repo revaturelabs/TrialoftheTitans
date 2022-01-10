@@ -2,10 +2,12 @@
     Authors: Hamza Khan, Nolan Toole
     Date Modified: 9/30/2021
     Description: Lightning Web Component for being able to save questions from a GIFT formatted file to the exam questions custom object
+    Modified Date: 10/26/2021
+    Modified By: Iteration VI Styling and Data
 -->
 
 <template>
-    <div class="container">
+    <div class="container slds-p-around_large">
         <!--This is the first page shown, is displayed again after clicking the submit or cancel button on the submit screen-->
         <template if:false={submitScreen}>
             <!--Header-->
@@ -33,7 +35,7 @@
             </div>
             <!--Displays the technology of the selected titan-->
             <div class="slds-box">
-                <lightning-combobox name="TechnologyID" label="Titan's Technology:" value={valueTech} options={techOptions} disabled=true>
+                <lightning-combobox name="TechnologyID" label="Titan's Technology:" value={valueTech} options={techOptions} disabled>
                 </lightning-combobox>
             </div>
             <!--Button for advancing to the submission screen-->
@@ -66,7 +68,7 @@
                             </td>
                             <td class="td__upload">
                                 <!-- file uploader -->
-                                <lightning-input type="file" label="Upload Text Document" multiple="false" accept='.txt' onchange={handleUploadFile} ></lightning-input> 
+                                <lightning-input type="file" label="Upload Text Document" accept='.txt' onchange={handleUploadFile} ></lightning-input> 
                                 <!-- /file uploader -->
                             </td>
                             <td class="td__buttons">

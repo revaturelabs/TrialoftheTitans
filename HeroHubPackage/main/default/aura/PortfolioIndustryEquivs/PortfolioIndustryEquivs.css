@@ -1,15 +1,15 @@
 .THIS.Card{
-    background-color: #c9c7c7;
+    background-color: #72a4c2;
     color: black;
 
 }
 .THIS.EditCard{
-    background-color: #c9c7c7;
+    background-color: #72a4c2;
     color: black;
 
 }
 .THIS.slds-input {
-    background-color: var(--sds-c-input-color-background, #3f3f3f);
+    background-color: var(--sds-c-input-color-background, #72a4c2);
     border-radius: var(--sds-c-input-radius-border, 15rem);
     color: var(--sds-c-input-text-color, #d3d4d4);
     /* Styles not pertinent have been omitted */

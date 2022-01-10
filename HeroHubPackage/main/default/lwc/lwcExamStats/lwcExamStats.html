@@ -1,0 +1,42 @@
+<!--
+    Author: Zabian Threatt
+    Description: lcmExamStats helps display information on
+        the exam depending on whether the exam has been
+        attempted, assigned, or unavailable to take yet.
+    Date Created: 10/17/21
+-->
+<!--HELLO WORLD!-->
+<template>
+    <div class="container slds-p-around_large">
+    <template if:true={display} >
+        <div>
+            <!-- Display for attempting to access exam not yet assigned -->
+            <template if:true={attemptDisplay}>
+                <h1>Slow your pegasus! </h1>
+                <h1>You still have some minions to get through first! </h1>
+            </template>
+
+            <!-- Display for an exam that has yet to be attempted -->
+            <template if:true={examDisplay}>
+                <h1> Ready to take on the {examName} minion? </h1>
+                <lightning-button variant="brand" class="slds-button" label="Take Exam!" data-id="Take_Exam_Button" onclick={takeExame}></lightning-button>
+            </template>
+
+            <!-- Display that shows the results of the "most recent" exam having been taken -->
+            <template if:true={resultsDisplay}>
+                <h1> {examName} Results </h1>
+                <div class="line"></div>
+                <br/>
+                <h3>Last Attempt: </h3>
+                <br/>
+                <h2><span class="number">{correctAnswers}</span> Correct Answers</h2>
+                <h2><span class="number">{totalAnswers}</span> Total Answers</h2>
+                <br/>
+                <h1>{score}%</h1>
+                <br/>
+                <lightning-button variant="brand" class="slds-button" label="Retake Exam!" data-id="Retake_Exam_Button" onclick={takeExame}></lightning-button>
+            </template>
+        </div>
+    </template>
+    </div>
+</template>

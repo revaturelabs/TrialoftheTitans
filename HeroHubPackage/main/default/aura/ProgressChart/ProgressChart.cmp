@@ -11,6 +11,6 @@
                   afterScriptsLoaded ="{!c.ScriptsLoaded}"
                   />
 
-        <div id="progress-chart" class="inactive-chart" onclick="{!c.handleClick}" />
+        <div id="progress-chart" class="inactive-chart" onclick="{!c.handleClick}" ></div>
   
 </aura:component>

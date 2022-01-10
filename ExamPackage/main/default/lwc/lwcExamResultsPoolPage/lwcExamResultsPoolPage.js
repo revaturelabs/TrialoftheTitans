@@ -1,25 +1,27 @@
-import { LightningElement, wire, api } from 'lwc';
+import { LightningElement, wire, api } from 'lwc'; 
 import GetCorrectExamResultPoolQuestions from '@salesforce/apex/ExamResultsPoolPageAuraController.GetCorrectExamResultPoolQuestions';
 import GetAllExamResultPoolQuestions from '@salesforce/apex/ExamResultsPoolPageAuraController.GetAllExamResultPoolQuestions';
 
 export default class LwcExamResultsPoolPage extends LightningElement {
     // these were the Aura:attributes 
+    
     TogglePoolInfo = true;
 
-    @api recordId; 
-    examResultId;
-    scriptsLoaded = false;
-    ExamResultPoolQuestions; 
-    allQuestions;
-    correctQuestions;
-    readyToRun = false;
+    @api recordId;               // ----- Matthew Fernandez -----
+    @api examResultId;           // <<
+    scriptsLoaded = false;       // <<
+    @api ExamResultPoolQuestions;// << examResultId, ExamResultPoolQuestions, and correctQuestions
+    allQuestions;                // << varibles were changed to public to make testing posible 
+    @api correctQuestions;       // <<
+    readyToRun = false;          // <<
+
     isListEmpty = true;
 
     //upon component connected, retrieve all questions from exam results that are 
     //  within a question pool and set to an attribute
     connectedCallback() {
 
-        this.examResultId = this.recordId; // <--- this one is required for the page to work
+        //this.examResultId = this.recordId; // <--- this one is required for the page to work
         this.ToggleExamPoolPercentage();    
     }
 
@@ -27,6 +29,7 @@ export default class LwcExamResultsPoolPage extends LightningElement {
 
     @wire(GetCorrectExamResultPoolQuestions,{examResultId:'$examResultId'})
     correctAnswerPool({error, data}) {
+        console.log(data);
         if (data) {
             console.log("collected correctly answered questions:",data);
             this.correctQuestions = data;

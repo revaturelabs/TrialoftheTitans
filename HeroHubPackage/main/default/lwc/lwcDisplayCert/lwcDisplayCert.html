@@ -1,0 +1,46 @@
+<!--   
+      Author: Julia Weakley
+      Date Last Modified: 10/25/2021
+      Description:  
+        Component that displays all certifications for the user. The User has the ability to edit the cert (via lwcEditCert component)
+        or add a cert (via lwcCreateCertification)
+      Modified Date: 10/26/21
+      Modified By: Iteration VI Styling and Data
+-->
+<template>
+  <div class="container slds-p-around_large">
+  <lightning-card title="Certifications">
+    <div class="slds-card__body_inner">
+      <!-- Implement lwcCreateCertification in this component-->
+      <c-lwc-Create-Certification></c-lwc-Create-Certification>
+
+      <!-- If there are certifications to display, each one will be listed -->
+      <template if:true={certs.data}>
+        <lightning-layout multiple-rows="true" pull-to-boundary="small">
+          <template for:each={certs.data} for:item="cert">
+            <lightning-layout-item
+              key={cert.Id}
+              size="3"
+              class="slds-var-p-around_x-small"
+            >
+              <lightning-card title={cert.Name} class="cert-title">
+                <div class="slds-var-horizontal_small cert-title-body">
+                  <div class="slds-media">
+                    <div class="slds-media__body">
+                      <!-- IMplements lwcEditCert component-->
+                      <c-lwc-Edit-Cert
+                        certid={cert.Id}
+                        certimage={cert.Image_URL__c}
+                      ></c-lwc-Edit-Cert>
+                    </div>
+                  </div>
+                </div>
+              </lightning-card>
+            </lightning-layout-item>
+          </template>
+        </lightning-layout>
+      </template>
+    </div>
+  </lightning-card>
+  </div>
+</template>

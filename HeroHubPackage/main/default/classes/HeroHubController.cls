@@ -28,6 +28,22 @@ public with sharing class HeroHubController {
         
         }
     }
+
+    @AuraEnabled
+    public static String getUserName(){
+        try {
+            
+            String userName = UserInfo.getName();
+            
+            return userName; 
+
+        } catch ( Exception e ) {
+
+            system.debug(e);
+            throw new AuraHandledException(e.getMessage());
+        
+        }
+    }
     
     //Method to return Team Scores in a Map of {Team:{Team: Score}, Cohort:{Team: Score}, Squad:{Squad: Score}}
     @AuraEnabled

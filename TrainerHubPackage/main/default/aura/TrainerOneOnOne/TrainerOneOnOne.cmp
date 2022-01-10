@@ -34,4 +34,4 @@
             </lightning:recordForm>
         </aura:if> 
     </div>
-</aura:component>	
+</aura:component>

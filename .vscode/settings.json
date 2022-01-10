@@ -5,5 +5,6 @@
     "**/.sfdx": true
   },
   "salesforcedx-vscode-core.show-cli-success-msg": false,
-  "salesforcedx-vscode-core.push-or-deploy-on-save.enabled": true
+  "editor.bracketPairColorization.enabled": true
+
 }

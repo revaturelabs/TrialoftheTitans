@@ -1,29 +1,39 @@
-<aura:component controller = 'HeroOneOnOneController'>
-    <aura:attribute name = 'OneOnOneId' type = 'String'/>
-    <aura:attribute name = 'week' type = 'String' default = 'A'/>
-    <aura:attribute name="showData" type="Boolean" default="false"/>
+<aura:component controller="HeroOneOnOneController">
+  <aura:attribute name="OneOnOneId" type="String" />
+  <aura:attribute name="week" type="String" default="A" />
+  <aura:attribute name="showData" type="Boolean" default="false" />
 
-    <div class="header">
-        <h1>Check The Feedback From Previous Battles!</h1>
-    </div>
-    
-    <lightning:card class="WholeComponent">
-        <lightning:select name="week" label="Which week?" required="true" onchange="{!c.onChange}" aura:id = "week">
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-        </lightning:select>
+  <div class="header">
+    <h1>Check The Feedback From Previous Battles!</h1>
+  </div>
 
-        <aura:if isTrue = '{!v.showData}'> 
-            <lightning:recordForm recordId="{!v.OneOnOneId}" objectApiName="One_on_One__c" layoutType="Compact" mode="readonly"/>   
-        </aura:if> 
-    </lightning:card>
+  <lightning:card class="WholeComponent">
+    <lightning:select
+      name="week"
+      label="Which week?"
+      required="true"
+      onchange="{!c.onChange}"
+    >
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+    </lightning:select>
+
+    <aura:if isTrue="{!v.showData}">
+      <lightning:recordForm
+        recordId="{!v.OneOnOneId}"
+        objectApiName="One_on_One__c"
+        layoutType="Compact"
+        mode="readonly"
+      />
+    </aura:if>
+  </lightning:card>
 </aura:component>

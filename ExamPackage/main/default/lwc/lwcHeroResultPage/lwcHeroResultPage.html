@@ -2,9 +2,12 @@
     Author: Jacob Johnson
     Date modified: 9/30/2021
     Description: Displays titans, their exams and their exam results
+    Modified Date: 10/26/2021
+    Modified By: Iteration VI Styling and Data
 -->
 
 <template>
+    <div class="container slds-p-around_large">
     <div class="wrapper">
         <div class="flex-wrapper">
             <div class="titan-tab-group">
@@ -28,7 +31,7 @@
                     <template if:false={examClicked}>
                         <template for:each={examListPanel} for:item="myExam">
                             <div key={myExam.Exam__r.Id} class="exam-btn-group exam-btn" onclick={onExamClick}>
-                                {myExam.Exam__r.Name}
+                                {myExam.Exam__r.Name} 
                             </div>
                         </template>
                     </template>
@@ -60,15 +63,15 @@
 
             <br></br>
             <h2>Code Assessment</h2>
-            <div class='titan-tab' onclick={onCAClick}>See Code Assesment Results</div>
+            <div class='titan-tab onCAClick' onclick={onCAClick}>See Code Assesment Results</div>
             <br></br>
             <template if:true={caClicked}>
-                <lightning-card variant="Narrow" footer="End" title="Code Assesment Results">
+                <lightning-card variant="Narrow" title="Code Assesment Results">
                     <!-- Possibly implement search functionality in next iteration-->
                     <p class="slds-p-horizontal_small">
                         <template for:each={results} for:item="r">
-                            <div key={r.Id}>
-                                <!--<c-lwc-result-item resultId={r.Id} ></c-lwc-result-item>-->
+                            <div class="kor" key={r.Id}>  
+                                <!-- <c-lwc-result-item resultId={r.Id} ></c-lwc-result-item> -->
                             </div>
                         </template>
                     </p>
@@ -78,5 +81,6 @@
 
         </div>
 
+    </div>
     </div>
 </template>

@@ -9,7 +9,7 @@
 ///////////////////////////////////////////////////
 -->
 
-<aura:component access="global">
+<aura:component implements="forceCommunity:themeLayout,force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
     <aura:attribute name="tabs" type="List"/>
     <aura:attribute name="active" type="String" default="Overview"/>
     <aura:attribute name="contextInfo" type="UserContextInfo"/>

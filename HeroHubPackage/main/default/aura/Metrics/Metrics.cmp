@@ -11,6 +11,6 @@
 
 <aura:component >
 	<div>
-        <c:ExamStats/>
+        <c:lwcExamStats/>
     </div>
 </aura:component>

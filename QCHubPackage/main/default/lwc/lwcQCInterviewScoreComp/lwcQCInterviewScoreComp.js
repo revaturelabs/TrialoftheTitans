@@ -20,5 +20,3 @@ export default class LwcQCInterviewScoreComp extends LightningElement
 
     }
 }
-
-

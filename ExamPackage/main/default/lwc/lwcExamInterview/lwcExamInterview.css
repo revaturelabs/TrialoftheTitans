@@ -1,10 +1,34 @@
-.confettiCanvas{
-    position: fixed;
+/*
+  Author: Iteration VI - Style & Data
+  Created date: 10/26/2021
+  Description: css file. a simplification of aura component css
+  Modified date: 12/30/2021
+  Modified by: Interation VII - Styling
+
+*/
+
+@import 'c/examStyle';
+
+.question_overview {
+    color: black;
 }
-p{
-    background-color: white;
-    font-size: 1.5rem;
+
+.exam_layout {
+    background-color: #112537;
 }
-.hide{
-    display:none;
+
+.button_container {
+    display: table;
+    height: 50px;
+    width: 100%;
+}
+
+.button_holder {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.button {
+    position: relative;
+    font-size: medium;
 }

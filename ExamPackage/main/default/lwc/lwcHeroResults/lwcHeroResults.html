@@ -4,8 +4,11 @@ Date: 9-27-21
 Function: Displays a user's exam results for a given exam. 
 Required Parameters:
 String resultId
+Modified Date: 10/26/2021
+Modified By: Iteration VI Styling and Data
 -->
 <template>
+    <div class="conatiner slds-p-around_large">
     <lightning-card title="Hero Test Results">
         <div class="wrapper" >
             <template if:true={hResults}>
@@ -94,4 +97,5 @@ String resultId
             </template>
         </div>
     </lightning-card>
+    </div>
 </template>
