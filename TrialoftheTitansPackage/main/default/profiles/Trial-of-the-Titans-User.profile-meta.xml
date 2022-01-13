@@ -836,42 +836,6 @@
         <recordType>Account.Hero</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
-    <tabVisibilities>
-        <tab>Cohort__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Curriculum__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Previous_Cohorts</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Skill__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Team__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Titan__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Trainer_Hub</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>projectManagement</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>standard-Account</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
     <userLicense>Customer Community Login</userLicense>
     <userPermissions>
         <enabled>true</enabled>
@@ -933,6 +897,42 @@
         <enabled>true</enabled>
         <name>WorkDotComUserPerm</name>
     </userPermissions>
+        <tabVisibilities>
+        <tab>Cohort__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Curriculum__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <!-- <tabVisibilities>
+        <tab>Previous_Cohorts</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities> -->
+    <tabVisibilities>
+        <tab>Skill__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Team__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Titan__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <!-- <tabVisibilities>
+        <tab>Trainer_Hub</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities> -->
+    <!-- <tabVisibilities>
+        <tab>projectManagement</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities> -->
+    <tabVisibilities>
+        <tab>standard-Account</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>Exam_Pool_Assignment__c</tab>
         <visibility>Hidden</visibility>

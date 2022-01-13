@@ -827,6 +827,7 @@
         <recordType>Account.Hero</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+    <userLicense>Guest User License</userLicense>
     <tabVisibilities>
         <tab>Cohort__c</tab>
         <visibility>Hidden</visibility>
@@ -835,10 +836,10 @@
         <tab>Curriculum__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
-    <tabVisibilities>
+    <!-- <tabVisibilities>
         <tab>Previous_Cohorts</tab>
         <visibility>Hidden</visibility>
-    </tabVisibilities>
+    </tabVisibilities> -->
     <tabVisibilities>
         <tab>Skill__c</tab>
         <visibility>Hidden</visibility>
@@ -851,19 +852,18 @@
         <tab>Titan__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
-    <tabVisibilities>
+    <!-- <tabVisibilities>
         <tab>Trainer_Hub</tab>
         <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
+    </tabVisibilities> -->
+    <!-- <tabVisibilities>
         <tab>projectManagement</tab>
         <visibility>Hidden</visibility>
-    </tabVisibilities>
+    </tabVisibilities> -->
     <tabVisibilities>
         <tab>standard-Account</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
-    <userLicense>Guest User License</userLicense>
     <tabVisibilities>
         <tab>Exam_Pool_Assignment__c</tab>
         <visibility>Hidden</visibility>
