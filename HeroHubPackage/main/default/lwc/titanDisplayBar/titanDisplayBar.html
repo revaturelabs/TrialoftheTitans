@@ -1,16 +1,18 @@
 <template>
-  <lightning-card class="no-margin">
-    <div>
-      <div class="slds-grid slds-grid_vertical-align-center header">
-        <p class="slds-m-right_small">{TitanList}</p>
-        <div class="slds-col_bump-right">
-          <button class="button" onclick={handleOverview} disabled={disableOverview}>Titan Overview</button>
+  <template for:each={titanList} for:item="Titan">
+    <lightning-card key={Titan.Id} class="no-margin">
+      <div>
+        <div class="slds-grid slds-grid_vertical-align-center header">
+          <p class="slds-m-right_small">{Titan.Name}</p>
+          <div class="slds-col_bump-right">
+            <button class="button" onclick={handleOverview} disabled={disableOverview}>Titan Overview</button>
+          </div>
+          <div>
+            <button class="button slds-m-right_small" onclick={handleAdvance} disabled={disableAdvance}>Advance</button>
+          </div>
         </div>
-        <div>
-          <button class="button slds-m-right_small" onclick={handleAdvance} disabled={disableAdvance}>Advance</button>
-        </div>
+        <div></div>
       </div>
-      <div></div>
-    </div>
-  </lightning-card>
+    </lightning-card>
+  </template>
 </template>

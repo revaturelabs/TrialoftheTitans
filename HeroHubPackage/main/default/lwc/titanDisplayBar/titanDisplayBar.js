@@ -7,7 +7,7 @@ export default class TitanDisplayBar extends LightningElement {
 
   connectedCallback() {
     let titans = getTitans();
-    titans.then((res) => (this.titanList = res.data)).then(console.log(this.titanList));
+    titans.then((res) => (this.titanList = res)).then(console.log(this.titanList));
   }
 
   handleOverview() {}
