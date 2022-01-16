@@ -1,16 +1,13 @@
-import { LightningElement, track } from "lwc";
-import getTitans from "@salesforce/apex/titanDisplayController.getTitans";
+import { LightningElement, track, api } from "lwc";
+
 export default class TitanDisplayBar extends LightningElement {
-  @track disableOverview = false;
-  @track disableAdvance = false;
-  @track titanList = [];
+    @track disableOverview = false;
+    @track disableAdvance = false;
+    @api name;
 
-  connectedCallback() {
-    let titans = getTitans();
-    titans.then((res) => (this.titanList = res)).then(console.log(this.titanList));
-  }
+    connectedCallback() {}
 
-  handleOverview() {}
+    handleOverview() {}
 
-  handleAdvance() {}
+    handleAdvance() {}
 }

@@ -1,7 +1,18 @@
 public with sharing class titanDisplayController {
 
     @AuraEnabled
-    public static List<Titan__c> getTitans(){
-        return [SELECT Name, Technology__c, Curriculum__c, First_Exam__c, Number_of_Skills__c FROM Titan__c];
+    public static Map<String, List<Titan__c>> getTitans(){
+        List<Titan__c> titans = [SELECT Name, Technology__c, Curriculum__c, First_Exam__c, Number_of_Skills__c, Required_Titan__c FROM Titan__c];
+
+        Map<String, List<Titan__c>> dependentMap = new Map<String, List<Titan__c>>();
+
+        for(Titan__c titan: titans) {
+            List<Titan__c> dependents = [SELECT Name, Required_Titan__c
+                                         FROM Titan__c
+                                         WHERE Required_Titan__c =: titan.Id];
+            
+            dependentMap.put(titan.Name, dependents);
+        }
+        return dependentMap;
     }
 }
