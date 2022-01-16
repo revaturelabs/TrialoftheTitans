@@ -1,3 +1,7 @@
 .spacing {
     display: inline-block;
 }
+
+.width {
+    width: 20px;
+}
