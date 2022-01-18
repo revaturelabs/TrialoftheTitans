@@ -3,6 +3,9 @@
 
 # .forceignore v2
 
+# GitHub Readme
+**/README.md
+
 # LWC configuration files
 **/jsconfig.json
 **/.eslintrc.json
