@@ -17,4 +17,10 @@ public with sharing class sideBarHelper {
         List<Certification__c> certList = [SELECT Assessor__c, Date_Issued__c, Image_URL__c, User__c, Verification_Site__c,Name FROM Certification__c WHERE User__c=: userId];
         return certList;
     }
+    @AuraEnabled(cacheable=true)
+    public static List<Education__c> getPortfolioStatus(){
+        id userId = UserInfo.getUserId();
+        List<Education__c> statList = [SELECT Portfolio_Status__C,Id,Name FROM Education__c WHERE User__c=: userId];
+        return statList;
+    }
 }

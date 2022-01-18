@@ -1,5 +1,6 @@
 import getAccount from '@salesforce/apex/sideBarHelper.getAccount';
 import getCert from '@salesforce/apex/sideBarHelper.getCert';
+import getPortfolioStatus from '@salesforce/apex/sideBarHelper.getPortfolioStatus';
 import getSquad from '@salesforce/apex/sideBarHelper.getSquad';
 import { LightningElement,wire } from 'lwc';
 
@@ -7,6 +8,7 @@ export default class SideBar extends LightningElement {
     @wire(getAccount) accInfo;
     @wire(getSquad) squadInfo;
     @wire(getCert) certInfo;
+    @wire(getPortfolioStatus) statusInfo;
     clickedButtonLabel;
     squadName;
     heroName;
@@ -21,7 +23,7 @@ export default class SideBar extends LightningElement {
     portStatus;
     renderedCallback(){
         if(this.accInfo.data && this.squadInfo.data && this.certInfo.data){
-            console.log(this.squadInfo)
+            console.log(this.statusInfo)
             this.squadName = "Our Hero's Squad: " +this.squadInfo.data[0].Name
             this.heroName = "Our Hero's Name: " + this.accInfo.data[0].Name
             this.heroArete = "Our Hero's Arete: "
@@ -30,8 +32,8 @@ export default class SideBar extends LightningElement {
             this.certDate = "Certification Date: " +this.certInfo.data[0].Date_Issued__c
             this.certAssessor = "Certification Assessor: "+this.certInfo.data[0].Assessor__c
             this.certVer = "Certification Verifyer: " +this.certInfo.data[0].Verification_Site__c
-            this.portName = "Portfolio Name :"
-            this.portStatus = "Portfolio Status :"
+            this.portName = "Portfolio Name : " + this.accInfo.data[0].Name + "'s Portfolio"
+            this.portStatus = "Portfolio Status : " + this.statusInfo.data[0].Portfolio_Status__c
         }
     }
 }
