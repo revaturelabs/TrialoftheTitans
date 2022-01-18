@@ -1,5 +1,5 @@
 import { LightningElement, track, wire } from "lwc";
-import getTitans from "@salesforce/apex/titanDisplayController.getTitans";
+import getTitanDependencies from "@salesforce/apex/titanDisplayController.getTitanDependencies";
 
 export default class TitanViewContainer extends LightningElement {
     @track titanList = [];
@@ -7,7 +7,7 @@ export default class TitanViewContainer extends LightningElement {
     @track shown = [];
 
     connectedCallback() {
-        let titans = getTitans();
+        let titans = getTitanDependencies();
         titans.then((res) => {
             this.checkTitan(res, 0, 0);
         });
@@ -37,7 +37,7 @@ export default class TitanViewContainer extends LightningElement {
 
             for (let child of titans[keys[index]]) {
                 if (this.titanList.indexOf(child.Name) == -1) {
-                    this.evaluateChildren(titans, keys.indexOf(child.Name), tabs + 1);
+                    this.evaluateChildren(titans, keys.indexOf(child.Id), tabs + 1);
                 }
             }
         } else if (titans[keys[index]] == null) {
