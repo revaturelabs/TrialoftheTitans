@@ -3,6 +3,9 @@
 
 # .forceignore v2
 
+# GitHub Readme
+**/README.md
+
 # LWC configuration files
 **/jsconfig.json
 **/.eslintrc.json
@@ -10,7 +13,7 @@
 # LWC Jest
 **/__tests__/**
 
-# Fixes error to get rid of it ¯\_(ツ)_/¯
+# Fixes error to get rid of it ¯/_(ツ)_/¯
 **/appMenus
 **/sites
 **/networks
@@ -32,9 +35,10 @@
 #!**/profiles/Hero.profile-meta.xml
 #!**/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
 #!**/profiles/Trial-of-the-Titans-User.profile-meta.xml
-**/profiles
+#**/profiles
 **/layouts
 **/applications
 **/flows
 **/flexipages
-**/ExamQuestionFlagPackage
+
+/ExamQuestionFlagPackage
