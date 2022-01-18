@@ -1,6 +1,6 @@
 <template>
     <div class="slds-grid slds-grid_vertical">
-        <template for:each={titanList} for:item="titan">
+        <template for:each={titanListHolder} for:item="titan">
             <div key={titan.Id} class="spacing slds-col">
                 <div class="slds-grid">
                     <template for:each={titan.tabs} for:item="tab">
