@@ -5,7 +5,34 @@
             "package": "TrialOfTheTitansPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true
+            "default": false,
+            "dependencies": [
+                {
+                    "package": "CorePackage@1.0.0-1"
+                },
+                {
+                    "package": "ExamPackage@1.0.0-1"
+                }
+            ]
+        },
+        {
+            "path": "ChartPackage",
+            "package": "ChartPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true,
+            "dependencies": [
+                {
+                    "package": "CorePackage@1.0.0-1"
+                }
+            ]
+        },
+        {
+            "path": "ExperienceCloudPackage",
+            "package": "ExperienceCloudPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
         }
     ],
     "namespace": "",
@@ -14,6 +41,26 @@
     "packageAliases": {
         "TrialOfTheTitansPackage": "0Ho5f000000Cb2cCAC",
         "TrialOfTheTitansPackage@0.1.0-1": "04t5f000000GrxdAAC",
-        "TrialOfTheTitansPackage@0.1.0-2": "04t5f000000Gry2AAC"
+        "TrialOfTheTitansPackage@0.1.0-2": "04t5f000000Gry2AAC",
+        "CorePackage": "0Ho5e00000000eDCAQ",
+        "TitanPage": "0Ho5e00000000eNCAQ",
+        "QCHubPackage": "0Ho5e00000000eSCAQ",
+        "TrainerHubPackage": "0Ho5e00000000eXCAQ",
+        "MockInterviewPackage": "0Ho5e00000000ehCAA",
+        "HeroHubPackage": "0Ho5e00000000ecCAA",
+        "CorePackage@1.0.0-1": "04t5e000000aOJfAAM",
+        "ExamPackage": "0Ho5f000000GmpRCAS",
+        "TitanPage@1.0.0-1": "04t5e000000aOJpAAM",
+        "QCHubPackage@1.0.0-1": "04t5e000000aOJuAAM",
+        "TrainerHubPackage@1.0.0-1": "04t5e000000aOJzAAM",
+        "MockInterviewPackage@1.0.0-1": "04t5e000000aOKEAA2",
+        "HeroHubPackage@1.0.0-1": "04t5e000000aOL7AAM",
+        "ExamPackage@1.0.0-1": "04t5e000000aOJkAAM",
+        "ExamQuestionFlag": "0Ho5f000000TNC4CAO",
+        "ExamQuestionFlag@0.1.0-1": "04t5f000000eNABAA2",
+        "ExamQuestionFlag@0.1.0-2": "04t5f000000eVu6AAE",
+        "ExamQuestionFlag@0.1.0-3": "04t5f000000eWNFAA2",
+        "ChartPackage": "0Ho5f0000010wY3CAI",
+        "ExperienceCloudPackage": "0Ho5f0000010wYDCAY"
     }
 }
