@@ -8,9 +8,8 @@
     <approvalPageFields>
         <field>Owner</field>
         <field>Name</field>
-        <field>00N5f00000bzjwP</field>
-        <field>00N5f00000bzjwT</field>
-        <field>Flag_Notes__c</field>
+        <field>IsActive__c</field>
+        <field>IsFlagged__c</field>
         <field>Question_Text__c</field>
         <field>Question_Type__c</field>
         <field>Correct_Answer_s__c</field>
@@ -20,7 +19,7 @@
         <field>Technology__c</field>
     </approvalPageFields>
     <approvalStep>
-        <allowDelegate>true</allowDelegate>
+        <allowDelegate>false</allowDelegate>
         <approvalActions>
             <action>
                 <name>IsActiveUpdate</name>
@@ -41,7 +40,6 @@
         <label>FlagCheck</label>
         <name>FlagCheck</name>
     </approvalStep>
-    <emailTemplate>unfiled$public/SupportCaseAssignmentNotification</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <criteriaItems>
@@ -53,7 +51,7 @@
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <label>FlaggingApprovalProcess</label>
-    <processOrder>2</processOrder>
+    <processOrder>1</processOrder>
     <recordEditability>AdminOnly</recordEditability>
     <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>

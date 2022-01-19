@@ -56,7 +56,7 @@
         <label>NewQuestionFormattingStep</label>
         <name>NewQuestionFormattingStep</name>
         <rejectBehavior>
-            <type>BackToPrevious</type>
+            <type>RejectRequest</type>
         </rejectBehavior>
         <rejectionActions>
             <action>
@@ -80,15 +80,14 @@
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
-        <description>This is the last step where the question is overall reviewed before being added to the bank</description>
         <label>NewQuestionFinalReview</label>
         <name>NewQuestionFinalReview</name>
         <rejectBehavior>
-            <type>BackToPrevious</type>
+            <type>RejectRequest</type>
         </rejectBehavior>
         <rejectionActions>
             <action>
-                <name>FirstPathUpdate</name>
+                <name>ReversePathToFormatting</name>
                 <type>FieldUpdate</type>
             </action>
         </rejectionActions>
@@ -96,16 +95,12 @@
     <description>This process runs when a new question is submitted</description>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <formula>false</formula>
+        <formula>!ISPICKVAL( QualityAssurance__c , &quot;Reviewed&quot;)</formula>
     </entryCriteria>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <label>NewQuestionApprovalProcess</label>
-    <nextAutomatedApprover>
-        <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
-        <userHierarchyField>proofreader__c</userHierarchyField>
-    </nextAutomatedApprover>
-    <processOrder>1</processOrder>
-    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <processOrder>2</processOrder>
+    <recordEditability>AdminOnly</recordEditability>
     <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>

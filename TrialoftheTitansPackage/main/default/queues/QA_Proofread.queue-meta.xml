@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>QA_Proofread</name>
+    <queueMembers>
+        <!-- <users>
+            <user>gemokar103@veb27.com</user>
+        </users> -->
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Exam_Question__c</sobjectType>
+    </queueSobject>
+</Queue>
