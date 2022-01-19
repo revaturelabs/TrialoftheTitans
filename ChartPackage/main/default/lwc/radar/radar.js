@@ -18,6 +18,7 @@ export default class Radar extends LightningElement {
     @api maxWidth = 700
 
     renderedCallback() {
+        console.log('radar chart rendered')
         if (this.dat) {
             loadScript(this, `${D3}/d3.js`)
                 .then(() => {

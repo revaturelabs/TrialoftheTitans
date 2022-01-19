@@ -8,7 +8,8 @@ public with sharing class sideBarHelper {
     public static List<Squad__C> getSquad(){
         id userId = UserInfo.getUserId();
         List<Account> accList = [SELECT Name,Squad__C,Team__C, Cohort__C,CreatedById FROM Account Where CreatedById=: userId];
-        id squadId = accList[11].Squad__C;
+        // hardcoded account index
+        id squadId = accList[0].Squad__C;
         return [SELECT name,Id From Squad__C WHERE Id=: squadId];
     }
     @AuraEnabled(cacheable=true)

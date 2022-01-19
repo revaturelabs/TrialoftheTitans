@@ -22,6 +22,13 @@
 **/navigationMenus
 **/audience
 #**/staticresources
+TrialoftheTitansPackage/main/default/profiles/Admin.profile-meta.xml
+TrialoftheTitansPackage/main/default/profiles/Hero.profile-meta.xml
+TrialoftheTitansPackage/main/default/profiles/TitanTrainer.profile-meta.xml
+TrialoftheTitansPackage/main/default/profiles/Trial of the Titans Profile.profile-meta.xml
+TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
+TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-meta.xml
+
 
 
 #All this stuff you may want to enable to disable
@@ -36,7 +43,6 @@
 #!**/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
 #!**/profiles/Trial-of-the-Titans-User.profile-meta.xml
 #**/profiles
-**/layouts
 **/applications
 **/flows
 **/flexipages
