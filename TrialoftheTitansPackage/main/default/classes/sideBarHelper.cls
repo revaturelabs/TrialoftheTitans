@@ -23,7 +23,13 @@ public with sharing class sideBarHelper {
         List<Certification__c> certList = [SELECT Assessor__c, Date_Issued__c, Image_URL__c, User__c, Verification_Site__c,Name FROM Certification__c WHERE User__c=: userId];
         return certList;
     }
-    
+    @AuraEnabled(cacheable=true)
+    public static List<Education__c> getPortfolioStatus() {
+        id userId = UserInfo.getUserId();
+        List<Education__c> statList = [SELECT Portfolio_Status__C,Id,Name FROM Education__c WHERE User__c=: userId];
+        return statList;
+    }
+
     @AuraEnabled(cacheable=true)
     public static List<Map<String, Object>> getAvgScorePerTitan() {
         Id accountId = getAccount().Id;
@@ -67,20 +73,4 @@ public with sharing class sideBarHelper {
         }
         return combinedMaps;
     }
-    
-    /*
-    @AuraEnabled(cacheable=true)
-    public static List<Titan__c> getTitans() {
-        List<Titan__c> titans = [SELECT Name, Series__c, Curriculum__r.Name, Category__c FROM Titan__c
-                                 WHERE Curriculum__c IN (SELECT Curriculum__c FROM Account WHERE Id=:getAccount().Id)
-                                 ORDER By Series__c ASC];
-        return titans;
-    }
-    
-    @AuraEnabled(cacheable=true)
-    public static List<Exam__c> getExams() {
-        List<Exam__c> exams = [SELECT Name, Titan__r.Name, (SELECT Name FROM Exam_Results__r WHERE Account__c=:getAccount().Id) FROM Exam__c];
-        return exams;
-    }
-    */
 }
