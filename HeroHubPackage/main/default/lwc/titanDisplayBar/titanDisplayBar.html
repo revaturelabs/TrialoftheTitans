@@ -12,8 +12,9 @@
                     </button>
                 </div>
             </div>
-            <div></div>
-            <!--This is where the progress bar will be.-->
+            <template if:true={passedExams}>
+                <c-titan-progress-bar passed-exams={passedExams} total-exams={totalExams}></c-titan-progress-bar>
+            </template>
         </div>
     </lightning-card>
 </template>
