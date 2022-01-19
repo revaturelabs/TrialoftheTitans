@@ -1,6 +1,5 @@
 public with sharing class sideBarHelper {
-    @AuraEnabled(cacheable=true)
-    public static Account getAccount() {
+    public static Contact getContact() {
         User user = [SELECT ContactId, ProfileId FROM User WHERE Id=:UserInfo.getUserId()];
         PermissionSet sysAdminProfile = [SELECT Profile.Id FROM PermissionSet WHERE Profile.Name='System Administrator' AND isCustom=false];
         Contact contact;
@@ -9,9 +8,16 @@ public with sharing class sideBarHelper {
         } else if (user.ProfileId == sysAdminProfile.ProfileId) {
             contact = [SELECT AccountId FROM Contact LIMIT 1];
         }
+        return contact;
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static Account getAccount() {
+        Contact contact = getContact();
         Account account = [SELECT Name, Squad__c, Team__c, Cohort__c FROM Account WHERE Id=:contact.AccountId];
         return account;
     }
+    
     @AuraEnabled(cacheable=true)
     public static Squad__c getSquad() {
         Account account = getAccount();
@@ -19,14 +25,16 @@ public with sharing class sideBarHelper {
     }
     @AuraEnabled(cacheable=true)
     public static List<Certification__c> getCert() {
-        id userId = UserInfo.getUserId();
-        List<Certification__c> certList = [SELECT Assessor__c, Date_Issued__c, Image_URL__c, User__c, Verification_Site__c,Name FROM Certification__c WHERE User__c=: userId];
+        Contact contact = getContact();
+        User user = [SELECT Id FROM User WHERE ContactId=:contact.Id];
+        List<Certification__c> certList = [SELECT Assessor__c, Date_Issued__c, Image_URL__c, User__c, Verification_Site__c,Name FROM Certification__c WHERE User__c=:user.Id];
         return certList;
     }
     @AuraEnabled(cacheable=true)
     public static List<Education__c> getPortfolioStatus() {
-        id userId = UserInfo.getUserId();
-        List<Education__c> statList = [SELECT Portfolio_Status__C,Id,Name FROM Education__c WHERE User__c=: userId];
+        Contact contact = getContact();
+        User user = [SELECT Id FROM User WHERE ContactId=:contact.Id];
+        List<Education__c> statList = [SELECT Portfolio_Status__C,Id,Name FROM Education__c WHERE User__c=:user.Id];
         return statList;
     }
 

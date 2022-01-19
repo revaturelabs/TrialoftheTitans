@@ -3,7 +3,7 @@ import getCert from '@salesforce/apex/sideBarHelper.getCert';
 import getPortfolioStatus from '@salesforce/apex/sideBarHelper.getPortfolioStatus';
 import getAvgScorePerTitan from '@salesforce/apex/sideBarHelper.getAvgScorePerTitan'
 import getSquad from '@salesforce/apex/sideBarHelper.getSquad';
-import { LightningElement,wire } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 
 export default class SideBar extends LightningElement {
     @wire(getAccount) accInfo;
@@ -13,7 +13,6 @@ export default class SideBar extends LightningElement {
     @wire(getAvgScorePerTitan)
     fetchAvgScorePerTitan({ error, data }) {
         if (data) {
-            console.log(data)
             this.avgScores = data
             this.error = undefined
         } else if (error) {
@@ -38,26 +37,40 @@ export default class SideBar extends LightningElement {
     placeholderChart = "https://lh3.googleusercontent.com/g0Jw-I6-gH2DVCpnl3u8QKZVT_meR9lcJlpyeSZ-MyvwLnyEZvgyrY5frldA8HCv55s=w280-rwa"
     portName;
     portStatus;
-    renderedCallback(){
-        if(this.accInfo.data && this.squadInfo.data && this.certInfo.data){
+    renderedCallback() {
+        console.log('squadInfo')
+        console.log(this.squadInfo)
+        console.log('accInfo')
+        console.log(this.accInfo)
+        console.log('certInfo')
+        console.log(this.certInfo)
+        if (this.accInfo.data && this.squadInfo.data && this.certInfo.data && this.statusInfo.data) {
+            console.log('squadInfo')
+            console.log(this.squadInfo)
+            console.log('accInfo')
+            console.log(this.accInfo)
+            console.log('certInfo')
+            console.log(this.certInfo)
+            console.log('statusInfo')
             console.log(this.statusInfo)
-            this.squadName = "Our Hero's Squad: " +this.squadInfo.data[0].Name
-            this.heroName = "Our Hero's Name: " + this.accInfo.data[0].Name
-            this.heroArete = "Our Hero's Arete: "
-            this.heroTitle = "Our Hero's Title: "
-            this.certName = "Certification Name: "+this.certInfo.data[0].Name
-            this.certDate = "Certification Date: " +this.certInfo.data[0].Date_Issued__c
-            this.certAssessor = "Certification Assessor: "+this.certInfo.data[0].Assessor__c
-            this.certVer = "Certification Verifyer: " +this.certInfo.data[0].Verification_Site__c
-            this.portName = "Portfolio Name : " + this.accInfo.data[0].Name + "'s Portfolio"
+
+            this.squadName = "Our Hero's Squad: " + this.squadInfo.data.Name
+            this.heroName = "Our Hero's Name: " + this.accInfo.data.Name
+            this.heroArete = "Our Hero's Arete: 53"
+            this.heroTitle = "Our Hero's Title: Achilles"
+            this.certName = "Certification Name: " + this.certInfo.data[0].Name
+            this.certDate = "Certification Date: " + this.certInfo.data[0].Date_Issued__c
+            this.certAssessor = "Certification Assessor: " + this.certInfo.data[0].Assessor__c
+            this.certVer = "Certification Verifyer: " + this.certInfo.data[0].Verification_Site__c
+            this.portName = "Portfolio Name : " + this.accInfo.data.Name + "'s Portfolio"
             this.portStatus = "Portfolio Status : " + this.statusInfo.data[0].Portfolio_Status__c
-            
+
         }
     }
 
     get radarData() {
         if (this.avgScores) {
-            console.log(this.avgScores)
+            //console.log(this.avgScores)
             // Create an array of unique Titan categories
 
             // Create a radar chart array with titan and exam data

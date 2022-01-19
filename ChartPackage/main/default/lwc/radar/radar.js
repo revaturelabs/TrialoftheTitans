@@ -20,7 +20,7 @@ export default class Radar extends LightningElement {
     renderedCallback() {
         console.log('radar chart rendered')
         if (this.dat) {
-            console.log(this.dat)
+            //console.log(this.dat)
             loadScript(this, `${D3}/d3.js`)
                 .then(() => {
                     loadScript(this, `${RadarChartResource}/radarChart.js`)
