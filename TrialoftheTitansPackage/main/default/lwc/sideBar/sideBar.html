@@ -8,7 +8,6 @@
     <template if:true={certInfo.data}>
     <lightning-card  title="Hero Info">
         <p class="slds-p-horizontal_small">{heroTitle}</p>
-        <p class="slds-p-horizontal_small">{heroTitle}</p>
         <p class="slds-p-horizontal_small">{heroName}</p>
         <p class="slds-p-horizontal_small">{squadName}</p>
         <p class="slds-p-horizontal_small">{heroArete}</p>
@@ -19,6 +18,7 @@
     <lightning-card  title="Porfolio Status">
         <p class="slds-p-horizontal_small">{portName}</p>
         <p class="slds-p-horizontal_small">{portStatus}</p>
+        <lightning-button label="Go to Portfolio" title="Non-primary action" onclick={handleClick} class="slds-m-left_x-small slds-align_absolute-center"></lightning-button>
     </lightning-card>
     <lightning-card  title="Certification Info">
         <p class="slds-p-horizontal_small">{certName}</p>
