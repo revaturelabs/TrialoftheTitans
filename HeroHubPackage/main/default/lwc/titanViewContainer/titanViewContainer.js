@@ -17,7 +17,7 @@ export default class TitanViewContainer extends LightningElement {
                 let newTitan = getTitanById({ identifier: titan.name });
                 newTitan.then((res) => {
                     console.log(res);
-                    this.titanListHolder.push({ name: res[0].Name, tech: res[0].Technology__c, tabs: titan.tabs });
+                    this.titanListHolder.push({ Id: res[0].Id, tech: res[0].Technology__c, tabs: titan.tabs });
                 });
             }
         });
