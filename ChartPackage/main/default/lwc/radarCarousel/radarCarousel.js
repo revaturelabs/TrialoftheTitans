@@ -85,10 +85,6 @@ export default class RadarCarousel extends LightningElement {
 
     connectedCallback() {
         this.setAttribute('data-handles-touch', true)
-        this.addEventListener(
-            'privateimageregister',
-            this.handlePrivateImageRegister.bind(this)
-        )
     }
 
 

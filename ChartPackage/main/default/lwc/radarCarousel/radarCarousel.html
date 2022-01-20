@@ -17,7 +17,7 @@
                 ontouchend={handleTouchEnd}>
                 <template for:each={avgScores} for:item="avgScore" for:index="avgIndex">
                     <c-radar-carousel-image href="#" src="" header={avgScore.category} scores={avgScore.axes}
-                        key={avgScore.key} data-index={avgIndex}>
+                        key={avgScore.key} data-index={avgIndex} onprivateimageregister={handlePrivateImageRegister}>
                     </c-radar-carousel-image>
                 </template>
             </div>

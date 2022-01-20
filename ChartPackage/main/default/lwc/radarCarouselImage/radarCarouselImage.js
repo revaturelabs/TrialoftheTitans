@@ -111,7 +111,6 @@ export default class RadarCarouselImage extends LightningElement {
             const privateimageregister = new CustomEvent(
                 'privateimageregister',
                 {
-                    composed: true,
                     bubbles: true,
                     detail: {
                         callbacks: {
