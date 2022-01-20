@@ -60,7 +60,6 @@ export default class SideBar extends LightningElement {
     }
 
     formatScores(data) {
-        console.log(data)
         const scores = []
 
         // create score array with index as keys
@@ -93,7 +92,6 @@ export default class SideBar extends LightningElement {
             }
         }
         
-        console.log(scores)
         return scores
     }
 }
