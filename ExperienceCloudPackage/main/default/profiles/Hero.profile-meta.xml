@@ -255,6 +255,11 @@
     </classAccesses>
     <custom>true</custom>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Education__c.Portfolio_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Exam__c.Default_Passing_Grade__c</field>
         <readable>false</readable>
@@ -297,6 +302,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Coding_Assessment__c-Coding Assessment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Education__c-Education Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Exam_Question__c-Exam Question Layout</layout>
@@ -406,6 +414,10 @@
     </pageAccesses>
     <tabVisibilities>
         <tab>Certification__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Education__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
