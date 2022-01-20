@@ -5,7 +5,32 @@
             "package": "TrialOfTheTitansPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true
+            "default": true,
+            "dependencies": [
+                {
+                    "package": "CorePackage@1.0.0-1"
+                },
+                {
+                    "package": "ExamPackage@1.0.0-1"
+                },
+                {
+                    "package": "ChartPackage@1.0.0-1"
+                }
+            ]
+        },
+        {
+            "path": "ChartPackage",
+            "package": "ChartPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        },
+        {
+            "path": "ExperienceCloudPackage",
+            "package": "ExperienceCloudPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
         }
     ],
     "namespace": "",
@@ -14,6 +39,8 @@
     "packageAliases": {
         "TrialOfTheTitansPackage": "0Ho5f000000Cb2cCAC",
         "TrialOfTheTitansPackage@0.1.0-1": "04t5f000000GrxdAAC",
-        "TrialOfTheTitansPackage@0.1.0-2": "04t5f000000Gry2AAC"
+        "TrialOfTheTitansPackage@0.1.0-2": "04t5f000000Gry2AAC",
+        "ChartPackage": "0Ho5f0000010wY3CAI",
+        "ExperienceCloudPackage": "0Ho5f0000010wYDCAY"
     }
 }
