@@ -15,6 +15,8 @@ const DIRECTION_LEFT = 'left'
 const DIRECTION_RIGHT = 'right'
 
 export default class RadarCarousel extends LightningElement {
+    @api avgScores = []
+
     @api get disableAutoScroll() {
         // _disableAutoScroll
         return this._disableAutoScroll || false

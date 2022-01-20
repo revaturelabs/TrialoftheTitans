@@ -5,6 +5,10 @@ import getAvgScorePerTitan from '@salesforce/apex/sideBarHelper.getAvgScorePerTi
 import getSquad from '@salesforce/apex/sideBarHelper.getSquad';
 import { LightningElement, wire } from 'lwc';
 
+const PROG_CATEGORY = 'Programmatic'
+const DECL_CATEGORY = 'Declarative'
+const MISC_CATEGORY = 'Miscellaneous'
+
 export default class SideBar extends LightningElement {
     @wire(getAccount) accInfo;
     @wire(getSquad) squadInfo;
@@ -13,7 +17,7 @@ export default class SideBar extends LightningElement {
     @wire(getAvgScorePerTitan)
     fetchAvgScorePerTitan({ error, data }) {
         if (data) {
-            this.avgScores = data
+            this.avgScores = this.formatScores(data)
             this.error = undefined
         } else if (error) {
             this.avgScores = undefined
@@ -24,6 +28,8 @@ export default class SideBar extends LightningElement {
 
     error
     avgScores
+    categories = [PROG_CATEGORY, DECL_CATEGORY]
+    remainderCategory = MISC_CATEGORY
 
     clickedButtonLabel;
     squadName;
@@ -53,22 +59,41 @@ export default class SideBar extends LightningElement {
         }
     }
 
-    get radarData() {
-        if (this.avgScores) {
-            //console.log(this.avgScores)
-            // Create an array of unique Titan categories
+    formatScores(data) {
+        console.log(data)
+        const scores = []
 
-            // Create a radar chart array with titan and exam data
-            const data = []
-            for (const titan of this.avgScores) {
-                const axisObj = {}
-                axisObj.axis = titan.Name
-                axisObj.value = (titan.AvgScore ? titan.AvgScore : 0)
-                data.push(axisObj)
-            }
-            return [data]
-        } else {
-            return undefined
+        // create score array with index as keys
+        for (let i = 0; i < this.categories.length; i++) {
+            scores.push({ key: i, category: this.categories[i], axes: [[]] })
         }
+        // if remainder category exists (misc), push to score array
+        scores.push({ key: scores.length, category: this.remainderCategory, axes: [[]] })
+
+        // titan filtering loop, categorize titan scores
+        for (const titan of data) {
+            const axisObj = {}
+            axisObj.axis = titan.Name
+            axisObj.value = (titan.AvgScore ? titan.AvgScore : 0)
+            // boolean to track if titan fits in a category
+            let isCategorized = false
+
+            // loop through categories
+            for (let i = 0; i < this.categories.length; i++) {
+                // if titan name contains category name push to respective index in scores array
+                if (titan.Name.includes(this.categories[i])) {
+                    scores[i].axes[0].push(axisObj)
+                    isCategorized = true
+                    break
+                } 
+            }
+            // if titan wasn't categorized, push to remainder category
+            if (!isCategorized) {
+                scores[scores.length-1].axes[0].push(axisObj)
+            }
+        }
+        
+        console.log(scores)
+        return scores
     }
 }

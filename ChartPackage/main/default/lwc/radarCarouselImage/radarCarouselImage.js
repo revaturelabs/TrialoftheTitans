@@ -2,6 +2,8 @@ import { LightningElement, track, api } from 'lwc'
 import { assert, guid } from 'c/utilsPrivate'
 
 export default class RadarCarouselImage extends LightningElement {
+    @api scores
+
     @api get src() {
         return this._src
     }

@@ -15,19 +15,11 @@
 
             <div class="slds-carousel__panels" style={carouselPanelsStyle} ontouchstart={handleTouchStart}
                 ontouchend={handleTouchEnd}>
-                <c-radar-carousel-image href="#"
-                    src="https://www.lightningdesignsystem.com/assets/images/carousel/carousel-01.jpg"
-                    header="Visit App Exchange" description="Extend Salesforce with the #1 business marketplace.">
-                </c-radar-carousel-image>
-                <c-radar-carousel-image href="#"
-                    src="https://www.lightningdesignsystem.com/assets/images/carousel/carousel-02.jpg"
-                    header="Click to Customize"
-                    description="Use the Object Manager to add fields, build layouts, and more.">
-                </c-radar-carousel-image>
-                <c-radar-carousel-image href="#"
-                    src="https://www.lightningdesignsystem.com/assets/images/carousel/carousel-03.jpg"
-                    header="Download SalesforceA"
-                    description="Get the mobile app that&#x27;s just for Salesforce admins."></c-radar-carousel-image>
+                <template for:each={avgScores} for:item="avgScore" for:index="avgIndex">
+                    <c-radar-carousel-image href="#" src="" header={avgScore.category} scores={avgScore.axes}
+                        key={avgScore.key} data-index={avgIndex}>
+                    </c-radar-carousel-image>
+                </template>
             </div>
 
             <ul class="slds-carousel__indicators" role="tablist" onkeydown={keyDownHandler}>
