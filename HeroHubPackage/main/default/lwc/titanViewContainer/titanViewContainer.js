@@ -12,14 +12,6 @@ export default class TitanViewContainer extends LightningElement {
         let titans = getTitanDependencies();
         titans.then((res) => {
             this.checkTitan(res);
-            for (let titan of this.titanList) {
-                console.log(titan.name);
-                let newTitan = getTitanById({ identifier: titan.name });
-                newTitan.then((res) => {
-                    console.log(res);
-                    this.titanListHolder.push({ Id: res[0].Id, tech: res[0].Technology__c, tabs: titan.tabs });
-                });
-            }
         });
     }
 
@@ -41,7 +33,7 @@ export default class TitanViewContainer extends LightningElement {
             for (let i = 0; i < tabs; i++) {
                 tabTotal.push({ id: i });
             }
-            this.titanList.push({ name: keys[index], tabs: tabTotal });
+            this.titanList.push({ id: keys[index], tabs: tabTotal });
             this.shown.push(keys[index]);
 
             for (let child of titans[keys[index]]) {
@@ -56,23 +48,3 @@ export default class TitanViewContainer extends LightningElement {
         }
     }
 }
-
-// if (titans[keys[index]] != null) {
-//     let tabTotal = [];
-//     for (let i = 0; i < tabs; i++) {
-//         tabTotal.push({ id: i });
-//     }
-//     this.titanList.push({ name: keys[index], tabs: tabTotal });
-//     console.log({ name: keys[index], tabs: tabTotal });
-//     this.shown.push(keys[index]);
-
-//     for (let child of titans[keys[index]]) {
-//         if (this.titanList.indexOf(child.Name) == -1) {
-//             this.evaluateChildren(titans, keys.indexOf(child.Name), tabs + 1);
-//         }
-//     }
-// } else if (titans[keys[index]] == null) {
-//     this.titanList.push(keys[index]);
-//     this.shown.push(keys[index]);
-//     return;
-// }
