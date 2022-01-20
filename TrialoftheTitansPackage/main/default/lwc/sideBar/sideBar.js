@@ -38,22 +38,7 @@ export default class SideBar extends LightningElement {
     portName;
     portStatus;
     renderedCallback() {
-        console.log('squadInfo')
-        console.log(this.squadInfo)
-        console.log('accInfo')
-        console.log(this.accInfo)
-        console.log('certInfo')
-        console.log(this.certInfo)
         if (this.accInfo.data && this.squadInfo.data && this.certInfo.data && this.statusInfo.data) {
-            console.log('squadInfo')
-            console.log(this.squadInfo)
-            console.log('accInfo')
-            console.log(this.accInfo)
-            console.log('certInfo')
-            console.log(this.certInfo)
-            console.log('statusInfo')
-            console.log(this.statusInfo)
-
             this.squadName = "Our Hero's Squad: " + this.squadInfo.data.Name
             this.heroName = "Our Hero's Name: " + this.accInfo.data.Name
             this.heroArete = "Our Hero's Arete: 53"

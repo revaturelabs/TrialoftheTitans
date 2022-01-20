@@ -1,0 +1,47 @@
+<template>
+    <div class="slds-carousel">
+        <div class="slds-carousel__stage">
+            <template if:false={disableAutoScroll}>
+                <span class="slds-carousel__autoplay">
+                    <button class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small"
+                        aria-pressed={ariaPressed} title={togglePlayString} onclick={toggleAutoScroll}>
+                        <svg class="slds-button__icon" aria-hidden="true">
+                            <use xlink:href={svgHref}></use>
+                        </svg>
+                        <span class="slds-assistive-text">{togglePlayString}</span>
+                    </button>
+                </span>
+            </template>
+
+            <div class="slds-carousel__panels" style={carouselPanelsStyle} ontouchstart={handleTouchStart}
+                ontouchend={handleTouchEnd}>
+                <c-radar-carousel-image href="#"
+                    src="https://www.lightningdesignsystem.com/assets/images/carousel/carousel-01.jpg"
+                    header="Visit App Exchange" description="Extend Salesforce with the #1 business marketplace.">
+                </c-radar-carousel-image>
+                <c-radar-carousel-image href="#"
+                    src="https://www.lightningdesignsystem.com/assets/images/carousel/carousel-02.jpg"
+                    header="Click to Customize"
+                    description="Use the Object Manager to add fields, build layouts, and more.">
+                </c-radar-carousel-image>
+                <c-radar-carousel-image href="#"
+                    src="https://www.lightningdesignsystem.com/assets/images/carousel/carousel-03.jpg"
+                    header="Download SalesforceA"
+                    description="Get the mobile app that&#x27;s just for Salesforce admins."></c-radar-carousel-image>
+            </div>
+
+            <ul class="slds-carousel__indicators" role="tablist" onkeydown={keyDownHandler}>
+                <template for:each={paginationItems} for:item="paginationItem" for:index="paginationIndex">
+                    <li class="slds-carousel__indicator" role="presentation" onclick={onItemSelect}
+                        key={paginationItem.key} data-index={paginationIndex}>
+                        <a id={paginationItem.id} class={paginationItem.className} href="#" role="tab"
+                            tabindex={paginationItem.tabIndex} aria-selected={paginationItem.ariaSelected}
+                            title={paginationItem.tabTitle}>
+                            <span class="slds-assistive-text">{paginationItem.tabTitle}</span>
+                        </a>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </div>
+</template>
