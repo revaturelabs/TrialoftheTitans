@@ -1,5 +1,5 @@
 import { LightningElement, track, api } from 'lwc'
-import { normalizeBoolean } from 'c/utilsPrivate'
+import { keyCodes, normalizeBoolean } from 'c/utilsPrivate'
 
 const INDICATOR_ACTION = 'slds-carousel__indicator-action'
 const SLDS_ACTIVE = 'slds-is-active'
