@@ -434,6 +434,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>QuestionFlagUpdates</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>QuestionFlagUpdatesTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>QuestionTableApexController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -913,6 +921,21 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Exam_Question__c.Flag_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Exam_Question__c.Flag_Notes__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Exam_Question__c.Flag_Subcategory__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Exam_Question__c.IsActive__c</field>
         <readable>true</readable>
@@ -931,6 +954,11 @@
         <editable>true</editable>
         <field>Exam_Question__c.Options__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Exam_Question__c.QualityAssurance__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1363,6 +1391,10 @@
         <layout>Exam_Question__c-Exam Question Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Exam_Question__c-Exam Question Layout</layout>
+        <recordType>Exam_Question__c.QualityAssurancePath</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Exam_Result__c-Exam Result Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -1747,6 +1779,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Hero</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Exam_Question__c.QualityAssurancePath</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <tabVisibilities>

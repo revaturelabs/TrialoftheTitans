@@ -160,7 +160,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>QC Question Decks</pluralLabel>
-    <searchLayouts></searchLayouts>
+    <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

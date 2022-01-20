@@ -160,7 +160,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>One on Ones</pluralLabel>
-    <searchLayouts></searchLayouts>
+    <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
