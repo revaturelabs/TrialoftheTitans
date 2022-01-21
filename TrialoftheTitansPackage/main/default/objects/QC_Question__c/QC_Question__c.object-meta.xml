@@ -161,7 +161,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>QC Questions</pluralLabel>
-    <searchLayouts></searchLayouts>
+    <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

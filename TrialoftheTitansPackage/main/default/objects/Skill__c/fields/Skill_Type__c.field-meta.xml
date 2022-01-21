@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Skill_Type__c</fullName>
-    <deprecated>false</deprecated>
     <description>Type of skill for Skills in Trial of The Titans</description>
     <externalId>false</externalId>
     <label>Skill Type</label>
