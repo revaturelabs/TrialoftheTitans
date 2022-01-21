@@ -7,37 +7,41 @@
   Last Updated: 10/26/21
 -->
 
-<aura:component controller="HeroHubController" extensible="true" implements="forceCommunity:themeLayout,force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
-   
+<aura:component
+    controller="HeroHubController"
+    extensible="true"
+    implements="forceCommunity:themeLayout,force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes"
+    access="global"
+>
     <!--Attributes: contextUser, userTeam, leadTeam,-->
     <aura:attribute name="contextInfo" type="UserContextInfo" />
     <aura:attribute name="userName" type="String" />
     <aura:attribute name="leadTeams" type="Map" />
 
     <aura:attribute name="navigate" type="String" default="Titans" />
+    <aura:attribute name="displayProfile" type="Boolean" default="false" />
 
     <aura:handler name="MainPageNavigation" event="c:MainPageNavigation" action="{!c.navigate}" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-        
+
     <!--Set dynamic colors for teams, this should not be inline, wasn't us - note from Iteration 6 -->
     <aura:html tag="style">
-        :root { --user-team-primary: {!v.contextInfo.team.Primary_Color__c}; --user-team-secondary: {!v.contextInfo.team.Secondary_Color__c}; --lead-team-primary: {!v.leadTeams.team[0].primary_color__c}; --lead-team-secondary: {!v.leadTeams.team[0].secondary_color__c};
-        background-color: #72a4c2; }
+        :root { --user-team-primary: {!v.contextInfo.team.Primary_Color__c}; --user-team-secondary:
+        {!v.contextInfo.team.Secondary_Color__c}; --lead-team-primary: {!v.leadTeams.team[0].primary_color__c};
+        --lead-team-secondary: {!v.leadTeams.team[0].secondary_color__c}; background-color: #72a4c2; }
     </aura:html>
 
     <!-- Animated Header and Navigation goes here -->
     <!-- commented out previous header implementation, made much cleaner version - iteration 6 -->
     <header class="header">
         <!-- From previous batch removed by Iteration-VI <c:AnimatedHeader leadTeams="{!v.leadTeams}" /> -->
-        <c:Navigation userName="{!v.userName}"/>
+        <c:Navigation userName="{!v.userName}" />
     </header>
-    
-    <!-- Main page with Aura:if for either Titan Page, Titan Slayer, or Hero Journey -->
-    
-    
-    <div id="main">
 
-        <aura:if isTrue="{!v.navigate == !v.userName}">
+    <!-- Main page with Aura:if for either Titan Page, Titan Slayer, or Hero Journey -->
+
+    <div id="main">
+        <aura:if isTrue="{!v.navigate == v.userName}">
             <c:HeroResultPage />
         </aura:if>
 
@@ -58,18 +62,17 @@
                 <c:OraclePublicVideos />
         </aura:if>
         -->
- 
+
         <aura:if isTrue="{!v.navigate == 'Portfolio Creation'}">
-            <c:PortfolioCreation2/>
+            <c:PortfolioCreation2 />
         </aura:if>
 
         <aura:if isTrue="{!v.navigate == 'One on One'}">
-            <c:HeroOneOnOne/>
+            <c:HeroOneOnOne />
             <c:TitanSlayer leadTeams="{!v.leadTeams}" />
             <c:lwcTitanSlayer leadTeams="{!v.leadTeams}" />
             <c:HeroJourney contextInfo="{!v.contextInfo}" />
         </aura:if>
-
     </div>
 
     <c:Communication />
