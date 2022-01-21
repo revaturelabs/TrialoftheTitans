@@ -22,7 +22,7 @@ public with sharing class titanDisplayController {
         // Contact contact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.contactId];
         // Account userAccount = [SELECT Id, Name, Squad__c, Team__c, Cohort__c, Curriculum__c FROM Account WHERE Id = :contact.AccountId];
         // return userAccount;
-        return [SELECT Id, Name, Squad__c, Team__c, Cohort__c, Curriculum__c FROM Account WHERE Name = 'Peter Parker'];
+        return [SELECT Id, Name, Squad__c, Team__c, Cohort__c, Curriculum__c FROM Account WHERE Name = 'Jimmy Smith'];
     }
 
     @AuraEnabled
@@ -41,7 +41,7 @@ public with sharing class titanDisplayController {
 
     @AuraEnabled
     public static Integer getNumberOfTitanExams(String titanId){
-        Integer exams = [SELECT COUNT() FROM Exam_Result__c WHERE Exam__r.Titan__c =: titanId];
+        Integer exams = [SELECT COUNT() FROM Exam__c WHERE Titan__c =: titanId];
         return exams;
     }
 }
