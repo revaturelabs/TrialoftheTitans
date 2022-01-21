@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>QC_Score__c</fullName>
+    <deprecated>false</deprecated>
     <description>Overall score for this hero&apos;s QC. The value is calculated automatically, but can be overridden (a reason must also be provided).</description>
     <externalId>false</externalId>
     <inlineHelpText>The overall score for this hero&apos;s QC; the value is calculated automatically, but can be overridden (a reason must also be provided).</inlineHelpText>

@@ -152,7 +152,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>QC Question Answer</label>
     <nameField>
         <displayFormat>QCA-{000000}</displayFormat>
@@ -161,7 +161,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>QC Question Answers</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <searchLayouts></searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

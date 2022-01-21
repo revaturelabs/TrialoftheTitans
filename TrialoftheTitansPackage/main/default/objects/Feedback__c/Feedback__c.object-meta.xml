@@ -152,7 +152,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Feedback</label>
     <nameField>
         <displayFormat>{000000}</displayFormat>
@@ -161,7 +161,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Feedbacks</pluralLabel>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <searchLayouts></searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

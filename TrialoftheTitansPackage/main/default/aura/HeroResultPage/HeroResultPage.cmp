@@ -23,18 +23,21 @@
         <div class="flex-wrapper">
             <div class="titan-tab-group">
                 <aura:if isTrue="{!!v.examClicked}">
-                    <div class="titan-tab" onclick="{!c.onTitanClick}">All Titans</div>
+                    <div class='titan-tab' onclick="{!c.onTitanClick}">All Titans</div>
                     {!v.titanTabPanel}
                 </aura:if>
                 <aura:if isTrue="{!v.examClicked}">
-                    <div class="back-exams-btn" onclick="{!c.onBackBtnClick}">Back to exam list</div>
-                </aura:if>
+                        <div class="back-exams-btn" onclick="{!c.onBackBtnClick}">Back to exam list</div>
+                </aura:if> 
+            
             </div>
-
+            
             <div class="main-panel">
                 <aura:if isTrue="{!!v.pbpClicked}">
                     <aura:if isTrue="{!!v.examClicked}">
-                        <div class="exam-btn-group">{!v.examListPanel}</div>
+                        <div class="exam-btn-group">
+                            {!v.examListPanel}
+                        </div>
                     </aura:if>
                     <aura:if isTrue="{!v.examClicked}">
                         <c:HeroResults examResultId="{!v.examResultId}" />
@@ -59,25 +62,30 @@
             </div>
         </div>
         <!-- Code Assessment Component Here Worked on By Saief Sayed -->
-
-        <div class="wrapper">
-            <br />
-            <h2>Code Assessment</h2>
-            <div class="titan-tab" onclick="{!c.onCAClick}">See Code Assesment Results</div>
-            <br />
-            <aura:if isTrue="{!v.caClicked}">
-                <lightning:card variant="Narrow" footer="End" title="Code Assessment Results">
-                    <!-- Possibly implement search functionality in next iteration
+        
+        <div class="wrapper" >
+            
+            	<br></br>
+                <h2>Code Assessment</h2>
+                <div class='titan-tab' onclick="{!c.onCAClick}">See Code Assesment Results</div>
+            	<br></br>               
+                    <aura:if isTrue="{!v.caClicked}">
+                        <lightning:card variant="Narrow" footer="End" title="Code Assessment Results">
+                            <!-- Possibly implement search functionality in next iteration
 								<aura:set attribute="actions">
                                 <lightning:button label="Search"/>
                             </aura:set>-->
-                    <p class="slds-p-horizontal_small">
-                        <aura:iteration items="{!v.results}" var="r">
-                            <c:ResultItem resultId="{!r}" />
-                        </aura:iteration>
-                    </p>
-                </lightning:card>
-            </aura:if>
+                            <p class="slds-p-horizontal_small">
+                                <aura:iteration items="{!v.results}" var="r">
+                                    <c:ResultItem resultId="{!r}"/>
+                                </aura:iteration>
+                            </p>
+                		</lightning:card>
+                
+                	</aura:if>            
+
         </div>
+        
     </div>
+
 </aura:component>

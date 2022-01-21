@@ -27,12 +27,14 @@ export default class TitanDisplayBar extends LightningElement {
     }
 
     connectedCallback() {
+        let slicedId = this.id.slice(0, -3);
         let user = getCurrentUser();
         user.then((res) => {
             this.currentUser = res;
-            let userExams = getUserExams({ titanId: this.id.slice(0, -3), userId: this.currentUser.Id });
+            let userExams = getUserExams({ titanId: slicedId, userId: this.currentUser.Id });
             userExams.then((res) => {
                 this.passedExams = Object.keys(res).length;
+                console.log("passed exams: ", this.passedExams);
             });
         });
 

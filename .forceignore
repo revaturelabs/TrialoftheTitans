@@ -67,6 +67,6 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 **/objects/QC_Flag__c
 **/objects/QC_Question_Deck__c
 
-**/HeroHubPackage
+# **/HeroHubPackage
 
 **/ExamQuestionFlagPackage

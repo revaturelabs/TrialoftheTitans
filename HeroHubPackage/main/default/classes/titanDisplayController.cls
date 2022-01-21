@@ -35,7 +35,8 @@ public with sharing class titanDisplayController {
 
     @AuraEnabled
     public static List<Exam_Result__c> getUserExams(String titanId, String userId){
-        List<Exam_Result__c> results = [SELECT Id, Account__c, Exam__c, Pass__c FROM Exam_Result__c WHERE Pass__c = true AND Exam__r.Titan__c =: titanId];
+        List<Exam_Result__c> results = [SELECT Id, Account__c, Exam__c, Pass__c FROM Exam_Result__c 
+                                        WHERE Pass__c = true AND Exam__r.Titan__c =: titanId];
         return results;
     }
 

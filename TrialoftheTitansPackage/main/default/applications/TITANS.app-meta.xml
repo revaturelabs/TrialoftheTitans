@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <brand>
         <headerColor>#0070D2</headerColor>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
-    <description>HEROS TITANS EXAMS OH NO OUR TABLE ITS BROKEN!!!?!?!?!?!?!??!?!?!?!?</description>
+    <description
+  >HEROS TITANS EXAMS OH NO OUR TABLE ITS BROKEN!!!?!?!?!?!?!??!?!?!?!?</description>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
@@ -16,7 +17,9 @@
     <tabs>Exam_Result__c</tabs>
     <tabs>Exam__c</tabs>
     <tabs>Titan__c</tabs>
+    <!-- <tabs>test</tabs> -->ß
     <tabs>Team__c</tabs>
+    <!-- <tabs>Trainer_Hub</tabs> -->
     <tabs>Hero_Answer__c</tabs>
     <tabs>Hero_Apex_Test_Result__c</tabs>
     <tabs>Hero_Assessment__c</tabs>

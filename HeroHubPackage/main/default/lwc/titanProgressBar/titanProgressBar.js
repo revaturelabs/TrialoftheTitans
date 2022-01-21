@@ -44,12 +44,7 @@ export default class TitanProgressBar extends LightningElement {
         let heightBar = this.barHeight;
 
         let corners = this.roundedCorners;
-        let segments;
-        if (this.passedExams == null) {
-            segments = 0;
-        } else {
-            segments = this.passedExams;
-        }
+        let segments = this.passedExams;
         console.log(segments);
         let exams = this.totalExams;
         let segmentWidth = widthBar;
