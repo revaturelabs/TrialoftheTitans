@@ -61,7 +61,6 @@ export default class TitanProgressBar extends LightningElement {
 
         const states = ["1", "2", "3"];
         let currentState = this.getCurrentState(segments, exams);
-        console.log("currentState:", currentState);
 
         const colorScale = d3.scaleOrdinal().domain(states).range(["#b3697a", "#96cabe", "#69b3a2"]);
 
@@ -105,7 +104,7 @@ export default class TitanProgressBar extends LightningElement {
             return "0";
         }
         let percentage = passedExams / totalExams;
-        console.log("percentage:", percentage);
+
         if (0 <= percentage && percentage < 0.35) {
             return "1";
         } else if (0.35 <= percentage && percentage < 0.65) {
