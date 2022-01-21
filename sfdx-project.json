@@ -8,15 +8,16 @@
       "default": true,
       "dependencies": [
         {
-          "package": "CorePackage@1.0.0-1"
-        },
-        {
-          "package": "ExamPackage@1.0.0-1"
-        },
-        {
           "package": "ChartPackage@1.0.0-1"
         }
       ]
+    },
+    {
+      "path": "HeroHubPackage",
+      "package": "Hero Hub Package",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "default": true
     },
     {
       "path": "ChartPackage",
@@ -43,6 +44,7 @@
     "ChartPackage": "0Ho5f0000010wY3CAI",
     "ExperienceCloudPackage": "0Ho5f0000010wYDCAY",
     "TrialOfTheTitansPackage@0.1.0-3": "04t5f000000GsI1AAK",
-    "TrialOfTheTitansPackage@0.1.0-5": "04t5f000000GsMdAAK"
+    "TrialOfTheTitansPackage@0.1.0-5": "04t5f000000GsMdAAK",
+    "Hero Hub Package": "0Ho5f0000010wXyCAI"
   }
 }

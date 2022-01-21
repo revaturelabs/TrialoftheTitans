@@ -1,0 +1,12 @@
+.spacing {
+    display: inline-block;
+}
+
+.width {
+    width: 100%;
+}
+
+.container {
+    height: 60%;
+    overflow-y: scroll;
+}

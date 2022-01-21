@@ -43,13 +43,6 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 #!**/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
 #!**/profiles/Trial-of-the-Titans-User.profile-meta.xml
 #**/profiles
-<<<<<<< HEAD
-**/applications
-**/flows
-**/flexipages
-
-/ExamQuestionFlagPackage
-=======
 #**/layouts
 #**/applications
 #**/flows
@@ -73,4 +66,3 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 
 
 **/ExamQuestionFlagPackage
->>>>>>> Header
