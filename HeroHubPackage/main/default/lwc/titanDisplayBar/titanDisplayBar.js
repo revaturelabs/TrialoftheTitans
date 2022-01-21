@@ -21,13 +21,18 @@ export default class TitanDisplayBar extends LightningElement {
     @track titanName;
 
     renderedCallback() {
-        let titan = getTitanById({ identifier: this.id.slice(0, -3) });
-        titan.then((res) => {
-            this.titanName = res[0].Name;
-        });
+        
     }
 
     connectedCallback() {
+        let titan = getTitanById({ identifier: this.id.slice(0, 18) });
+        console.log("Id: " + this.id);
+        console.log('titan(spliced): ', this.id.slice(0, 18));
+        titan.then((res) => {
+            console.log("Name: " + res[0].Name);
+            this.titanName = res[0].Name;
+        });
+
         let slicedId = this.id.slice(0, -3);
         let user = getCurrentUser();
         user.then((res) => {
@@ -41,7 +46,6 @@ export default class TitanDisplayBar extends LightningElement {
                 else{
                     this.passedExams = 0;
                 }
-                console.log("passed exams: ", this.passedExams);
                 this.userExamsLoaded = true;
             })
             .catch((error) => {
@@ -55,7 +59,6 @@ export default class TitanDisplayBar extends LightningElement {
         let numExams = getNumberOfTitanExams({ titanId: this.id.slice(0, -3) });
         numExams.then((res) => {
             this.totalExams = res;
-            console.log("total Exams: " + this.totalExams);
         });
     }
     handleOverview() {}
