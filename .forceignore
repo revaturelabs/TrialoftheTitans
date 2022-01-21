@@ -48,7 +48,6 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 #**/flows
 #**/flexipages
 
-
 **/flexipages/Exam_Home.flexipage-meta.xml
 **/flexipages/Exam_Record_Page.flexipage-meta.xml
 **/flexipages/Exam_Record_Page1.flexipage-meta.xml
@@ -62,7 +61,12 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 **/flexipages/Question_Pool_Record_Page.flexipage-meta.xml
 **/flexipages/Trainer_Hub.flexipage-meta.xml
 **/flexipages/TrainerHub_Home.flexipage-meta.xml
+**/objects/Feedback__c
+**/objects/Mock_Interview_Self__c
+**/objects/One_on_One__C
+**/objects/QC_Flag__c
+**/objects/QC_Question_Deck__c
 
-
+**/HeroHubPackage
 
 **/ExamQuestionFlagPackage

@@ -152,7 +152,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>false</enableSharing>
     <enableStreamingApi>false</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <label>Mock Interview Self</label>
     <nameField>
         <displayFormat>{000000}</displayFormat>
@@ -162,6 +162,6 @@
     </nameField>
     <pluralLabel>Mock Interview Selves</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
