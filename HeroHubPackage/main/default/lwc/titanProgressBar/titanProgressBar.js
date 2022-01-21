@@ -44,15 +44,18 @@ export default class TitanProgressBar extends LightningElement {
         let heightBar = this.barHeight;
 
         let corners = this.roundedCorners;
-        let segments = this.passedExams;
-        console.log(segments);
+        // console.log("before segment assignment (passedExams): " + passedExams);
+        let segments = 0;
+        if (this.passedExams != -1) {
+            segments = this.passedExams;
+        }
         let exams = this.totalExams;
         let segmentWidth = widthBar;
         if (exams != 0) {
             segmentWidth = widthBar / exams;
         }
         let padding = this.barPadding;
-        console.log("exams and segments: " + exams + segments);
+        console.log("passed / total: " + segments + " / " + exams);
 
         const svg = d3.select(this.template.querySelector("svg.progress")).attr("height", height).attr("width", width);
 
@@ -80,7 +83,6 @@ export default class TitanProgressBar extends LightningElement {
             .append("rect")
             .attr("class", "progress-rect")
             .attr("fill", () => {
-                console.log("colorScale(currentState):", colorScale(currentState));
                 return colorScale(currentState);
             })
             .attr("height", this.barHeight)
