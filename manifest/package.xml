@@ -6,6 +6,10 @@
 	</types>
 	<types>
 		<members>*</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>*</members>
 		<name>ApexTestSuite</name>
 	</types>
 	<types>

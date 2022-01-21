@@ -1,27 +1,27 @@
 {
-  "packageDirectories": [
-    {
-      "path": "TrialoftheTitansPackage",
-      "package": "TrialOfTheTitansPackage",
-      "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
-      "default": true
-    },
-    {
-      "path": "HeroHubPackage",
-      "package": "Hero Hub Package",
-      "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
-      "default": false
+    "packageDirectories": [
+        {
+            "path": "TrialoftheTitansPackage",
+            "package": "TrialOfTheTitansPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        },
+        {
+            "path": "HeroHubPackage",
+            "package": "Hero Hub Package",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true
+        }
+    ],
+    "namespace": "",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "53.0",
+    "packageAliases": {
+        "TrialOfTheTitansPackage": "0Ho5f000000Cb2cCAC",
+        "TrialOfTheTitansPackage@0.1.0-1": "04t5f000000GrxdAAC",
+        "TrialOfTheTitansPackage@0.1.0-2": "04t5f000000Gry2AAC",
+        "Hero Hub Package": "0Ho5f0000010wXyCAI"
     }
-  ],
-  "namespace": "",
-  "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "53.0",
-  "packageAliases": {
-    "TrialOfTheTitansPackage": "0Ho5f000000Cb2cCAC",
-    "TrialOfTheTitansPackage@0.1.0-1": "04t5f000000GrxdAAC",
-    "TrialOfTheTitansPackage@0.1.0-2": "04t5f000000Gry2AAC",
-    "Hero Hub Package": "0Ho5f0000010wXyCAI"
-  }
 }
