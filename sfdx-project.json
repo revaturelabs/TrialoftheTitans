@@ -5,7 +5,7 @@
             "package": "TrialOfTheTitansPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true
+            "default": false
         },
         {
             "path": "HeroHubPackage",
@@ -15,7 +15,7 @@
             "default": false,
             "dependencies": [
                 {
-                    "package": "ChartPackage@1.0.0-1"
+                    "package": "TrialofTheTitansPackage@1.0.0-1"
                 }
             ]
         },
@@ -24,14 +24,24 @@
             "package": "ChartPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": false
+            "default": false,
+            "dependencies": [
+                {
+                    "package": "TrialofTheTitansPackage@1.0.0-1"
+                }
+            ]
         },
         {
             "path": "TitanHubPackage",
             "package": "Titan Hub Package",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": false
+            "default": true,
+            "dependencies": [
+                {
+                    "package": "TrialofTheTitansPackage@1.0.0-1"
+                }
+            ]
         }
     ],
     "namespace": "",

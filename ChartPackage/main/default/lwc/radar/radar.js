@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////////////////////// 
+// 
+// Name: Radar
+// Author: Alan Huang
+// Created: 01/25/2022
+// Updated: 01/25/2022
+// Description: Radar chart component
+// 
+/////////////////////////////////////////////////////////////////////////////////
+
 import { LightningElement, api, track } from 'lwc'
 import { loadScript } from 'lightning/platformResourceLoader'
 import D3 from '@salesforce/resourceUrl/D3_v3'

@@ -1,5 +1,5 @@
 import {LightningElement, wire, track} from 'lwc';
-import getUpdatedScore from '@salesforce/apex/updatedSquadLeaderBoardHandler.getUpdatedScore';
+import getUpdatedScore from '@salesforce/apex/updatedSquadLeaderboardHandler.getUpdatedScore';
 
 const COLUMNS = [
     {label: 'Hero Name', fieldName: 'Name', hideDefaultActions:true, type: 'text'},

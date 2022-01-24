@@ -8,7 +8,7 @@ public with sharing class getCertificationsTest {
     @isTest
     static void getRecord() {
 
-        Certification__c c = new Certification__c(Name='testCert');
+        Certification__c c = new Certification__c();
         //Inserts a certification into the database
         insert c;
 
@@ -23,7 +23,7 @@ public with sharing class getCertificationsTest {
         //Creates a list of certifications to be added into the list
         for(Integer i = 0; i<200; i++)
         {
-            insertCert.add(new Certification__c(Name='testCert'));
+            insertCert.add(new Certification__c());
         }
         Test.startTest();
         //inserts the list of certifications
