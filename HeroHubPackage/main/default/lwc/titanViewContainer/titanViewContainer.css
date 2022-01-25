@@ -7,6 +7,6 @@
 }
 
 .container {
-    height: 60%;
+    height: inherit;
     overflow-y: scroll;
 }

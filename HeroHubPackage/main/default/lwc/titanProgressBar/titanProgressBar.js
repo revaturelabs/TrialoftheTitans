@@ -44,21 +44,22 @@ export default class TitanProgressBar extends LightningElement {
         let heightBar = this.barHeight;
 
         let corners = this.roundedCorners;
-        let segments = this.passedExams;
-        console.log(segments);
+        // console.log("before segment assignment (passedExams): " + passedExams);
+        let segments = 0;
+        if (this.passedExams != -1) {
+            segments = this.passedExams;
+        }
         let exams = this.totalExams;
         let segmentWidth = widthBar;
         if (exams != 0) {
             segmentWidth = widthBar / exams;
         }
         let padding = this.barPadding;
-        console.log("exams and segments: " + exams + segments);
 
         const svg = d3.select(this.template.querySelector("svg.progress")).attr("height", height).attr("width", width);
 
         const states = ["1", "2", "3"];
         let currentState = this.getCurrentState(segments, exams);
-        console.log("currentState:", currentState);
 
         const colorScale = d3.scaleOrdinal().domain(states).range(["#b3697a", "#96cabe", "#69b3a2"]);
 
@@ -80,7 +81,6 @@ export default class TitanProgressBar extends LightningElement {
             .append("rect")
             .attr("class", "progress-rect")
             .attr("fill", () => {
-                console.log("colorScale(currentState):", colorScale(currentState));
                 return colorScale(currentState);
             })
             .attr("height", this.barHeight)
@@ -103,7 +103,7 @@ export default class TitanProgressBar extends LightningElement {
             return "0";
         }
         let percentage = passedExams / totalExams;
-        console.log("percentage:", percentage);
+
         if (0 <= percentage && percentage < 0.35) {
             return "1";
         } else if (0.35 <= percentage && percentage < 0.65) {

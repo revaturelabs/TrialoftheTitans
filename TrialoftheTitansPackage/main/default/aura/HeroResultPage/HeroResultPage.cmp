@@ -6,86 +6,24 @@
 /////////////////////////////////////
 -->
 
-<aura:component controller="HeroResultPageController">
-    <aura:attribute type="Aura.Component[]" name="examListPanel" />
-    <aura:attribute type="Aura.Component[]" name="titanTabPanel" />
-    <aura:attribute name="resultList" type="List" />
-    <aura:attribute name="examResultId" type="String" />
-    <aura:attribute name="currentPage" type="String" />
-    <aura:attribute name="examClicked" type="Boolean" default="false" />
-    <aura:attribute name="pbpClicked" type="Boolean" default="false" />
-    <aura:attribute name="titanIdList" type="List" />
-    <aura:attribute name="caClicked" type="Boolean" default="false" />
-    <aura:attribute name="results" type="List"></aura:attribute>
-    <aura:registerEvent name="ExamResultBtnClickedEvent" type="c:ExamResultBtnClickedEvent" />
-    <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
-    <div class="wrapper">
-        <div class="flex-wrapper">
-            <div class="titan-tab-group">
-                <aura:if isTrue="{!!v.examClicked}">
-                    <div class='titan-tab' onclick="{!c.onTitanClick}">All Titans</div>
-                    {!v.titanTabPanel}
-                </aura:if>
-                <aura:if isTrue="{!v.examClicked}">
-                        <div class="back-exams-btn" onclick="{!c.onBackBtnClick}">Back to exam list</div>
-                </aura:if> 
-            
+<aura:component controller="HeroResultPageController" implements="flexipage:availableForAllPageTypes">
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+            <c:header></c:header>
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
+            <c:navbar></c:navbar>
+        </div>
+        <div class="slds-col slds-grid slds-grid_align-space slds-size_1-of-1 middle-container">
+            <div class="slds-col slds-size_7-of-12">
+                <c:titanViewContainer></c:titanViewContainer>
             </div>
-            
-            <div class="main-panel">
-                <aura:if isTrue="{!!v.pbpClicked}">
-                    <aura:if isTrue="{!!v.examClicked}">
-                        <div class="exam-btn-group">
-                            {!v.examListPanel}
-                        </div>
-                    </aura:if>
-                    <aura:if isTrue="{!v.examClicked}">
-                        <c:HeroResults examResultId="{!v.examResultId}" />
-                    </aura:if>
-                </aura:if>
-                <aura:if isTrue="{!v.pbpClicked}">
-                    <c:ExamResultsPoolPage examResultId="{!v.examResultId}" />
-                </aura:if>
-            </div>
-
-            <div class="right-panel">
-                <aura:if isTrue="{!v.examClicked}">
-                    <div class="right-panel-btn-group">
-                        <aura:if isTrue="{!!v.pbpClicked}">
-                            <div class="pbp-btn" onclick="{!c.onPbpClick}">Pool by Pool</div>
-                        </aura:if>
-                        <aura:if isTrue="{!v.pbpClicked}">
-                            <div class="back-btn" onclick="{!c.onBackDetailBtnClick}">Test Result Details</div>
-                        </aura:if>
-                    </div>
-                </aura:if>
+            <div class="slds-col slds-size_4-of-12">
+                <c:sideBar></c:sideBar>
             </div>
         </div>
-        <!-- Code Assessment Component Here Worked on By Saief Sayed -->
-        
-        <div class="wrapper" >
-            
-            	<br></br>
-                <h2>Code Assessment</h2>
-                <div class='titan-tab' onclick="{!c.onCAClick}">See Code Assesment Results</div>
-            	<br></br>               
-                    <aura:if isTrue="{!v.caClicked}">
-                        <lightning:card variant="Narrow" footer="End" title="Code Assessment Results">
-                            <!-- Possibly implement search functionality in next iteration
-								<aura:set attribute="actions">
-                                <lightning:button label="Search"/>
-                            </aura:set>-->
-                            <p class="slds-p-horizontal_small">
-                                <aura:iteration items="{!v.results}" var="r">
-                                    <c:ResultItem resultId="{!r}"/>
-                                </aura:iteration>
-                            </p>
-                		</lightning:card>
-                
-                	</aura:if>            
-
+        <div class="slds-col slds-size_1-of-1">
+            <c:footerContainer></c:footerContainer>
         </div>
-        
     </div>
-
 </aura:component>

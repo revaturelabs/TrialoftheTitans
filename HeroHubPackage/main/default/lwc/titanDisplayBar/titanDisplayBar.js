@@ -15,35 +15,47 @@ export default class TitanDisplayBar extends LightningElement {
     @track currentUser;
     @track passedExams;
     @track totalExams;
+    userExamsLoaded = false;
 
     @api id;
     @track titanName;
 
     renderedCallback() {
-        let titan = getTitanById({ identifier: this.id.slice(0, -3) });
+        let slicedId = this.id.slice(0, 18);
+        let titan = getTitanById({ identifier: slicedId });
         titan.then((res) => {
             this.titanName = res[0].Name;
+        });
+
+        let user = getCurrentUser();
+        user.then((res) => {
+            this.currentUser = res;
+
+            let userExams = getUserExams({ titanId: slicedId, userId: this.currentUser.Id });
+            userExams.then((res) => {
+                if (Object.keys(res).length != null){
+                    this.passedExams = Object.keys(res).length;
+                }
+                else{
+                    this.passedExams = 0;
+                }
+                this.userExamsLoaded = true;
+            })
+            .catch((error) => {
+                console.log('error:', error);
+                this.passedExams = 0;
+                this.userExamsLoaded = true;
+            });
+        });
+
+        let numExams = getNumberOfTitanExams({ titanId: slicedId });
+        numExams.then((res) => {
+            this.totalExams = res;
         });
     }
 
     connectedCallback() {
-        let slicedId = this.id.slice(0, -3);
-        let user = getCurrentUser();
-        user.then((res) => {
-            this.currentUser = res;
-            let userExams = getUserExams({ titanId: slicedId, userId: this.currentUser.Id });
-            userExams.then((res) => {
-                this.passedExams = Object.keys(res).length;
-                console.log("passed exams: ", this.passedExams);
-            });
-        });
-
-        console;
-        let numExams = getNumberOfTitanExams({ titanId: this.id.slice(0, -3) });
-        numExams.then((res) => {
-            this.totalExams = res;
-            console.log(this.totalExams);
-        });
+        
     }
     handleOverview() {}
 
