@@ -291,7 +291,7 @@ public with sharing class ApexDataFactory {
         for(Titan__c titan:titans){
             Skill__c newSkill = new Skill__c();
             newSkill.Name = 'Skill ' + i;
-            newSkill.Assignments__c = 'These are the assignments';
+            newSkill.Assigments__c = 'These are the assignments';
             newSkill.Skill_Breakdown__c = 'Breakdown of skills';
             integer pickSkill = integer.valueOf(Math.random()*skillTypes.size());
             newSkill.Skill_Type__c = skillTypes[pickSkill];
