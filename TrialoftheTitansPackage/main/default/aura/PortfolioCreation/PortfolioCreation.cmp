@@ -5,7 +5,7 @@
                             bind it to an attribute where a trainer can select the user and the components
                             show the records of the selected User-->
                             
-<aura:component access="global" implements="force:appHostable, forceCommunity:availableForAllPageTypes">
+<aura:component access="global" implements="force:appHostable,forceCommunity:availableForAllPageTypes">
 
     <lightning:card class="Header">
         <c:lwcPortfolioHeader/>
@@ -32,4 +32,4 @@
         </lightning:accordion>
     </lightning:card>
 
-</aura:component>	
+</aura:component>

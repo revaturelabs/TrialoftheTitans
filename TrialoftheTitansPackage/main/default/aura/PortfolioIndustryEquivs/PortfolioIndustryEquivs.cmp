@@ -1,4 +1,4 @@
-<aura:component controller="PortfolioIndustryEquivsController" implements="force:appHostable, forceCommunity:availableForAllPageTypes" access="global">
+<aura:component controller="PortfolioIndustryEquivsController" implements="force:appHostable,forceCommunity:availableForAllPageTypes" access="global">
 
     <!-- Choose between display and edit -->
     <aura:attribute name="isEdit" type="Boolean" default="false" />
@@ -146,4 +146,4 @@
 
     </aura:if>
 
-</aura:component>	
+</aura:component>

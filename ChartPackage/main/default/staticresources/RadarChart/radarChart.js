@@ -7,8 +7,8 @@
 	
 window.RadarChart = function(id, data, options) {
 	var cfg = {
-	 w: 600,				//Width of the circle
-	 h: 600,				//Height of the circle
+	 w: 200,				//Width of the circle
+	 h: 200,				//Height of the circle
 	 margin: {top: 20, right: 20, bottom: 20, left: 20}, //The margins of the SVG
 	 levels: 3,				//How many levels or inner circles should there be drawn
 	 maxValue: 0, 			//What is the value that the biggest circle will represent
@@ -54,6 +54,8 @@ window.RadarChart = function(id, data, options) {
 	var svg = d3.select(id).append("svg")
 			.attr("width",  cfg.w + cfg.margin.left + cfg.margin.right)
 			.attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
+			.attr("viewBox", [0, 0, cfg.w + cfg.margin.left + cfg.margin.right, cfg.h + cfg.margin.top + cfg.margin.bottom])
+			.attr("preserveAspectRatio", "xMinYMin meet")
 			.attr("class", "radar"+id);
 	//Append a g element		
 	var g = svg.append("g")

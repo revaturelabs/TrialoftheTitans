@@ -53,4 +53,4 @@
         </aura:if>
             <!--Shows the Component createCertification. Changes the aura:if to true-->
             <lightning:button label="Add" title="Neutral action" onclick="{! c.addCert }"/>
-</aura:component>	
+</aura:component>

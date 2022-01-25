@@ -22,6 +22,10 @@
 **/navigationMenus
 **/audience
 #**/staticresources
+
+# Stops SFDX from putting profiles in packages
+HeroHubPackage/main/default/profiles/Admin.profile-meta.xml
+TitanHubPackage/main/default/profiles/Admin.profile-meta.xml
 TrialoftheTitansPackage/main/default/profiles/Admin.profile-meta.xml
 TrialoftheTitansPackage/main/default/profiles/Hero.profile-meta.xml
 TrialoftheTitansPackage/main/default/profiles/TitanTrainer.profile-meta.xml
@@ -70,3 +74,4 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 # **/HeroHubPackage
 
 **/ExamQuestionFlagPackage
+**/tabs/standard-home.tab-meta.xml
