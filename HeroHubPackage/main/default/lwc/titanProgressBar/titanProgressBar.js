@@ -63,6 +63,7 @@ export default class TitanProgressBar extends LightningElement {
 
         const colorScale = d3.scaleOrdinal().domain(states).range(["#b3697a", "#96cabe", "#69b3a2"]);
 
+        // append rectanges to svg tag
         svg.append("rect")
             .attr("class", "bg-rect")
             .attr("stroke", "black")
