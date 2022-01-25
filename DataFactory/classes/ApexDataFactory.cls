@@ -481,7 +481,7 @@ public with sharing class ApexDataFactory {
         for(Account account:Accounts){
             for(Exam__c exam:Exams){
                 Exam_Result__c result = new Exam_Result__c();
-                result.Name = account.Name + ': ' + exam.Name + ' Result';
+                //result.Name = account.Name + ': ' + exam.Name + ' Result';
                 result.Account__c = account.Id;
                 result.Exam__c = exam.Id;
                 result.Status__c = 'Assigned';
@@ -523,7 +523,7 @@ public with sharing class ApexDataFactory {
                     
                     Hero_Answer__c answer = new Hero_Answer__c();
                     i++;
-                    answer.Name = result.Account__r.Name + ': ' + question.Exam__r.Name + ' Answer ' + i;
+                    //answer.Name = result.Account__r.Name + ': ' + question.Exam__r.Name + ' Answer ' + i;
                     answer.Answer_Choice__c = 'This is my answer';
                     integer correctPercentage = integer.valueOf(Math.random()*100);
                     if(correctPercentage < 69){
