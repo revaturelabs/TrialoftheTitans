@@ -1,4 +1,4 @@
-public with sharing class updatedTeamLeaderboardHandler {
+public without sharing class updatedTeamLeaderboardHandler {
     
     @AuraEnabled(cacheable=true)
     public static List<AggregateResult> getWeeksWon()

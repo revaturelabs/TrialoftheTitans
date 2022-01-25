@@ -12,6 +12,7 @@ export default class UpdatedSquadLeaderboard extends LightningElement {
     @track accounts;
     @track columns = COLUMNS;
     @track error;
+    context = createMessageContext();
 
     @wire(getUpdatedScore)
     wiredupdatedScore({ error, data }) {
@@ -19,6 +20,10 @@ export default class UpdatedSquadLeaderboard extends LightningElement {
             this.accounts = data;
             this.squadName = "Squad Leaderboard for: " + this.accounts[0].Squad__r.Name;
             console.log(data);
+            const message = {
+                squadData: data
+            };
+            this.publishMessage(message);
         } else if (error) {
             this.error = error;
         }
