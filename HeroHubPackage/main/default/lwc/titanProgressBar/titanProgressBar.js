@@ -55,6 +55,7 @@ export default class TitanProgressBar extends LightningElement {
             segmentWidth = widthBar / exams;
         }
         let padding = this.barPadding;
+        console.log("passed / total: " + segments + " / " + exams);
 
         const svg = d3.select(this.template.querySelector("svg.progress")).attr("height", height).attr("width", width);
 

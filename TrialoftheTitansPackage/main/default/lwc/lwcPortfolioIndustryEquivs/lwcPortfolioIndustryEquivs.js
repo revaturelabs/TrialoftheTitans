@@ -4,7 +4,7 @@ import RETURN_NAMES from '@salesforce/apex/lwcPortFolioIndustryEquivs.returnSkil
 import APEX_ID from '@salesforce/apex/lwcPortFolioIndustryEquivs.returnId';
 import NAME_FIELD from '@salesforce/schema/Equivalency__c.Name';
 import EQUIV_FIELD from '@salesforce/schema/Equivalency__c.Skill_Equivalency__c';
-import EQUIV_ID from '@salesforce/schema/Equivalency__c.Id';
+import EQUIV_ID from '@salesforce/schema/Equivalency__c.id';
 import EQUIV_OBJ from '@salesforce/schema/Equivalency__c';
 
 export default class LwcPortfolioIndustryEquivs extends LightningElement {
@@ -26,3 +26,4 @@ export default class LwcPortfolioIndustryEquivs extends LightningElement {
         this.isEdit = !this.isEdit;
     }
 }
+

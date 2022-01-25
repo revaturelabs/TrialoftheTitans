@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Permissions for the Hero User of Trial of The Titans.</description>
-    <hasActivationRequired>false</hasActivationRequired>
     <label>TrialOfTheTitansHeroPermissions</label>
     <permissionSets>Core_Hero_Permissions</permissionSets>
     <status>Updated</status>

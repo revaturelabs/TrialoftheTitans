@@ -3,7 +3,7 @@
 <!--Need all other components deployed below in order to deply this component-->
 <aura:component
   access="global"
-  implements="force:appHostable,forceCommunity:availableForAllPageTypes"
+  implements="force:appHostable, forceCommunity:availableForAllPageTypes"
 >
   <!--<img
     class="Chimera"

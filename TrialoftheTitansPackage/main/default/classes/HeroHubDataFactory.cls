@@ -6,7 +6,7 @@ public with sharing class HeroHubDataFactory {
     public static void dataFactory() {
         integer n = 0;
         List <Job__c> job = new List <Job__c>();
-        List <Certification_Exam__c> cert = new List <Certification_Exam__c>();
+        List <Certification__c> cert = new List <Certification__c>();
         List <Education__c> edu = new List <Education__c>();
         List <Experience__c> exp = new List <Experience__c>();
         while (n<=100){
@@ -15,7 +15,7 @@ public with sharing class HeroHubDataFactory {
                 Name = 'Test Job ' + n,
                 user__c = 'Test User ' + n
             ));
-            cert.add(new Certification_Exam__c(
+            cert.add(new Certification__c(
                 Name = 'Test Cert ' + n
             ));
             edu.add(new Education__c(

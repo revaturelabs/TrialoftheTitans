@@ -93,3 +93,4 @@ export default class LwcExamStats extends LightningElement {
         }
     }
 }
+
