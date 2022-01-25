@@ -1,3 +1,9 @@
 <template>
-    
+    <template if:true={recentExams}>
+        <lightning-card class="slds-m-bottom_medium" title="Recently Taken Exam Scores" icon-name="custom:custom19">
+            <div class="slds-grid slds-grid_vertical chart-container">
+                <svg class="d3" lwc:dom="manual"></svg>
+            </div>
+        </lightning-card>
+    </template>
 </template>
