@@ -1,0 +1,34 @@
+<template>
+    <div hidden>{accInfo} {squadInfo} {certInfo} {statusInfo}</div>
+    <template if:true={certInfo.data}>
+        <lightning-card title="Hero Info">
+            <p class="slds-p-horizontal_small">{heroTitle}</p>
+            <p class="slds-p-horizontal_small">{heroName}</p>
+            <p class="slds-p-horizontal_small">{squadName}</p>
+            <p class="slds-p-horizontal_small">{heroArete}</p>
+        </lightning-card>
+        <lightning-card title="Radar Chart">
+            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                <c-carousel>
+                    <template for:each={avgScores} for:item="avgScore" for:index="avgIndex">
+                        <c-carousel-card key={avgScore.key} header={avgScore.category}>
+                            <c-radar dat={avgScore.axes}></c-radar>
+                        </c-carousel-card>
+                    </template>
+                </c-carousel>
+            </div>
+        </lightning-card>
+        <lightning-card title="Porfolio Status">
+            <p class="slds-p-horizontal_small">{portName}</p>
+            <p class="slds-p-horizontal_small">{portStatus}</p>
+            <lightning-button label="Go to Portfolio" title="Non-primary action" onclick={handleClick}
+                class="slds-m-left_x-small slds-align_absolute-center"></lightning-button>
+        </lightning-card>
+        <lightning-card title="Certification Info">
+            <p class="slds-p-horizontal_small">{certName}</p>
+            <p class="slds-p-horizontal_small">{certDate}</p>
+            <p class="slds-p-horizontal_small">{certAssessor}</p>
+            <p class="slds-p-horizontal_small">{certVer}</p>
+        </lightning-card>
+    </template>
+</template>

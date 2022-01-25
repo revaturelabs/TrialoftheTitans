@@ -4,11 +4,11 @@ import { createRecord } from "lightning/uiRecordApi";
 import Exam_Object from "@salesforce/schema/Exam__c";
 
 //Importing Fields
-import NAME_FIELD from "@salesforce/schema/Exam__C.Name";
-import NEXT_EXAM_FIELD from "@salesforce/schema/Exam__C.Next_Exam__c";
-import TITAN_FIELD from "@salesforce/schema/Exam__C.Titan__c";
-import DPG_FIELD from "@salesforce/schema/Exam__C.Default_Passing_Grade__c";
-import DTL_FIELD from "@salesforce/schema/Exam__C.Default_Time_Limit__c";
+import NAME_FIELD from "@salesforce/schema/Exam__c.Name";
+import NEXT_EXAM_FIELD from "@salesforce/schema/Exam__c.Next_Exam__c";
+import TITAN_FIELD from "@salesforce/schema/Exam__c.Titan__c";
+import DPG_FIELD from "@salesforce/schema/Exam__c.Default_Passing_Grade__c";
+import DTL_FIELD from "@salesforce/schema/Exam__c.Default_Time_Limit__c";
 
 /*
     Modified By: William Rembish

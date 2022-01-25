@@ -1,4 +1,4 @@
-<aura:component controller="ShowPortfolioController" access="global" implements="force:appHostable, forceCommunity:availableForAllPageTypes">
+<aura:component controller="ShowPortfolioController" access="global" implements="force:appHostable,forceCommunity:availableForAllPageTypes">
 
     <aura:attribute name = "HeroId" type = "String"/>
     <aura:attribute name = "Hero" type = "List"/>
@@ -68,4 +68,4 @@
         </lightning:card>
 
     </aura:if>
-</aura:component>	
+</aura:component>
