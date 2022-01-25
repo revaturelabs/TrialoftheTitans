@@ -22,7 +22,7 @@ public with sharing class titanDisplayController {
         // Contact contact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.contactId];
         // Account userAccount = [SELECT Id, Name, Squad__c, Team__c, Cohort__c, Curriculum__c FROM Account WHERE Id = :contact.AccountId];
         // return userAccount;
-        return [SELECT Id, Name, Squad__c, Team__c, Cohort__c, Curriculum__c FROM Account WHERE Name = 'Jimmy Smith'];
+        return [SELECT Id, Name, Squad__c, Team__c, Cohort__c, Curriculum__c FROM Account WHERE Name = 'Peter Parker'];
     }
 
     @AuraEnabled
