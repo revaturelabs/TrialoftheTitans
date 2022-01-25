@@ -1,0 +1,22 @@
+<template>
+    <lightning-card class="slds-m-bottom_medium">
+        <div>
+            <div class="slds-grid slds-grid_vertical-align-center header">
+                <p class="slds-m-right_small slds-m-left_large">{titanName}</p>
+                <div class="slds-col_bump-right">
+                    <button class="button" onclick={handleOverview} disabled={disableOverview}>Titan Overview</button>
+                </div>
+                <div>
+                    <button class="button slds-m-right_small" onclick={handleAdvance} disabled={disableAdvance}>
+                        Advance
+                    </button>
+                </div>
+            </div>
+            <template if:true={totalExams}>
+                <template if:true={userExamsLoaded}>
+                    <c-titan-progress-bar passed-exams={passedExams} total-exams={totalExams}></c-titan-progress-bar>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

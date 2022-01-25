@@ -1,0 +1,14 @@
+<template>
+    <div class="slds-grid slds-grid_vertical container">
+        <template for:each={titanList} for:item="titan">
+            <div key={titan.Id} class="spacing slds-col slds-m-bottom_medium">
+                <div class="slds-grid">
+                    <template for:each={titan.tabs} for:item="tab">
+                        <div class="slds-m-left_large spacing" key={tab.id}></div>
+                    </template>
+                    <c-titan-display-bar class="width" id={titan.id}></c-titan-display-bar>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

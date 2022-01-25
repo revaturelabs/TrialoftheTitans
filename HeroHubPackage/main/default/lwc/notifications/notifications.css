@@ -1,0 +1,20 @@
+.notificationIcon{
+    width: 40%;
+    
+}
+.sup{
+    padding: 1px;
+    color: red;
+}
+
+.notificationBell{
+    position: relative;
+}
+.dropdownLists{
+    position: absolute;
+    top:36px;
+    left:-1px;
+    background-color: #fff;
+    width: 100px;
+    
+}

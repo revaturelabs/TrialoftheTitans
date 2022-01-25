@@ -1,0 +1,33 @@
+.bar-pass {
+    fill: #4682b4;
+}
+
+.bar-fail {
+    fill: #b45346;
+}
+
+.highlight {
+    fill: orange;
+}
+
+.border {
+    stroke: #312d2d;
+    stroke-width: 1;
+}
+
+.chart-container {
+    height: 400;
+    width: 700;
+}
+
+.x-axis {
+    font-size: 1.7em;
+}
+
+.y-axis {
+    font-size: 1.7em;
+}
+
+.val {
+    font-size: 1.5em;
+}

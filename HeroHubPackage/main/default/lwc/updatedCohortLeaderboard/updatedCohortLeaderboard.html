@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title={cohortName} icon-name="utility:activity">
+        <div if:true={cohorts}>
+            <lightning-datatable
+                data={cohorts}
+                columns={columns}
+                key-field="id"
+                hide-checkbox-column="true"
+            ></lightning-datatable>
+        </div>
+    </lightning-card>
+</template>
