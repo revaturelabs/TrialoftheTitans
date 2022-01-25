@@ -1,15 +1,25 @@
-import getAccount from '@salesforce/apex/sideBarHelper.getAccount';
-import getCert from '@salesforce/apex/sideBarHelper.getCert';
-import getPortfolioStatus from '@salesforce/apex/sideBarHelper.getPortfolioStatus';
-import getAvgScorePerTitan from '@salesforce/apex/sideBarHelper.getAvgScorePerTitan'
-import getSquad from '@salesforce/apex/sideBarHelper.getSquad';
+///////////////////////////////////////////////////////////////////////////////// 
+// 
+// Name: Sidebar
+// Author(s): Alan Huang, Andrew Emond
+// Created: 01/25/2022
+// Updated: 01/25/2022
+// Description: Sidebar component for Hero Hub
+// 
+/////////////////////////////////////////////////////////////////////////////////
+
+import getAccount from '@salesforce/apex/sidebarController.getAccount';
+import getCert from '@salesforce/apex/sidebarController.getCert';
+import getPortfolioStatus from '@salesforce/apex/sidebarController.getPortfolioStatus';
+import getAvgScorePerTitan from '@salesforce/apex/sidebarController.getAvgScorePerTitan'
+import getSquad from '@salesforce/apex/sidebarController.getSquad';
 import { LightningElement, wire } from 'lwc';
 
 const PROG_CATEGORY = 'Programmatic'
 const DECL_CATEGORY = 'Declarative'
 const MISC_CATEGORY = 'Miscellaneous'
 
-export default class SideBar extends LightningElement {
+export default class Sidebar extends LightningElement {
     @wire(getAccount) accInfo;
     @wire(getSquad) squadInfo;
     @wire(getCert) certInfo;
@@ -27,7 +37,7 @@ export default class SideBar extends LightningElement {
     }
 
     error
-    avgScores
+    avgScores = []
     categories = [PROG_CATEGORY, DECL_CATEGORY]
     remainderCategory = MISC_CATEGORY
 
@@ -44,18 +54,22 @@ export default class SideBar extends LightningElement {
     portName;
     portStatus;
     renderedCallback() {
-        if (this.accInfo.data && this.squadInfo.data && this.certInfo.data && this.statusInfo.data) {
+        if (this.accInfo.data && this.squadInfo.data && this.statusInfo.data) {
             this.squadName = "Our Hero's Squad: " + this.squadInfo.data.Name
             this.heroName = "Our Hero's Name: " + this.accInfo.data.Name
             this.heroArete = "Our Hero's Arete: 53"
             this.heroTitle = "Our Hero's Title: Achilles"
+            
+            this.portName = "Portfolio Name : " + this.accInfo.data.Name + "'s Portfolio"
+            this.portStatus = "Portfolio Status : " + this.statusInfo.data[0].Portfolio_Status__c
+
+        }
+
+        if (this.certInfo.data && this.certInfo.data.length > 0) {
             this.certName = "Certification Name: " + this.certInfo.data[0].Name
             this.certDate = "Certification Date: " + this.certInfo.data[0].Date_Issued__c
             this.certAssessor = "Certification Assessor: " + this.certInfo.data[0].Assessor__c
             this.certVer = "Certification Verifyer: " + this.certInfo.data[0].Verification_Site__c
-            this.portName = "Portfolio Name : " + this.accInfo.data.Name + "'s Portfolio"
-            this.portStatus = "Portfolio Status : " + this.statusInfo.data[0].Portfolio_Status__c
-
         }
     }
 

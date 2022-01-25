@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////////////////////// 
+// 
+// Name: Radar
+// Author: Alan Huang
+// Created: 01/25/2022
+// Updated: 01/25/2022
+// Description: Radar chart component
+// 
+/////////////////////////////////////////////////////////////////////////////////
+
 import { LightningElement, api, track } from 'lwc'
 import { loadScript } from 'lightning/platformResourceLoader'
 import D3 from '@salesforce/resourceUrl/D3_v3'
@@ -41,9 +51,9 @@ export default class Radar extends LightningElement {
     }
 
     initializeD3() {
-        var margin = { top: 100, right: 100, bottom: 100, left: 100 },
-            width = Math.min(this.maxWidth, window.innerWidth - 10) - margin.left - margin.right,
-            height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20)
+        var margin = { top: 40, right: 40, bottom: 40, left: 40 };
+        var width = Math.min(this.maxWidth, window.innerWidth - 10) - margin.left - margin.right;
+        var height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
 
         var color = d3.scale.ordinal()
             .range(["#EDC951", "#CC333F", "#00A0B0", "#7289ad"])
