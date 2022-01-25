@@ -12,20 +12,17 @@ export default class UpdatedTeamLeaderboard extends LightningElement {
     @track teams;
     @track columns = COLUMNS;
     @track error;
-    context = createMessageContext();
 
     @wire(getWeeksWon)
     wiredWeeksWon({ error, data }) {
         if (data) {
             this.teams = data;
-            console.log(data);
-            const message = {
-                teamData: data
-            };
-            this.publishMessage(message);
+            this.error = undefined;
+            console.log(this.teams);
         } else if (error) {
             this.error = error;
             this.teams = undefined;
+            console.log(this.error);
         }
     }
 
