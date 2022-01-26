@@ -10,7 +10,7 @@ public with sharing class ApexDataFactory {
         List<QC_Interview__c> QC = [select id from QC_Interview__c];
         List<Skill__c> skill = [select id from Skill__c];
         List<Titan__c> Titan = [select id from Titan__c];
-        List<Account> account = [select id from Account];
+        List<Account> account = [select id, Name from Account WHERE Name != 'Sample Account for Entitlements' ];
         List<Squad__c> squad = [select id from Squad__c];
         List<Team__c> team = [select id from Team__c];
         List<Cohort__c> cohort = [select id from Cohort__c];
@@ -93,8 +93,8 @@ public with sharing class ApexDataFactory {
     public static void CreateTeam() {
         //teams variable list
         // Name
-        // Squad_Sum__c – Roll up Summary (SUM) of Squad Score__c
-        // In_Lead__c – Checkbox
+        // Squad_Sum__c â€“ Roll up Summary (SUM) of Squad Score__c
+        // In_Lead__c â€“ Checkbox
         // 
         List<Team__c> teams = new List<Team__c>();
         
@@ -126,7 +126,7 @@ public with sharing class ApexDataFactory {
         
         //Squad Variables
         //Name
-        //Score__c – Number
+        //Score__c â€“ Number
         //Team__c -  Master detail reference to Team__c Object
         
         List<Team__c> teamIds = [SELECT Id FROM Team__c];
@@ -156,10 +156,10 @@ public with sharing class ApexDataFactory {
         //Name
         //Email
         //Phone
-        //Cohort__c – Lookup to Cohort__c Object
-        //Curriculum__c – Lookup to Curriculum__c Object
-        //Squad__c – Lookup to Squad__c Object
-        //Team__c –  Lookup to Team__c Object
+        //Cohort__c â€“ Lookup to Cohort__c Object
+        //Curriculum__c â€“ Lookup to Curriculum__c Object
+        //Squad__c â€“ Lookup to Squad__c Object
+        //Team__c â€“  Lookup to Team__c Object
         //
         
         ////////////////////////
@@ -275,11 +275,11 @@ public with sharing class ApexDataFactory {
     public static void CreateSkill(){
         
         // skills variable list
-        // using Assigments__c field with typo instead of Assignments__c
-        //Assignments__c - text
+        // using Assigments__c field with typo instead of Assigments__c
+        //Assigments__c - text
         //Skill_Breakdown__c - text
         // Name
-        // Titan__c – Master Detail Reference to Titan__c Object
+        // Titan__c â€“ Master Detail Reference to Titan__c Object
         
         String[] skillTypes = new List<String>{'Coding','Soft Skills', 'Exams', 'Data Management','Design'};
             
@@ -309,9 +309,9 @@ public with sharing class ApexDataFactory {
     public static void CreateQCInterview(){
         //qcInterviews variables list
         //Name
-        //Account__c – Lookup reference to Account__c
-        //Cohort__c – Master detail reference to Cohort__c Object
-        //Finalized__c – Checkbox
+        //Account__c â€“ Lookup reference to Account__c
+        //Cohort__c â€“ Master detail reference to Cohort__c Object
+        //Finalized__c â€“ Checkbox
         //QC_Score__c - Number
         //
         
@@ -354,8 +354,8 @@ public with sharing class ApexDataFactory {
             ////////////////////////
             List<Education__c> education = new List<Education__c>();
         Date today = system.today();
-        List<User> users = [SELECT Name, Id FROM User];
-        for(User u : users){
+        List<Account> users = [SELECT Name, Id, RecordTypeId FROM Account WHERE RecordTypeId=:HerotypeId ];
+        for(Account u : users){
             Education__c edu = new Education__c();
             Integer timeTravel = Integer.valueOf(Math.Random()*7500);
             edu.DateGraduate__c = today - timeTravel;
@@ -365,8 +365,8 @@ public with sharing class ApexDataFactory {
             edu.Degree__c = Degrees[pickDegree];
             Integer pickMajor = Integer.valueOf(Math.random() * Majors.size());
             edu.Major__c = Majors[pickMajor];
-            edu.User__c = u.Id;
             edu.Name = u.Name;
+            edu.Account__c=u.Id;
             education.add(edu);
         }
         insert education;
@@ -481,7 +481,7 @@ public with sharing class ApexDataFactory {
         for(Account account:Accounts){
             for(Exam__c exam:Exams){
                 Exam_Result__c result = new Exam_Result__c();
-                //result.Name = account.Name + ': ' + exam.Name + ' Result';
+              /*  result.Name = account.Name + ': ' + exam.Name + ' Result';*/
                 result.Account__c = account.Id;
                 result.Exam__c = exam.Id;
                 result.Status__c = 'Assigned';
@@ -523,7 +523,7 @@ public with sharing class ApexDataFactory {
                     
                     Hero_Answer__c answer = new Hero_Answer__c();
                     i++;
-                    //answer.Name = result.Account__r.Name + ': ' + question.Exam__r.Name + ' Answer ' + i;
+                   /* answer.Name = result.Account__r.Name + ': ' + question.Exam__r.Name + ' Answer ' + i;*/
                     answer.Answer_Choice__c = 'This is my answer';
                     integer correctPercentage = integer.valueOf(Math.random()*100);
                     if(correctPercentage < 69){
