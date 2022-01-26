@@ -1,4 +1,8 @@
+//Title: ApexDataFactory
+//Purpose: Generate realistic sample records to speed up org preparation when making a new org.
+//Created By: Nick de Sousa, Bao Nguyen
 public with sharing class ApexDataFactory {
+	//Hero Record Type is required to create certain records associated with account object
     static final String HeroTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Hero').getRecordTypeId();
     @AuraEnabled
     public static void deleteStuff(){
