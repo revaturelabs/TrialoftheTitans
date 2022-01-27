@@ -330,12 +330,16 @@ public with sharing class ApexDataFactory {
         List<Account> accts = [SELECT Id, Name,Cohort__c FROM Account WHERE RecordTypeId =: HeroTypeId];
         List<QC_Interview__c> interview = new List <QC_Interview__c>();
         for(Account acct: accts){
-            for(Integer i=1; i<13; i++){
+                //itterarte through a group of interview questions
+		for(Integer i=1; i<13; i++){
                 interview.add(new Qc_interview__c (
-                    name= Acct.name + ' QC Interview Week ' + i,
+                    //get Account Name and the week of the interview
+		    name= Acct.name + ' QC Interview Week ' + i,
                     Account__c = acct.id,
+		    //get Cohort information
                     Cohort__c = acct.cohort__c,
                     Finalized__c= true,
+		    //calculate the score for the qc interview
                     Qc_Score__c= math.random()*100));
             }
         }
