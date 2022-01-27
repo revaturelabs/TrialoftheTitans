@@ -1,11 +1,13 @@
 //Title: ApexDataFactory
 //Purpose: Generate realistic sample records to speed up org preparation when making a new org.
 //Created By: Nick de Sousa, Bao Nguyen
+//Date: January 13th, 2022
 public with sharing class ApexDataFactory {
 	//Hero Record Type is required to create certain records associated with account object
     static final String HeroTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Hero').getRecordTypeId();
     @AuraEnabled
     public static void deleteStuff(){
+	    //deleteStuff compiles a list of all object types we're creating and deletes them to ensure a blank slate
         List<Exam__c> Exams = [SELECT id FROM Exam__c];
         List<Exam_Question__c> EQs = [SELECT Id from Exam_Question__c];
         List<Exam_Result__c> ERs = [select id from Exam_Result__c];
@@ -36,6 +38,7 @@ public with sharing class ApexDataFactory {
     }
     @AuraEnabled
     public static void GenerateData(){
+	    //GenerateData is called by the LWC component to initiate the Data Factory methods
         CreateCurriculum();
     }
     @AuraEnabled
