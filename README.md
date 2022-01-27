@@ -21,7 +21,9 @@ Technologies used for this project include: **Salesforce, Apex, Lightning Aura C
 
 ### Additional Packages
 **TitanHubPackage**: 
+
 **HeroHubPackage**: 
+
 **ChartPackage**: 
 
 
