@@ -51,6 +51,7 @@ window.RadarChart = function(id, data, options) {
 	d3.select(id).select("svg").remove();
 	
 	//Initiate the radar chart SVG
+	//Responsive radar requires viewBox and preserveAspectRatio to be applied to the svg element
 	var svg = d3.select(id).append("svg")
 			.attr("width",  cfg.w + cfg.margin.left + cfg.margin.right)
 			.attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
