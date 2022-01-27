@@ -12,7 +12,6 @@ export default class Radar extends LightningElement {
      * {string}     dat[n].axis     Axis label
      * {number}     dat[n].value    Decimal value of the radar's axis
      */
-
     @api get dat() {
         return this._dat
     }
@@ -26,7 +25,7 @@ export default class Radar extends LightningElement {
 
     renderedCallback() {
         if (this.dat) {
-            // console.log(this.dat)
+            // initializes D3 static library before initializing radar chart library
             loadScript(this, `${D3}/d3.js`)
                 .then(() => {
                     loadScript(this, `${RadarChartResource}/radarChart.js`)
@@ -40,6 +39,7 @@ export default class Radar extends LightningElement {
         }
     }
 
+    // initializes radar chart configurations and attaches it to div.
     initializeD3() {
         var margin = { top: 40, right: 40, bottom: 40, left: 40 };
         var width = Math.min(this.maxWidth, window.innerWidth - 10) - margin.left - margin.right;
