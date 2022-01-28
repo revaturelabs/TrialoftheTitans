@@ -16,7 +16,7 @@ public with sharing class ApexDataFactory {
         List<QC_Interview__c> QC = [select id from QC_Interview__c];
         List<Skill__c> skill = [select id from Skill__c];
         List<Titan__c> Titan = [select id from Titan__c];
-        List<Account> account = [select id, Name from Account WHERE Name != 'Sample Account for Entitlements' ];
+        List<Account> account = [select id, Name from Account WHERE Name != 'Sample Account for Entitlements'];
         List<Squad__c> squad = [select id from Squad__c];
         List<Team__c> team = [select id from Team__c];
         List<Cohort__c> cohort = [select id from Cohort__c];
@@ -483,7 +483,7 @@ public with sharing class ApexDataFactory {
         List<String> StatusAvailable = new List<String>{'Assigned', 'Completed', 'Unassigned'};
             //Time_Limit_Override__c - ignore
             
-        List<Account> Accounts = [SELECT Name, Id FROM Account];
+        List<Account> Accounts = [SELECT Name, Id FROM Account WHERE RecordType.Name='Hero' AND Name != 'Sample Account for Entitlements'];
         
         List<Exam__c> Exams = [SELECT Name, Id FROM Exam__c];
         
