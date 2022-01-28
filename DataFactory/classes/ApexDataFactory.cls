@@ -71,7 +71,7 @@ public with sharing class ApexDataFactory {
 
 	@AuraEnabled
     public static void CreateCohort(){
-        //Create a list of cohorts to populate
+        //Create a list of cohorts to populate//Ashley Bee
         List <Cohort__c> newcohorts = new List<Cohort__c>();
         //Create a list of Curriculum to relate the cohorts to
         List <Curriculum__c> C = [SELECT Id, Name,CreatedDate FROM Curriculum__c];
@@ -212,7 +212,7 @@ public with sharing class ApexDataFactory {
 
     @AuraEnabled
     public static void CreateTitan(){ 
-        //create a list of Titan Names leaving out the first
+        //create a list of Titan Names leaving out the first//Ashley Bee
         List<String> TitanNames= new List<String>{
             '01 - Declarative - Data Model',
                 '02 - Declarative - Org Configuration',
