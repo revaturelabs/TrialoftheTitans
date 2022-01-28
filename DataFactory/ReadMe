@@ -9,7 +9,7 @@ Steps to create and run Data Factory Class to create initial Data
  - Ensure that picklist value 'Missing Word' is turned Active for the Data Creation on Picklist field Question_Type__c in Exam_Question__c Object. You can turn it back to inactive after the Data Creation is done
  - Ensure that all Processes are turned off- Any active workflows, process builder or flows as they may interfere with data creation
  - Either on the Home Page of the app that you use or a specific app page created for an Admin, go to edit page from the settings icon and pull the datafactory component on to an empty container on the page
- - If pulling on to a page used by profiles other than System Administratoe, set component visibility using a filter for Profile name equals 'System Administrator' to prevent others from using it
+ - If pulling on to a page used by profiles other than System Administrator, set component visibility using a filter for Profile name equals 'System Administrator' to prevent others from using it
  - Save and see the component on the page. There should be a delete button. This will clear out any previous uses of this tool and most data you may have created This assumes that there is no other package data in the org
  -After Delete you should see a Get data Button which on click will create the data set for the following Objects
         -Curriculum__c - Java and Salesforce
