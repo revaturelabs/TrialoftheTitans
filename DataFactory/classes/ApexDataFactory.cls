@@ -1,6 +1,6 @@
 //Title: ApexDataFactory
 //Purpose: Generate realistic sample records to speed up org preparation when making a new org.
-//Created By: Nick de Sousa, Bao Nguyen
+//Created By: Nick de Sousa, Bao Nguyen, Ashley Bee, Elizabeth Mohan
 //Date: January 13th, 2022
 public with sharing class ApexDataFactory {
 	//Hero Record Type is required to create certain records associated with account object
