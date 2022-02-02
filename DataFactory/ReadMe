@@ -23,5 +23,7 @@ Steps to create and run Data Factory Class to create initial Data
         -Exam_Question__c 10 Exam Questions per Exam so 250 exam questions
         -Exam_Result__c 675 Exam Result records 1 for each Hero Account - Exam Combination
         -Hero_Answer__c 6750 Hero_Answers 1 for Each Hero Account-Exam-Exam Question Combination
+        -Education__c 27 Education details 1 for each Hero Account
+        -QC_Interview__c 324 12 for each Hero Account
         
   - Future iterations can include additions to data model beyond these Objects   
