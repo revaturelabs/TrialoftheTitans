@@ -1,3 +1,13 @@
+/////////////////////////////////////////////////////////////////////////////////
+//
+// Name: titanDisplayController
+// Author(s): Matthew Lewandowski, Todd Gooch
+// Created: 01/13/2022
+// Updated: 01/25/2022
+// Description: This is all the methods that retrieve the data required for the titan display bar
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 public with sharing class titanDisplayController {
 
     @AuraEnabled
@@ -16,13 +26,13 @@ public with sharing class titanDisplayController {
         return dependentMap;
     }
 
+    //This will only work when an Experience cloud user is logged in (when displaying this component in Experience cloud).
     @AuraEnabled
     public static Account getCurrentUser(){
-        // User user = [SELECT Id, contactId FROM User WHERE Id = :UserInfo.getUserId()];
-        // Contact contact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.contactId];
-        // Account userAccount = [SELECT Id, Name, Squad__c, Team__c, Cohort__c, Curriculum__c FROM Account WHERE Id = :contact.AccountId];
-        // return userAccount;
-        return [SELECT Id, Name, Squad__c, Team__c, Cohort__c, Curriculum__c FROM Account WHERE Name = 'Peter Parker'];
+        User user = [SELECT Id, contactId FROM User WHERE Id = :UserInfo.getUserId()];
+        Contact contact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.contactId];
+        Account userAccount = [SELECT Id, Name, Squad__c, Team__c, Cohort__c, Curriculum__c FROM Account WHERE Id = :contact.AccountId];
+        return userAccount;
     }
 
     @AuraEnabled

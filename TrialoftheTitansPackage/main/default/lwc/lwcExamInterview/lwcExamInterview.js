@@ -32,9 +32,9 @@ export default class LwcExamInterview extends LightningElement {
 
   //hard coded an exam id and account id for testing, set by parent component
   @api
-  examId = "a0A1700000G0szsEAB";
+  examId = "a0A8c00000eKNceEAG";
   @api
-  accId = "0011700001PRbtRAAT";
+  accId = "0018c000029Le1lAAC";
 
   //for switching off the update after exam is submitted
   updateAnswers = true;
@@ -103,10 +103,13 @@ export default class LwcExamInterview extends LightningElement {
       this.examAnswers[`${i + 1}`] = "";
     }
   }
+
+
   //retrieve the exam from the database and set variables
   @wire(examFinder, { examID: "$examId" })
   wiredExamQuestions({ error, data }) {
     if (data) {
+      console.log("Logging data");
       console.log(data);
       this.examQuestions = data;
       this.numberOfQuestions = Object.keys(data).length;

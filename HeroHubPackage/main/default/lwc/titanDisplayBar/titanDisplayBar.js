@@ -1,3 +1,13 @@
+/////////////////////////////////////////////////////////////////////////////////
+//
+// Name: titanDisplayBar
+// Author(s): Matthew Lewandowski, Andrew Emond, Todd Gooch
+// Created: 01/13/2022
+// Updated: 01/25/2022
+// Description: A display bar for the titan view that displays info/ has buttons
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 import { LightningElement, track, api } from "lwc";
 import getTitanById from "@salesforce/apex/titanDisplayController.getTitanById";
 import getCurrentUser from "@salesforce/apex/titanDisplayController.getCurrentUser";

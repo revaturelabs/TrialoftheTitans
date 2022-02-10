@@ -1,9 +1,16 @@
+
+<!--
+Created by: Andy Emond
+Description: HTML for Header Component.
+Date Created: 1/21/2022
+-->
+
 <template>
-    <div hidden >
+    <div hidden >           <!--Hidden div that allowed renderedCallback to work>
         {teamInfo}
         {techInfo}
     </div>
-    <div style={colorForBack} class="background">
+    <div style={colorForBack} class="background">              Just using JS variables to display information-->
         <p class="techTitle">{techName}</p>
         <img src={tottPic} class="tott"/>
         <img src={leadPic} class="teamPic"/>
