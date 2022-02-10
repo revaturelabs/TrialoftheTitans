@@ -6,7 +6,7 @@
 /////////////////////////////////////
 -->
 
-<aura:component controller="HeroResultPageController" implements="flexipage:availableForAllPageTypes">
+<aura:component controller="HeroResultPageController" implements=implements="forceCommunity:themeLayout,force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
             <c:header></c:header>
