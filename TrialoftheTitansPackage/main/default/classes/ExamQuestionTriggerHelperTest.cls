@@ -16,8 +16,6 @@ public with sharing class ExamQuestionTriggerHelperTest {
     
     System.debug(value.getValue());
         List<Exam_Question__c> tfQuestions = new List<Exam_Question__c>();
-
-        List values =fieldDetail.getPicklistValues();
         for(Integer i = 0; i <= numberOfTests; i++) {
             tfQuestions.add(new Exam_Question__c(Name = 'This is Test Question ' + i, Question_Type__c = 'True-False', Question_Text__c = 'This is test question ' + i + ' text.'));
         }
