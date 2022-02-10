@@ -1,3 +1,14 @@
+//////////////////////////////////////////
+//
+//Name: ExamQuestionTriggerHelperTest
+//Author: Zain Hamid
+//Date Created: 02/10/22
+//Date Updated: 02/10/22
+//Description: Test class for ExamQuestionTriggerHelper
+//
+//////////////////////////////////////////
+//
+
 @isTest
 public with sharing class ExamQuestionTriggerHelperTest {
     public ExamQuestionTriggerHelperTest() {
