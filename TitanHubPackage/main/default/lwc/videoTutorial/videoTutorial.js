@@ -65,6 +65,7 @@ export default class VideoTutorial extends LightningElement {
     {
         try{
             this.fullList = await getVideos();
+            console.log(this.fullList.length);
         } 
         catch (error){
             console.log(error);
