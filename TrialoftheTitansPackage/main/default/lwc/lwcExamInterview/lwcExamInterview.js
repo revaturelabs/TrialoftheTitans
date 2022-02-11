@@ -43,8 +43,8 @@ export default class LwcExamInterview extends LightningElement {
   //holds the list of exam questions
   examQuestions;
 
-  //holds the map of exam questions along with their state
-  examQuestionsState = new Map();
+  //holds the list of exam questions' states (indexed in the same order as above)
+  examQuestionsState;
 
   //holds the order of the questions for random distribution
   examQuestionOrder;
@@ -123,6 +123,8 @@ export default class LwcExamInterview extends LightningElement {
       this.error = undefined;
       this.createBlankExamAnswersList();
       this.permutateQuestions();
+      this.initializeQuestionsState();
+      console.log(this.examQuestionsState);
       console.log('Permutation list');
       console.log(this.examQuestionOrder);
       //this.questionI=data[0];
@@ -153,10 +155,25 @@ export default class LwcExamInterview extends LightningElement {
       //this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       this.currentQuestion = this.examQuestions[this.examQuestionOrder[this.questionNumber - 1]];
       questionComponent.question = this.currentQuestion;
-      console.log('test')
+      //console.log('test')
+      console.log('Printing answer');
       console.log(this.answer)
       questionComponent.handleSetAnswer(this.answer);
+      if(this.answer) {
+        //needs logic to prevent updating if marked for review/flagged
+        //currently, this.answer is always returning empty from the child component
+        this.updateCurrentQuestionState('Answered');
+      }
+      console.log(this.examQuestionsState);
     }
+  }
+
+  initializeQuestionsState() {
+    this.examQuestionsState = Array(this.numberOfQuestions).fill('Unanswered');
+  }
+
+  updateCurrentQuestionState(state) {
+    this.examQuestionsState[this.questionNumber - 1] = state;
   }
 
   permutateQuestions() {
@@ -178,6 +195,7 @@ export default class LwcExamInterview extends LightningElement {
     }
     return array;
   }
+
 
   //this might be useful for setting the details of the modal popup component for confirmation when submitting the exam.  for future.  now they are in the modal component in the html, this could be developed further
   // submitConfirmationDetails = {
