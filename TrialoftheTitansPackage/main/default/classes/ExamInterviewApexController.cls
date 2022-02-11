@@ -40,16 +40,16 @@ public class ExamInterviewApexController {
         //System.debug(questionSet);
 
         /**Randomize the order of questions */
-        Integer s = questionSet.size();
+        //Integer s = questionSet.size();
         List<Exam_Question__c> questionList = [SELECT Question_Text__c, Question_Type__c, Options__c, Correct_Answer_s__c FROM Exam_Question__c WHERE Id IN :questionSet];
-        List<Exam_Question__c> theQuestions = new List<Exam_Question__c>();
-        for(Integer i=0; i<s; i++) {
-            Integer index = Math.floor(Math.random() * questionList.size()).intValue();
-            theQuestions.add(questionList.remove(index));
-        }
+        // List<Exam_Question__c> theQuestions = new List<Exam_Question__c>();
+        // for(Integer i=0; i<s; i++) {
+        //     Integer index = Math.floor(Math.random() * questionList.size()).intValue();
+        //     theQuestions.add(questionList.remove(index));
+        // }
         //System.debug(theQuestions.size());
 
-        return theQuestions;
+        return questionList;
 
         /*randomly pick Exam.Number of questions from QQ and randomly sort  */   
         /**DOES NOT CORRECTLY PICK THE ASSIGNED NUMBER OF QUESTIONS PER POOL, variable names have changed since writing */     
