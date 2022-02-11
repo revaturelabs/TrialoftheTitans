@@ -7,6 +7,7 @@
  * Modifications Log
  * Ver   Date         Author         Modification
  * 1.0   09-30-2021   Daniel Boice   Initial Version
+ * 1.1   02-11-2021   Zain Hamid     Question randomization
  **/
 import { LightningElement, api, wire, track } from "lwc";
 //import exam from '@salesforce/schema/Exam__c';
