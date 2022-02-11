@@ -1,0 +1,29 @@
+<template>
+    <div class="slds-grid slds-grid_vertical slds-gutters_small">
+        <!-- Hero Details Section -->
+        <div class="slds-col">
+            <lightning-card title="Hero Info">
+                <p class="slds-p-horizontal_small">{heroTitle}</p>
+                <p class="slds-p-horizontal_small">{heroName}</p>
+                <p class="slds-p-horizontal_small">{squadName}</p>
+                <p class="slds-p-horizontal_small">{heroArete}</p>
+            </lightning-card>
+        </div>
+
+        <!-- Dynamic Path Chart -->
+        <div class="slds-grid slds-grid_vertical slds-gutters_x-small">
+            <!-- Iterator to Generate Columns -->
+            <template for:each={examList} for:item="examTile">
+                <div key={examTile.priorityTag} class="slds-col">
+                    <lightning-button
+                        class="ExamTile"
+                        label={examTile.exam.Name}
+                        title="Nav to Exam"
+                        onclick={handleExamClick}
+                    ></lightning-button>
+                </div>
+            </template>
+        </div>
+
+    </div>
+</template>
