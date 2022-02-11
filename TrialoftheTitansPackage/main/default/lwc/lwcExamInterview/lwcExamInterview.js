@@ -7,6 +7,7 @@
  * Modifications Log
  * Ver   Date         Author         Modification
  * 1.0   09-30-2021   Daniel Boice   Initial Version
+ * 1.1   02-11-2021   Zain Hamid     Question randomization
  **/
 import { LightningElement, api, wire, track } from "lwc";
 //import exam from '@salesforce/schema/Exam__c';
@@ -42,7 +43,13 @@ export default class LwcExamInterview extends LightningElement {
   //holds the list of exam questions
   examQuestions;
 
-  //holds the list of exam questions
+  //holds the map of exam questions along with their state
+  examQuestionsState = new Map();
+
+  //holds the order of the questions for random distribution
+  examQuestionOrder;
+
+  //holds the list of exam answers
   examAnswers = {};
 
   //disabling buttons
@@ -115,6 +122,9 @@ export default class LwcExamInterview extends LightningElement {
       this.numberOfQuestions = Object.keys(data).length;
       this.error = undefined;
       this.createBlankExamAnswersList();
+      this.permutateQuestions();
+      console.log('Permutation list');
+      console.log(this.examQuestionOrder);
       //this.questionI=data[0];
       this.updateQuestionComponent();
     } else if (error) {
@@ -139,12 +149,34 @@ export default class LwcExamInterview extends LightningElement {
   updateQuestionComponent() {
     const questionComponent = this.template.querySelector("c-lwc-question");
     if (questionComponent && this.questionNumber < this.numberOfQuestions + 1) {
-      this.currentQuestion = this.examQuestions[this.questionNumber - 1];
+      // Non randomizaed version
+      //this.currentQuestion = this.examQuestions[this.questionNumber - 1];
+      this.currentQuestion = this.examQuestions[this.examQuestionOrder[this.questionNumber - 1]];
       questionComponent.question = this.currentQuestion;
       console.log('test')
       console.log(this.answer)
       questionComponent.handleSetAnswer(this.answer);
     }
+  }
+
+  permutateQuestions() {
+    // Believe it or not, this is simplest way to make a linear array in JS
+    this.examQuestionOrder = this.shuffle(Array.from({length: this.numberOfQuestions}, (_, i) => i));
+  }
+
+  shuffle(array) {
+    // Fisher-Yates
+    var m = array.length, t, i;
+    // While there remain elements to shuffle…
+    while (m) {
+      // Pick a remaining element…
+      i = Math.floor(Math.random() * m--);
+      // And swap it with the current element.
+      t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+    return array;
   }
 
   //this might be useful for setting the details of the modal popup component for confirmation when submitting the exam.  for future.  now they are in the modal component in the html, this could be developed further
