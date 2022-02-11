@@ -16,9 +16,6 @@ public class ExamInterviewApexController {
     // loads exam questions usind examID
     @AuraEnabled(cacheable=true)
     public static List<Exam_Question__c> examFinder(String examID){
-        // List<Exam_Question__c> theExam = [SELECT Question_Text__c, Question_Type__c, Options__c, Correct_Answer_s__c FROM Exam_Question__c WHERE Titan__c != null];
-        // //exam = theExam[0].Exam__c;
-        // return theExam;  
 
         /**Extract the question pools assigned to the exam */
         Exam_Pool_Assignment__c[] examPoolAssignments = [SELECT Id, Number_to_pull__c, Question_Pool__c FROM Exam_Pool_Assignment__c WHERE Exam__c = :examID];
@@ -37,28 +34,25 @@ public class ExamInterviewApexController {
         for(Question_Assignment__c qa : questionAssignments) { 
             questionSet.add(qa.Exam_Question__c); 
         }
-        //System.debug(questionSet);
+
 
         /**Randomize the order of questions */
-        Integer s = questionSet.size();
+        //Integer s = questionSet.size();
         List<Exam_Question__c> questionList = [SELECT Question_Text__c, Question_Type__c, Options__c, Correct_Answer_s__c FROM Exam_Question__c WHERE Id IN :questionSet];
-        List<Exam_Question__c> theQuestions = new List<Exam_Question__c>();
-        for(Integer i=0; i<s; i++) {
-            Integer index = Math.floor(Math.random() * questionList.size()).intValue();
-            theQuestions.add(questionList.remove(index));
-        }
-        //System.debug(theQuestions.size());
-
-        return theQuestions;
-
-        /*randomly pick Exam.Number of questions from QQ and randomly sort  */   
-        /**DOES NOT CORRECTLY PICK THE ASSIGNED NUMBER OF QUESTIONS PER POOL, variable names have changed since writing */     
-        // List<Exam_Question__c> questionList = new List<Exam_Question__c>();
-        // for(Integer i = 0; i < numQuestions; i++) {
-        //     Integer index = Math.floor(Math.random() * theQuestions.size()).intValue();
-        //     questionList.add(theQuestions.remove(index));
+        
+        /*randomly pick Exam.Number of questions from QQ and randomly sort 
+        > moved to JS */   
+        // List<Exam_Question__c> theQuestions = new List<Exam_Question__c>();
+        // for(Integer i=0; i<s; i++) {
+        //     Integer index = Math.floor(Math.random() * questionList.size()).intValue();
+        //     theQuestions.add(questionList.remove(index));
         // }
-        // return questionList;
+
+
+        return questionList;
+
+        /**DOES NOT CORRECTLY PICK THE ASSIGNED NUMBER OF QUESTIONS PER POOL*/     
+
 
     }
 
