@@ -17,7 +17,7 @@ import { LightningElement,wire,api,track } from 'lwc';
 
 export default class TitanPagePortDetails extends LightningElement {
 @api recordId;                                                                  //One way you could tell the component what titan it is currently working with.  We never ironed out how to do this.   
-@api titanId = 'a0X5f000001vStqEAE';                                             //Hard coded at the moment. Undo the hard code, its supposed to be for telling the component what the titan is.           
+@api titanId = 'a0X8c00000Q3t7YEAR';                                             //Hard coded at the moment. Undo the hard code, its supposed to be for telling the component what the titan is.           
 @wire(getSkillsInfo, {titanId: '$titanId'}) skillInfo;                         //Wire functions for pulling org data. Takes in the titan as a parameter.
 @wire(getEquiv, {titanId: '$titanId'}) equivInfo;
 @wire(getExamInfo, {titanId: '$titanId'}) examInfo;
@@ -66,10 +66,9 @@ equiv=equivField
     this.numberForApex=parseInt(event.detail.value)
 }*/
 
-renderedCallback(){           
-    console.log(this.skillInfo.data)                                                   //For displaying the data when the component loads in
+renderedCallback(){                                                             //For displaying the data when the component loads in
     if(this.skillInfo.data && this.equivInfo.data && this.projectInfo.data){           //to prevent JS errors from using renderedCallback
-        console.log(this.equivInfo.data[0].Id)
+
         this.projectCalc=this.projectInfo.data.length*6           // Used for calculating equivalency, change the number to one you see fit.
         if(this.examInfo.data){                                   //If you dont pull any exams(or the class is broken) it doesnt break the whole component
             this.examCalc=this.examInfo.data.length*2             // Also used for calculating equivalency. I wanted to iron out these more. Bad pieces because they are not related

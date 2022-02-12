@@ -1,5 +1,7 @@
 public class PathToTitanController {
-    public static Integer index;    
+    public static Integer index;
+    static PermissionSet sysAdminProfile = [SELECT Profile.Id FROM PermissionSet WHERE Profile.Name='System Administrator' AND isCustom=false];  
+      
     public PathToTitanController() {
         index = 0;
     }
@@ -31,16 +33,19 @@ public class PathToTitanController {
     }
 
     // Function to Retrieve Exams Connected to Titan parameter
+    @AuraEnabled(cacheable=true)
     public static List<Exam__c> getExamList(Id titanId) {
-        List<Exam__c> retrieveList = [SELECT Id, Name FROM Exam__c WHERE Titan__c =: titanId];
-        List<wrapExam> wrappedList = new List<wrapExam>();
+        List<Exam__c> retrieveList = [SELECT Id, Name FROM Exam__c WHERE Titan__c=:titanId];
+        return retrieveList;
+/*         List<wrapExam> wrappedList = new List<wrapExam>();
         for (Exam__c e : retrieveList) {
-            wrappedList.add(e);
+            wrappedList.add(new wrapExam(e));
         }
-        return wrappedList;
+        return wrappedList;  */
     }
+
     // Wrapper Class to Hold Exam with Iterated Priority Tag
-    public class wrapExam {
+/*     public class wrapExam {
         public Exam__c exam {get;set;}
         public Integer priorityTag {get;set;}
 
@@ -49,5 +54,6 @@ public class PathToTitanController {
             index++;
             this.priorityTag = index;
         }
-    }
+    } */
+
 }

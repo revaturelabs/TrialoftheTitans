@@ -8,11 +8,11 @@
 // 
 /////////////////////////////////////////////////////////////////////////////////
 
-import { LightningElement, wire, api } from 'lwc'
-import getCertDetails from '@salesforce/apex/titanHubCertDetailsController.getCertDetails'
+import { LightningElement, wire, api } from 'lwc';
+import getCertDetails from '@salesforce/apex/titanHubCertDetailsController.getCertDetails';
 
 export default class TitanHubCertDetails extends LightningElement {
-    @api titanId
+    @api titanId;
     @wire(getCertDetails, { titanId: '$titanId' })
     fetchCertDetails({ error, data }) {
         if (data) {
@@ -23,8 +23,8 @@ export default class TitanHubCertDetails extends LightningElement {
             this.error = error
             console.error(error)
         }
-    }
+    };
     
-    certDetails = []
+    certDetails = [];
 
 }

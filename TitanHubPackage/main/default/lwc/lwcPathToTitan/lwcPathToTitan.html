@@ -8,22 +8,24 @@
                 <p class="slds-p-horizontal_small">{squadName}</p>
                 <p class="slds-p-horizontal_small">{heroArete}</p>
             </lightning-card>
+            
         </div>
-
         <!-- Dynamic Path Chart -->
-        <div class="slds-grid slds-grid_vertical slds-gutters_x-small">
-            <!-- Iterator to Generate Columns -->
-            <template for:each={examList} for:item="examTile">
-                <div key={examTile.priorityTag} class="slds-col">
-                    <lightning-button
-                        class="ExamTile"
-                        label={examTile.exam.Name}
-                        title="Nav to Exam"
-                        onclick={handleExamClick}
-                    ></lightning-button>
-                </div>
-            </template>
-        </div>
-
+        <div class="slds-grid slds-grid_vertical slds-gutters_x-large">
+            <!-- Iterator to Generate Columns if data exists -->
+            <template if:true={examList.data}>
+                <template for:each={examList.data} for:item="examTile">
+                    <div key={examTile.priorityTag} class="slds-col">
+                         <lightning-button
+                            class="ExamTile slds-m-left_x-small"
+                            variant="brand"
+                            label={examTile.Name}
+                            title="Nav to Exam"
+                            onclick={handleExamClick}
+                        ></lightning-button>
+                    </div>
+                </template>
+            </template>         
+        </div>      
     </div>
 </template>
