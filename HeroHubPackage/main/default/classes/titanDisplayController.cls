@@ -8,7 +8,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-public with sharing class titanDisplayController {
+public without sharing class titanDisplayController {
 
     @AuraEnabled
     public static Map<Id, List<Titan__c>> getTitanDependencies(){
@@ -56,7 +56,13 @@ public with sharing class titanDisplayController {
         return exams;
     }
 
+    @AuraEnabled(cacheable=true)
     public static List<Exam_Result__c> orderExamResults(List<Exam_Result__c> results) {
+
+        if(results.size() == 0) {
+            return new List<Exam_Result__c>();
+        }
+
         // Contains list of semi ordered lists
         List<List<Exam_Result__c>> auxList = new List<List<Exam_Result__c>>();
 
@@ -69,11 +75,8 @@ public with sharing class titanDisplayController {
                 List<Exam_Result__c> orderedResults = new List<Exam_Result__c>();
                 orderedResults.add(results[0]);
                 auxList.add(orderedResults);
-                System.debug(auxList);
                 break;
             }
-
-            System.debug(auxList);
             
             Boolean found = false;
             // Loops through results. If we find a exam results object which Next_Exam__c matches Exam__c we create a sub-list with those
@@ -111,7 +114,7 @@ public with sharing class titanDisplayController {
 
         // Loops through until we get a single list with the ordered exam_results
         while(auxList.size() > 1) {
-
+            
             // Loops through the list of semi ordered lists. When the Next_Exam__c of the last item of 1 list matches the Exam__c of another
             // list, we combine those 2 list and delete 1 of those lists. We keep looping until we delete all sub-lists and we end up with
             // the ordered lits.
@@ -141,16 +144,115 @@ public with sharing class titanDisplayController {
         return auxList[0];
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
+    public static List<Exam__c> orderExams(List<Exam__c> exams) {
+
+        if(exams.size() == 0) {
+            return new List<Exam__c>();
+        }
+
+        // Contains list of semi ordered lists
+        List<List<Exam__c>> auxList = new List<List<Exam__c>>();
+
+        // Creates lists with semi ordered exam-results.
+        while(exams.size() > 0) {
+
+            // When the original list ends up with 1 exam only, we create another sub-list and add that exam.
+            // Then the while loop breaks.
+            if(exams.size() == 1) {
+                List<Exam__c> orderedExams = new List<Exam__c>();
+                orderedExams.add(exams[0]);
+                auxList.add(orderedExams);
+                break;
+            }
+            
+            Boolean found = false;
+            // Loops through exams. If we find a exam object which Next_Exam__c matches Exam__c we create a sub-list with those
+            // 2 exams. Then we remove them from the original list and loop through and we keep creating sub-lists of 2 exams
+            // until the original list's ends up with only 1 exam.
+            for(Integer index = 0; index < exams.size(); index++) {
+                for(Integer nextIndex = 0; nextIndex < exams.size(); nextIndex++) {
+                    if(exams[index].Next_Exam__c == exams[nextIndex].Id ) {
+
+                        List<Exam__c> orderedExams = new List<Exam__c>();
+                        orderedExams.add(exams[index]);
+                        orderedExams.add(exams[nextIndex]);
+                        auxList.add(orderedExams);
+
+                        if(nextIndex > index) {
+                            exams.remove(nextIndex);
+                            exams.remove(index);
+                        }
+                        else {
+                            exams.remove(index);
+                            exams.remove(nextIndex);
+                        }
+
+                        found = true;
+                        break;
+        
+                    }
+                }
+                if(found)
+                    break;
+
+            }
+            
+        }
+
+        // Loops through until we get a single list with the ordered exams
+        while(auxList.size() > 1) {
+            
+            // Loops through the list of semi ordered lists. When the Next_Exam__c of the last item of 1 list matches the Exam's Id of another
+            // list, we combine those 2 list and delete 1 of those lists. We keep looping through until we delete all sub-lists and we end up with
+            // the ordered list.
+            Boolean found = false;
+            for(Integer index = 0; index < auxList.size(); index++) {
+                for(Integer nextIndex = 0; nextIndex < auxList.size(); nextIndex++) {
+                    if(auxList[index][auxList[index].size()-1].Next_Exam__c == auxList[nextIndex][0].Id ) {
+
+                        for(Exam__c exam : auxList[nextIndex])
+                            auxList[index].add(exam);
+
+                        auxList.remove(nextIndex);
+
+                        found = true;
+                        break;
+        
+                    }
+                }
+                if(found)
+                    break;
+
+            }
+
+        }
+
+        return auxList[0];
+    }
+
+    @AuraEnabled(cacheable=true)
     public static Id getUserNextExam(String titanId, String userId){
         List<Exam_Result__c> results = [SELECT Id, Account__c, Exam__c, Exam__r.Next_Exam__c, Pass__c FROM Exam_Result__c 
-                                        WHERE Pass__c = true AND Exam__r.Titan__c =: titanId AND Account__c = :userId];
+                                        WHERE Pass__c = true AND Exam__r.Titan__c = :titanId AND Account__c = :userId];
 
-        List<Exam_Result__c> orderedExamResults = titanDisplayController.orderExamResults(results);
-        
-        System.debug(orderedExamResults[orderedExamResults.size()-1].Exam__r.Next_Exam__c);
-        // We return the Next_Exam__c of the last element of the ordered Exam_Results list which represent the next Exam__c the
-        // hero needs to take.
-        return orderedExamResults[orderedExamResults.size()-1].Exam__r.Next_Exam__c;
+        if(results.size() > 0) {
+            List<Exam_Result__c> orderedExamResults = titanDisplayController.orderExamResults(results);
+            
+            // We return the Next_Exam__c of the last element of the ordered Exam_Results list which represent the next Exam__c the
+            // hero needs to take.
+            return orderedExamResults[orderedExamResults.size()-1].Exam__r.Next_Exam__c;
+        }
+
+        List<Exam__c> exams = [SELECT Id, Next_Exam__c FROM Exam__c 
+                                WHERE Titan__c = :titanId ];
+
+        List<Exam__c> orderedExams = titanDisplayController.orderExams(exams);
+
+        if(orderedExams.size() == 0) {
+            return null;
+        }
+
+        return orderedExams[0].Id;     
     }
 }
