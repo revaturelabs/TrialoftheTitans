@@ -16,10 +16,11 @@
     horizontal-align="spread"
     multiple-rows="true"
   >
-    <lightning-layout-item size="6" flexibility="auto">
+    <lightning-layout-item size="8" flexibility="auto">
       <template if:true={question}>
         <div class="slds-text-heading_large question_text">{question.Question_Text__c}</div>
       </template>
+      </lightning-layout-item><lightning-layout-item size="8" flexibility="auto">
       <template if:true={displayTextarea}>
         <div>
           <lightning-textarea
