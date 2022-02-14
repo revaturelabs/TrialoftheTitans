@@ -56,4 +56,13 @@ public class PathToTitanController {
         }
     } */
 
+    // Function to Retrieve Exam Results Connected to Titan and Account parameter
+    @AuraEnabled(cacheable=true)
+    public static List<Exam_Result__c> getExamResultsList(Id titanId, Id AccountId) {
+
+        List<Exam_Result__c> retrieveExamList = [SELECT Id, Exam__c, Status__c FROM Exam_Result__c WHERE Exam__r.Titan__c=:titanId AND Account__c =:AccountId];
+
+        return retrieveExamList;
+
+    }
 }

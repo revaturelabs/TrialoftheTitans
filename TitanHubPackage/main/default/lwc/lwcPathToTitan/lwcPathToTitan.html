@@ -17,11 +17,12 @@
                 <template for:each={examList.data} for:item="examTile">
                     <div key={examTile.priorityTag} class="slds-col">
                          <lightning-button
-                            class="ExamTile slds-m-left_x-small"
+                            class="ExamTile slds-button_stretch slds-button_full-width"
                             variant="brand"
                             label={examTile.Name}
-                            title="Nav to Exam"
+                            title="Nav to {examTile.Name}"
                             onclick={handleExamClick}
+                            status={examTile.Status__c}
                         ></lightning-button>
                     </div>
                 </template>

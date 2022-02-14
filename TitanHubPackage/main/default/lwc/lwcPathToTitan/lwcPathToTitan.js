@@ -13,7 +13,7 @@ export default class LwcPathToTitan extends LightningElement {
     squadName;
 
     // Lists to grab Exams & ExamResults related to Titan
-    examList = []; // ?? Wrapper Class to Hold Exam__c Object and Priority Tag / Unique Key for Iterator ??
+    //examList = []; // ?? Wrapper Class to Hold Exam__c Object and Priority Tag / Unique Key for Iterator ??
     examResultList = [];
 
     // Variables to receive from previous Component
@@ -50,4 +50,8 @@ export default class LwcPathToTitan extends LightningElement {
 
     }
 
+    // Pulls the Exam Status
+    getExamStatus(){
+        
+    }
 }
