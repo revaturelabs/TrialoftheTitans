@@ -57,10 +57,14 @@ public with sharing class titanDisplayController {
     }
 
     public static List<Exam_Result__c> orderExamResults(List<Exam_Result__c> results) {
+        // Contains list of semi ordered lists
         List<List<Exam_Result__c>> auxList = new List<List<Exam_Result__c>>();
 
+        // Creates lists with semi ordered exam-results.
         while(results.size() > 0) {
 
+            // When the original list ends up with 1 exam result only, we create another sub-list and add that exam result.
+            // Then the while loop breaks.
             if(results.size() == 1) {
                 List<Exam_Result__c> orderedResults = new List<Exam_Result__c>();
                 orderedResults.add(results[0]);
@@ -72,6 +76,9 @@ public with sharing class titanDisplayController {
             System.debug(auxList);
             
             Boolean found = false;
+            // Loops through results. If we find a exam results object which Next_Exam__c matches Exam__c we create a sub-list with those
+            // 2 exam results. Then we remove them from the original list and loop through and we keep creating sub-lists of 2 exam results
+            // until the original list's ends up with only 1 exam result.
             for(Integer index = 0; index < results.size(); index++) {
                 for(Integer nextIndex = 0; nextIndex < results.size(); nextIndex++) {
                     if(results[index].Exam__r.Next_Exam__c == results[nextIndex].Exam__c ) {
@@ -102,8 +109,12 @@ public with sharing class titanDisplayController {
             
         }
 
+        // Loops through until we get a single list with the ordered exam_results
         while(auxList.size() > 1) {
 
+            // Loops through the list of semi ordered lists. When the Next_Exam__c of the last item of 1 list matches the Exam__c of another
+            // list, we combine those 2 list and delete 1 of those lists. We keep looping until we delete all sub-lists and we end up with
+            // the ordered lits.
             Boolean found = false;
             for(Integer index = 0; index < auxList.size(); index++) {
                 for(Integer nextIndex = 0; nextIndex < auxList.size(); nextIndex++) {
@@ -138,6 +149,8 @@ public with sharing class titanDisplayController {
         List<Exam_Result__c> orderedExamResults = titanDisplayController.orderExamResults(results);
         
         System.debug(orderedExamResults[orderedExamResults.size()-1].Exam__r.Next_Exam__c);
+        // We return the Next_Exam__c of the last element of the ordered Exam_Results list which represent the next Exam__c the
+        // hero needs to take.
         return orderedExamResults[orderedExamResults.size()-1].Exam__r.Next_Exam__c;
     }
 }
