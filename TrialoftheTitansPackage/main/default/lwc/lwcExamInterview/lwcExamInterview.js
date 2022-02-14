@@ -73,7 +73,7 @@ export default class LwcExamInterview extends LightningElement {
   //questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
   @api
   numberOfQuestions = 0;
-  answer_ = "";
+  answer = "";
   //for the modal confirmation
   @track confirmation;
 
@@ -157,13 +157,9 @@ export default class LwcExamInterview extends LightningElement {
       questionComponent.question = this.currentQuestion;
       //console.log('test')
       console.log('Printing answer');
-      console.log(this.answer)
-      questionComponent.handleSetAnswer(this.answer);
-      if(this.answer) {
-        //needs logic to prevent updating if marked for review/flagged
-        //currently, this.answer is always returning empty from the child component
-        this.updateCurrentQuestionState('Answered');
-      }
+      console.log(this.examAnswers[`${this.questionNumber}`]);
+      questionComponent.handleSetAnswer(this.examAnswers[`${this.questionNumber}`]);
+      
       console.log(this.examQuestionsState);
     }
   }
@@ -184,16 +180,31 @@ export default class LwcExamInterview extends LightningElement {
   shuffle(array) {
     // Fisher-Yates
     var m = array.length, t, i;
-    // While there remain elements to shuffle…
+    // While there remain elements to shuffle
     while (m) {
-      // Pick a remaining element…
+      // Pick a remaining element
       i = Math.floor(Math.random() * m--);
-      // And swap it with the current element.
+      // And swap it with the current element
       t = array[m];
       array[m] = array[i];
       array[i] = t;
     }
     return array;
+  }
+
+  setCurrentQuestionState() {
+    // if(current question is marked for review) {
+    //    this.updateCurrentQuestionState('Marked for Review');
+    //} else if(current question is flagged) {
+    //    this.updateCurrentQuestionState('Flagged');
+    // }
+    // else
+    if(this.examAnswers[`${this.questionNumber}`]) {
+      this.updateCurrentQuestionState('Answered');
+    } else {
+      this.updateCurrentQuestionState('Unanswered');
+    }
+    // Needs logic to handle only partial answers too
   }
 
 
@@ -221,6 +232,7 @@ export default class LwcExamInterview extends LightningElement {
   }
   setExamAnswerToAnswerProvided() {
     this.examAnswers[`${this.questionNumber}`] = this.answer;
+    console.log(this.examAnswers[`${this.questionNumber}`]);
   }
 
   setCurrentAnswerToPreviouslyAnswered() {
@@ -235,15 +247,26 @@ export default class LwcExamInterview extends LightningElement {
   }
   prevClicked() {
     this.setExamAnswerToAnswerProvided();
+    if(this.answer) {
+      //needs logic to prevent updating if marked for review/flagged
+      //currently, this.answer is always returning empty from the child component
+      this.updateCurrentQuestionState('Answered');
+    }
     if (this.questionNumber > 1) {
       this.questionNumber--;
     }
     this.setCurrentAnswerToPreviouslyAnswered();
     this.updateQuestionComponent();
     this.setPrevNextDisabled();
+
   }
   nextClicked() {
     this.setExamAnswerToAnswerProvided();
+    if(this.answer) {
+      //needs logic to prevent updating if marked for review/flagged
+      //currently, this.answer is always returning empty from the child component
+      this.updateCurrentQuestionState('Answered');
+    }
     if (this.questionNumber < this.numberOfQuestions) {
       this.questionNumber++;
     }
