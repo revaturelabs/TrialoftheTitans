@@ -15,11 +15,11 @@
             <!-- Iterator to Generate Columns if data exists -->
             <template if:true={examAndResultsList.data}>
                 <template for:each={examAndResultsList.data} for:item="examTile">
-                    <div key={examTile.Exam__c} class="slds-col tile_holder" style={BackgroundURL}>
+                    <div key={examTile.Exam__c} class="slds-col tile_holder">
                          <!-- in the class attribute, not sure if the value can be updated dynamically | ex:{examTile.Status__c} -->
                          <lightning-button
                             class={examTile.Status__c} 
-                            variant="base"
+                            variant="brand"
                             label={examTile.Exam__r.Name}
                             title="Nav to Exam"
                             onclick={handleExamClick}

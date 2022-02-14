@@ -1,30 +1,32 @@
 .Completed{
-    --slds-c-button-color-background: #1edd1e;
-    --slds-c-button-color-background-hover:#1edd1e;
-    --slds-c-button-text-color-hover:black;
-    --slds-c-button-color-border-hover:rgba(0, 0, 0, 0.25);
-    --slds-c-button-color-border:black;
-    --slds-c-button-text-color:black;
-    --slds-c-button-sizing-border:3px;
+    --slds-c-button-brand-color-background: #1edd1e;
+    --slds-c-button-brand-color-background-hover:#1edd1e;
+    --slds-c-button-brand-text-color-hover:black;
+    --slds-c-button-brand-color-border-hover:rgba(0, 0, 0, 0.25);
+    --slds-c-button-brand-color-border:black;
+    --slds-c-button-brand-text-color:black;
+    --slds-c-button-brand-sizing-border:3px;
+
+
 }
 
 .Assigned{
-    --slds-c-button-color-background: white;
-    --slds-c-button-color-background-hover:white;
-    --slds-c-button-text-color-hover:black;
-    --slds-c-button-color-border-hover:rgba(0, 0, 0, 0.25);
-    --slds-c-button-color-border:black;
-    --slds-c-button-text-color:black;
-    --slds-c-button-sizing-border:3px;
+    --slds-c-button-brand-color-background: white;
+    --slds-c-button-brand-color-background-hover:white;
+    --slds-c-button-brand-text-color-hover:black;
+    --slds-c-button-brand-color-border-hover:rgba(0, 0, 0, 0.25);
+    --slds-c-button-brand-color-border:black;
+    --slds-c-button-brand-text-color:black;
+    --slds-c-button-brand-sizing-border:3px;
 }
 .Unassigned{
-    --slds-c-button-color-background: grey;
-    --slds-c-button-color-background-hover:grey;
-    --slds-c-button-text-color-hover:black;
-    --slds-c-button-color-border-hover:rgba(0, 0, 0, 0.25);
-    --slds-c-button-color-border:black;
-    --slds-c-button-text-color:black;
-    --slds-c-button-sizing-border:3px;
+    --slds-c-button-brand-color-background: grey;
+    --slds-c-button-brand-color-background-hover:grey;
+    --slds-c-button-brand-text-color-hover:black;
+    --slds-c-button-brand-color-border-hover:rgba(0, 0, 0, 0.25);
+    --slds-c-button-brand-color-border:black;
+    --slds-c-button-brand-text-color:black;
+    --slds-c-button-brand-sizing-border:3px;
 }
 .tile_holder{
     display:flex;

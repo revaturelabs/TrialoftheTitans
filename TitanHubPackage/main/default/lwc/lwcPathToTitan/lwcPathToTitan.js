@@ -3,7 +3,6 @@ import { LightningElement, api, wire } from 'lwc';
 import getAccount from "@salesforce/apex/PathToTitanController.getAccount";
 import getSquad from "@salesforce/apex/PathToTitanController.getSquad";
 import getExamAndResultsList from "@salesforce/apex/PathToTitanController.getExamAndResultsList";
-/* import BlackVerticalLine from '@salesforce/resourceUrl/Black_Vertical_Line'; */
 export default class LwcPathToTitan extends LightningElement {
 
     // Variables to Display Hero Details at Top of Component
@@ -12,7 +11,6 @@ export default class LwcPathToTitan extends LightningElement {
     heroName;
     squadName;
 
-    black_line = BlackVerticalLine;
 
     // Lists to grab Exams & ExamResults related to Titan
     //examList = []; // ?? Wrapper Class to Hold Exam__c Object and Priority Tag / Unique Key for Iterator ??
@@ -43,8 +41,8 @@ export default class LwcPathToTitan extends LightningElement {
         //let exam_id = event.target.dataset.Exam__c;
     }
 
-/*     get BackgroundURL(){
-        return `background-repeat:no-repeat;background-image:url(${BlackVerticalLine})`;
-    } */
+    get examTile.Status__c(){
+
+    }
 
 }
