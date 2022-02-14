@@ -4,6 +4,7 @@ import getTitanById from "@salesforce/apex/titanDisplayController.getTitanById";
 import getCurrentUser from "@salesforce/apex/titanDisplayController.getCurrentUser";
 import getNumberOfTitanExams from "@salesforce/apex/titanDisplayController.getNumberOfTitanExams";
 import getUserExams from "@salesforce/apex/titanDisplayController.getUserExams";
+import getUserNextExam from "@salesforce/apex/titanDisplayController.getUserNextExam";
 
 //d3 imports
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
@@ -58,11 +59,14 @@ export default class TitanDisplayBar extends NavigationMixin (LightningElement) 
     connectedCallback() {
         
     }
+
+    //Navigate to the Titan Hub Page
+    //Pass TitanId
     handleOverview() {
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
-                name: 'Titan_Hub__c'//API name of the page to navigate to
+                name: 'Titan_Hub__c'
             },
             state: {
                 c__titanId: this.titanId
@@ -71,17 +75,17 @@ export default class TitanDisplayBar extends NavigationMixin (LightningElement) 
     }
 
     //Navigate to the Exam Interview Page
-    //Recieve ExamId and AccountId
+    //Pass ExamId and AccountId
     handleAdvance() {
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
-                name: 'HeroResults__c'//API name of the page to navigate to
+                name: 'HeroResults__c'
+            },
+            state: {
+                c__examId: getUserNextExam({this:titanId, this:currentUser.Id}),
+                c_accountId: this.currentUser.Id
             }
-            // state: {
-            //     c__examId: "",
-            //     c_accountId: ""
-            // }
         });
     }
 }
