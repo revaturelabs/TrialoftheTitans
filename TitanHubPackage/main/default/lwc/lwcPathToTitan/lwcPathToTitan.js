@@ -41,8 +41,4 @@ export default class LwcPathToTitan extends LightningElement {
         //let exam_id = event.target.dataset.Exam__c;
     }
 
-    get examTile.Status__c(){
-
-    }
-
 }

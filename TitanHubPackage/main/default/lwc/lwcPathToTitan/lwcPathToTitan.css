@@ -6,8 +6,9 @@
     --slds-c-button-brand-color-border:black;
     --slds-c-button-brand-text-color:black;
     --slds-c-button-brand-sizing-border:3px;
-
-
+    --slds-c-button-brand-line-height:1.875rem;
+    --slds-c-button-spacing-block-start:1rem;
+    --slds-c-button-spacing-block-end:1rem;
 }
 
 .Assigned{
@@ -18,6 +19,8 @@
     --slds-c-button-brand-color-border:black;
     --slds-c-button-brand-text-color:black;
     --slds-c-button-brand-sizing-border:3px;
+    --slds-c-button-spacing-block-start:1rem;
+    --slds-c-button-spacing-block-end:1rem;
 }
 .Unassigned{
     --slds-c-button-brand-color-background: grey;
@@ -27,6 +30,8 @@
     --slds-c-button-brand-color-border:black;
     --slds-c-button-brand-text-color:black;
     --slds-c-button-brand-sizing-border:3px;
+    --slds-c-button-spacing-block-start:1rem;
+    --slds-c-button-spacing-block-end:1rem;
 }
 .tile_holder{
     display:flex;
