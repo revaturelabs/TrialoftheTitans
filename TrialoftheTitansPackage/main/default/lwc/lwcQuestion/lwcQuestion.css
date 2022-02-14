@@ -17,7 +17,7 @@ div.question_text {
   color:#111111;
 }
 
-lightning-textarea {
+lightning-textarea, lightning-input {
   color: #111111;
 }
 

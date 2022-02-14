@@ -34,7 +34,7 @@ export default class LwcExamInterview extends LightningElement {
 
   //hard coded an exam id and account id for testing, set by parent component
   @api
-  examId = "a0A8c00000eKQ9PEAW";
+  examId = "a0A8c00000eBc1YEAS";
   @api
   accId = "0018c000029Le1lAAC";
 
