@@ -2,7 +2,7 @@ import { LightningElement, api, wire } from 'lwc';
 
 import getAccount from "@salesforce/apex/PathToTitanController.getAccount";
 import getSquad from "@salesforce/apex/PathToTitanController.getSquad";
-import getExamList from "@salesforce/apex/PathToTitanController.getExamList";
+import getExamAndResultsList from "@salesforce/apex/PathToTitanController.getExamAndResultsList";
 
 export default class LwcPathToTitan extends LightningElement {
 
@@ -14,17 +14,17 @@ export default class LwcPathToTitan extends LightningElement {
 
     // Lists to grab Exams & ExamResults related to Titan
     //examList = []; // ?? Wrapper Class to Hold Exam__c Object and Priority Tag / Unique Key for Iterator ??
-    examResultList = [];
+    //examResultList = [];
 
     // Variables to receive from previous Component
     @api titanId = 'a0X8c00000Q3t7YEAR';
-    @api accountId;
+    @api accountId = '0018c000028TxZoAAK';
 
     @wire(getAccount) accInfo;
     @wire(getSquad) squadInfo;
 
-    @wire(getExamList, {titanId: '$titanId'}) 
-    examList;
+    @wire(getExamAndResultsList, {titanId: '$titanId'}) 
+    examAndResultsList;
 
     // Initialization Function to Populate Some Basic Information
     renderedCallback() {
@@ -33,25 +33,12 @@ export default class LwcPathToTitan extends LightningElement {
             this.squadName = this.squadInfo.data.Name;
             this.heroArete = "Our Hero's Arete: 19";
             this.heroTitle = "Our Hero's Title: Perseus";
-        }
-        console.log(this.examList.data); // data exists
+        } 
+        console.log("THIS IS WORKIGN");
     }
-/*     // Initialization Function to Retrieve Exam List Related to Current Titan
-     connectedCallback() {
-        this.init();
-    }
-    async init() {
-        console.log(this.examList.data);
-    }  
-    */ 
-
     // Navigation Function to pass titanId and accountId to lwcExamInterview
-    handleExamClick() {
-
+    handleExamClick(event) {
+        //let exam_id = event.target.dataset.Exam__c;
     }
 
-    // Pulls the Exam Status
-    getExamStatus(){
-        
-    }
 }
