@@ -1,4 +1,5 @@
 import { LightningElement, track, api } from "lwc";
+import { NavigationMixin } from 'lightning/navigation';
 import getTitanById from "@salesforce/apex/titanDisplayController.getTitanById";
 import getCurrentUser from "@salesforce/apex/titanDisplayController.getCurrentUser";
 import getNumberOfTitanExams from "@salesforce/apex/titanDisplayController.getNumberOfTitanExams";
@@ -8,7 +9,7 @@ import getUserExams from "@salesforce/apex/titanDisplayController.getUserExams";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { loadScript } from "lightning/platformResourceLoader";
 import D3 from "@salesforce/resourceUrl/DJS3";
-export default class TitanDisplayBar extends LightningElement {
+export default class TitanDisplayBar extends NavigationMixin (LightningElement) {
     @track disableOverview = false;
     @track disableAdvance = false;
     @api titanId;
@@ -57,7 +58,30 @@ export default class TitanDisplayBar extends LightningElement {
     connectedCallback() {
         
     }
-    handleOverview() {}
+    handleOverview() {
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Titan_Hub__c'//API name of the page to navigate to
+            },
+            state: {
+                c__titanId: this.titanId
+             }
+        });
+    }
 
-    handleAdvance() {}
+    //Navigate to the Exam Interview Page
+    //Recieve ExamId and AccountId
+    handleAdvance() {
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'HeroResults__c'//API name of the page to navigate to
+            }
+            // state: {
+            //     c__examId: "",
+            //     c_accountId: ""
+            // }
+        });
+    }
 }
