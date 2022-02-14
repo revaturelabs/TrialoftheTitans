@@ -29,11 +29,10 @@ public class PathToTitanController {
     }
 
     // Function to Retrieve Exams and their results Connected to Titan and Account Id parameter
+    // @wire adapterConfig object MUST match with the apex parameters
     @AuraEnabled(cacheable=true)
-    public static List<Exam_Result__c> getExamAndResultsList(Id titanId) {
-
-        return [SELECT Exam__c, Exam__r.Name, Status__c FROM Exam_Result__c WHERE Exam__r.Titan__c=:titanId AND Account__c = '0018c000028TxZoAAK'];
+    public static List<Exam_Result__c> getExamAndResultsList(Id titanId, Id accountId) {
+        return [SELECT Exam__c, Exam__r.Name, Status__c FROM Exam_Result__c WHERE Exam__r.Titan__c=:titanId AND Account__c =:accountId ORDER BY Status__c ];
         
     }
-
 }

@@ -3,7 +3,7 @@ import { LightningElement, api, wire } from 'lwc';
 import getAccount from "@salesforce/apex/PathToTitanController.getAccount";
 import getSquad from "@salesforce/apex/PathToTitanController.getSquad";
 import getExamAndResultsList from "@salesforce/apex/PathToTitanController.getExamAndResultsList";
-
+/* import BlackVerticalLine from '@salesforce/resourceUrl/Black_Vertical_Line'; */
 export default class LwcPathToTitan extends LightningElement {
 
     // Variables to Display Hero Details at Top of Component
@@ -11,6 +11,8 @@ export default class LwcPathToTitan extends LightningElement {
     heroTitle;
     heroName;
     squadName;
+
+    black_line = BlackVerticalLine;
 
     // Lists to grab Exams & ExamResults related to Titan
     //examList = []; // ?? Wrapper Class to Hold Exam__c Object and Priority Tag / Unique Key for Iterator ??
@@ -23,22 +25,26 @@ export default class LwcPathToTitan extends LightningElement {
     @wire(getAccount) accInfo;
     @wire(getSquad) squadInfo;
 
-    @wire(getExamAndResultsList, {titanId: '$titanId'}) 
+    @wire(getExamAndResultsList, {titanId: '$titanId', accountId:'$accountId'}) 
     examAndResultsList;
 
+   
     // Initialization Function to Populate Some Basic Information
     renderedCallback() {
         if (this.accInfo.data && this.squadInfo.data) {
-            this.heroName = this.accInfo.data.Name;
-            this.squadName = this.squadInfo.data.Name;
+            this.heroName = "Our Hero's Name: " + this.accInfo.data.Name;
+            this.squadName = "Our Hero's Squad: " + this.squadInfo.data.Name;
             this.heroArete = "Our Hero's Arete: 19";
             this.heroTitle = "Our Hero's Title: Perseus";
         } 
-        console.log("THIS IS WORKIGN");
     }
     // Navigation Function to pass titanId and accountId to lwcExamInterview
     handleExamClick(event) {
         //let exam_id = event.target.dataset.Exam__c;
     }
+
+/*     get BackgroundURL(){
+        return `background-repeat:no-repeat;background-image:url(${BlackVerticalLine})`;
+    } */
 
 }

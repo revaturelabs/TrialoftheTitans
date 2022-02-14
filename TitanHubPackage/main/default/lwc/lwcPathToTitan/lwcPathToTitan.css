@@ -6,7 +6,6 @@
     --slds-c-button-color-border:black;
     --slds-c-button-text-color:black;
     --slds-c-button-sizing-border:3px;
-
 }
 
 .Assigned{
@@ -27,10 +26,8 @@
     --slds-c-button-text-color:black;
     --slds-c-button-sizing-border:3px;
 }
-
-
 .tile_holder{
     display:flex;
     justify-content: center;
-    margin-top:50px;
+    height: 100px;
 }
