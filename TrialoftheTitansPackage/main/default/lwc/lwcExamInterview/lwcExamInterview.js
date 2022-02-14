@@ -8,6 +8,7 @@
  * Ver   Date         Author         Modification
  * 1.0   09-30-2021   Daniel Boice   Initial Version
  * 1.1   02-11-2021   Zain Hamid     Question randomization
+ * 1.2   02-14-2021   Zain Hamid     Question state tracking
  **/
 import { LightningElement, api, wire, track } from "lwc";
 //import exam from '@salesforce/schema/Exam__c';
@@ -247,11 +248,7 @@ export default class LwcExamInterview extends LightningElement {
   }
   prevClicked() {
     this.setExamAnswerToAnswerProvided();
-    if(this.answer) {
-      //needs logic to prevent updating if marked for review/flagged
-      //currently, this.answer is always returning empty from the child component
-      this.updateCurrentQuestionState('Answered');
-    }
+    this.setCurrentQuestionState();
     if (this.questionNumber > 1) {
       this.questionNumber--;
     }
@@ -262,11 +259,7 @@ export default class LwcExamInterview extends LightningElement {
   }
   nextClicked() {
     this.setExamAnswerToAnswerProvided();
-    if(this.answer) {
-      //needs logic to prevent updating if marked for review/flagged
-      //currently, this.answer is always returning empty from the child component
-      this.updateCurrentQuestionState('Answered');
-    }
+    this.setCurrentQuestionState();
     if (this.questionNumber < this.numberOfQuestions) {
       this.questionNumber++;
     }
