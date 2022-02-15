@@ -56,6 +56,12 @@ public without sharing class titanDisplayController {
         return exams;
     }
 
+    @AuraEnabled
+    public static Integer getNumberOfExamResultsOfUser(String titanId, String userId){
+        Integer examResults = [SELECT COUNT() FROM Exam_Result__c WHERE Exam__r.Titan__c =: titanId AND Account__c = :userId];
+        return examResults;
+    }
+
     @AuraEnabled(cacheable=true)
     public static List<Exam_Result__c> orderExamResults(List<Exam_Result__c> results) {
 
