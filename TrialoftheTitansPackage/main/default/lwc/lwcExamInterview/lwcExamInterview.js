@@ -122,6 +122,7 @@ export default class LwcExamInterview extends LightningElement {
       this.error = undefined;
       this.createBlankExamAnswersList();
       this.permutateQuestions();
+      this.examQuestionsState = Array(this.numberOfQuestions);
       this.initializeQuestionsState();
       console.log(this.examQuestionsState);
       //this.questionI=data[0];
@@ -166,7 +167,7 @@ export default class LwcExamInterview extends LightningElement {
   initializeQuestionsState() {
     for(i = 1; i <= this.numberOfQuestions; i++) {
       examQuestionPossibleState = {questionNumber: i, unanswered: true, answered: false, markedForReview: false, flagged: false};
-      this.examQuestionsState = Array(this.numberOfQuestions).push(examQuestionsPossibleState);
+      this.examQuestionsState.push(examQuestionsPossibleState);
     }
   }
 
