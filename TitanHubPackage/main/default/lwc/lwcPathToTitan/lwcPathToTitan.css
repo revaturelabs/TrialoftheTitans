@@ -1,22 +1,47 @@
+.container {
+    padding: 5px;
+    margin: 5px; 
+    display: flex; 
+    justify-content: center; 
+
+}
+
+.child-container1 {
+    padding: 5px; 
+    margin: 10px;
+    border: 1px solid gray;
+    border-radius: 5px; 
+}
+
+.child-container2 {
+    padding: 5px; 
+    margin: 10px; 
+    border: 1px solid gray;
+    border-radius: 5px;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .Completed{
     display: flex; 
     background-color: #1edd1e;
+    border: 1px solid green; 
+
 }
 
 .Assigned{
     display: flex; 
     background-color: white;
+    border: 1px solid grey; 
 }
 .Unassigned{
     display: flex; 
     background-color: grey;
+    border: none;
 }
 
-.tile_holder {
-    display:flex;
-    justify-content: center;
-    height: 100px;
-}
+
 
 button {
     justify-content: center;
@@ -26,11 +51,14 @@ button {
     width: 200px;
     margin: 5px; 
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 button:hover {
     transform: scale(1.2)
 } 
+
+
+
 
 
