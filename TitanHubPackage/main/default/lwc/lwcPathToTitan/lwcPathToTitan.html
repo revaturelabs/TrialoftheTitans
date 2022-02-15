@@ -17,14 +17,13 @@
                 <template for:each={examAndResultsList.data} for:item="examTile">
                     <div key={examTile.Exam__c} class="slds-col tile_holder">
                          <!-- in the class attribute, not sure if the value can be updated dynamically | ex:{examTile.Status__c} -->
-                         <lightning-button
+                         <button
                             class={examTile.Status__c} 
-                            variant="brand"
-                            label={examTile.Exam__r.Name}
                             title="Nav to Exam"
                             onclick={handleExamClick}
                         >
-                    </lightning-button>      
+                        {examTile.Exam__r.Name}</button>
+   
                     </div>
                 </template>
             </template>         

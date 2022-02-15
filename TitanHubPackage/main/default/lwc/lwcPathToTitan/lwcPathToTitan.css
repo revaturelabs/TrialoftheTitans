@@ -1,40 +1,36 @@
 .Completed{
-    --slds-c-button-brand-color-background: #1edd1e;
-    --slds-c-button-brand-color-background-hover:#1edd1e;
-    --slds-c-button-brand-text-color-hover:black;
-    --slds-c-button-brand-color-border-hover:rgba(0, 0, 0, 0.25);
-    --slds-c-button-brand-color-border:black;
-    --slds-c-button-brand-text-color:black;
-    --slds-c-button-brand-sizing-border:3px;
-    --slds-c-button-brand-line-height:1.875rem;
-    --slds-c-button-spacing-block-start:1rem;
-    --slds-c-button-spacing-block-end:1rem;
+    display: flex; 
+    background-color: #1edd1e;
 }
 
 .Assigned{
-    --slds-c-button-brand-color-background: white;
-    --slds-c-button-brand-color-background-hover:white;
-    --slds-c-button-brand-text-color-hover:black;
-    --slds-c-button-brand-color-border-hover:rgba(0, 0, 0, 0.25);
-    --slds-c-button-brand-color-border:black;
-    --slds-c-button-brand-text-color:black;
-    --slds-c-button-brand-sizing-border:3px;
-    --slds-c-button-spacing-block-start:1rem;
-    --slds-c-button-spacing-block-end:1rem;
+    display: flex; 
+    background-color: white;
 }
 .Unassigned{
-    --slds-c-button-brand-color-background: grey;
-    --slds-c-button-brand-color-background-hover:grey;
-    --slds-c-button-brand-text-color-hover:black;
-    --slds-c-button-brand-color-border-hover:rgba(0, 0, 0, 0.25);
-    --slds-c-button-brand-color-border:black;
-    --slds-c-button-brand-text-color:black;
-    --slds-c-button-brand-sizing-border:3px;
-    --slds-c-button-spacing-block-start:1rem;
-    --slds-c-button-spacing-block-end:1rem;
+    display: flex; 
+    background-color: grey;
 }
-.tile_holder{
+
+.tile_holder {
     display:flex;
     justify-content: center;
     height: 100px;
 }
+
+button {
+    justify-content: center;
+    align-items: center;
+    color: black; 
+    height: 45px;
+    width: 200px;
+    margin: 5px; 
+    padding: 5px;
+    border-radius: 10px;
+}
+
+button:hover {
+    transform: scale(1.2)
+} 
+
+
