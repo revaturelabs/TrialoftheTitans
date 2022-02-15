@@ -46,7 +46,12 @@ export default class LwcExamInterview extends LightningElement {
 
   //holds the list of exam questions' states (indexed in the same order as above)
   @api
-  examQuestionsState;
+  examQuestionsState = [];
+
+  // Have to include even though it's not used because of an old bug that never got fixed
+  // https://ideas.salesforce.com/s/idea/a0B8W00000GdknvUAB/delete-non-packaged-api-variables-from-managed-lwc-components
+  @api
+  examQuestionOrder;
 
   //holds the list of exam answers
   examAnswers = {};
@@ -105,7 +110,7 @@ export default class LwcExamInterview extends LightningElement {
 
   //so that they have the same number when submitting answers
   createBlankExamAnswersList() {
-    for (let i = 0; i < Object.keys(this.examQuestions).length; i++) {
+    for (let i = 0; i < this.numberOfQuestions; i++) {
       this.examAnswers[`${i + 1}`] = "";
     }
   }
@@ -117,14 +122,11 @@ export default class LwcExamInterview extends LightningElement {
     if (data) {
       console.log("Logging data");
       console.log(data);
-      this.examQuestions = data;
+      this.examQuestions = this.shuffle(data);
       this.numberOfQuestions = Object.keys(data).length;
       this.error = undefined;
       this.createBlankExamAnswersList();
-      this.permutateQuestions();
-      this.examQuestionsState = Array(this.numberOfQuestions);
       this.initializeQuestionsState();
-      console.log(this.examQuestionsState);
       //this.questionI=data[0];
       this.updateQuestionComponent();
     } else if (error) {
@@ -149,11 +151,8 @@ export default class LwcExamInterview extends LightningElement {
   updateQuestionComponent() {
     const questionComponent = this.template.querySelector("c-lwc-question");
     if (questionComponent && this.questionNumber < this.numberOfQuestions + 1) {
-      // Non randomizaed version
-      //this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       questionComponent.question = this.currentQuestion;
-      //console.log('test')
       console.log('Printing answer');
       console.log(this.examAnswers[`${this.questionNumber}`]);
       console.log('Printing question state');
@@ -165,54 +164,30 @@ export default class LwcExamInterview extends LightningElement {
   }
 
   initializeQuestionsState() {
-    for(i = 1; i <= this.numberOfQuestions; i++) {
-      examQuestionPossibleState = {questionNumber: i, answered: false, markedForReview: false, flagged: false};
-      this.examQuestionsState.push(examQuestionsPossibleState);
+    let examQuestionPossibleState;
+    console.log(typeof examQuestionPossibleState);
+    for(let k = 1; k <= this.numberOfQuestions; k++) {
+      examQuestionPossibleState = {questionNumber: k, answered: false, markedForReview: false, flagged: false};
+      this.examQuestionsState.push(examQuestionPossibleState);
     }
   }
 
-  updateCurrentQuestionState(state, bool) {
-    this.examQuestionsState[this.questionNumber - 1].set(state, bool);
-  }
-
-  permutateQuestions() {
-    // Believe it or not, this is simplest way to make a linear array in JS
-    //this.examQuestionOrder = this.shuffle(Array.from({length: this.numberOfQuestions}, (_, i) => i));
-    this.examQuestions = this.shuffle(this.examQuestions);
-    /*
-    for(i = 0; i < this.numberOfQuestions; i++) {
-      t = this.examQuestions[this.examQuestionOrder[i]];
-      this.examQuestions[this.examQuestionOrder[i]] = this.examQuestions[i];
-      this.examQuestions[i] = t;
-    } */
-  }
-
-  shuffle(array) {
-    // Fisher-Yates
-    var m = array.length, t, i;
-    // While there remain elements to shuffle
-    while (m) {
-      // Pick a remaining element
-      i = Math.floor(Math.random() * m--);
-      // And swap it with the current element
-      t = array[m];
-      array[m] = array[i];
-      array[i] = t;
+  shuffle(arr) {
+    //Fisher-yates
+    let shuffled = Array(this.numberOfQuestions);
+    let i = arr.length, j;
+    while(--i > 0){
+      j = Math.floor(Math.random()*(i+1));
+      shuffled[j] = arr[i];
     }
-    return array;
+    return shuffled;
   }
 
   setCurrentQuestionAnsweredState() {
-    // if(current question is marked for review) {
-    //    this.updateCurrentQuestionState('Marked for Review');
-    //} else if(current question is flagged) {
-    //    this.updateCurrentQuestionState('Flagged');
-    // }
-    // else
     if(this.examAnswers[`${this.questionNumber}`]) {
-      this.updateCurrentQuestionState(answered, true);
+      this.examQuestionsState[this.questionNumber - 1].answered = true;
     } else {
-      this.updateCurrentQuestionState(answered, false);
+      this.examQuestionsState[this.questionNumber - 1].answered = false;
     }
     // Needs logic to handle only partial answers too
   }
@@ -268,6 +243,7 @@ export default class LwcExamInterview extends LightningElement {
     this.prevButtonDisabled = this.questionNumber < 2;
     this.nextButtonDisabled = this.questionNumber + 1 > this.numberOfQuestions;
   }
+
   prevClicked() {
     this.setExamAnswerToAnswerProvided();
     this.setCurrentQuestionAnsweredState();
@@ -280,6 +256,17 @@ export default class LwcExamInterview extends LightningElement {
 
   }
   nextClicked() {
+    this.setExamAnswerToAnswerProvided();
+    this.setCurrentQuestionAnsweredState();
+    if (this.questionNumber < this.numberOfQuestions) {
+      this.questionNumber++;
+    }
+    this.setCurrentAnswerToPreviouslyAnswered();
+    this.updateQuestionComponent();
+    this.setPrevNextDisabled();
+  }
+
+  gotoQuestion(event) {
     this.setExamAnswerToAnswerProvided();
     this.setCurrentQuestionAnsweredState();
     if (this.questionNumber < this.numberOfQuestions) {
