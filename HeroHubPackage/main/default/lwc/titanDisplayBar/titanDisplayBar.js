@@ -76,13 +76,15 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
     //Recieve Titan ID
     handleOverview() {
         let slicedId = this.id.slice(0, 18);
+        console.log(slicedId);
         this[NavigationMixin.Navigate]({
             type: "comm__namedPage",
             attributes: {
                 name: "Titan_Hub__c"//API name of the page to navigate to
             },
              state: {
-                c__titanId: slicedId
+                c__titanId: slicedId,
+                c__accountId: this.currentUser.Id
              }
         });
     }
