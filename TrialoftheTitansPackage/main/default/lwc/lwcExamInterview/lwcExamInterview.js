@@ -166,7 +166,7 @@ export default class LwcExamInterview extends LightningElement {
 
   initializeQuestionsState() {
     for(i = 1; i <= this.numberOfQuestions; i++) {
-      examQuestionPossibleState = {questionNumber: i, unanswered: true, answered: false, markedForReview: false, flagged: false};
+      examQuestionPossibleState = {questionNumber: i, answered: false, markedForReview: false, flagged: false};
       this.examQuestionsState.push(examQuestionsPossibleState);
     }
   }
@@ -202,7 +202,7 @@ export default class LwcExamInterview extends LightningElement {
     return array;
   }
 
-  setCurrentQuestionState() {
+  setCurrentQuestionAnsweredState() {
     // if(current question is marked for review) {
     //    this.updateCurrentQuestionState('Marked for Review');
     //} else if(current question is flagged) {
@@ -211,13 +211,24 @@ export default class LwcExamInterview extends LightningElement {
     // else
     if(this.examAnswers[`${this.questionNumber}`]) {
       this.updateCurrentQuestionState(answered, true);
-      this.updateCurrentQuestionState(unanswered, false);
     } else {
-      this.updateCurrentQuestionState(unanswered, true);
       this.updateCurrentQuestionState(answered, false);
     }
     // Needs logic to handle only partial answers too
   }
+
+  /*
+    flagCurrentQuestion() {
+      // called when receiving an event from the flag question button
+      this.updateCurrentQuestionState(flagged, true);
+      
+    }
+
+    markForReviewCurrentQuestion() {
+      // called when receiving an event from the mark for review button
+      this.updateCurrentQuestionState(markedForReview, true);
+    }
+  */
 
 
   //this might be useful for setting the details of the modal popup component for confirmation when submitting the exam.  for future.  now they are in the modal component in the html, this could be developed further
@@ -259,7 +270,7 @@ export default class LwcExamInterview extends LightningElement {
   }
   prevClicked() {
     this.setExamAnswerToAnswerProvided();
-    this.setCurrentQuestionState();
+    this.setCurrentQuestionAnsweredState();
     if (this.questionNumber > 1) {
       this.questionNumber--;
     }
@@ -270,7 +281,7 @@ export default class LwcExamInterview extends LightningElement {
   }
   nextClicked() {
     this.setExamAnswerToAnswerProvided();
-    this.setCurrentQuestionState();
+    this.setCurrentQuestionAnsweredState();
     if (this.questionNumber < this.numberOfQuestions) {
       this.questionNumber++;
     }
