@@ -15,6 +15,7 @@ import getNumberOfTitanExams from "@salesforce/apex/titanDisplayController.getNu
 import getUserExams from "@salesforce/apex/titanDisplayController.getUserExams";
 
 import getUserNextExam from "@salesforce/apex/titanDisplayController.getUserNextExam";
+import getNumberOfExamResultsOfUser from "@salesforce/apex/titanDisplayController.getNumberOfExamResultsOfUser";
 import { NavigationMixin } from 'lightning/navigation';
 
 //d3 imports
@@ -35,7 +36,12 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
     @track titanName;
 
     renderedCallback() {
+        
+    }
+
+    connectedCallback() {
         let slicedId = this.id.slice(0, 18);
+
         let titan = getTitanById({ identifier: slicedId });
         titan.then((res) => {
             this.titanName = res[0].Name;
@@ -60,15 +66,22 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
                 this.passedExams = 0;
                 this.userExamsLoaded = true;
             });
-        });
 
-        let numExams = getNumberOfTitanExams({ titanId: slicedId });
-        numExams.then((res) => {
-            this.totalExams = res;
-        });
-    }
+            let numExams = getNumberOfTitanExams({ titanId: slicedId });
+            numExams.then((res) => {
+                this.totalExams = res;
 
-    connectedCallback() {
+                getNumberOfExamResultsOfUser({titanId : slicedId, userId : this.currentUser.Id})
+                    .then((result) => {
+                        if(this.totalExams == result)
+                            this.disableAdvance = true;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            });
+
+        });
         
     }
 
