@@ -1,17 +1,19 @@
 <template>
-    <div class="slds-grid slds-grid_vertical slds-gutters_small">
+    <lightning-card class="container">
         <!-- Hero Details Section -->
-        <div class="slds-col">
-            <lightning-card title="Hero Info">
+        <div class="child-container1">
+
+            <lightning-card title="Hero Info" >
                 <p class="slds-p-horizontal_small">{heroTitle}</p>
                 <p class="slds-p-horizontal_small">{heroName}</p>
                 <p class="slds-p-horizontal_small">{squadName}</p>
                 <p class="slds-p-horizontal_small">{heroArete}</p>
             </lightning-card>
-            
         </div>
+     
+
         <!-- Dynamic Path Chart -->
-        <div class="slds-grid slds-grid_vertical slds-gutters_x-large">
+        <div class="child-container2">
             <!-- Iterator to Generate Columns if data exists -->
             <template if:true={examAndResultsList.data}>
                 <template for:each={examAndResultsList.data} for:item="examTile">
@@ -28,5 +30,5 @@
                 </template>
             </template>         
         </div>      
-    </div>
+    </lightning-card>
 </template>
