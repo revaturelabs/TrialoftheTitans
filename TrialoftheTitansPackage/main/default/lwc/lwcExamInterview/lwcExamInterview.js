@@ -122,8 +122,8 @@ export default class LwcExamInterview extends LightningElement {
     if (data) {
       console.log("Logging data");
       console.log(data);
-      this.examQuestions = this.shuffle(data);
       this.numberOfQuestions = Object.keys(data).length;
+      this.examQuestions = this.shuffleQuestions(data);
       this.error = undefined;
       this.createBlankExamAnswersList();
       this.initializeQuestionsState();
@@ -155,6 +155,10 @@ export default class LwcExamInterview extends LightningElement {
     if (questionComponent && this.questionNumber < this.numberOfQuestions + 1) {
       this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       questionComponent.question = this.currentQuestion;
+      console.log('All questions');
+      console.log(this.examQuestions);
+      console.log('Printing current question');
+      console.log(this.currentQuestion);
       console.log('Printing answer');
       console.log(this.examAnswers[`${this.questionNumber}`]);
       console.log('Printing question state');
@@ -171,15 +175,31 @@ export default class LwcExamInterview extends LightningElement {
     }
   }
 
-  shuffle(arr) {
-    //Fisher-yates
+  shuffleQuestions(questionData) {
     let shuffled = Array(this.numberOfQuestions);
-    let i = arr.length, j;
-    while(--i > 0){
-      j = Math.floor(Math.random()*(i+1));
-      shuffled[j] = arr[i];
+    let order = this.shuffleQuestionOrder(this.numberOfQuestions);
+    console.log('Random question order');
+    console.log(order);
+    for(let k = 0; k < this.numberOfQuestions-1; k++) {
+      shuffled[k] = questionData[order[k]];
     }
     return shuffled;
+  }
+
+  // Implementation of a bag randomizer
+  // Since we can't sort/shuffle in-place on an actually used array, this instead returns the question order
+  // in the style of a bag randomizer, which shuffleQuestions uses to shuffle instead
+  shuffleQuestionOrder(totalNumberOfQuestions) {
+    // Fisher-Yates algorithm
+      let questionOrder = Array.from({length: totalNumberOfQuestions}, (_, j) => j);
+      let m = totalNumberOfQuestions, t, i;
+      while (m) {
+        i = Math.floor(Math.random() * m--);
+        t = questionOrder[m];
+        questionOrder[m] = questionOrder[i];
+        questionOrder[i] = t;
+      }
+      return questionOrder;
   }
 
   setCurrentQuestionAnsweredState() {
