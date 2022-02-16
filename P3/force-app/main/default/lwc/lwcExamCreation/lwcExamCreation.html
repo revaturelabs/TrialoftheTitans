@@ -1,0 +1,33 @@
+<!--
+
+    Author: Max Chervinsky
+    Date Modified: 9/27/2021
+    Description: This is a component that allows users to create an exam in the ExamHub.
+                    The 5 inputs allow a user to fill fields pertainin to the exam being created.
+                    Inputs include: 
+                    1. Name, name of the exam
+                    2. Titan, a technology a hero (Account) would like to conquer
+                    3. Next Exam, the exam to be taken after the created exam
+                    4. Defualt Passing Grade, the grade a hero would need to obtain to pass the exam.
+                    5. Defualt Time Limit, the time limit a hero is given when taking the exam
+                    
+                  The button takes the input the inputs to the Javascript handler where we create our exam. 
+    Date Modified: 10/26/2021
+    Modified By: Iteration VI Styling and Data
+    -->
+<template>
+    <div class="container slds-p-around_large">
+    <lightning-card>
+        <!--<lightning-record-form object-api-name={objectApiName} fields={fields} onsuccess={handleSuccess}>
+        </lightning-record-form>-->
+
+
+        <lightning-input label="Name" onchange={handleExamName}></lightning-input>
+        <lightning-input label="Titan" onchange={handleTitanInput}></lightning-input>
+        <lightning-input label="Next Exam" onchange={handleNextExamInput}></lightning-input>
+        <lightning-input label="Default Passing Grade" onchange={handleDefaultPassingGradeInput}></lightning-input>
+        <lightning-input label="Default Time Limit" onchange={handleDefaultTimeLimitInput}></lightning-input>
+        <lightning-button label="Create Exam" variant = "brand" onclick={createExam}></lightning-button>
+    </lightning-card>
+    </div>
+</template>

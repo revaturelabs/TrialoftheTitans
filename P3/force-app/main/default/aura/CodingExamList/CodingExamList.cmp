@@ -1,0 +1,30 @@
+<!--
+////////////////////////////////////////////////////
+//
+// Name: Coding Exam List
+// Author: Joshua Faaborg
+// Description: Component to diplay Coding Exam Result Data.
+// - ATTRIBUTES
+// - data: Holds the object for the data to be displayed.
+// - columns: Holds the Name,Field Name, and Type of the columns.
+// - HANDLERS
+// - init: Handles initialization of data table.
+//
+////////////////////////////////////////////////////
+-->
+<aura:component controller="CodingExamListController">
+	<aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+	<aura:attribute name="CohortId" type ="String"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.fetchData}" />
+    
+    <!-- Exam Result Data Table -->
+    <lightning:datatable
+        data = "{!v.data}"
+        columns = "{!v.columns}"
+        keyField = "Id"
+        hideCheckboxColumn="true" />
+
+
+</aura:component>

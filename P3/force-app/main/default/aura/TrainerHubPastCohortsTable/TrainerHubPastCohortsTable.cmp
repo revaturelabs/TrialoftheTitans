@@ -1,0 +1,32 @@
+<!-- 
+
+  Name: TrainerHubPastCohortsTable
+  Author: Brett Spokes
+  Description: A Table displaying previous cohorts with a button to navigate to a page
+	with attributes set by the selected cohorts Id.
+
+-->
+
+<aura:component controller="TrainerHubPastCohortsTableAuraController">
+
+	<!-- events -->
+	<aura:registerEvent name="cohortIdEvent" type="c:TrainerHubTransferCohortIdEvent"/>    
+
+    <!-- attributes -->
+    <aura:attribute name="data" type="Cohort__c[]"/>
+    <aura:attribute name="columns" type="List"/>
+
+    <!-- handlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.fetchData}" />
+
+
+    <!-- the container element determine the height of the datatable -->
+	<div style="height: 300px">
+        <lightning:datatable
+                keyField="id"
+                data="{! v.data }"
+                columns="{! v.columns }"
+				onrowaction="{! c.navigateToMyComponent }"
+                hideCheckboxColumn="true"/>
+    </div>
+</aura:component>

@@ -1,0 +1,96 @@
+.THIS {
+    background-color:grey;
+   
+}
+
+.THIS #myIn{
+   	
+    border-style: solid;
+    border-width: 3px;
+  	border-color: var(--user-team-primary);
+    margin: auto;
+    margin:1% 3%;
+}
+
+.THIS #rec{
+    color: var(--background-color);
+    border-style: solid;
+  	border-color: var(--user-team-secondary);
+    border-width: 3px;
+   	text-align: center;
+  	background-color: var(--user-team-primary);        
+      margin:5%;  
+}
+.THIS .myfeedstyle{
+    width:50%;
+    padding: 0 2em;
+    margin: 0 auto;
+    height:100%;
+    background-size:cover;
+    background-color:var(--user-team-primary);    
+    font-size: 120%;
+}
+.THIS h1{
+    color: var(--primary-color);
+    font-size: 200%;
+    text-align: center;
+    margin: 5%;
+}
+.THIS h2{
+    color: var(--primary-color);
+    font-size: 200%;
+    text-align: center;
+}
+.THIS h3{
+    color: var(--primary-color);
+    font-size: 150%;
+    text-align: center;
+}
+.THIS .myinterstyle{
+     width: 50%;
+     background-color:var(--user-team-secondary);
+}
+.THIS .slds-card {
+    background-color:var(--user-team-primary);
+                                                                            
+}
+.THIS .feedTitle{
+    background-color:var(--user-team-primary);
+    font-size: 200%;
+    text-align: center;
+    
+}
+.THIS span{
+    background-color:var(--user-team-primary);
+    font-size: 120%;
+    text-align: center;
+    color: #302f30;
+}
+.THIS .myform{
+     background-color:var(--user-team-primary);
+    font-size: 200%;
+    text-align: center;
+}
+.THIS .mybutton{
+   text-align: center; 
+    width:15%;
+    margin: 0 auto;
+    position: relative;
+    left:43%;
+    background-color:var(--user-team-secondary);
+    border: 1px transparent solid;
+}
+.THIS .mybutton2{
+    background-color:var(--user-team-secondary);
+    border:1px transparent solid;
+}
+.THIS label{
+    color: #FFFFFF;
+}
+                                                                                                        
+.THIS #quessec{
+    color: white;
+    font-size: 200%;
+    text-align: center;
+    background-color:var(--user-team-secondary);                                                        
+}

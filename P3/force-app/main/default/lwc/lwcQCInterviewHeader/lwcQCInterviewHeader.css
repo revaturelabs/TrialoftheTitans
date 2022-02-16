@@ -1,0 +1,25 @@
+*{
+    color:black;
+}
+.boxGrid {
+
+    background-color:#fef8ec;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.boxBackground {
+
+    background-color:rgba(0,0,0,1);
+    border-radius: 5px;
+
+
+}
+
+.active {
+
+    color: #bf892d;
+    
+    
+}

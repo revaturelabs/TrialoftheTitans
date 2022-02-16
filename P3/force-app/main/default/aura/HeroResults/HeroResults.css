@@ -1,0 +1,23 @@
+.THIS {
+    background-color: white;
+}
+
+.THIS .red{
+    background-color: #FF3838;
+}
+
+.THIS .green{
+    background-color: #3DEA39;
+}
+
+.THIS.wrapper {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    gap: 0.5em;
+    padding: 20px;
+}
+
+.THIS .question-name {
+    text-align: center;
+}

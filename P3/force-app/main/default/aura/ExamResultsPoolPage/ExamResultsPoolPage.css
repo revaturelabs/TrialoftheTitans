@@ -1,0 +1,58 @@
+.THIS.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 20px;
+  background: white;
+  min-height: 300px;
+}
+
+.THIS .poolbypool {
+  padding: 0.5em;
+}
+.THIS .data-vis1 {
+}
+
+.THIS .data-vis2 {
+  border: 1px solid white;
+  grid-column: 1 / span 2;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  background: transparent;
+  white-space: nowrap;
+}
+
+.THIS .pool-item-wrapper {
+  font-size: 1.5em;
+}
+
+.THIS .bar-chart {
+  padding: 5px;
+  animation: loading 1s linear;
+  color: black;
+  box-shadow: 3px 3px 2px grey;
+  width: var(--i);
+}
+
+.THIS .bar-chart.pass {
+  font-weight: bold;
+  background: rgb(176, 243, 176);
+}
+
+.THIS .bar-chart.fail {
+  font-weight: bold;
+  background: rgb(255, 175, 175);
+}
+
+@keyframes loading {
+  0% {
+    width: 0;
+  }
+  30% {
+    width: var(--y);
+  }
+  100% {
+    width: var(--i);
+  }
+}
