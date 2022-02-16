@@ -35,10 +35,13 @@
     background-color: white;
     border: 1px solid grey; 
 }
+
+/* pointer-events makes unassigned exams unclickable */
 .Unassigned{
     display: flex; 
     background-color: grey;
     border: none;
+    pointer-events: none; 
 }
 
 

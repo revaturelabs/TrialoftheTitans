@@ -91,6 +91,7 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
 
     //Navigate to the Exam Interview Page
     //Recieve ExamId and AccountId
+    //Rely ids to Exam Interview
     handleAdvance() {
 
         let slicedId = this.id.slice(0, 18);
@@ -109,7 +110,6 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
                      },
                 });
                 
-
             })
             .catch((error) => {
                 this.error = error;

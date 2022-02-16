@@ -44,20 +44,17 @@ export default class LwcPathToTitan extends LightningElement {
 
     // Navigation Function to pass examId and accountId to lwcExamInterview
     handleExamClick(event) {
-        console.log(event.target.getAttribute("data-exam"));
-
         let exam_data_attribute = event.target.getAttribute("data-exam");
 
         this[NavigationMixin.Navigate]({
             type: "comm__namedPage",
             attributes: {
-                name: "Exam_Interview__c"//API name of the page to navigate to
+                name: "Exam_Interview__c" //API name of the page to navigate to
             },
              state: {
                 c__examId: exam_data_attribute,
                 c__accountId: this.currentUser.Id
              }
-        });
+        });      
     }
-
 }
