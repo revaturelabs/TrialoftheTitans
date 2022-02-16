@@ -151,7 +151,7 @@ export default class LwcExamInterview extends LightningElement {
   updateQuestionComponent() {
     const questionComponent = this.template.querySelector("c-lwc-question");
     const stateComponent = this.template.querySelector("c-exam-overview");
-    stateComponent.examquestionsstate = this.examQuestionsState;
+    stateComponent.questionstates = this.examQuestionsState;
     if (questionComponent && this.questionNumber < this.numberOfQuestions + 1) {
       this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       questionComponent.question = this.currentQuestion;
@@ -203,6 +203,9 @@ export default class LwcExamInterview extends LightningElement {
   }
 
   setCurrentQuestionAnsweredState() {
+    console.log('Current question state');
+    console.log(this.questionNumber);
+    console.log(this.examAnswers[`${this.questionNumber}`]);
     if(this.examAnswers[`${this.questionNumber}`]) {
       this.examQuestionsState[this.questionNumber - 1].answered = true;
     } else {
@@ -264,28 +267,36 @@ export default class LwcExamInterview extends LightningElement {
   }
 
   prevClicked() {
-    if (this.questionNumber > 1) {
-      this.gotoQuestionNumber(--this.questionNumber);
-    }
-  }
-  nextClicked() {
-    if (this.questionNumber < this.numberOfQuestions) {
-      this.gotoQuestionNumber(++this.questionNumber);
-    }
-  }
-
-  gotoQuestion(event) {
-    this.gotoQuestionNumber(parseInt(event.detail, 10));
-  }
-
-  gotoQuestionNumber(gotoNumber) {
     this.setExamAnswerToAnswerProvided();
     this.setCurrentQuestionAnsweredState();
-    this.questionNumber = gotoNumber;
+    if (this.questionNumber < this.numberOfQuestions) {
+      this.questionNumber--;
+    }
     this.setCurrentAnswerToPreviouslyAnswered();
     this.updateQuestionComponent();
     this.setPrevNextDisabled();
   }
+
+  nextClicked() {
+    this.setExamAnswerToAnswerProvided();
+    this.setCurrentQuestionAnsweredState();
+    if (this.questionNumber < this.numberOfQuestions) {
+      this.questionNumber++;
+    }
+    this.setCurrentAnswerToPreviouslyAnswered();
+    this.updateQuestionComponent();
+    this.setPrevNextDisabled();
+  }
+
+  gotoQuestion(event) {
+    this.setExamAnswerToAnswerProvided();
+    this.setCurrentQuestionAnsweredState();
+    this.questionNumber = parseInt(event.detail, 10);
+    this.setCurrentAnswerToPreviouslyAnswered();
+    this.updateQuestionComponent();
+    this.setPrevNextDisabled();
+  }
+
 
   //submit exam to apex controller
   handleSubmit() {
