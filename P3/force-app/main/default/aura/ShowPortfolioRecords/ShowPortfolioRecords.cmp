@@ -1,0 +1,71 @@
+<aura:component controller="ShowPortfolioController" access="global" implements="force:appHostable, forceCommunity:availableForAllPageTypes">
+
+    <aura:attribute name = "HeroId" type = "String"/>
+    <aura:attribute name = "Hero" type = "List"/>
+    <aura:attribute name="showData" type="Boolean" default="false"/>
+    <!--Object 1-->
+    <aura:attribute name="EquivList" type="Equivalency__c"/>
+    <aura:attribute name="Ecolumns" type="List"/>
+
+    <!--Object 2-->
+    <aura:attribute name="ProjectList" type="Project__c"/>
+    <aura:attribute name="Pcolumns" type="List"/>
+
+    <!--Object 3-->
+    <aura:attribute name="EducationList" type="Education__c"/>
+    <aura:attribute name="EDcolumns" type="List"/>
+
+    <!--Object 4-->
+    <aura:attribute name="CertificationList" type="Certification__c"/>
+    <aura:attribute name="Ccolumns" type="List"/>
+
+    <!--Object 5-->
+    <aura:attribute name="ExpList" type="Experience__c"/>
+    <aura:attribute name="ExpColumns" type="List"/>
+
+    <!--<aura:attribute name="EquivRecordId" type="Id"/>-->
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:card class="Select">
+        <lightning:select name="HeroSelect" label="Which Hero?" required="true" onchange="{!c.onChange}" aura:id = "HeroSelect">
+            <aura:iteration items="{!v.Hero}" var="User">
+                <option value="{!User}" text="{!User}"/>
+            </aura:iteration>
+        </lightning:select>
+    </lightning:card>
+
+
+    <aura:if isTrue="{!v.showData}">
+        
+        <h1 class="Header">Equivalency</h1>
+
+        <lightning:card class="Table">
+            <lightning:datatable keyField="id" data="{!v.EquivList}" columns="{!v.Ecolumns}" hideCheckboxColumn="true"/>
+        </lightning:card>
+
+        <h1 class="Header">Projects</h1>
+
+        <lightning:card class="Table">
+            <lightning:datatable  keyField="id" data="{!v.ProjectList}" columns="{!v.Pcolumns}" hideCheckboxColumn="true"/>
+        </lightning:card>
+
+        
+        <h1 class="Header">Education</h1>
+        <lightning:card class="Table">
+            <lightning:datatable  keyField="id" data="{!v.EducationList}" columns="{!v.EDcolumns}" hideCheckboxColumn="true"/>
+        </lightning:card>
+
+        
+
+        <h1 class="Header">Certifications</h1>
+        <lightning:card class="Table">
+            <lightning:datatable  keyField="id" data="{!v.CertificationList}" columns="{!v.Ccolumns}" hideCheckboxColumn="true"/>
+        </lightning:card>
+
+        <h1 class="Header">Other Experiences</h1>
+        <lightning:card class="Table">
+            <lightning:datatable  keyField="id" data="{!v.ExpList}" columns="{!v.ExpColumns}" hideCheckboxColumn="true"/>
+        </lightning:card>
+
+    </aura:if>
+</aura:component>	

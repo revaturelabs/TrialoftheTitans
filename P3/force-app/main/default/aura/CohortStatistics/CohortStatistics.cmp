@@ -1,0 +1,9 @@
+<aura:component controller="QCHubController" implements="flexipage:availableForAllPageTypes" access="global">
+
+    <aura:registerEvent name="LaunchInterviewEvent" type="c:LaunchInterviewEvent"/>
+
+    <aura:attribute name="ActiveCohort" type="Cohort__c"/>
+    
+    <lightning:button iconName="utility:setup_assistant_guide" variant="Brand-Outline" value="{!ActiveCohort}" onclick="{!c.LaunchEvent}">Launch Cohort Interview</lightning:button>
+
+</aura:component>

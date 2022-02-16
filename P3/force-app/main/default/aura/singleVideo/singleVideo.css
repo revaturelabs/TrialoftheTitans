@@ -1,0 +1,89 @@
+/*
+	Name: Single Video stylesheet
+	Author: Alyssa Reed
+	Description: CSS stylesheet for singleVideo */
+
+
+.THIS {
+	min-height: 40vh;
+}
+
+.THIS p{
+    font-weight:600;
+    font-variant:small-caps;
+    
+}
+
+.THIS span{
+    font-size: 1.15em;
+}
+
+.THIS .boxStyle{
+    background-color: var(--user-team-primary);
+    border: 1px solid var(--user-team-secondary);
+    text-align: center;
+}
+
+.THIS .buttons{
+    color: white;
+    
+    font-variant:small-caps;
+    border: 1px solid transparent;
+    background-color:var(--user-team-secondary);
+    border: 1px solid transparent;
+}
+
+.THIS .buttons:hover{
+    background-color:var(--user-team-secondary);
+    color:white;
+    font-variant:small-caps;
+    border: 1px solid transparent;
+}
+
+.THIS .formExitButton{
+    float:right;
+}
+
+.THIS .videoCloseButton{
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+.THIS .videoCloseButton:hover{
+   background-color: transparent;
+   color: white;
+    
+}
+.THIS .slds-button.slds-button_brand {
+   border-color: var(--user-team-secondary);
+   background-color: var(--user-team-secondary);
+   color: white;                                
+}
+.THIS .slds-button.slds-button_neutral {
+  border-color: var(--user-team-secondary);
+  background-color: var(--user-team-secondary);
+  color: white; 
+}
+
+.THIS .formStyle{
+    color:var(--text-color);
+    background-color: whitesmoke;
+    border: transparent;
+    font-weight: 600;
+    font-variant:small-caps;
+}
+
+.THIS .slds-form-element__label {
+   color: var(--text-color);
+}
+
+.THIS .formStyle:hover{
+    
+    background-color: var(--text-color);
+    border:transparent;
+    font-weight: 600;
+    font-variant:small-caps;
+}
+
+.THIS .vidContainer{
+    width: 350px;
+}

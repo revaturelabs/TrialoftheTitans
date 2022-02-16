@@ -1,0 +1,74 @@
+<!-- 
+	Name: TrainerResultsCohorts
+	Author: Frank Berni
+	Description: Sub-Component for TrainerResultsAccordion. 
+		Has onclick action to show aggregated Feedback results of a Cohort
+
+-->
+
+<aura:component controller="TrainerResultsAccController" >
+     
+    <!--Object[] is referencing the list of aggregate scores pulled from JS controller -->
+    <aura:attribute name="hero" type="Cohort__c" />
+    <aura:attribute name="cohortAvgScores" type="Object[]" />
+    <aura:attribute name="display" type="Boolean" default="false"/>
+    <aura:attribute name="isEmpty" type="Boolean" default="false"/>
+    <aura:attribute name="checkValue" type="Boolean" default="false"/>
+    <!--Object[] is referencing the list of aggregate scores pulled from JS controller -->
+    
+    <!--Rendering list of cohorts with a button to render their average scores-->
+    	<p style="color:DarkViolet; font-size:20px;">
+            <br/>
+            <b>Cohort</b> : {!v.hero.Name}
+        </p>
+        <br/>
+        
+    <lightning:button label="View" onclick="{!c.selectCohort}" />
+    <!--Rendering list of cohorts with a button to render their average scores-->
+    
+    <!--This table render along with the average scores in each category when button is clicked-->
+    <aura:if isTrue="{!v.display}">
+        <aura:if isTrue="{!v.isEmpty}" >
+            <p style="color:DarkViolet; font-size:15px;">
+                <br/>
+                Average Feedback Scores for {!v.hero.Name}
+            	<br/>
+                <br/>
+            </p> 
+            <table class="slds-table slds-table--bordered slds-table--striped">
+                        
+                         <thead>
+                             <tr>
+                             <th scope="col"><span class="slds-truncate">Body Language</span></th>
+                             <th scope="col"><span class="slds-truncate">Confidence</span></th>
+                             <th scope="col"><span class="slds-truncate">Eye Contact</span></th>
+                             <th scope="col"><span class="slds-truncate">Fluency</span></th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <td><p><lightning:formattedNumber value="{!v.cohortAvgScores[0].expr0}" maximumFractionDigits="2"/></p></td>
+                                 <td><p><lightning:formattedNumber value="{!v.cohortAvgScores[0].expr1}" maximumFractionDigits="2"/></p></td>
+                                 <td><p><lightning:formattedNumber value="{!v.cohortAvgScores[0].expr2}" maximumFractionDigits="2"/></p></td>
+                                 <td><p><lightning:formattedNumber value="{!v.cohortAvgScores[0].expr3}" maximumFractionDigits="2"/></p></td>
+                             </tr>
+                         </tbody>
+             </table>
+              
+   		 </aura:if>
+        <!--This table renders along with the average scores in each category when button is clicked-->
+        
+        <!--Text that appears when a Cohort has Heroes with no feedback-->
+        <aura:if isTrue="{!v.checkValue}">
+            <p style="color:DarkRed; font-size:20px;">
+                <br/>
+                No Feedback available at this time.
+            </p>    
+        </aura:if>
+        <!--Text that appears when a Cohort has Heroes with no feedback-->
+        
+     </aura:if>
+    
+    
+	
+</aura:component>
