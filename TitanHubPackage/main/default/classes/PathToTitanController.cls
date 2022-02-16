@@ -36,4 +36,11 @@ public class PathToTitanController {
         return [SELECT Exam__c, Exam__r.Name, Status__c FROM Exam_Result__c WHERE Exam__r.Titan__c=:titanId AND Account__c =:accountId ORDER BY Status__c ];
         
     }
+
+    // Function to Retrieve Exams and their results Connected to examId and Account Id parameter
+/*     @AuraEnabled(cacheable=true)
+    public static List<Exam_Result__c> getToExam(Id examId, Id accountId) {
+        return [SELECT Id FROM Exam__c WHERE Id =:examId];
+       
+    } */
 }

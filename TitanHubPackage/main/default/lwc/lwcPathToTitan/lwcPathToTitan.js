@@ -48,27 +48,16 @@ export default class LwcPathToTitan extends LightningElement {
 
         let exam_data_attribute = event.target.getAttribute("data-exam");
 
-        goToExam({examId : exam_data_attribute, userId : accountId})
-            .then((result) => {
-
-                this[NavigationMixin.Navigate]({
-                    type: "comm__namedPage",
-                    attributes: {
-                        name: "Exam_Interview__c"//API name of the page to navigate to
-                    },
-                     state: {
-                         c__examId: result,
-                         c__accountId: accountId
-                     },
-                });
-                
-
-            })
-            .catch((error) => {
-                this.error = error;
-                console.log(error);
-            });
-
+        this[NavigationMixin.Navigate]({
+            type: "comm__namedPage",
+            attributes: {
+                name: "Exam_Interview__c"//API name of the page to navigate to
+            },
+             state: {
+                c__examId: exam_data_attribute,
+                c__accountId: this.currentUser.Id
+             }
+        });
     }
 
 }
