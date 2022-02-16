@@ -1,3 +1,15 @@
+///////////////////////////////////////////////////////////////////////////////// 
+// 
+// Name: lwcPathToTitan
+// Author (Driver): Bailey Kandler, Phillip Nguyen-Phan
+// Additional Authors (Navigator) : Mohamed Adam, Jeffrey Cooke, Adrian Mata, Rudy Lamug
+// CSS Done by : Mohamed Adam
+// Created: 02/10/2022
+// Updated: 02/16/2022
+// Description: Displays the current exams assigned to the User(Account)
+// 
+/////////////////////////////////////////////////////////////////////////////////
+
 import { LightningElement, api, wire } from 'lwc';
 
 import getAccount from "@salesforce/apex/PathToTitanController.getAccount";
@@ -11,14 +23,6 @@ export default class LwcPathToTitan extends LightningElement {
     heroTitle;
     heroName;
     squadName;
-
-    // Lists to grab Exams & ExamResults related to Titan
-    //examList = []; // ?? Wrapper Class to Hold Exam__c Object and Priority Tag / Unique Key for Iterator ??
-    //examResultList = [];
-
-    // Variables to receive from previous Component
-    // @api titanId = 'a0X8c00000Q3t7YEAR';
-    // @api accountId = '0018c000028TxZoAAK';
 
     //Variables to receive from Hero Hub Component
     @api titanId;
