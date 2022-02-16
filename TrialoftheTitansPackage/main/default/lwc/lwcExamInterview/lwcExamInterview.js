@@ -150,6 +150,8 @@ export default class LwcExamInterview extends LightningElement {
   //updating the child component when go to next or previous question
   updateQuestionComponent() {
     const questionComponent = this.template.querySelector("c-lwc-question");
+    const stateComponent = this.template.querySelector("c-exam-overview");
+    stateComponent.examquestionsstate = this.examQuestionsState;
     if (questionComponent && this.questionNumber < this.numberOfQuestions + 1) {
       this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       questionComponent.question = this.currentQuestion;
@@ -158,14 +160,11 @@ export default class LwcExamInterview extends LightningElement {
       console.log('Printing question state');
       console.log(this.examQuestionsState);
       questionComponent.handleSetAnswer(this.examAnswers[`${this.questionNumber}`]);
-      
-      console.log(this.examQuestionsState);
     }
   }
 
   initializeQuestionsState() {
     let examQuestionPossibleState;
-    console.log(typeof examQuestionPossibleState);
     for(let k = 1; k <= this.numberOfQuestions; k++) {
       examQuestionPossibleState = {questionNumber: k, answered: false, markedForReview: false, flagged: false};
       this.examQuestionsState.push(examQuestionPossibleState);
@@ -245,33 +244,24 @@ export default class LwcExamInterview extends LightningElement {
   }
 
   prevClicked() {
-    this.setExamAnswerToAnswerProvided();
-    this.setCurrentQuestionAnsweredState();
     if (this.questionNumber > 1) {
-      this.questionNumber--;
+      this.gotoQuestionNumber(--this.questionNumber);
     }
-    this.setCurrentAnswerToPreviouslyAnswered();
-    this.updateQuestionComponent();
-    this.setPrevNextDisabled();
-
   }
   nextClicked() {
-    this.setExamAnswerToAnswerProvided();
-    this.setCurrentQuestionAnsweredState();
     if (this.questionNumber < this.numberOfQuestions) {
-      this.questionNumber++;
+      this.gotoQuestionNumber(++this.questionNumber);
     }
-    this.setCurrentAnswerToPreviouslyAnswered();
-    this.updateQuestionComponent();
-    this.setPrevNextDisabled();
   }
 
   gotoQuestion(event) {
+    this.gotoQuestionNumber(parseInt(event.detail, 10));
+  }
+
+  gotoQuestionNumber(gotoNumber) {
     this.setExamAnswerToAnswerProvided();
     this.setCurrentQuestionAnsweredState();
-    if (this.questionNumber < this.numberOfQuestions) {
-      this.questionNumber++;
-    }
+    this.questionNumber = gotoNumber;
     this.setCurrentAnswerToPreviouslyAnswered();
     this.updateQuestionComponent();
     this.setPrevNextDisabled();

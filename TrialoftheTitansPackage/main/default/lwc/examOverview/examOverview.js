@@ -2,7 +2,7 @@
 
 export default class QuestionTrackerTestTwo extends LightningElement {
 
-    @api examQuestionsState;
+    @api questionstates = [];
 
     list = [
         {
