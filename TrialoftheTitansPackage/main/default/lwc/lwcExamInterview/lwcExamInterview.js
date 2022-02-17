@@ -180,7 +180,7 @@ export default class LwcExamInterview extends LightningElement {
     let order = this.shuffleQuestionOrder(this.numberOfQuestions);
     console.log('Random question order');
     console.log(order);
-    for(let k = 0; k < this.numberOfQuestions-1; k++) {
+    for(let k = 0; k < this.numberOfQuestions; k++) {
       shuffled[k] = questionData[order[k]];
     }
     return shuffled;
