@@ -224,7 +224,7 @@ export default class LwcExamInterview extends LightningElement {
 
   markForReviewCurrentQuestion() {
       // called when receiving an event from the mark for review button
-      this.examQuestionsState[this.questionNumber - 1].markedForReview = true;
+      this.examQuestionsState[this.questionNumber - 1].markedForReview = !this.examQuestionsState[this.questionNumber - 1].markedForReview;
     }
   
 
