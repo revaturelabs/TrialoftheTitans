@@ -1,0 +1,56 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller = "getCertifications">
+
+<!-- Certification related values -->
+<aura:attribute name="addCert" type="Boolean" default="false" />
+<aura:attribute name="editCert" type="Boolean" default="false" />
+<aura:attribute name="data" type="Object"></aura:attribute>
+
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }"></aura:handler>
+
+        <!-- Layout for a Certification -->
+        <!-- Iterates threw all of the Certifications for this user -->
+        <h2 class="mainStyle slds-text-heading_large slds-m-top_medium slds-m-bottom_x-small slds-m-left_xx-small">Certifications</h2>
+        <aura:iteration items="{!v.data}" var="certification">
+
+        <div class="EducationCertObject slds-grid slds-gutters slds-m-top_medium">
+
+            <!-- Certification Logo (Salesforce) -->
+            <div class="imagePlaceholder">
+                <img class="educationImage" src="{!certification.Image_URL__c}" alt="Salesforce Cert Logo here"/>
+            </div>
+
+            <!-- Certification Info -->
+            <div class="slds-col slds-size_3-of-6">
+                <div class="slds-text-heading_medium" style="padding-left: 16px;">{!certification.Name} </div>
+                <lightning:card>
+                    <aura:set attribute="title">
+                        <lightning:icon class="slds-m-right_xx-small" iconName="utility:locker_service_console" size="xx-small"/> <!-- Icon can change to preference -->
+                        Assessor: {!certification.Assessor__c} 
+                    </aura:set>
+                </lightning:card>
+                <div style="padding-left: 16px;">Issued on: {!certification.Date_Issued__c}</div>
+                <div style="padding-left: 16px;">
+                    <p>Verification Site: 
+                        <ui:outputURL label="{!certification.Verification_Site__c}" value="{!certification.Verification_Site__c}" />
+                    </p>                    
+                </div>
+            </div>
+        </div>
+        <!--Calls the editCert funcationality-->
+        <aura:if isTrue="{!v.editCert}">
+            <c:editCert recordId="{!certification.Id}"></c:editCert>
+            <!--Toggles the edit funcationality-->
+            <lightning:button label="Done" title="Neutral action" onclick="{! c.doneEditCert }"/>
+        </aura:if>
+        </aura:iteration>
+        <!--Toggles the edit funcationality-->
+        <lightning:button label="Edit" title="Neutral action" onclick="{! c.editCert}"/>
+        <!--Allows for edits to be made to the certifications by calling the createCertification component once the aura:if isTrue-->
+        <aura:if isTrue="{!v.addCert}">
+            <c:createCertification/>
+            <!--Changes the aura:if to false-->
+            <lightning:button label="Done" title="Neutral action" onclick="{! c.doneCert }"/>
+        </aura:if>
+            <!--Shows the Component createCertification. Changes the aura:if to true-->
+            <lightning:button label="Add" title="Neutral action" onclick="{! c.addCert }"/>
+</aura:component>	

@@ -1,0 +1,54 @@
+<!--
+    Author: Heejin Wee
+    Date Modified: 10/3/21
+    Description: Main container component for the QCInterview mini-app: stores, manages, 
+                 and distributes relevant Cohort, Hero, and Interview data that is received via events from its child components
+-->
+
+<template>
+     
+    <!--Handle Event-->
+
+    <!--<c-lwc-q-c-interview-start-view onupdatestage={UpdateStage} onstartinterviewevent={SetHero} onsetweekevent={Setweek}>
+
+     </c-lwc-q-c-interview-start-view>-->
+   
+     <!-- This needs to be completed in a future iteration. This component is not complete.-->
+    <!--<c-lwc-q-c-interview-q-a onupdateqalistevent={AddQuestionAnswer} onupdatestage={UpdateStage}>
+
+    </c-lwc-q-c-interview-q-a>-->
+ 
+
+     <!--Begin component display (depends on CurrentStage attribute)-->
+     <div>
+        <template if:true={startView}>
+            <!--<c-lwc-q-c-interview-start-view cohort={Cohort} weeklist={WeekList}>
+            </c-lwc-q-c-interview-start-view>-->
+        </template>
+    </div>
+    
+    <div>
+        <template if:true={interviewQA}>  
+            <!--<c-lwc-q-c-interview-q-a cohortid={Cohort.cohort.Id} hero = {CurrentHero} week = {Week}>
+            </c-lwc-q-c-interview-q-a>-->
+        </template>
+    </div> 
+    
+    
+    <div>
+        <template if:true ={interviewEnd}>
+            <c-lwc-q-c-interview-end week={Week} answers={CurrentQAList} cohortid={Cohort.cohort.Id}
+                                heroid={CurrentHero.Id} heroname={CurrentHero.Name}>
+            </c-lwc-q-c-interview-end>
+        </template>
+        
+    </div>
+    
+    
+    <!--<aura:set attribute="else">
+        <p>An unknown error has occurred.</p>
+    </aura:set>-->  
+
+    <!--End component display-->
+    
+</template>

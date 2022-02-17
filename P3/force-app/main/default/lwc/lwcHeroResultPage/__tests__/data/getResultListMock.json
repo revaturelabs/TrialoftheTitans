@@ -1,0 +1,41 @@
+[
+    {
+        "Id": "a098A0000072KdJQAU",
+        "Exam__c": "a0A8A000004RtwkUAC",
+        "Account__c": "0018A00000haOSAQA2",
+        "Score__c": 0,
+        "Total_Correct__c": 0,
+        "Total_Answers__c": 20,
+        "Pass__c": false,
+        "Exam__r": {
+            "Titan__c": "a068A000006YkOsQAK",
+            "Name": "myexam",
+            "Id": "a0A8A000004RtwkUAC",
+            "Titan__r": {
+                "Name": "Test Titan",
+                "Id": "a068A000006YkOsQAK"
+            }
+        },
+        "Account__r": {
+            "Name": "Gladius Maximus",
+            "Id": "0018A00000haOSAQA2"
+        }
+    },
+    {
+        "Id": "a098A0000072KhkQAE",
+        "Exam__c": "a0A8A000004RtxxUAC",
+        "Account__c": "0018A00000haOSAQA2",
+        "Score__c": 0,
+        "Total_Correct__c": 0,
+        "Total_Answers__c": 20,
+        "Pass__c": false,
+        "Exam__r": {
+            "Name": "exam2",
+            "Id": "a0A8A000004RtxxUAC"
+        },
+        "Account__r": {
+            "Name": "Gladius Maximus",
+            "Id": "0018A00000haOSAQA2"
+        }
+    }
+]

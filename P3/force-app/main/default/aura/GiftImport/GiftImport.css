@@ -1,0 +1,71 @@
+/*
+/////////////////////////////////////////////////////
+//
+//  Name: GIFT Import Stylesheet
+//  Author: David J. Sellinger
+//  Description: CSS stylesheet for the GIFT import
+//               component.
+//
+///////////////////////////////////////////////////
+*/
+
+.THIS {
+    background-color: #FAFAF9;
+}
+.THIS h1 {
+    font-weight: bold;
+    font-size: 20px;
+}
+.THIS h2 {
+    font-weight: bold;
+    text-align:center;
+    font-size: 16px;
+}
+
+.THIS .errorText {
+    color: red;
+    font-style: italic;
+    font-weight: bold;
+}
+.THIS .messages {
+    padding:4px;
+    color: #494;
+}
+.THIS .td__upload {
+    width: 74%;
+    text-align: center;
+}
+.THIS .td__buttons {
+    width: 0;
+    padding: 2px;
+}
+.THIS .title {
+    padding:4px;
+}
+.THIS .title__table {
+    margin-bottom: 28px;
+}
+
+.THIS #import {
+    border-collapse: separate;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    width: 95%;
+    margin: auto;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+.THIS #import th {
+    text-align: center;
+    background-color: #eee;
+    border-left: 1px solid #555;
+    border-top:none
+}
+.THIS #import td {
+    border-left: 1px dashed #555;
+    border-top: 1px solid #555;
+    padding: 4px;
+}
+.THIS #import td:first-child, .THIS #import th:first-child {
+    border-left: none;
+}

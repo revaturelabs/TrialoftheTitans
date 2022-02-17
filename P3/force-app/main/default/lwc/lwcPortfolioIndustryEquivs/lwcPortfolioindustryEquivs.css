@@ -1,0 +1,6 @@
+.Card{
+--sds-c-card-color-background: #72a4c2;
+--sds-c-card-color-border: #72a4c2;
+--sds-c-card-footer-color-border: #72a4c2;
+}
+/* CSS is not applying to the card as intended*/

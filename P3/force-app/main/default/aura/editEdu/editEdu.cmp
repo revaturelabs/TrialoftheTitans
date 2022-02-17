@@ -1,0 +1,11 @@
+<!--Allows for the PortfolioEduCert education section to be edited-->
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="recordId" type="Id"></aura:attribute>
+    <aura:attribute name="fields" type="String[]" default="['Name', 'Degree__c', 'Major__c', 'Gpa__c', 'DateGraduate__c', 'Image_URL__c']" />
+    <lightning:card>
+    <lightning:recordForm columns="1"  recordId="{!v.recordId}"  
+                          objectApiName="Education__c"
+                          mode="edit"
+                          fields="{!v.fields}" />
+</lightning:card>
+</aura:component>

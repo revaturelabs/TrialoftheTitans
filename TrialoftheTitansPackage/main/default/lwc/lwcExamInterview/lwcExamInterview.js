@@ -45,9 +45,12 @@ export default class LwcExamInterview extends LightningElement {
   examQuestions;
 
   //holds the list of exam questions' states (indexed in the same order as above)
-  examQuestionsState;
+  @api
+  examQuestionsState = [];
 
-  //holds the order of the questions for random distribution
+  // Have to include even though it's not used because of an old bug that never got fixed
+  // https://ideas.salesforce.com/s/idea/a0B8W00000GdknvUAB/delete-non-packaged-api-variables-from-managed-lwc-components
+  @api
   examQuestionOrder;
 
   //holds the list of exam answers
@@ -107,7 +110,7 @@ export default class LwcExamInterview extends LightningElement {
 
   //so that they have the same number when submitting answers
   createBlankExamAnswersList() {
-    for (let i = 0; i < Object.keys(this.examQuestions).length; i++) {
+    for (let i = 0; i < this.numberOfQuestions; i++) {
       this.examAnswers[`${i + 1}`] = "";
     }
   }
@@ -119,15 +122,11 @@ export default class LwcExamInterview extends LightningElement {
     if (data) {
       console.log("Logging data");
       console.log(data);
-      this.examQuestions = data;
       this.numberOfQuestions = Object.keys(data).length;
+      this.examQuestions = this.shuffleQuestions(data);
       this.error = undefined;
       this.createBlankExamAnswersList();
-      this.permutateQuestions();
       this.initializeQuestionsState();
-      console.log(this.examQuestionsState);
-      console.log('Permutation list');
-      console.log(this.examQuestionOrder);
       //this.questionI=data[0];
       this.updateQuestionComponent();
     } else if (error) {
@@ -151,62 +150,82 @@ export default class LwcExamInterview extends LightningElement {
   //updating the child component when go to next or previous question
   updateQuestionComponent() {
     const questionComponent = this.template.querySelector("c-lwc-question");
+    const stateComponent = this.template.querySelector("c-exam-overview");
+    stateComponent.questionstates = this.examQuestionsState;
     if (questionComponent && this.questionNumber < this.numberOfQuestions + 1) {
-      // Non randomizaed version
-      //this.currentQuestion = this.examQuestions[this.questionNumber - 1];
-      this.currentQuestion = this.examQuestions[this.examQuestionOrder[this.questionNumber - 1]];
+      this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       questionComponent.question = this.currentQuestion;
-      //console.log('test')
+      console.log('All questions');
+      console.log(this.examQuestions);
+      console.log('Printing current question');
+      console.log(this.currentQuestion);
       console.log('Printing answer');
       console.log(this.examAnswers[`${this.questionNumber}`]);
-      questionComponent.handleSetAnswer(this.examAnswers[`${this.questionNumber}`]);
-      
+      console.log('Printing question state');
       console.log(this.examQuestionsState);
+      questionComponent.handleSetAnswer(this.examAnswers[`${this.questionNumber}`]);
     }
   }
 
   initializeQuestionsState() {
-    this.examQuestionsState = Array(this.numberOfQuestions).fill('Unanswered');
-  }
-
-  updateCurrentQuestionState(state) {
-    this.examQuestionsState[this.questionNumber - 1] = state;
-  }
-
-  permutateQuestions() {
-    // Believe it or not, this is simplest way to make a linear array in JS
-    this.examQuestionOrder = this.shuffle(Array.from({length: this.numberOfQuestions}, (_, i) => i));
-  }
-
-  shuffle(array) {
-    // Fisher-Yates
-    var m = array.length, t, i;
-    // While there remain elements to shuffle
-    while (m) {
-      // Pick a remaining element
-      i = Math.floor(Math.random() * m--);
-      // And swap it with the current element
-      t = array[m];
-      array[m] = array[i];
-      array[i] = t;
+    let examQuestionPossibleState;
+    for(let k = 1; k <= this.numberOfQuestions; k++) {
+      examQuestionPossibleState = {questionNumber: k, answered: false, markedForReview: false, flagged: false};
+      this.examQuestionsState.push(examQuestionPossibleState);
     }
-    return array;
   }
 
-  setCurrentQuestionState() {
-    // if(current question is marked for review) {
-    //    this.updateCurrentQuestionState('Marked for Review');
-    //} else if(current question is flagged) {
-    //    this.updateCurrentQuestionState('Flagged');
-    // }
-    // else
+  shuffleQuestions(questionData) {
+    let shuffled = Array(this.numberOfQuestions);
+    let order = this.shuffleQuestionOrder(this.numberOfQuestions);
+    console.log('Random question order');
+    console.log(order);
+    for(let k = 0; k < this.numberOfQuestions-1; k++) {
+      shuffled[k] = questionData[order[k]];
+    }
+    return shuffled;
+  }
+
+  // Implementation of a bag randomizer
+  // Since we can't sort/shuffle in-place on an actually used array, this instead returns the question order
+  // in the style of a bag randomizer, which shuffleQuestions uses to shuffle instead
+  shuffleQuestionOrder(totalNumberOfQuestions) {
+    // Fisher-Yates algorithm
+      let questionOrder = Array.from({length: totalNumberOfQuestions}, (_, j) => j);
+      let m = totalNumberOfQuestions, t, i;
+      while (m) {
+        i = Math.floor(Math.random() * m--);
+        t = questionOrder[m];
+        questionOrder[m] = questionOrder[i];
+        questionOrder[i] = t;
+      }
+      return questionOrder;
+  }
+
+  setCurrentQuestionAnsweredState() {
+    console.log('Current question state');
+    console.log(this.questionNumber);
+    console.log(this.examAnswers[`${this.questionNumber}`]);
     if(this.examAnswers[`${this.questionNumber}`]) {
-      this.updateCurrentQuestionState('Answered');
+      this.examQuestionsState[this.questionNumber - 1].answered = true;
     } else {
-      this.updateCurrentQuestionState('Unanswered');
+      this.examQuestionsState[this.questionNumber - 1].answered = false;
     }
     // Needs logic to handle only partial answers too
   }
+
+  /*
+    flagCurrentQuestion() {
+      // called when receiving an event from the flag question button
+      this.updateCurrentQuestionState(flagged, true);
+      
+    }
+
+    markForReviewCurrentQuestion() {
+      // called when receiving an event from the mark for review button
+      this.updateCurrentQuestionState(markedForReview, true);
+    }
+  */
 
 
   //this might be useful for setting the details of the modal popup component for confirmation when submitting the exam.  for future.  now they are in the modal component in the html, this could be developed further
@@ -246,20 +265,21 @@ export default class LwcExamInterview extends LightningElement {
     this.prevButtonDisabled = this.questionNumber < 2;
     this.nextButtonDisabled = this.questionNumber + 1 > this.numberOfQuestions;
   }
+
   prevClicked() {
     this.setExamAnswerToAnswerProvided();
-    this.setCurrentQuestionState();
-    if (this.questionNumber > 1) {
+    this.setCurrentQuestionAnsweredState();
+    if (this.questionNumber < this.numberOfQuestions) {
       this.questionNumber--;
     }
     this.setCurrentAnswerToPreviouslyAnswered();
     this.updateQuestionComponent();
     this.setPrevNextDisabled();
-
   }
+
   nextClicked() {
     this.setExamAnswerToAnswerProvided();
-    this.setCurrentQuestionState();
+    this.setCurrentQuestionAnsweredState();
     if (this.questionNumber < this.numberOfQuestions) {
       this.questionNumber++;
     }
@@ -267,6 +287,16 @@ export default class LwcExamInterview extends LightningElement {
     this.updateQuestionComponent();
     this.setPrevNextDisabled();
   }
+
+  gotoQuestion(event) {
+    this.setExamAnswerToAnswerProvided();
+    this.setCurrentQuestionAnsweredState();
+    this.questionNumber = parseInt(event.detail, 10);
+    this.setCurrentAnswerToPreviouslyAnswered();
+    this.updateQuestionComponent();
+    this.setPrevNextDisabled();
+  }
+
 
   //submit exam to apex controller
   handleSubmit() {

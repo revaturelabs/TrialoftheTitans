@@ -1,0 +1,31 @@
+<!--Name: Oracle Single Video
+    Author: Alyssa Reed
+    Description: This component holds the individual videos that are passed 
+			into and rendered in the publicVideos component. It also contains 
+			an additional aura:if that renders a feedback form under each video 
+			when a button is clicked. -->
+
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="video" type="Mock_Interview_Self__c"/>
+    <aura:attribute name="feedbackForm" type="boolean" default="false" />
+    <aura:attribute name="fields" type="String[]" default="['Mock_Interview_Self__c', 'Name','Confidence__c','Fluency__c', 'Body_Language__c', 'Eye_Contact__c', 'Type__c', 'Comments__c']" />
+    
+    <div class="slds-col slds-size_2-of-6">
+     <div class="slds-box boxStyle slds-m-around_xx-small">
+        
+         <p><span>Mock Interview: </span> {!v.video.Name}</p>
+         <p><span>Hero: </span> {!v.video.AccountName__c}</p>
+         <p><span>Cohort: </span> {!v.video.Cohort__c}</p>
+         <br/>
+         <span class="vidContainer"><c:MockInterviewVideoDisplay recordId="{!v.video.Id}"/></span>
+         		<br/>
+                <br/>
+            <lightning:button label="Leave Feedback" onclick="{!c.FeedbackFormClick}" class="buttons" iconName="utility:edit" iconPosition="left" />
+            <aura:if isTrue="{!v.feedbackForm}">
+                <lightning:button iconName="utility:close" class="formExitButton buttons" onclick="{!c.CloseForm}"/>
+                <lightning:recordForm objectApiName="Feedback__c" mode="edit" fields="{!v.fields}" columns="2" class="formStyle"/>
+              	
+            </aura:if>
+    </div>  
+       </div>
+</aura:component>

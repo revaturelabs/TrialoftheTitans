@@ -1,0 +1,2 @@
+<!-- This event seems to be used to navigate from one component to the next. -->
+<aura:event type="APPLICATION" description="Event template" />

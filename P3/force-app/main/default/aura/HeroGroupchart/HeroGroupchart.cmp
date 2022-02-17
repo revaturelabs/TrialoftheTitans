@@ -1,0 +1,9 @@
+<aura:component controller="D3GrpChartController" implements="flexipage:availableForAllPageTypes" access="global">
+    <ltng:require scripts="{!$Resource.d3 +'/d3.js'}" 
+                           afterScriptsLoaded="{!c.initD3Charts}"/>
+    <lightning:card>
+    <h1 class="slds-text-align_center slds-text-heading_small">Cohort Averages</h1>
+    <br/>
+    <div class="slds-align_absolute-center" id="svg2"></div>
+    </lightning:card>
+</aura:component>

@@ -63,6 +63,11 @@
     </template>
   </div>
 
+  <c-exam-overview
+    questionstates={examQuestionsState}
+    onquestionchange={gotoQuestion}>
+  </c-exam-overview>
+
   <c-lwc-slds-modal
     class="button"
     show-button-text="Submit Exam"
