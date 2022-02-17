@@ -1,19 +1,8 @@
-/*
- * @description       : Creates questions and allows users to submit to the server
- * @author            : Nathan Nassib
- * @group             :
- * @last modified on  : 02-16-2022
- * @last modified by  : Trevor Kleinstuber
- * Modifications Log
- * Ver   Date         Author         Modification
- * 1.0   02-16-2022   Nathan Nassib  Created
- **/
-
 import { LightningElement, api } from 'lwc';
 
 export default class QuestionTrackerTestTwo extends LightningElement {
 
-    @api questionstates = [];
+    @api examQuestionsState;
 
     list = [
         {
