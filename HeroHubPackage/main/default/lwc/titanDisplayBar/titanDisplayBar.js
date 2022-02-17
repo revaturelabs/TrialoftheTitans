@@ -95,7 +95,9 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
                 name: "Titan_Hub__c"//API name of the page to navigate to
             },
              state: {
-                c__titanId: slicedId
+                c__titanId: slicedId,
+                c__accountId: this.currentUser.Id //Added account id
+
              }
         });
     }
@@ -130,4 +132,3 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
         
     }
 }
-
