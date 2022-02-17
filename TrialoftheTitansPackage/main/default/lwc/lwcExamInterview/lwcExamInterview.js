@@ -267,31 +267,25 @@ export default class LwcExamInterview extends LightningElement {
   }
 
   prevClicked() {
-    this.setExamAnswerToAnswerProvided();
-    this.setCurrentQuestionAnsweredState();
-    if (this.questionNumber < this.numberOfQuestions) {
-      this.questionNumber--;
+    if (this.questionNumber > 1) {
+      this.gotoQuestionNumber(this.questionNumber - 1);
     }
-    this.setCurrentAnswerToPreviouslyAnswered();
-    this.updateQuestionComponent();
-    this.setPrevNextDisabled();
   }
 
   nextClicked() {
-    this.setExamAnswerToAnswerProvided();
-    this.setCurrentQuestionAnsweredState();
     if (this.questionNumber < this.numberOfQuestions) {
-      this.questionNumber++;
+      this.gotoQuestionNumber(this.questionNumber + 1);
     }
-    this.setCurrentAnswerToPreviouslyAnswered();
-    this.updateQuestionComponent();
-    this.setPrevNextDisabled();
   }
 
   gotoQuestion(event) {
+    this.gotoQuestionNumber(parseInt(event.detail, 10));
+  }
+
+  gotoQuestionNumber(qNumber) {
     this.setExamAnswerToAnswerProvided();
     this.setCurrentQuestionAnsweredState();
-    this.questionNumber = parseInt(event.detail, 10);
+    this.questionNumber = qNumber;
     this.setCurrentAnswerToPreviouslyAnswered();
     this.updateQuestionComponent();
     this.setPrevNextDisabled();
