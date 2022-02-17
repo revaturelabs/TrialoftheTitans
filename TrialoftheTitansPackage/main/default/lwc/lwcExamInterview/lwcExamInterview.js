@@ -206,6 +206,7 @@ export default class LwcExamInterview extends LightningElement {
     console.log('Current question state');
     console.log(this.questionNumber);
     console.log(this.examAnswers[`${this.questionNumber}`]);
+    // The actual state tracker component handles hybrid states (answered and marked for review) and displaying them correctly
     if(this.examAnswers[`${this.questionNumber}`]) {
       this.examQuestionsState[this.questionNumber - 1].answered = true;
     } else {
@@ -219,13 +220,13 @@ export default class LwcExamInterview extends LightningElement {
       // called when receiving an event from the flag question button
       this.updateCurrentQuestionState(flagged, true);
       
-    }
+    }*/
 
-    markForReviewCurrentQuestion() {
+  markForReviewCurrentQuestion() {
       // called when receiving an event from the mark for review button
-      this.updateCurrentQuestionState(markedForReview, true);
+      this.examQuestionsState[this.questionNumber - 1].markedForReview = true;
     }
-  */
+  
 
 
   //this might be useful for setting the details of the modal popup component for confirmation when submitting the exam.  for future.  now they are in the modal component in the html, this could be developed further

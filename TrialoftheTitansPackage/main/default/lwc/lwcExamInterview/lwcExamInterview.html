@@ -13,6 +13,10 @@
 <template>
   <div class="slds-p-around_x-small exam_layout">
     <lightning-card title={questionNumberTitleText}>
+    <c-lwc-flag-for-review
+      class="slds-float_right slds-p-around_x-small"
+      onmarkreview={markForReviewCurrentQuestion}
+      ></c-lwc-flag-for-review>
       <c-lwc-question
         class="question_overview"
         onanswerupdated={answerUpdated}
