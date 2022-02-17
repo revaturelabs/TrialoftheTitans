@@ -14,15 +14,11 @@ import getCurrentUser from "@salesforce/apex/titanDisplayController.getCurrentUs
 import getNumberOfTitanExams from "@salesforce/apex/titanDisplayController.getNumberOfTitanExams";
 import getUserExams from "@salesforce/apex/titanDisplayController.getUserExams";
 
-import getUserNextExam from "@salesforce/apex/titanDisplayController.getUserNextExam";
-import { NavigationMixin } from 'lightning/navigation';
-
 //d3 imports
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { loadScript } from "lightning/platformResourceLoader";
 import D3 from "@salesforce/resourceUrl/DJS3";
-import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
-export default class TitanDisplayBar extends NavigationMixin(LightningElement)  {
+export default class TitanDisplayBar extends LightningElement {
     @track disableOverview = false;
     @track disableAdvance = false;
     @api titanId;
@@ -71,51 +67,7 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
     connectedCallback() {
         
     }
+    handleOverview() {}
 
-    //Navigate to the Titan Hub Page
-    //Recieve Titan ID
-    handleOverview() {
-        let slicedId = this.id.slice(0, 18);
-        console.log(slicedId);
-        this[NavigationMixin.Navigate]({
-            type: "comm__namedPage",
-            attributes: {
-                name: "Titan_Hub__c"//API name of the page to navigate to
-            },
-             state: {
-                c__titanId: slicedId,
-                c__accountId: this.currentUser.Id
-             }
-        });
-    }
-
-    //Navigate to the Exam Interview Page
-    //Recieve ExamId and AccountId
-    //Rely ids to Exam Interview
-    handleAdvance() {
-
-        let slicedId = this.id.slice(0, 18);
-        
-        getUserNextExam({titanId : slicedId, userId : this.currentUser.Id})
-            .then((result) => {
-
-                this[NavigationMixin.Navigate]({
-                    type: "comm__namedPage",
-                    attributes: {
-                        name: "Hero_Results__c"//API name of the page to navigate to
-                    },
-                     state: {
-                         c__examId: result,
-                         c__accountId: this.currentUser.Id
-                     },
-                });
-                
-            })
-            .catch((error) => {
-                this.error = error;
-                console.log(error);
-            });
-
-        
-    }
+    handleAdvance() {}
 }

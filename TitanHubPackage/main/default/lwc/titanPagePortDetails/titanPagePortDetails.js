@@ -17,13 +17,12 @@ import { LightningElement,wire,api,track } from 'lwc';
 
 export default class TitanPagePortDetails extends LightningElement {
 @api recordId;                                                                  //One way you could tell the component what titan it is currently working with.  We never ironed out how to do this.   
-@api titanId = 'a0X8c00000Q3t7YEAR';                                             //Hard coded at the moment. Undo the hard code, its supposed to be for telling the component what the titan is.           
-@wire(getSkillsInfo, {titanId: '$titanId'}) skillInfo;                         //Wire functions for pulling org data. Takes in the titan as a parameter.
+@api titanId;                                                                   //Hard coded at the moment. Undo the hard code, its supposed to be for telling the component what the titan is.           
+@wire(getSkillsInfo, {titanId: '$titanId'}) skillInfo;                          //Wire functions for pulling org data. Takes in the titan as a parameter.
 @wire(getEquiv, {titanId: '$titanId'}) equivInfo;
 @wire(getExamInfo, {titanId: '$titanId'}) examInfo;
 @wire(getProjectInfo) projectInfo;
 numberForApex;
-//@wire(obtainExperience, {i: '$numberForApex'})  expToApex;             //Ignore this too
 skillName;                                                              //variables I instatiated before refering to them in functions
 equivId;
 skillType;                             
@@ -35,36 +34,6 @@ projectCalc=0;                              //These two varriables are instatied
 examCalc=0;
 objectApiName=equivObject
 equiv=equivField
-/*get options() {                             //From when I tried to use an Apex class to submit equivalence. Ignore and delete.
-    return [
-        { label: '3', value: '3' },
-        { label: '4', value: '4' },
-        { label: '5', value: '5' },
-        { label: '6', value: '6' },
-        { label: '7', value: '7' },
-        { label: '8', value: '8' },
-        { label: '9', value: '9' },
-        { label: '10', value: '10' },
-        { label: '11', value: '11' },
-        { label: '12', value: '12' },
-        { label: '13', value: '13' },
-        { label: '14', value: '14' },
-        { label: '15', value: '15' },
-        { label: '16', value: '16' },
-        { label: '17', value: '17' },
-        { label: '18', value: '18' },
-        { label: '19', value: '19' },
-        { label: '20', value: '20' },
-        { label: '21', value: '21' },
-        { label: '22', value: '22' },
-        { label: '23', value: '23' },
-        { label: '24', value: '24' },
-    ];
-}*/
-/*handleChange(event) {
-    this.value = event.detail.value;
-    this.numberForApex=parseInt(event.detail.value)
-}*/
 
 renderedCallback(){                                                             //For displaying the data when the component loads in
     if(this.skillInfo.data && this.equivInfo.data && this.projectInfo.data){           //to prevent JS errors from using renderedCallback
