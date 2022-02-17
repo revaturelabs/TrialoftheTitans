@@ -56,13 +56,19 @@ public without sharing class titanDisplayController {
         return exams;
     }
 
+    @AuraEnabled
+    public static Integer getNumberOfExamResultsOfUser(String titanId, String userId){
+        Integer examResults = [SELECT COUNT() FROM Exam_Result__c WHERE Exam__r.Titan__c =: titanId AND Account__c = :userId];
+        return examResults;
+    }
+
     @AuraEnabled(cacheable=true)
     public static List<Exam_Result__c> orderExamResults(List<Exam_Result__c> results) {
-        
+
         if(results.size() == 0) {
             return new List<Exam_Result__c>();
         }
-        
+
         // Contains list of semi ordered lists
         List<List<Exam_Result__c>> auxList = new List<List<Exam_Result__c>>();
 
@@ -75,11 +81,8 @@ public without sharing class titanDisplayController {
                 List<Exam_Result__c> orderedResults = new List<Exam_Result__c>();
                 orderedResults.add(results[0]);
                 auxList.add(orderedResults);
-                System.debug(auxList);
                 break;
             }
-
-            System.debug(auxList);
             
             Boolean found = false;
             // Loops through results. If we find a exam results object which Next_Exam__c matches Exam__c we create a sub-list with those
@@ -117,7 +120,7 @@ public without sharing class titanDisplayController {
 
         // Loops through until we get a single list with the ordered exam_results
         while(auxList.size() > 1) {
-
+            
             // Loops through the list of semi ordered lists. When the Next_Exam__c of the last item of 1 list matches the Exam__c of another
             // list, we combine those 2 list and delete 1 of those lists. We keep looping until we delete all sub-lists and we end up with
             // the ordered lits.
@@ -233,7 +236,6 @@ public without sharing class titanDisplayController {
 
         return auxList[0];
     }
-
 
     @AuraEnabled(cacheable=true)
     public static Id getUserNextExam(String titanId, String userId){
