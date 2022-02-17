@@ -1,0 +1,42 @@
+.THIS {
+       color: white;
+    --background-color:#302f30;      
+}
+.THIS#div{
+        background-color: var(--background-color);
+}
+.THIS.slds-card__boundary{
+    background-color: var(--background-color);
+    
+}
+.THIS.slds-media_center{
+    background-color: var(--background-color);
+    
+}
+.THIS.slds-card-wrapper{
+    background-color: var(--background-color);
+    
+}
+.THIS.slds-card__footer{
+    background-color: var(--background-color);
+    
+}
+.THIS .slds-grid{
+        background-color: var(--background-color);
+}
+.THIS .slds-col{
+        background-color: var(--background-color);
+}
+.THIS .slds-gutters{
+        background-color: var(--background-color);
+}
+.THIS .slds-card__header{
+        background-color: var(--background-color);
+    	font-size: large;
+}
+.THIS .slds-card__body{
+        background-color: var(--background-color);
+}
+.THIS .slds-card__footer{
+        background-color: var(--background-color);
+}

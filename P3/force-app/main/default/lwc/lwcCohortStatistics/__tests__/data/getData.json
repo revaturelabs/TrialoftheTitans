@@ -1,0 +1,22 @@
+[
+    {
+        "Id": "a00J000000PE7ECIA1",
+        "Curriculum__r.Name": "Salesforce",
+        "Name": "Test 1"
+    },
+    {
+        "Id": "a00J000000PE7ED1A1",
+        "Curriculum__r.Name": "Salesforce",
+        "Name": "Test 2"
+    },
+    {
+        "Id": "a00J000000PE7AdIA1",
+        "Curriculum__r.Name": "Salesforce",
+        "Name": "Test 3"
+    },
+    {
+        "Id": "a00J000000PE7c4IA1",
+        "Curriculum__r.Name": "Salesforce",
+        "Name": "Test 4"
+    }
+]

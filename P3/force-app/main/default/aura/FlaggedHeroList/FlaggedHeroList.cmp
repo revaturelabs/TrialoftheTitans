@@ -1,0 +1,27 @@
+<!--
+////////////////////////////////////////////////////
+//
+// Name: Assessment Hero List
+// Author: Josue Cisneros
+// Description: Component to diplay QC Flag Data.
+// - ATTRIBUTES
+// - data: Holds the object for the data to be displayed.
+// - columns: Holds the Name,Field Name, and Type of the columns.
+// - HANDLERS
+// - init: Handles initialization of data table.
+//
+////////////////////////////////////////////////////
+-->
+
+<aura:component controller="FlaggedHeroController" implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="data" type="Object[]" />
+    <aura:attribute name="columns" type="List" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.fetchData}" />
+
+    <lightning:datatable
+        data = "{!v.data}"
+        columns = "{!v.columns}"
+        keyField = "id"
+        hideCheckboxColumn="true" />
+</aura:component>

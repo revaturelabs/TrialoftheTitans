@@ -7,6 +7,7 @@
  * Modifications Log
  * Ver   Date         Author         Modification
  * 1.0   10-01-2021   Daniel Boice   Initial Version
+ * 1.001 02-14-2022   Trevor Kleinstuber -minor stylechange
  **/
 
 /*

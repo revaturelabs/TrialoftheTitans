@@ -1,0 +1,20 @@
+<!--
+    Author: Emanuel Botello Urbina
+    Description: LWC component that creates QC questions within the QC Hub
+    Last Date Modified: 9-30-2021
+-->
+
+<template>
+    <lightning-card>
+        <div class="recordFormSection">
+                <div>
+                    <lightning-record-form object-api-name="QC_Question__c" 
+                                          layout-type=Full
+                                          columns="1"
+                                          mode=""
+                                          data-id="QCQuestionRecordForm"
+                                          onsuccess={handleSuccess}></lightning-record-form>
+                </div>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,148 @@
+ /*
+  Author: Iteration VI - Style & Data
+  Created date: 10/26/2021
+  Description: css file. a simplification of aura component css
+  Modified date: 
+  Modified by:
+
+*/
+
+@import 'c/examStyle';
+ 
+ /* .wrapper {
+    width: 90vw;
+    color: darkgrey;
+    min-height: 100vh;
+}
+
+.pass {
+    color: rgb(131, 253, 131);
+    pointer-events: none;
+    font-weight: 800;
+}
+
+.flex-wrapper {
+    display: flex;
+    gap: 1em;
+}
+
+.flex-wrapper .main-panel {
+    min-width: 50vw;
+}
+
+.flex-wrapper .titan-tabs {
+    min-width: 20vw;
+    /* border: 1px solid red; 
+}
+
+.flex-wrapper .right-panel {
+    min-width: 20vw;
+    /* border: 1px solid red; 
+}
+
+.exam-btn-group {
+    display: grid;
+    grid-template-rows: repeat(1fr);
+    /* width: 60%; 
+    gap: 0.5em;
+    margin: 0 auto;
+}
+
+.exam-btn {
+    padding: 5px;
+    border: 2px solid white;
+    background: white;
+    /* width: 100px; 
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+    text-align: center;
+    transition: 0.3s;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    /* align-content: center; 
+}
+
+.exam-btn:hover {
+    color: white;
+    background-color: lightgreen;
+    border: 2px solid lightgreen;
+    box-shadow: 3px 3px 2px black;
+}
+
+.titan-tab-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 19vw;
+    gap: 0.3em;
+}
+
+.titan-tab {
+    padding: 5px;
+    color: black;
+    background: white;
+    border-left: 3px solid white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.titan-tab:hover {
+    border-left: 3px solid red;
+    box-shadow: 3px 3px 2px black;
+}
+
+.right-panel-btn-group {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    min-width: 19vw;
+    gap: 0.3em;
+}
+
+.pbp-btn {
+    padding: 5px;
+    width: 100%;
+    color: black;
+    background: white;
+    border-right: 3px solid white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pbp-btn:hover {
+    border-right: 3px solid red;
+    box-shadow: 3px 3px 2px black;
+}
+.back-btn {
+    padding: 5px;
+    width: 100%;
+    color: black;
+    background: white;
+    border-right: 3px solid white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    border-right: 3px solid red;
+    box-shadow: 3px 3px 2px black;
+}
+
+.back-exams-btn {
+    padding: 5px;
+    width: 100%;
+    color: black;
+    background: white;
+    cursor: pointer;
+    transition: 0.3s;
+    border-left: 3px solid white;
+}
+.back-exams-btn:hover {
+    border-left: 3px solid red;
+    box-shadow: 3px 3px 2px black;
+}
+
+.disabled {
+    opacity: 0.5;
+} */

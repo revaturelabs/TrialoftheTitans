@@ -1,0 +1,71 @@
+/*
+
+  Name: PageContainer
+  Author: Josh Miccolo
+  Description: Container for the Hero Hub Page
+  Will call to database for all userContextInfo. 
+
+*/
+
+/* Define header/Slayer Fonts */
+@font-face {
+    font-family: "AlfaSlab";
+    src: url(/resource/AlfaSlab);
+}
+@font-face {
+    font-family: "BeyondWonderland";
+    src: url(/resource/BeyondWonderland);
+}
+@font-face {
+    font-family: "Cinzel";
+    src: url(/resource/Cinzel);
+}
+@font-face {
+    font-family: "PressStart";
+    src: url(/resource/PressStart);
+}
+@font-face {
+    font-family: "Slaytanic";
+    src: url(/resource/Slaytanic);
+}
+
+.THIS :root {
+    background-color: #474c55;
+}
+/* root variables accessible from any part of application */
+.THIS {
+    --text-color: #474c55;
+    --light-text: black;
+    --background-color: #474c55;
+    --vanquish-primary: #7aa7e9;
+    --vanquish-secondary: #5f70b0;
+    --amplifire-primary: #ef6363;
+    --amplifire-secondary: #c24747;
+    --alchemy-primary: #84b059;
+    --alchemy-secondary: #539951;
+    --synergy-primary: #ffdd00;
+    --synergy-secondary: #fbb034;
+    --padding: .5em;
+
+    background-color: var(--background-color);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+.THIS.header {
+    width: 100%;
+}
+
+
+#main.THIS {
+
+	padding: 2.5% 5% 0% 2.5%;
+    background-color: var(--background-color);
+
+}
+
+/* Global animation for typing out header captions */
+@keyframes typeOut {
+    to{
+        width: 14ch;
+    }
+}
