@@ -9,6 +9,7 @@
   }
   .background {
     position: relative;
+    border-radius: 5px;
   }
   .teamPic {
     width: 15%;
@@ -33,4 +34,9 @@
     top: 80%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
+  }
+  .margin{
+    margin: 20px 20px 0px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   }

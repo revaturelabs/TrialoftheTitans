@@ -1,8 +1,8 @@
 <template>
-    <div class="slds-grid slds-grid_vertical container">
+    <div class="slds-grid slds-grid_vertical container titans">
         <template for:each={titanList} for:item="titan">
             <div key={titan.Id} class="spacing slds-col slds-m-bottom_medium">
-                <div class="slds-grid">
+                <div class="slds-grid ">
                     <template for:each={titan.tabs} for:item="tab">
                         <div class="slds-m-left_large spacing" key={tab.id}></div>
                     </template>

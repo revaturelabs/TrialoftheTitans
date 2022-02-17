@@ -10,7 +10,7 @@ export default class Header extends LightningElement {
     team1Color;
     team2Color;
     teamSlogan;
-    colorForBack="background-color: gray;";
+    colorForBack="background-color: #fbe3e3;";
     colorForBack2;
     colorForTri;
     colorForTri2;

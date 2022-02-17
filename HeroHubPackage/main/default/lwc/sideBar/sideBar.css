@@ -1,3 +1,19 @@
 .sidebar-container {
     max-height: inherit;
 }
+.background{
+    margin: 5px 3px 5px 3px;
+    border-radius: 5px;
+    background-color: #fbe3e3;
+}
+
+.sidebar-container{
+    background-color: #c4c4c4;
+    Padding-left: 7px;
+    Padding-right: 7px;
+    border-radius: 5px;
+}
+
+:host {
+    --sds-c-card-color-background:  #fbe3e3;
+}
