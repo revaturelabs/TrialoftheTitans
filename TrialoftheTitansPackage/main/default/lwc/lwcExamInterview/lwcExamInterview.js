@@ -108,14 +108,6 @@ export default class LwcExamInterview extends LightningElement {
   }
   */
 
-  //so that they have the same number when submitting answers
-  createBlankExamAnswersList() {
-    for (let i = 0; i < this.numberOfQuestions; i++) {
-      this.examAnswers[`${i + 1}`] = "";
-    }
-  }
-
-
   //retrieve the exam from the database and set variables
   @wire(examFinder, { examID: "$examId" })
   wiredExamQuestions({ error, data }) {
@@ -167,6 +159,14 @@ export default class LwcExamInterview extends LightningElement {
     }
   }
 
+  //so that they have the same number when submitting answers
+  createBlankExamAnswersList() {
+    for (let i = 0; i < this.numberOfQuestions; i++) {
+      this.examAnswers[`${i + 1}`] = "";
+    }
+  }
+  
+
   initializeQuestionsState() {
     let examQuestionPossibleState;
     for(let k = 1; k <= this.numberOfQuestions; k++) {
@@ -215,12 +215,11 @@ export default class LwcExamInterview extends LightningElement {
     // Needs logic to handle only partial answers too
   }
 
-  /*
     flagCurrentQuestion() {
       // called when receiving an event from the flag question button
-      this.updateCurrentQuestionState(flagged, true);
+      this.examQuestionsState[this.questionNumber - 1].flagged = true;
       
-    }*/
+    }
 
   markForReviewCurrentQuestion() {
       // called when receiving an event from the mark for review button
