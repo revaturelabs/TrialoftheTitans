@@ -2,7 +2,7 @@
  * @description       : Creates questions and allows users to submit to the server
  * @author            : Austin Ulberg, Daniel Boice, Zain Hamid, Conner Eilenfeldt
  * @group             :
- * @last modified on  : 02-17-2022
+ * @last modified on  : 02-18-2022
  * @last modified by  : Conner Eilenfeldt
  * Modifications Log
  * Ver   Date         Author                Modification
@@ -11,6 +11,7 @@
  * 1.2   02-14-2022   Zain Hamid            Question state tracking
  * 1.3   02-15-2022   Conner Eilenfeldt     Submission confirmation message
  * 1.4   02-17-2022   Conner Eilenfeldt     Exam details header
+ * 1.5   02-15-2022   Conner Eilenfeldt     Added exam timer
  **/
 import { LightningElement, api, wire, track } from "lwc";
 //import exam from '@salesforce/schema/Exam__c';
@@ -29,14 +30,14 @@ export default class LwcExamInterview extends LightningElement {
   // exam details
   examName;
   titan;
-  examTimer; // not implemented yet
+  examTimeLimit;
 
   //for displaying errors
   error;
 
   //hard coded an exam id and account id for testing, set by parent component
   @api
-  examId = "a0A8c00000eBc1YEAS";
+  examId = "a0A8c00000cIUb0EAG";
   @api
   accId = "0018c000028TV2qAAG";
 
@@ -124,7 +125,7 @@ export default class LwcExamInterview extends LightningElement {
       // data's exam details
       this.examName = data[1][0].Name;
       this.titan = data[1][0].Titans__r[0].Name;
-      this.examTimer = data[1][0].Default_Time_Limit__c;
+      this.examTimeLimit = data[1][0].Default_Time_Limit__c;
 
       this.error = undefined;
       //this.questionI=data[0];
@@ -137,7 +138,7 @@ export default class LwcExamInterview extends LightningElement {
       this.examQuestions = undefined;
       this.examName = undefined;
       this.titan = undefined;
-      this.examTimer = undefined;
+      this.examTimeLimit = undefined;
       console.log(error);
     }
   }

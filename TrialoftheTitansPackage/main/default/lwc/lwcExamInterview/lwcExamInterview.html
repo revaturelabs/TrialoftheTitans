@@ -2,7 +2,7 @@
   @description       : Creates questions and allows users to submit to the server
   @author            : Austin Ulberg, Daniel Boice, Zain Hamid, Conner Eilenfeldt
   @group             : 
-  @last modified on  : 02-17-2022
+  @last modified on  : 02-18-2022
   @last modified by  : Conner Eilenfeldt
   Modifications Log
   Ver   Date         Author                Modification
@@ -11,6 +11,7 @@
   1.2   02-14-2022   Zain Hamid            Question state tracking
   1.3   02-15-2022   Conner Eilenfeldt     Submission confirmation message
   1.4   02-17-2022   Conner Eilenfeldt     Exam details header
+  1.5   02-18-2022   Conner Eilenfeldt     Added exam timer
 -->
 <template>
   <div class="slds-p-around_x-small exam_layout">
@@ -25,7 +26,11 @@
           <span>{titan}</span>
         </div>
         <div class="slds-col">
-          <span>Time Remaining: {examTimer}</span>
+          <span>Time Remaining: </span>
+          <c-lwc-exam-timer
+            exam-time-limit={examTimeLimit}
+            ontimesup={handleConfirmSubmit}
+          ></c-lwc-exam-timer>
         </div>
       </div>
     </lightning-card>
