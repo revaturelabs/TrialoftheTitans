@@ -114,7 +114,7 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
                 this[NavigationMixin.Navigate]({
                     type: "comm__namedPage",
                     attributes: {
-                        name: "Exam_Interview__c"//API name of the page to navigate to
+                        name: "Exam_Interview__c"//API name of the page to navigate to the exam interview page
                     },
                      state: {
                          c__examId: result,
