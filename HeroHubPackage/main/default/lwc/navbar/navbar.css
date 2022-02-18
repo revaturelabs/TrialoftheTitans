@@ -1,5 +1,9 @@
-
 .list{
-
     text-align: center;
+}
+.slds-context-bar{
+    background-color: #c4c4c4;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 5px;
 }
