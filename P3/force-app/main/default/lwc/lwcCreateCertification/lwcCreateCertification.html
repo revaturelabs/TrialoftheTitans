@@ -1,0 +1,42 @@
+<!--
+    Author: Liam Hunt
+    Description: LWC component that creates a new Certification in the Hero hub
+    Date Created: 10/17/21
+    Modified Date: 10/25/2021
+    Modified By: Iteration VI - Styling & Data
+-->
+
+<template>
+  <div class="container slds-p-around_large">
+  <!-- Julia added "add New certification"  button to match functionaluty of editCert. Allows component to take up less space when it is not being used -->
+  <template if:false={create}>
+    <lightning-button
+      variant="Neutral"
+      label="Add New Certification"
+      title="addCert"
+      class="slds-m-right_x-small"
+      onclick={handleCreate}
+    ></lightning-button>
+  </template>
+
+  <template if:true={create}>
+    <lightning-card>
+      <div class="recordFormSection">
+        <div>
+          <!--using standard lightning record form to input a new record-->
+          <lightning-record-form
+            object-api-name="Certification__c"
+            layout-type="Full"
+            columns="1"
+            mode=""
+            data-id="CertificationForm"
+            onsuccess={handleSuccess}
+             oncancel={handleCreate}
+          >
+          </lightning-record-form>
+        </div>
+      </div>
+    </lightning-card>
+  </template>
+  </div>
+</template>

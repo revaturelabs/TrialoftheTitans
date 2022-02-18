@@ -1,0 +1,27 @@
+<!--
+Author: Tyler Curry-Wong
+    Description: Aura component to Short Answer Questions for Exam
+    updated: 9/13/2021 Markus Metli
+-->
+
+<aura:component 
+    implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
+    
+    <aura:attribute name="ShortQuestion" type="String" default="Question" />
+
+    <aura:method name="answer" action= "{!c.answer}" description="saves the response" access="PUBLIC"></aura:method>
+
+    <lightning:layout class="slds-page-header slds-page-header_object-home" horizontalAlign="spread" multipleRows="true">
+        <lightning:layoutitem size='6' flexibility="auto">          
+                <div class="slds-form-element slds-form-element_stacked">
+                    <h4 class="slds-text-heading_small">Short Question</h4>
+                </div>
+                <div class="slds-form-element slds-form-element_stacked">
+                    <p>
+                        {!v.ShortQuestion}
+                    </p>
+                    <lightning:textarea aura:id = "input" name="Answer"/>
+                </div>
+        </lightning:layoutitem>
+    </lightning:layout>
+</aura:component>

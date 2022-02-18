@@ -1,0 +1,101 @@
+<!--
+Author: Andrew Clark
+Date: 9-27-21
+Function: Displays a user's exam results for a given exam. 
+Required Parameters:
+String resultId
+Modified Date: 10/26/2021
+Modified By: Iteration VI Styling and Data
+-->
+<template>
+    <div class="conatiner slds-p-around_large">
+    <lightning-card title="Hero Test Results">
+        <div class="wrapper" >
+            <template if:true={hResults}>
+                <template for:each={hResults} for:item="hr">
+                    <div class="single-question" key={hr.id} >
+                        <div class="question-name" >
+                            <template if:true={hr.Correct__c}>
+                                <div key={hr.id} class="green" title={hr.Exam_Question__r.Name}>
+                                    Question:  {hr.Exam_Question__r.Name}
+                                </div>
+                            </template> 
+                            <template if:false={hr.Correct__c}>
+                                <div key={hr.id} class="red" title={hr.Exam_Question__r.Name}>
+                                    Question:  {hr.Exam_Question__r.Name}
+                                </div>
+                            </template>
+                        </div>
+                        
+                        <div class="question-text">
+                            <template if:true={hr.Correct__c}>
+                                <div class="green" title={hr.Exam_Question__r.Question_Text__c}>
+                                     {hr.Exam_Question__r.Question_Text__c} 
+                                </div>
+                            </template>
+                            <template if:false={hr.Correct__c}>
+                                <div class="red" title={hr.Exam_Question__r.Question_Text__c}>
+                                     {hr.Exam_Question__r.Question_Text__c} 
+                                </div>
+                            </template>
+                        </div>
+                        
+                        <div class="question-option">
+                            <template if:true={hr.Correct__c}>
+                                <div class="green" title={hr.Exam_Question__r.Options__c}>
+                                     {hr.Exam_Question__r.Options__c} 
+                                </div>
+                            </template>
+                            <template if:false={hr.Correct__c}>
+                                <div class="red" title={hr.Exam_Question__r.Options__c}>
+                                     {hr.Exam_Question__r.Options__c} 
+                                </div>
+                            </template>
+                        </div>
+                        
+                        <div class="answer-choice">
+                            <template if:true={hr.Correct__c}>
+                                <div class="green" title={hr.Answer_Choice__c}>
+                                    Your Answer:  {hr.Answer_Choice__c} 
+                                </div>
+                            </template>
+                            <template if:false={hr.Correct__c}>
+                                <div class="red" title={hr.Answer_Choice__c}>
+                                    Your Answer:  {hr.Answer_Choice__c} 
+                                </div>
+                            </template>
+                        </div>
+                        
+                        <div class="correct-answers">
+                            <template if:true={hr.Correct__c}>
+                                <div class="green" title={hr.Exam_Question__r.Correct_Answer_s__c}>
+                                    Correct Answer:  {hr.Exam_Question__r.Correct_Answer_s__c} 
+                                </div>
+                            </template>
+                            <template if:false={hr.Correct__c}>
+                                <div class="red" title={hr.Exam_Question__r.Correct_Answer_s__c}>
+                                    Correct Answer:  {hr.Exam_Question__r.Correct_Answer_s__c} 
+                                </div>
+                            </template>
+                            
+                        </div>
+                        <div>
+                            <template if:true={hr.Correct__c}>
+                                <div class="green" title={hr.Exam_Question__r.Answer_Explanation__c}>
+                                    Answer Explanation:  {hr.Exam_Question__r.Answer_Explanation__c} 
+                                </div>
+                            </template>
+                            <template if:false={hr.Correct__c}>
+                                <div class="red" title={hr.Exam_Question__r.Answer_Explanation__c}>
+                                    Answer Explanation:  {hr.Exam_Question__r.Answer_Explanation__c} 
+                                </div>
+                            </template>
+                        </div>
+                    
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+    </div>
+</template>

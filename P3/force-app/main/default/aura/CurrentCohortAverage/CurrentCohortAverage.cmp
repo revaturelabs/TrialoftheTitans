@@ -1,0 +1,21 @@
+<!-- 
+
+  Name: CurrentCohortAverage
+  Author: Kameron Fincher
+  Description: Container for the Current Cohort Controller 	
+  used on the TrainerHub  
+
+-->
+<aura:component controller="CurrentCohortController" implements="flexipage:availableForAllPageTypes" access="global">
+	<!-- Chart -->
+     
+    <ltng:require
+                  scripts="{!$Resource.d3 + '/d3.js'}"
+                  afterScriptsLoaded ="{!c.Init}"
+                  />
+<lightning:card>
+    <div class="slds-text-align_center slds-text-heading_small">Current Cohort Average</div>
+    <div class="slds-align_absolute-center" id="svg"></div>
+    </lightning:card>
+    <!-- Chart -->
+</aura:component>

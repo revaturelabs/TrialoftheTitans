@@ -1,0 +1,84 @@
+<aura:component controller="HeroAnswerResults">
+    <aura:attribute name="hResults" type="list" />
+    <aura:attribute name="examResultId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+
+    <div class="slds-float_right">
+        <!-- <lightning:layoutItem>
+        <lightning:button variant="brand-outline" label="Pool by Pool"/>
+    </lightning:layoutItem>    
+   	<lightning:layoutItem>
+    	<lightning:button variant="brand-outline" label="Back to Exam History"/>
+    </lightning:layoutItem> -->
+
+    </div>
+
+
+    <div class="wrapper">
+        <!-- {!v.examResultId} -->
+        <!-- <lightning:button variant="brand-outline" label="Click" onclick="{!c.testClick}" /> -->
+        <aura:iteration items="{!v.hResults}" var="HR">
+            <div class="single-question">
+                <div class="question-name">
+                    <aura:if isTrue="{!equals(HR.Correct__c,true)}">
+                        <div class=" green" title="{!HR.Exam_Question__r.Name}">{!HR.Exam_Question__r.Name} </div>
+                    </aura:if>
+                    <aura:if isTrue="{!equals(HR.Correct__c,false)}">
+                        <div class=" red" title="{!HR.Exam_Question__r.Name}">{!HR.Exam_Question__r.Name} </div>
+                    </aura:if>
+                </div>
+
+                <div class="question-text">
+                    <aura:if isTrue="{!equals(HR.Correct__c,true)}">
+                        <div class="green" title="{!HR.Exam_Question__r.Question_Text__c}">
+                            {!HR.Exam_Question__r.Question_Text__c} </div>
+                    </aura:if>
+                    <aura:if isTrue="{!equals(HR.Correct__c,false)}">
+                        <div class="red" title="{!HR.Exam_Question__r.Question_Text__c}">
+                            {!HR.Exam_Question__r.Question_Text__c} </div>
+                    </aura:if>
+                </div>
+
+                <div class="question-option">
+                    <aura:if isTrue="{!equals(HR.Correct__c,true)}">
+                        
+                        <div class="green" title="{!HR.Exam_Question__r.Options__c}">
+                            {!HR.Exam_Question__r.Options__c} </div>
+                    </aura:if>
+                    <aura:if isTrue="{!equals(HR.Correct__c,false)}">
+                        <div class="red" title="{!HR.Exam_Question__r.Options__c}">
+                            {!HR.Exam_Question__r.Options__c} </div>
+                    </aura:if>
+                </div>
+
+                <div class="answer-choice">
+                    <aura:if isTrue="{!equals(HR.Correct__c,true)}">
+                        <div class="green" title="{!HR.Answer_Choice__c}">
+                            Your Answer:
+                            {!HR.Answer_Choice__c} 
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!equals(HR.Correct__c,false)}">
+                        <div class="red" title="{!HR.Answer_Choice__c}">
+                            Your Answer:
+                            {!HR.Answer_Choice__c} 
+                        </div>
+                    </aura:if>
+                </div>
+
+                <div class="correct-answers">
+                    <aura:if isTrue="{!equals(HR.Correct__c,true)}">
+                        <div class="green" title="{!HR.Exam_Question__r.Correct_Answer_s__c}">
+                            Correct Answer: {!HR.Exam_Question__r.Correct_Answer_s__c} 
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!equals(HR.Correct__c,false)}">
+                        <div class="red" title="{!HR.Exam_Question__r.Correct_Answer_s__c}">Correct
+                            Answer: {!HR.Exam_Question__r.Correct_Answer_s__c} 
+                        </div>
+                    </aura:if>
+                </div>
+            </div>
+        </aura:iteration>
+    </div>
+</aura:component>

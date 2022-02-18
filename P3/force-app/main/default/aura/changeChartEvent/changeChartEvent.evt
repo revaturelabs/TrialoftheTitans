@@ -1,0 +1,9 @@
+<!-- 
+    Author: Josh Miccolo
+    Description: Event to catch changing of chart type in overview. 
+    Progress Chart component handles this event
+    HandleClick in the Progress Chart JavaScript Controller fires this event and sets the attribute chartType
+-->
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="chartType" type="String" />
+</aura:event>

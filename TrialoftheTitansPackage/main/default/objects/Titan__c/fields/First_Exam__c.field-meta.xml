@@ -8,7 +8,7 @@
     <referenceTo>Exam__c</referenceTo>
     <relationshipLabel>Titans</relationshipLabel>
     <relationshipName>Titans</relationshipName>
-    <required>false</required>
+    <required>true</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
 </CustomField>

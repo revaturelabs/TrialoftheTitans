@@ -143,6 +143,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <description>Projects listed in the Portfolio.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>

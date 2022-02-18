@@ -1,0 +1,30 @@
+/*
+    Name: lwcNavigation
+    Author: Austin Ward
+    Description: header and navigation
+    Last updated: 1/3/2022
+*/
+
+.THIS.navbar{
+    width: 100%;
+    background-color: var(--text-color);
+    color:white;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.THIS li.pointer{
+    cursor: pointer;
+}
+
+.THIS li.pointer:hover{
+    border-bottom: 1px solid var(--user-team-primary);
+}

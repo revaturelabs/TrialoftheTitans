@@ -1,0 +1,25 @@
+<!--
+    Created By: Jared Longnecker
+    Description: Used to show the current context user's chatter feed and create new chatter messages
+-->
+
+<aura:component controller = "CommunicationController" access = "global" >
+    <aura:attribute name = "userGroups" type = "Object[]" />
+    <aura:attribute name = "lastInterval" type = "String" />
+
+    <!-- HANDLED EVENTS -->
+    <aura:handler name = "init" value = "{!this}" action = "{!c.DoInit }" />
+    <aura:handler name = "TabSelectEvent" event = "c:TabSelectEvent" action = "{!c.ChangeTabs}" />
+    <aura:handler name = "MessageSendEvent" event = "c:MessageSendEvent" action = "{!c.SendMessage}" />
+
+    <div class="user-team-color" id = "hidden-chat-btn">
+        <div id = "chat-header" onclick = "{!c.OnHeaderClick}" >
+            <span>Chat Feed</span>
+        </div>
+
+        <!-- FEED AND TABS -->
+        <div class = "feed-initial" id = "feed-holder" >
+            <c:CommunicationFeedControl aura:id = "feed" />
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,57 @@
+<!-- 
+	Name: TrainerResultsAccordion
+	Author: Frank Berni
+	Description: Main Component for showing list of Cohorts and Heros within an Accordion
+
+-->
+
+<aura:component controller="TrainerResultsAccController" implements="flexipage:availableForAllPageTypes,force:appHostable,forceCommunity:availableForAllPageTypes" access="global">
+    
+    <aura:attribute name="heroList" type="Account[]" />
+    <aura:attribute name="cohortList" type="Cohort__c[]"/>
+    <aura:handler name="init" action="{!c.doinit}" value="{!this}"/>
+    
+    <div class="slds-align_absolute-center" style="height:5rem">
+    <div class="slds-card">
+    	<h1>
+        	<b>Feedback for Mock Interviews</b>
+        </h1>  
+    </div>
+    </div>    
+    
+    
+    <lightning:accordion>
+        
+        <!--iteration that shows each hero in a list-->
+        <lightning:accordionSection name="A" label="Heroes" >
+                <aura:iteration items="{!v.heroList}" var="heroes">
+                    <aura:set attribute="body">
+                        <div class="slds-card">
+                        	<c:TrainerResultsHeroes hero="{!heroes}" />
+                            <br/>
+                        </div>    
+                    </aura:set>  
+                </aura:iteration>  
+        </lightning:accordionSection>  
+        <!--iteration that shows each hero in a list-->
+  	
+        
+    
+    
+        <!--iteration that shows each cohort in a list-->    
+        <lightning:accordionSection name="B" label="Cohorts" >
+            <aura:iteration items="{!v.cohortList}" var="cohorts">
+                <aura:set attribute="body">
+                    <div class="slds-card">
+                		<c:TrainerResultsCohort hero="{!cohorts}" />
+                        <br/>
+                    </div>    
+                </aura:set>          
+            </aura:iteration>
+         </lightning:accordionSection>  
+        <!--iteration that shows each cohort in a list-->
+        
+    </lightning:accordion>
+        
+	
+</aura:component>

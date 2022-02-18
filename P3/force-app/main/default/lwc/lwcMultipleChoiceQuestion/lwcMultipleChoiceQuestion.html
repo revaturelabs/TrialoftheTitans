@@ -1,0 +1,24 @@
+<!--
+
+  Name: Multiple Choice Question LWC
+  Author: Jacob Johnson
+  Last Modified: 9/23/2021
+  Description: Displays the question and answer choices for a MCQ.
+  Will also store the answer in a publicly exposed variable for a parent to use.
+  Modified Date:10/26/2021
+  Modified By: Iteration VI Styling and Data
+-->
+
+<template>
+    <div class="container slds-p-around_large">
+    <lightning-card>
+        <div class="slds-m-around--xx-large">
+            <div>
+                <lightning-radio-group id="input" name={questionprompt} label={questionprompt}
+                    options={radioGroupOptions} value={answerChoice} type="radio" onchange={changeAnswer}>
+                </lightning-radio-group>
+            </div>
+        </div>
+    </lightning-card>
+    </div>
+</template>

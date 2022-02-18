@@ -1,0 +1,33 @@
+<!-- 
+
+  Name: TrainerHubAndCohortsPageApp
+  Author: Brett Spokes
+  Description: Main Container for Trainer Hub and Cohort Pages
+
+-->
+
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" >
+	
+	<aura:attribute name="CohortPageActive" type ="Boolean" default="false"/>
+    <aura:attribute name="CohortId" type ="String" />
+	<aura:handler name="cohortIdEvent" event="c:TrainerHubTransferCohortIdEvent" action="{!c.handleCohortIdEvent}" />
+    
+	<aura:if isTrue="{!!v.CohortPageActive}">
+    	<!-- Replace with TrainHub main component -->
+		<c:TrainerHubPastCohortsTable />
+    </aura:if>
+    
+	<aura:if isTrue="{!v.CohortPageActive}">
+        <c:CohortPageContainer CohortId="{!v.CohortId}"/>
+    </aura:if>
+	
+    <aura:if isTrue="{!!v.CohortPageActive}">
+		<c:TrainerHubTransferActiveCohortPage />
+		<c:TrainerOneOnOne/>
+	</aura:if>
+	
+	<aura:if isTrue="{!v.CohortPageActive}">
+		<lightning:button variant="brand-outline" label="Return To Trainer Hub" title="Trainer Hub" onclick="{! c.handleClick }" />
+	</aura:if>
+
+</aura:component>

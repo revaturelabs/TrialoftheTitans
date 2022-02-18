@@ -1,0 +1,62 @@
+<!--
+/////////////////////////////////////////////////////
+//
+//  Name: MockInterviewVideoDisplay.cmp
+//  Author: Kenny Gonzalez
+//  Description: This aura component adds a file upload feature
+//               and a video display feature. Several attributes are
+//               used to setup the file upload feature and to gather
+//               the necessary values from the database. There are
+//               also attributes to conditionally render certain components.
+//               There is also a video replay feature that is still under
+//               construction due to some salesforce limitations dealing with
+//               communities CSP trusted sites when getting the src from the
+//               video tag. Lastly, to remedy this limitation, a lightning:fileCard 
+//               was added to be able to download the video
+//
+//  Last Updated: 9/3/21 (Brian McKay) - added code from duplicate component (videoUploaderComponent) and deleted duplicate
+//
+///////////////////////////////////////////////////
+-->
+
+
+<aura:component controller="MockInterviewData" implements="flexipage:availableForAllPageTypes,force:appHostable,forceCommunity:availableForAllPageTypes" access="global" >
+    
+    <!--attributes needed for file upload and video display feature-->
+    <aura:attribute name="filetype" type="List" default="['.mp4', '.mpeg', '.mov', '.jpeg', '.png']" />
+    <aura:attribute name="multiple" type="Boolean" default="true" />
+    <aura:attribute name="disabled" type="Boolean" default="true" />
+    <aura:attribute name="recordId" type="String" />
+
+    <!--attrubute needed for lightning:fileCard-->
+    <aura:attribute name="contentFile" type="String"/>
+
+    <lightning:fileUpload label="Attach receipt"
+        name="fileUploader"
+        multiple="true"
+        accept="{!v.filetype}"
+        recordId="{!v.recordId}"
+        onuploadfinished="{!c.handleUploadFinished}" />
+        
+    <!--attribute needed to conditionally render components on page-->
+    <aura:attribute name="display" type="Boolean" default="false"/>
+    <aura:attribute name="display4" type="Boolean" default="true"/>
+
+    <!--attribute needed for the video tag src-->
+    <aura:attribute name="fileUrl" type="String"/>
+  
+    <aura:if isTrue="{!v.display4}">
+      <lightning:button label="&middot;Display Video&middot;" class="buttons" onclick="{!c.displayFile}"/>
+    </aura:if>
+
+    <aura:if isTrue="{!v.display}">
+      <video controls="controls" width="330" height="225">
+        <source src="{!v.fileUrl}" type="video/mp4"/>
+      </video>
+        <br/>
+	<lightning:button iconName="utility:close" class="videoCloseButton" onclick="{!c.videoCloseButton}"/>
+      <br/>
+
+    </aura:if>
+   
+</aura:component>

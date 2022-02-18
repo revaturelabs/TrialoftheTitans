@@ -1,12 +1,16 @@
 /*
  * @description       : Creates questions and allows users to submit to the server
- * @author            : Austin Ulberg, Daniel Boice
+ * @author            : Austin Ulberg, Daniel Boice, Zain Hamid, Conner Eilenfeldt
  * @group             :
- * @last modified on  : 10-03-2021
- * @last modified by  : Daniel Boice
+ * @last modified on  : 02-17-2022
+ * @last modified by  : Conner Eilenfeldt
  * Modifications Log
- * Ver   Date         Author         Modification
- * 1.0   09-30-2021   Daniel Boice   Initial Version
+ * Ver   Date         Author                Modification
+ * 1.0   09-30-2021   Daniel Boice          Initial Version
+ * 1.1   02-11-2022   Zain Hamid            Question randomization
+ * 1.2   02-14-2022   Zain Hamid            Question state tracking
+ * 1.3   02-15-2022   Conner Eilenfeldt     Submission confirmation message
+ * 1.4   02-17-2022   Conner Eilenfeldt     Exam details header
  **/
 import { LightningElement, api, wire, track } from "lwc";
 //import exam from '@salesforce/schema/Exam__c';
@@ -22,19 +26,19 @@ import { loadScript } from "lightning/platformResourceLoader";
 import CONFETTI from "@salesforce/resourceUrl/confetti";
 
 export default class LwcExamInterview extends LightningElement {
-  //not implemented yet
-  exam;
+  // exam details
+  examName;
   titan;
-  titanName;
+  examTimer; // not implemented yet
 
   //for displaying errors
   error;
 
   //hard coded an exam id and account id for testing, set by parent component
   @api
-  examId = "a0A8c00000eKNceEAG";
+  examId = "a0A8c00000eBc1YEAS";
   @api
-  accId = "0018c000029Le1lAAC";
+  accId = "0018c000028TV2qAAG";
 
   //for switching off the update after exam is submitted
   updateAnswers = true;
@@ -42,33 +46,49 @@ export default class LwcExamInterview extends LightningElement {
   //holds the list of exam questions
   examQuestions;
 
-  //holds the list of exam questions
+  //holds the list of exam questions' states (indexed in the same order as above)
+  @api
+  examQuestionsState = [];
+
+  // Have to include even though it's not used because of an old bug that never got fixed
+  // https://ideas.salesforce.com/s/idea/a0B8W00000GdknvUAB/delete-non-packaged-api-variables-from-managed-lwc-components
+  @api
+  examQuestionOrder;
+
+  //holds the list of user's answers
   examAnswers = {};
 
   //disabling buttons
   nextButtonDisabled = false;
   prevButtonDisabled = true;
+
   //show celebrate button after submitting exam
   showCelebrateButton = false;
   submitButtonDisabled = false;
-  //Index for questions
 
+  //Index for questions
   @track
   questionNumber = 1;
 
+  @api
+  numberOfQuestions = 0;
+
+  // debugging variables ?
   question_;
+  answer_ = "";
   questionI;
   questionType;
-  confirmation = "are you sure?";
+  answer = "";
+
+  // toast event variables
   toastMessage = "";
   toastTitle = "";
   toastVariant = "";
-  //questionNumberTitleText="Question " + (this.questionNumber + 1) +":";
-  @api
-  numberOfQuestions = 0;
-  answer_ = "";
-  //for the modal confirmation
-  @track confirmation;
+
+  // confirmation message variables for submission
+  submitConfirmationMessage;
+  countMarked;
+  countUnanswered;
 
   get questionNumberTitleText() {
     if (this.numberOfQuestions) {
@@ -84,93 +104,139 @@ export default class LwcExamInterview extends LightningElement {
     }
   }
 
-  /*
-   Commented out by William Rembish on 10/25/2021
-   Reason: not used for the actual component
-
-  //useful for debugging
-  get answer() {
-    return this.answer_;
-  }
-  set answer(answerText) {
-    this.answer_ = answerText;
-  }
-  */
-
-  //so that they have the same number when submitting answers
-  createBlankExamAnswersList() {
-    for (let i = 0; i < Object.keys(this.examQuestions).length; i++) {
-      this.examAnswers[`${i + 1}`] = "";
-    }
-  }
-
-
   //retrieve the exam from the database and set variables
   @wire(examFinder, { examID: "$examId" })
   wiredExamQuestions({ error, data }) {
+    /*
+      data is a List<List<SObject>>
+      index 0 is a list of the exam questions
+      index 1 is the exam details
+        exam name, titan name, default timer
+    */
     if (data) {
       console.log("Logging data");
       console.log(data);
-      this.examQuestions = data;
-      this.numberOfQuestions = Object.keys(data).length;
+
+      // data's exam questions
+      this.numberOfQuestions = Object.keys(data[0]).length;
+      this.examQuestions = this.shuffleQuestions(data[0]);
+
+      // data's exam details
+      this.examName = data[1][0].Name;
+      this.titan = data[1][0].Titans__r[0].Name;
+      this.examTimer = data[1][0].Default_Time_Limit__c;
+
       this.error = undefined;
-      this.createBlankExamAnswersList();
       //this.questionI=data[0];
+
+      this.createBlankExamAnswersList();
+      this.initializeQuestionsState();
       this.updateQuestionComponent();
     } else if (error) {
       this.error = error;
       this.examQuestions = undefined;
+      this.examName = undefined;
+      this.titan = undefined;
+      this.examTimer = undefined;
       console.log(error);
     }
   }
-  /*
-   Commented out by William Rembish on 10/25/2021
-   Reason: not used for the actual component
-   
-  //useful for debugging
-  set currentQuestion(question_) {
-    this.question_ = question_;
-  }
-  get currentQuestion() {
-    return this.question_;
-  }
-  */
+
   //updating the child component when go to next or previous question
   updateQuestionComponent() {
     const questionComponent = this.template.querySelector("c-lwc-question");
+    const stateComponent = this.template.querySelector("c-lwc-exam-overview");
+    stateComponent.questionstates = this.examQuestionsState;
     if (questionComponent && this.questionNumber < this.numberOfQuestions + 1) {
       this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       questionComponent.question = this.currentQuestion;
-      console.log('test')
-      console.log(this.answer)
-      questionComponent.handleSetAnswer(this.answer);
+      console.log('All questions');
+      console.log(this.examQuestions);
+      console.log('Printing current question');
+      console.log(this.currentQuestion);
+      console.log('Printing answer');
+      console.log(this.examAnswers[`${this.questionNumber}`]);
+      console.log('Printing question state');
+      console.log(this.examQuestionsState);
+      questionComponent.handleSetAnswer(this.examAnswers[`${this.questionNumber}`]);
     }
   }
 
-  //this might be useful for setting the details of the modal popup component for confirmation when submitting the exam.  for future.  now they are in the modal component in the html, this could be developed further
-  // submitConfirmationDetails = {
-  //     text: 'Are you sure you want to submit your exam now?',
-  //     confirmButtonLabel: 'Submit',
-  //     confirmButtonVariant: 'neutral',
-  //     cancelButtonLabel: 'Not Yet!',
-  //     header: 'Confirm Submit'
-  // };
-
-  /*
-   Commented out by William Rembish on 10/25/2021
-   Reason: this isn't currently used anywhere
-
-  handleModalButtonClick(event) {
-    handleConfirmationButtonClick(event, this.confirmation);
+  //so that they have the same number when submitting answers
+  createBlankExamAnswersList() {
+    for (let i = 0; i < this.numberOfQuestions; i++) {
+      this.examAnswers[`${i + 1}`] = "";
+    }
   }
-  */
+
+  initializeQuestionsState() {
+    let examQuestionPossibleState;
+    for (let k = 1; k <= this.numberOfQuestions; k++) {
+      examQuestionPossibleState = { questionNumber: k, answered: false, markedForReview: false, flagged: false };
+      this.examQuestionsState.push(examQuestionPossibleState);
+    }
+  }
+
+  shuffleQuestions(questionData) {
+    let shuffled = Array(this.numberOfQuestions);
+    let order = this.shuffleQuestionOrder(this.numberOfQuestions);
+    console.log('Random question order');
+    console.log(order);
+    for(let k = 0; k < this.numberOfQuestions; k++) {
+      shuffled[k] = questionData[order[k]];
+    }
+    return shuffled;
+  }
+
+  // Implementation of a bag randomizer
+  // Since we can't sort/shuffle in-place on an actually used array, this instead returns the question order
+  // in the style of a bag randomizer, which shuffleQuestions uses to shuffle instead
+  shuffleQuestionOrder(totalNumberOfQuestions) {
+    // Fisher-Yates algorithm
+    let questionOrder = Array.from({ length: totalNumberOfQuestions }, (_, j) => j);
+    let m = totalNumberOfQuestions, t, i;
+    while (m) {
+      i = Math.floor(Math.random() * m--);
+      t = questionOrder[m];
+      questionOrder[m] = questionOrder[i];
+      questionOrder[i] = t;
+    }
+    return questionOrder;
+  }
+
+  setCurrentQuestionAnsweredState() {
+    console.log('Current question state');
+    console.log(this.questionNumber);
+    console.log(this.examAnswers[`${this.questionNumber}`]);
+    // The actual state tracker component handles hybrid states (answered and marked for review) and displaying them correctly
+    if (this.examAnswers[`${this.questionNumber}`]) {
+      this.examQuestionsState[this.questionNumber - 1].answered = true;
+    } else {
+      this.examQuestionsState[this.questionNumber - 1].answered = false;
+    }
+    // Needs logic to handle only partial answers too
+  }
+
+  flagCurrentQuestion() {
+    // called when receiving an event from the flag question button
+    this.examQuestionsState[this.questionNumber - 1].flagged = true;
+  }
+
+  markForReviewCurrentQuestion() {
+    // called when receiving an event from the mark for review button
+    this.examQuestionsState[this.questionNumber - 1].markedForReview = !this.examQuestionsState[this.questionNumber - 1].markedForReview;
+  }
+
   answerUpdated(event) {
     if (this.updateAnswers) {
       this.answer = event.detail;
     }
   }
+
   setExamAnswerToAnswerProvided() {
     this.examAnswers[`${this.questionNumber}`] = this.answer;
+    this.setCurrentQuestionAnsweredState();
+    console.log(this.examAnswers[`${this.questionNumber}`]);
   }
 
   setCurrentAnswerToPreviouslyAnswered() {
@@ -179,32 +245,71 @@ export default class LwcExamInterview extends LightningElement {
       this.answer = this.examAnswers[`${this.questionNumber}`];
     }
   }
+
   setPrevNextDisabled() {
     this.prevButtonDisabled = this.questionNumber < 2;
     this.nextButtonDisabled = this.questionNumber + 1 > this.numberOfQuestions;
   }
+
   prevClicked() {
-    this.setExamAnswerToAnswerProvided();
     if (this.questionNumber > 1) {
-      this.questionNumber--;
+      this.gotoQuestionNumber(this.questionNumber - 1);
     }
-    this.setCurrentAnswerToPreviouslyAnswered();
-    this.updateQuestionComponent();
-    this.setPrevNextDisabled();
   }
+
   nextClicked() {
-    this.setExamAnswerToAnswerProvided();
     if (this.questionNumber < this.numberOfQuestions) {
-      this.questionNumber++;
+      this.gotoQuestionNumber(this.questionNumber + 1);
     }
+  }
+
+  gotoQuestion(event) {
+    this.gotoQuestionNumber(parseInt(event.detail, 10));
+  }
+
+  gotoQuestionNumber(qNumber) {
+    this.setExamAnswerToAnswerProvided();
+    this.questionNumber = qNumber;
     this.setCurrentAnswerToPreviouslyAnswered();
     this.updateQuestionComponent();
     this.setPrevNextDisabled();
   }
 
-  //submit exam to apex controller
+  // used to make noun plural if count is more than 1
+  pluralize(count, noun, suffix = "s") {
+    return `${noun}${count !== 1 ? suffix : ""}`;
+  }
+
+  // when submit button is clicked
   handleSubmit() {
     this.setExamAnswerToAnswerProvided();
+
+    this.submitConfirmationMessage = "Are you sure you are ready to submit your exam to the titan?"
+    this.countMarked = 0;
+    this.countUnanswered = 0;
+
+    for (let i = 0; i < this.numberOfQuestions; i++) {
+      if (this.examQuestionsState[i].markedForReview == true)
+        this.countMarked++;
+      if (this.examQuestionsState[i].answered == false)
+        this.countUnanswered++;
+    }
+
+    if (this.countMarked && this.countUnanswered) {
+      this.submitConfirmationMessage += ` You have ${this.countMarked} ${this.pluralize(this.countMarked, "question")} still marked for review` +
+        ` and ${this.countUnanswered} unanswered ${this.pluralize(this.countUnanswered, "question")}.`;
+    }
+    else if (this.countMarked) {
+      this.submitConfirmationMessage += ` You have ${this.countMarked} ${this.pluralize(this.countMarked, "question")} still marked for review.`;
+    }
+    else if (this.countUnanswered) {
+      this.submitConfirmationMessage += ` You have ${this.countUnanswered} unanswered ${this.pluralize(this.countUnanswered, "question")}.`;
+    }
+  }
+
+  // when the confirmation button is clicked in submission modal
+  // submit exam to apex controller
+  handleConfirmSubmit() {
     submitExam({ examId: this.examId, acctId: this.accId })
       .then((result) => {
         this.toastMessage = "Exam submitted successfully.";
@@ -296,7 +401,7 @@ export default class LwcExamInterview extends LightningElement {
         this.setUpCanvas();
       })
       .catch((error) => {
-          console.log(error)
+        console.log(error)
         this.dispatchEvent(
           new ShowToastEvent({
             title: "confetti unavailable",

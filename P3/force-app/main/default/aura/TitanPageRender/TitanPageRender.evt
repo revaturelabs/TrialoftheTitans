@@ -1,0 +1,5 @@
+<!--Called in TitansPageLanding-->
+<aura:event type="COMPONENT" description="Event template">
+    <aura:attribute name="skillsId" type="Id"/>
+    <aura:attribute name="examId" type="Id"/>
+</aura:event>

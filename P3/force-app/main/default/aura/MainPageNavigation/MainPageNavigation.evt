@@ -1,0 +1,7 @@
+<!-- 
+    Author: Josh Miccolo
+    Description: Event to catch navigation page changes 
+-->
+<aura:event type="COMPONENT" description="Event template">
+    <aura:attribute name="page" type="string" />
+</aura:event>

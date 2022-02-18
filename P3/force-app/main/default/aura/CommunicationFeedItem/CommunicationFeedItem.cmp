@@ -1,0 +1,14 @@
+<!--
+    CREATED BY: Jared Longnecker
+    USAGE: Used to display chatter messages from chatter group
+-->
+
+<aura:component>
+    <aura:attribute name = "content" type = "Object" />
+
+    <div class = "feed-item">
+        <div class = "feed-item-img"></div>
+        <h1>{!v.content.header.text}</h1>
+        <p>{!v.content.body.text}</p>
+    </div>
+</aura:component>
