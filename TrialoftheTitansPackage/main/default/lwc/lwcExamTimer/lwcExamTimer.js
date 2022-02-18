@@ -17,8 +17,8 @@ export default class LwcExamTimer extends LightningElement {
     timeIntervalInstance;
 
     connectedCallback() {
-            // delay start function so variables have time to load
-            setTimeout(() => {  this.start(); }, 1000);
+        // delay start function so variables have time to load
+        setTimeout(() => {  this.start(); }, 1000);
     }
 
     // start the countdown timer

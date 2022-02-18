@@ -2,7 +2,7 @@
  * @description       :
  * @author            : Daniel Boice, Conner Eilenfeldt
  * @group             :
- * @last modified on  : 02-15-2022
+ * @last modified on  : 02-18-2022
  * @last modified by  : Conner Eilenfeldt
  * Modifications Log
  * Ver   Date         Author         Modification
@@ -12,23 +12,30 @@
 import { LightningElement, track, api } from "lwc";
 
 export default class LwcSldsModal extends LightningElement {
-  //track whether the modal is open(true) or closed(false), closed by default
+  // track whether the modal is open(true) or closed(false), closed by default
   @track isModalOpen = false;
 
-  @api
-  showButtonText;
-  @api
-  closeButtonText;
-  @api
-  modalHeader;
-  @api
-  modalContent;
-  @api
-  confirmButtonLabel;
-  @api
-  closeButtonLabel;
-  @api
-  showButtonDisabled;
+  // Label of the show modal button
+  @api showButtonText;
+
+  // Alternate text of the close button (X at top right of modal)
+  @api closeButtonText;
+
+  // The header/title of the modal
+  @api modalHeader;
+
+  // The body/content of the modal
+  @api modalContent;
+
+  // Label of the confirm modal button
+  @api confirmButtonLabel;
+
+  // Label of the close modal button
+  @api closeButtonLabel;
+
+  // Disables the show modal button when true, clickable otherwise
+  @api showButtonDisabled;
+
   //sets the isModalOpen property to true, indicating that the Modal is Open
   @api
   showModal() {
@@ -41,20 +48,7 @@ export default class LwcSldsModal extends LightningElement {
     this.isModalOpen = false;
   }
 
-  /* 
-  can be used instead of the above two methods - showModal() & closeModal()
-  just toggles the isModalOpen property - true if false, false if true 
-  */
-
-  // Veselin Georgiev - 10/15/21 -- this function is not used at all
-  /*
- @api
-  toggleModal() {
-    this.isModalOpen = !this.isModalOpen;
-  }
-*/
-
-  // when submit exam button is clicked
+  // when show modal button is clicked
   handleSubmitClick(event) {
     const submitEvent = new CustomEvent("submitclick", {
       detail: event.target.value
@@ -66,6 +60,7 @@ export default class LwcSldsModal extends LightningElement {
     this.showModal()
   }
 
+  // when confirm button is clicked
   handleConfirmClick(event) {
     const confirmEvent = new CustomEvent("confirmationclick", {
       detail: event.target.value
@@ -75,6 +70,7 @@ export default class LwcSldsModal extends LightningElement {
     this.dispatchEvent(confirmEvent);
     this.isModalOpen = false;
   }
+
   //compute the CSS classes of the Modal(popup) based on the value of isModalOpen property
   get modalClass() {
     return `slds-modal ${this.isModalOpen ? "slds-fade-in-open" : ""}`;
