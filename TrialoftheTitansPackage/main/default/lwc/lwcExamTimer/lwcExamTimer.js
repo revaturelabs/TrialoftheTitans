@@ -28,7 +28,7 @@ export default class LwcExamTimer extends LightningElement {
     start() {
         this.rendered = true;
         let parentThis = this;
-        this.countDownDate = new Date().getTime() + .2 * 60000;
+        this.countDownDate = new Date().getTime() + this.examTimeLimit * 60000;
 
         // update the count down every 1 second (1000 milliseconds)
         this.timeIntervalInstance = setInterval(function () {
