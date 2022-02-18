@@ -23,7 +23,7 @@
 **/audience
 #**/staticresources
 TrialoftheTitansPackage/main/default/profiles/Admin.profile-meta.xml
-TrialoftheTitansPackage/main/default/profiles/Hero.profile-meta.xml
+#TrialoftheTitansPackage/main/default/profiles/Hero.profile-meta.xml
 TrialoftheTitansPackage/main/default/profiles/TitanTrainer.profile-meta.xml
 TrialoftheTitansPackage/main/default/profiles/Trial of the Titans Profile.profile-meta.xml
 TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
@@ -71,3 +71,8 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 
 **/ExamQuestionFlagPackage
 **/tabs/standard-home.tab-meta.xml
+
+ChartPackage/main/default/ 
+HeroHubPackage/main/default/ 
+TitanHubPackage/main/default/
+TitanHubPackage/main/default/profiles/Admin.profile-meta.xml

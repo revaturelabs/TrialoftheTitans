@@ -1,0 +1,35 @@
+<!--THIS MOTHERSHIP COMPONENT IS DISPLAYED IN PORTFOLIO HUB-->
+<!--For future iterations: 
+                            All components below are binded to whoever is on the page USER ID
+                            Make the exact same components as below except instead of USER ID being running user
+                            bind it to an attribute where a trainer can select the user and the components
+                            show the records of the selected User-->
+                            
+<aura:component access="global" implements="force:appHostable, forceCommunity:availableForAllPageTypes">
+
+    <lightning:card class="Header">
+        <c:lwcPortfolioHeader/>
+    </lightning:card>   
+    <lightning:card class="Body">
+        <lightning:accordion class="WholeAccordion" allowMultipleSectionsOpen="true" onsectiontoggle="{!c.handleSectionToggle}">
+
+            <lightning:accordionSection class="A" label="Industry Equivalency">
+                <c:PortfolioIndustryEquivs/>
+            </lightning:accordionSection>
+
+            <lightning:accordionSection class="B" label="Education and Certificates">
+                <c:PortfolioEduCert/>
+            </lightning:accordionSection>
+
+            <lightning:accordionSection class="C" label="Other Experiences">
+                <c:lwcPortfolioOtherExperiences/>
+            </lightning:accordionSection>
+
+            <lightning:accordionSection class="D" label="Projects">
+                <c:PortfolioProjects/>
+            </lightning:accordionSection>
+
+        </lightning:accordion>
+    </lightning:card>
+
+</aura:component>	

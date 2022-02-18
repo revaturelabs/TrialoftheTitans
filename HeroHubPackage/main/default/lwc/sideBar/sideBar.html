@@ -2,18 +2,18 @@
     <div hidden>{accInfo} {squadInfo} {certInfo} {statusInfo}</div>
     <template if:true={certInfo.data}>
         <div class="sidebar-container">
-            <lightning-card title="Hero Info">
+            <lightning-card title="Hero Info" class="background">
                 <p class="slds-p-horizontal_small">{heroTitle}</p>
                 <p class="slds-p-horizontal_small">{heroName}</p>
                 <p class="slds-p-horizontal_small">{squadName}</p>
                 <p class="slds-p-horizontal_small">{heroArete}</p>
             </lightning-card>
-            <lightning-card title="Radar Chart">
+            <lightning-card title="Radar Chart" class="background">
                 <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
                     <c-radar-carousel avg-scores={avgScores}></c-radar-carousel>
                 </div>
             </lightning-card>
-            <lightning-card title="Porfolio Status">
+            <lightning-card title="Porfolio Status" class="background">
                 <p class="slds-p-horizontal_small">{portName}</p>
                 <p class="slds-p-horizontal_small">{portStatus}</p>
                 <lightning-button
@@ -23,7 +23,7 @@
                     class="slds-m-left_x-small slds-align_absolute-center"
                 ></lightning-button>
             </lightning-card>
-            <lightning-card title="Certification Info">
+            <lightning-card title="Certification Info" class="background">
                 <p class="slds-p-horizontal_small">{certName}</p>
                 <p class="slds-p-horizontal_small">{certDate}</p>
                 <p class="slds-p-horizontal_small">{certAssessor}</p>

@@ -1,3 +1,39 @@
 <template>
-    
+
+    <div class="slds-grid slds-grid_vertical titan_hub">
+
+        <div class="slds-grid titan_little slds-gutters">
+
+            <div class="slds-col exam_comp slds-size_1-of-3 ">
+                <c-exam-comparison>
+                </c-exam-comparison>
+            </div>
+
+            <div class="slds-col port_detail slds-size_1-of-3">
+                 <c-titan-page-port-details titan-id={titanId}>
+                </c-titan-page-port-details>
+            </div>
+
+            <div class="slds-col cert_detail slds-size_1-of-3">
+                <c-titan-hub-cert-details titan-id={titanId}>
+                </c-titan-hub-cert-details>
+            </div>
+
+        </div>
+
+        <div class="slds-grid titan_bulk slds-gutters">
+
+            <div class="slds-col titan_sum slds-size_3-of-4">
+                <c-titan-summary>     
+                </c-titan-summary>
+            </div>
+
+            <div class="slds-col path_titan slds-size_1-of-4">
+                <c-lwc-path-to-titan titan-id={titanId} account-id={accountId}>
+                </c-lwc-path-to-titan>
+            </div>
+        </div>
+
+    </div>
+
 </template>

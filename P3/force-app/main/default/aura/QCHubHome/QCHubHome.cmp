@@ -1,0 +1,117 @@
+<aura:component controller="QCHubHomeAuraController" implements="flexipage:availableForAllPageTypes" access="global">
+
+    <lightning:navigation aura:id="navService" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.OnInit}" />
+    <aura:handler name="UpdateCohortEvent" event="c:UpdateCohortEvent" action="{!c.UpdateCohort}" />
+    <aura:handler name="LaunchInterviewEvent" event="c:LaunchInterviewEvent" action="{!c.LaunchInterview}" />
+
+    <aura:attribute name="CohortList" type="Cohort__c[]" />
+    <aura:attribute name="SelectedCohort" type="QCCohortWrapper" />
+    <aura:attribute name="NoCohortSelected" type="Boolean" default="true" />
+    <aura:attribute name="Hero" type="Object" />
+    <!--aura:attribute name="contextInfo" type="userContextInfo" /-->
+    <aura:attribute name="SquadList" type="QCSquadWrapper[]"/>
+    <aura:attribute name="WeekList" type="String[]"/>
+
+    <aura:attribute name="ScriptLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="DataLoaded" type="Boolean" default="false"/>
+
+
+
+    <ltng:require scripts="{!$Resource.d3 + '/d3.js'}" afterScriptsLoaded="{!c.D3}" />
+
+    <div class="slds-grid slds-gutters slds-align_absolute-center">
+
+        <div class="boxGrid slds-col slds-size_3-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
+
+            <p>
+                <c:CohortButtons CohortList="{!v.CohortList}" />
+            </p>
+
+        </div>
+
+        <div
+            class="boxGrid slds-col slds-size_6-of-12 slds-text-align_center slds-box slds-m-horizontal_x-medium slds-m-vertical_x-medium">
+
+            <p>
+            
+            <lightning:card variant="Narrow">
+            
+            <div><H1 style="font-size: x-large;">COHORT AVERAGES</H1></div>
+            <div id="svg" class="svgCohortOverview"></div>
+            <c:CohortStatistics ActiveCohort="{!v.SelectedCohort.cohort}" />
+            </lightning:card >
+            
+           
+            </p>
+
+        </div>
+
+        <div class="boxGrid slds-col slds-size_3-of-12 slds-text-align_center slds-box slds-m-horizontal_x-small">
+            <p>
+                <c:SquadButtons SquadList="{!v.SquadList}" />
+            </p>
+        </div>
+
+    </div>
+
+    <div class="slds-grid slds-gutters slds-align_absolute-center">
+        <div class="boxGrid-Hero slds-col slds-size_6-of-12 slds-text-align_center slds-m-top_x-small">
+
+            <div class="tabSet slds-m-top_x-small">
+                <lightning:tabset variant="scoped">
+                    <!-- Pull in hero name for label -->
+                    <lightning:tab label="Hero One">
+                        <!-- Pull in hero data -->
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Two">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Three">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Four">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Five">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Six">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Seven">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Eight">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Nine">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Ten">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Eleven">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Twelve">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Thirteen">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Fourteen">
+                        Hero data
+                    </lightning:tab>
+                    <lightning:tab label="Hero Fifteen">
+                        Hero data
+                    </lightning:tab>
+                </lightning:tabset>
+            </div>
+
+        </div>
+    </div>
+
+</aura:component>

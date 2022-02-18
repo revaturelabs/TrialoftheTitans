@@ -1,0 +1,186 @@
+/*
+
+  Name: AnimatedHeader
+  Author: Josh Miccolo
+  Description: Animated Header with multiple versions.
+  Edited: Robert Propper, Ethan Jarrett, Dany Yanez
+
+  */
+
+  .THIS.header-animatedHeader {
+    box-sizing: border-box;
+    height: 80px;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--background-color);
+  }
+  
+  .THIS .header-animatedHeader_Alchemy, 
+  .THIS .header-animatedHeader_Amplifire, 
+  .THIS .header-animatedHeader_Synergy,
+  .THIS .header-animatedHeader_Vanquish,
+  .THIS .header-animatedHeader_normal {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  
+  /*THIS IS THE BACKGROUND COLOR DYNAMIC */
+  .THIS .Synergy-header-animatedHeader{
+    background-color:var(--synergy-secondary);
+    height: 80px;
+    overflow: hidden;
+  
+  }
+  /*THIS IS THE BACKGROUND COLOR DYNAMIC */
+  .THIS .Alchemy-header-animatedHeader{
+    background-color: var(--alchemy-secondary);
+    height: 80px;
+    overflow: hidden;
+  
+  }
+  /*THIS IS THE BACKGROUND COLOR DYNAMIC */
+  .THIS .Amplifire-header-animatedHeader{
+    background-color: var(--amplifire-secondary);
+    height: 80px;
+    overflow: hidden;
+  
+  
+  }
+  /*THIS IS THE BACKGROUND COLOR DYNAMIC */
+  .THIS .Vanquish-header-animatedHeader{
+    background-color: var(--vanquish-secondary);
+    height: 80px;
+    overflow: hidden;
+  }
+  
+  /*THIS IS THE TITLE "TRAIL OF TITANS"*/
+  .THIS .header-animatedHeader-title { 
+    animation: burn 1.5s linear infinite alternate;
+    color: #000;
+    font-family:'PressStart';
+    font-size: 60px;
+    height: 80px;
+    line-height: 80px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 1000;
+    font-weight: bolder;
+  }
+  /*This is all the text wrapper*/
+  .THIS .codeText-wrapper {
+    width: 100%;
+    display: flex;
+  }
+  /*THIS IS THE ACTUAL TEXT COLOR for Synergy in Lead*/
+  .THIS .Synergy-codeText {
+    width: 0;
+    display: block;
+    color: var(--synergy-primary);
+    font-size: 4px;
+    overflow:hidden;
+    white-space: nowrap;
+    animation: 3s steps(100, end) 500ms forwards typeOutFull;
+  }
+  /*THIS IS THE ACTUAL TEXT COLOR for Alchemy in Lead*/
+  .THIS .Alchemy-codeText{
+    width: 0;
+    display: block;
+    color: var(--alchemy-primary);
+    font-size: 4px;
+    overflow:hidden;
+    white-space: nowrap;
+    animation: 3s steps(100, end) 500ms forwards typeOutFull;
+  }
+  /*THIS IS THE ACTUAL TEXT COLOR for Vanquish in Lead*/
+  .THIS .Vanquish-codeText{
+    width: 0;
+    display: block;
+    color: var(--vanquish-primary);
+    font-size: 4px;
+    overflow:hidden;
+    white-space: nowrap;
+    animation: 3s steps(100, end) 500ms forwards typeOutFull;
+  }
+  /*THIS IS THE ACTUAL TEXT COLOR for amplifire in Lead*/
+  .THIS .Amplifire-codeText{
+    width: 0;
+    display: block;
+    color: var(--amplifire-primary);
+    font-size: 4px;
+    overflow:hidden;
+    white-space: nowrap;
+    animation: 3s steps(100, end) 500ms forwards typeOutFull;
+  }
+  .THIS .Synergy-codeText-wrapper:nth-of-type(even){
+    justify-content: flex-end;
+  }
+  
+  
+  @media only screen and (max-width:1000px){
+  
+    .THIS .header-animatedHeader-title {
+      font-size: 30px;
+      
+    }
+  }
+  /* displays text as if typing to 100%   */
+  @keyframes typeOutFull {
+    to{
+        width: 100%;
+    }
+  }
+  
+  /* Moves background flames around */
+  @keyframes Slayer {
+  from {
+    background-position: 0, 35px 0;
+  }
+  to { 
+    background-position: 35px 0, 0;
+  }
+  }
+  
+  @keyframes swordIn {
+  to {
+    background-position: 45%, center;
+  }
+  }
+  
+  /* Glowing text */
+  @keyframes Glowing {
+  from {
+    opacity:0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+  }
+  
+  /* Moves background image around to give appearance of smoke */
+  @keyframes Smoky {
+  0% {
+    background-position: 0 0;
+    
+  }
+  50% {
+    background-position: 0 -500px;
+    
+  }
+  100% {
+    background-position: 0 500px;
+  }
+  }
+  /* Fire burning on header title */
+  @keyframes burn {
+    from { text-shadow: -.1em 0 .3em #fefcc9, .1em -.1em .3em #feec85, -.2em -.2em .4em #ffae34, .2em -.3em .3em #ec760c, -.2em -.4em .4em #cd4606, .1em -.5em .7em #973716, .1em -.7em .7em #451b0e; }
+    45%  { text-shadow: .1em -.2em .5em #fefcc9, .15em 0 .4em #feec85, -.1em -.25em .5em #ffae34, .15em -.45em .5em #ec760c, -.1em -.5em .6em #cd4606, 0 -.8em .6em #973716, .2em -1em .8em #451b0e; }
+    70%  { text-shadow: -.1em 0 .3em #fefcc9, .1em -.1em .3em #feec85, -.2em -.2em .6em #ffae34, .2em -.3em .4em #ec760c, -.2em -.4em .7em #cd4606, .1em -.5em .7em #973716, .1em -.7em .9em #451b0e; }
+    to   { text-shadow: -.1em -.2em .6em #fefcc9, -.15em 0 .6em #feec85, .1em -.25em .6em #ffae34, -.15em -.45em .5em #ec760c, .1em -.5em .6em #cd4606, 0 -.8em .6em #973716, -.2em -1em .8em #451b0e; }
+  }

@@ -1,0 +1,16 @@
+<!--
+/////////////////////////////////////////////////////
+//
+//  Name: Metrics.cmp
+//  Author: David Serrano
+//  Description: Aura component meant to hold both ExamStats and a d3 chart that displays strengths and weakness of the Titan being displayed or an Exam clicked on.
+//  d3 chart was not implemented during the first iteration of this project, which explains why there is only the ExamStats component currently.
+//
+///////////////////////////////////////////////////
+-->
+
+<aura:component >
+	<div>
+        <c:lwcExamStats/>
+    </div>
+</aura:component>

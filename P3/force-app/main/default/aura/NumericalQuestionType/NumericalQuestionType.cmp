@@ -1,0 +1,20 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access = "global">
+    <!--Author: Jayvious Williams
+        Usage: Component for Numerical Type of Question on Exams
+        updated: 9/13/2021 Markus Metli
+    -->
+    <!--Attribute Creation-->
+    <aura:attribute name = "questionprompt" type = "String"/>
+
+    <aura:method name="answer" action= "{!c.answer}" description="saves the response" access="PUBLIC"></aura:method>
+    
+    <!--Component View-->
+    <lightning:card>
+        <div class="slds-p-around_x-small">
+            <h1>{!v.questionprompt}</h1>
+            <lightning:input aura:id = "input" type="number" name="input1" />
+        </div>
+    </lightning:card>
+
+
+</aura:component>

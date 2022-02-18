@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Certification Details" icon-name="custom:custom19">
+        <div class="slds-var-m-around_medium">
+            <template if:true={titanId}>
+                <c-carousel>
+                    <template for:each={certDetails} for:item="certDetail" for:index="detailIndex">
+                        <c-carousel-card key={certDetail.Id}>
+                            <p>Exam Name: {certDetail.Name}</p>
+                            <p>Topic Weight:</p>
+                            <ul class="slds-list_dotted">
+                                <template for:each={certDetail.Exam_Topics__r} for:item="examTopic"
+                                    for:index="topicIndex">
+                                    <li key={examTopic.Id}>
+                                        {examTopic.Name}: {examTopic.Weight__c}%
+                                    </li>
+                                </template>
+                            </ul>
+                        </c-carousel-card>
+                    </template>
+                </c-carousel>
+            </template>
+            <template if:false={titanId}>
+                <p>No Titan Id Provided</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

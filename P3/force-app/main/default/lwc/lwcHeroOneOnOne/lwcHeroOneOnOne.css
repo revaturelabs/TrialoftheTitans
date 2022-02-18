@@ -1,0 +1,11 @@
+.WholeComponent {
+  background-color: #c9c7c7;
+  color: black;
+}
+.header {
+  color: black;
+
+  font-size: xx-large;
+  text-align: center;
+  animation: burn 1.5s linear infinite alternate;
+}

@@ -1,0 +1,61 @@
+<template>
+
+    <!-- Lecutre Notes Summary -->
+    <div class="slds-p-around_medium lectureNotes">
+        <div class="text-image">
+            <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis eius aliquam harum voluptatum,
+                deleniti
+                repellendus reprehenderit eum ab sunt expedita eos error ullam, accusantium et quae fuga esse ipsa
+                assumenda
+                perspiciatis consequuntur praesentium, ipsam ratione quis. Libero, repudiandae vero delectus repellat
+                possimus dignissimos eum laudantium, totam dolorem facilis, quasi cupiditate!
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis eius aliquam harum voluptatum,
+                deleniti
+                repellendus reprehenderit eum ab sunt expedita eos error ullam, accusantium et quae fuga esse ipsa
+                assumenda
+                perspiciatis consequuntur praesentium, ipsam ratione quis. Libero, repudiandae vero delectus
+                repellat
+                possimus dignissimos eum laudantium, totam dolorem facilis, quasi cupiditate!
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci placeat et ea neque at voluptas
+                optio
+                repudiandae officia ducimus dolorum?
+            </h3>
+
+            <img class="img" src={img} alt="" onclick={showModal}>
+        </div>
+
+        <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis eius aliquam harum voluptatum,
+            deleniti
+            repellendus reprehenderit eum ab sunt expedita eos error ullam, accusantium et quae fuga esse ipsa
+            assumenda
+            perspiciatis consequuntur praesentium, ipsam ratione quis. Libero, repudiandae vero delectus repellat
+            possimus dignissimos eum laudantium, totam dolorem facilis, quasi cupiditate!</h3>
+    </div>
+
+    <!-- When Image clicked Modal will open-->
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium"
+            aria-labelledby="modal-heading-01" aria-modal="true">
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Cancel and close</span>
+                </button>
+
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <img class=" modalImg" src={img} alt="" onclick={showModal}>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+                        onclick={showModal}>Cancel</button>
+
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+
+
+</template>

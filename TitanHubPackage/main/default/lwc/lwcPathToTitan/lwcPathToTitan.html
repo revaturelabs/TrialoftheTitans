@@ -1,0 +1,36 @@
+<template>
+    <lightning-card class="container">
+        <!-- Hero Details Section -->
+        <div class="child-container1">
+
+            <lightning-card title="Hero Info" >
+                <p class="slds-p-horizontal_small">{heroTitle}</p>
+                <p class="slds-p-horizontal_small">{heroName}</p>
+                <p class="slds-p-horizontal_small">{squadName}</p>
+                <p class="slds-p-horizontal_small">{heroArete}</p>
+            </lightning-card>
+        </div>
+     
+        <!-- Dynamic Path Chart -->
+        <div class="child-container2">
+            <!-- Iterator to Generate Columns if data exists -->
+            <template if:true={examAndResultsList.data}>
+                <template for:each={examAndResultsList.data} for:item="examTile">
+                    <div key={examTile.Exam__c} class="slds-col tile_holder">
+                         <!-- in the class attribute, not sure if the value can be updated dynamically | ex:{examTile.Status__c} -->
+                         <!-- uses data attributes to store the Id of each exam on the button, have not figured out how to obtain the div key -->
+                         <button
+                            class={examTile.Status__c} 
+                            title="Nav to Exam"
+                            onclick={handleExamClick}
+                            data-exam={examTile.Exam__c}
+                            data-status={examTile.Status__c}
+                         >
+                         {examTile.Exam__r.Name}
+                        </button>
+                    </div>
+                </template>
+            </template>         
+        </div>      
+    </lightning-card>
+</template>

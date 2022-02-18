@@ -1,5 +1,5 @@
 @import 'c/titanPageStyle';
-/*.with-background-color {
+.with-background-color {
     background-color: #302f30;
     color:aliceblue;
 }
@@ -33,4 +33,4 @@
 
 .titanListDiv {
     padding-bottom: 30px;
-}*/
+}

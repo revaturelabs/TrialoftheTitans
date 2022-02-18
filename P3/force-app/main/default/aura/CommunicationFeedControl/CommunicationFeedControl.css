@@ -1,0 +1,69 @@
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.THIS#feed-container {
+    background: #d4d5d5;
+    height: 45vh;
+    overflow: hidden;
+    width: 100%;
+}
+
+.THIS #feed-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.THIS #feed-content::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0, 0);
+}
+
+.THIS #feed-content::-webkit-scrollbar-thumb {
+    background: #302f30;
+    border-radius: 30px;
+}
+
+.THIS #feed-content::-webkit-scrollbar-thumb:hover {
+    background: #141414;
+}
+
+.THIS #feed-header::-webkit-scrollbar {
+    height: 0;
+}
+
+.THIS #feed-header {
+    background: #302f30;
+    color: #d4d5d5;
+    overflow-x: auto;
+}
+
+.THIS #feed-compose {
+    background: #302f30;
+    color: #d4d5d5;
+    padding: 1em;
+    min-height: 7em;
+    max-height: 7em;
+    border-radius: 0 0 5px 5px;
+}
+
+.THIS #feed-content {
+    color: #302f30;
+    max-height: calc(100% - 10em);
+    min-height: calc(100% - 10em);
+    overflow-y: auto;
+}
+
+.THIS #loading {
+    animation: spin 1.5s linear infinite;
+    border: .8em solid #302f30;
+    border-bottom: .8em solid var(--user-team-primary);
+    border-radius: 50%;
+    border-top: .8em solid var(--user-team-primary);
+    height: 4em;
+    margin: 1em auto;
+    width: 4em;
+}
