@@ -92,7 +92,7 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
         this[NavigationMixin.Navigate]({
             type: "comm__namedPage",
             attributes: {
-                name: "Titan_Hub__c"//API name of the page to navigate to
+                name: "Titan_Hub__c"//API name of the page to navigate to the titan hub page
             },
              state: {
                 c__titanId: slicedId,
