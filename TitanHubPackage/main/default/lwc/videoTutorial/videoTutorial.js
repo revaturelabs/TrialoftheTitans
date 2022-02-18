@@ -44,7 +44,7 @@ export default class VideoTutorial extends LightningElement {
 
     // hard coded numbers for carousel
     currentFirstSlotNumber = 0;
-    imagesToDisplay = 3;
+    imagesToDisplay = 3; // <--- Three images are shown in the carousel, needs to be dynamic
 
     // list of videos
     fullList = [];
@@ -65,6 +65,7 @@ export default class VideoTutorial extends LightningElement {
     {
         try{
             this.fullList = await getVideos();
+            console.log(this.fullList.length);
         } 
         catch (error){
             console.log(error);

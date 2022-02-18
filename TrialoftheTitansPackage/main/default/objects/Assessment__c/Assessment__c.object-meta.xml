@@ -143,6 +143,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
     <description>Assessment object for 1-on-1s, projects, and misc.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
@@ -161,7 +162,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Assessments</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>
