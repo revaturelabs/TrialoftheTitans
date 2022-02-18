@@ -2207,10 +2207,10 @@
         <apexClass>UserTriggerHandlerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <!--<pageAccesses>
+    <pageAccesses>
         <apexPage>ExportedTextFile</apexPage>
         <enabled>true</enabled>
-    </pageAccesses>-->
+    </pageAccesses>
     <pageAccesses>
         <apexPage>ExportQuestionPool</apexPage>
         <enabled>true</enabled>

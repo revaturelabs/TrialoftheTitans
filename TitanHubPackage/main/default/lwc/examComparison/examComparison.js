@@ -10,7 +10,7 @@ export default class ExamComparison extends LightningElement {
     recentExams;
     error;
 
-    @wire(RecentExamResults, {TitanId: 'a0X8c00000Q3t7YEAR'})
+    @wire(RecentExamResults, {TitanId: 'a0X3F000006XBL1UAO'})
     RecentExamResults({data, error}){
         if(data) {
             this.recentExams = data;

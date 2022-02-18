@@ -7,13 +7,6 @@
 }
 
 .container {
-    height: 100%;
+    height: inherit;
     overflow-y: scroll;
-    border-radius: 5px;
-}
-.titans{
-    background-color: #c4c4c4;
-    Padding-left: 7px;
-    Padding-right: 7px;
-    Padding-top: 15px;
 }

@@ -1,12 +1,5 @@
-
-/*
-Created by: Andrew Emond
-Description: CSS styling for header
-Date Created: 1/21/22
-*/
-
-.triangle {                               /* for the upper right triangle. Future iterations might want to upload a triangle image instead of using this method. As it would be*/
-    width: 0;                             /*more reponsive*/
+.triangle {
+    width: 0;
     height: 0;
     border-left: 20vw solid transparent;
     position: absolute;
@@ -14,11 +7,10 @@ Date Created: 1/21/22
     right: 0px;
     z-index: 1;
   }
-  .background {                          /*making the background relative*/
+  .background {
     position: relative;
-    border-radius: 5px;
   }
-  .teamPic {                             /*sizing the team picture, and sticking  it in the upper right*/
+  .teamPic {
     width: 15%;
     height: auto;
     position: absolute;
@@ -26,7 +18,7 @@ Date Created: 1/21/22
     top:4%;
     right:2%;
   }
-  .tott {                               /*sizing the Trial of the Titans picture, and sticking it in the middle*/
+  .tott {
       width:50%;
       height:auto;
       z-index: 2;
@@ -34,16 +26,11 @@ Date Created: 1/21/22
         margin-left: auto;
         margin-right: auto
   }
-  .techTitle {                        /*sizing the technology titan, and sticking it in the middle, underneath the ToTT title*/
+  .techTitle {
    font-weight: bolder;
    font-size: 200%;
    position: absolute;
     top: 80%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-  }
-  .margin{
-    margin: 20px 20px 0px 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   }

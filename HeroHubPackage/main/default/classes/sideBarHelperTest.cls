@@ -82,6 +82,7 @@ public class sideBarHelperTest {
         insert contact;
         
         Certification__c cert = new Certification__c(
+            Name='State Alchemist',
             Date_Issued__c=Date.newInstance(2022, 1, 20),
             Image_URL__c='https://example.com/image.png',
             Verification_Site__c='https://example.com',

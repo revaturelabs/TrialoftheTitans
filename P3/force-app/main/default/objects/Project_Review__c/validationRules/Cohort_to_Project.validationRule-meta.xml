@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Cohort_to_Project</fullName>
-    <active>true</active>
-    <errorConditionFormula>AND(NOT(ISBLANK(Cohort__c)), ISBLANK(Project__c))</errorConditionFormula>
-    <errorMessage>Please ensure that you enter a value for Project when selecting a Cohort.</errorMessage>
-</ValidationRule>

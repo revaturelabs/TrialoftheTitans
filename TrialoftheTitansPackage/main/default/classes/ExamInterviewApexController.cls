@@ -1,52 +1,22 @@
 /**
- * @name              : Exam Interview Apex Controller
- * @description       : Controller for our Exam Interview component.This will be      pulling the exam and questions for display in Exam.
- * @author            : Jayvious Williams, Daniel Boice, Trevor Kleinstuber, Conner Eilenfeldt
+ * @name              :  Exam Interview Apex Controller
+ * @description       :  Controller for our Exam Interview component.This will be      pulling the exam and questions for display in Exam.
+ * @author            : Jayvious Williams
  * @group             : 
- * @last modified on  : 02-17-2022
- * @last modified by  : Conner Eilenfeldt
+ * @last modified on  : 10-03-2021
+ * @last modified by  : Daniel Boice
  * Modifications Log
- * Ver   Date         Author              Modification
+ * Ver   Date         Author         Modification
  * 1.0   2021-06-26   Jayvious Williams   Initial Version
- * 1.1   2021-10-03   Daniel Boice
- * 1.2   2022-02-11   Trevor Kleinstuber  examFinder() corrected and improved
- * 1.3   02-17-2022   Conner Eilenfeldt   Added loading the exam details
 **/
 
 public class ExamInterviewApexController {
-    // loads exam questions and details using examID
+    // loads exam questions usind examID
     @AuraEnabled(cacheable=true)
-    public static List<List<SObject>> examFinder(String examID){
-
-        /**Extract the question pools assigned to the exam */
-        Exam_Pool_Assignment__c[] examPoolAssignments = [SELECT Id, Number_to_pull__c, Question_Pool__c FROM Exam_Pool_Assignment__c WHERE Exam__c = :examID];
-        Set<ID> questionPools = new Set<ID>();
-        //Integer numQuestions = 0;
-        Boolean successfullyAdded = false;
-        for(Exam_Pool_Assignment__c epa : examPoolAssignments) { 
-            questionPools.add(epa.Question_Pool__c);
-        }
-        /*extract the questions in the question pool*/
-        Question_Assignment__c[] questionAssignments = [SELECT Id, Exam_Question__c FROM Question_Assignment__c WHERE Question_Pool__c IN :questionPools];
-        Set<ID> questionSet = new Set<ID>();
-        for(Question_Assignment__c qa : questionAssignments) { 
-            questionSet.add(qa.Exam_Question__c); 
-        }
-
-        List<Exam_Question__c> questionList = [SELECT Question_Text__c, Question_Type__c, Options__c, Correct_Answer_s__c FROM Exam_Question__c WHERE Id IN :questionSet];
-
-        // Retreiving exam details
-        List<Exam__c> examDetails = [SELECT id, Name, Default_Time_Limit__c, (SELECT Name FROM Titans__r) FROM Exam__c WHERE id = :examID LIMIT 1];
-
-        List<List<SObject>> theExam = new List<List<SObject>>();
-        theExam.add(questionList);
-        theExam.add(examDetails);
-
-        return theExam;
-
-
-        /**DOES NOT CORRECTLY PICK THE ASSIGNED NUMBER OF QUESTIONS PER POOL*/     
-
+    public static List<Exam_Question__c> examFinder(String examID){
+        List<Exam_Question__c> theExam = [SELECT Question_Text__c, Question_Type__c, Options__c, Correct_Answer_s__c FROM Exam_Question__c WHERE Titan__c != null];
+        //exam = theExam[0].Exam__c;
+        return theExam;  
     }
 
     // insert hero answers using answered exam questions

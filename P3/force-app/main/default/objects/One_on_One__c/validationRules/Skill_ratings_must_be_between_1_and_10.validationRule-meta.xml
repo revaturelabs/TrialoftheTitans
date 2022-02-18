@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Skill_ratings_must_be_between_1_and_10</fullName>
-    <active>true</active>
-    <errorConditionFormula>NOT(AND(AND( Professionalism__c &gt; 0, Professionalism__c &lt; 11),  AND( Soft_Skill_Confidence__c &gt; 0, Soft_Skill_Confidence__c &lt; 11),  AND( Soft_Skill_Fluency__c &gt; 0, Soft_Skill_Fluency__c &lt; 11),  AND( Technical_Accuracy__c &gt; 0, Technical_Accuracy__c  &lt; 11),  AND( Technical_Fluency__c &gt; 0, Technical_Fluency__c &lt; 11)))</errorConditionFormula>
-    <errorMessage>Skill ratings must be a number between 1 and 10</errorMessage>
-</ValidationRule>

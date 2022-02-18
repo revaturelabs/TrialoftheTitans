@@ -5,6 +5,11 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { loadScript } from "lightning/platformResourceLoader";
 import D3 from "@salesforce/resourceUrl/DJS3";
 export default class TitanProgressBar extends LightningElement {
+    @api svgHeight = 50;
+    @api svgWidth = "100%";
+    @api barHeight = 30;
+    @api barPadding = 20;
+    @api roundedCorners = 5;
     @api passedExams;
     @api totalExams;
     d3Init = false;
@@ -33,51 +38,43 @@ export default class TitanProgressBar extends LightningElement {
     }
 
     initD3() {
-        let padding = 20;
-        let height = 50;
-        let width = 700;
-        let barHeight = 50;
-        let roundedCorners = 5;
+        let height = this.svgHeight;
+        let width = this.svgWidth;
+        let widthBar = parseInt(d3.select(this.template.querySelector("svg.progress")).style("width"), 10) * 0.9;
+        let heightBar = this.barHeight;
 
+        let corners = this.roundedCorners;
+        // console.log("before segment assignment (passedExams): " + passedExams);
         let segments = 0;
         if (this.passedExams != -1) {
             segments = this.passedExams;
         }
         let exams = this.totalExams;
-        let segmentWidth = width;
+        let segmentWidth = widthBar;
         if (exams != 0) {
-            segmentWidth = width / exams;
+            segmentWidth = widthBar / exams;
         }
+        let padding = this.barPadding;
 
-        const svg = d3
-            .select(this.template.querySelector("svg.progress"))
-            .attr("height", height + padding)
-            .attr("width", width + padding)
-            .attr("viewBox", [0, 0, width + padding, height + padding])
-            .attr("style", "width: 100%; height: auto; height: intrinsic;");
-        // .attr("preserveAspectRatio", "xMinYMin meet");
+        const svg = d3.select(this.template.querySelector("svg.progress")).attr("height", height).attr("width", width);
 
         const states = ["1", "2", "3"];
         let currentState = this.getCurrentState(segments, exams);
 
         const colorScale = d3.scaleOrdinal().domain(states).range(["#b3697a", "#96cabe", "#69b3a2"]);
 
-        const g = svg.append("g").attr("transform", function (d, i) {
-            return "translate(" + padding / 2 + "," + i * barHeight + ")";
-        });
-
         svg.append("rect")
             .attr("class", "bg-rect")
             .attr("stroke", "black")
             .attr("stroke-width", "1")
-            .attr("rx", roundedCorners)
-            .attr("ry", roundedCorners)
+            .attr("rx", corners)
+            .attr("ry", corners)
             .attr("fill", "gray")
-            .attr("height", barHeight + 2)
+            .attr("height", heightBar + 2)
             .attr("width", () => {
                 return segmentWidth * exams + 2;
             })
-            .attr("x", 0)
+            .attr("x", padding)
             .attr("y", 0);
 
         const progress = svg
@@ -86,11 +83,11 @@ export default class TitanProgressBar extends LightningElement {
             .attr("fill", () => {
                 return colorScale(currentState);
             })
-            .attr("height", barHeight)
+            .attr("height", this.barHeight)
             .attr("width", 0)
-            .attr("rx", roundedCorners)
-            .attr("ry", roundedCorners)
-            .attr("x", 1)
+            .attr("rx", corners)
+            .attr("ry", corners)
+            .attr("x", padding + 1)
             .attr("y", 1);
 
         progress

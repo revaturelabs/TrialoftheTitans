@@ -15,9 +15,9 @@ public with sharing class HeroHubDataFactory {
                 Name = 'Test Job ' + n,
                 user__c = 'Test User ' + n
             ));
-            // cert.add(new Certification__c(
-            //     Name = 'Test Cert ' + n
-            // ));
+            cert.add(new Certification__c(
+                Name = 'Test Cert ' + n
+            ));
             edu.add(new Education__c(
                 Name = 'Test Education ' + n
             ));

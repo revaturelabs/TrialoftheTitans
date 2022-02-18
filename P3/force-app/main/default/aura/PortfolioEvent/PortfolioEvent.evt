@@ -1,2 +1,0 @@
-<!--Used to navigate through HeroHub PageContainer to reach Portfolio Creation-->
-<aura:event type="APPLICATION" description="Event template"/>

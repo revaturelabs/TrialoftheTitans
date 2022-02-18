@@ -1,13 +1,12 @@
 /**
  * @description       :
- * @author            : Daniel Boice, Conner Eilenfeldt
+ * @author            : Daniel Boice
  * @group             :
- * @last modified on  : 02-15-2022
- * @last modified by  : Conner Eilenfeldt
+ * @last modified on  : 10-02-2021
+ * @last modified by  : Daniel Boice
  * Modifications Log
  * Ver   Date         Author         Modification
  * 1.0   10-02-2021   Daniel Boice   Initial Version
- * 1.1   02-15-2022   Conner Eilenfeldt   Added handleSubmitClick
  **/
 import { LightningElement, track, api } from "lwc";
 
@@ -53,19 +52,6 @@ export default class LwcSldsModal extends LightningElement {
     this.isModalOpen = !this.isModalOpen;
   }
 */
-
-  // when submit exam button is clicked
-  handleSubmitClick(event) {
-    const submitEvent = new CustomEvent("submitclick", {
-      detail: event.target.value
-    });
-
-    // Dispatches the event.
-    this.dispatchEvent(submitEvent);
-
-    this.showModal()
-  }
-
   handleConfirmClick(event) {
     const confirmEvent = new CustomEvent("confirmationclick", {
       detail: event.target.value

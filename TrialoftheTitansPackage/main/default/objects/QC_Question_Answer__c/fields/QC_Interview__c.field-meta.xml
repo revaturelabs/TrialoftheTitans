@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>QC_Interview__c</fullName>
-    <deprecated>false</deprecated>
     <description>The QC interview this question/answer data were a part of.</description>
     <externalId>false</externalId>
     <inlineHelpText>The QC interview this set of questions and answers are a part of.</inlineHelpText>

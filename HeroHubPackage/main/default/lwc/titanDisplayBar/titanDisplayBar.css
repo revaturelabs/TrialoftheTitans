@@ -3,9 +3,6 @@
 }
 
 .button {
-  padding: 5px 10px;
+  padding: 0.1rem 0.2rem 0.1rem 0.2rem;
   border-radius: 10px;
-  border: none;
-  border-color: #c4c4c4;
 }
-

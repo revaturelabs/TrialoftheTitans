@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Project_to_Account</fullName>
-    <active>true</active>
-    <errorConditionFormula>AND(NOT(ISBLANK(Project__c)), ISBLANK(Account__c))</errorConditionFormula>
-    <errorMessage>Please ensure that you enter a value for Account when selecting a Project.</errorMessage>
-</ValidationRule>

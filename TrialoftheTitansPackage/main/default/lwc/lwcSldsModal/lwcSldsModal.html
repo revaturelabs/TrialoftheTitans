@@ -1,18 +1,18 @@
 <!--
   @description       : 
-  @author            : Daniel Boice, Conner Eilenfeldt
+  @author            : Daniel Boice
   @group             : 
-  @last modified on  : 02-15-2022
-  @last modified by  : Conner Eilenfeldt
+  @last modified on  : 10-02-2021
+  @last modified by  : Daniel Boice
   Modifications Log
-  Ver   Date         Author              Modification
-  1.0   10-02-2021   Daniel Boice        Initial Version
-  1.1   10/26/2021   Iteration VI        Styling and Data
-  1.2   02-15-2022   Conner Eilenfeldt   Added handleSubmitClick
+  Ver   Date         Author         Modification
+  1.0   10-02-2021   Daniel Boice   Initial Version
+  Modified Date: 10/26/2021
+  Modified By: Iteration VI Styling and Data
 -->
 <template>
    <div class="container slds-p-around_large">
-    <lightning-button variant="brand" label={showButtonText} title={showButtonText} onclick={handleSubmitClick}
+    <lightning-button variant="brand" label={showButtonText} title={showButtonText} onclick={showModal}
        class="slds-m-left_x-small" disabled={showButtonDisabled}></lightning-button>
  
     <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
