@@ -11,7 +11,7 @@
  * 1.2   02-14-2022   Zain Hamid            Question state tracking
  * 1.3   02-15-2022   Conner Eilenfeldt     Submission confirmation message
  * 1.4   02-17-2022   Conner Eilenfeldt     Exam details header
- * 1.5   02-15-2022   Conner Eilenfeldt     Added exam timer
+ * 1.5   02-18-2022   Conner Eilenfeldt     Added exam timer
  **/
 import { LightningElement, api, wire, track } from "lwc";
 //import exam from '@salesforce/schema/Exam__c';
@@ -58,6 +58,9 @@ export default class LwcExamInterview extends LightningElement {
 
   //holds the list of user's answers
   examAnswers = {};
+  
+  // User-entered answer on the current question
+  answer = "";
 
   //disabling buttons
   nextButtonDisabled = false;
@@ -74,13 +77,6 @@ export default class LwcExamInterview extends LightningElement {
   @api
   numberOfQuestions = 0;
 
-  // debugging variables ?
-  question_;
-  answer_ = "";
-  questionI;
-  questionType;
-  answer = "";
-
   // toast event variables
   toastMessage = "";
   toastTitle = "";
@@ -91,6 +87,7 @@ export default class LwcExamInterview extends LightningElement {
   countMarked;
   countUnanswered;
 
+  // question title
   get questionNumberTitleText() {
     if (this.numberOfQuestions) {
       return (
@@ -368,7 +365,6 @@ export default class LwcExamInterview extends LightningElement {
         console.error("e.message => " + error.message);
         console.error("e.stack => " + error.stack);
         this.error = error;
-        //this.contacts = undefined;
       });
   }
 
@@ -389,17 +385,7 @@ export default class LwcExamInterview extends LightningElement {
   connectedCallback() {
     Promise.all([loadScript(this, CONFETTI)])
       .then(() => {
-        /*
-          this.dispatchEvent(
-            new ShowToastEvent({
-              title: "Success",
-              message: "Dependencies loaded successfully",
-              variant: "Success"
-            })
-          );
-          */
         this.confettiAvailable = true;
-        this.setUpCanvas();
       })
       .catch((error) => {
         console.log(error)
@@ -414,13 +400,6 @@ export default class LwcExamInterview extends LightningElement {
       });
   }
 
-  setUpCanvas() {
-    var confettiCanvas = this.template.querySelector("canvas.confettiCanvas");
-    this.myconfetti = confetti.create(confettiCanvas, { resize: true });
-    this.myconfetti({
-      zIndex: 10000
-    });
-  }
   fireworks() {
     var end = Date.now() + 8 * 1000;
     // eslint-disable-next-line @lwc/lwc/no-async-operation
