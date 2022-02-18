@@ -57,7 +57,7 @@ export default class LwcPathToTitan extends LightningElement {
             },
              state: {
                 c__examId: exam_data_attribute,
-                c__accountId: this.currentUser.Id
+                c__accId: this.currentUser.Id
              }
         });      
     }
