@@ -15,18 +15,14 @@ export default class LwcExamTimer extends LightningElement {
     @track timeLeft;
     countDownDate;
     timeIntervalInstance;
-    rendered = false;   // guard to stop infinite renderedCallback loop
 
-    renderedCallback() {
-        if (!this.rendered) {
+    connectedCallback() {
             // delay start function so variables have time to load
             setTimeout(() => {  this.start(); }, 1000);
-        }
     }
 
     // start the countdown timer
     start() {
-        this.rendered = true;
         let parentThis = this;
         this.countDownDate = new Date().getTime() + this.examTimeLimit * 60000;
 
