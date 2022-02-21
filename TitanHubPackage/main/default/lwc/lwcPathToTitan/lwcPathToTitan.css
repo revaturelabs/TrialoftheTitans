@@ -1,26 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
 .container {
-    padding: 5px;
-    margin: 5px; 
     display: flex; 
     justify-content: center; 
-
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px; 
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color: #bbbbbb;
 }
 
 .child-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 5px; 
-    margin: 10px;
-    border: 1px solid gray;
+    margin: 5px;
+    border: 1px solid #fbe3e3;
     border-radius: 5px; 
+    background-color: #fbe3e3;
 }
 
 .child-container2 {
     padding: 5px; 
-    margin: 10px; 
-    border: 1px solid gray;
+    margin: 5px; 
+    border: 1px solid #fbe3e3;
     border-radius: 5px;
     display:flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
+    background-color: white;
 }
 
 .Completed{
@@ -42,9 +55,8 @@
     background-color: grey;
     border: none;
     pointer-events: none; 
+    border: 1px solid #fbe3e3;
 }
-
-
 
 button {
     justify-content: center;
@@ -60,6 +72,20 @@ button {
 button:hover {
     transform: scale(1.2)
 } 
+
+.circle-test {
+    height: 70px;
+    width: 70px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    background-color: grey;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: white;
+    margin-right: 5px;
+    margin-left: 5px;
+}
 
 
 

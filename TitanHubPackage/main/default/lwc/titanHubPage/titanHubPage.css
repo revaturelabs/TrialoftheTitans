@@ -1,3 +1,33 @@
-.titan_little{
-    min-height: 250px;
+* {
+    box-sizing: border-box;
 }
+
+.titan_hub {
+    margin: 2px;
+}
+
+/* .titan_little{
+    min-height: 250px;
+} */
+
+.top-container {
+    display: flex;
+    justify-content: flex-start;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+    background-color: #bbbbbb;
+
+}
+
+/* .top-container-children {
+    margin: 5px;
+    padding: 5px;
+    height: 400px;
+} */
+
+
+/* class="slds-col exam_comp slds-size_1-of-3 top-container-children" */
+
+
