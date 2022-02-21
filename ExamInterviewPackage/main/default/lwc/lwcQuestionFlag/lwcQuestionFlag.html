@@ -31,7 +31,10 @@
                     <!--<lightning-button-icon icon-name="utility:report_issue" variant="bare" onclick={unflagButtonClicked} alternative-text="Cancel Flag" title="Cancel Flag"></lightning-button-icon>-->
                     <lightning-combobox name="category" label="Category" value={categoryValue} options={categoryList} onchange={categoryChanged}></lightning-combobox>
                     <lightning-textarea name="flagNotesInput" class = "flagNotesInput" required="false" value="" placeholder="Add Notes" maxlength={maxNotesLength} message-when-too-long="Maximum length of notes is {maxNotesLength} characters"></lightning-textarea>
-               </template>
+                </template>
+                <template if:false={flagInProgress}>
+                    {fail}
+                </template>
             </div>
             <!-- Modal/Popup Box LWC footer starts here -->
             <footer class="slds-modal__footer">

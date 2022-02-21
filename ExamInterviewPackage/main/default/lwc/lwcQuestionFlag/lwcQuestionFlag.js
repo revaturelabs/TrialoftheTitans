@@ -93,13 +93,11 @@ export default class LwcQuestionFlag extends LightningElement {
         console.log("flagbuttclick");
         this.isModalOpen = true;
         console.log(this.recordId)
-        if (this.recordId && this.flagInProgress == false) {
+        if (this.recordId) {
             this.flagInProgress = true;
-        } else if (!this.recordId) {
-            let fail = "Record ID not loaded";
-        }
+        } 
         else {
-            this.flagInProgress = false
+            let fail = "Record ID not loaded";
         }
 
     }
