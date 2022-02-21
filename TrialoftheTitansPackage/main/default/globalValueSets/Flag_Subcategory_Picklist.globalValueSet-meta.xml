@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Formatting-Content Overlap</fullName>
+        <default>false</default>
+        <label>Formatting-Content Overlap</label>
+    </customValue>
+    <customValue>
+        <fullName>Formatting-Content Out of Order</fullName>
+        <default>false</default>
+        <label>Formatting-Content Out of Order</label>
+    </customValue>
+    <customValue>
+        <fullName>Formatting-Content Unreadable</fullName>
+        <default>false</default>
+        <label>Formatting-Content Unreadable</label>
+    </customValue>
+    <customValue>
+        <fullName>Missing Info-Question Incomplete</fullName>
+        <default>false</default>
+        <label>Missing Info-Question Incomplete</label>
+    </customValue>
+    <customValue>
+        <fullName>Missing Info-Unclear Question</fullName>
+        <default>false</default>
+        <label>Missing Info-Unclear Question</label>
+    </customValue>
+    <customValue>
+        <fullName>Missing Info-Blank Answer</fullName>
+        <default>false</default>
+        <label>Missing Info-Blank Answer</label>
+    </customValue>
+    <customValue>
+        <fullName>Missing Info-Unclear Answer</fullName>
+        <default>false</default>
+        <label>Missing Info-Unclear Answer</label>
+    </customValue>
+    <customValue>
+        <fullName>Missing Info-Content Failed to Load</fullName>
+        <default>false</default>
+        <label>Missing Info-Content Failed to Load</label>
+    </customValue>
+    <customValue>
+        <fullName>Outdated-Refers to Deprecated Content</fullName>
+        <default>false</default>
+        <label>Outdated-Refers to Deprecated Content</label>
+    </customValue>
+    <customValue>
+        <fullName>Outdated-Does Not Use Modern Functionality</fullName>
+        <default>false</default>
+        <label>Outdated-Does Not Use Modern Functionality</label>
+    </customValue>
+    <customValue>
+        <fullName>Text-Misspelled Word</fullName>
+        <default>false</default>
+        <label>Text-Misspelled Word</label>
+    </customValue>
+    <customValue>
+        <fullName>Text-Bad Grammar</fullName>
+        <default>false</default>
+        <label>Text-Bad Grammar</label>
+    </customValue>
+    <customValue>
+        <fullName>Text-Unclear Wording</fullName>
+        <default>false</default>
+        <label>Text-Unclear Wording</label>
+    </customValue>
+    <masterLabel>Flag_Subcategory_Picklist</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
