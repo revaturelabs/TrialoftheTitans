@@ -1,0 +1,7 @@
+lightning-textarea, lightning-input, lightning-combobox {
+    color: #111111;
+  }
+
+lightning-button {
+  width: fit-content;
+}

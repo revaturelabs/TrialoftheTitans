@@ -20,6 +20,13 @@
             "default": false
         },
         {
+            "path": "ExamInterviewPackage",
+            "package": "Exam Intervew Package",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        },
+        {
             "path": "ChartPackage",
             "package": "ChartPackage",
             "versionName": "ver 0.1",

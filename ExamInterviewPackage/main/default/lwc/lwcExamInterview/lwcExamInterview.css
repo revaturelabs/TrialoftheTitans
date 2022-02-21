@@ -1,0 +1,44 @@
+/*
+  Author: Iteration VI - Style & Data
+  Created date: 10/26/2021
+  Description: css file. a simplification of aura component css
+  Ver   Date         Author             Modification
+  1.1   12/30/2021   Interation VII     Styling
+  1.2   02-17-2022   Conner Eilenfeldt  Exam details header
+*/
+
+@import 'c/examStyle';
+
+.question_overview {
+    color: black;
+}
+
+.exam_layout {
+    background-color: #112537;
+}
+
+.button_container {
+    display: table;
+    height: 50px;
+    width: 100%;
+}
+
+.button_holder {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.button {
+    position: relative;
+    font-size: medium;
+}
+
+.examDetails {
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+}
+
+:host .header {
+    --slds-c-card-header-spacing-block-start: 0;
+}
