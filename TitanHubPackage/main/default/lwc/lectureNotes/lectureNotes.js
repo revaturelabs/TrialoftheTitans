@@ -4,7 +4,7 @@
 // Author: Christopher Brennan and Deep Patel
 // Created: 01/20/2022
 // Updated: 01/26/2022
-// Description: Child compoenent of titanSummary 
+// Description: Child component of titanSummary 
 // 
 /////////////////////////////////////////////////////////////////////////////////
 
