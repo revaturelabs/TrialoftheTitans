@@ -114,6 +114,7 @@ export default class LwcQuestionFlag extends LightningElement {
      */
     submitButtonClicked(){
         this.flagInProgress = false;
+        flagCurrentQuestion()
         this.submitQuestionFlag();
     }
 
@@ -136,6 +137,7 @@ export default class LwcQuestionFlag extends LightningElement {
         console.log(submitState);
         if (submitState){
             console.log("true");
+            this.dispatchEvent(new CustomEvent('flagger'))
             this.submittedState = true;
         } else {
             this.errorMessage = 'Unable to submit question. Id ' + this.recordId + ' rejected the update.';
