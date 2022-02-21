@@ -3,7 +3,8 @@
 }
 .slds-context-bar{
     background-color: #c4c4c4;
-    margin-left: 25px;
-    margin-right: 25px;
-    border-radius: 5px;
+    border-radius: 5px; 
+    /* margin: 5px 33px 0px 33px; */
+    margin: 10px;
+
 }

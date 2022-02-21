@@ -92,7 +92,7 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
         this[NavigationMixin.Navigate]({
             type: "comm__namedPage",
             attributes: {
-                name: "Titan_Hub__c"//API name of the page to navigate to the titan hub page
+                name: "Titan_Hub__c"//API name of the page to navigate to
             },
              state: {
                 c__titanId: slicedId,
@@ -114,11 +114,11 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
                 this[NavigationMixin.Navigate]({
                     type: "comm__namedPage",
                     attributes: {
-                        name: "Exam_Interview__c"//API name of the page to navigate to the exam interview page
+                        name: "Hero_Results__c"//API name of the page to navigate to
                     },
                      state: {
                          c__examId: result,
-                         c__accId: this.currentUser.Id // c__accId must be the same as in lwcExamInterview
+                         c__accountId: this.currentUser.Id
                      },
                 });
                 

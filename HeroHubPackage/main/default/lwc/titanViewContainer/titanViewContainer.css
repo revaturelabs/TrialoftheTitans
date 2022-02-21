@@ -7,13 +7,10 @@
 }
 
 .container {
-    height: inherit;
-    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 12px;
     border-radius: 5px;
-}
-.titans{
     background-color: #c4c4c4;
-    Padding-left: 7px;
-    Padding-right: 7px;
-    Padding-top: 15px;
 }

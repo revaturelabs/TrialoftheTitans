@@ -8,11 +8,11 @@
                 <p class="slds-p-horizontal_small">{squadName}</p>
                 <p class="slds-p-horizontal_small">{heroArete}</p>
             </lightning-card>
-            <lightning-card title="Radar Chart" class="background">
-                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+            <div title="Radar Chart" class="background">
+                <div class="carousel-container">
                     <c-radar-carousel avg-scores={avgScores}></c-radar-carousel>
                 </div>
-            </lightning-card>
+            </div>
             <lightning-card title="Porfolio Status" class="background">
                 <p class="slds-p-horizontal_small">{portName}</p>
                 <p class="slds-p-horizontal_small">{portStatus}</p>

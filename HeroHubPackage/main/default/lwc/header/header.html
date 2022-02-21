@@ -1,12 +1,19 @@
+
+<!--
+Created by: Andy Emond
+Description: HTML for Header Component.
+Date Created: 1/21/2022
+-->
+
 <template>
-    <div class="margin">
+    <div class="margin header-container">
         <div hidden >
             {teamInfo}
             {techInfo}
         </div>
-        <div style={colorForBack} class="background">
+        <div style={colorForBack} class="image-container">
             <p class="techTitle">{techName}</p>
-            <img src={tottPic} class="tott"/>
+            <img src={tottPic} class="tottImage"/>
             <img src={leadPic} class="teamPic"/>
             <div class="triangle" style={colorForTri}></div>
         </div>
