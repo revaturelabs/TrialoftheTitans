@@ -25,6 +25,7 @@ import submitExam from "@salesforce/apex/ExamInterviewApexController.submitExam"
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { loadScript } from "lightning/platformResourceLoader";
 import CONFETTI from "@salesforce/resourceUrl/confetti";
+import { CurrentPageReference } from 'lightning/navigation';
 
 export default class LwcExamInterview extends LightningElement {
   // exam details
@@ -35,11 +36,11 @@ export default class LwcExamInterview extends LightningElement {
   //for displaying errors
   error;
 
-  //hard coded an exam id and account id for testing, set by parent component
+  //Variables passed in from navigation to this page
   @api
-  examId = "a0A8c00000cIUb0EAG";
+  examId;
   @api
-  accId = "0018c000028TV2qAAG";
+  accId;
 
   //for switching off the update after exam is submitted
   updateAnswers = true;
@@ -86,6 +87,24 @@ export default class LwcExamInterview extends LightningElement {
   submitConfirmationMessage;
   countMarked;
   countUnanswered;
+
+  currentPageReference = null; 
+    urlStateParameters = null;
+
+    // Obtains the state parameters from the URL created by the HeroHub Component - titanDisplayBar
+    @wire(CurrentPageReference)
+    getStateParameters(currentPageReference) {
+       if (currentPageReference) {
+          this.urlStateParameters = currentPageReference.state;
+          this.setParametersBasedOnUrl();
+       }
+    }
+
+    // Sets the Ids above based on the state parameters in the URL
+    setParametersBasedOnUrl() {
+        this.examId = this.urlStateParameters.c__examId || null;
+        this.accId = this.urlStateParameters.c__accId || null;
+     }
 
   // question title
   get questionNumberTitleText() {
