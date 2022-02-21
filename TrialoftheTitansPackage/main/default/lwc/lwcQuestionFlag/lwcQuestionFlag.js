@@ -53,13 +53,10 @@ export default class LwcQuestionFlag extends LightningElement {
     getCatagoriesPicklistValues({ error, data }) {
         if (data) {
             let value = [];
-            console.log('fools');
-            console.log(data);
             for (let i=0;i<data.values.length;i++){
                 value.push({label:data.values[i].label, value:data.values[i].value});
             }
             this.categoryList = value;
-            console.log(this.categoryList)/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             return(value)
             
         } else if (error) {

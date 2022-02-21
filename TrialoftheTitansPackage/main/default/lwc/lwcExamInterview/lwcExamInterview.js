@@ -143,11 +143,13 @@ export default class LwcExamInterview extends LightningElement {
   //updating the child component when go to next or previous question
   updateQuestionComponent() {
     const questionComponent = this.template.querySelector("c-lwc-question");
+    const flagComponent = this.template.querySelector("c-lwc-question-flag");
     const stateComponent = this.template.querySelector("c-lwc-exam-overview");
     stateComponent.questionstates = this.examQuestionsState;
     if (questionComponent && this.questionNumber < this.numberOfQuestions + 1) {
       this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       questionComponent.question = this.currentQuestion;
+      flagComponent.recordId = this.currentQuestion.Id;
       console.log('All questions');
       console.log(this.examQuestions);
       console.log('Printing current question');
