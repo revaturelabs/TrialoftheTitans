@@ -40,7 +40,7 @@ export default class LwcQuestionFlag extends LightningElement {
     maxNotesLength = 500;
 
 
-        //Boolean tracked variable to indicate if modal is open or not default value is false as modal is closed when page is loaded 
+    //Boolean tracked variable to indicate if modal is open or not default value is false as modal is closed when page is loaded 
     @track isModalOpen = false;
     closeModal() {
         // to close modal set isModalOpen tarck value as false
@@ -55,19 +55,19 @@ export default class LwcQuestionFlag extends LightningElement {
     // We need the object info for Exam_Question__c in order to get at its picklists.
     @wire(getObjectInfo, { objectApiName: EXAM_QUESTION_OBJECT })
     objectInfo;
-    
+
 
     // This uses the object info in order to look up the category picklist values.
-    @wire(getPicklistValues, { recordTypeId: '$objectInfo.data.defaultRecordTypeId', fieldApiName: CATEGORY_FIELD})
+    @wire(getPicklistValues, { recordTypeId: '$objectInfo.data.defaultRecordTypeId', fieldApiName: CATEGORY_FIELD })
     getCatagoriesPicklistValues({ error, data }) {
         if (data) {
             let value = [];
-            for (let i=0;i<data.values.length;i++){
-                value.push({label:data.values[i].label, value:data.values[i].value});
+            for (let i = 0; i < data.values.length; i++) {
+                value.push({ label: data.values[i].label, value: data.values[i].value });
             }
             this.categoryList = value;
-            return(value)
-            
+            return (value)
+
         } else if (error) {
             // Handle error
         }
@@ -89,44 +89,37 @@ export default class LwcQuestionFlag extends LightningElement {
      * that they don't want to flag the question after all.
      */
 
-    flagButtonClicked(){
-        console.log ("flagbuttclick");
+    flagButtonClicked() {
+        console.log("flagbuttclick");
         this.isModalOpen = true;
-        console.log (this.recordId)
-        if(this.recordId && this.flagInProgress==false){
+        console.log(this.recordId)
+        if (this.recordId && this.flagInProgress == false) {
             this.flagInProgress = true;
-    }else if(!this.recordId){
-        let fail = "Record ID not loaded";
-    }
-    else{
-        this.flagInProgress=false
-    }
+        } else if (!this.recordId) {
+            let fail = "Record ID not loaded";
+        }
+        else {
+            this.flagInProgress = false
+        }
 
     }
     showToast() {
-        const eve = new ShowToastEvent({
+        this.dispatchEvent(new ShowToastEvent({
             title: 'Thank You',
-            message:'Thank you for the feedback',
+            message: 'Thank you for the feedback',
             variant: 'success',
             mode: 'dismissable'
-        });
-        this.dispatchEvent(new ShowToastEvent({
-            title: 'Get Help',
-            message: 'Salesforce documentation is available in the app.',
-            variant: 'warning',
-            mode: 'pester'
-        })
-);
+        }));
     }
 
-   
+
     /**
      * Event response: The user picked a category from the combo box.
      * 
      * This looks up all of the subcategories that correspond to the picked category, and makes the
      * subcategory combo box hold just those.
      */
-    categoryChanged(event){
+    categoryChanged(event) {
         this.categoryValue = event.detail.value
         console.log(this.categoryValue);
     }
@@ -137,7 +130,7 @@ export default class LwcQuestionFlag extends LightningElement {
      * This makes the category, subcategory, and notes invisible again, and calls the asynchronous method
      * that actually pushes the flag data to Salesforce.
      */
-    submitButtonClicked(){
+    submitButtonClicked() {
         this.flagInProgress = false;
         this.submitQuestionFlag();
     }
@@ -152,15 +145,15 @@ export default class LwcQuestionFlag extends LightningElement {
      * We shouldn't even get to this point unless the Exam_Question__c could be looked up by Id, but there
      * might still be an error if the update fails for some reason. If so, error text should be displayed.
      */
-    async submitQuestionFlag(){
+    async submitQuestionFlag() {
         console.log(this.categoryValue);
-        this.flagNotes=this.template.querySelector(".flagNotesInput").value;
+        this.flagNotes = this.template.querySelector(".flagNotesInput").value;
         console.log(this.flagNotes);
         this.isModalOpen = false;
-        
-        let submitState = await flagQuestion({questionId: this.recordId, category: this.categoryValue, notes: this.flagNotes});
+
+        let submitState = await flagQuestion({ questionId: this.recordId, category: this.categoryValue, notes: this.flagNotes });
         console.log(submitState);
-        if (submitState){
+        if (submitState) {
             this.showToast();
             console.log("true");
             this.dispatchEvent(new CustomEvent('flagger'))
@@ -169,6 +162,6 @@ export default class LwcQuestionFlag extends LightningElement {
         } else {
             this.errorMessage = 'Unable to submit question. Id ' + this.recordId + ' rejected the update.';
         }
-        
+
     }
 }

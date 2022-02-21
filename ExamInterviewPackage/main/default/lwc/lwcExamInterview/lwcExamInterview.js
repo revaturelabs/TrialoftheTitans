@@ -2,7 +2,7 @@
  * @description       : Creates questions and allows users to submit to the server
  * @author            : Austin Ulberg, Daniel Boice, Zain Hamid, Conner Eilenfeldt
  * @group             :
- * @last modified on  : 02-17-2022
+ * @last modified on  : 02-18-2022
  * @last modified by  : Conner Eilenfeldt
  * Modifications Log
  * Ver   Date         Author                Modification
@@ -11,6 +11,7 @@
  * 1.2   02-14-2022   Zain Hamid            Question state tracking
  * 1.3   02-15-2022   Conner Eilenfeldt     Submission confirmation message
  * 1.4   02-17-2022   Conner Eilenfeldt     Exam details header
+ * 1.5   02-18-2022   Conner Eilenfeldt     Added exam timer
  **/
 import { LightningElement, api, wire, track } from "lwc";
 //import exam from '@salesforce/schema/Exam__c';
@@ -29,7 +30,7 @@ export default class LwcExamInterview extends LightningElement {
   // exam details
   examName;
   titan;
-  examTimer; // not implemented yet
+  examTimeLimit;
 
   //for displaying errors
   error;
@@ -57,6 +58,9 @@ export default class LwcExamInterview extends LightningElement {
 
   //holds the list of user's answers
   examAnswers = {};
+  
+  // User-entered answer on the current question
+  answer = "";
 
   //disabling buttons
   nextButtonDisabled = false;
@@ -73,13 +77,6 @@ export default class LwcExamInterview extends LightningElement {
   @api
   numberOfQuestions = 0;
 
-  // debugging variables ?
-  question_;
-  answer_ = "";
-  questionI;
-  questionType;
-  answer = "";
-
   // toast event variables
   toastMessage = "";
   toastTitle = "";
@@ -90,6 +87,7 @@ export default class LwcExamInterview extends LightningElement {
   countMarked;
   countUnanswered;
 
+  // question title
   get questionNumberTitleText() {
     if (this.numberOfQuestions) {
       return (
@@ -124,7 +122,7 @@ export default class LwcExamInterview extends LightningElement {
       // data's exam details
       this.examName = data[1][0].Name;
       this.titan = data[1][0].Titans__r[0].Name;
-      this.examTimer = data[1][0].Default_Time_Limit__c;
+      this.examTimeLimit = data[1][0].Default_Time_Limit__c;
 
       this.error = undefined;
       //this.questionI=data[0];
@@ -137,7 +135,7 @@ export default class LwcExamInterview extends LightningElement {
       this.examQuestions = undefined;
       this.examName = undefined;
       this.titan = undefined;
-      this.examTimer = undefined;
+      this.examTimeLimit = undefined;
       console.log(error);
     }
   }
@@ -145,11 +143,13 @@ export default class LwcExamInterview extends LightningElement {
   //updating the child component when go to next or previous question
   updateQuestionComponent() {
     const questionComponent = this.template.querySelector("c-lwc-question");
+    const flagComponent = this.template.querySelector("c-lwc-question-flag");
     const stateComponent = this.template.querySelector("c-lwc-exam-overview");
     stateComponent.questionstates = this.examQuestionsState;
     if (questionComponent && this.questionNumber < this.numberOfQuestions + 1) {
       this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       questionComponent.question = this.currentQuestion;
+      flagComponent.recordId = this.currentQuestion.Id;
       console.log('All questions');
       console.log(this.examQuestions);
       console.log('Printing current question');
@@ -367,7 +367,6 @@ export default class LwcExamInterview extends LightningElement {
         console.error("e.message => " + error.message);
         console.error("e.stack => " + error.stack);
         this.error = error;
-        //this.contacts = undefined;
       });
   }
 
@@ -388,17 +387,7 @@ export default class LwcExamInterview extends LightningElement {
   connectedCallback() {
     Promise.all([loadScript(this, CONFETTI)])
       .then(() => {
-        /*
-          this.dispatchEvent(
-            new ShowToastEvent({
-              title: "Success",
-              message: "Dependencies loaded successfully",
-              variant: "Success"
-            })
-          );
-          */
         this.confettiAvailable = true;
-        this.setUpCanvas();
       })
       .catch((error) => {
         console.log(error)
@@ -413,13 +402,6 @@ export default class LwcExamInterview extends LightningElement {
       });
   }
 
-  setUpCanvas() {
-    var confettiCanvas = this.template.querySelector("canvas.confettiCanvas");
-    this.myconfetti = confetti.create(confettiCanvas, { resize: true });
-    this.myconfetti({
-      zIndex: 10000
-    });
-  }
   fireworks() {
     var end = Date.now() + 8 * 1000;
     // eslint-disable-next-line @lwc/lwc/no-async-operation
