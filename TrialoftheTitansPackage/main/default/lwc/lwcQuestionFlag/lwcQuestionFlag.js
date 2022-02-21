@@ -11,6 +11,7 @@ import { LightningElement, api, wire, track } from 'lwc';
 // Imports for looking up the contents of a picklist
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import EXAM_QUESTION_OBJECT from '@salesforce/schema/Exam_Question__c';
 import CATEGORY_FIELD from '@salesforce/schema/Exam_Question__c.Flag_Category__c';
 // Apex code imports
@@ -37,7 +38,15 @@ export default class LwcQuestionFlag extends LightningElement {
     @track categoryList;
     // This defines the maximum length of the notes. Might want to update this later...
     maxNotesLength = 500;
-    
+
+
+        //Boolean tracked variable to indicate if modal is open or not default value is false as modal is closed when page is loaded 
+    @track isModalOpen = false;
+    closeModal() {
+        // to close modal set isModalOpen tarck value as false
+        this.isModalOpen = false;
+    }
+
 
     // ----------------------------------------------------------------------------------------------------------------
     // ---------------------------------- Code for retrieving Global Picklist values ----------------------------------
@@ -82,6 +91,7 @@ export default class LwcQuestionFlag extends LightningElement {
 
     flagButtonClicked(){
         console.log ("flagbuttclick");
+        this.isModalOpen = true;
         console.log (this.recordId)
         if(this.recordId && this.flagInProgress==false){
             this.flagInProgress = true;
@@ -92,6 +102,21 @@ export default class LwcQuestionFlag extends LightningElement {
         this.flagInProgress=false
     }
 
+    }
+    showToast() {
+        const eve = new ShowToastEvent({
+            title: 'Thank You',
+            message:'Thank you for the feedback',
+            variant: 'success',
+            mode: 'dismissable'
+        });
+        this.dispatchEvent(new ShowToastEvent({
+            title: 'Get Help',
+            message: 'Salesforce documentation is available in the app.',
+            variant: 'warning',
+            mode: 'pester'
+        })
+);
     }
 
    
@@ -114,7 +139,6 @@ export default class LwcQuestionFlag extends LightningElement {
      */
     submitButtonClicked(){
         this.flagInProgress = false;
-        flagCurrentQuestion()
         this.submitQuestionFlag();
     }
 
@@ -132,12 +156,15 @@ export default class LwcQuestionFlag extends LightningElement {
         console.log(this.categoryValue);
         this.flagNotes=this.template.querySelector(".flagNotesInput").value;
         console.log(this.flagNotes);
+        this.isModalOpen = false;
         
         let submitState = await flagQuestion({questionId: this.recordId, category: this.categoryValue, notes: this.flagNotes});
         console.log(submitState);
         if (submitState){
+            this.showToast();
             console.log("true");
             this.dispatchEvent(new CustomEvent('flagger'))
+            this.showToast();
             this.submittedState = true;
         } else {
             this.errorMessage = 'Unable to submit question. Id ' + this.recordId + ' rejected the update.';
