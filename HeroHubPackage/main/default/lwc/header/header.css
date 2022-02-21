@@ -5,6 +5,7 @@ Description: CSS styling for header
 Date Created: 1/21/22
 */
 
+<<<<<<< HEAD
 .triangle {                               /* for the upper right triangle. Future iterations might want to upload a triangle image instead of using this method. As it would be*/
     width: 0;                             /*more reponsive*/
     height: 0;
@@ -41,3 +42,75 @@ Date Created: 1/21/22
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
   }
+=======
+ * {
+   box-sizing: border-box;
+ }
+
+.triangle {
+  width: 0;
+  height: 200px;
+  border-left: 20vw solid transparent;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 1;
+}
+
+.image-container {
+  position: relative;
+  border-radius: 5px;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  height: 250px;
+  align-items: center;
+}
+.teamPic {
+  width: 10%;
+  height: auto;
+  position: absolute;
+  z-index: 2;
+  top:4%;
+  right:2%;
+  margin-top: 40px;
+}
+
+.tottImage {
+    height:200px;
+    width: auto;
+    display: flex;
+    z-index: 2; 
+    display: block; 
+    
+}
+
+.techTitle {
+ font-weight: bolder;
+ font-size: 200%;
+ position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.header-container {
+  display: flex;
+  /* margin: 15px 33px 0px 33px; */
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+  
+
+ 
+
+
+
+  
+>>>>>>> af40cc2db4adfb13af8c9d4518559af160d66e8a

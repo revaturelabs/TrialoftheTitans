@@ -8,23 +8,28 @@ Date Created: 1/21/2022
 import getTeamInfo from '@salesforce/apex/headerHelper.getTeamInfo';
 import getTechInfo from '@salesforce/apex/headerHelper.getTechInfo';
 import { LightningElement,wire } from 'lwc';
+import tottImage from '@salesforce/resourceUrl/tottImage'; 
+import synergyImage from '@salesforce/resourceUrl/synergyImage'; 
 
 export default class Header extends LightningElement {
     @wire(getTeamInfo) teamInfo;                                       //Instantiating some variables. wiring in the helper methods, and hard coding in team pictures and main picture
     @wire(getTechInfo) techInfo;
-    tottPic= 'https://cdn.discordapp.com/attachments/851457681172201513/851465391448260638/trialofthetitans2.png'
+    // tottPic= 'https://cdn.discordapp.com/attachments/851457681172201513/851465391448260638/trialofthetitans2.png';
+
+    tottPic = tottImage; 
     teamName;
     team1Color;
     team2Color;
     teamSlogan;
-    colorForBack="background-color: gray;";
+    colorForBack="background-color: #fcfce1;";
     colorForBack2;
     colorForTri;
     colorForTri2;
-    techName= 'Place Holder'
+    techName= 'Salesforce'
     ampPic= 'https://cdn.discordapp.com/attachments/844981566467080252/933841239822958652/Amplifire_logo.png'
     alchPic= 'https://cdn.discordapp.com/attachments/844981566467080252/933841239323856906/Alchemy.png';
-    synPic= 'https://cdn.discordapp.com/attachments/844981566467080252/933841241173528586/Synergy.png';
+    // synPic= 'https://cdn.discordapp.com/attachments/844981566467080252/933841241173528586/Synergy.png';
+    synPic= synergyImage; 
     vanPic= 'https://cdn.discordapp.com/attachments/844981566467080252/933841241710424124/Vanquish.png';
     leadPic;
 
