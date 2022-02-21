@@ -57,7 +57,7 @@ export default class LwcQuestionFlag extends LightningElement {
     objectInfo;
 
 
-    // This uses the object info in order to look up the category picklist values.
+    // This uses the object info in order to look up the category picklist values and a.
     @wire(getPicklistValues, { recordTypeId: '$objectInfo.data.defaultRecordTypeId', fieldApiName: CATEGORY_FIELD })
     getCatagoriesPicklistValues({ error, data }) {
         if (data) {
