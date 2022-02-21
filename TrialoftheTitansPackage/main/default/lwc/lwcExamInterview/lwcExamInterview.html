@@ -50,6 +50,8 @@
         question={question}
       ></c-lwc-question>
     </lightning-card>
+    <!--Current question to flag for corrections-->
+    <c-lwc-question-flag record-id={question}></c-lwc-question-flag>
 
     <!-- Error Banner -->
     <template if:true={error}>
