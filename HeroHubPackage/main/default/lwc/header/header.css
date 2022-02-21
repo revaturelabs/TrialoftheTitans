@@ -5,44 +5,6 @@ Description: CSS styling for header
 Date Created: 1/21/22
 */
 
-<<<<<<< HEAD
-.triangle {                               /* for the upper right triangle. Future iterations might want to upload a triangle image instead of using this method. As it would be*/
-    width: 0;                             /*more reponsive*/
-    height: 0;
-    border-left: 20vw solid transparent;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    z-index: 1;
-  }
-  .background {                          /*making the background relative*/
-    position: relative;
-  }
-  .teamPic {                             /*sizing the team picture, and sticking  it in the upper right*/
-    width: 15%;
-    height: auto;
-    position: absolute;
-    z-index: 2;
-    top:4%;
-    right:2%;
-  }
-  .tott {                               /*sizing the Trial of the Titans picture, and sticking it in the middle*/
-      width:50%;
-      height:auto;
-      z-index: 2;
-      display: block;
-        margin-left: auto;
-        margin-right: auto
-  }
-  .techTitle {                        /*sizing the technology titan, and sticking it in the middle, underneath the ToTT title*/
-   font-weight: bolder;
-   font-size: 200%;
-   position: absolute;
-    top: 80%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-  }
-=======
  * {
    box-sizing: border-box;
  }
@@ -113,4 +75,3 @@ Date Created: 1/21/22
 
 
   
->>>>>>> af40cc2db4adfb13af8c9d4518559af160d66e8a
