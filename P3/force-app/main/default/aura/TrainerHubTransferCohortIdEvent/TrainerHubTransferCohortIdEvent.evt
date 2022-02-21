@@ -1,4 +1,0 @@
-<aura:event type="COMPONENT">
-    <aura:attribute name="CohortId" type="String"/>
-    <aura:attribute name="CohortOwnerId" type="String"/>
-</aura:event>

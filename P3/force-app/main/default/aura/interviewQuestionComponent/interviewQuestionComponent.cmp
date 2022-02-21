@@ -1,6 +1,0 @@
-<aura:component >
-    <aura:attribute name="question" type="MI_Question_Pool__c" default = "{'Question__c':'AAAAAAAA'}"/>
-    <div class="quessec">
-    <p>{!v.question.Question__c}</p>
-    </div>
-</aura:component>

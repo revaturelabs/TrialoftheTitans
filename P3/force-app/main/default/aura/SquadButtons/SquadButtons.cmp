@@ -1,8 +1,0 @@
-<aura:component >
-    <aura:attribute name="SquadList" type="QCSquadWrapper[]"/>
-    
-    <aura:iteration items="{!v.SquadList}" var="SquadWrap">
-        <lightning:button variant="Brand">Hi, this is squad {!SquadWrap.squad.Name}</lightning:button>
-    </aura:iteration>
- 
-</aura:component>

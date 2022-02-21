@@ -1,3 +1,0 @@
-<aura:event type="COMPONENT">
-  <aura:attribute name="activeTitan" type="Titan__c"/>
-</aura:event>

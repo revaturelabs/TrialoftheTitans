@@ -1,8 +1,0 @@
-<!--Allows for additional Education Experiences to be added from the PortfolioEduCert Component-->
-<aura:component>
-    <aura:attribute name="fields"
-                    type="String[]"
-                    default="['Name', 'Degree__c', 'Major__c', 'Gpa__c', 'DateGraduate__c', 'Image_URL__c']"/>
-    <lightning:recordForm class="contatinerCreateEdu" objectApiName="Education__c"
-                          fields="{!v.fields}"/>
-</aura:component>

@@ -1,4 +1,0 @@
-<!--catches id of a titan and passes it to another component to handle-->
-<aura:event type="COMPONENT">
-  <aura:attribute name="titanId" type="Id"/>
-</aura:event>
