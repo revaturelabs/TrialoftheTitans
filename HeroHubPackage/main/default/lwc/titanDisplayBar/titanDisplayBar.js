@@ -118,7 +118,7 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
                     },
                      state: {
                          c__examId: result,
-                         c__accountId: this.currentUser.Id
+                         c__accId: this.currentUser.Id
                      },
                 });
                 
