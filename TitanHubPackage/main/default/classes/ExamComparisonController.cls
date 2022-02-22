@@ -1,4 +1,4 @@
-public with sharing class ExamComparisonController {
+public without sharing class ExamComparisonController {
 
     @AuraEnabled(cacheable=true)
     public static List<Exam_Result__c> RecentExamResults(Id TitanId){

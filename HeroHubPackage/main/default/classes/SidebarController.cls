@@ -8,7 +8,7 @@
 // 
 /////////////////////////////////////////////////////////////////////////////////
 
-public with sharing class SidebarController {
+public without sharing class SidebarController {
     
     static PermissionSet sysAdminProfile = [SELECT Profile.Id FROM PermissionSet WHERE Profile.Name='System Administrator' AND isCustom=false];
     

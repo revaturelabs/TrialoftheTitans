@@ -1,4 +1,4 @@
-public with sharing class sideBarHelper {
+public without sharing class sideBarHelper {
     
    	static PermissionSet sysAdminProfile = [SELECT Profile.Id FROM PermissionSet WHERE Profile.Name='System Administrator' AND isCustom=false];
     

@@ -1,14 +1,16 @@
 <!--
 Created by: Andy Emond
+Updated by: Phillip Nguyen-Phan
 Description: HTML for Header Component.
 Date Created: 1/21/2022
+Date Updated: 2/22/2022
 -->
 
 <template>
     <div class="margin header-container">
         <div hidden >
-            {teamInfo}
-            {techInfo}
+            {teamInfo.data}
+            {techInfo.data}
         </div>
         <div style={colorForBack} class="image-container">
             <p class="techTitle">{techName}</p>
