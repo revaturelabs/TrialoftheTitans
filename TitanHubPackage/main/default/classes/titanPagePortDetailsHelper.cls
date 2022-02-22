@@ -5,7 +5,7 @@ Description: Apex class for Portfolio Details LWC (titanPagePortDetails)
 Date: 1/25/2022
 */
 
-public with sharing class titanPagePortDetailsHelper {              
+public without sharing class titanPagePortDetailsHelper {              
    @AuraEnabled(cacheable=true)
    public static List<Skill__c> getSkillsInfo(id titanId){         //Pulls information on Skill from a titan. Just returns one at the moment.
     list<Skill__c> sList = [SELECT Assigments__c,Name,Titan__c, Skill_Breakdown__c,Skill_Type__c FROM Skill__c WHERE Titan__c=: titanId LIMIT 1];

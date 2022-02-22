@@ -43,16 +43,20 @@ export default class Header extends LightningElement {
 
     renderedCallback(){ 
         //console.log(this.techInfo.data);
-        //console.log(this.teamInfo.data);                                 
+        //console.log(this.teamInfo.data);   
+        
         //rendered callback to display data when page is loaded. Mostly for data binding to display on the html based on whats returned from the classes.
         if(this.teamInfo.data && this.techInfo.data){           //if statements to prevent javascript errors from using rendered callback.
             this.teamName=this.teamInfo.data[0].Name;                  
             this.team1Color=this.teamInfo.data[0].Primary_Color__c;
             this.team2Color=this.teamInfo.data[0].Secondary_Color__c;
-            this.colorForBack="background-color: "+this.team1Color +";";           //the colorForBack that matters
-            this.colorForBack2="background-color: "+this.team2Color +";";          //This one is not used, but if a future iteration wants to use the secondary color, its here
-            this.colorForTri="border-top: 15vw solid white;";                      //I decided to make the triangle white, use the below code if you want to make it the secondary color.
-            this.colorForTri2="border-top: 20vmin solid "+this.team2Color +";";    //Again not used, but you can use that second color if you want. Here for the triangle.
+            this.colorForTri="background: linear-gradient(to top right," + "#fcfce1 0%, #fcfce1 50%, " + this.team1Color + " 50%, " + this.team1Color + " 100%);";
+            
+            // commented the following 4 styling statements to have more control over the triangle
+            //this.colorForBack="background-color: "+this.team1Color +";";           //the colorForBack that matters
+            //this.colorForBack2="background-color: "+this.team2Color +";";          //This one is not used, but if a future iteration wants to use the secondary color, its here
+            //this.colorForTri="border-top: 15vw solid white;";                      //I decided to make the triangle white, use the below code if you want to make it the secondary color.
+            //this.colorForTri2="border-top: 20vmin solid "+this.team2Color +";";    //Again not used, but you can use that second color if you want. Here for the triangle.
             this.teamSlogan=this.teamInfo.data[0].Slogan__c;
             if(this.techInfo.data){
             this.techName= this.techInfo.data.Technology__c;}

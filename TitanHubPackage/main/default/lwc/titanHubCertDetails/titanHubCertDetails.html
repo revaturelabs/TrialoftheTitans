@@ -3,7 +3,7 @@
         <div class="slds-var-m-around_medium">
             <template if:true={titanId}>
                 <c-carousel>
-                    <template for:each={certDetails} for:item="certDetail" for:index="detailIndex">
+                    <template for:each={certDetails.data} for:item="certDetail" for:index="detailIndex">
                         <c-carousel-card key={certDetail.Id}>
                             <p>Exam Name: {certDetail.Name}</p>
                             <p>Topic Weight:</p>

@@ -13,13 +13,13 @@
  * 1.3   02-17-2022   Conner Eilenfeldt   Added loading the exam details
 **/
 
-public class ExamInterviewApexController {
+public without sharing class ExamInterviewApexController {
     // loads exam questions and details using examID
     @AuraEnabled(cacheable=true)
     public static List<List<SObject>> examFinder(String examID){
 
         /**Extract the question pools assigned to the exam */
-        Exam_Pool_Assignment__c[] examPoolAssignments = [SELECT Id, Number_to_pull__c, Question_Pool__c FROM Exam_Pool_Assignment__c WHERE Exam__c = :examID];
+        Exam_Pool_Assignment__c[] examPoolAssignments = [SELECT Id, Number_to_pull__c, Question_Pool__c FROM Exam_Pool_Assignment__c WHERE Exam__c =:examID];
         Set<ID> questionPools = new Set<ID>();
         //Integer numQuestions = 0;
         Boolean successfullyAdded = false;

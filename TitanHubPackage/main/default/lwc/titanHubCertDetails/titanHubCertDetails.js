@@ -12,19 +12,24 @@ import { LightningElement, wire, api } from 'lwc';
 import getCertDetails from '@salesforce/apex/titanHubCertDetailsController.getCertDetails';
 
 export default class TitanHubCertDetails extends LightningElement {
+
+    certDetails = [];
+
     @api titanId;
     @wire(getCertDetails, { titanId: '$titanId' })
     fetchCertDetails({ error, data }) {
         if (data) {
-            this.certDetails = data
-            this.error = undefined
+            this.certDetails = data;
+            this.error = undefined;
+            console.log(this.certDetails);
+            console.error(error);
         } else if (error) {
-            this.certDetails = undefined
-            this.error = error
-            console.error(error)
+            this.certDetails = undefined;
+            this.error = error;
+            console.error(error);
         }
     };
     
-    certDetails = [];
+    
 
 }

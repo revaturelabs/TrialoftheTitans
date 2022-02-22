@@ -7,10 +7,10 @@ Date Created: 1/25/2022
 
 <template>
     <div hidden >                      <!--Used for Wire Purposes. Allows renderedCallback to work-->
-        {skillInfo}
-        {equivInfo}
-        {examInfo}
-        {projectInfo}
+        {skillInfo.data}
+        {equivInfo.data}
+        {examInfo.data}
+        {projectInfo.data}
     </div>
     <lightning-card  title="Portfolio Details">                          <!--Display the data, refers to the variables in JS-->      
         <p class="slds-p-horizontal_small">{skillName}</p>            

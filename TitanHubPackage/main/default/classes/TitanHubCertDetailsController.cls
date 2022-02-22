@@ -8,7 +8,7 @@
 // 
 /////////////////////////////////////////////////////////////////////////////////
 //
-public with sharing class TitanHubCertDetailsController {
+public without sharing class TitanHubCertDetailsController {
     
     @AuraEnabled(cacheable=true)
     public static List<Certification_Exam__c> getCertDetails(Id titanId) {

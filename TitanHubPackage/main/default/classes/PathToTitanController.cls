@@ -1,4 +1,4 @@
-public class PathToTitanController {
+public without sharing class PathToTitanController {
     
     static PermissionSet sysAdminProfile = [SELECT Profile.Id FROM PermissionSet WHERE Profile.Name='System Administrator' AND isCustom=false];  
       

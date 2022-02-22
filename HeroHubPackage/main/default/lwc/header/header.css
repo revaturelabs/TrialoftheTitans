@@ -1,7 +1,9 @@
 /*
 Created by: Andrew Emond
+Updated by: Mohamed A. and Payal P.
 Description: CSS styling for header
 Date Created: 1/21/22
+Date Updated: 2/22/22
 */
 
 * {
@@ -9,13 +11,12 @@ Date Created: 1/21/22
 }
 
 .triangle {
- width: 0;
- height: 200px;
- border-left: 20vw solid transparent;
- position: absolute;
- top: 0px;
- right: 0px;
- z-index: 1;
+  width: 400px;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .image-container {
@@ -24,7 +25,7 @@ Date Created: 1/21/22
  width: 100%;
  justify-content: center;
  display: flex;
- height: 250px;
+ height: 200px;
  align-items: center;
 }
 .teamPic {
@@ -33,7 +34,7 @@ Date Created: 1/21/22
  position: absolute;
  z-index: 2;
  top:4%;
- right:2%;
+ right:1%;
  margin-top: 40px;
 }
 

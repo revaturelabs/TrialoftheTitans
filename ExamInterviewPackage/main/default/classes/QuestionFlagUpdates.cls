@@ -1,4 +1,4 @@
-public class QuestionFlagUpdates {
+public without sharing class QuestionFlagUpdates {
     
     /* Retrieves an Exam_Question by looking up its Id.
      * If the question is found, it checks to see if it is already flagged.
