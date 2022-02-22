@@ -121,6 +121,9 @@
             <quickActionName>Task.UpdatePriority_1</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
+            <quickActionName>Task.EditDescription</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
             <quickActionName>Task.EditDescription_0</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
@@ -154,16 +157,13 @@
             <quickActionName>NewEvent</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Task.EditDescription</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>Task.Defer</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
             <quickActionName>Task.UpdateStatus</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>Task.UpdatePriority</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>Task.Defer</quickActionName>
         </quickActionListItems>
     </quickActionList>
     <relatedContent>
