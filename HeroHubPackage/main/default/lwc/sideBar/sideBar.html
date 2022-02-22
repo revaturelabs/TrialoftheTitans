@@ -1,40 +1,6 @@
 <template>
     <div hidden>{accInfo} {squadInfo} {certInfo} {statusInfo}</div>
     <template if:true={certInfo.data}>
-        <lightning-card title="Hero Info">
-            <p class="slds-p-horizontal_small">{heroTitle}</p>
-            <p class="slds-p-horizontal_small">{heroName}</p>
-            <p class="slds-p-horizontal_small">{squadName}</p>
-            <p class="slds-p-horizontal_small">{heroArete}</p>
-        </lightning-card>
-        <lightning-card title="Radar Chart">
-            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
-                <c-carousel>
-                    <template for:each={avgScores} for:item="avgScore" for:index="avgIndex">
-                        <c-carousel-card key={avgScore.key} header={avgScore.category}>
-                            <c-radar dat={avgScore.axes}></c-radar>
-                        </c-carousel-card>
-                    </template>
-                </c-carousel>
-            </div>
-        </lightning-card>
-        <lightning-card title="Porfolio Status">
-            <p class="slds-p-horizontal_small">{portName}</p>
-            <p class="slds-p-horizontal_small">{portStatus}</p>
-            <lightning-button
-                label="Go to Portfolio"
-                title="Non-primary action"
-                onclick={handleClick}
-                class="slds-m-left_x-small slds-align_absolute-center"
-            ></lightning-button>
-        </lightning-card>
-        <lightning-card title="Certification Info">
-            <p>Certification Info Coming Soon</p>
-            <p>Certification Name: Platform Developer 1</p>
-            <p>Certification Date: 1/31/2022</p>
-            <p>Certification Assessor: Johnny Bravo</p>
-            <p>Certification Verification Site: Mars</p>
-        </lightning-card>
         <div class="sidebar-container">
             <lightning-card title="Hero Info" class="background">
                 <p class="slds-p-horizontal_small">{heroTitle}</p>
