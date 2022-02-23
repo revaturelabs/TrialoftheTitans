@@ -140,7 +140,7 @@ export default class LwcExamInterview extends LightningElement {
 
       // data's exam details
       this.examName = data[1][0].Name;
-      this.titan = data[1][0].Titans__r[0].Name;
+      this.titan = data[1][0].Titan__r.Name;
       this.examTimeLimit = data[1][0].Default_Time_Limit__c;
 
       this.error = undefined;

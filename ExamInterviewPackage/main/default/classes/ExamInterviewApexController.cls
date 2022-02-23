@@ -36,7 +36,7 @@ public without sharing class ExamInterviewApexController {
         List<Exam_Question__c> questionList = [SELECT Question_Text__c, Question_Type__c, Options__c, Correct_Answer_s__c FROM Exam_Question__c WHERE Id IN :questionSet];
 
         // Retreiving exam details
-        List<Exam__c> examDetails = [SELECT id, Name, Default_Time_Limit__c, (SELECT Name FROM Titans__r) FROM Exam__c WHERE id = :examID LIMIT 1];
+        List<Exam__c> examDetails = [SELECT id, Name, Default_Time_Limit__c, Titan__r.Name FROM Exam__c WHERE id = :examID LIMIT 1];
 
         List<List<SObject>> theExam = new List<List<SObject>>();
         theExam.add(questionList);

@@ -39,10 +39,11 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
     // Initialization Function to Populate Some Basic Information
     renderedCallback() {
         if (this.accInfo.data && this.squadInfo.data) {
+            console.log( this.accInfo.data);
             this.heroName = "Our Hero's Name: " + this.accInfo.data.Name;
             this.squadName = "Our Hero's Squad: " + this.squadInfo.data.Name;
-            this.heroArete = "Our Hero's Arete: 19";
-            this.heroTitle = "Our Hero's Title: Perseus";
+            this.heroArete = "Our Hero's Arete: 390"; // HARD CODED
+            this.heroTitle = "Our Hero's Title: Perseus"; // HARD CODED
         } 
     }
 
