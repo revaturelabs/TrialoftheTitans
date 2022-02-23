@@ -7,6 +7,7 @@
 // Description: Access the video objects records and stores the information to be displayed in a custom made carousel and the youtube video,
 //                  Child Component of Titan Summary
 // 
+// VIDEO CAROUSEL DOES NOT WORK IF THERE ARE LESS THAN 3 VIDEOS. MUST ADD 3 VIDEO__C object
 /////////////////////////////////////////////////////////////////////////////////
 
 import { LightningElement, track, wire } from 'lwc';
@@ -44,7 +45,7 @@ export default class VideoTutorial extends LightningElement {
 
     // hard coded numbers for carousel
     currentFirstSlotNumber = 0;
-    imagesToDisplay = 3; // <--- Three images are shown in the carousel, needs to be dynamic
+    imagesToDisplay = 3;
 
     // list of videos
     fullList = [];
@@ -64,13 +65,13 @@ export default class VideoTutorial extends LightningElement {
     async init()
     {
         try{
-            this.fullList = await getVideos();
-            console.log(this.fullList.length);
+            this.fullList = await getVideos();            
         } 
         catch (error){
             console.log(error);
         }
         finally{
+
             // loop through and add org elements and add the info to a blank object to get around the read only enforced rule
             this.fullList.forEach(element => {
                 let temp = {
@@ -191,6 +192,7 @@ export default class VideoTutorial extends LightningElement {
     // Hotswaps the video thumbnails with new navigation choosen
     moveCarousel()
     {
+        // FIX THIS
         // time restraint caused this to be made this way
         // Next iteration please clean this up. It should be more dynamic with images to display being able to have more then 3 images
         // The first if and else if is what needs to be remade to work nicley like the else statement
