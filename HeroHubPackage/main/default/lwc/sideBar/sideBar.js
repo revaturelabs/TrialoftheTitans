@@ -70,7 +70,7 @@ export default class Sidebar extends LightningElement {
             this.certName = "Certification Name: " + this.certInfo.data[0].Name;
             this.certDate = "Certification Date: " + this.certInfo.data[0].Date_Issued__c;
             this.certAssessor = "Certification Assessor: " + this.certInfo.data[0].Assessor__c;
-            this.certVer = "Certification Verifyer: " + this.certInfo.data[0].Verification_Site__c;
+            this.certVer = "Certification Verification Site: " + this.certInfo.data[0].Verification_Site__c;
         }
     }
 

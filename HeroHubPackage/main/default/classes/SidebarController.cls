@@ -47,7 +47,7 @@ public without sharing class SidebarController {
         } catch (System.QueryException e) {
             user = [SELECT Id FROM User WHERE Id=:UserInfo.getUserId()];
         }
-        List<Certification__c> certList = [SELECT Assessor__c, Date_Issued__c, Image_URL__c, User__c, Verification_Site__c,Name FROM Certification__c WHERE User__c=:user.Id];
+        List<Certification__c> certList = [SELECT Assessor__c, Date_Issued__c, Image_URL__c, User__c, Verification_Site__c, Name FROM Certification__c WHERE User__c=:user.Id];
         return certList;
     }
     @AuraEnabled(cacheable=true)
