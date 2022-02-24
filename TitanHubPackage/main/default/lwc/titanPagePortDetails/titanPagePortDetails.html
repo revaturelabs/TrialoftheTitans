@@ -26,16 +26,17 @@ Date Created: 1/25/2022
             onchange={handleChange} ></lightning-combobox>-->
         <p class="slds-p-horizontal_small">{inputEquiv}</p>
         <p class="slds-p-horizontal_small">{trueEquiv}</p>
-        <lightning-record-edit-form object-api-name={objectApiName} record-id={equivId} >               <!--LDS record edit form so a Hero can update their equivalency-->
+        <lightning-record-edit-form object-api-name={objectApiName} record-id={equivId} onsubmit={handleSubmit}
+        onsuccess={handleSuccess}
+        onerror={handleError}>              <!--LDS record edit form so a Hero can update their equivalency-->
             <lightning-input-field field-name={equiv} class="slds-p-horizontal_small"></lightning-input-field>
             <lightning-button
-            class="slds-m-top_small slds-p-horizontal_small"
+            class="slds-m-top_small"
             variant="brand"
             type="submit"
             name="update"
-            label="Update Your Personal Equivalence"
-            >
-            </lightning-button>
+            label="Update">
+        </lightning-button>
         </lightning-record-edit-form>
     </lightning-card>
 </template>

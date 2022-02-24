@@ -11,6 +11,8 @@
 
 lightning-layout.question_layout {
   background-color: #BDBDBD;
+  margin:10px;
+  padding:10px;
 }
 
 div.question_text {

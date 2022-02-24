@@ -5,7 +5,8 @@
     Date Created: 1/25/21
 
 */
-
+import { updateRecord } from 'lightning/uiRecordApi';
+import { refreshApex } from '@salesforce/apex';
 import getEquiv from '@salesforce/apex/titanPagePortDetailsHelper.getEquiv';
 import getExamInfo from '@salesforce/apex/titanPagePortDetailsHelper.getExamInfo';                 //Import statements for apex class and LDS form
 import getProjectInfo from '@salesforce/apex/titanPagePortDetailsHelper.getProjectInfo';
@@ -14,7 +15,7 @@ import getSkillsInfo from '@salesforce/apex/titanPagePortDetailsHelper.getSkills
 import equivObject from '@salesforce/schema/Equivalency__c'
 import equivField from '@salesforce/schema/Equivalency__c.Skill_Equivalency__c'
 import { LightningElement,wire,api,track } from 'lwc';
-
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 export default class TitanPagePortDetails extends LightningElement {
 @api recordId;                                                                  //One way you could tell the component what titan it is currently working with.  We never ironed out how to do this.   
 @api titanId;                                                                   //Hard coded at the moment. Undo the hard code, its supposed to be for telling the component what the titan is.           
@@ -42,7 +43,8 @@ renderedCallback(){                                                             
         if(this.examInfo.data){                                   //If you dont pull any exams(or the class is broken) it doesnt break the whole component
             this.examCalc=this.examInfo.data.length*2;             // Also used for calculating equivalency. I wanted to iron out these more. Bad pieces because they are not related
         }                                                         // to the skill or titan, just the user. With more time I wanted to change the data model for better relationships.
-        this.equivId=this.equivInfo.data[0].Id;                    // A lot of data binding for the HTML.                            
+        this.equivId=this.equivInfo.data[0].Id;                    // A lot of data binding for the HTML.      
+        console.log(this.equivId);                      
         this.tEquivCalc=this.projectCalc+this.examCalc;                      
         this.skillName="Titan Skill: "+this.skillInfo.data[0].Name;         
         this.skillType="Titan Skill Type: "+this.skillInfo.data[0].Skill_Type__c;
@@ -52,4 +54,15 @@ renderedCallback(){                                                             
     }
 }
 
+    handleSuccess(event){
+        console.log('IN SUCCESS');
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title: 'Skill Equivalency Updated',
+                message: event.detail.message,
+                variant: 'success',
+            }),
+        );
+        refreshApex(this.equivInfo);
+    }
 }
