@@ -36,6 +36,8 @@ export default class UpdatedTeamLeaderboard extends LightningElement {
             this.publishMessage(message);
         } else if (error) {
             this.error = error;
+            console.log('Error received from @wire wiredWeeksWon: ');
+            console.log(error);
             this.teams = undefined;
         }
     }
