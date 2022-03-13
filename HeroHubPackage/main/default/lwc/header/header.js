@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 
 /*
 Created by: Andrew Emond
@@ -9,7 +7,6 @@ Date Created: 1/21/2022
 Date Updated: 2/22/2022
 */
 
->>>>>>> origin/Iteration-X-MergeTest
 import getTeamInfo from '@salesforce/apex/headerHelper.getTeamInfo';
 import getTechInfo from '@salesforce/apex/headerHelper.getTechInfo';
 import { LightningElement,wire } from 'lwc';
@@ -17,16 +14,12 @@ import { LightningElement,wire } from 'lwc';
 //import synergyImage from '@salesforce/resourceUrl/synergyImage'; 
 
 export default class Header extends LightningElement {
-<<<<<<< HEAD
-    @wire(getTeamInfo) teamInfo;
-=======
 
     // The wire service provides results to teamInfo and techInfo via an object with either an error or data property.
     // https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.apex_wire_method
 
     @wire(getTeamInfo) teamInfo;   //Instantiating some variables. wiring in the helper methods, and hard coding in team pictures and main picture
 
->>>>>>> origin/Iteration-X-MergeTest
     @wire(getTechInfo) techInfo;
 
     tottPic= 'https://cdn.discordapp.com/attachments/851457681172201513/851465391448260638/trialofthetitans2.png';
@@ -36,11 +29,7 @@ export default class Header extends LightningElement {
     team1Color;
     team2Color;
     teamSlogan;
-<<<<<<< HEAD
-    colorForBack="background-color: gray;";
-=======
     colorForBack="background-color: #fcfce1;";
->>>>>>> origin/Iteration-X-MergeTest
     colorForBack2;
     colorForTri;
     colorForTri2;
@@ -52,25 +41,6 @@ export default class Header extends LightningElement {
     vanPic= 'https://cdn.discordapp.com/attachments/844981566467080252/933841241710424124/Vanquish.png';
     leadPic;
 
-<<<<<<< HEAD
-
-
-    renderedCallback(){
-        if(this.teamInfo.data && this.techInfo){
-            console.log('test')
-            this.teamName=this.teamInfo.data[0].Name
-            this.team1Color=this.teamInfo.data[0].Primary_Color__c
-            this.team2Color=this.teamInfo.data[0].Secondary_Color__c
-            this.colorForBack="background-color: "+this.team1Color +";"
-            this.colorForBack2="background-color: "+this.team2Color +";"
-            this.colorForTri="border-top: 15vw solid white;"
-            this.colorForTri2="border-top: 20vmin solid "+this.team2Color +";"
-            this.teamSlogan=this.teamInfo.data[0].Slogan__c
-            if(this.techInfo.data){
-            this.techName= this.techInfo.data.Technology__c}
-            if(this.teamName=="Amplifire"){
-                this.leadPic=this.ampPic
-=======
     renderedCallback(){ 
         //console.log(this.techInfo.data);
         //console.log(this.teamInfo.data);   
@@ -92,7 +62,6 @@ export default class Header extends LightningElement {
             this.techName= this.techInfo.data.Technology__c;}
             if(this.teamName=="Amplifire"){               //If statements for for placing the leading teams picture on the upper right.
                 this.leadPic=this.ampPic;
->>>>>>> origin/Iteration-X-MergeTest
             }
             if(this.teamName=="Alchemy"){
                 this.leadPic=this.alchPic;

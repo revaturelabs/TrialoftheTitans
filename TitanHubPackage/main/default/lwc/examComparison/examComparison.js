@@ -9,13 +9,8 @@ export default class ExamComparison extends LightningElement {
     d3Init = false;
     recentExams;
     error;
-<<<<<<< HEAD
-
-    @wire(RecentExamResults, {TitanId: 'a0X3F000006XBL1UAO'})
-=======
     @api titanId;
     @wire(RecentExamResults, {titanId: '$titanId'})
->>>>>>> origin/Iteration-X-MergeTest
     RecentExamResults({data, error}){
         if(data) {
             this.recentExams = data;

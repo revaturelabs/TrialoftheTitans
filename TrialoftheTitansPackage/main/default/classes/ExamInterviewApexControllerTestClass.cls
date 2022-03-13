@@ -1,24 +1,5 @@
 @isTest
 public class ExamInterviewApexControllerTestClass {
-<<<<<<< HEAD
-    /*@TestSetup
-    static void makeData(){
-        Titan__c tTitan = new Titan__c(Name = 'Titan1', Technology__c = 'Salesforce');
-        insert tTitan;
-        Exam__c tExam = new Exam__c(Name = 'tExam');
-        insert tExam;
-        List<Exam_Question__c> tExams = new List<Exam_Question__c>();
-        for(Integer i = 1; i < 100; i++){
-            if(i < 50){
-                tExams.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = null));
-            }
-            if(i > 50){
-                tExams.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = tTitan.Id));
-            }
-        }
-        insert tExams;
-    }
-=======
  /*   @TestSetup
     static void makeData(){
         Titan__c tTitan = new Titan__c(Name = 'Titan1', Technology__c = 'Salesforce');
@@ -48,7 +29,6 @@ public class ExamInterviewApexControllerTestClass {
         insert tQuestions;
     }*/
     
->>>>>>> origin/Iteration-X-MergeTest
     @isTest
     public static void testPullQuestions(){
         List<Exam__c> tExam = [SELECT Id FROM Exam__c];
@@ -183,67 +163,6 @@ public class ExamInterviewApexControllerTestClass {
         ExamInterviewApexController.submitAnswers(questionList, examQuestions);
         List<Hero_Answer__c> resultsFalse = [SELECT ID FROM Hero_Answer__c WHERE Correct__c = false];
 
-<<<<<<< HEAD
-    @IsTest
-    static void testSubmitAnswersBulk(){
-        List<Exam_Question__c> questionList = new List<Exam_Question__c>();
-        for (integer count = 0; count< 200; count++) {
-            if (count<100) {
-                questionList.add(new Exam_Question__c(Name= 'test',Question_Type__c = 'Multiple Choice', Correct_Answer_s__c = '1||2||3'));
-            } else if (count<200) {
-                questionList.add(new Exam_Question__c(Name='test',Question_Type__c = 'Multiple Choice - multiple answers', Correct_Answer_s__c = '1||2||3'));
-            }
-        }
-        insert questionList;
-        Map<String,String> examQuestions = new Map<String,String>();
-        String anyName = '';
-        for (integer count = 1; count < 201; count++) {
-            anyName = string.valueOf(count);
-            examQuestions.put(anyName, '1||2||3');
-        }
-        Exam__c tExam = new Exam__c(name='test');
-        insert tExam;
-        Exam_Result__c eResult = new Exam_Result__c(Status__c = 'Completed', Exam__c = tExam.Id);
-        insert eResult;
-        for (integer count = 0; count < 200; count++) {
-            Hero_Answer__c hAnswer = new Hero_Answer__c(Exam_Question__c = questionList[count].Id, Exam_Result__c = eResult.Id, Answer_Choice__c = examQuestions.get(''+count));
-        }
-        ExamInterviewApexController.submitAnswers(questionList, examQuestions);
-        
-        
-        
-        List<Hero_Answer__c> resultsTrue = [SELECT ID FROM Hero_Answer__c WHERE Correct__c = true];
-        
-        system.assertEquals(200, resultsTrue.size());
-    }
-    @IsTest
-    static void testSubmitAnswersBulkNeg(){
-        Exam__c tExam = new Exam__c(name='test');
-        insert tExam;
-        Exam_Result__c eResult = new Exam_Result__c(Status__c = 'Completed', Exam__c = tExam.Id);
-        insert eResult;
-        List<Exam_Question__c> questionList = new List<Exam_Question__c>();
-        for (integer i = 0; i<=200; i++) {
-            if (i<100) {
-                questionList.add(new Exam_Question__c(Name= 'test',Question_Type__c = 'Multiple Choice', Correct_Answer_s__c = 'test'));
-            } else if (i<200) {
-                questionList.add(new Exam_Question__c(Name='test',Question_Type__c = 'Multiple Choice - multiple answers', Correct_Answer_s__c = 'test'));
-            }
-        }
-        insert questionList;
-        Map<String,String> examQuestions = new Map<String,String>();
-        for (integer count = 1; count < 201; count++) {
-            examQuestions.put('' + count, 'test1');
-        }
-        List<Hero_Answer__c> hAnswer = new List<Hero_Answer__c>();
-        for (integer count = 0; count < 200; count++) {
-            hAnswer.add(new Hero_Answer__c(Exam_Question__c = questionList[count].Id, Exam_Result__c = eResult.Id, Answer_Choice__c = examQuestions.get('' + count)));
-        }
-        ExamInterviewApexController.submitAnswers(questionList, examQuestions);
-        List<Hero_Answer__c> resultsFalse = [SELECT ID FROM Hero_Answer__c WHERE Correct__c = false];
-
-=======
->>>>>>> origin/Iteration-X-MergeTest
         System.assertEquals(200, resultsFalse.size());
     }*/
 }

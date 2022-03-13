@@ -54,9 +54,6 @@ export default class TitanDisplayBar extends LightningElement {
         });
     }
 
-<<<<<<< HEAD
-    connectedCallback() {
-=======
     //Navigate to the Exam Interview Page
     //Recieve ExamId and AccountId
     handleAdvance() {
@@ -84,7 +81,6 @@ export default class TitanDisplayBar extends LightningElement {
                 console.log(error);
             });
 
->>>>>>> origin/Iteration-X-MergeTest
         
     }
     handleOverview() {}

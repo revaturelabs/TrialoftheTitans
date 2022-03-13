@@ -7,10 +7,6 @@
 }
 
 .container {
-<<<<<<< HEAD
-    height: inherit;
-    overflow-y: scroll;
-=======
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -20,5 +16,4 @@
     max-height: 700px;
     overflow:scroll;
     overflow-x:hidden;
->>>>>>> origin/Iteration-X-MergeTest
 }

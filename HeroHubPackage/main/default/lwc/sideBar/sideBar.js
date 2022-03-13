@@ -56,8 +56,6 @@ export default class SideBar extends LightningElement {
             this.portName = "Portfolio Name : " + this.accInfo.data.Name + "'s Portfolio"
             this.portStatus = "Portfolio Status : " + this.statusInfo.data[0].Portfolio_Status__c
 
-<<<<<<< HEAD
-=======
             this.portName = "Portfolio Name : " + this.accInfo.data.Name + "'s Portfolio";
             this.portStatus = "Portfolio Status : " + this.statusInfo.data[0].Portfolio_Status__c;
         }
@@ -68,7 +66,6 @@ export default class SideBar extends LightningElement {
             this.certDate = "Certification Date: " + this.certInfo.data[0].Date_Issued__c;
             this.certAssessor = "Certification Assessor: " + this.certInfo.data[0].Assessor__c;
             this.certVer = "Certification Verification Site: " + this.certInfo.data[0].Verification_Site__c;
->>>>>>> origin/Iteration-X-MergeTest
         }
     }
 
