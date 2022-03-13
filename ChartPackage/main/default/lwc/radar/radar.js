@@ -40,7 +40,7 @@ export default class Radar extends LightningElement {
     }
 
     // initializes radar chart configurations and attaches it to div.
-    initializeD3() 
+    initializeD3() {
         // margin: margins between outermost circle and bounding box, including text
         // width: starting width of the entire radar chart, including margins
         //        set to whichever is smaller b/t maxwidth and window width
