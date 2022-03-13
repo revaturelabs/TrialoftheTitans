@@ -70,4 +70,13 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 # **/HeroHubPackage
 
 **/ExamQuestionFlagPackage
+<<<<<<< HEAD
 **/tabs/standard-home.tab-meta.xml
+=======
+**/tabs/standard-home.tab-meta.xml
+
+#ChartPackage/main/default/ 
+#HeroHubPackage/main/default/ 
+#TitanHubPackage/main/default/
+TitanHubPackage/main/default/profiles/Admin.profile-meta.xml
+>>>>>>> origin/Iteration-X-MergeTest

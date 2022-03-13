@@ -21,7 +21,7 @@ export default class Radar extends LightningElement {
     }
     
     // The maximum width in px of the rendered chart
-    @api maxWidth = 700
+    @api maxWidth = 300
 
     renderedCallback() {
         if (this.dat) {

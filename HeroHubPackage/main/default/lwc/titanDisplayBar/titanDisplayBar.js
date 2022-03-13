@@ -54,7 +54,37 @@ export default class TitanDisplayBar extends LightningElement {
         });
     }
 
+<<<<<<< HEAD
     connectedCallback() {
+=======
+    //Navigate to the Exam Interview Page
+    //Recieve ExamId and AccountId
+    handleAdvance() {
+
+        let slicedId = this.id.slice(0, 18);
+        
+        getUserNextExam({titanId : slicedId, userId : this.currentUser.Id})
+            .then((result) => {
+
+                this[NavigationMixin.Navigate]({
+                    type: "comm__namedPage",
+                    attributes: {
+                        name: "Exam_Interview__c"//API name of the page to navigate to
+                    },
+                     state: {
+                         c__examId: result,
+                         c__accId: this.currentUser.Id
+                     },
+                });
+                
+
+            })
+            .catch((error) => {
+                this.error = error;
+                console.log(error);
+            });
+
+>>>>>>> origin/Iteration-X-MergeTest
         
     }
     handleOverview() {}

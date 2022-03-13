@@ -1,0 +1,32 @@
+/*
+  Author: Iteration VI - Style & Data
+  Created date: 10/26/2021
+  Description: css file. a simplification of aura component css
+  Modified date: 
+  Modified by:
+
+*/
+
+@import 'c/examStyle';
+
+lightning-layout.question_layout {
+  background-color: #BDBDBD;
+  margin:10px;
+  padding:10px;
+}
+
+div.question_text {
+  color:#111111;
+}
+
+lightning-textarea, lightning-input {
+  color: #111111;
+}
+
+span.user_answer {
+  font-style: italic;
+}
+
+p {
+  color: #111111;
+}

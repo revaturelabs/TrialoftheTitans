@@ -11,6 +11,11 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>Unassigned</fullName>
+                <default>false</default>
+                <label>Unassigned</label>
+            </value>
+            <value>
                 <fullName>Assigned</fullName>
                 <default>false</default>
                 <label>Assigned</label>
@@ -19,11 +24,6 @@
                 <fullName>Completed</fullName>
                 <default>false</default>
                 <label>Completed</label>
-            </value>
-            <value>
-                <fullName>Unassigned</fullName>
-                <default>false</default>
-                <label>Unassigned</label>
             </value>
         </valueSetDefinition>
     </valueSet>
