@@ -3,7 +3,15 @@
     <masterLabel>notification</masterLabel>
     <description>This event is fired when recieved notification</description>
     <lightningMessageFields>
-        <fieldName>data</fieldName>
-        <description>leaderboards data</description>
+        <fieldName>squadData</fieldName>
+        <description>squad data</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>cohortData</fieldName>
+        <description>cohort data</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>teamData</fieldName>
+        <description>team data</description>
     </lightningMessageFields>
 </LightningMessageChannel>

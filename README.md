@@ -16,11 +16,16 @@ Technologies used for this project include: **Salesforce, Apex, Lightning Aura C
 
 
 ## Packages
-### Prerequisites
-**Core_Package**: 
+### Main Package
+**TrialoftheTitansPackage**: 
 
-### Exam package
-**Exam_Package**: 
+### Additional Packages
+**TitanHubPackage**: 
+
+**HeroHubPackage**: 
+
+**ChartPackage**: 
+
 
 ## Product Spec
 ### User Epics and User Stories
