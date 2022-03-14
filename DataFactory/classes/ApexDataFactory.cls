@@ -71,13 +71,9 @@ public with sharing class ApexDataFactory {
     }
 
 	@AuraEnabled
-    public static void CreateCohort(){
-<<<<<<< Updated upstream
-        //Create a list of cohorts to populate//Ashley Bee
-=======
+    public static void CreateCohort() {
         System.debug('In cohort creation');
         //Create a list of cohorts to populate
->>>>>>> Stashed changes
         List <Cohort__c> newcohorts = new List<Cohort__c>();
         //Create a list of Curriculum to relate the cohorts to
         List <Curriculum__c> C = [SELECT Id, Name,CreatedDate FROM Curriculum__c];
