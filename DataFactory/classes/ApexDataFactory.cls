@@ -46,6 +46,7 @@ public with sharing class ApexDataFactory {
         //curriculum variables list
         // Name
         String[] technology = new List<String> {'Java','Salesforce'};
+        System.debug('In create curricula');
             
             //////////////////////////////////////////
             List<Curriculum__c> curriculum = new List<Curriculum__c>();
@@ -71,7 +72,12 @@ public with sharing class ApexDataFactory {
 
 	@AuraEnabled
     public static void CreateCohort(){
+<<<<<<< Updated upstream
         //Create a list of cohorts to populate//Ashley Bee
+=======
+        System.debug('In cohort creation');
+        //Create a list of cohorts to populate
+>>>>>>> Stashed changes
         List <Cohort__c> newcohorts = new List<Cohort__c>();
         //Create a list of Curriculum to relate the cohorts to
         List <Curriculum__c> C = [SELECT Id, Name,CreatedDate FROM Curriculum__c];
@@ -98,6 +104,7 @@ public with sharing class ApexDataFactory {
 
     @AuraEnabled
     public static void CreateTeam() {
+        System.debug('In create team');
         //teams variable list
         // Name
         // Squad_Sum__c â€“ Roll up Summary (SUM) of Squad Score__c
@@ -130,7 +137,7 @@ public with sharing class ApexDataFactory {
     
     @AuraEnabled
     public static void CreateSquad(){
-        
+        System.debug('In create squad');
         //Squad Variables
         //Name
         //Score__c â€“ Number
@@ -158,6 +165,7 @@ public with sharing class ApexDataFactory {
     
     @AuraEnabled
     public static void CreateAccount(){
+        System.debug('In create account');
         // accounts variables list
         
         //Name
@@ -212,7 +220,12 @@ public with sharing class ApexDataFactory {
 
     @AuraEnabled
     public static void CreateTitan(){ 
+<<<<<<< Updated upstream
         //create a list of Titan Names leaving out the first//Ashley Bee
+=======
+        System.debug('In create titan');
+        //create a list of Titan Names leaving out the first
+>>>>>>> Stashed changes
         List<String> TitanNames= new List<String>{
             '01 - Declarative - Data Model',
                 '02 - Declarative - Org Configuration',
@@ -280,7 +293,7 @@ public with sharing class ApexDataFactory {
 
     @AuraEnabled
     public static void CreateSkill(){
-        
+        System.debug('In create skill');
         // skills variable list
         // using Assigments__c field with typo instead of Assigments__c
         //Assigments__c - text
@@ -423,6 +436,7 @@ public with sharing class ApexDataFactory {
     
      @AuraEnabled
     public static void CreateExamQuestion(){
+        System.Debug('In create skill');
         
         //EQ Variables
         //Name
