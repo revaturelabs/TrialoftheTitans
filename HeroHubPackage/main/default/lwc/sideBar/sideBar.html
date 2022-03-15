@@ -2,7 +2,7 @@
     <div hidden>{accInfo} {squadInfo} {certInfo} {statusInfo}</div>
     <template if:true={certInfo.data}>
         <div class="sidebar-container">
-            <lightning-card title="Hero Info">
+            <lightning-card title="Hero Info" class="background">
                 <p class="slds-p-horizontal_small">{heroTitle}</p>
                 <p class="slds-p-horizontal_small">{heroName}</p>
                 <p class="slds-p-horizontal_small">{squadName}</p>
@@ -23,7 +23,7 @@
                     class="slds-m-left_x-small slds-align_absolute-center"
                 ></lightning-button>
             </lightning-card>
-            <lightning-card title="Certification Info">
+            <lightning-card title="Certification Info" class="background">
                 <p class="slds-p-horizontal_small">{certName}</p>
                 <p class="slds-p-horizontal_small">{certDate}</p>
                 <p class="slds-p-horizontal_small">{certAssessor}</p>

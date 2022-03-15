@@ -5,6 +5,9 @@
 
 
 .button {
-  padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+  padding: 5px 10px;
   border-radius: 10px;
+  border: none;
+  border-color: #c4c4c4;
 }
+

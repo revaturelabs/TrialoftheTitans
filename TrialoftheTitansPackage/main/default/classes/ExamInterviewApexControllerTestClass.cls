@@ -1,4 +1,4 @@
-@isTest
+@isTest(SeeAllData=True)
 public class ExamInterviewApexControllerTestClass {
  /*   @TestSetup
     static void makeData(){
@@ -31,9 +31,45 @@ public class ExamInterviewApexControllerTestClass {
     
     @isTest
     public static void testPullQuestions(){
-        List<Exam__c> tExam = [SELECT Id FROM Exam__c];
-        List<Exam_Question__c> prac = ExamInterviewApexController.examFinder(tExam[0].Id);
-        System.assertEquals(49, prac.size());
+        Exam__c tExam = [SELECT Id FROM Exam__c LIMIT 1];
+        
+        List<List<SObject>> exam = ExamInterviewApexController.examFinder(tExam.id);
+    
+        System.assertEquals(9, exam[0].size());
+    }
+
+    @isTest
+    public static void testPullExamName(){
+        Exam__c tExam = [SELECT Id FROM Exam__c LIMIT 1];
+        
+        List<List<SObject>> exam = ExamInterviewApexController.examFinder(tExam.id);
+        
+        Exam__c e = (Exam__c) exam[1][0];
+
+        System.assertEquals('Hyperion Exam', e.Name);
+    }
+
+    @isTest
+    public static void testPullTitanName(){
+        Exam__c tExam = [SELECT Id FROM Exam__c LIMIT 1];
+        
+        List<List<SObject>> exam = ExamInterviewApexController.examFinder(tExam.id);
+        
+        Exam__c e = (Exam__c) exam[1][0];
+
+        // Titans__c does not exist
+        // System.assertEquals('Hyperion', e.Titans__c.Name);
+    }
+
+    @isTest
+    public static void testPullExamTimer(){
+        Exam__c tExam = [SELECT Id FROM Exam__c LIMIT 1];
+        
+        List<List<SObject>> exam = ExamInterviewApexController.examFinder(tExam.id);
+        
+        Exam__c e = (Exam__c) exam[1][0];
+
+        System.assertEquals(60, e.Default_Time_Limit__c);
     }
 
     @isTest
@@ -44,7 +80,7 @@ public class ExamInterviewApexControllerTestClass {
         insert testAccount;
         Exam_Result__c testResult = new Exam_Result__c(Account__c = testAccount.Id, Exam__c = testExam.Id, Status__c='Assigned');
         insert testResult;
-        ExamInterviewApexController.submitExam(testExam.Id);
+        ExamInterviewApexController.submitExam(testExam.Id, testAccount.id);
         testResult.Status__c='Completed';
         update testResult;
         system.AssertEquals('Completed', testResult.Status__c);
@@ -57,7 +93,7 @@ public class ExamInterviewApexControllerTestClass {
         insert testAccount;
         Exam_Result__c testResult = new Exam_Result__c(Account__c = testAccount.Id, Exam__c = testExam.Id, Status__c='Assigned');
         insert testResult;
-        ExamInterviewApexController.submitExam(testExam.Id);
+        ExamInterviewApexController.submitExam(testExam.Id, testAccount.id);
         testResult.Status__c='Completed';
         update testResult;
         system.AssertNotEquals('Assigned', testResult.Status__c);
@@ -76,7 +112,7 @@ public class ExamInterviewApexControllerTestClass {
         Exam_Result__c eResult = new Exam_Result__c(Status__c = 'Completed', Exam__c = tExam.Id);
         insert eResult;
         Hero_Answer__c hAnswer = new Hero_Answer__c(Exam_Question__c = questionList[0].Id, Exam_Result__c = eResult.Id, Answer_Choice__c = examQuestions.get('1'));
-        ExamInterviewApexController.submitAnswers(questionList, examQuestions);
+        ExamInterviewApexController.submitAnswers(questionList, examQuestions, tExam.id);
         hAnswer = [SELECT Correct__c FROM Hero_Answer__c WHERE Exam_Question__c = :questionList[0].Id LIMIT 1];
         System.assertEquals(true, hAnswer.Correct__c, 'Answer is not correct');
         Hero_Answer__c hAnswer2 = new Hero_Answer__c(Exam_Question__c = questionList[1].Id, Exam_Result__c = eResult.Id, Answer_Choice__c = examQuestions.get('2'));
@@ -97,7 +133,7 @@ public class ExamInterviewApexControllerTestClass {
         Exam_Result__c eResult = new Exam_Result__c(Status__c = 'Completed', Exam__c = tExam.Id);
         insert eResult;
         Hero_Answer__c hAnswer = new Hero_Answer__c(Exam_Question__c = questionList[0].Id, Exam_Result__c = eResult.Id, Answer_Choice__c = examQuestions.get('1'));
-        ExamInterviewApexController.submitAnswers(questionList, examQuestions);
+        ExamInterviewApexController.submitAnswers(questionList, examQuestions, tExam.id);
         hAnswer = [SELECT Correct__c FROM Hero_Answer__c WHERE Exam_Question__c = :questionList[0].Id];
         System.assertEquals(false, hAnswer.Correct__c, 'Answer is correct');
         Hero_Answer__c hAnswer2 = new Hero_Answer__c(Exam_Question__c = questionList[1].Id, Exam_Result__c = eResult.Id, Answer_Choice__c = examQuestions.get('2'));

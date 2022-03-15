@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Weekly_Arete_Number__c</fullName>
+    <externalId>false</externalId>
+    <label>Weekly Arete Number</label>
+    <summarizedField>Weekly_Arete__c.Arete_Amount__c</summarizedField>
+    <summaryForeignKey>Weekly_Arete__c.Weekly_Arete_Number__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <type>Summary</type>
+</CustomField>
