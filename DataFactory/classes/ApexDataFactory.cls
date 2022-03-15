@@ -48,24 +48,28 @@ public with sharing class ApexDataFactory {
         String[] technology = new List<String> {'Java','Salesforce'};
         System.debug('In create curricula');
             
-            //////////////////////////////////////////
-            List<Curriculum__c> curriculum = new List<Curriculum__c>();
+        List<Curriculum__c> curriculum = new List<Curriculum__c>();
         
-        //create a curriculum
+        //Get a list of current curricula
         List<Curriculum__c> comparedCurriculum = [SELECT Name FROM Curriculum__c];
         
-        if (comparedCurriculum.size() == 0){
+        // This IF statement should determine if this is a production org or not. In most if not all cases test data should be added regardless
+       // if (comparedCurriculum.size() == 0){
             
             for (integer i=0; i<2; i++){
                 Curriculum__c cur = new Curriculum__c();
                 cur.Technology__c = technology[i];                
                 cur.Name = cur.Technology__c;
                 curriculum.add(cur);
-            } 
-            insert curriculum;
-            
+            }
+            try {
+                System.debug('Inserting curriculum');
+                insert curriculum;
+            } catch (DmlException dx) {
+                System.debug('DML Exception ' + dx.getMessage());
+            }
             CreateCohort();
-        }
+       // }
         
         ////////////////////////////////
     }
@@ -215,13 +219,9 @@ public with sharing class ApexDataFactory {
     }
 
     @AuraEnabled
-    public static void CreateTitan(){ 
-<<<<<<< Updated upstream
-        //create a list of Titan Names leaving out the first//Ashley Bee
-=======
-        System.debug('In create titan');
+    public static void CreateTitan() { 
+        // System.debug('In create titan');
         //create a list of Titan Names leaving out the first
->>>>>>> Stashed changes
         List<String> TitanNames= new List<String>{
             '01 - Declarative - Data Model',
                 '02 - Declarative - Org Configuration',
@@ -386,7 +386,7 @@ public with sharing class ApexDataFactory {
             Integer pickMajor = Integer.valueOf(Math.random() * Majors.size());
             edu.Major__c = Majors[pickMajor];
             edu.Name = u.Name;
-            edu.Account__c=u.Id;
+            // edu.Account__c=u.Id;
             education.add(edu);
         }
         insert education;
