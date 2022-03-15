@@ -21,6 +21,8 @@ export default class UpdatedTeamLeaderboard extends LightningElement {
             console.log(this.teams);
         } else if (error) {
             this.error = error;
+            console.log('Error received from @wire wiredWeeksWon: ');
+            console.log(error);
             this.teams = undefined;
             console.log(this.error);
         }
