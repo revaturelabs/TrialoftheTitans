@@ -1,4 +1,3 @@
-
 /*
 Created by: Andrew Emond
 Description: Apex class for Portfolio Details LWC (titanPagePortDetails)
@@ -23,15 +22,21 @@ public without sharing class titanPagePortDetailsHelper {
    public static list<Exam_Result__c> getExamInfo(id titanId){      //Returns a users exam results (how many they have passed). For creating the automatic equivalency.
       id userId = UserInfo.getUserId();
       User conObj = [SELECT name,ContactId,Id FROM User WHERE Id=: userId LIMIT 1];
+       System.debug(conObj);
       id conId = conObj.ContactId;
       Contact accObj = [SELECT name,AccountId,Id FROM Contact WHERE Id=: conId LIMIT 1];
+       System.debug(accObj);
       id accId = accObj.AccountId;
     list<Exam__c> eList = [SELECT Name,Titan__c,Id FROM Exam__c WHERE Titan__c=: titanId];
+       System.debug(eList);
     list<Exam_Result__c> eRList = [SELECT Pass__c,	Graded__c,Name,Exam__c,Account__c FROM Exam_Result__c WHERE Pass__c =: true AND Account__c=: accId];
+       System.debug([SELECT Pass__c, Graded__c, Total_Answers__c, Total_Correct__c, Name, Exam__c, Account__c FROM Exam_Result__c]);
+       System.debug(eRList[0].Exam__c);
     list<Exam_Result__c> emptyList= new list<Exam_Result__c>();
    for(Exam_Result__c eR: eRList){
       for(Exam__c e : eList){
          if(eR.Exam__c== e.Id){
+             System.debug('er.Exam__c: ' + eR.Exam__c + '\ne.Id: ' + e.Id);
             emptyList.add(eR);
          }
       }

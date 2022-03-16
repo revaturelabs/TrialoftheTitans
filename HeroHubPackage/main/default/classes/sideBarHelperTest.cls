@@ -83,7 +83,7 @@ public class sideBarHelperTest {
         
         Certification_Exam__c cec = new Certification_Exam__c();
         insert cec;
-        Contact cc = new Contact(lastname='Poop Fuzz');
+        Contact cc = new Contact(lastname='Fake User');
         insert cc;
 
         Certification__c cert = new Certification__c(

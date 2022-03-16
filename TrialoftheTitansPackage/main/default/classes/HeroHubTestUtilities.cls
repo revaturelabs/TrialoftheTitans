@@ -212,7 +212,7 @@ public class HeroHubTestUtilities {
         
         Team__c Amplifire = new Team__c(
             Name='Amplifire', Slogan__c = 'Who\'s ready to rock?!?!?!', 
-            Primary_Color__c = '#ef6363', Secondary_Color__c = '#c324747'
+            Primary_Color__c = '#ef6363', Secondary_Color__c = '#c34747'
             );
         Team__c Alchemy = new Team__c(
             Name='Alchemy', Slogan__c = 'Wizards Unite!', 
