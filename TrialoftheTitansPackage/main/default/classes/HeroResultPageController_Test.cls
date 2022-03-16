@@ -36,7 +36,7 @@ private class HeroResultPageController_Test {
         Test.startTest();
         Exam_Result__c[] resultList = HeroResultPageController.getResultList();
         Test.stopTest();
-        system.assertEquals(200, resultList.size());
+        system.assertEquals(400, resultList.size());
     }
     @isTest
     static void getTitanListTest() {

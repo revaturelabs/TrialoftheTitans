@@ -1,33 +1,33 @@
-@isTest(SeeAllData=True)
+@isTest
 public class ExamInterviewApexControllerTestClass {
-    // @TestSetup
-    // static void makeData(){
-    //     Titan__c tTitan = new Titan__c(Name = 'Titan1', Technology__c = 'Salesforce');
-    //     insert tTitan;
+    @TestSetup
+    static void makeData(){
+        Titan__c tTitan = new Titan__c(Name = 'Titan1', Technology__c = 'Salesforce');
+        insert tTitan;
 
-    //     Exam__c tExam = new Exam__c(Name = 'tExam', Titan__c = tTitan.id, Default_Time_Limit__c = 60);
-    //     insert tExam;
+        Exam__c tExam = new Exam__c(Name = 'tExam', Titan__c = tTitan.id, Default_Time_Limit__c = 60);
+        insert tExam;
 
-    //     tTitan.First_Exam__c = tExam.id;
-    //     update tTitan;
+        tTitan.First_Exam__c = tExam.id;
+        update tTitan;
         
-    //     List<Exam_Question__c> tQuestions = new List<Exam_Question__c>();
+        List<Exam_Question__c> tQuestions = new List<Exam_Question__c>();
 
-    //     for(Integer i = 1; i < 100; i++){
-    //         if(i <= 50){
-    //             tQuestions.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = null));
-    //         }
-    //         if(i > 50){
-    //             tQuestions.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = tTitan.Id));
-    //         }
-    //     }
+        for(Integer i = 1; i < 100; i++){
+            if(i <= 50){
+                tQuestions.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = null));
+            }
+            if(i > 50){
+                tQuestions.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = tTitan.Id));
+            }
+        }
 
-    //     System.debug(tTitan);
-    //     System.debug(tExam);
-    //     System.debug(tQuestions);
+        System.debug(tTitan);
+        System.debug(tExam);
+        System.debug(tQuestions);
         
-    //     insert tQuestions;
-    // }
+        insert tQuestions;
+    }
     
     @isTest
     public static void testPullQuestions(){
@@ -35,7 +35,8 @@ public class ExamInterviewApexControllerTestClass {
         
         List<List<SObject>> exam = ExamInterviewApexController.examFinder(tExam.id);
     
-        System.assertEquals(9, exam[0].size());
+        // No Questions were created in Test Setup. should be 0.
+        System.assertEquals(0, exam[0].size());
     }
 
     @isTest
@@ -46,7 +47,7 @@ public class ExamInterviewApexControllerTestClass {
         
         Exam__c e = (Exam__c) exam[1][0];
 
-        System.assertEquals('Hyperion Exam', e.Name);
+        System.assertEquals('tExam', e.Name);
     }
 
     @isTest

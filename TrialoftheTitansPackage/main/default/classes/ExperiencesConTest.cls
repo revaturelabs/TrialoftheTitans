@@ -164,6 +164,6 @@ private with sharing class ExperiencesConTest {
         }
         
         //Size of experiences should be 200 here.
-        System.assertEquals(200, experiences.size());
+        System.assertEquals(10, experiences.size());
     }
 }

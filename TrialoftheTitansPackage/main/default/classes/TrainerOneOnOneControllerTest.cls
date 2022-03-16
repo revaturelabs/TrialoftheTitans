@@ -6,7 +6,8 @@ public class TrainerOneOnOneControllerTest {
         insert testCohort;
         
         Account testHero = new Account(Name = 'Odysseus', Cohort__c = testCohort.Id);
-        Profile p = [SELECT Id FROM Profile WHERE Name='TitanTrainer']; 
+        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
+        
         User testTrainer = new User(Alias = 'ari', Email='ari@greece.com', 
             EmailEncodingKey='UTF-8', LastName='Plato', LanguageLocaleKey='en_US', 
             LocaleSidKey='en_US', ProfileId = p.Id, 

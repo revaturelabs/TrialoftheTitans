@@ -1,6 +1,6 @@
-@isTest(SeeAllData=True)
+@isTest
 public class ExamInterviewApexControllerTestClass {
- /*   @TestSetup
+    @TestSetup
     static void makeData(){
         Titan__c tTitan = new Titan__c(Name = 'Titan1', Technology__c = 'Salesforce');
         insert tTitan;
@@ -27,7 +27,7 @@ public class ExamInterviewApexControllerTestClass {
         System.debug(tQuestions);
         
         insert tQuestions;
-    }*/
+    }
     
     @isTest
     public static void testPullQuestions(){
@@ -35,7 +35,8 @@ public class ExamInterviewApexControllerTestClass {
         
         List<List<SObject>> exam = ExamInterviewApexController.examFinder(tExam.id);
     
-        System.assertEquals(9, exam[0].size());
+        // no Questions created in TestSetup, should be 0
+        System.assertEquals(0, exam[0].size());
     }
 
     @isTest
@@ -46,7 +47,7 @@ public class ExamInterviewApexControllerTestClass {
         
         Exam__c e = (Exam__c) exam[1][0];
 
-        System.assertEquals('Hyperion Exam', e.Name);
+        System.assertEquals('tExam', e.Name);
     }
 
     @isTest

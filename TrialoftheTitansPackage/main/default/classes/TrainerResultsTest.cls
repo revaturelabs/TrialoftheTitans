@@ -39,14 +39,14 @@ public class TrainerResultsTest {
                                         Type__c='Self',
                                         Confidence__c=3,
                                         Eye_Contact__c=4,
-                                        Fluency__c=2,
+                                        Fluence__c=2,
                                         Body_Language__c=4,
                                         Comments__c='Test Comment');
         Feedback__c f2 = new Feedback__c(Mock_Interview_Self__c=m.Id, 
                                         Type__c='Peer',
                                         Confidence__c=2,
                                         Eye_Contact__c=5,
-                                        Fluency__c=3,
+                                        Fluence__c=3,
                                         Body_Language__c=5,
                                         Comments__c='Test Comment 2');
         fb.add(f1);

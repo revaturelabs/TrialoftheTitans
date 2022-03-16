@@ -1,61 +1,5 @@
 @isTest
-public class sideBarHelperTest {
-    
-    @isTest
-    static void getContactTest() {
-        Contact soqlContact = [SELECT AccountId FROM Contact WHERE Name='John Smith'];
-        Contact contact = sideBarHelper.getContact();
-        System.assertEquals(contact, soqlContact);
-    }
-    
-    @isTest
-    static void getAccountTest() {
-        Account soqlAccount = [SELECT Name, Squad__c, Team__c, Cohort__c FROM Account WHERE Name='Registrants'];
-        Account account = sideBarHelper.getAccount();
-        System.assertEquals(account, soqlAccount);
-    }
-    
-    @isTest
-    static void getSquadTest() {
-        Squad__c soqlSquad = [SELECT Name FROM Squad__c WHERE Name='Fullmetal'];
-        Squad__c squad = sideBarHelper.getSquad();
-        System.assertEquals(squad, soqlSquad);
-    }
-    
-    @isTest
-    static void getCertTest() {
-        List<Certification__c> soqlCert = [SELECT Name, Assessor__c, Date_Issued__c, Image_URL__c, User__c, Verification_Site__c FROM Certification__c WHERE Assessor__c = 'Amestria'];
-        List<Certification__c> cert = sideBarHelper.getCert();
-        System.assertEquals(cert, soqlCert);
-    }
-    
-    @isTest
-    static void getPortfolioStatusTest() {
-        List<Education__c> soqlEdu = [SELECT Name, Portfolio_Status__c FROM Education__c WHERE Name='State Military'];
-        List<Education__c> edu = sideBarHelper.getPortfolioStatus();
-        System.debug(edu);
-        System.assertEquals(edu, soqlEdu);
-    }
-    
-    @isTest
-    static void getAvgScorePerTitanTest() {
-        Id accountId = sideBarHelper.getAccount().Id;
-        List<Titan__c> titans = [SELECT Name FROM Titan__c
-                                 WHERE Curriculum__c IN (SELECT Curriculum__c FROM Account WHERE Id=:accountId)];
-        List<Id> titanIds = new List<Id>();
-        for (Titan__c titan : titans) {
-            titanIds.add(titan.Id);
-        }
-        List<AggregateResult> avgScores = [SELECT AVG(Score__c) AvgScore, Exam__r.Titan__c Id FROM Exam_Result__c
-                                           WHERE Exam__r.Titan__c=:titanIds  AND Account__c=:accountId 
-                                           GROUP BY Exam__r.Titan__c];
-        List<Map<String, Object>> soqlAvgScore = sideBarHelper.combineByIds(titans, avgScores);
-        
-        List<Map<String, Object>> avgScore = sideBarHelper.getAvgScorePerTitan();
-        
-        System.assertEquals(avgScore, soqlAvgScore);
-    }
-    
+public class PathToTitanControllerTest {
     @testSetup
     static void testSetup() {
         Curriculum__c curriculum = new Curriculum__c(Name='Salesforce v5.1.1');
@@ -81,19 +25,18 @@ public class sideBarHelperTest {
         );
         insert contact;
         
-        Certification_Exam__c cec = new Certification_Exam__c();
-        insert cec;
-        Contact cc = new Contact(lastname='Poop Fuzz');
-        insert cc;
-
+        List<Certification_Exam__c> certExams = new List<Certification_Exam__c>{
+        new Certification_Exam__c(Name='State Alchemist License')
+        };
+		insert certExams;
         Certification__c cert = new Certification__c(
+            Certification_Exam__c=certExams[0].Id,
             Date_Issued__c=Date.newInstance(2022, 1, 20),
             Image_URL__c='https://example.com/image.png',
             Verification_Site__c='https://example.com',
             Assessor__c='Amestria',
-            User__c=UserInfo.getUserId(),
-            Certification_Exam__c = cec.Id,
-            Candidate__c = cc.id
+            Candidate__c = contact.Id,
+            User__c=UserInfo.getUserId()
         );
         insert cert;
         
@@ -139,4 +82,47 @@ public class sideBarHelperTest {
         insert answers;
     }
     
+	@isTest
+    static void getContactTest() {
+        Contact soqlContact = [SELECT AccountId FROM Contact WHERE Name='John Smith'];
+        Contact contact = SidebarController.getContact();
+        System.assertEquals(contact, soqlContact);
+    }
+    
+    @isTest
+    static void getAccountTest() {
+        Account soqlAccount = [SELECT Name, Squad__c, Team__c, Cohort__c FROM Account WHERE Name='Registrants'];
+        Account account = SidebarController.getAccount();
+        System.assertEquals(account, soqlAccount);
+    }
+    
+    @isTest
+    static void getSquadTest() {
+        Squad__c soqlSquad = [SELECT Name FROM Squad__c WHERE Name='Fullmetal'];
+        Squad__c squad = SidebarController.getSquad();
+        System.assertEquals(squad, soqlSquad);
+    }
+    
+    @isTest
+    static void positiveTest() {
+        Titan__c t = [SELECT ID, Name FROM Titan__c WHERE Name='00 - Misc - Lesson 0'];
+        Account a = [SELECT ID, Name FROM Account WHERE Name='Registrants'];
+        List<Exam_Result__c> examResults = new List<Exam_Result__c>();
+        examResults = [SELECT Exam__c, Exam__r.Name, Status__c, CreatedDate FROM Exam_Result__c WHERE Exam__r.Titan__c=:t.id AND Account__c =:a.id ORDER BY Status__c];
+        List<Exam_Result__c> eR = new List<Exam_Result__c>();
+        eR = PathToTitanController.getExamAndResultsList(t.Id, a.Id);
+        System.assertEquals(eR, examResults);
+    }
+    
+    @isTest
+    static void negativeTest() {    
+        try {
+        Titan__c t = [SELECT ID, Name FROM Titan__c WHERE Name='No exist'];
+        Account a = [SELECT ID, Name FROM Account WHERE Name='Registrants'];
+        List<Exam_Result__c> examResults = new List<Exam_Result__c>();
+            examResults = [SELECT ID FROM Exam_Result__c WHERE Exam__r.Titan__c=:t.id AND Account__c =:a.id];
+        } catch (Exception e) {
+            System.assert(e.getMessage().contains('List has no rows for assignment to SObject'), e.getMessage());           
+        }
+    }
 }
