@@ -14,6 +14,7 @@ public class HeroHubTestUtilities {
     //fullSetup calls upon a few functions in the class for easy set up.
     
     public static void fullSetup(){
+        createAccount();
         createTitans();
         createExams();
         createQuestions();
@@ -21,6 +22,12 @@ public class HeroHubTestUtilities {
         createAnswers();
     }
     
+
+    public static void createAccount()
+    {
+        Account a = new Account(Name='TestUser');
+        insert a;
+    }
     /*createUsers() creates an adminUser and then uses that user to create a new user.
     Both users are inserted into the database at the end.*/
     
@@ -60,6 +67,7 @@ public class HeroHubTestUtilities {
             Contact newContact = new Contact(lastName='User', AccountId = newAccount.id);
             database.insert(newContact);
             
+            
             // Get Hero profile from database to use for Users
             Profile heroProfile = [SELECT Id FROM Profile WHERE Name = 'Hero' LIMIT 1];
             User testUser = new User( profileId = heroProfile.id,
@@ -93,6 +101,7 @@ public class HeroHubTestUtilities {
         //Create new trainer account
         Account newAccount = new Account(name='Trainer' );
         insert newAccount;
+        
         
         // Get Hero profile from database to use for Users
         Profile trainerProfile = [SELECT Id FROM Profile WHERE Name = 'TitanTrainer' LIMIT 1];
@@ -161,7 +170,7 @@ public class HeroHubTestUtilities {
     /*createExameResults() inserts exam results into the database for every exam */
     
     public static void createExamResults(){
-        Account testAccount = [SELECT Id FROM Account WHERE Name = 'User' LIMIT 1][0];
+        Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestUser' LIMIT 1][0];
        	List<Exam__c> testExams = [SELECT Id FROM Exam__c];
         List<Exam_Result__c> newResults = new List<Exam_Result__c>();
         

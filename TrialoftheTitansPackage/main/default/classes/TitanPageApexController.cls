@@ -1,6 +1,5 @@
 public without sharing class TitanPageApexController {
-    public TitanPageApexController() {
-    }
+
     
     @AuraEnabled(cacheable=true)
     public static String fetchUser() {
