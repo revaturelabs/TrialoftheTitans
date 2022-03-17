@@ -1,5 +1,5 @@
 ////javascript based on Chris Eng's whiteboarding posted on Discord on 01/19th and goes with the single button version///
-{ LightningElement,wire,track } from 'lwc';
+import { LightningElement,wire,track } from 'lwc';
 import CreateCurriculum from '@salesforce/apex/ApexDataFactory.CreateCurriculum';
 import CreateTitan from '@salesforce/apex/ApexDataFactory.CreateTitan';
 import CreateSkill from '@salesforce/apex/ApexDataFactory.CreateSkill';
@@ -23,8 +23,6 @@ export default class LwcDataFactory extends LightningElement{
         CreateAccount();
         CreateTitan();
         CreateSkill();
-        
-
     }
 }
 
