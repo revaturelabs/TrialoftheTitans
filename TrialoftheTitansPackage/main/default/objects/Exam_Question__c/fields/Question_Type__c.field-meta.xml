@@ -47,9 +47,8 @@
                 <label>Essay</label>
             </value>
             <value>
-                <fullName>Missing word</fullName>
+                <fullName>Missing Word</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Missing word</label>
             </value>
         </valueSetDefinition>
