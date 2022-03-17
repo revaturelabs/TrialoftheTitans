@@ -3,10 +3,13 @@
         <div class="image-container slds-col">
             <!-- Profile Image -->
             <!-- Get src from org (wire method) -->
-            <img src="" alt="Profile Image">
+            <img src={profileImgSrc} alt="Profile Image">
         </div>
         <div class="info-container slds-col">
-
+            <!-- hero info from org -->
+            <div class="hero-name">{heroName}</div>
+            <div class="hero-title">{heroTitle}</div>
+            <div class="approval-status">{approvalStatus}</div>
         </div>
     </lightning-card>
 </template>
