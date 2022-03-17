@@ -1,5 +1,5 @@
 @isTest
-private class TDFClass {
+private class ApexDataFactoryBulkT {
     
     //Attempting to replace ApexDataFactoryTest that was lost//
     @istest static void testdelete(){

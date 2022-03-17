@@ -3,7 +3,7 @@
 ///Clears Table before populating///
 ///Uses Single button component to delete and then create///
 
-public with sharing class ApexDataFactory {
+public with sharing class ApexDataFactoryPartial {
     static final String HeroTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Hero').getRecordTypeId();
     @Auraenabled
     public static void CreateCurriculum(){
