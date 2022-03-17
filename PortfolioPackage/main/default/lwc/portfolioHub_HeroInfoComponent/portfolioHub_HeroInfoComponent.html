@@ -7,9 +7,20 @@
         </div>
         <div class="info-container slds-col">
             <!-- hero info from org -->
-            <div class="hero-name">{heroName}</div>
-            <div class="hero-title">{heroTitle}</div>
-            <div class="approval-status">{approvalStatus}</div>
+            <div class="hero-name">
+                <p>{heroName}</p>
+            </div>
+            <div class="hero-title">
+                <p>{heroTitle}</p>
+            </div>
+            <div class="approval-status">
+                <template if:true={approvalStatus} >
+                    <p class="approved">Portfolio Approved</p><em class="approved-glyph"></em>
+                </template>
+                <template if:false={approvalStatus} >
+                    <p class="rejected">Portfolio Rejected</p><em class="rejected-glyph"></em>
+                </template>
+            </div>
         </div>
     </lightning-card>
 </template>

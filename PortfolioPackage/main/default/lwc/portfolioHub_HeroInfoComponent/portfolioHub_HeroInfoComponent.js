@@ -9,9 +9,8 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
     profileImgSrc;      // Url to profile image resource
     heroName;           // Name to display
     heroTitle;          // Prospective job title
-    approvalStatus;     // 
+    approvalStatus;     // Status of submitted portfolio (boolean)
     
-    // TODO: Define Apex method for data retrieval
     /**
      * Get Hero info from org
      *      profile img source
@@ -19,14 +18,15 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
      *      hero job title
      *      (portfolio approval status)
      */
-    @wire(getHeroInfo)
+    // TODO: Define Apex method for data retrieval
+    // @wire(getHeroInfo)
     heroInfo({ error, data }) {
         if (error) {
             this.error = error;
             // TODO: Handle error
         }
 
-        // If there's no errors, data will be returned
+        // If there's no error, data will be returned
         this.profileImgSrc  = data.profileImgSrc;
         this.heroName       = data.heroName;
         this.heroTitle      = data.heroTitle;
