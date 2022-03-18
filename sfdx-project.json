@@ -43,6 +43,10 @@
         {
             "path": "PortfolioPackage",
             "default": false
+        },
+        {
+            "path": "DataFactory",
+            "default": false
         }
     ],
     "namespace": "",
