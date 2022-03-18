@@ -68,7 +68,7 @@ private class ApexDataFactoryBulkT {
         
         //checking createCohort(). Checking if related Curriculum is valid and if the Active__c flag is set correctly
         
-          List <Cohort__c> cohortList=[SELECT Name, Curriculum__c FROM Cohort__c WHERE Curriculum__c IN:curr];
+          List <Cohort__c> cohortList=[SELECT Name, Curriculum__c, Cohort__c.Curriculum__r FROM Cohort__c WHERE Curriculum__c IN:curr];
           system.assertEquals(2, cohortList.size());
           Boolean isCorrect=False;
         for (Cohort__c coho:cohortList){
