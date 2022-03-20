@@ -4,13 +4,15 @@
  * sean.whitley@revature.net
  */
 
-public with sharing class HeroInfoHelper {
+public with sharing class UserInfoHelper {
 
     /**
      * Returns info for the currently logged in Hero (User)
+     * 
+     *      Profile image url, Name, and various data from relevant relationships
      */
     @AuraEnabled(cacheable=true)
-    public static User getHeroInfo() {
-        return [SELECT Name,User__r.MediumPhotoUrl,User__r.Name FROM Job__c][0];
+    public static User getBasicUserInfo() {
+        return [SELECT Name,FullPhotoUrl FROM User LIMIT 1];
     }
 }
