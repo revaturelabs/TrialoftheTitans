@@ -13,6 +13,6 @@ public with sharing class UserInfoHelper {
      */
     @AuraEnabled(cacheable=true)
     public static User getBasicUserInfo() {
-        return [SELECT Name,FullPhotoUrl FROM User LIMIT 1];
+        return [SELECT Id,Name,FullPhotoUrl,Contact.Title FROM User LIMIT 1];
     }
 }
