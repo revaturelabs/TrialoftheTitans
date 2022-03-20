@@ -156,11 +156,12 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Exam Question</label>
     <nameField>
-        <label>Question Title</label>
+        <label>Exam Question Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Exam Questions</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
+    <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>
 </CustomObject>

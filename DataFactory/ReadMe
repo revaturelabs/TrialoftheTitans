@@ -1,0 +1,29 @@
+Steps to create and run Data Factory Class to create initial Data
+ - Create the LWC Component using the folder and files in the LWC Section of Data Factory in the LWC folder in VSCode
+ - Copy the Class and the meta xml file on to the classes folder of VSCode.
+ - Deploy the Class and the Lwc files to the org you are working on or push to the scratch org
+ - Ensure package of Iteration IX is installed
+ - Ensure following fields are present and create them if not
+     - Look Up Field to Account in Education__c
+     - Look Up Field to Exam in Exam_Question__c
+ - Ensure that picklist value 'Missing Word' is turned Active for the Data Creation on Picklist field Question_Type__c in Exam_Question__c Object. You can turn it back to inactive after the Data Creation is done
+ - Ensure that all Processes are turned off- Any active workflows, process builder or flows as they may interfere with data creation
+ - Either on the Home Page of the app that you use or a specific app page created for an Admin, go to edit page from the settings icon and pull the datafactory component on to an empty container on the page
+ - If pulling on to a page used by profiles other than System Administrator, set component visibility using a filter for Profile name equals 'System Administrator' to prevent others from using it
+ - Save and see the component on the page. There should be a delete button. This will clear out any previous uses of this tool and most data you may have created This assumes that there is no other package data in the org
+ -After Delete you should see a Get data Button which on click will create the data set for the following Objects
+        -Curriculum__c - Java and Salesforce
+        -Cohort__c - 2 one for Java and one for Salesforce with only Salesforce Active
+        -Titan__c - 48 Titans related to Salesforce Curriculum
+        -Team__c - 4 Teams
+        -Squad__c- 4 squads one in each Team
+        -Skill__c- 1 Skill per Titan
+        -Account - with a RecordType 'Hero' and 27 Hero Accounts
+        -Exam__c-  5 Exams per Titan but limited for purposes of limiting data to 25 Exams
+        -Exam_Question__c 10 Exam Questions per Exam so 250 exam questions
+        -Exam_Result__c 675 Exam Result records 1 for each Hero Account - Exam Combination
+        -Hero_Answer__c 6750 Hero_Answers 1 for Each Hero Account-Exam-Exam Question Combination
+        -Education__c 27 Education details 1 for each Hero Account
+        -QC_Interview__c 324 12 for each Hero Account
+        
+  - Future iterations can include additions to data model beyond these Objects   
