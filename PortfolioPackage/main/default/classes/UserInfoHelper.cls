@@ -6,6 +6,12 @@
 
 public with sharing class UserInfoHelper {
 
+    // Certifications__r	
+    // Educations__r	    
+    // Equivalencies__r	
+    // Experiences__r	    
+    // Projects__r 
+
     /**
      * Returns info for the currently logged in Hero (User)
      * 
@@ -14,5 +20,17 @@ public with sharing class UserInfoHelper {
     @AuraEnabled(cacheable=true)
     public static User getBasicUserInfo() {
         return [SELECT Id,Name,FullPhotoUrl,Contact.Title FROM User];
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Certification__c> getCertifications() {
+
+        // Assessor__c
+        // Candidate__c
+        // Certification_Exam__c
+        // Date_Issued__c
+        // Image_URL__c
+
+        return [SELECT Id,Name,Assessor__c,Candidate__c,];
     }
 }
