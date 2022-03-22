@@ -249,6 +249,14 @@ export default class LwcExamInterview extends LightningElement {
   answerUpdated(event) {
     if (this.updateAnswers) {
       this.answer = event.detail;
+      // these are moved here from the Next Button and Previous Button pushes, in order to reactively
+      // colour the Question# (bottom left) whenever input changes
+
+      // this method only fires from a component event from the lwcQuestion component, that fires when a question input
+      // has changed. this saves the answer immediately, and changes the colour immediately.
+      this.setExamAnswerToAnswerProvided();
+      this.setCurrentQuestionAnsweredState();
+      this.updateQuestionComponent();
     }
   }
 
