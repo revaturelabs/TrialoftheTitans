@@ -39,7 +39,7 @@ public with sharing class ApexDataFactory {
     @AuraEnabled
     public static void GenerateData(){
 	    //GenerateData is called by the LWC component to initiate the Data Factory methods
-        CreateCurriculum();
+        //CreateCurriculum();
     }
     @AuraEnabled
     public static void CreateCurriculum(){
@@ -68,7 +68,7 @@ public with sharing class ApexDataFactory {
             } catch (DmlException dx) {
                 System.debug('DML Exception ' + dx.getMessage());
             }
-            CreateCohort();
+          //  CreateCohort();
        // }
         
         ////////////////////////////////
@@ -99,7 +99,7 @@ public with sharing class ApexDataFactory {
         //insert the new list newcohorts
         try{
             insert newcohorts;}catch(DMLException e){system.debug(e);}
-        CreateTeam();
+        //CreateTeam();
     }
 
     @AuraEnabled
@@ -132,7 +132,7 @@ public with sharing class ApexDataFactory {
         }
         
         insert teams;
-        CreateSquad();
+       // CreateSquad();
     }
     
     @AuraEnabled
@@ -160,7 +160,7 @@ public with sharing class ApexDataFactory {
         }       
         
         insert squads;   
-        CreateAccount();
+       // CreateAccount();
     }
     
     @AuraEnabled
@@ -215,7 +215,7 @@ public with sharing class ApexDataFactory {
             }
         }
         insert accounts; 
-        CreateTitan();
+       // CreateTitan();
     }
 
     @AuraEnabled
@@ -284,7 +284,7 @@ public with sharing class ApexDataFactory {
             }
         } /*insert the new list of Titans*/
         try {insert newtitans;} catch(DMLException e){system.debug(e);}
-        CreateSkill();
+       // CreateSkill();
     }
 
     @AuraEnabled
@@ -317,7 +317,7 @@ public with sharing class ApexDataFactory {
         }
         
         insert skills;
-        CreateQCInterview();
+        //CreateQCInterview();
         /////////////////////////////
     }
     
@@ -355,7 +355,7 @@ public with sharing class ApexDataFactory {
         
         insert Interview;
         /////////////////////////////////
-        CreateEducation();
+        //CreateEducation();
     }
     
     @AuraEnabled
@@ -390,7 +390,7 @@ public with sharing class ApexDataFactory {
             education.add(edu);
         }
         insert education;
-        CreateExam();
+        //CreateExam();
     }
     
     @AuraEnabled
@@ -427,7 +427,7 @@ public with sharing class ApexDataFactory {
             }
         }
         update createdExams; 
-        CreateExamQuestion();
+        //CreateExamQuestion();
     }
     
      @AuraEnabled
@@ -478,7 +478,7 @@ public with sharing class ApexDataFactory {
         }
         system.debug(questions.size());
         insert questions;
-        CreateExamResult();
+        //CreateExamResult();
     }	
     
     @AuraEnabled
@@ -519,7 +519,7 @@ public with sharing class ApexDataFactory {
         }
         
         insert Results;
-        CreateHeroAnswer();
+        //CreateHeroAnswer();
     }
     
     
