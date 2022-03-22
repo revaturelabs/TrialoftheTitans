@@ -405,9 +405,9 @@ public with sharing class ApexDataFactory {
         List<Titan__c> Titans = [SELECT Name, Id FROM Titan__c LIMIT 5];
         List<Exam__c> Exams = new List<Exam__c>();
         //create Exam
-        Integer examsPerTitan = 5;
+        Integer examsPerTitan = 2;
         for(Titan__c titan:Titans){
-            for(Integer i = 1; i <= 5; i++){
+            for(Integer i = 1; i <= examsPerTitan; i++){
                 Exam__c exam = new Exam__c();
                 exam.Name = titan.Name + ' Exam ' + i;
                 exam.Default_Passing_Grade__c = .65;
@@ -432,7 +432,7 @@ public with sharing class ApexDataFactory {
     
      @AuraEnabled
     public static void CreateExamQuestion(){
-        System.Debug('In create skill');
+        System.Debug('In create exam question');
         
         //EQ Variables
         //Name
@@ -450,9 +450,12 @@ public with sharing class ApexDataFactory {
         List<Exam__c>Exams = [Select Name, id, Titan__c FROM Exam__c];
         List<Exam_Question__c> questions = new List<Exam_Question__c>();
         //create EQ
+
+        Integer questionsPerExam = 5;
+
         for(Exam__c exam:Exams){
             //10 questions per exam
-            for(Integer i = 0; i < 10; i++){
+            for(Integer i = 0; i < questionsPerExam; i++){
                 Exam_Question__c EQ = new Exam_Question__c();
                 EQ.Name = exam.Name + ': Question ' + (i+1);
                 EQ.Answer_Explanation__c = 'Because I said so';

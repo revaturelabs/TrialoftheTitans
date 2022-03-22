@@ -9,6 +9,7 @@ private class ApexDataFactoryBulkTest {
     To do this correctly, use the '.isempty()' static method from the database class and test against that
     as in the second form above 
     */
+private class ApexDataFactoryBulkT {
     
 
     //Attempting to replace ApexDataFactoryTest that was lost//
@@ -93,6 +94,7 @@ private class ApexDataFactoryBulkTest {
         //checking createCohort(). Checking if related Curriculum is valid and if the Active__c flag is set correctly
         
           List <Cohort__c> cohortList=[SELECT Name, Curriculum__c,Active__c FROM Cohort__c WHERE Curriculum__c IN:curr];
+          List <Cohort__c> cohortList=[SELECT Name, Curriculum__c, Cohort__c.Curriculum__r FROM Cohort__c WHERE Curriculum__c IN:curr];
           system.assertEquals(2, cohortList.size());
           Boolean isCorrect=False;
         for (Cohort__c coho:cohortList){
