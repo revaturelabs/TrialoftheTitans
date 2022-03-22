@@ -9,11 +9,17 @@
  * 1.0   02-15-2022   Nathan Nassib        Initial Version
  **/
 
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, track } from 'lwc';
 
 export default class LwcExamOverview extends LightningElement {
 
     @api questionstates = [];
+    @track questionstatestracked = [];
+
+    connectedCallback()
+    {
+        this.questionstatestracked = this.questionstates;
+    }
 
     jumpToQuestion(event) {
         this.dispatchEvent(new CustomEvent('questionchange', {detail: event.target.label}));
