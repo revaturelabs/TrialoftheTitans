@@ -1,0 +1,19 @@
+{
+  "orgName": "Demo company",
+  "sourceOrg": "00D8c000006Koj4EAC",
+  "features": ["EnableSetPasswordInApi", "Communities", "Sites"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "experienceBundleSettings": {
+      "enableExperienceBundleMetadata": true
+    },
+    "communitiesSettings": {
+      "enableNetworksEnabled": true
+    }
+  }
+}

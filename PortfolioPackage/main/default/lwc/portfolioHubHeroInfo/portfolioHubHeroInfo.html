@@ -1,0 +1,41 @@
+<!-- 
+    Created by Sean Whitley 3/16/22 
+    cookie-crisp#3847 
+    sean.whitley@revature.net 
+-->
+
+<template>
+    <div class="content-container">
+        <div class="info-container">
+            <!-- hero info from org -->
+            <div class="hero-name">
+                <!-- <lightning-icon
+                class="edit-button"
+                name="utility:edit"
+                onclick={handleEditName}
+                ></lightning-icon> -->
+                <p>{heroName}</p>
+            </div>
+            <div class="hero-title">
+                <p>{heroTitle}</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <!-- Profile Image -->
+            <!-- Get src from org (wire method) -->
+            <img src={profileImgSrc} alt="Profile Image">
+        </div>
+    </div>
+    <!-- Name editing functionality -->
+    <template if:true={isEditing}>
+        <lightning-record-edit-form
+                object-api-name="{objectApiName}"
+                record-id="{recordId}">
+            <lightning-input-field field-name="{nameField}"> </lightning-input-field>
+            <div class="slds-var-m-top_medium">
+                <lightning-button variant="brand" type="submit" label="Save">
+                </lightning-button>
+            </div>
+        </lightning-record-edit-form>
+    </template>
+</template>
