@@ -1,9 +1,4 @@
-* {
-    --small: 12em;
-    --large: 18em;
-    --pad: 1em;
-    --pad-plus: 2em;
-}
+@import "c/styleResource";
 
 .content-container {
     display: flex;

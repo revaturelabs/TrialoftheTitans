@@ -1,0 +1,20 @@
+* {
+    /* Profile photo */
+    --photo-small: 12em;
+    --photo-large: 18em;
+
+    /* Padding, margin, other distances */
+    --space-xsmall: 1em;
+    --space-small: 2em;
+    --component-width: 60vw;
+    --list-row-height: 6em;
+
+    /* Colors/Branding */
+    --color-primary: #ffffff;
+    --color-secondary: #E7FFFE;
+    --color-ternary: #D7EFEE;
+    --color-accent: #576464;
+
+    /* Fonts */
+    --font-size-heading: 3em;
+}
