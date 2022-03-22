@@ -9,7 +9,7 @@ private class ApexDataFactoryBulkTest {
     To do this correctly, use the '.isempty()' static method from the database class and test against that
     as in the second form above 
     */
-private class ApexDataFactoryBulkT {
+
     
 
     //Attempting to replace ApexDataFactoryTest that was lost//
