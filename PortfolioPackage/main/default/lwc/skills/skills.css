@@ -1,0 +1,85 @@
+/* .container { 
+    border: 1px solid; 
+    padding: 2em;}
+
+.container div {
+    margin: 6px;
+    
+}
+
+.column { 
+    border: 1px solid; 
+    float:left; 
+    width: 30%; 
+    text-align:center; }
+
+.row {
+  clear:both;
+  display: inline-flex;
+  flex-wrap: wrap;
+
+}
+.append {
+  margin-top:20px;
+}
+ .body{
+     display: inline-flex;
+     flex-wrap: wrap;
+ }
+
+ .box{
+     display: inline-flex;
+     flex-wrap: wrap;
+ }
+
+ .box div {
+     margin: 6px;
+ } */
+
+ .recordHeader {
+    background-color:rgb(66, 64, 64); 
+    color: white; 
+    padding:8px; 
+    width:380px; 
+    height:36px;
+    margin-right:1.5em;
+    /* flex: 1 0 25%; */
+ }
+
+ .icon{
+     --sds-c-icon-color-foreground: black;
+ }
+
+ .headericon{
+    --sds-c-icon-color-foreground: white;
+}
+
+ .matrixContainer{
+     padding: 1.6em;
+     margin: 2px;
+ }
+
+ .recordContainer{
+     background-color: rgb(216, 210, 210);
+     width:380px; 
+     margin-right:1.5em;
+     /* flex: 1 0 25%; */
+     margin-bottom:1.5em;
+ }
+
+ .card-body{
+     padding: 1.5em;
+ }
+
+ li{
+    width:380px;
+ }
+
+ ul{
+    background-color:rgb(216, 210, 210); 
+    width:380px; 
+    padding:1.6em;
+    margin-right:1.5em;
+    /* flex: 1 0 25%; */
+    margin-bottom:1.5em;
+ }

@@ -3,5 +3,4 @@
     <apiVersion>52.0</apiVersion>
     <isExposed>true</isExposed>
     <targets><target>lightningCommunity__Page</target></targets>
-    
 </LightningComponentBundle>

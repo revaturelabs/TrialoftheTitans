@@ -1,0 +1,38 @@
+.container {
+    /*border: 2px dotted green;*/
+    height: 30vw;
+    width: 40vw;
+    background-color: #ffff;
+}
+.title {
+    text-align:left;
+    font-size: 32px;
+}
+.information { 
+    height: 20vw;
+    /* border: 1px solid black;*/
+
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+li.logo {
+    display: block;
+    float: left;
+    margin-left: 10px;
+}
+li.left{
+    display: block;
+    float: left;
+    margin-left: 2px;
+    margin-top: 15px;
+    font-weight: bold;
+} 
+li.right { 
+    float:right;
+    margin-right: 10px;
+    margin-top: 18px;
+}
