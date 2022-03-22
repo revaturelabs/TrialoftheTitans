@@ -1,0 +1,37 @@
+.carouselContainer{
+    display: flex;
+    justify-content: space-around;
+}
+.flex{
+    display: flex;
+    justify-content: space-around;
+    margin: 40px;
+    font-size: 2em;
+}
+.arrows{
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 30px;
+}
+
+.carouselItems{
+    width: 25%;
+}
+.videoOnly{
+    width: 70%
+}
+
+.piclistValues{
+    width: 25%;
+    font-size: 2rem;
+    
+}
+
+iframe{
+    width: 100%;
+}
+
+/* .slds-carousel__content
+{
+    visibility:hidden;
+}  */

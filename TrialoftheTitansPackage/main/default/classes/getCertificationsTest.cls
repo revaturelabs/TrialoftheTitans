@@ -5,10 +5,22 @@ public with sharing class getCertificationsTest {
     private static List<Certification__c> certsBulk;
     private static List<Certification__c> insertCert = new List<Certification__c>();
 
+
+    @TestSetup
+    static void mockCertSetup(){
+        Certification_Exam__c mock1 = new Certification_Exam__c();
+        Contact mock2 = new Contact(firstName='Persues', lastname='Eurymedon');
+
+        insert mock1;
+        insert mock2;
+    }
+
     @isTest
     static void getRecord() {
 
-        Certification__c c = new Certification__c(Name='testCert');
+        Certification__c c = new Certification__c();
+        c.Certification_Exam__c = [SELECT Id FROM Certification_Exam__c LIMIT 1][0].Id;
+        c.Candidate__c = [SELECT Id FROM Contact LIMIT 1][0].Id;
         //Inserts a certification into the database
         insert c;
 
@@ -21,9 +33,13 @@ public with sharing class getCertificationsTest {
     static void getRecordBulk(){
 
         //Creates a list of certifications to be added into the list
-        for(Integer i = 0; i<200; i++)
+        String mockCertId = [SELECT Id FROM Certification_Exam__c LIMIT 1][0].Id;
+        String mockCandId = [SELECT Id FROM Contact LIMIT 1][0].Id;
+        for(Integer i = 0; i<10; i++)
         {
-            insertCert.add(new Certification__c(Name='testCert'));
+            insertCert.add(new Certification__c(
+                Certification_Exam__c=mockCertId,
+            Candidate__c=mockCandId));
         }
         Test.startTest();
         //inserts the list of certifications
@@ -32,7 +48,7 @@ public with sharing class getCertificationsTest {
         certsBulk = getCertifications.Certifications();
         Test.stopTest();
 
-        System.assert(certsBulk.size()==200);
+        System.assert(certsBulk.size()==10);
     }
 
     @isTest

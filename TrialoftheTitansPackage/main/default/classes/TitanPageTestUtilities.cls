@@ -1,8 +1,8 @@
-@isTest
+
 public class TitanPageTestUtilities {
     
     
-    @isTest
+    
     public static void fullSetup(){
         createTitans();
         createExams();
@@ -12,7 +12,7 @@ public class TitanPageTestUtilities {
         
     }
     
-    @isTest
+    
     public static void createUsers(){
 
         
@@ -48,12 +48,16 @@ public class TitanPageTestUtilities {
             
         Cohort__c newcohort = new Cohort__c(Name = 'Testcohort');
         database.insert(newcohort);
+        
+        Curriculum__c tempCur = new Curriculum__c(Name='Salesforce');
+        insert tempCur;
             
-        Account newAccount = new Account(name='User', Team__c = newTeam.Id);
+        Account newAccount = new Account(name='User', Team__c = newTeam.Id, Curriculum__c=tempCur.Id); 
         database.insert(newAccount);       
      
         Contact newContact = new Contact(lastName='User', AccountId = newAccount.id);
         database.insert(newContact);
+        
         
        
         
@@ -93,7 +97,7 @@ public class TitanPageTestUtilities {
         	
     }
     
-    @isTest
+    
     public static void createWrongUser(){
 
         
@@ -118,15 +122,16 @@ public class TitanPageTestUtilities {
      
         
     }
-    @isTest
+    
+    
     public static void createTitans(){
 
         
         
         
         // Create curriculum and Titans for Exams
-        Curriculum__c newCurriculum = new Curriculum__c(Name='Salesforce');
-        insert newCurriculum;
+        Curriculum__c newCurriculum = [SELECT Id, Name FROM Curriculum__c WHERE Name = 'Salesforce' LIMIT 1];
+        
         
         List<Titan__c> newTitans = new List<Titan__c>();
         
@@ -143,7 +148,7 @@ public class TitanPageTestUtilities {
         
     }
     
-    @isTest
+    
     public static void createExams(){
         
         List<Titan__c> titans = [SELECT Id, Name From Titan__c];
@@ -164,7 +169,7 @@ public class TitanPageTestUtilities {
         
     }
     
-    @isTest
+    
     public static void createQuestions(){
 
         
@@ -182,7 +187,7 @@ public class TitanPageTestUtilities {
         
     }
      
-    @isTest //Doesnt work
+     //Doesnt work
     public static void createExamResults(){
         
 
@@ -215,7 +220,7 @@ public class TitanPageTestUtilities {
     }
     
     
-    @isTest
+    
     public static void createAnswers(){
         
         
@@ -239,7 +244,7 @@ public class TitanPageTestUtilities {
         
     }
     
-    @isTest
+    
     public static void createTeams(){
         
         List<Team__c> teamList = new List<Team__c>();

@@ -1,20 +1,24 @@
 {
-    "packageDirectories": [
-        {
+    "packageDirectories": [{
             "path": "TrialoftheTitansPackage",
             "package": "TrialOfTheTitansPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": true,
-            "dependencies": [
-                {
-                    "package": "ChartPackage@1.0.0-1"
-                }
-            ]
+            "dependencies": [{
+                "package": "ChartPackage@1.0.0-1"
+            }]
         },
         {
             "path": "HeroHubPackage",
             "package": "Hero Hub Package",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        },
+        {
+            "path": "ExamInterviewPackage",
+            "package": "Exam Intervew Package",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": false
@@ -31,6 +35,10 @@
             "package": "Titan Hub Package",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
+            "default": false
+        },
+        {
+            "path": "PortfolioPackage",
             "default": false
         },
         {

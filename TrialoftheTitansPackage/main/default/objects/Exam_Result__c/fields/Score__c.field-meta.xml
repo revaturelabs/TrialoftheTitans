@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Score__c</fullName>
+    <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>Total_Correct__c / Total_Answers__c</formula>
+    <formula>IF(Total_Correct__c = 0  || Total_Answers__c = 0, 0, Total_Correct__c / Total_Answers__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Score</label>
     <precision>18</precision>

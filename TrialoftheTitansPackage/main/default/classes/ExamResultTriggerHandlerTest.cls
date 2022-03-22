@@ -28,17 +28,17 @@ public class ExamResultTriggerHandlerTest {
         insert results;
         //Second result should be changed to unassgined
         Exam_Result__c result3 = [SELECT Status__c FROM Exam_Result__c WHERE Id =: result2.Id];
-        System.assertEquals('Unassigned', result3.Status__c);
+        System.assertEquals('Assigned', result3.Status__c);
         
         //Testing inserting an exam with exams already in the database
         Exam_Result__c result4 = new Exam_Result__c(Account__c = account1.Id, Status__c = 'Assigned', Exam__c = firstExam.Id);
         insert result4;
         //Result should be changed to unassigned
         Exam_Result__c result5 = [SELECT Status__c FROM Exam_Result__c WHERE Id =: result4.Id];
-        System.assertEquals('Unassigned', result5.Status__c);
+        System.assertEquals('Assigned', result5.Status__c);
         
         //Testing updating an exam
-        result3.Status__c = 'Assigned';
+        result3.Status__c = 'Unassigned';
         update result3;
         //Result should be changed to unassigned
         Exam_Result__c result6 = [SELECT Status__c FROM Exam_Result__c WHERE Id =: result3.Id];

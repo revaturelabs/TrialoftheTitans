@@ -3,10 +3,14 @@
 //  Name: HeroResultPage.cmp
 //  Author: Wootae Yang
 //  Description: HeroResultPage Markup
+//  Updated : 2/21/2022
+//  ITERATION X (Our modifications are not in versioned package // too many errors in creating our version)
+//      - Our changes are mostly in other Packages (HeroHub, TitanHub, ExamInterview), but this Container is still in TotT Package
 /////////////////////////////////////
 -->
 
-<aura:component controller="HeroResultPageController" implements="flexipage:availableForAllPageTypes">
+<aura:component controller="HeroResultPageController" implements="forceCommunity:themeLayout,force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
+    <c:welcomeModal></c:welcomeModal>
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size_1-of-1 slds-m-bottom_medium">
             <c:header></c:header>

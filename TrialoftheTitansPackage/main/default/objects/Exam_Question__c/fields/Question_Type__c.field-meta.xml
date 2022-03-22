@@ -49,7 +49,7 @@
             <value>
                 <fullName>Missing Word</fullName>
                 <default>false</default>
-                <label>Missing word</label>
+                <label>Missing Word</label>
             </value>
         </valueSetDefinition>
     </valueSet>

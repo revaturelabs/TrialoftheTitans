@@ -31,8 +31,8 @@ public with sharing class getEducationTest {
         //Returns all of the school information in the database
         educationBulk = getEducation.getSchools();
         Test.stopTest();
-
-        System.assert(educationBulk.size()==200);
+        System.debug(educationBulk);
+        System.assert(educationBulk.size()==3);
     }
 
     @isTest

@@ -24,7 +24,7 @@ public class sideBarHelperTest {
     
     @isTest
     static void getCertTest() {
-        List<Certification__c> soqlCert = [SELECT Name, Assessor__c, Date_Issued__c, Image_URL__c, User__c, Verification_Site__c FROM Certification__c WHERE Name='State Alchemist'];
+        List<Certification__c> soqlCert = [SELECT Name, Assessor__c, Date_Issued__c, Image_URL__c, User__c, Verification_Site__c FROM Certification__c WHERE Assessor__c = 'Amestria'];
         List<Certification__c> cert = sideBarHelper.getCert();
         System.assertEquals(cert, soqlCert);
     }
@@ -81,13 +81,19 @@ public class sideBarHelperTest {
         );
         insert contact;
         
+        Certification_Exam__c cec = new Certification_Exam__c();
+        insert cec;
+        Contact cc = new Contact(lastname='Fake User');
+        insert cc;
+
         Certification__c cert = new Certification__c(
-            Name='State Alchemist',
             Date_Issued__c=Date.newInstance(2022, 1, 20),
             Image_URL__c='https://example.com/image.png',
             Verification_Site__c='https://example.com',
             Assessor__c='Amestria',
-            User__c=UserInfo.getUserId()
+            User__c=UserInfo.getUserId(),
+            Certification_Exam__c = cec.Id,
+            Candidate__c = cc.id
         );
         insert cert;
         

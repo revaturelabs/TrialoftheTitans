@@ -6,6 +6,7 @@
   },
   "salesforcedx-vscode-core.show-cli-success-msg": false,
   "editor.bracketPairColorization.enabled": true,
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "salesforcedx-vscode-core.retrieve-test-code-coverage": true
 
 }
