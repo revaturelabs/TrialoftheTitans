@@ -6,11 +6,12 @@
 
 public with sharing class UserInfoHelper {
 
-    // Certifications__r	
-    // Educations__r	    
-    // Equivalencies__r	
-    // Experiences__r	    
-    // Projects__r 
+    // Relevant relationships:
+    //  Certifications__r	
+    //  Educations__r	    
+    //  Equivalencies__r	
+    //  Experiences__r	    
+    //  Projects__r 
 
     /**
      * Returns info for the currently logged in Hero (User)
@@ -19,6 +20,7 @@ public with sharing class UserInfoHelper {
      */
     @AuraEnabled(cacheable=true)
     public static User getBasicUserInfo() {
+        // TODO: Need certification data
         return [SELECT Id,Name,FullPhotoUrl,Contact.Title FROM User];
     }
 
@@ -31,6 +33,7 @@ public with sharing class UserInfoHelper {
         // Date_Issued__c
         // Image_URL__c
 
-        return [SELECT Id,Name,Assessor__c,Candidate__c,];
+        // Danger: this is VERY incomplete
+        return [SELECT Id,Name,Assessor__c,Candidate__c FROM Certification__c];
     }
 }
