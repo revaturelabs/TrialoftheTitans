@@ -10,10 +10,10 @@ export default class LwcPortfolioOtherExperiences extends LightningElement {
     @track wireRes;
 
     columns = [
-        {label:"Company", fieldName:"Company__c", type:"text",editable:false },
-        {label:"Position", fieldName:"Position__c", type:"text",editable:false },
-        {label:"Start Date", fieldName:"Start_Date__c", type:"date-local",editable:false },
-        {label:"End Date", fieldName:"End_Date__c", type:"date-local",editable:false },
+        {label:"Company", fieldName:"Company__c", type:"text",editable:true },
+        {label:"Position", fieldName:"Position__c", type:"text",editable:true },
+        {label:"Start Date", fieldName:"Start_Date__c", type:"date-local",editable:true },
+        {label:"End Date", fieldName:"End_Date__c", type:"date-local",editable:true },
         { type: 'action', typeAttributes: { rowActions: [{ label: 'Delete', name: 'delete' }] } }
     ];
 
