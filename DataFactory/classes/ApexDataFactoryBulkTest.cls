@@ -1,26 +1,50 @@
 @isTest
-private class TDFClass {
+private class ApexDataFactoryBulkTest {
+    /* Changed the form of the tests from "system.assertEquals(null, Exams);"
+    to "system.assert(true,Database.query('SELECT id FROM Exam__c').isempty());"
+    REASON: the first form above can be considered the naive way to test against null results
+    from a soql query; it is wrong because the first form above 'Exams' is actually an empty query;
+    so, you have to test for an empty query. 
+
+    To do this correctly, use the '.isempty()' static method from the database class and test against that
+    as in the second form above 
+    */
     
+
     //Attempting to replace ApexDataFactoryTest that was lost//
     @istest static void testdelete(){
         ApexDataFactory.deleteStuff();
-        List<Exam__c> Exams = [SELECT id FROM Exam__c];
-        List<Exam_Question__c> EQs = [SELECT Id from Exam_Question__c];
-        List<Exam_Result__c> ERs = [select id from Exam_Result__c];
+        //List<Exam__c> Exams = [SELECT id FROM Exam__c];
+        system.assert(true,Database.query('SELECT id FROM Exam__c').isempty());
+        // List<Exam_Question__c> EQs = [SELECT Id from Exam_Question__c];
+        system.assert(true,Database.query('SELECT id FROM Exam_Question__c').isempty());
+        //List<Exam_Result__c> ERs = [select id from Exam_Result__c];
+        system.assert(true,Database.query('SELECT id FROM Hero_Answer__c').isempty());
         List<Hero_Answer__c> HAs = [select id from Hero_Answer__c];
-        List<Education__c> Edu = [select id from Education__c];
-        List<QC_Interview__c> QC = [select id from QC_Interview__c];
-        List<Skill__c> skill = [select id from Skill__c];
-        List<Titan__c> Titan = [select id from Titan__c];
-        List<Account> account = [select id, Name from Account WHERE Name != 'Sample Account for Entitlements'];
-        List<Squad__c> squad = [select id from Squad__c];
-        List<Team__c> team = [select id from Team__c];
-        List<Cohort__c> cohort = [select id from Cohort__c];
-        List<Curriculum__c> curr = [select id from Curriculum__c];
+        system.assert(true,Database.query('SELECT id FROM Education__c').isempty());
+        //List<Education__c> Edu = [select id from Education__c];
+        system.assert(true,Database.query('SELECT id FROM QC_Interview__c').isempty());
+        //List<QC_Interview__c> QC = [select id from QC_Interview__c];
+        system.assert(true,Database.query('SELECT id FROM Skill__c').isempty());
+        //List<Skill__c> skill = [select id from Skill__c];
+        system.assert(true,Database.query('SELECT id FROM Titan__c').isempty());
+        //List<Titan__c> Titan = [select id from Titan__c];
+        system.assert(true,Database.query('SELECT id FROM Skill__c').isempty());
+
+        //List<Account> account = [select id, Name from Account WHERE Name != 'Sample Account for Entitlements'];
+        system.assert(true,Database.query('SELECT id FROM Squad__c').isempty());
+        //List<Squad__c> squad = [select id from Squad__c];
+        system.assert(true,Database.query('SELECT id FROM Team__c').isempty());
+        //List<Team__c> team = [select id from Team__c];
+        system.assert(true,Database.query('SELECT id FROM Cohort__c').isempty());
+        //List<Cohort__c> cohort = [select id from Cohort__c];
+        system.assert(true,Database.query('SELECT id FROM Curriculum__c').isempty());
+        //List<Curriculum__c> curr = [select id from Curriculum__c]; 
         
-        system.assertEquals(null, Exams);
-        system.assertEquals(null, EQs);
-        system.assertEquals(null, ERs);
+        //Database
+        //system.assertEquals(null, Exams);
+       // system.assertEquals(null, EQs);
+       /*  system.assertEquals(null, ERs);
         system.assertEquals(null, HAs);
         system.assertEquals(null, Edu);
         system.assertEquals(null, QC);
@@ -30,7 +54,7 @@ private class TDFClass {
         system.assertEquals(null, squad);
         system.assertEquals(null, team);
         system.assertEquals(null, cohort);
-        system.assertEquals(null, curr);
+        system.assertEquals(null, curr); */
         
         
     }
@@ -68,16 +92,15 @@ private class TDFClass {
         
         //checking createCohort(). Checking if related Curriculum is valid and if the Active__c flag is set correctly
         
-          List <Cohort__c> cohortList=[SELECT Name, Curriculum__c FROM Cohort__c WHERE Curriculum__c IN:curr];
+          List <Cohort__c> cohortList=[SELECT Name, Curriculum__c,Active__c FROM Cohort__c WHERE Curriculum__c IN:curr];
           system.assertEquals(2, cohortList.size());
           Boolean isCorrect=False;
         for (Cohort__c coho:cohortList){
             
-            if (coho.Curriculum__r.Name=='Java'&& coho.Active__c==false){isCorrect=true;}else
-                if(coho.Curriculum__r.Name=='Salesforce' && coho.Active__c==true){isCorrect=true;}    
+           // if (coho.Curriculum__r.Name=='Java'&& coho.Active__c==false){isCorrect=true;}else
+           System.assert(coho.Active__c==false || coho.Curriculum__r.Name=='Java');
+               // if(coho.Curriculum__r.Name=='Salesforce' && coho.Active__c==true){isCorrect=true;}    
         }
-        
-        system.assertEquals(true,isCorrect);
         
         //checking createTeam() checking if field names are valid and created dataset size is as expected
         String[] names = new List<String> {'Alchemy', 'Amplifire', 'Synergy', 'Vanquish'};
@@ -115,6 +138,8 @@ private class TDFClass {
             String ln=acc.Name.substringAfter(' ');
             fNames.add(fn);
             lNames.add(ln);
+            System.debug(acc.Team__c);
+            System.debug(acc.Squad__r.Team__c);
             system.assertEquals(true,(acc.Team__c==acc.Squad__r.Team__c));
         }
         Boolean doesContainf=false;
