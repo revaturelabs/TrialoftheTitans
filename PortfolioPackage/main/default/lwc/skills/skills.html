@@ -1,9 +1,10 @@
 <!-- Objects required: 
-skills
+Custom_Skills__c
+Category__c
 project
 experience
 equivalency
-job
+
 
 Author: Gabriel Anton
 Date: 3/18/22
@@ -78,37 +79,15 @@ on the Add New Category Modal.
                        
                         </header>
 
-                        <!-- <template if:true={titans.data}>
-                        <template for:each={titans.data} for:item="titan"> -->
-
                         
-                        <!-- <ul key={titan.Id}> -->
-                        
-                        <!-- <li key={titan.Id}><b>Skill Name:</b> {categories.skills}</li> -->
-                    <template if:true={titan.Custom_Skills__r}>
-                            <template for:each={titan.Custom_Skills__r} for:item="skill">
+                        <template for:each={titan.Custom_Skills__r} for:item="skill">
                             <ul key={skill.Id}>
-                                <li key={skill.Id}><b>Skill Name:</b> {skill.Name} </li>
+                                <li key={skill.Id}><b>{skill.Skill_Number__c}: </b> {skill.Name} </li>
+                                <!-- <li key={skill.Id}><b>Skill Number:</b> {skill.Skill_Number__c} </li> -->
                             </ul>
                         </template>
 
-                    </template>
-                        <!-- <template for:each={skills} for:item="skill">
-                            <ul key={skill.Id}>
-                                <li key={skill.Id}><b>Skill Name:</b> {skill.Name}</li>
-                            </ul>
-                        
-                    </template> -->
-                        <!-- <li key={titan.Id}><b>Industry:</b> {acc.Industry}</li>
-                        <li key={titan.Id}><b>Account Source:</b> {acc.AccountSource}</li> -->
-                        
-                        <!-- </ul> -->
-                        <!-- <hr key={titan.Id} style="background-color:white;"> -->
                     
-                    
-                    <!-- </template>
-                
-                </template> -->
 
                         </div>
                     </template>

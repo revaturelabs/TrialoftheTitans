@@ -107,22 +107,23 @@ export default class Skills extends LightningElement {
         else if(data){
             console.log(data);
             this.category = data;
+            
             //console.log(this.category.Custom_Skills__r);
 
             //for loop
-            for(let i = 0; i<this.category.length; i++){
-                if(this.category[i].Custom_Skills__r){
-                    for(let j = 0; j<this.category[i].Custom_Skills__r.length; j++){
-                        if(j == 10){ break;}
-                        //console.log(this.category[i].Custom_Skills__r[j]);
-                        this.skill = this.category[i].Custom_Skills__r[j].Name;
-                        console.log(this.skill);
-                        this.skills.push(this.skill);
+            // for(let i = 0; i<this.category.length; i++){
+            //     if(this.category[i].Custom_Skills__r){
+            //         for(let j = 0; j<this.category[i].Custom_Skills__r.length; j++){
+            //             if(j == 10){ break;}
+            //             //console.log(this.category[i].Custom_Skills__r[j]);
+            //             this.skill = this.category[i].Custom_Skills__r[j].Name;
+            //             console.log(this.skill);
+            //             this.skills.push(this.skill);
                         
-                }
-                }
-                console.log(this.skills);
-            }
+            //     }
+            //     }
+            //     console.log(this.skills);
+            // }
 
             // this.skills = this.categorie[1].Custom_Skills__r[0];
             // console.log(this.skills);

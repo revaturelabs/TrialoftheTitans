@@ -21,7 +21,7 @@ public with sharing class TestDataClass {
         
         return 
         [SELECT Name, 
-        (SELECT Name FROM Custom_Skills__r) 
+        (SELECT Name, Skill_Number__c FROM Custom_Skills__r) 
         FROM Category__c];
 
     }
