@@ -19,9 +19,10 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
     // Hero info properties for wire service response
     error;                      // populated if error occurs in apex call
     
-    @track profileImgSrc;              // Url to profile image resource    (User.FullPhotoUrl)
-    @track heroName;                   // Name to display                  (User.Name)
-    @track heroTitle;                  // Prospective job title            (User__r.Contact.Title)
+    @track profileImgSrc;               // Url to profile image resource    (User.FullPhotoUrl)
+    @track heroName;                    // Name to display                  (User.Name)
+    @track heroTitle;                   // Prospective job title            (Account?)
+    @track certification;               // If user has certification, show under name/title
     
     /**
      * Get Hero info from org
@@ -30,7 +31,7 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
      *      hero job title?
      * 
      * SOQL: 
-     *  [SELECT Id,Name,FullPhotoUrl,Contact__r.Title,Cohort__c.]
+     *  [SELECT Id,Name,FullPhotoUrl FROM User LIMIT 1][0]
      */
     @wire(getBasicUserInfo) 
     getHeroInfo({ error, data }) {
