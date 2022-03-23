@@ -2,15 +2,17 @@
 
 .content-container {
     display: flex;
+    justify-content: flex-end;
     background-color: none;
     background-image: linear-gradient(to right, rgba(0,0,0,0), var(--color-secondary));
-    border-radius: 0 6em 6em 0;
+    /* Round right corners to align with the profile picture */
+    border-radius: 0 calc(var(--photo-small)/2) calc(var(--photo-small)/2) 0;
 }
 
 .image-container {
-    width: var(--small);
-    height: var(--small);
-    margin: 0 0 0 var(--pad);
+    width: var(--photo-small);
+    height: var(--photo-small);
+    margin: 0 0 0 var(--space-small);
 }
 
 img {
@@ -22,8 +24,7 @@ img {
     flex-direction: column;
     justify-content: end;
     align-items: flex-end;
-    width: var(--small);
-    padding-bottom: var(--pad);
+    padding-bottom: var(--space-small);
 }
 
 .hero-name {
