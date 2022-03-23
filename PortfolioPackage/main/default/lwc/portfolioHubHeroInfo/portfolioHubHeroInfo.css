@@ -1,14 +1,9 @@
-* {
-    --small: 12em;
-    --large: 18em;
-    --pad: 1em;
-    --pad-plus: 2em;
-}
+@import "c/styleResource";
 
 .content-container {
     display: flex;
     background-color: none;
-    background-image: linear-gradient(to right, rgba(0,0,0,0), rgb(0, 187, 255, 1));
+    background-image: linear-gradient(to right, rgba(0,0,0,0), var(--color-secondary));
     border-radius: 0 6em 6em 0;
 }
 

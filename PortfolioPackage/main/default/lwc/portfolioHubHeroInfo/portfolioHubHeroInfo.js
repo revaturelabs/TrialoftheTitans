@@ -6,7 +6,7 @@
 
 import { LightningElement, wire } from 'lwc';
 import NAME_FIELD from '@salesforce/schema/Contact.Name';
-import { getBasicUserInfo } from "@salesforce/apex/UserInfoHelper.getBasicUserInfo";
+import getBasicUserInfo from "@salesforce/apex/UserInfoHelper.getBasicUserInfo";
 
 export default class PortfolioHub_HeroInfoComponent extends LightningElement {
 
