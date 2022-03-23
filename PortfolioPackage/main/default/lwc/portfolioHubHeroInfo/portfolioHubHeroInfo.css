@@ -30,28 +30,11 @@ img {
 .hero-name {
     display: flex;
     align-items: baseline;
-    font-size: large;
+    font-size: xx-large;
 }
 
 .edit-button {
     --sds-c-icon-color-foreground-default: blue;
     --sds-c-icon-color-background: none;
     margin-right: var(--pad);
-}
-
-/* All mobile-specifics here */
-@media (max-width: 900px) {
-    .content-container {
-        flex-direction: column;
-    }
-
-    .image-container {
-        width: var(--large);
-        height: var(--large);
-        margin: 0 0 var(--pad) 0;
-    }
-
-    .info-container div * {
-        text-align: center;
-    }
 }
