@@ -16,13 +16,14 @@ import getUserExams from "@salesforce/apex/titanDisplayController.getUserExams";
 
 import getUserNextExam from "@salesforce/apex/titanDisplayController.getUserNextExam";
 import getNumberOfExamResultsOfUser from "@salesforce/apex/titanDisplayController.getNumberOfExamResultsOfUser";
-import { NavigationMixin } from 'lightning/navigation';
+import { NavigationMixin,CurrentPageReference } from 'lightning/navigation';
 
 //d3 imports
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { loadScript } from "lightning/platformResourceLoader";
 import D3 from "@salesforce/resourceUrl/DJS3";
 import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
+
 export default class TitanDisplayBar extends NavigationMixin(LightningElement)  {
     @track disableOverview = false;
     @track disableAdvance = false;
@@ -92,7 +93,7 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
         this[NavigationMixin.Navigate]({
             type: "comm__namedPage",
             attributes: {
-                name: "Titan_Hub__c"//API name of the page to navigate to
+                name: "Titan_Hub"//API name of the page to navigate to
             },
              state: {
                 c__titanId: slicedId,
