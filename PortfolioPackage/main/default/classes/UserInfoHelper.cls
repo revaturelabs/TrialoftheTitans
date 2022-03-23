@@ -16,12 +16,11 @@ public with sharing class UserInfoHelper {
     /**
      * Returns info for the currently logged in Hero (User)
      * 
-     *      Profile image url, Name, and various data from relevant relationships
+     *      Profile image url, Name, and Id for edit-form
      */
     @AuraEnabled(cacheable=true)
     public static User getBasicUserInfo() {
-        // TODO: Need certification data
-        return [SELECT Id,Name,FullPhotoUrl FROM User];
+        return [SELECT Id,Name,FullPhotoUrl FROM User LIMIT 1][0];
     }
 
     @AuraEnabled(cacheable=true)
