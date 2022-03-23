@@ -1,15 +1,15 @@
 .first{
-    /*background-color:#ECFFFE;*/
+    background-color:#ECFFFE;
    /* border: 1px solid green;*/
     display:flex;
     height: 10vh;
 }
-/*.second{
+.second{
     background-color: #DFF2F1;
-    border: 1px solid red; 
+   /* border: 1px solid red; */
     display:flex;
     height: 10vh;
-}*/
+}
 .info{
     /*border: 1px solid yellow; */
     width: 50%;;
@@ -46,8 +46,5 @@ p.institution {
 }
 img.carbon { 
     margin-top: 10px;
-    margin-right: 33%;
-}
-p.degreetype {
-    text-align:left;
+    margin-right: 31%;
 }

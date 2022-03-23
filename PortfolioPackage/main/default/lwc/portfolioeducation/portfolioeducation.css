@@ -8,13 +8,11 @@
     text-align:left;
     font-size: 32px;
 }
-.information div:nth-child(2n+1){ 
-    background-color: #ecfffe;
-}
-.information div:nth-child(2n){ 
-    background-color: #dff2f1;
-}
+.information { 
+    height: 20vw;
+    /* border: 1px solid black;*/
 
+}
 ul {
     list-style-type: none;
     margin: 0;
