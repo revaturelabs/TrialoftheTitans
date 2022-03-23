@@ -36,15 +36,17 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
     getHeroInfo({ error, data }) {
         if (error) {
             this.error = error;
+            console.log(error);
             // TODO: Handle error
+        } else if (data) {
+            // If there's no error, data will be returned
+            console.log(data);
+    
+            this.recordId       = data.Id;
+            this.heroName       = data.Name;
+            this.heroTitle      = data.Title;
+            this.profileImgSrc  = data.FullPhotoUrl;
         }
-        // If there's no error, data will be returned
-        console.log(data);
-
-        this.recordId       = data.Id;
-        this.heroName       = data.Name;
-        this.heroTitle      = data.Title;
-        this.profileImgSrc  = data.FullPhotoUrl;
     }
 
     // Handle edit button for name
