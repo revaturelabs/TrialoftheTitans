@@ -58,8 +58,9 @@
       width: 80%;
   }
   .skill-name{
-      width: 20%;
-      font-size: 1.5em;
+    min-width: 20%;
+    font-size: 1.5em;
+    white-space: word-break;
   }
   
   
