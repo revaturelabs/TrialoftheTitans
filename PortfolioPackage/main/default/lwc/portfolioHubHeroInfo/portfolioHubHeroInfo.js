@@ -4,8 +4,7 @@
  * sean.whitley@revature.net
  */
 
-import { LightningElement, wire } from 'lwc';
-import NAME_FIELD from '@salesforce/schema/Contact.Name';
+import { LightningElement, wire, track } from 'lwc';
 import getBasicUserInfo from "@salesforce/apex/UserInfoHelper.getBasicUserInfo";
 
 export default class PortfolioHub_HeroInfoComponent extends LightningElement {
@@ -16,14 +15,13 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
     // record-edit-form
     objectApiName = 'User';
     recordId; // from Wire
-    nameField = NAME_FIELD;
 
     // Hero info properties for wire service response
     error;                      // populated if error occurs in apex call
     
-    profileImgSrc;              // Url to profile image resource    (User.FullPhotoUrl)
-    heroName;                   // Name to display                  (User.Name)
-    heroTitle;                  // Prospective job title            (User__r.Contact.Title)
+    @track profileImgSrc;              // Url to profile image resource    (User.FullPhotoUrl)
+    @track heroName;                   // Name to display                  (User.Name)
+    @track heroTitle;                  // Prospective job title            (User__r.Contact.Title)
     
     /**
      * Get Hero info from org
@@ -41,6 +39,8 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
             // TODO: Handle error
         }
         // If there's no error, data will be returned
+        console.log(data);
+
         this.recordId       = data.Id;
         this.heroName       = data.Name;
         this.heroTitle      = data.Title;

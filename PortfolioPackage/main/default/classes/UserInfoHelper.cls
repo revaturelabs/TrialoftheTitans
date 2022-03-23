@@ -21,19 +21,23 @@ public with sharing class UserInfoHelper {
     @AuraEnabled(cacheable=true)
     public static User getBasicUserInfo() {
         // TODO: Need certification data
-        return [SELECT Id,Name,FullPhotoUrl,Contact.Title FROM User];
+        String uid = UserInfo.getUserId();
+        return [SELECT Id,Name,FullPhotoUrl FROM User WHERE Id =: uid];
     }
 
     @AuraEnabled(cacheable=true)
     public static List<Certification__c> getCertifications() {
 
-        // Assessor__c
-        // Candidate__c
-        // Certification_Exam__c
-        // Date_Issued__c
-        // Image_URL__c
+        // Relevant feilds:
+        //      Assessor__c
+        //      Candidate__c
+        //      Certification_Exam__c
+        //      Date_Issued__c
+        //      Image_URL__c
+
+        String uid = UserInfo.getUserId();
 
         // Danger: this is VERY incomplete
-        return [SELECT Id,Name,Assessor__c,Candidate__c FROM Certification__c];
+        return [SELECT Id,Name,Assessor__c,Candidate__c FROM Certification__c WHERE User__c =: uid];
     }
 }
