@@ -1,59 +1,138 @@
  <!-- Mountain's Amazing Component Bundle -->
  <template>
-    <div class="test-div">
-    </div>
-    <div class="strengths-container">
-        <div class="strengths-header-row">
-            <div class="header-icon-container">
-                <h1 class="strengths-header header">Strengths</h1>
-                <div class="header-icon header-icon-upper-left">
-                    <img src="../resources/Strengths.png" alt="">
+    <template class="showEditStrengthsForm" if:false={showEditStrengthsBoolean}>
+        <div class="test-div">
+        </div>
+        <div class="strengths-container">
+            <div class="strengths-header-row">
+                <div class="header-icon-container">
+                    <h1 class="strengths-header header">Strengths</h1>
+                    <div class="header-icon header-icon-upper-left">
+                        <img src="../resources/Strengths.png" alt="">
+                    </div>
+                </div> <!-- header-icon-container -->
+                <div class="edit-icon edit-icon-float-right">
+                    <img src="../resources/edit.png" alt="">
+                 
                 </div>
-            </div> <!-- header-icon-container -->
-            <div class="edit-icon edit-icon-float-right">
-                <img src="../resources/edit.png" alt="">
-             
+            </div>
+            <div class="strengths-content-row">
+                <div class="skill-name">
+                    skill 1
+                </div>
+                <div class="skill-level">
+                 <my-progressbar></my-progressbar>
+                </div>
+            </div>
+            <div class="strengths-content-row">
+                <div class="skill-name">
+                    skill 2
+                </div>
+                <div class="skill-level">
+                 <my-progressbar></my-progressbar>
+                </div>
+            </div>
+            <div class="strengths-content-row">
+                <div class="skill-name">
+                    skill 3
+                </div>
+                <div class="skill-level">
+                 <my-progressbar></my-progressbar>
+                </div>
+            </div>
+            <div class="strengths-content-row">
+                <div class="skill-name">
+                    skill 4
+                </div>
+                <div class="skill-level">
+                 <my-progressbar></my-progressbar>
+                </div>
+            </div>
+            <div class="strengths-content-row">
+                <div class="skill-name">
+                    skill 5
+                </div>
+                <div class="skill-level">
+                 <my-progressbar></my-progressbar>
+                </div>
             </div>
         </div>
-        <div class="strengths-content-row">
-            <div class="skill-name">
-                skill 1
-            </div>
-            <div class="skill-level">
-             <c-progressbar></c-progressbar>
-            </div>
-        </div>
-        <div class="strengths-content-row">
-            <div class="skill-name">
-                skill 2
-            </div>
-            <div class="skill-level">
-             <c-progressbar></c-progressbar>
-            </div>
-        </div>
-        <div class="strengths-content-row">
-            <div class="skill-name">
-                skill 3
-            </div>
-            <div class="skill-level">
-             <c-progressbar></c-progressbar>
-            </div>
-        </div>
-        <div class="strengths-content-row">
-            <div class="skill-name">
-                skill 4
-            </div>
-            <div class="skill-level">
-             <c-progressbar></c-progressbar>
-            </div>
-        </div>
-        <div class="strengths-content-row">
-            <div class="skill-name">
-                skill 5
-            </div>
-            <div class="skill-level">
-             <c-progressbar></c-progressbar>
-            </div>
-        </div>
-    </div>
+    </template>
+
+    <template class="showEditStrengthsForm" if:true={showEditStrengthsBoolean}>
+        <lightning-record-edit-form>
+            <lightning-record-edit-form-section>
+                <lightning-record-edit-form-section-header>
+                    <div class="skill-name">
+                        skill 1
+                    </div>
+                    <div class="skill-level">
+                        <my-progressbar></my-progressbar>
+                    </div>
+                </lightning-record-edit-form-section-header>
+                <lightning-record-edit-form-section-body>
+                    <lightning-input label="Skill Name" name="Skill_Name__c" value="skill 1"></lightning-input>
+                    <lightning-input label="Skill Level" name="Skill_Level__c" value="1"></lightning-input>
+                </lightning-record-edit-form-section-body>
+            </lightning-record-edit-form-section>
+            <lightning-record-edit-form-section>
+                <lightning-record-edit-form-section-header>
+                    <div class="skill-name">
+                        skill 2
+                    </div>
+                    <div class="skill-level">
+                        <my-progressbar></my-progressbar>
+                    </div>
+                </lightning-record-edit-form-section-header>
+                <lightning-record-edit-form-section-body>
+                    <lightning-input label="Skill Name" name="Skill_Name__c" value="skill 2"></lightning-input>
+                    <lightning-input label="Skill Level"></lightning-input>
+                </lightning-record-edit-form-section-body>
+            </lightning-record-edit-form-section>
+            <lightning-record-edit-form-section>
+                <lightning-record-edit-form-section-header>
+                    <div class="skill-name">
+                        skill 3
+                    </div>
+                    <div class="skill-level">
+                        <my-progressbar></my-progressbar>
+                    </div>
+                </lightning-record-edit-form-section-header>
+                <lightning-record-edit-form-section-body>
+                    <lightning-input label="Skill Name" name="Skill_Name__c" value="skill 3"></lightning-input>
+                    <lightning-input label="Skill Level"></lightning-input>
+                </lightning-record-edit-form-section-body>
+            </lightning-record-edit-form-section>
+            <lightning-record-edit-form-section>
+                <lightning-record-edit-form-section-header>
+                    <div class="skill-name">
+                        skill 4
+                    </div>
+                    <div class="skill-level">
+                        <my-progressbar></my-progressbar>
+                    </div>
+                </lightning-record-edit-form-section-header>
+                <lightning-record-edit-form-section-body>
+                    <lightning-input label="Skill Name" name="Skill_Name__c" value="skill 4"></lightning-input>
+                    <lightning-input label="Skill Level"></lightning-input>
+                </lightning-record-edit-form-section-body>
+            </lightning-record-edit-form-section>
+            <lightning-record-edit-form-section>
+                <lightning-record-edit-form-section-header>
+                    <div class="skill-name">
+                        skill 5
+                    </div>
+                    <div class="skill-level">
+                        <my-progressbar></my-progressbar>
+                    </div>
+                </lightning-record-edit-form-section-header>
+                <lightning-record-edit-form-section-body>
+                    <lightning-input label="Skill Name" name="Skill_Name__c" value="skill 5"></lightning-input>
+                    <lightning-input label="Skill Level"></lightning-input>
+                </lightning-record-edit-form-section-body>
+            </lightning-record-edit-form-section>
+        </lightning-record-edit-form>
+
+
+    </template>
 </template>
