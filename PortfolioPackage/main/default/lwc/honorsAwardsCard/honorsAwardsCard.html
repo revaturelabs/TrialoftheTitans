@@ -1,0 +1,60 @@
+<!--
+    Author: Drew Williams
+    Description: Card container for Honors & Awards section in Portfolio
+    Created Date: 3/17/22
+-->
+
+<template>
+    <!-- Lightning Card which holds the Honors & Awards component -->
+      <lightning-card>
+                <!-- Honors & Awards container -->
+                <div class="container">
+                  <div class="awards">
+                    <p>Honors & Awards
+                      <!-- Modal Open Button -->
+                      <button id="open">
+                        Add
+                      </button>
+                    </p>
+                      <!-- Modal Container -->
+                      <div class="modal-container"
+                           id="modal_container">
+                        <div class="modal">
+                            <form>
+                            <label class ="label" for="award-type">Award Title:</label>
+                            <input type="text" id="award-type" name="award"><br><br>
+                            <label class="label" for="received-on">Received On:</label>
+                            <input type="date" id="received-on" name="received-on"><br><br>
+                            <input type="submit" value="Submit">
+                            </form>
+                            <!-- Modal Close Button -->
+                          <button id="close">
+                            X
+                          </button>
+                        </div>
+                      </div>
+                      <!-- END OF MODEL CONTAINER -->
+                  </div>
+                  <div class="awards">
+                    <p>
+                      Developer of the year
+                    </p>
+                  </div>
+                  <div class="awards">
+                    <p>Received on: </p>
+                  </div>
+                  <div class="awards">
+                    <p>Developer of the year</p>
+                  </div>
+                  <div class="awards">
+                    <p>Received on: </p>
+                  </div>
+                  <div class="awards">
+                    <p>Developer of the year</p>
+                  </div>
+                  <div class="awards">
+                    <p>Received on: </p>
+                  </div>
+                </div>
+      </lightning-card>
+  </template>
