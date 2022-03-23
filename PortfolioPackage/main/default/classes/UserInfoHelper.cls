@@ -21,8 +21,7 @@ public with sharing class UserInfoHelper {
     @AuraEnabled(cacheable=true)
     public static User getBasicUserInfo() {
         // TODO: Need certification data
-        String uid = UserInfo.getUserId();
-        return [SELECT Id,Name,FullPhotoUrl FROM User WHERE Id =: uid];
+        return [SELECT Id,Name,FullPhotoUrl FROM User];
     }
 
     @AuraEnabled(cacheable=true)
