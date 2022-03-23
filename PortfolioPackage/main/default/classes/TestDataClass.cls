@@ -1,20 +1,20 @@
+// Author: Gabriel Anton
+// Date: 3/22/22
+// Description: Apex controller that pulls categories and their associated skills from DB
+
 public with sharing class TestDataClass {
 
-    @AuraEnabled(cacheable=true)
-    public static List<Titan__c> retrieveTitans() {
+    // @AuraEnabled(cacheable=true)
+    // public static List<Titan__c> retrieveTitans() {
 
         
     
-        return
-        [SELECT Curriculum__c, Name, Curriculum__r.Name
-        FROM Titan__c
-        ];
+    //     return
+    //     [SELECT Curriculum__c, Name, Curriculum__r.Name
+    //     FROM Titan__c
+    //     ]
 
-
-
-
-
-    }
+    // }
 
     @AuraEnabled(cacheable=true)
     public static List<Category__c> retrieveCategories() {

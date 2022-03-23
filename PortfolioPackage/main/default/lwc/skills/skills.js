@@ -1,32 +1,27 @@
+// Author: Gabriel Anton
+// Date: 3/22/22
+// Description: LWC JS controller that uses apex controller methods to get categories
+// provides the data for the LDS record-edit-forms in each corresponding modal.
+// There is also a delete record function.
+
+
+
 import { LightningElement, track, api, wire } from 'lwc';
+
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { deleteRecord } from 'lightning/uiRecordApi';
 
-import retrieveTitans from '@salesforce/apex/TestDataClass.retrieveTitans';
 import retrieveCategories from '@salesforce/apex/TestDataClass.retrieveCategories';
-
-import TITAN_OBJECT from '@salesforce/schema/Titan__c';
-import NAME_FIELD from '@salesforce/schema/Titan__c.Name';
-import CURRICULUM_FIELD from '@salesforce/schema/Titan__c.Curriculum__c';
-import CURRICULUM_FIELD_NAME from '@salesforce/schema/Titan__c.Curriculum__r.Name';
-
 
 import CATEGORY_OBJECT from '@salesforce/schema/Category__c';
 import CATEGORY_NAME from '@salesforce/schema/Category__c.Name';
+import CATEGORY_USER from '@salesforce/schema/Category__c.User__c';
 
 import CUSTOM_SKILL_OBJECT from '@salesforce/schema/Custom_Skill__c';
 import CUSTOM_SKILL_NAME from '@salesforce/schema/Custom_Skill__c.Name';
 import CUSTOM_SKILL_CATEGORY from '@salesforce/schema/Custom_Skill__c.Category__c';
-
-
-
-// import INDUSTRY_FIELD from '@salesforce/schema/Account.Industry';
-// import SOURCE_FIELD from '@salesforce/schema/Account.AccountSource';
-
-// import CNAME_FIELD from '@salesforce/schema/Contact.Name';
-// import PHONE_FIELD from '@salesforce/schema/Contact.Phone';
-// import EMAIL_FIELD from '@salesforce/schema/Contact.Email';
+import CUSTOM_SKILL_USER from '@salesforce/schema/Custom_Skill__c.User__c';
 
 export default class Skills extends LightningElement {
 
@@ -38,20 +33,19 @@ export default class Skills extends LightningElement {
     skills = [];
     skill;
 
+    @track valueId;
+    @track progressId;
+
     objectName = CUSTOM_SKILL_OBJECT;
     nameField = CUSTOM_SKILL_NAME;
-    skillcategory = CUSTOM_SKILL_CATEGORY;
+    skillCategory = CUSTOM_SKILL_CATEGORY;
+    skillUser = CUSTOM_SKILL_USER;
     
     categoryObject = CATEGORY_OBJECT;
     categoryName = CATEGORY_NAME;
+    categoryUser = CATEGORY_USER;
 
-    // industryField = INDUSTRY_FIELD;
-    // sourceField = SOURCE_FIELD;
-    // defaultSource = 'Web';
-
-    // cnameField = CNAME_FIELD;
-    // phoneField = PHONE_FIELD;
-    // emailField = EMAIL_FIELD;
+    
 
     // @track lstCategories = [];
     // constructor(){
@@ -94,10 +88,6 @@ export default class Skills extends LightningElement {
     }
 
     
-
-    @wire(retrieveTitans)
-    titans;
-
     @wire(retrieveCategories)
     categories
     ({error, data}){
@@ -107,7 +97,7 @@ export default class Skills extends LightningElement {
         else if(data){
             console.log(data);
             this.category = data;
-            
+
             //console.log(this.category.Custom_Skills__r);
 
             //for loop
@@ -173,6 +163,105 @@ export default class Skills extends LightningElement {
                 );
             });
 
+        }
+
+
+
+
+editProgress(event){
+    this.isProgressModalOpen = true;
+    this.valueId = event.currentTarget.value;
+    this.progressId = event.currentTarget.name;
 }
+
+closeProgressModal(){
+    this.isProgressModalOpen = false;
+}
+
+
+//Mountain's code
+
+
+@track i = 0;
+id = 0;
+width = 0;
+endwidth = 100;   //null value will be replaced with default value from database
+
+@track isProgressModalOpen = false;
+//function animates growth to value input by user
+
+move() {
+    console.log('move called');
+    console.log(this.endwidth);
+    if (this.i === 0) {
+      this.i = 1;
+      let elem = this.template.querySelector("." + this.progressId);
+      let elemInnerSpan = this.template.querySelector("." + this.valueId);
+      console.log(elem);
+      console.log(this.valueId);
+      console.log(this.progressId);
+      console.log(elemInnerSpan);
+        this.id = setInterval(() => {
+            if (this.width >= this.endwidth) {
+                clearInterval(this.id);
+                console.log(this.id)
+                this.i = 0;
+                this.width = 0;
+                console.log('cleared');
+            } else {
+                this.width++;
+                elem.style.width = this.width + '%';
+                elemInnerSpan.innerHTML = this.width + '%';
+
+            }
+        }, 10);
+    }
+
+    
+}
+updateScore() {
+    
+    let inputValue = this.template.querySelector('.scoreInput').value 
+    let validationMessage = this.validateScore(inputValue);
+    switch (validationMessage) {
+        case "Not a number":
+            this.template.querySelector('.scoreInput').value = "";
+            this.template.querySelector('.scoreInput').placeholder = "Enter a number";
+            this.template.querySelector('.scoreInput').classList.add('error');
+            break;
+        case "Invalid Score":
+            this.template.querySelector('.scoreInput').value = "";
+            this.template.querySelector('.scoreInput').placeholder = "Enter a valid score";
+            this.template.querySelector('.scoreInput').classList.add('error');
+            break;
+        case "Valid Score":
+            this.template.querySelector('.scoreInput').classList.remove('error');
+            this.endwidth = inputValue;
+            this.move();
+            break;
+        default:
+            break;
+
+}
+
+}
+
+validateScore(inputValue){
+
+    if (isNaN(inputValue)) {
+        this.template.querySelector('.scoreInput').value = '0';
+        return "Not a number";
+    }
+
+    if (inputValue > 100 || inputValue < 0) {
+        this.template.querySelector('.scoreInput').value = '0';
+        this.endwidth = 0;
+        return "Invalid Score";
+    }
+
+    return "Valid Score";
+}
+
+
 
 }
