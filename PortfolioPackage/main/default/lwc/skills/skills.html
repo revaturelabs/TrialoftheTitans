@@ -11,13 +11,10 @@ Date: 3/18/22
 Description: The skills matrix displays the skill categories corresponding to the user
 and gives the user the ability to add new categories as well as update their skills 
 
-Each Edit and Add button opens modals where they can edit their skills or add a new category.
+Each Edit and Add button opens modals where they can add new skills or add a new category.
 
-Edit: For now, Account data is being used for testing, but an Apex Controller will be used
-to query the specific skills onto the page as well as give the category name
-
-We should add a new field called category if it's not already there that will only be present
-on the Add New Category Modal. 
+Using Custom_Skill__c and Category__c as custom objects. Have master-detail relationship that
+is used in apex controller to return each skill from each category to display.
 -->
 
 <template>
@@ -84,15 +81,15 @@ on the Add New Category Modal.
                                     <div class="progressBar">
                                         <br>
                                         <div class="myProgress" style="margin-top: 3px;">
-                                            <div class={skill.Skill_Number__c} 
-                                            style="width: 0%;
+                                            <div class={skill.Skill_Number__c}
+                                            style="display: none;
                                             background-color: #00E2D5;
                                             border-radius: 10px;
                                             height: 30px;">
                                             <span class={skill.Id} 
                                             style="padding-left: 5px;
                                             /* font-weight: 500; */
-                                            font-size: 1.5em;" key={skill.Id}>0%</span></div>
+                                            font-size: 1.5em;" key={skill.Id}>{skill.Progress__c}</span></div>
                                             <!--encap in p tag and adjust padding on percentage--> 
                                     
                                           </div> 
@@ -225,6 +222,7 @@ on the Add New Category Modal.
                 </div> -->
                 <div class="slds-box slds-theme_default slds-var-p-around_medium">
                     <div class="slds-modal__content">
+                        <!-- Mountain's code -->
                     <label for="progress">Enter Your Progress With This Skill:</label>
                     <br>
                     <input type="text" name="progress" class="scoreInput">
@@ -234,6 +232,7 @@ on the Add New Category Modal.
                 <footer class="slds-modal__footer">
                     <lightning-button variant="brand" class="slds-p-around_x-small" label="Update Progress" onclick={updateScore}></lightning-button> 
                 </footer>
+                         <!-- Mountain's code -->
             </div>
         </section>
         <div class="slds-backdrop slds-backdrop_open"></div>

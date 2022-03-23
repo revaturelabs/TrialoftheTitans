@@ -11,8 +11,11 @@ import { LightningElement, track, api, wire } from 'lwc';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { deleteRecord } from 'lightning/uiRecordApi';
+import { refreshApex } from '@salesforce/apex';
 
 import retrieveCategories from '@salesforce/apex/TestDataClass.retrieveCategories';
+import setProgress from '@salesforce/apex/TestDataClass.setProgress';
+
 
 import CATEGORY_OBJECT from '@salesforce/schema/Category__c';
 import CATEGORY_NAME from '@salesforce/schema/Category__c.Name';
@@ -35,6 +38,7 @@ export default class Skills extends LightningElement {
 
     @track valueId;
     @track progressId;
+    @track progressNumber;
 
     objectName = CUSTOM_SKILL_OBJECT;
     nameField = CUSTOM_SKILL_NAME;
@@ -67,11 +71,15 @@ export default class Skills extends LightningElement {
         });
 
         this.dispatchEvent(toastEvent);
+        this.isModalOpen = false;
+        this.isSkillsModalOpen = false;
+        refreshApex(this.wireRes);
     }
 
 
     @track isModalOpen = false;
     @track isSkillsModalOpen = false;
+    @track wireRes;
 
     openModal() {
         // to open modal set isModalOpen tarck value as true
@@ -90,13 +98,14 @@ export default class Skills extends LightningElement {
     
     @wire(retrieveCategories)
     categories
-    ({error, data}){
-        if(error){
-            this.error = error;
-        }
-        else if(data){
+    (res){
+        
+        const {error, data} = res
             console.log(data);
             this.category = data;
+            // this.progressNumber = data[0].Custom_Skills__c[0].Progress__c;
+            // console.log(this.progressNumber);
+            this.wireRes = res;
 
             //console.log(this.category.Custom_Skills__r);
 
@@ -118,7 +127,7 @@ export default class Skills extends LightningElement {
             // this.skills = this.categorie[1].Custom_Skills__r[0];
             // console.log(this.skills);
             
-        }
+        
     };
     
     closeSkillsModal(){
@@ -145,7 +154,9 @@ export default class Skills extends LightningElement {
                     message: 'Record Has Been Deleted',
                     variant: 'success'
                 })
+                
             )
+            refreshApex(this.wireRes);
             // for(let cat in this.lstCategories){
             //         if(this.lstCategories[cat].Id == categoryId){
             //             this.lstCategories.splice(cat, 1);
@@ -184,23 +195,25 @@ closeProgressModal(){
 
 @track i = 0;
 id = 0;
-width = 0;
+width = 50;
 endwidth = 100;   //null value will be replaced with default value from database
+count = 0;
 
 @track isProgressModalOpen = false;
-//function animates growth to value input by user
 
+//function animates growth to value input by user
 move() {
     console.log('move called');
     console.log(this.endwidth);
     if (this.i === 0) {
       this.i = 1;
       let elem = this.template.querySelector("." + this.progressId);
+      //console.log(this.template.querySelector("." + this.valueId).innerHTML);
       let elemInnerSpan = this.template.querySelector("." + this.valueId);
       console.log(elem);
       console.log(this.valueId);
       console.log(this.progressId);
-      console.log(elemInnerSpan);
+    //   console.log(elemInnerSpan);
         this.id = setInterval(() => {
             if (this.width >= this.endwidth) {
                 clearInterval(this.id);
@@ -211,7 +224,7 @@ move() {
             } else {
                 this.width++;
                 elem.style.width = this.width + '%';
-                elemInnerSpan.innerHTML = this.width + '%';
+                elemInnerSpan.innerHTML = this.width;
 
             }
         }, 10);
@@ -237,6 +250,11 @@ updateScore() {
         case "Valid Score":
             this.template.querySelector('.scoreInput').classList.remove('error');
             this.endwidth = inputValue;
+            setProgress({autoNumber: this.progressId, progress: inputValue});
+            let progressBar = this.template.querySelector('.' + this.progressId);
+            progressBar.style.display = "block";
+            console.log(this.template.querySelector('.' + this.progressId).className, '********');
+            this.count++;
             this.move();
             break;
         default:
