@@ -33,8 +33,9 @@ li.left{
     margin-top: 15px;
     font-weight: bold;
 } 
-li.right { 
+li.editor { 
     float:right;
     margin-right: 10px;
     margin-top: 18px;
+    cursor: pointer;
 }

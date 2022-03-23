@@ -5,9 +5,25 @@
             <ul>
                 <li class="logo"><img src={hatty} /></li>
                 <li class="left"><p>Education</p></li>
-                <li class="right"><img src={editiconimplementation} onclick={handleEvent} /></li>
+                <li class="editor"><img src={editiconimplementation} onclick={modalOpener} /></li>
             </ul>
         </div>
+        <template if:true={modalChecker}>
+            <section aria-modal="true" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_small">Insert Your Education Credentials</h2>
+                        <lightning-icon class="slds-modal__close" icon-name="utility-close" size="small" onclick={modalCloser}></lightning-icon>
+                    </header>
+                    <div class="slds-box slds-theme_default slds-var-p-around_medium">
+                        <h1> PLACEHOLDER INFORMATION FOR THE FORM </h1>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button variant="Destructive" label="Cancel" onclick={modalCloser} class="slds-p-around_x-small"></lightning-button>
+                    </footer>
+                </div>
+            </section>
+        </template>
         <div class="information">
             <div><c-portfolioeducationcompartment></c-portfolioeducationcompartment></div>
             <div><c-portfolioeducationcompartment></c-portfolioeducationcompartment></div>
