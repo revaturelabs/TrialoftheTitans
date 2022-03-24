@@ -18,7 +18,7 @@
                     <div class="slds-box slds-theme_default slds-var-p-around_medium">
                         <lightning-record-edit-form
                         object-api-name={educationObject}
-                    >
+                        onsuccess={handleSuccess}>
                         <lightning-output-field field-name={userField}> </lightning-output-field>
                         <lightning-input-field field-name={majorField}> </lightning-input-field>
                         <lightning-input-field field-name={degreeField}> </lightning-input-field>
