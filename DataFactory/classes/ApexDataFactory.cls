@@ -39,7 +39,19 @@ public with sharing class ApexDataFactory {
     @AuraEnabled
     public static void GenerateData(){
 	    //GenerateData is called by the LWC component to initiate the Data Factory methods
-        CreateCurriculum();
+        ApexDataFactory.CreateCurriculum();
+        ApexDataFactory.CreateCohort();
+        ApexDataFactory.CreateTeam();
+        ApexDataFactory.CreateSquad();
+        ApexDataFactory.CreateAccount();
+        ApexDataFactory.CreateTitan();
+        ApexDataFactory.CreateSkill();
+        ApexDataFactory.CreateQCInterview();
+        ApexDataFactory.CreateEducation();
+        ApexDataFactory.CreateExam();
+        ApexDataFactory.CreateExamQuestion();
+        ApexDataFactory.CreateExamResult();
+        ApexDataFactory.CreateHeroAnswer();
     }
     @AuraEnabled
     public static void CreateCurriculum(){
@@ -68,7 +80,7 @@ public with sharing class ApexDataFactory {
             } catch (DmlException dx) {
                 System.debug('DML Exception ' + dx.getMessage());
             }
-            CreateCohort();
+            //CreateCohort();
        // }
         
         ////////////////////////////////
@@ -99,7 +111,7 @@ public with sharing class ApexDataFactory {
         //insert the new list newcohorts
         try{
             insert newcohorts;}catch(DMLException e){system.debug(e);}
-        CreateTeam();
+        //CreateTeam();
     }
 
     @AuraEnabled
@@ -132,7 +144,7 @@ public with sharing class ApexDataFactory {
         }
         
         insert teams;
-        CreateSquad();
+        //CreateSquad();
     }
     
     @AuraEnabled
@@ -160,7 +172,7 @@ public with sharing class ApexDataFactory {
         }       
         
         insert squads;   
-        CreateAccount();
+        //CreateAccount();
     }
     
     @AuraEnabled
@@ -215,7 +227,7 @@ public with sharing class ApexDataFactory {
             }
         }
         insert accounts; 
-        CreateTitan();
+        //CreateTitan();
     }
 
     @AuraEnabled
@@ -284,7 +296,7 @@ public with sharing class ApexDataFactory {
             }
         } /*insert the new list of Titans*/
         try {insert newtitans;} catch(DMLException e){system.debug(e);}
-        CreateSkill();
+        //CreateSkill();
     }
 
     @AuraEnabled
@@ -317,7 +329,7 @@ public with sharing class ApexDataFactory {
         }
         
         insert skills;
-        CreateQCInterview();
+        //CreateQCInterview();
         /////////////////////////////
     }
     
@@ -355,7 +367,7 @@ public with sharing class ApexDataFactory {
         
         insert Interview;
         /////////////////////////////////
-        CreateEducation();
+        //CreateEducation();
     }
     
     @AuraEnabled
@@ -390,7 +402,7 @@ public with sharing class ApexDataFactory {
             education.add(edu);
         }
         insert education;
-        CreateExam();
+        //CreateExam();
     }
     
     @AuraEnabled
@@ -427,10 +439,10 @@ public with sharing class ApexDataFactory {
             }
         }
         update createdExams; 
-        CreateExamQuestion();
+        //CreateExamQuestion();
     }
     
-     @AuraEnabled
+    @AuraEnabled
     public static void CreateExamQuestion(){
         System.Debug('In create exam question');
         
@@ -478,8 +490,83 @@ public with sharing class ApexDataFactory {
         }
         system.debug(questions.size());
         insert questions;
-        CreateExamResult();
+        //CreateExamResult();
     }	
+
+    /******************************************* 
+     * createQuestionPool method
+     * Created Date: 3/23/2022
+     * Created By: Martin Luna II (add whoever helps name here)
+     * 
+     * Pseudocode:
+     * Create createQuestionPool();
+     *      assign questions from createExamQuestion(); to a record within the Question_Pool__c object
+     * 
+     * Possible archival of Exam Pool Assignment object due to Exam questions and Exams already containing lookup fields to the Titan Object
+     *          Exams can pull Questions from the QP object based on the Titan Lookup Field. 
+     *******************************************/
+
+     @AuraEnabled
+     public static void createQuestionPool(){
+         try {
+
+            /**Create list of Question Assigment
+             * Create list of all exams        
+             *       Loop through each exam
+             *              create list that Gets questions by offset and limit = question
+             *              Create a number of QP record with name of exam that we're looping through
+             *       Insert QP
+             *       Loop through list of QA
+             *          Assign Id of Question and Exam to the lookup fields on QA Record based on the QP
+             *          Add new instance to Question Assignment list
+             * 
+             * Dml insert List into QA Object
+             * Update QP IDs
+             */
+
+            //Creation of lists.
+            List<Question_Assignment__c> questionAssign = [SELECT Id, Name FROM Question_Assignment__c];
+            List<Exam__c> Exam = [SELECT Id, Name FROM Exam_c];
+            
+
+            Integer numbOfExams = 5;
+            //Loop through each exam
+            for(Integer i=0; i < numbOfExams; i++){
+                Integer count = 1;
+                //Each if else statement increases the offset by 10 so only 10 records are ever returned during a single loop.
+                if(count == 1){
+                    List<Exam_Question__c> exQuestP1 = [SELECT Id, Name FROM Exam_Question__c Limit 10];
+                    //Create QP Exams 
+                }else if (count == 2){
+                    List<Exam_Question__c> exQuestP2 = [SELECT Id, Name FROM Exam_Question__c Limit 10 Offset 10]; 
+                    //Create QP Exams
+                }else if (count == 3){
+                    List<Exam_Question__c> exQuestP3 = [SELECT Id, Name FROM Exam_Question__c Limit 10 Offset 20]; 
+                    //Create QP Exams
+                }else if (count == 4){
+                    List<Exam_Question__c> exQuestP4 = [SELECT Id, Name FROM Exam_Question__c Limit 10 Offset 30]; 
+                    //Create QP Exams
+                }else if (count == 5){
+                    List<Exam_Question__c> exQuestP5 = [SELECT Id, Name FROM Exam_Question__c Limit 10 Offset 40]; 
+                    //Create QP Exams
+                }
+                count++;
+            }
+            //Insert QP
+
+
+            
+             
+         } catch (Exception e) {
+             throw new AuraHandledException(e.getMessage());
+         }
+     }
+
+
+
+
+
+
     
     @AuraEnabled
     public static void CreateExamResult(){
@@ -519,7 +606,7 @@ public with sharing class ApexDataFactory {
         }
         
         insert Results;
-        CreateHeroAnswer();
+        //CreateHeroAnswer();
     }
     
     

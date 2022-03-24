@@ -9,7 +9,7 @@ public with sharing class getCertificationsTest {
     @TestSetup
     static void mockCertSetup(){
         Certification_Exam__c mock1 = new Certification_Exam__c();
-        Contact mock2 = new Contact(firstName='Persues', lastname='Eurymedon');
+        Contact mock2 = new Contact(firstName='Perseus', lastname='Eurymedon');
 
         insert mock1;
         insert mock2;
