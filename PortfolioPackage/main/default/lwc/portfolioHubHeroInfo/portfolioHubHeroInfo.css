@@ -34,7 +34,11 @@ img {
 }
 
 .edit-button {
-    --sds-c-icon-color-foreground-default: blue;
+    --sds-c-icon-color-foreground-default: var(--color-accent);
     --sds-c-icon-color-background: none;
-    margin-right: var(--pad);
+    /* margin-right: var(--space-small); */
+}
+
+.edit-modal {
+    background-color: var(--color-primary);
 }
