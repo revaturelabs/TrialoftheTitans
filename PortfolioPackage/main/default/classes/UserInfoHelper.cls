@@ -28,14 +28,19 @@ public with sharing class UserInfoHelper {
 
         // Relevant feilds:
         //      Assessor__c
-        //      Candidate__c
-        //      Certification_Exam__c
+        //      Candidate__r.Name  (Contact)
+        //      Certification_Exam__r.Name  (Certification_Exam__c)
         //      Date_Issued__c
         //      Image_URL__c
+        //      User__c  (User.Id)
 
         String uid = UserInfo.getUserId();
 
         // Danger: this is VERY incomplete
-        return [SELECT Id,Name,Assessor__c,Candidate__c FROM Certification__c WHERE User__c =: uid];
+        return [
+            SELECT Image_URL__c,Certification_Exam__r.Name,Date_Issued__c 
+            FROM Certification__c 
+            WHERE User__c = :uid
+        ];
     }
 }
