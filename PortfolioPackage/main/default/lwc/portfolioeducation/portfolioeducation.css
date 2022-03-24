@@ -8,10 +8,10 @@
     text-align:left;
     font-size: 32px;
 }
-.secondinformation div:nth-child(2n+1){ 
+.information div.first:nth-child(2n+1){ 
     background-color: #ecfffe;
 }
-.secondinformation div:nth-child(2n){ 
+.information div.first:nth-child(2n){ 
     background-color: #dff2f1;
 }
 
