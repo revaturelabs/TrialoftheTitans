@@ -3,9 +3,9 @@
     <div class="container">
         <div class="title">
             <ul>
-                <li class="logo"><img src={hatty} /></li>
+                <li class="logo"><lightning-icon icon-name='standard:education' alternative-text='education' size='medium' title='education'></lightning-icon></li>
                 <li class="left"><p>Education</p></li>
-                <li class="editor"><img src={editiconimplementation} onclick={modalOpener} /></li>
+                <li class="editor"><lightning-icon icon-name='utility:prompt_edit' alternative-text='prompt_edit' size='medium' title='prompt_edit' onclick={modalOpener}></lightning-icon></li>
             </ul>
         </div>
         <template if:true={modalChecker}>
