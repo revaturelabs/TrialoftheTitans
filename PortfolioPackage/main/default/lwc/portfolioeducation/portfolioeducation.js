@@ -12,7 +12,8 @@ import DEGREE_FIELD from '@salesforce/schema/Education__c.Degree__c';
 
 //import HATICON from '@salesforce/resourceUrl/hat';
 //import EDITICON from '@salesforce/resourceUrl/editicon';
-export default class Portfolioeducation extends LightningElement {
+export default class Portfolioeducation extends LightningElement 
+{
 /*
     hatty = HATICON;
     editiconimplementation = EDITICON;
@@ -35,12 +36,21 @@ export default class Portfolioeducation extends LightningElement {
     }
     modalCloser() 
     {
+        const closeenv = new ShowToastEvent({
+            title: "Canceled",
+            message: "You canceled inputting information.",
+            variant: "error"
+        });
+
+        this.dispatchEvent(closeenv);
         this.modalChecker = false;
     }
-    handleSuccess() {
+
+    handleSuccess() 
+    {
         const env = new ShowToastEvent({
             title: "Success",
-            message: "Record created.",
+            message: "Information Received.",
             variant: "success"
         });
 
