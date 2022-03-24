@@ -69,6 +69,7 @@
      // Dispatches the event.
      this.dispatchEvent(confirmEvent);
      this.isModalOpen = false;
+     
    }
  
    //compute the CSS classes of the Modal(popup) based on the value of isModalOpen property

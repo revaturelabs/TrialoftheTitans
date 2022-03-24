@@ -32,6 +32,8 @@ export default class LwcExamInterview extends LightningElement {
   examName;
   titan;
   examTimeLimit;
+  examResult;
+  defaultPassingGrade;
 
   //for displaying errors
   error;
@@ -58,7 +60,7 @@ export default class LwcExamInterview extends LightningElement {
   examQuestionOrder;
 
   //holds the list of user's answers
-  examAnswers = {};
+  examAnswers = [];
   
   // User-entered answer on the current question
   answer = "";
@@ -267,7 +269,7 @@ export default class LwcExamInterview extends LightningElement {
 
   setPrevNextDisabled() {
     this.prevButtonDisabled = this.questionNumber < 2;
-    this.nextButtonDisabled = this.questionNumber + 1 > this.numberOfQuestions;
+    // this.nextButtonDisabled = this.questionNumber + 1 > this.numberOfQuestions;
   }
 
   prevClicked() {
@@ -279,6 +281,8 @@ export default class LwcExamInterview extends LightningElement {
   nextClicked() {
     if (this.questionNumber < this.numberOfQuestions) {
       this.gotoQuestionNumber(this.questionNumber + 1);
+    }else{
+      console.log('Last Question Next Button');
     }
   }
 
@@ -336,6 +340,8 @@ export default class LwcExamInterview extends LightningElement {
         this.toastVariant = "success";
         console.log(this.toastMessage);
         console.log(result);
+        this.examResult = result;
+        this.defaultPassingGrade = result.Exam__r.Default_Passing_Grade__c;
         this.error = undefined;
         this.handleSubmitAnswers();
       })
@@ -344,6 +350,7 @@ export default class LwcExamInterview extends LightningElement {
         this.toastTitle = "Oops! Error occured";
         this.toastVariant = "error";
         console.log(this.toastMessage);
+        console.log(error);
         this.error = error;
       })
       .finally(() => {
@@ -355,6 +362,10 @@ export default class LwcExamInterview extends LightningElement {
         });
         this.dispatchEvent(toastEvent);
       });
+
+
+      
+
   }
 
   //submit exam answers to the apex controller.  not sure why they did it with two separate calls at the same time... but we are not trying to change the apex controllers too much now, could be combined later.
@@ -375,6 +386,9 @@ export default class LwcExamInterview extends LightningElement {
           this.showCelebrateButton = true;
           this.fireworks();
         }
+
+      // this.showPassModal();
+
       })
       .catch((error) => {
         this.toastMessage = "Error occured submitting exam " + error.message;
@@ -386,8 +400,16 @@ export default class LwcExamInterview extends LightningElement {
         console.error("e.message => " + error.message);
         console.error("e.stack => " + error.stack);
         this.error = error;
+      })
+      .finally(() =>{
+        this.showPassModal();
       });
   }
+      showPassModal(){
+        let popUp = this.template.querySelector("c-lwc-popup-modal");
+        popUp.setQuestionAnswer(this.examQuestions,this.examAnswers, this.examResult.Passing_Grade_Override__c, this.defaultPassingGrade);
+        popUp.showModalTwo();
+      }
 
   //added some fireworks for fun to celebrate end of program, adds confetti after successful submit
   // and a displays a button to play it again.  A little pizzazz
@@ -419,6 +441,8 @@ export default class LwcExamInterview extends LightningElement {
         );
         this.confettiAvailable = false;
       });
+
+      // this.showPassModal();
   }
 
   fireworks() {

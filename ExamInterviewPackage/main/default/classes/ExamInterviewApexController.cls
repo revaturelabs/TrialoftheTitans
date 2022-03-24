@@ -51,23 +51,31 @@ public without sharing class ExamInterviewApexController {
 
     // insert hero answers using answered exam questions
     @AuraEnabled
-    public static void submitExam(String examId, String acctId){
+    public static Exam_Result__c submitExam(String examId, String acctId){
         System.debug('submitted exam');
         System.debug(examId);
+        List<Exam_Result__c> examResult = new List<Exam_Result__c>();
         // inserts exam related to the hero that took it and updates the exam result
         //Exam__c submittedExam = [SELECT Id FROM Exam__c WHERE Id = :examId LIMIT 1];
        
         //Account account = [SELECT Id FROM Account WHERE Name = 'Gladius Maximus' LIMIT 1];
        // System.debug(account);
        
-        List<Exam_Result__c> examResult = [SELECT Id FROM Exam_Result__c WHERE Account__c = :acctId AND Status__c = 'Assigned' AND Exam__c = :examId];
+        examResult = [SELECT Id, Passing_Grade_Override__c, Exam__r.Default_Passing_Grade__c FROM Exam_Result__c WHERE Account__c = :acctId AND Status__c = 'Assigned' AND Exam__c = :examId];
         
+        try{
         if(examResult!=null && examResult.size()>0){
             System.debug(examResult[0]);
             Exam_Result__c myExamResult = (Exam_Result__c) examResult[0];
-            myExamResult.Status__c = 'Completed';
+            // myExamResult.Status__c = 'Completed';
             update myExamResult;
         }
+        return examResult[0];
+     }
+        catch(Exception e){         
+            throw new AuraHandledException(e.getMessage());
+    }
+
     }
 
     // created a new list of hero answers that is the same size as the amount of questions

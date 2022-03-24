@@ -18,7 +18,7 @@
                     <div class="slds-col slds-size_6-of-6">
                         <div class="slds-grid slds-grid_align-left slds-wrap">
                             <!--Iterating over our array of questions-->
-                            <template for:each={questionstates} for:item="l">
+                            <template for:each={questionstatestracked} for:item="l">
                                 <!--xxx-small-->
                                 <div key={l.questionNumber} class="slds-col slds-size_1-of-20 slds-p-horizontal_xx-small">
                                     <!--Conditional rendering utilizing our 3 boolean values. Marked for review questions
@@ -26,8 +26,8 @@
                                         for review should be marked as flagged, and questions that are not marked for review
                                         nor flagged should be marked as answered or unanswered accordingly-->
                                     <lightning-card class="testy-test">
-                                        <template if:true={l.answered}>
-                                            <template if:true={l.markedForReview}>
+                                        <template if:true={l.answered}>                
+                                         <template if:true={l.markedForReview}>
                                                 <div class="marked">
                                                     <lightning-button variant="base" label={l.questionNumber} class="b-marked" onclick={jumpToQuestion}></lightning-button>
                                                 </div>
@@ -72,6 +72,7 @@
                 </div>
                 <br>
                 <div class="slds-grid slds-grid_align-center">
+                
                     <div class="slds-col">
                         <lightning-button variant="brand" label=&nbsp; class="l-answered"></lightning-button>
                         &nbsp;Answered&nbsp;&nbsp;
