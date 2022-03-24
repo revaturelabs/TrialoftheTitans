@@ -5,9 +5,11 @@
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": true,
-            "dependencies": [{
+            "dependencies": [
+                {
                 "package": "ChartPackage@1.0.0-1"
-            }]
+                }
+            ]
         },
         {
             "path": "HeroHubPackage",

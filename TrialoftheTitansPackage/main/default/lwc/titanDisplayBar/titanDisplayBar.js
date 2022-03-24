@@ -67,10 +67,10 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement) {
     }
 
     handleOverview(evt) {
-
         this.disableOverview = true;
         evt.preventDefault();
         evt.stopPropagation();
+        // Navigate to the Titab Hub page
         this[NavigationMixin.Navigate](this.titanHubPage);
     }
 
