@@ -1,3 +1,9 @@
+/************************************************************
+ * Done by: Mohammed Azad
+ * Create a list of a person's history
+ * Date: March 24 2022
+ ************************************************************/
+
 import { LightningElement, track, wire, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
