@@ -3,21 +3,41 @@
     Description: Card container for Honors & Awards section in Portfolio
     Created Date: 3/17/22
 */
+import { LightningElement, track, wire } from 'lwc';
+import NAME_FIELD from '@salesforce/schema/Award__c.Name';
+import DATE_FIELD from '@salesforce/schema/Award__c.Date_Received__c';
+import getAwards from '@salesforce/apex/honorsAwardsCardHelper.getAwards';
+import {refreshApex} from '@salesforce/apex';
 
-import { LightningElement } from 'lwc';
 
-// Grabs open and close elements
-const open = document.getElementById('open');
-const model_container = document.getElementById('modal_container');
-const close = document.getElementById('close');
+export default class HonorsAwardsCard extends LightningElement {
+  @track
+  isShowingModal = false;
 
-// Event listener to open and close modal on click
-open.addEventListener('click', ()=> {
-  model_container.classList.add('show');
-});
+  @track
+  awardsList;
+  nameField = NAME_FIELD;
+  receivedDate = DATE_FIELD;
+  wireValue;
 
-close.addEventListener('click', ()=> {
-  model_container.classList.remove('show');
-});
+  // Opens modal
+  openModal() {
+    this.isShowingModal = true;
 
-export default class HonorsAwardsCard extends LightningElement {}
+  }
+
+  @wire(getAwards)
+  awards(value){
+    
+    const{error, data} = value;
+    if(data) {this.awardsList=data}
+    else if(error) {console.log(error)}
+    console.log(this.awardsList);
+    this.wireValue = value;
+  };
+
+  handleSuccess() {
+    refreshApex(this.wireValue);
+    this.isShowingModal = false;
+  }
+}
