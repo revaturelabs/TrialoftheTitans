@@ -38,11 +38,23 @@
             </section>
         </template>
         <div class="information">
-            <div><c-portfolioeducationcompartment></c-portfolioeducationcompartment></div>
-            <div><c-portfolioeducationcompartment></c-portfolioeducationcompartment></div>
-            <div><c-portfolioeducationcompartment></c-portfolioeducationcompartment></div>
-            <div><c-portfolioeducationcompartment></c-portfolioeducationcompartment></div>
-            <div><c-portfolioeducationcompartment></c-portfolioeducationcompartment></div>
+            <template if:true={education}>
+                <template for:each={education} for:item="edu" class="secondInformation">
+                    <div key={edu.Id} class="first">
+                        <div class="info">
+                            <div class="infoholder">
+                                <lightning-icon icon-name='standard:approval' alternative-text='approval' size='small' title='approval' class="carbon"></lightning-icon>
+                                <!-- <img class="carbon" src={carboneducation} /> -->
+                                <p class="degree">{edu.Degree__c}</p>
+                                <p class="institution">{edu.Name}</p>
+                            </div>
+                        </div>
+                        <div class="dataholder">
+                            <p class="time">{edu.DateGraduate__c}</p>
+                        </div>
+                    </div>
+                </template>
+            </template>
         </div>
     </div>
 </template>

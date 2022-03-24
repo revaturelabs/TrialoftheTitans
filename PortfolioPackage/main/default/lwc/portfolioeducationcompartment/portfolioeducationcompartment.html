@@ -1,28 +1,20 @@
 <!--Mohammed Azad-->
 <template>
-    <div class="first">
-        <div class="info">
-            <div class="infoholder">
-                <lightning-icon icon-name='standard:approval' alternative-text='approval' size='small' title='approval' class="carbon"></lightning-icon>
-                <!-- <img class="carbon" src={carboneducation} /> -->
-                <p class="degree">DEGREE1</p>
-                <p class="institution">BOSTON UNIVERSITY</p>
+    <template if:true={education}>
+        <template for:each={education} for:item="edu">
+            <div key={edu.Id} class="first">
+                <div class="info">
+                    <div class="infoholder">
+                        <lightning-icon icon-name='standard:approval' alternative-text='approval' size='small' title='approval' class="carbon"></lightning-icon>
+                        <!-- <img class="carbon" src={carboneducation} /> -->
+                        <p class="degree">{edu.Degree__c}</p>
+                        <p class="institution">{edu.Name}</p>
+                    </div>
+                </div>
+                <div class="dataholder">
+                    <p class="time">{edu.DateGraduate__c}</p>
+                </div>
             </div>
-        </div>
-        <div class="dataholder">
-            <p class="time">JAN 2020 - PRESENT</p>
-        </div>
-    </div>
-    <!--<div class="second">
-        <div class="info">
-            <div class="infoholder">
-                <img class="carbon" src={carboneducation} />
-                <p class="degree">DEGREE2</p>
-                <p class="institution">SCHOOL</p>
-            </div>
-        </div>
-        <div class="dataholder">
-            <p class="time">JANUARY 2018 - 2019</p>
-        </div>
-    </div>-->
+        </template>
+    </template>
 </template>
