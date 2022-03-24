@@ -113,7 +113,7 @@ public with sharing class ApexDataFactory {
         //insert the new list newcohorts
         try{
             insert newcohorts;}catch(DMLException e){system.debug(e);}
-        CreateTeam();
+        //CreateTeam();
     }
 
     @AuraEnabled

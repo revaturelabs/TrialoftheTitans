@@ -57,7 +57,10 @@ export default class TitanDisplayBar extends LightningElement {
     connectedCallback() {
         
     }
-    handleOverview() {}
+    //button handler that goes to Titan Hub page
+    handleOverview() {
+        //navigation mixin
+    }
 
     handleAdvance() {}
 }
