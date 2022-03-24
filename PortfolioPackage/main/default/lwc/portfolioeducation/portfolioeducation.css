@@ -8,11 +8,13 @@
     text-align:left;
     font-size: 32px;
 }
-.information { 
-    height: 20vw;
-    /* border: 1px solid black;*/
-
+.information div:nth-child(2n+1){ 
+    background-color: #ecfffe;
 }
+.information div:nth-child(2n){ 
+    background-color: #dff2f1;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -31,8 +33,9 @@ li.left{
     margin-top: 15px;
     font-weight: bold;
 } 
-li.right { 
+li.editor { 
     float:right;
     margin-right: 10px;
     margin-top: 18px;
+    cursor: pointer;
 }

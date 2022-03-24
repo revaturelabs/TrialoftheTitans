@@ -14,12 +14,13 @@ import getPortfolioStatus from "@salesforce/apex/sidebarController.getPortfolioS
 import getAvgScorePerTitan from "@salesforce/apex/sidebarController.getAvgScorePerTitan";
 import getSquad from "@salesforce/apex/sidebarController.getSquad";
 import { LightningElement, wire } from "lwc";
+import { NavigationMixin } from 'lightning/navigation';
 
 const PROG_CATEGORY = "Programmatic";
 const DECL_CATEGORY = "Declarative";
 const MISC_CATEGORY = "Miscellaneous";
 
-export default class Sidebar extends LightningElement {
+export default class Sidebar extends NavigationMixin(LightningElement)  {
     @wire(getAccount) accInfo;
     @wire(getSquad) squadInfo;
     @wire(getCert) certInfo;
@@ -108,5 +109,16 @@ export default class Sidebar extends LightningElement {
         }
 
         return scores;
+    }
+
+    handleClick() {
+        console.log("fired");
+        this[NavigationMixin.Navigate]({
+            type: "comm__namedPage",
+            attributes: {
+                name: "Portfolio__c"//API name of the page to navigate to
+            }
+        });
+        console.log("Worked");
     }
 }
