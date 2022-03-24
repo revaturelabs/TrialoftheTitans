@@ -6,6 +6,8 @@
 
 import { LightningElement, wire, track } from 'lwc';
 import getBasicUserInfo from "@salesforce/apex/UserInfoHelper.getBasicUserInfo";
+import NAME_FIELD from "@salesforce/schema/User.Name";
+import { refreshApex } from "@salesforce/apex";
 
 export default class PortfolioHub_HeroInfoComponent extends LightningElement {
 
@@ -15,10 +17,10 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
     // record-edit-form
     objectApiName = 'User';
     recordId; // from Wire
+    nameField = NAME_FIELD;
 
     // Hero info properties for wire service response
-    error;                      // populated if error occurs in apex call
-    
+    @track error;                       // populated if error occurs in apex call
     @track profileImgSrc;               // Url to profile image resource    (User.FullPhotoUrl)
     @track heroName;                    // Name to display                  (User.Name)
     @track heroTitle;                   // Prospective job title            (Account?)
@@ -52,6 +54,17 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
 
     // Handle edit button for name
     handleEditName() {
+        this.toggleModalView();
+    }
+    
+    handleSubmit(event) {
+        // Prevent page from reloading
+        // event.preventDefault();
+        this.toggleModalView();
+        refreshApex(this.heroName);
+    }
+    
+    toggleModalView() {
         // Toggle isEditing
         this.isEditing = !this.isEditing;
     }
