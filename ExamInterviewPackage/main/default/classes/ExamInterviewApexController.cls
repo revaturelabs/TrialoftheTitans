@@ -55,6 +55,7 @@ public without sharing class ExamInterviewApexController {
     }
 
     // insert hero answers using answered exam questions
+    //changed return type from void to retunning an exam result to send pass/fail threshhold to LWC- iteration xi
     @AuraEnabled
     public static Exam_Result__c submitExam(String examId, String acctId){
         System.debug('submitted exam');
@@ -66,8 +67,11 @@ public without sharing class ExamInterviewApexController {
         //Account account = [SELECT Id FROM Account WHERE Name = 'Gladius Maximus' LIMIT 1];
        // System.debug(account);
        
+        //changed the query to get the pass/fail threshhold instead of just getting the ID-iteration xi
+        //exam must be set to assigned, not completed or unassigned for this query to work -iteration xi
         examResult = [SELECT Id, Passing_Grade_Override__c, Exam__r.Default_Passing_Grade__c FROM Exam_Result__c WHERE Account__c = :acctId AND Status__c = 'Assigned' AND Exam__c = :examId];
         
+        //added try catch block for the exam results-iteration xi
         try{
         if(examResult!=null && examResult.size()>0){
             System.debug(examResult[0]);
@@ -84,6 +88,9 @@ public without sharing class ExamInterviewApexController {
     }
 
     // created a new list of hero answers that is the same size as the amount of questions
+    // iteration xi tried to fix this but did not commit any changes
+    // throws internal server error, untrackable - iteration xi
+    // this does not work -iteration xi
     @AuraEnabled
     public static void submitAnswers(List<Exam_Question__c> examQuestionList, Map<String, String> examAnswerList, String examId){
         System.debug('submit answers in apex controller');

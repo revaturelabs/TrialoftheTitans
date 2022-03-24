@@ -12,6 +12,8 @@
  * 1.3   02-15-2022   Conner Eilenfeldt     Submission confirmation message
  * 1.4   02-17-2022   Conner Eilenfeldt     Exam details header
  * 1.5   02-18-2022   Conner Eilenfeldt     Added exam timer
+ * 1.6   03-24-2022   Patrick Sepnio        added pass/fail modal
+ * 
  **/
 import { LightningElement, api, wire, track } from "lwc";
 //import exam from '@salesforce/schema/Exam__c';
@@ -32,6 +34,8 @@ export default class LwcExamInterview extends LightningElement {
   examName;
   titan;
   examTimeLimit;
+
+  //used for calulating pass/fail added by iteration xi
   examResult;
   defaultPassingGrade;
 
@@ -293,6 +297,7 @@ export default class LwcExamInterview extends LightningElement {
   gotoQuestionNumber(qNumber) {
     this.setExamAnswerToAnswerProvided();
     this.questionNumber = qNumber;
+    //added these 3 to be on any input change, instead of only on next/previous button -iteration xi
     this.setCurrentAnswerToPreviouslyAnswered();
     this.updateQuestionComponent();
     this.setPrevNextDisabled();
@@ -391,7 +396,7 @@ export default class LwcExamInterview extends LightningElement {
 
       })
       .catch((error) => {
-        this.toastMessage = "Error occured submitting exam " + error.message;
+        this.toastMessage = "Error occured submitting exam answers" + error.message;
         this.toastTitle = "Oops! Error occured";
         this.toastVariant = "error";
         console.log(this.toastMessage);
@@ -402,9 +407,13 @@ export default class LwcExamInterview extends LightningElement {
         this.error = error;
       })
       .finally(() =>{
+        //finally block added to show the pass/fail modal, needs to contain logic to see if there is a short answer question
+        // if there is a short answer question, do not show pass/fail modal, show needs grading modal (not made yet)-iteration xi
         this.showPassModal();
       });
   }
+      //passes list of questions, list of answers, and the passing grade thresholds to the pass/fail modal;
+      //to be calculated by the modal, without using another SOQL query- because submit answers apex does not work-iteration xi
       showPassModal(){
         let popUp = this.template.querySelector("c-lwc-popup-modal");
         popUp.setQuestionAnswer(this.examQuestions,this.examAnswers, this.examResult.Passing_Grade_Override__c, this.defaultPassingGrade);

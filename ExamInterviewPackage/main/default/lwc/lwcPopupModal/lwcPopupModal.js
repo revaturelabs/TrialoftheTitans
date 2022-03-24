@@ -1,22 +1,14 @@
 /*
  * @description       : Creates Pop Up Modal that sends a message based on exam result.
- * @author            : Austin Ulberg, Daniel Boice, Zain Hamid, Conner Eilenfeldt
+ * @author            : Patrick Sepnio, Eli Couture, Mushfiqus Chaudhury, Michael Siripongpibul
  * @group             :
  * @last modified on  : 03-23-2022
  * @last modified by  : Mushfiq Chaudry
  * Modifications Log
  * Ver   Date         Author                Modification
- * 1.0   09-30-2021   Daniel Boice          Initial Version
- * 1.1   02-11-2022   Zain Hamid            Question randomization
- * 1.2   02-14-2022   Zain Hamid            Question state tracking
- * 1.3   02-15-2022   Conner Eilenfeldt     Submission confirmation message
- * 1.4   02-17-2022   Conner Eilenfeldt     Exam details header
- * 1.5   02-18-2022   Conner Eilenfeldt     Added exam timer
+ * 1.0   03-23-2022   Mushfiqus Chaudhury   Access/Retrieve Modal
  
- * 1.6   03-23-2022   Mushfiq Chaudry       Access/Retrieve Modal
-                      Eli Couture           Calculate Pass/Fail
-                      Michael Siripongpibul Calculate Exam Scores  
-                      Patrick Sepnio        Question/Answer Tracking
+
  **/
 
 
@@ -34,17 +26,21 @@ export default class LwcPopupModal extends LightningElement {
     //Lists all the answers from user input.
     @track answerList;
 
+    //passingGradeOverride is from Exam_Result__c -iteration xi
     @track passingGradeOverride;
-    @track defaultPassingGrade;
+    @track defaultPassingGrade; //defaultPassingGrade is from Exam__c and is from lookup on Exam_Result__c -iteration xi
+    passOrFail='passed.';
 
+    //counter is amount of correct questions -iteration xi
     @track counter = 0;
-    @track result = 0;
-    @track filler = 0;
+    @track result = 0; //result is calculated (correct/total questions) is % 0-100- iteration xi
+
 
     @track calculatedGrade = false;
 
 
-
+    //call from the parent, gets the question and answer list then assigns them to reactive field LWC
+    //also caculates pass/fail and comparing it to those thresholds
     @api setQuestionAnswer(inQl, inAl, inPgo, inDpg){
 
         this.questionList = inQl;
@@ -53,81 +49,81 @@ export default class LwcPopupModal extends LightningElement {
         this.defaultPassingGrade = inDpg;
         
 
-        console.log("popUp Modal set questionAnswer");
+        //console.log("popUp Modal set questionAnswer");
 
-        for(const question of this.questionList){
-            console.log(question);
-            console.log(question.Correct_Answer_s__c);
-        }
-        for(const question of this.answerList){
-            console.log(question);
-        }             
+        //displaying the test values
+        // for(const question of this.questionList){
+        //     console.log(question);
+        //     console.log(question.Correct_Answer_s__c);
+        // }
+        // for(const question of this.answerList){
+        //     console.log(question);
+        // }             
         for(let i=0; i < this.questionList.length; i++){
             if(this.questionList[i] && this.answerList[i+1]){ 
                 // Answers are not in random ordered and this worked. If you randomize, it will NOT work.
                 
-                console.log(this.questionList[i].Correct_Answer_s__c.substring(0,1) === this.answerList[i+1].substring(0,1));
+                //console.log(this.questionList[i].Correct_Answer_s__c.substring(0,1) === this.answerList[i+1].substring(0,1));
                 if(this.questionList[i].Correct_Answer_s__c.substring(0,1) === this.answerList[i+1].substring(0,1)){
                 this.counter++;
-                console.log(this.counter);
+                //console.log(this.counter);
             }   
         } 
         }
         this.result = (this.counter/this.questionList.length) * 100;
         this.result = Math.round((this.result + Number.EPSILON) * 100) / 100;
-        console.log(this.result);
+        //console.log(this.result);
 
+        //checks to see if the calculated grade is greater than or equal to the passing grade override -iteration xi
         if(this.passingGradeOverride){ 
 
             if(this.result >= this.passingGradeOverride){
                 console.log("You Passed");
                 this.calculatedGrade = this.result;
+                this.passOrFail='passed.';
             }
             else{
                 console.log("You Failed. Your Mom is Sad!");
+                this.passOrFail='failed.';
             }
         }
+        //same as above if statement but if the passingGradeOverride does not exist, then it will use the default passing grade- iteration xi
         else if(this.defaultPassingGrade){
             if(this.result >= this.defaultPassingGrade){ 
 
                 console.log("You Passed with Flying Color");
                 this.calculatedGrade = this.result;
+                this.passOrFail='passed.';
             } 
             else{
                 console.log("You Failed. Your Mom is VERY Sad!");
+                this.passOrFail='failed.';
             } 
 
             this.sum =  Math.round((this.sum + Number.EPSILON) * 100) / 100;
 
         }
+        //if there is neither the defaultPassingGrade or passingGradeOverride, then compare the calculated score to 65 percent -iteration xi
         else{
             if(this.result >= 65){
                 console.log("You Passed with 65 or Above");
                 this.calculatedGrade = this.result;
+                this.passOrFail='passed.';
             }
             else{
                 console.log("You Failed. Your Mom is VERY VERY Sad!");
+                this.passOrFail='failed.';
             } 
         }
-
-        
-
-       
-
-
-
-
-
-
-        console.log(this.passingGradeOverride);
-        console.log(this.defaultPassingGrade);
-        console.log(Object.values(this.passingGradeOverride));  
+        // console.log(this.passingGradeOverride);
+        // console.log(this.defaultPassingGrade);
+        // console.log(Object.values(this.passingGradeOverride));  
         
 
         
     }
 
-
+    //called by parent to open or close modal -iteration xi
     @api showModalTwo(){
         this.isModalOpenTwo = true;
     }
@@ -137,11 +133,6 @@ export default class LwcPopupModal extends LightningElement {
     }  
     
     
-
-
-
-    handleClick(event){
-    }
 
     get modalClassTwo() {
         return `slds-modal ${this.isModalOpenTwo ? "slds-fade-in-open" : ""}`;
