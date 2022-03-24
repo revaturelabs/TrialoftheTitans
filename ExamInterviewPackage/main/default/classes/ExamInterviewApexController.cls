@@ -11,6 +11,11 @@
  * 1.1   2021-10-03   Daniel Boice
  * 1.2   2022-02-11   Trevor Kleinstuber  examFinder() corrected and improved
  * 1.3   02-17-2022   Conner Eilenfeldt   Added loading the exam details
+ * 
+ * 1.4   03-24-2022   Patrick Sepnio        
+ *                    Eli Couture           line 59 returns exam result
+ *                    Mushfiqus Chaudhury   line 69 gives fields for pass/fail
+ *                    Michael Siriongpibul
 **/
 
 public without sharing class ExamInterviewApexController {
@@ -67,7 +72,7 @@ public without sharing class ExamInterviewApexController {
         if(examResult!=null && examResult.size()>0){
             System.debug(examResult[0]);
             Exam_Result__c myExamResult = (Exam_Result__c) examResult[0];
-            // myExamResult.Status__c = 'Completed';
+            myExamResult.Status__c = 'Completed';
             update myExamResult;
         }
         return examResult[0];
