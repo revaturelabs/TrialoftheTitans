@@ -3,12 +3,13 @@ import getTitanById from "@salesforce/apex/titanDisplayController.getTitanById";
 import getCurrentUser from "@salesforce/apex/titanDisplayController.getCurrentUser";
 import getNumberOfTitanExams from "@salesforce/apex/titanDisplayController.getNumberOfTitanExams";
 import getUserExams from "@salesforce/apex/titanDisplayController.getUserExams";
+import { NavigationMixin } from 'lightning/navigation';
 
 //d3 imports
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { loadScript } from "lightning/platformResourceLoader";
 import D3 from "@salesforce/resourceUrl/DJS3";
-export default class TitanDisplayBar extends LightningElement {
+export default class TitanDisplayBar extends NavigationMixin(LightningElement) {
     @track disableOverview = false;
     @track disableAdvance = false;
     @api titanId;
@@ -33,19 +34,18 @@ export default class TitanDisplayBar extends LightningElement {
 
             let userExams = getUserExams({ titanId: slicedId, userId: this.currentUser.Id });
             userExams.then((res) => {
-                if (Object.keys(res).length != null){
-                    this.passedExams = Object.keys(res).length;
-                }
-                else{
+                    if (Object.keys(res).length != null) {
+                        this.passedExams = Object.keys(res).length;
+                    } else {
+                        this.passedExams = 0;
+                    }
+                    this.userExamsLoaded = true;
+                })
+                .catch((error) => {
+                    console.log('error:', error);
                     this.passedExams = 0;
-                }
-                this.userExamsLoaded = true;
-            })
-            .catch((error) => {
-                console.log('error:', error);
-                this.passedExams = 0;
-                this.userExamsLoaded = true;
-            });
+                    this.userExamsLoaded = true;
+                });
         });
 
         let numExams = getNumberOfTitanExams({ titanId: slicedId });
@@ -55,9 +55,26 @@ export default class TitanDisplayBar extends LightningElement {
     }
 
     connectedCallback() {
-        
+        // Store the PageReference to Titan Hub page in a variable
+        this.titanHubPage = ({
+            type: 'standard__webPage',
+            attributes: {
+                url: 'https://trialofthetitans11-developer-edition.na213.force.com/s/titan-hub'
+            }
+        });
+        this[NavigationMixin.GenerateUrl](this.titanHubPage)
+            .then(url => this.url = url);
     }
-    handleOverview() {}
 
-    handleAdvance() {}
+    handleOverview(evt) {
+
+        this.disableOverview = true;
+        evt.preventDefault();
+        evt.stopPropagation();
+        this[NavigationMixin.Navigate](this.titanHubPage);
+    }
+
+    handleAdvance() {
+
+    }
 }
