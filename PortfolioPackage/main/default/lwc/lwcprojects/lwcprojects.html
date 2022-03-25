@@ -1,0 +1,101 @@
+<template>
+    <!-- Defining a lightning card-->
+     <lightning-card >
+         <span class="slds-c-badge-color-background">
+              <!-- Right corner icon-->
+             <span class="mainIcon" style="margin-left: 15px;">
+                 <lightning-icon icon-name='standard:employee_job_position' alternative-text='user' size='large' title='user'
+                     variant='bare'>
+                 </lightning-icon>
+             </span>
+             <span class="slds-text-title_caps" style="font-weight: bold;  font-size: 24px;">Projects</span>
+             <lightning-icon onclick={showAddModal} style="float:right; margin-right: 2%; cursor: pointer;" icon-name='utility:add' alternative-text='add' size='large' title='add'></lightning-icon>
+         </span>
+          <!-- Defining the rich text field-->
+          <template if:true={exist}>
+              <template for:each={projects} for:item="project">
+                <lightning-card key={project.Id}>
+                    <h1 class="slds-text-title_caps" style="font-weight: bold; margin-left: 2%; font-size: 24px; display:inline-block">{project.Name}</h1>
+                    <lightning-icon style="cursor: pointer;" icon-name='action:delete' alternative-text='user' size='small' title='user' variant='bare' onclick={deleteProject} name={project.Name}></lightning-icon>
+                    <span>
+                        <lightning-input-rich-text formats="font, bold, italic, underline, strike,
+                 list, indent, align, link, clean, code, code-block, color, background, header" value={project.Description__c} onchange={handleChange}>
+                        </lightning-input-rich-text>
+                        <br/>
+                         <!-- Cancel and save buttons-->
+                        <div align="center" draggable="false">
+                            <a class="slds-button slds-button_brand" color="#34ABD3" onclick={resetForm} onsubmit={handleSelection}  href="#">Cancel</a>
+                            <a class="slds-button slds-button_brand" color="#34ABD3" onclick={handleSaveProject} onformchange={handleSelection} title={project.Name}
+                                href="#">Save</a>
+                        </div>
+                    </span>
+                </lightning-card>
+              </template>
+          </template>
+          <a class="slds-button slds-button_brand" color="#34ABD3" onclick={showAllModal}>Show All Projects</a>
+        </lightning-card>
+
+    <template if:true={AddModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Create New Project</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="text-input-id-47">
+                      <abbr class="slds-required" title="required">* </abbr>New Project Name:</label>
+                    <div class="slds-form-element__control">
+                      <input onchange={newProjectName} type="text" id="text-input-id-47" placeholder="Placeholder text…" required="" class="slds-input" />
+                    </div>
+                </div>
+            </div>
+            <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={showAddModal}>Cancel</button>
+                <button class="slds-button slds-button_brand" onclick={createProject}>Save</button>
+            </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+
+
+    <template if:true={AllModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-02" class="slds-modal__title slds-hyphenate">ALL PROJECTS</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                <template for:each={AllProjects} for:item="project">
+                    <lightning-card key={project.Id}>
+                        <h1 class="slds-text-title_caps" style="font-weight: bold; margin-left: 2%; font-size: 24px; display:inline-block">{project.Name}</h1>
+                        <lightning-icon style="cursor: pointer;" icon-name='action:delete' alternative-text='user' size='small' title='user' variant='bare' onclick={deleteProject} name={project.Name}></lightning-icon>
+                        <span>
+                            <br/>
+                            {project.Description__c}
+                            <br/>
+                        </span>
+                    </lightning-card>
+                </template>
+            </div>
+            <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={showAllModal}>Close</button>
+            </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+ </template>
