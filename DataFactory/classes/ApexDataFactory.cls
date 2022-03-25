@@ -22,7 +22,7 @@ public with sharing class ApexDataFactory {
         List<Cohort__c> cohort = [select id from Cohort__c];
         List<Curriculum__c> curr = [select id from Curriculum__c];
         List<Question_Pool__c> quepo = [SELECT Id FROM Question_Pool__c];
-        List<Question_Assignment__c> quesa = [SELECT Id FROM Question_Assignment__c];
+        // Must delete question Assignment records using Data Loader
         
         delete HAs;
         delete ERs;
@@ -38,7 +38,6 @@ public with sharing class ApexDataFactory {
         delete cohort;
         delete curr;
         delete quepo;
-        delete quesa;
     }
      @AuraEnabled
     public static void GenerateData(){
@@ -57,7 +56,7 @@ public with sharing class ApexDataFactory {
         ApexDataFactory.CreateExamResult();
         ApexDataFactory.CreateHeroAnswer();
         ApexDataFactory.createQuestionPool();
-        //ApexDataFactory.createQuestionAssignments();  
+        ApexDataFactory.createQuestionAssignments();  
         }
     
 
@@ -550,29 +549,28 @@ public with sharing class ApexDataFactory {
     @AuraEnabled
     public static void createQuestionAssignments(){
         
-        List <Exam__c> Exam = [SELECT Id,Titan__c FROM Exam__c];
-        List <Exam_Question__c> ExamQs = [SELECT Id, Name,Titan__c FROM Exam_Question__c];
+        List <Exam__c> Exam = [SELECT Id, Titan__c FROM Exam__c Limit 1];
+        List <Exam_Question__c> ExamQs = [SELECT Id, Titan__c FROM Exam_Question__c];
         List <Question_Pool__c> QuestPools = [SELECT Id FROM Question_Pool__c];
         List <Question_Assignment__c> QuestAssigns =  new List<Question_Assignment__c>();
         
-        for(Exam__c exa:Exam){
-            for(Question_Pool__c pool:QuestPools){
-                for(Exam_Question__c exaQ:ExamQs){
-                    if (exa.Titan__c == exaQ.Titan__c){
+        
+         for(Exam__c exa:Exam){
+             for(Question_Pool__c pool:QuestPools){
+                 for(Exam_Question__c exaQ:ExamQs){
+                     if (exa.Titan__c == exaQ.Titan__c){
                         Question_Assignment__c questAssign = new Question_Assignment__c();
-                        //Assign question to pool 
-                        questAssign.Exam_Question__r = exaQ;
-                        System.debug(questAssign.Exam_Question__r);
-                        questAssign.Question_Pool__r = pool;
+                        questAssign.Exam_Question__c = exaq.Id;
+                        questAssign.Question_Pool__c = pool.Id;
                         QuestAssigns.add(questAssign);
-                    }
+                     }
                     
-                }
+                 }
                 
-            }
-        }
+             }
+         }
 
-        System.debug('Did the above System.debug logs appear?');
+        //System.debug('Did the above System.debug logs appear?');
         insert QuestAssigns;
     }
 
