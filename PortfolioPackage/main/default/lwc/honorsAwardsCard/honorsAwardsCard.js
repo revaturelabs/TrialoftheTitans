@@ -1,7 +1,7 @@
 /*
     Author: Drew Williams
     Description: Card container for Honors & Awards section in Portfolio
-    Created Date: 3/17/22
+    Created Date: 3/17/22 
 */
 import { LightningElement, track, wire } from 'lwc';
 import NAME_FIELD from '@salesforce/schema/Award__c.Name';
