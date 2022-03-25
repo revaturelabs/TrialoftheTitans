@@ -15,6 +15,8 @@ import MAJOR_FIELD from '@salesforce/schema/Education__c.Major__c';
 import DATE_GRADUATED from '@salesforce/schema/Education__c.DateGraduate__c';
 import DEGREE_FIELD from '@salesforce/schema/Education__c.Degree__c';
 
+import {refreshApex} from '@salesforce/apex';
+
 //APEX CLASS
 import RETURN_EDUCATION from '@salesforce/apex/GetEducationInformation.returnEducationList';
 
@@ -37,6 +39,18 @@ export default class Portfolioeducation extends LightningElement
     gpaField = GPA_FIELD;
     dateGraduatedField = DATE_GRADUATED;
 
+    @track education;
+    @track wireValue;
+
+    @wire(RETURN_EDUCATION)
+    educationList(value) {
+        const {error, data} = value;
+        if(data) {this.education = data;}
+        else if(error) {console.log(error);}
+        console.log(this.education);
+        this.wireValue = value;
+    }
+    
     
     modalOpener() 
     {
@@ -63,19 +77,8 @@ export default class Portfolioeducation extends LightningElement
         });
 
         this.dispatchEvent(env);
+        refreshApex(this.wireValue);
         this.modalChecker = false;
     }
-
-    @track education;
-    @track wireValue;
-
-    @wire(RETURN_EDUCATION)
-    educationList(value) {
-        const {error, data} = value;
-        this.education = data;
-        this.wireValue = value;
-    }
-    
-
 
 }
