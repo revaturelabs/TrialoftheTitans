@@ -7,8 +7,8 @@ id = 0;
 @api
 width = 0;
 @api
-endwidth = 100;   //null value will be replaced with default value from database
-stoploop = 101;
+endwidth = 100;   
+stoploop = 0;
 
 
 //function animates growth to value input by user
@@ -21,7 +21,7 @@ move() {
       let elemInnerSpan = this.template.querySelector('.score-percentage');
       console.log(elem);
         this.id = setInterval(() => {
-            if (this.width >= this.endwidth || this.stoplook <=101) {
+            if (this.width >= this.endwidth || this.stoploop >=101) {
                 clearInterval(this.id);
                 console.log(this.id)
                 this.i = 0;
@@ -31,7 +31,7 @@ move() {
                 this.width++;
                 this.stoploop++;
                 elem.style.width = this.width + '%';
-                elemInnerSpan.innerHTML = this.width + '%';
+                elemInnerSpan.innerHTML = this.width;
 
             }
         }, 10);

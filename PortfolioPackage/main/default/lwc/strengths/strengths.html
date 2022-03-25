@@ -1,8 +1,6 @@
- <!-- Mountain's Amazing Component Bundle -->
- <template>
+<!-- Mountain's Amazing Component Bundle -->
+<template>
     <template class="showEditStrengthsForm" if:false={showEditStrengthsBoolean}>
-        <div class="test-div">
-        </div>
         <div class="strengths-container">
             <div class="strengths-header-row">
                 <div class="header-icon-container">
@@ -13,16 +11,16 @@
                 </div> <!-- header-icon-container -->
                 <div class="edit-icon edit-icon-float-right">
                     <img src="../resources/edit.png" alt="">
-                 
+
                 </div>
             </div>
             <template for:each={strengths} for:item="skill">
                 <div key={skill.Id} class="strengths-content-row">
                     <div class="skill-name">
-                         {skill.Name}
+                        {skill.Name}
                     </div>
                     <div class="skill-level">
-                     <c-progressbar endwidth={skill.Skill_Equivalency__c}></c-progressbar>
+                        <c-progressbar endwidth={skill.Skill_Equivalency__c}></c-progressbar>
                     </div>
                 </div>
 
@@ -30,80 +28,52 @@
         </div>
     </template>
 
-    <!-- <template class="showEditStrengthsForm" if:true={showEditStrengthsBoolean}>
-        <lightning-record-edit-form>
-            <lightning-record-edit-form-section>
-                <lightning-record-edit-form-section-header>
+
+
+    <!-- equivObj = EquivObj;
+    skillName = SkillName;
+    skillScore = SkillScore; -->
+
+    <template class="showEditStrengthsForm" if:false={showEditStrengthsBoolean}>
+        <div class="strengths-container">
+            <div class="strengths-header-row">
+                <div class="header-icon-container">
+                    <h1 class="strengths-header header">Strengths</h1>
+                    <div class="header-icon header-icon-upper-left">
+                        <img src="../resources/Strengths.png" alt="">
+                    </div>
+                </div> <!-- header-icon-container -->
+                <div class="edit-icon edit-icon-float-right">
+                    <img src="../resources/edit.png" alt="">
+
+                </div>
+            </div>
+            <template for:each={strengths} for:item="skill">
+                <div key={skill.Id} class="strengths-content-row">
                     <div class="skill-name">
-                        skill 1
+                        {skill.Name}
                     </div>
                     <div class="skill-level">
-                        <c-progressbar></c-progressbar>
+                        <c-progressbar data-skillid={skill.Id} endwidth={skill.Skill_Equivalency__c}></c-progressbar>
+                        <input type="text"  data-skillid={skill.Id} class="skill-level-input">
+                        <button class="update-skill-level-button" data-skilllevel={skill.Skill_Equivalency__c} data-skillid={skill.Id} onclick={handleUpdateSkillLevel}>Update</button>
                     </div>
-                </lightning-record-edit-form-section-header>
-                <lightning-record-edit-form-section-body>
-                    <lightning-input label="Skill Name" name="Skill_Name__c" value="skill 1"></lightning-input>
-                    <lightning-input label="Skill Level" name="Skill_Level__c" value="1"></lightning-input>
-                </lightning-record-edit-form-section-body>
-            </lightning-record-edit-form-section>
-            <lightning-record-edit-form-section>
-                <lightning-record-edit-form-section-header>
-                    <div class="skill-name">
-                        skill 2
-                    </div>
-                    <div class="skill-level">
-                        <c-progressbar></c-progressbar>
-                    </div>
-                </lightning-record-edit-form-section-header>
-                <lightning-record-edit-form-section-body>
-                    <lightning-input label="Skill Name" name="Skill_Name__c" value="skill 2"></lightning-input>
-                    <lightning-input label="Skill Level"></lightning-input>
-                </lightning-record-edit-form-section-body>
-            </lightning-record-edit-form-section>
-            <lightning-record-edit-form-section>
-                <lightning-record-edit-form-section-header>
-                    <div class="skill-name">
-                        skill 3
-                    </div>
-                    <div class="skill-level">
-                        <c-progressbar></c-progressbar>
-                    </div>
-                </lightning-record-edit-form-section-header>
-                <lightning-record-edit-form-section-body>
-                    <lightning-input label="Skill Name" name="Skill_Name__c" value="skill 3"></lightning-input>
-                    <lightning-input label="Skill Level"></lightning-input>
-                </lightning-record-edit-form-section-body>
-            </lightning-record-edit-form-section>
-            <lightning-record-edit-form-section>
-                <lightning-record-edit-form-section-header>
-                    <div class="skill-name">
-                        skill 4
-                    </div>
-                    <div class="skill-level">
-                        <c-progressbar></c-progressbar>
-                    </div>
-                </lightning-record-edit-form-section-header>
-                <lightning-record-edit-form-section-body>
-                    <lightning-input label="Skill Name" name="Skill_Name__c" value="skill 4"></lightning-input>
-                    <lightning-input label="Skill Level"></lightning-input>
-                </lightning-record-edit-form-section-body>
-            </lightning-record-edit-form-section>
-            <lightning-record-edit-form-section>
-                <lightning-record-edit-form-section-header>
-                    <div class="skill-name">
-                        skill 5
-                    </div>
-                    <div class="skill-level">
-                        <c-progressbar></c-progressbar>
-                    </div>
-                </lightning-record-edit-form-section-header>
-                <lightning-record-edit-form-section-body>
-                    <lightning-input label="Skill Name" name="Skill_Name__c" value="skill 5"></lightning-input>
-                    <lightning-input label="Skill Level"></lightning-input>
-                </lightning-record-edit-form-section-body>
-            </lightning-record-edit-form-section>
+                </div>
+
+            </template>
+        </div>
+    </template>
+<!-- 
+    <template class="showEditStrengthsForm" if:false={showEditStrengthsBoolean}>
+        <lightning-record-edit-form object-api-name={equivObj}>
+
+            <lightning-input-field label="Name" name="Name" required maxlength="255" placeholder="Enter Name"
+                field-name={skillName}></lightning-input-field>
+            <lightning-input-field label="Skill Equivalency" name="Skill_Equivalency__c" required maxlength="255"
+                placeholder="Enter Skill Equivalency" field-name={skillScore}></lightning-input-field>
+
+            <lightning-button label="Save" variant="brand" type="submit"></lightning-button>
+
         </lightning-record-edit-form>
-
-
     </template> -->
 </template>
