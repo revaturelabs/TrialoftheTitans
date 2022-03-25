@@ -93,7 +93,7 @@ export default class Portfolioeducation extends LightningElement
                 this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Success',
-                    message: 'Category Has Been Deleted',
+                    message: 'Entry Has Been Deleted',
                     variant: 'success'
                 })
                 
