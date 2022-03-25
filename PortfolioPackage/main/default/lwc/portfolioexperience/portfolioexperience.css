@@ -1,9 +1,9 @@
 /************************************************************
  * Done by: Mohammed Azad
- * Styling for a person's education history.
+ * Styling for a person's employment history.
  * Date: March 24 2022
  ************************************************************/
-.container {
+ .container {
     /*border: 2px dotted green;*/
     height: 30vw;
     width: 40vw;
@@ -25,9 +25,6 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-}
-li.secondone{
-    display: block;
 }
 li.logo {
     display: block;
@@ -75,37 +72,25 @@ li.editor {
     text-align: end;
     text-align: end;
 }
-.secondContainer { 
-    display: flex;
-}
-.item { 
-    flex: 1;
-    margin-top: 3.5vh;
-}
-.itemdeleter { 
-    flex: 1;
-    margin-top: 3.5vh;
-    margin-right: 15px;
-}
-
 .infoholder {
     /* border: 1px solid aqua; */
     text-align: end;
 }
-p.degree{ 
+p.companyName{ 
    /* border: 1px solid navy; */
     font-size: 17px;
     font-weight: bold;
     margin-right:31%;
 }
-p.time {;
+p.start {
+    margin-top: 3vh;
     /* border: 1px solid navy; */
     font-size: 19px;
     font-weight: bold;
-   /* margin-right: 10%;*/
+    margin-right: 10%;
   
 }
-p.institution { 
+p.position { 
     font-size: 16px;
     font-weight: bold;
     margin-right: 31%;
@@ -121,8 +106,4 @@ p.major {
 }
 p.degreetype {
     text-align:left;
-}
-.infoholder .deleter { 
-    cursor: pointer;
-    margin-right: 20px;
 }

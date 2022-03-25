@@ -4,7 +4,7 @@
  * sean.whitley@revature.net
  */
 
-public with sharing class UserInfoHelper {
+public without sharing class UserInfoHelper {
 
     // Relevant relationships:
     //  Certifications__r	
@@ -36,11 +36,10 @@ public with sharing class UserInfoHelper {
 
         String uid = UserInfo.getUserId();
 
-        // Danger: this is VERY incomplete
         return [
-            SELECT Image_URL__c,Certification_Exam__r.Name,Date_Issued__c 
-            FROM Certification__c 
-            WHERE User__c = :uid
+            SELECT Id,Image_URL__c,Certification_Exam__r.Name,Date_Issued__c 
+            FROM Certification__c
+            WHERE User__c =: uid
         ];
     }
 }

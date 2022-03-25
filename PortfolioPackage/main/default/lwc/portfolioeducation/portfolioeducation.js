@@ -1,6 +1,7 @@
 /************************************************************
  * Done by: Mohammed Azad
- * Create a list of a person's history
+ * Contains functionality to deal with the education
+ * component
  * Date: March 24 2022
  ************************************************************/
 
@@ -14,6 +15,9 @@ import GPA_FIELD from '@salesforce/schema/Education__c.Gpa__c';
 import MAJOR_FIELD from '@salesforce/schema/Education__c.Major__c';
 import DATE_GRADUATED from '@salesforce/schema/Education__c.DateGraduate__c';
 import DEGREE_FIELD from '@salesforce/schema/Education__c.Degree__c';
+
+import {refreshApex} from '@salesforce/apex';
+import { deleteRecord } from 'lightning/uiRecordApi';
 
 //APEX CLASS
 import RETURN_EDUCATION from '@salesforce/apex/GetEducationInformation.returnEducationList';
@@ -37,6 +41,18 @@ export default class Portfolioeducation extends LightningElement
     gpaField = GPA_FIELD;
     dateGraduatedField = DATE_GRADUATED;
 
+    @track education;
+    @track wireValue;
+
+    @wire(RETURN_EDUCATION)
+    educationList(value) {
+        const {error, data} = value;
+        if(data) {this.education = data;}
+        else if(error) {console.log(error);}
+        console.log(this.education);
+        this.wireValue = value;
+    }
+    
     
     modalOpener() 
     {
@@ -46,7 +62,7 @@ export default class Portfolioeducation extends LightningElement
     {
         const closeenv = new ShowToastEvent({
             title: "Canceled",
-            message: "You canceled inputting information.",
+            message: "You cancelled inputting information.",
             variant: "error"
         });
 
@@ -63,19 +79,38 @@ export default class Portfolioeducation extends LightningElement
         });
 
         this.dispatchEvent(env);
+        refreshApex(this.wireValue);
         this.modalChecker = false;
     }
 
-    @track education;
-    @track wireValue;
 
-    @wire(RETURN_EDUCATION)
-    educationList(value) {
-        const {error, data} = value;
-        this.education = data;
-        this.wireValue = value;
+
+    handleDelete(event) {
+        let eduId = event.currentTarget.dataset.eduvalue;
+        console.log(eduId);
+        deleteRecord(eduId)
+            .then(() => {
+                this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Category Has Been Deleted',
+                    variant: 'success'
+                })
+                
+            )
+            refreshApex(this.wireValue);
+            })
+            .catch(error => {
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Error While Deleting Record',
+                        message: error.message,
+                        variant: 'error',
+                    }),
+                );
+            });
+
     }
-    
 
 
 }
