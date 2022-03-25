@@ -17,4 +17,19 @@ public with sharing class GetEquivalencies {
 
         return strengths;
     }
+
+    @AuraEnabled
+    public static void setEq(Integer eq, ID eqId){
+
+        List<Equivalency__c> strength =
+            [SELECT Id, Skill_Equivalency__c 
+             FROM Equivalency__c
+             WHERE Id = :eqId LIMIT 1];
+        
+        for(Equivalency__c e : strength) {
+           e.Skill_Equivalency__c = eq;
+           update e;
+        }
+        
+    }
 }

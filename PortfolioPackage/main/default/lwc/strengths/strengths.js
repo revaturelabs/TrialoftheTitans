@@ -3,6 +3,9 @@ import getEquivalencies from '@salesforce/apex/GetEquivalencies.getEq';
 import EquivObj from '@salesforce/schema/Equivalency__c';
 import SkillName from '@salesforce/schema/Equivalency__c.Name';
 import SkillScore from '@salesforce/schema/Equivalency__c.Skill_Equivalency__c';
+import setEquivalencies from '@salesforce/apex/GetEquivalencies.setEq';
+import {refreshApex} from '@salesforce/apex';
+
 
 
 
@@ -13,7 +16,9 @@ export default class Strengths extends LightningElement {
     skillName = SkillName;
     skillScore = SkillScore;
     @track
-    localStrengthsArrayOfObjs=[];
+    localStrengthsArrayOfObjs;
+    @track
+    wireStrengthsValue;
     
 
 
@@ -24,7 +29,9 @@ export default class Strengths extends LightningElement {
 // 4: {Name: 'Java', Skill_Equivalency__c: 76, Id: 'a005c00001ke1kdAAA'}
     // //create a method
     @wire(getEquivalencies)
-        getStrengths({ error, data }) {
+        getStrengths(strengthValue) {
+            const { error, data } = strengthValue;
+            this.wireStrengthsValue = strengthValue;
             if (data) {
                 this.strengths= data;
                 console.log('getStrengths', '********');
@@ -36,27 +43,6 @@ export default class Strengths extends LightningElement {
     
     showEditStrengthsBoolean = false;
 
-   
-
-
-
-    createLocalStrengthsArrayOfObjects() {
-        let localStrengthsArrayOfObjects = [];
-        for (let i = 0; i < this.strengths.length; i++) {
-            localStrengthsArrayOfObjects.push({
-                name: this.strengths[i].Name,
-                score: this.strengths[i].Skill_Equivalency__c,
-                id: this.strengths[i].Id
-            });
-        }
-        this.localStrengthsArrayOfObjs = localStrengthsArrayOfObjects;
-    }
-
-
-    renderedCallback() {
-        this.createLocalStrengthsArrayOfObjects();
-        console.log('renderedCallback', '********');
-    }
 
     //create a method
     showEditStrengthsForm() {
@@ -75,11 +61,17 @@ export default class Strengths extends LightningElement {
         console.log('handleUpdateSkillLevel');
 
         let newSkillId = event.currentTarget.dataset.skillid;
+        console.log(newSkillId, 'newSkillId');
         let newSkillLevel = event.currentTarget.dataset.skilllevel;
         let newSkillInputValue = this.template.querySelector('input[data-skillid="' + newSkillId + '"]').value;
         let progressbarTarget = this.template.querySelector('c-progressbar[data-skillid="' + newSkillId + '"]');
             console.log(progressbarTarget, 'progressbarTarget');
         console.log(progressbarTarget.endwidth, 'progressbarTarget.endwidth');
+
+        // newSkillInputValue = parseInt(newSkillInputValue);
+
+        setEquivalencies({eq: newSkillInputValue, eqId: newSkillId});
+        refreshApex(this.wireStrengthsValue);
 
             // console.log('newSkillInputValue', newSkillInputValue);
             // console.log('newSkillId', newSkillId);
@@ -87,16 +79,13 @@ export default class Strengths extends LightningElement {
         progressbarTarget.endwidth = parseInt(newSkillInputValue);
         console.log(progressbarTarget.endwidth, 'progressbarTarget.endwidth');
 
-        for (let i = 0; i < this.localStrengthsArrayOfObjs.length; i++) {
-            if (this.localStrengthsArrayOfObjs[i].id === newSkillId) {
-                console.log('found it');
-                this.localStrengthsArrayOfObjs[i].score = newSkillInputValue;
-            }
-        } 
+        // for (let i = 0; i < this.localStrengthsArrayOfObjs.length; i++) {
+        //     if (this.localStrengthsArrayOfObjs[i].id === newSkillId) {
+        //         console.log('found it');
+        //         this.localStrengthsArrayOfObjs[i].score = newSkillInputValue;
+        //     }
+        // } 
         
-        console.log(this.localStrengthsArrayOfObjs, 'this.localStrengthsArrayOfObjs');
-        console.log(this.localStrengthsArrayOfObjs[0], 'this.localStrengthsArrayOfObjs[0]');
-        console.log(this.strengths, 'this.strengths');
 
     }
 
