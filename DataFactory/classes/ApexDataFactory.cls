@@ -22,6 +22,7 @@ public with sharing class ApexDataFactory {
         List<Cohort__c> cohort = [select id from Cohort__c];
         List<Curriculum__c> curr = [select id from Curriculum__c];
         List<Question_Pool__c> quepo = [SELECT Id FROM Question_Pool__c];
+        List<Exam_Pool_Assignment__c> epa = [SELECT Id FROM Exam_Pool_Assignment__c];
         // Must delete question Assignment records using Data Loader
         
         delete HAs;
@@ -38,6 +39,7 @@ public with sharing class ApexDataFactory {
         delete cohort;
         delete curr;
         delete quepo;
+        delete epa;
     }
      @AuraEnabled
     public static void GenerateData(){
@@ -57,6 +59,7 @@ public with sharing class ApexDataFactory {
         ApexDataFactory.CreateHeroAnswer();
         ApexDataFactory.createQuestionPool();
         ApexDataFactory.createQuestionAssignments();  
+        ApexDataFactory.createExamPoolAssignments();
         }
     
 
@@ -662,4 +665,29 @@ public with sharing class ApexDataFactory {
         insert Answers;
     }
     
+    @AuraEnabled
+    public static void createExamPoolAssignments(){
+        // SELECT Id FROM Exam_Pool_Assignment__c 
+        List <Exam__c> examList = [SELECT Id, Titan__c FROM Exam__c];
+        List <Question_Pool__c> qPoolList = [SELECT Id FROM Question_Pool__c];
+        List <Exam_Pool_Assignment__c> expoolAssigns =  new List<Exam_Pool_Assignment__c>();
+        
+        
+         for(Exam__c ex:examList){
+             for(Question_Pool__c qpool:qPoolList){
+                        Exam_Pool_Assignment__c exPA = new Exam_Pool_Assignment__c();
+                        exPA.Exam__c = ex.Id;
+                        exPA.Question_Pool__c = qpool.Id;
+                        expoolAssigns.add(exPA);          
+             }
+         }
+        insert expoolAssigns;
+    }
+
+    /**
+     * for every examPoolAssgnmt
+     *    if ExamPoolAssignemnt DNE
+     *      then associate ExamPoolAssignment with Exam
+     *  
+     */
 }
