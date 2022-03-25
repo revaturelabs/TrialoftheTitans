@@ -1,14 +1,14 @@
 <!--
     Mohammed Azad
-    Markup for the portfolio education
+    Markup for the portfolio experience
     Date: March 24 2022
 -->
 <template>
     <div class="container">
         <div class="title">
             <ul>
-                <li class="logo"><lightning-icon icon-name='standard:education' alternative-text='education' size='medium' title='education'></lightning-icon></li>
-                <li class="left"><p>Education</p></li>
+                <li class="logo"><lightning-icon icon-name='standard:employee_organization' alternative-text='employee_organization' size='medium' title='employee_organization'></lightning-icon></li>
+                <li class="left"><p>Experience</p></li>
                 <li class="editor"><lightning-icon icon-name='utility:prompt_edit' alternative-text='prompt_edit' size='medium' title='prompt_edit' onclick={modalOpener}></lightning-icon></li>
             </ul>
         </div>
@@ -16,19 +16,18 @@
             <section aria-modal="true" class="slds-modal slds-fade-in-open">
                 <div class="slds-modal__container">
                     <header class="slds-modal__header">
-                        <h2 class="slds-text-heading_small">Insert Your Education Credentials</h2>
+                        <h2 class="slds-text-heading_small">Insert Employment History Here</h2>
                         <lightning-icon class="slds-modal__close" icon-name="utility-close" size="small" onclick={modalCloser}></lightning-icon>
                     </header>
                     <div class="slds-box slds-theme_default slds-var-p-around_medium">
                         <lightning-record-edit-form
-                        object-api-name={educationObject}
+                        object-api-name={experienceObject}
                         onsuccess={handleSuccess}>
                         <lightning-output-field field-name={userField}> </lightning-output-field>
-                        <lightning-input-field field-name={educationField}> </lightning-input-field>
-                        <lightning-input-field field-name={majorField}> </lightning-input-field>
-                        <lightning-input-field field-name={degreeField}> </lightning-input-field>
-                        <lightning-input-field field-name={gpaField}> </lightning-input-field>
-                        <lightning-input-field field-name={dateGraduatedField}> </lightning-input-field>
+                        <lightning-input-field field-name={companyField}> </lightning-input-field>
+                        <lightning-input-field field-name={positionField}> </lightning-input-field>
+                        <lightning-input-field field-name={startDateField}> </lightning-input-field>
+                        <lightning-input-field field-name={endDateField}> </lightning-input-field>
                         <div class="slds-var-m-top_medium">
                             <lightning-button variant="brand" type="submit" label="Save">
                             </lightning-button>
@@ -42,25 +41,21 @@
             </section>
         </template>
         <div class="information">
-            <template if:true={education}>
-                <template for:each={education} for:item="edu" class="secondInformation">
-                    <div key={edu.Id} class="first">
+            <template if:true={experience}>
+                <template for:each={experience} for:item="exp" class="secondInformation">
+                    <div key={exp.Id} class="first">
                         <div class="info">
                             <div class="infoholder">
                                 <lightning-icon icon-name='standard:approval' alternative-text='approval' size='small' title='approval' class="carbon"></lightning-icon>
                                 <!-- <img class="carbon" src={carboneducation} /> -->
-                                <p class="degree">{edu.Degree__c}</p>
-                                <p class="institution">{edu.Name}</p>
-                                <p class="major">{edu.Major__c}</p>
+                                <p class="companyName">{exp.Company__c}</p>
+                                <p class="position">{exp.Position__c}</p>
                             </div>
                         </div>
                         <div class="dataholder">
-                            <div class="secondContainer">
-                                <div class="item"><p class="time">{edu.DateGraduate__c}</p></div>
-                                <div class="itemdeleter"><lightning-icon icon-name='action:delete' alternative-text='delete' size='x-small' title='delete' onclick={handleDelete} key={edu.Id} data-eduvalue={edu.Id} value={edu.Name} class="deleter"></lightning-icon></div>
-                             </div>
-                         </div>
-                    </div> 
+                            <p class="start">{exp.Start_Date__c} to {exp.End_Date__c}</p>
+                        </div>
+                    </div>
                 </template>
             </template>
         </div>

@@ -1,17 +1,16 @@
-import { LightningElement, track, api } from 'lwc';
+// component bundle by Mountain
+import { LightningElement, track } from 'lwc';
 
-class ProgressBar extends LightningElement {
+export default class Editprogress extends LightningElement {
 
 @track i = 0;
 id = 0;
-@api
 width = 0;
-@api
-endwidth = 100;   
-stoploop = 0;
+endwidth = 100;   //null value will be replaced with default value from database
 
 
 //function animates growth to value input by user
+
 move() {
     console.log('move called');
     console.log(this.endwidth);
@@ -21,7 +20,7 @@ move() {
       let elemInnerSpan = this.template.querySelector('.score-percentage');
       console.log(elem);
         this.id = setInterval(() => {
-            if (this.width >= this.endwidth || this.stoploop >=101) {
+            if (this.width >= this.endwidth) {
                 clearInterval(this.id);
                 console.log(this.id)
                 this.i = 0;
@@ -29,21 +28,14 @@ move() {
                 console.log('cleared');
             } else {
                 this.width++;
-                this.stoploop++;
                 elem.style.width = this.width + '%';
-                elemInnerSpan.innerHTML = this.width;
+                elemInnerSpan.innerHTML = this.width + '%';
 
             }
         }, 10);
     }
 
     
-}
-
-
-renderedCallback() {
-    console.log('connectedCallback called');
-    this.move();
 }
 updateScore() {
     let inputValue = this.template.querySelector('.scoreInput').value 
@@ -86,9 +78,4 @@ validateScore(inputValue){
 
     return "Valid Score";
 }
-
-
 }
-
-
-export default ProgressBar;

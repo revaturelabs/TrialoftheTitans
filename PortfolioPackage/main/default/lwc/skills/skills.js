@@ -1,32 +1,28 @@
+// Author: Gabriel Anton
+// Date: 3/22/22
+// Description: LWC JS controller that uses apex controller methods to get categories
+// provides the data for the LDS record-edit-forms in each corresponding modal.
+// There is also a delete record function.
+
+
+
 import { LightningElement, track, api, wire } from 'lwc';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { deleteRecord } from 'lightning/uiRecordApi';
+import { refreshApex } from '@salesforce/apex';
 
-import retrieveTitans from '@salesforce/apex/TestDataClass.retrieveTitans';
 import retrieveCategories from '@salesforce/apex/TestDataClass.retrieveCategories';
-
-import TITAN_OBJECT from '@salesforce/schema/Titan__c';
-import NAME_FIELD from '@salesforce/schema/Titan__c.Name';
-import CURRICULUM_FIELD from '@salesforce/schema/Titan__c.Curriculum__c';
-import CURRICULUM_FIELD_NAME from '@salesforce/schema/Titan__c.Curriculum__r.Name';
-
+import setProgress from '@salesforce/apex/TestDataClass.setProgress';
 
 import CATEGORY_OBJECT from '@salesforce/schema/Category__c';
 import CATEGORY_NAME from '@salesforce/schema/Category__c.Name';
+import CATEGORY_USER from '@salesforce/schema/Category__c.User__c';
 
 import CUSTOM_SKILL_OBJECT from '@salesforce/schema/Custom_Skill__c';
 import CUSTOM_SKILL_NAME from '@salesforce/schema/Custom_Skill__c.Name';
 import CUSTOM_SKILL_CATEGORY from '@salesforce/schema/Custom_Skill__c.Category__c';
-
-
-
-// import INDUSTRY_FIELD from '@salesforce/schema/Account.Industry';
-// import SOURCE_FIELD from '@salesforce/schema/Account.AccountSource';
-
-// import CNAME_FIELD from '@salesforce/schema/Contact.Name';
-// import PHONE_FIELD from '@salesforce/schema/Contact.Phone';
-// import EMAIL_FIELD from '@salesforce/schema/Contact.Email';
+import CUSTOM_SKILL_USER from '@salesforce/schema/Custom_Skill__c.User__c';
 
 export default class Skills extends LightningElement {
 
@@ -38,46 +34,56 @@ export default class Skills extends LightningElement {
     skills = [];
     skill;
 
+    @track valueId;
+    @track progressId;
+    @track progressNumber;
+    @track progressNum;
+    
+    @track isModalOpen = false;
+    @track isSkillsModalOpen = false;
+    @track isProgressModalOpen = false;
+
+    @track wireRes;
+
     objectName = CUSTOM_SKILL_OBJECT;
     nameField = CUSTOM_SKILL_NAME;
-    skillcategory = CUSTOM_SKILL_CATEGORY;
+    skillCategory = CUSTOM_SKILL_CATEGORY;
+    skillUser = CUSTOM_SKILL_USER;
     
     categoryObject = CATEGORY_OBJECT;
     categoryName = CATEGORY_NAME;
-
-    // industryField = INDUSTRY_FIELD;
-    // sourceField = SOURCE_FIELD;
-    // defaultSource = 'Web';
-
-    // cnameField = CNAME_FIELD;
-    // phoneField = PHONE_FIELD;
-    // emailField = EMAIL_FIELD;
-
-    // @track lstCategories = [];
-    // constructor(){
-    //     super();
-    //     // Imperative Apex call to get the list of Opportunities
-    //     retrieveCategories({}).then(response => {
-    //         this.lstCategories = response;
-    //     }).catch(error => {
-    //         console.log('Error: ' +error.body.message);
-    //     });
-    // }
+    categoryUser = CATEGORY_USER;
 
 
+
+
+    //////////////////////// Modal Methods /////////////////////////
+    
     handleSuccess() {
         const toastEvent = new ShowToastEvent({
             title: "Success",
-            message: "Record created.",
+            message: "Category Created.",
             variant: "success"
         });
 
         this.dispatchEvent(toastEvent);
+        this.isModalOpen = false;
+        // this.isSkillsModalOpen = false;
+        refreshApex(this.wireRes);
     }
 
+    handleSkillSuccess() {
+        const toastEvent = new ShowToastEvent({
+            title: "Success",
+            message: "Skill Created.",
+            variant: "success"
+        });
 
-    @track isModalOpen = false;
-    @track isSkillsModalOpen = false;
+        this.dispatchEvent(toastEvent);
+        // this.isModalOpen = false;
+        this.isSkillsModalOpen = false;
+        refreshApex(this.wireRes);
+    }
 
     openModal() {
         // to open modal set isModalOpen tarck value as true
@@ -92,23 +98,55 @@ export default class Skills extends LightningElement {
         //Add your code to call apex method or do some processing
         this.isModalOpen = false;
     }
+    
+    closeSkillsModal(){
+        this.isSkillsModalOpen = false;
+
+    }
+
+    openSkillsModal(event){
+        //Create new titan and grab the Curriculum ID of the target and set the new titan curriculum
+        //to that specific Curriculum ID
+        console.log(event.target.detail);
+        this.isSkillsModalOpen = true;
+
+    }
+
+
+    editProgress(event){
+        this.isProgressModalOpen = true;
+        this.valueId = event.currentTarget.value;
+        this.progressId = event.currentTarget.name;
+        this.progressNumber = event.currentTarget.id;
+        this.progressNum = Number(String(this.progressNumber).slice(0,2));
+        console.log(this.progressNum);
+    }
+
+    closeProgressModal(){
+        this.isProgressModalOpen = false;
+    }
+
+    //////////////////////// Modal Methods /////////////////////////
+
+
+
 
     
-
-    @wire(retrieveTitans)
-    titans;
-
     @wire(retrieveCategories)
     categories
-    ({error, data}){
-        if(error){
-            this.error = error;
-        }
-        else if(data){
+    (res){
+        
+        const {error, data} = res
+        if(data){
             console.log(data);
             this.category = data;
             
-            //console.log(this.category.Custom_Skills__r);
+            this.wireRes = res;
+        }
+        else if(error){
+            console.log(error);
+        }
+            
 
             //for loop
             // for(let i = 0; i<this.category.length; i++){
@@ -128,21 +166,9 @@ export default class Skills extends LightningElement {
             // this.skills = this.categorie[1].Custom_Skills__r[0];
             // console.log(this.skills);
             
-        }
     };
     
-    closeSkillsModal(){
-        this.isSkillsModalOpen = false;
-
-    }
-
-    openSkillsModal(event){
-        //Create new titan and grab the Curriculum ID of the target and set the new titan curriculum
-        //to that specific Curriculum ID
-        console.log(event.target.detail);
-        this.isSkillsModalOpen = true;
-
-    }
+    
 
     handleDelete(event) {
         let categoryId = event.currentTarget.value;
@@ -152,16 +178,12 @@ export default class Skills extends LightningElement {
                 this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Success',
-                    message: 'Record Has Been Deleted',
+                    message: 'Category Has Been Deleted',
                     variant: 'success'
                 })
+                
             )
-            // for(let cat in this.lstCategories){
-            //         if(this.lstCategories[cat].Id == categoryId){
-            //             this.lstCategories.splice(cat, 1);
-            //             break;
-            //         }
-            //     }
+            refreshApex(this.wireRes);
             })
             .catch(error => {
                 this.dispatchEvent(
@@ -173,6 +195,135 @@ export default class Skills extends LightningElement {
                 );
             });
 
+        }
+
+        handleDeleteSkill(event) {
+            let skillId = event.currentTarget.value;
+            console.log(skillId);
+            deleteRecord(skillId)
+                .then(() => {
+                    this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Success',
+                        message: 'Skill Has Been Deleted',
+                        variant: 'success'
+                    })
+                    
+                )
+                refreshApex(this.wireRes);
+                })
+                .catch(error => {
+                    this.dispatchEvent(
+                        new ShowToastEvent({
+                            title: 'Error While Deleting Record',
+                            message: error.message,
+                            variant: 'error',
+                        }),
+                    );
+                });
+    
+            }
+
+
+
+
+
+
+
+////////////////////////////////Mountain's code (progress bar)//////////////////////////////////
+
+
+@track i = 0;
+id = 0;
+width = 0;
+endwidth = 100;   //null value will be replaced with default value from database
+count = 0;
+
+
+
+//function animates growth to value input by user
+move() {
+    console.log('move called');
+    console.log(this.endwidth);
+    if (this.i === 0) {
+      this.i = 1;
+      let elem = this.template.querySelector("." + this.progressId);
+      //console.log(this.template.querySelector("." + this.valueId).innerHTML);
+      let elemInnerSpan = this.template.querySelector("." + this.valueId);
+      console.log(elem);
+      console.log(this.valueId);
+      console.log(this.progressId);
+    //   console.log(elemInnerSpan);
+        this.id = setInterval(() => {
+            if (this.width >= this.endwidth) {
+                clearInterval(this.id);
+                console.log(this.id)
+                this.i = 0;
+                this.width = 0;
+                console.log('cleared');
+            } else {
+                this.width++;
+                elem.style.width = this.width + '%';
+                elemInnerSpan.innerHTML = this.width;
+
+            }
+        }, 10);
+    }
+
+    
 }
+
+
+updateScore() {
+    
+    let inputValue = this.template.querySelector('.scoreInput').value 
+    let validationMessage = this.validateScore(inputValue);
+    switch (validationMessage) {
+        case "Not a number":
+            this.template.querySelector('.scoreInput').value = "";
+            this.template.querySelector('.scoreInput').placeholder = "Enter a number";
+            this.template.querySelector('.scoreInput').classList.add('error');
+            break;
+        case "Invalid Score":
+            this.template.querySelector('.scoreInput').value = "";
+            this.template.querySelector('.scoreInput').placeholder = "Enter a valid score";
+            this.template.querySelector('.scoreInput').classList.add('error');
+            break;
+        case "Valid Score":
+            this.template.querySelector('.scoreInput').classList.remove('error');
+            this.endwidth = inputValue;
+            setProgress({autoNumber: this.progressId, progress: inputValue});
+            // let progressBar = this.template.querySelector('.' + this.progressId);
+            // progressBar.style.display = "block";
+            console.log(this.template.querySelector('.' + this.progressId).className, '********');
+            // this.count++;
+            this.move();
+            this.isProgressModalOpen = false;
+            refreshApex(this.wireRes);
+            break;
+        default:
+            break;
+
+}
+
+}
+
+validateScore(inputValue){
+
+    if (isNaN(inputValue)) {
+        this.template.querySelector('.scoreInput').value = '0';
+        return "Not a number";
+    }
+
+    if (inputValue > 100 || inputValue < 0) {
+        this.template.querySelector('.scoreInput').value = '0';
+        this.endwidth = 0;
+        return "Invalid Score";
+    }
+
+    return "Valid Score";
+}
+
+////////////////////////////////Mountain's code//////////////////////////////////
 
 }

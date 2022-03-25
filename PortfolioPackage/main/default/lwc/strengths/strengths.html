@@ -1,59 +1,79 @@
- <!-- Mountain's Amazing Component Bundle -->
- <template>
-    <div class="test-div">
-    </div>
-    <div class="strengths-container">
-        <div class="strengths-header-row">
-            <div class="header-icon-container">
-                <h1 class="strengths-header header">Strengths</h1>
-                <div class="header-icon header-icon-upper-left">
-                    <img src="../resources/Strengths.png" alt="">
+<!-- Mountain's Amazing Component Bundle -->
+<template>
+    <template class="showEditStrengthsForm" if:false={showEditStrengthsBoolean}>
+        <div class="strengths-container">
+            <div class="strengths-header-row">
+                <div class="header-icon-container">
+                    <h1 class="strengths-header header">Strengths</h1>
+                    <div class="header-icon header-icon-upper-left">
+                        <img src="../resources/Strengths.png" alt="">
+                    </div>
+                </div> <!-- header-icon-container -->
+                <div class="edit-icon edit-icon-float-right">
+                    <img src="../resources/edit.png" alt="">
+
                 </div>
-            </div> <!-- header-icon-container -->
-            <div class="edit-icon edit-icon-float-right">
-                <img src="../resources/edit.png" alt="">
-             
             </div>
+            <template for:each={strengths} for:item="skill">
+                <div key={skill.Id} class="strengths-content-row">
+                    <div class="skill-name">
+                        {skill.Name}
+                    </div>
+                    <div class="skill-level">
+                        <c-progressbar endwidth={skill.Skill_Equivalency__c}></c-progressbar>
+                    </div>
+                </div>
+
+            </template>
         </div>
-        <div class="strengths-content-row">
-            <div class="skill-name">
-                skill 1
+    </template>
+
+
+
+    <!-- equivObj = EquivObj;
+    skillName = SkillName;
+    skillScore = SkillScore; -->
+
+    <template class="showEditStrengthsForm" if:false={showEditStrengthsBoolean}>
+        <div class="strengths-container">
+            <div class="strengths-header-row">
+                <div class="header-icon-container">
+                    <h1 class="strengths-header header">Strengths</h1>
+                    <div class="header-icon header-icon-upper-left">
+                        <img src="../resources/Strengths.png" alt="">
+                    </div>
+                </div> <!-- header-icon-container -->
+                <div class="edit-icon edit-icon-float-right">
+                    <img src="../resources/edit.png" alt="">
+
+                </div>
             </div>
-            <div class="skill-level">
-             <c-progressbar></c-progressbar>
-            </div>
+            <template for:each={strengths} for:item="skill">
+                <div key={skill.Id} class="strengths-content-row">
+                    <div class="skill-name">
+                        {skill.Name}
+                    </div>
+                    <div class="skill-level">
+                        <c-progressbar data-skillid={skill.Id} endwidth={skill.Skill_Equivalency__c}></c-progressbar>
+                        <input type="text"  data-skillid={skill.Id} class="skill-level-input">
+                        <button class="update-skill-level-button" data-skilllevel={skill.Skill_Equivalency__c} data-skillid={skill.Id} onclick={handleUpdateSkillLevel}>Update</button>
+                    </div>
+                </div>
+
+            </template>
         </div>
-        <div class="strengths-content-row">
-            <div class="skill-name">
-                skill 2
-            </div>
-            <div class="skill-level">
-             <c-progressbar></c-progressbar>
-            </div>
-        </div>
-        <div class="strengths-content-row">
-            <div class="skill-name">
-                skill 3
-            </div>
-            <div class="skill-level">
-             <c-progressbar></c-progressbar>
-            </div>
-        </div>
-        <div class="strengths-content-row">
-            <div class="skill-name">
-                skill 4
-            </div>
-            <div class="skill-level">
-             <c-progressbar></c-progressbar>
-            </div>
-        </div>
-        <div class="strengths-content-row">
-            <div class="skill-name">
-                skill 5
-            </div>
-            <div class="skill-level">
-             <c-progressbar></c-progressbar>
-            </div>
-        </div>
-    </div>
+    </template>
+<!-- 
+    <template class="showEditStrengthsForm" if:false={showEditStrengthsBoolean}>
+        <lightning-record-edit-form object-api-name={equivObj}>
+
+            <lightning-input-field label="Name" name="Name" required maxlength="255" placeholder="Enter Name"
+                field-name={skillName}></lightning-input-field>
+            <lightning-input-field label="Skill Equivalency" name="Skill_Equivalency__c" required maxlength="255"
+                placeholder="Enter Skill Equivalency" field-name={skillScore}></lightning-input-field>
+
+            <lightning-button label="Save" variant="brand" type="submit"></lightning-button>
+
+        </lightning-record-edit-form>
+    </template> -->
 </template>
