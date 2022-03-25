@@ -17,6 +17,7 @@ import DATE_GRADUATED from '@salesforce/schema/Education__c.DateGraduate__c';
 import DEGREE_FIELD from '@salesforce/schema/Education__c.Degree__c';
 
 import {refreshApex} from '@salesforce/apex';
+import { deleteRecord } from 'lightning/uiRecordApi';
 
 //APEX CLASS
 import RETURN_EDUCATION from '@salesforce/apex/GetEducationInformation.returnEducationList';
@@ -61,7 +62,7 @@ export default class Portfolioeducation extends LightningElement
     {
         const closeenv = new ShowToastEvent({
             title: "Canceled",
-            message: "You canceled inputting information.",
+            message: "You cancelled inputting information.",
             variant: "error"
         });
 
@@ -81,5 +82,35 @@ export default class Portfolioeducation extends LightningElement
         refreshApex(this.wireValue);
         this.modalChecker = false;
     }
+
+
+
+    handleDelete(event) {
+        let eduId = event.currentTarget.dataset.eduvalue;
+        console.log(eduId);
+        deleteRecord(eduId)
+            .then(() => {
+                this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Category Has Been Deleted',
+                    variant: 'success'
+                })
+                
+            )
+            refreshApex(this.wireValue);
+            })
+            .catch(error => {
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Error While Deleting Record',
+                        message: error.message,
+                        variant: 'error',
+                    }),
+                );
+            });
+
+    }
+
 
 }
