@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>radar</members>
+        <members>radarCarousel</members>
+        <members>radarCarouselImage</members>
+        <members>utilsPrivate</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>D3_v3</members>
+        <members>RadarChart</members>
+        <members>RadarImage</members>
+        <name>StaticResource</name>
+    </types>
+    <version>53.0</version>
+</Package>
