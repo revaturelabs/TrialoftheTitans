@@ -1,10 +1,20 @@
+<!-- 
+Authors: Mountain and Gabe 
+Date:3/24/22 
+Description: This component is the progress bar that's called within the skills component for each
+skill.
+-->
+
 <template>
+
     <div class="myProgress">
         <div class="myBar"><span class="score-percentage">{skillprogress}                           
         </span></div>
-        <div>
-                <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Edit Progress" onclick={editProgress} value={skillid}>
-                    <lightning-icon icon-name="utility:rating"
+        
+      </div>
+      <div>
+                <button class="edit_button slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Edit Progress" onclick={editProgress} value={skillid}>
+                    <lightning-icon icon-name="utility:edit"
                          alternative-text="progress"
                          variant="inverse"
                          size="x-small" 
@@ -13,9 +23,7 @@
                          <span class="slds-assistive-text">Edit Progress</span>
                  </button>
             </div>
-        <!--encap in p tag and adjust padding on percentage--> 
-      </div>
-
+    
 
       <template if:true={isProgressModalOpen}>
         <section aria-modal="true" class="slds-modal slds-fade-in-open">
