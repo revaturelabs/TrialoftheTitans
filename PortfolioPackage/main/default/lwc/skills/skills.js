@@ -23,6 +23,7 @@ import CUSTOM_SKILL_OBJECT from '@salesforce/schema/Custom_Skill__c';
 import CUSTOM_SKILL_NAME from '@salesforce/schema/Custom_Skill__c.Name';
 import CUSTOM_SKILL_CATEGORY from '@salesforce/schema/Custom_Skill__c.Category__c';
 import CUSTOM_SKILL_USER from '@salesforce/schema/Custom_Skill__c.User__c';
+import CUSTOM_SKILL_PROGRESS from '@salesforce/schema/Custom_Skill__c.Progress__c';
 
 export default class Skills extends LightningElement {
 
@@ -42,7 +43,7 @@ export default class Skills extends LightningElement {
     
     @track isModalOpen = false;
     @track isSkillsModalOpen = false;
-    @track isProgressModalOpen = false;
+    //@track isProgressModalOpen = false;
 
     @track wireRes;
 
@@ -50,6 +51,7 @@ export default class Skills extends LightningElement {
     nameField = CUSTOM_SKILL_NAME;
     skillCategory = CUSTOM_SKILL_CATEGORY;
     skillUser = CUSTOM_SKILL_USER;
+    skillProgress = CUSTOM_SKILL_PROGRESS;
     
     categoryObject = CATEGORY_OBJECT;
     categoryName = CATEGORY_NAME;
@@ -107,7 +109,7 @@ export default class Skills extends LightningElement {
     openSkillsModal(event){
         //Create new titan and grab the Curriculum ID of the target and set the new titan curriculum
         //to that specific Curriculum ID
-        console.log(event.target.detail);
+        //console.log(event.target.detail);
         this.isSkillsModalOpen = true;
 
     }

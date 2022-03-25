@@ -78,7 +78,7 @@ is used in apex controller to return each skill from each category to display.
                         <template for:each={titan.Custom_Skills__r} for:item="skill">
                             <ul key={skill.Id}>
 
-                                <li key={skill.Id}><b>{skill.Skill_Number__c}: </b> {skill.Name}  
+                                <li key={skill.Id} style="font-size: 1.4em;"><b>{skill.Skill_Number__c}: </b> {skill.Name}  
                                     <div class="progressBar">
                                         <br>
                                         <div class="myProgress" style="margin-top: 3px;" id={skill.Progress__c} title={skill.Skill_Number__c}>
@@ -105,7 +105,7 @@ is used in apex controller to return each skill from each category to display.
                                                  value={skill.Id}></lightning-icon>
                                                  <span class="slds-assistive-text">Edit Progress</span>
                                          </button> -->
-                                         <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Delete" onclick={handleDeleteSkill} value={skill.Id}>
+                                         <button class="delete_button slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Delete" onclick={handleDeleteSkill} value={skill.Id}>
                                             <lightning-icon icon-name="utility:delete"
                                                  alternative-text="delete"
                                                  variant="inverse"
@@ -114,6 +114,7 @@ is used in apex controller to return each skill from each category to display.
                                                  value={skill.Id}></lightning-icon>
                                                  <span class="slds-assistive-text">Delete</span>
                                          </button>
+
                                     </div>
                                 </li>
                             </ul>
@@ -197,6 +198,7 @@ is used in apex controller to return each skill from each category to display.
                     <lightning-record-edit-form object-api-name={objectName} onsuccess={handleSkillSuccess}>
                         <lightning-input-field field-name={nameField}></lightning-input-field>
                         <lightning-input-field field-name={skillCategory}></lightning-input-field>
+                        <lightning-input-field field-name={skillProgress}></lightning-input-field>
                         <!-- <lightning-input-field field-name={skillUser}></lightning-input-field> -->
                         <br>
                         <lightning-button variant="brand" type="submit" label="Submit Skill"></lightning-button>

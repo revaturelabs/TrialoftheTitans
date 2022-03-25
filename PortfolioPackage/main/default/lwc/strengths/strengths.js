@@ -54,7 +54,14 @@ export default class Strengths extends LightningElement {
         this.dispatchEvent(showEditStrengthsEvent);
     }
 
+    handleShowEditStrengthsForm() {
+        console.log('handleShowEditStrengthsForm');
+        this.showEditStrengthsBoolean = true;
+    }
+    
+
     handleUpdateSkillLevel(event) {
+
         // this.createLocalStrengthsArrayOfObjects();
         console.log(this.localStrengthsArrayOfObjs);
         console.log(this.localStrengthsArrayOfObjs[0].score);

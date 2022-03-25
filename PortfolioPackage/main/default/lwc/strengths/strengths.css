@@ -1,3 +1,5 @@
+@import "c/styleResource";
+
 *, ::before, ::after {
     box-sizing: border-box;
     margin: 0;
@@ -51,17 +53,21 @@
   
   .strengths-content-row{
       display: flex; 
-      justify-content: center;
+      justify-content: space-between;
       margin: 4px;
   }
   
   .skill-level{
-      width: 80%;
+      min-width: 80%;
   }
   .skill-name{
       min-width: 20%;
-      font-size: 1.5em;
+      font-size: var(--font-size-subheading);
       white-space: word-break;
+  }
+
+  .float-inputs-right{
+    white-space: nowrap;   
   }
   
   
