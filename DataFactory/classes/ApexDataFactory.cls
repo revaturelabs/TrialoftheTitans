@@ -506,14 +506,12 @@ public with sharing class ApexDataFactory {
     /******************************************* 
      * createQuestionPool method
      * Created Date: 3/23/2022
-     * Created By: Martin Luna II (add whoever helps name here)
+     * Created By: Martin Luna II, Michael Scott, Luz Orejel, Whitney Dwire
      * 
      * Pseudocode:
      * Create createQuestionPool();
      *      assign questions from createExamQuestion(); to a record within the Question_Pool__c object
      * 
-     * Possible archival of Exam Pool Assignment object due to Exam questions and Exams already containing lookup fields to the Titan Object
-     *          Exams can pull Questions from the QP object based on the Titan Lookup Field. 
      *******************************************/
 
      /**
