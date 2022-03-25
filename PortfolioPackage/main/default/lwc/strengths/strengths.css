@@ -56,7 +56,7 @@
   }
   
   .skill-level{
-      width: 80%;
+      min-width: 80%;
   }
   .skill-name{
       min-width: 20%;
