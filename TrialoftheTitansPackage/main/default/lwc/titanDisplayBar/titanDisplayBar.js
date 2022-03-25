@@ -59,7 +59,7 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement) {
         this.titanHubPage = ({
             type: 'standard__webPage',
             attributes: {
-                url: 'https://trialofthetitans11-developer-edition.na213.force.com/s/titan-hub'
+                url: document.URL + 'titan-hub'
             }
         });
         this[NavigationMixin.GenerateUrl](this.titanHubPage)
