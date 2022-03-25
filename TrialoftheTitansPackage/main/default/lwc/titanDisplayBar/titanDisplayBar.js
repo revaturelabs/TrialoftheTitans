@@ -1,15 +1,27 @@
-import { LightningElement, track, api } from "lwc";
+import { LightningElement, track, api, wire } from "lwc";
 import getTitanById from "@salesforce/apex/titanDisplayController.getTitanById";
 import getCurrentUser from "@salesforce/apex/titanDisplayController.getCurrentUser";
 import getNumberOfTitanExams from "@salesforce/apex/titanDisplayController.getNumberOfTitanExams";
 import getUserExams from "@salesforce/apex/titanDisplayController.getUserExams";
 import { NavigationMixin } from 'lightning/navigation';
+import getTitanExamId from '@salesforce/apex/titanDisplayController.getTitanExamId';
+import titanSelected from '@salesforce/messageChannel/TrialOfTheTitansXIChannel__c';
+import {
+    MessageContext,
+    publish
+} from 'lightning/messageService';
 
 //d3 imports
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { loadScript } from "lightning/platformResourceLoader";
 import D3 from "@salesforce/resourceUrl/DJS3";
+import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
+
 export default class TitanDisplayBar extends NavigationMixin(LightningElement) {
+
+    @wire(MessageContext)
+    messageContext;
+
     @track disableOverview = false;
     @track disableAdvance = false;
     @api titanId;
@@ -22,6 +34,7 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement) {
     @track titanName;
 
     renderedCallback() {
+
         let slicedId = this.id.slice(0, 18);
         let titan = getTitanById({ identifier: slicedId });
         titan.then((res) => {
@@ -54,24 +67,39 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement) {
         });
     }
 
-    connectedCallback() {
-        // Store the PageReference to Titan Hub page in a variable
-        this.titanHubPage = ({
-            type: 'standard__webPage',
-            attributes: {
-                url: document.URL + 'titan-hub'
-            }
-        });
-        this[NavigationMixin.GenerateUrl](this.titanHubPage)
-            .then(url => this.url = url);
-    }
+    // Handle Titan Overview button click
+    // Get Titan Id for LMS and navigate to Titan Hub page
+    titanExamId;
+    error;
+    handleOverview() {
 
-    handleOverview(evt) {
         this.disableOverview = true;
-        evt.preventDefault();
-        evt.stopPropagation();
-        // Navigate to the Titab Hub page
-        this[NavigationMixin.Navigate](this.titanHubPage);
+
+        //Get Titan Id from Apex controller
+        getTitanExamId({ titanName: this.titanName })
+            .then((result) => {
+                this.titanExamId = result;
+                this.error = undefined;
+                console.log(this.titanExamId + ' ' + this.titanName);
+            })
+            .catch((error) => {
+                this.error = error;
+                this.titanExamId = undefined;
+            });
+
+        // Publish Titan Id
+        const payload = { recordId: this.titanExamId };
+        publish(this.messageContext, titanSelected, payload);
+
+        // Navigate to a Titan Hub page
+        this[NavigationMixin.Navigate]({
+                type: 'standard__webPage',
+                attributes: {
+                    url: document.URL + 'titan-hub'
+                }
+            },
+            true
+        );
     }
 
     handleAdvance() {

@@ -17,12 +17,27 @@ public with sharing class titanDisplayController {
     }
 
     @AuraEnabled
-    public static Account getCurrentUser(){
-        // User user = [SELECT Id, contactId FROM User WHERE Id = :UserInfo.getUserId()];
+    public static User getCurrentUser(){
+        User user = [SELECT Id, contactId FROM User WHERE Id = :UserInfo.getUserId()];
+        return user;
         // Contact contact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.contactId];
         // Account userAccount = [SELECT Id, Name, Squad__c, Team__c, Cohort__c, Curriculum__c FROM Account WHERE Id = :contact.AccountId];
         // return userAccount;
-        return [SELECT Id, Name, Squad__c, Team__c, Cohort__c, Curriculum__c FROM Account WHERE Name = 'Peter Parker'];
+        // return [SELECT Id, Name, Squad__c, Team__c, Cohort__c, Curriculum__c FROM Account WHERE Name = 'Peter Parker'];
+    }
+
+    //Get Titan Id for Titan Overview button click
+    @AuraEnabled(cacheable=true)
+    public static Id getTitanExamId(String titanName){   
+        String key = '%' + titanName + '%';
+        List<Titan__c> titanExam = [
+            SELECT Id
+            FROM Titan__c
+            WHERE Name LIKE :key
+            WITH SECURITY_ENFORCED
+            LIMIT 1
+        ];
+        return titanExam[0].id;
     }
 
     @AuraEnabled
