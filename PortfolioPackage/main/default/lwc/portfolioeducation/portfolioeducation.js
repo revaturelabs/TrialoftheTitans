@@ -1,6 +1,6 @@
 /************************************************************
  * Done by: Mohammed Azad
- * Create a list of a person's history
+ * Create a list of a person's education history.
  * Date: March 24 2022
  ************************************************************/
 
