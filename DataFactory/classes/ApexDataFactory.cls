@@ -22,7 +22,8 @@ public with sharing class ApexDataFactory {
         List<Cohort__c> cohort = [select id from Cohort__c];
         List<Curriculum__c> curr = [select id from Curriculum__c];
         List<Question_Pool__c> quepo = [SELECT Id FROM Question_Pool__c];
-        List<Question_Assignment__c> quesa = [SELECT Id FROM Question_Assignment__c];
+        List<Exam_Pool_Assignment__c> epa = [SELECT Id FROM Exam_Pool_Assignment__c];
+        // Must delete question Assignment records using Data Loader
         
         delete HAs;
         delete ERs;
@@ -38,7 +39,7 @@ public with sharing class ApexDataFactory {
         delete cohort;
         delete curr;
         delete quepo;
-        delete quesa;
+        delete epa;
     }
      @AuraEnabled
     public static void GenerateData(){
@@ -57,7 +58,8 @@ public with sharing class ApexDataFactory {
         ApexDataFactory.CreateExamResult();
         ApexDataFactory.CreateHeroAnswer();
         ApexDataFactory.createQuestionPool();
-        //ApexDataFactory.createQuestionAssignments();  
+        ApexDataFactory.createQuestionAssignments();  
+        ApexDataFactory.createExamPoolAssignments();
         }
     
 
@@ -504,14 +506,12 @@ public with sharing class ApexDataFactory {
     /******************************************* 
      * createQuestionPool method
      * Created Date: 3/23/2022
-     * Created By: Martin Luna II (add whoever helps name here)
+     * Created By: Martin Luna II, Michael Scott, Luz Orejel, Whitney Dwire
      * 
      * Pseudocode:
      * Create createQuestionPool();
      *      assign questions from createExamQuestion(); to a record within the Question_Pool__c object
      * 
-     * Possible archival of Exam Pool Assignment object due to Exam questions and Exams already containing lookup fields to the Titan Object
-     *          Exams can pull Questions from the QP object based on the Titan Lookup Field. 
      *******************************************/
 
      /**
@@ -550,29 +550,28 @@ public with sharing class ApexDataFactory {
     @AuraEnabled
     public static void createQuestionAssignments(){
         
-        List <Exam__c> Exam = [SELECT Id,Titan__c FROM Exam__c];
-        List <Exam_Question__c> ExamQs = [SELECT Id, Name,Titan__c FROM Exam_Question__c];
+        List <Exam__c> Exam = [SELECT Id, Titan__c FROM Exam__c Limit 1];
+        List <Exam_Question__c> ExamQs = [SELECT Id, Titan__c FROM Exam_Question__c];
         List <Question_Pool__c> QuestPools = [SELECT Id FROM Question_Pool__c];
         List <Question_Assignment__c> QuestAssigns =  new List<Question_Assignment__c>();
         
-        for(Exam__c exa:Exam){
-            for(Question_Pool__c pool:QuestPools){
-                for(Exam_Question__c exaQ:ExamQs){
-                    if (exa.Titan__c == exaQ.Titan__c){
+        
+         for(Exam__c exa:Exam){
+             for(Question_Pool__c pool:QuestPools){
+                 for(Exam_Question__c exaQ:ExamQs){
+                     if (exa.Titan__c == exaQ.Titan__c){
                         Question_Assignment__c questAssign = new Question_Assignment__c();
-                        //Assign question to pool 
-                        questAssign.Exam_Question__r = exaQ;
-                        System.debug(questAssign.Exam_Question__r);
-                        questAssign.Question_Pool__r = pool;
+                        questAssign.Exam_Question__c = exaq.Id;
+                        questAssign.Question_Pool__c = pool.Id;
                         QuestAssigns.add(questAssign);
-                    }
+                     }
                     
-                }
+                 }
                 
-            }
-        }
+             }
+         }
 
-        System.debug('Did the above System.debug logs appear?');
+        //System.debug('Did the above System.debug logs appear?');
         insert QuestAssigns;
     }
 
@@ -664,4 +663,29 @@ public with sharing class ApexDataFactory {
         insert Answers;
     }
     
+    @AuraEnabled
+    public static void createExamPoolAssignments(){
+        // SELECT Id FROM Exam_Pool_Assignment__c 
+        List <Exam__c> examList = [SELECT Id, Titan__c FROM Exam__c];
+        List <Question_Pool__c> qPoolList = [SELECT Id FROM Question_Pool__c];
+        List <Exam_Pool_Assignment__c> expoolAssigns =  new List<Exam_Pool_Assignment__c>();
+        
+        
+         for(Exam__c ex:examList){
+             for(Question_Pool__c qpool:qPoolList){
+                        Exam_Pool_Assignment__c exPA = new Exam_Pool_Assignment__c();
+                        exPA.Exam__c = ex.Id;
+                        exPA.Question_Pool__c = qpool.Id;
+                        expoolAssigns.add(exPA);          
+             }
+         }
+        insert expoolAssigns;
+    }
+
+    /**
+     * for every examPoolAssgnmt
+     *    if ExamPoolAssignemnt DNE
+     *      then associate ExamPoolAssignment with Exam
+     *  
+     */
 }
