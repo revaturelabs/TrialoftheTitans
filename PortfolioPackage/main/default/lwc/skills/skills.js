@@ -23,6 +23,7 @@ import CUSTOM_SKILL_OBJECT from '@salesforce/schema/Custom_Skill__c';
 import CUSTOM_SKILL_NAME from '@salesforce/schema/Custom_Skill__c.Name';
 import CUSTOM_SKILL_CATEGORY from '@salesforce/schema/Custom_Skill__c.Category__c';
 import CUSTOM_SKILL_USER from '@salesforce/schema/Custom_Skill__c.User__c';
+import CUSTOM_SKILL_PROGRESS from '@salesforce/schema/Custom_Skill__c.Progress__c';
 
 export default class Skills extends LightningElement {
 
@@ -38,10 +39,11 @@ export default class Skills extends LightningElement {
     @track progressId;
     @track progressNumber;
     @track progressNum;
+    @track progressName;
     
     @track isModalOpen = false;
     @track isSkillsModalOpen = false;
-    @track isProgressModalOpen = false;
+    //@track isProgressModalOpen = false;
 
     @track wireRes;
 
@@ -49,11 +51,11 @@ export default class Skills extends LightningElement {
     nameField = CUSTOM_SKILL_NAME;
     skillCategory = CUSTOM_SKILL_CATEGORY;
     skillUser = CUSTOM_SKILL_USER;
+    skillProgress = CUSTOM_SKILL_PROGRESS;
     
     categoryObject = CATEGORY_OBJECT;
     categoryName = CATEGORY_NAME;
     categoryUser = CATEGORY_USER;
-
 
 
 
@@ -107,24 +109,24 @@ export default class Skills extends LightningElement {
     openSkillsModal(event){
         //Create new titan and grab the Curriculum ID of the target and set the new titan curriculum
         //to that specific Curriculum ID
-        console.log(event.target.detail);
+        //console.log(event.target.detail);
         this.isSkillsModalOpen = true;
 
     }
 
 
-    editProgress(event){
-        this.isProgressModalOpen = true;
-        this.valueId = event.currentTarget.value;
-        this.progressId = event.currentTarget.name;
-        this.progressNumber = event.currentTarget.id;
-        this.progressNum = Number(String(this.progressNumber).slice(0,2));
-        console.log(this.progressNum);
-    }
+    // editProgress(event){
+    //     this.isProgressModalOpen = true;
+    //     this.valueId = event.currentTarget.value;
+    //     this.progressId = event.currentTarget.name;
+    //     // this.progressNumber = event.currentTarget.id;
+    //     // this.progressNum = Number(String(this.progressNumber).slice(0,2));
+    //     // console.log(this.progressNum);
+    // }
 
-    closeProgressModal(){
-        this.isProgressModalOpen = false;
-    }
+    // closeProgressModal(){
+    //     this.isProgressModalOpen = false;
+    // }
 
     //////////////////////// Modal Methods /////////////////////////
 
@@ -233,97 +235,154 @@ export default class Skills extends LightningElement {
 ////////////////////////////////Mountain's code (progress bar)//////////////////////////////////
 
 
-@track i = 0;
-id = 0;
-width = 0;
-endwidth = 100;   //null value will be replaced with default value from database
-count = 0;
+// @track i = 0;
+// id = 0;
+// width = 0;
+// endwidth = 100;   //null value will be replaced with default value from database
+// count = 0;
 
 
 
-//function animates growth to value input by user
-move() {
-    console.log('move called');
-    console.log(this.endwidth);
-    if (this.i === 0) {
-      this.i = 1;
-      let elem = this.template.querySelector("." + this.progressId);
-      //console.log(this.template.querySelector("." + this.valueId).innerHTML);
-      let elemInnerSpan = this.template.querySelector("." + this.valueId);
-      console.log(elem);
-      console.log(this.valueId);
-      console.log(this.progressId);
-    //   console.log(elemInnerSpan);
-        this.id = setInterval(() => {
-            if (this.width >= this.endwidth) {
-                clearInterval(this.id);
-                console.log(this.id)
-                this.i = 0;
-                this.width = 0;
-                console.log('cleared');
-            } else {
-                this.width++;
-                elem.style.width = this.width + '%';
-                elemInnerSpan.innerHTML = this.width;
+// //function animates growth to value input by user
+// move() {
+//     console.log('move called');
+//     console.log(this.endwidth);
+//     if (this.i === 0) {
+//       this.i = 1;
+//       let elem = this.template.querySelector("." + this.progressId);
+//       //console.log(this.template.querySelector("." + this.valueId).innerHTML);
+//       let elemInnerSpan = this.template.querySelector("." + this.valueId);
+//       console.log(elem);
+//       console.log(this.valueId);
+//       console.log(this.progressId);
+//     //   console.log(elemInnerSpan);
+//         this.id = setInterval(() => {
+//             if (this.width >= this.endwidth) {
+//                 clearInterval(this.id);
+//                 console.log(this.id)
+//                 this.i = 0;
+//                 this.width = 0;
+//                 console.log('cleared');
+//             } else {
+//                 this.width++;
+//                 elem.style.width = this.width + '%';
+//                 elemInnerSpan.innerHTML = this.width;
 
-            }
-        }, 10);
-    }
+//             }
+//         }, 10);
+//     }
 
     
-}
+// }
 
 
-updateScore() {
+// updateScore() {
     
-    let inputValue = this.template.querySelector('.scoreInput').value 
-    let validationMessage = this.validateScore(inputValue);
-    switch (validationMessage) {
-        case "Not a number":
-            this.template.querySelector('.scoreInput').value = "";
-            this.template.querySelector('.scoreInput').placeholder = "Enter a number";
-            this.template.querySelector('.scoreInput').classList.add('error');
-            break;
-        case "Invalid Score":
-            this.template.querySelector('.scoreInput').value = "";
-            this.template.querySelector('.scoreInput').placeholder = "Enter a valid score";
-            this.template.querySelector('.scoreInput').classList.add('error');
-            break;
-        case "Valid Score":
-            this.template.querySelector('.scoreInput').classList.remove('error');
-            this.endwidth = inputValue;
-            setProgress({autoNumber: this.progressId, progress: inputValue});
-            // let progressBar = this.template.querySelector('.' + this.progressId);
-            // progressBar.style.display = "block";
-            console.log(this.template.querySelector('.' + this.progressId).className, '********');
-            // this.count++;
-            this.move();
-            this.isProgressModalOpen = false;
-            refreshApex(this.wireRes);
-            break;
-        default:
-            break;
+//     let inputValue = this.template.querySelector('.scoreInput').value 
+//     let validationMessage = this.validateScore(inputValue);
+//     switch (validationMessage) {
+//         case "Not a number":
+//             this.template.querySelector('.scoreInput').value = "";
+//             this.template.querySelector('.scoreInput').placeholder = "Enter a number";
+//             this.template.querySelector('.scoreInput').classList.add('error');
+//             break;
+//         case "Invalid Score":
+//             this.template.querySelector('.scoreInput').value = "";
+//             this.template.querySelector('.scoreInput').placeholder = "Enter a valid score";
+//             this.template.querySelector('.scoreInput').classList.add('error');
+//             break;
+//         case "Valid Score":
+//             this.template.querySelector('.scoreInput').classList.remove('error');
+//             this.endwidth = inputValue;
+//             setProgress({autoNumber: this.progressId, progress: inputValue});
+            
+//             console.log(this.template.querySelector('.' + this.progressId).className, '********');
+//             // this.count++;
+//             this.move();
+//             this.isProgressModalOpen = false;
+//             refreshApex(this.wireRes);
+//             break;
+//         default:
+//             break;
 
-}
+// }
 
-}
+// }
 
-validateScore(inputValue){
+// validateScore(inputValue){
 
-    if (isNaN(inputValue)) {
-        this.template.querySelector('.scoreInput').value = '0';
-        return "Not a number";
-    }
+//     if (isNaN(inputValue)) {
+//         this.template.querySelector('.scoreInput').value = '0';
+//         return "Not a number";
+//     }
 
-    if (inputValue > 100 || inputValue < 0) {
-        this.template.querySelector('.scoreInput').value = '0';
-        this.endwidth = 0;
-        return "Invalid Score";
-    }
+//     if (inputValue > 100 || inputValue < 0) {
+//         this.template.querySelector('.scoreInput').value = '0';
+//         this.endwidth = 0;
+//         return "Invalid Score";
+//     }
 
-    return "Valid Score";
-}
+//     return "Valid Score";
+// }
+
+
 
 ////////////////////////////////Mountain's code//////////////////////////////////
+
+counter = 0;
+
+// displayBar(count){
+//     this.counter = count;
+//     let progressElement = this.template.querySelector('.myProgress');
+//     console.log(progressElement);
+//     this.progressNumber = progressElement.id;
+//     //.getAttribute('id');
+//     this.progressName = progressElement.title;
+//     //.getAttribute('title');
+//     this.progressNum = Number(String(this.progressNumber).slice(0,2));
+//     console.log(this.progressNum);
+//     console.log(this.progressName);
+//     //refreshApex(this.wireRes);
+//     let progressBar = this.template.querySelector('[id=' + this.counter + ']');
+//     console.log(progressBar);
+//     progressBar.style.width = this.progressNum + '%';
+// }
+
+renderedCallback(){
+    //console.log(this.category);
+    // for(let i; i<10; i++){
+    //     //this.displayBar(i);
+    //     this.counter = i;
+    //     console.log(this.counter);
+    // let progressElement = this.template.querySelector('.myProgress');
+    // console.log(progressElement);
+    // this.progressNumber = progressElement.id;
+    // //.getAttribute('id');
+    // this.progressName = progressElement.title;
+    // //.getAttribute('title');
+    // this.progressNum = Number(String(this.progressNumber).slice(0,2));
+    // console.log(this.progressNum);
+    // console.log(this.progressName);
+    // //refreshApex(this.wireRes);
+    // let progressBar = this.template.querySelector('.' + this.progressName);
+    // console.log(progressBar);
+    //s progressBar.style.width = this.progressNum + '%';
+    
+    //}
+
+    //refreshApex(this.wireRes);
+    
+    // console.log(event.currentTarget.id);
+
+    // this.progressNumber = event.currentTarget.id;
+    // 
+    // this.progressName= event.currentTarget.title;
+    // 
+    // 
+    // let progressBar = this.template.querySelector('.' + this.progressName);
+    // console.log(this.template.querySelector('.' + this.progressName));
+    // progressBar.style.width = this.progressNum + '%';
+    
+}
 
 }

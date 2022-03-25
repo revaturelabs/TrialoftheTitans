@@ -12,7 +12,7 @@
 .image-container {
     width: var(--photo-small);
     height: var(--photo-small);
-    margin: 0 0 0 var(--space-small);
+    margin: 0 0 0 var(--space-xsmall);
 }
 
 img {
@@ -24,7 +24,7 @@ img {
     flex-direction: column;
     justify-content: end;
     align-items: flex-end;
-    padding-bottom: var(--space-small);
+    padding-bottom: var(--space-xsmall);
 }
 
 .hero-name {
@@ -33,10 +33,30 @@ img {
     font-size: xx-large;
 }
 
+.hero-title {
+    font-size: large;
+    padding-bottom: calc(var(--space-xsmall)/4);
+}
+
+.cert-container {
+    display: flex;
+    align-items: center;
+}
+
+.cert-text {
+    font-size: medium;
+    margin: 0 calc(var(--space-xsmall)/4);
+}
+
 .edit-button {
     --sds-c-icon-color-foreground-default: var(--color-accent);
     --sds-c-icon-color-background: none;
-    /* margin-right: var(--space-small); */
+}
+
+.menu-button {
+    --sds-c-icon-color-foreground-default: var(--color-accent);
+    --sds-c-button-color-foreground-default: var(--color-accent);
+    --sds-c-button-color-background: var(--color-primary)
 }
 
 .edit-modal {

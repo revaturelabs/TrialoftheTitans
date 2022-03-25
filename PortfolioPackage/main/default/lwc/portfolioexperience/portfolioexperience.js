@@ -1,6 +1,6 @@
 /************************************************************
  * Done by: Mohammed Azad
- * Contains functionality to deal with the education
+ * Creates functionality to deal with the experience 
  * component
  * Date: March 24 2022
  ************************************************************/
@@ -8,52 +8,42 @@
 import { LightningElement, track, wire, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
-import EDUCATION_OBJECT from '@salesforce/schema/Education__c';
-import USER_FIELD from '@salesforce/schema/Education__c.User__c';
-import EDUCATION_FIELD from '@salesforce/schema/Education__c.Name';
-import GPA_FIELD from '@salesforce/schema/Education__c.Gpa__c';
-import MAJOR_FIELD from '@salesforce/schema/Education__c.Major__c';
-import DATE_GRADUATED from '@salesforce/schema/Education__c.DateGraduate__c';
-import DEGREE_FIELD from '@salesforce/schema/Education__c.Degree__c';
+import EXPERIENCE_OBJECT from '@salesforce/schema/Experience__c';
+import COMPANY_FIELD from '@salesforce/schema/Experience__c.Company__c';
+import POSITION_FIELD from '@salesforce/schema/Experience__c.Position__c';
+import START_DATE_FIELD from '@salesforce/schema/Experience__c.Start_Date__c';
+import END_DATE_FIELD from '@salesforce/schema/Experience__c.End_Date__c';
 
 import {refreshApex} from '@salesforce/apex';
 import { deleteRecord } from 'lightning/uiRecordApi';
 
-//APEX CLASS
-import RETURN_EDUCATION from '@salesforce/apex/GetEducationInformation.returnEducationList';
-
-//import HATICON from '@salesforce/resourceUrl/hat';
-//import EDITICON from '@salesforce/resourceUrl/editicon';
-export default class Portfolioeducation extends LightningElement 
+import RETURN_EXPERIENCE from '@salesforce/apex/GetExperienceInformation.returnExperienceList';
+export default class Portfolioexperience extends LightningElement
 {
-/*
-    hatty = HATICON;
-    editiconimplementation = EDITICON;
-*/    
     @api recordId;
     @api objectApiName;
-    @track modalChecker = false;
-    educationObject = EDUCATION_OBJECT;
-    userField = USER_FIELD;
-    educationField = EDUCATION_FIELD;
-    majorField = MAJOR_FIELD;
-    degreeField = DEGREE_FIELD;
-    gpaField = GPA_FIELD;
-    dateGraduatedField = DATE_GRADUATED;
 
-    @track education;
+    @track modalChecker = false;
+
+    experienceObject = EXPERIENCE_OBJECT;
+    companyField = COMPANY_FIELD;
+    positionField = POSITION_FIELD;
+    startDateField = START_DATE_FIELD;
+    endDateField = END_DATE_FIELD;
+
+    @track experience;
     @track wireValue;
 
-    @wire(RETURN_EDUCATION)
-    educationList(value) {
+    @wire(RETURN_EXPERIENCE)
+    experienceList(value) 
+    {
         const {error, data} = value;
-        if(data) {this.education = data;}
-        else if(error) {console.log(error);}
-        console.log(this.education);
+        if(data) {this.experience = data;}
+        else if (error) {console.log(error);}
+        console.log(this.experience);
         this.wireValue = value;
-    }
-    
-    
+    };
+
     modalOpener() 
     {
         this.modalChecker = true;
@@ -69,7 +59,7 @@ export default class Portfolioeducation extends LightningElement
         this.dispatchEvent(closeenv);
         this.modalChecker = false;
     }
-
+    
     handleSuccess() 
     {
         const env = new ShowToastEvent({
@@ -83,12 +73,11 @@ export default class Portfolioeducation extends LightningElement
         this.modalChecker = false;
     }
 
-
-
-    handleDelete(event) {
-        let eduId = event.currentTarget.dataset.eduvalue;
-        console.log(eduId);
-        deleteRecord(eduId)
+    handleDelete(event)
+     {
+        let expId = event.currentTarget.dataset.expvalue;
+        console.log(expId);
+        deleteRecord(expId)
             .then(() => {
                 this.dispatchEvent(
                 new ShowToastEvent({
@@ -111,6 +100,5 @@ export default class Portfolioeducation extends LightningElement
             });
 
     }
-
 
 }

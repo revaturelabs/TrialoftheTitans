@@ -14,6 +14,8 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
 
     // Conditional rendering
     isEditing = false;
+    isShowingCertList = false;
+    isCertListEmpty = true;
 
     // record-edit-form
     objectApiName = 'User';
@@ -49,8 +51,13 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
             
             this.recordId       = data.Id;
             this.heroName       = data.Name;
-            // this.heroTitle      = data.Title;
             this.profileImgSrc  = data.FullPhotoUrl;
+
+            if (data.Title) {
+                this.heroTitle  = data.Title;
+            } else {
+                this.heroTitle  = 'Hero-in-Training';
+            }
         } else if (error) {
             this.error = error;
             console.log(error);
@@ -75,7 +82,8 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
         if (data) {
             console.log(data);
             this.certList = data;
-        } else if (error) {
+            this.isCertListEmpty = this.certList.length > 0;
+        } else {
             console.error(error);
         }
     }
@@ -84,14 +92,20 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
     handleEditName() {
         this.toggleModalView();
     }
+
+    // Conditional rendering for cert list
+    toggleCertList() {
+        this.isShowingCertList = !this.isShowingCertList;
+    }
     
+    // When submit button is clicked on lightning-record-edit-form
     handleSubmit() {
         this.toggleModalView();
         refreshApex(this.wireResponse);
     }
     
+    // Show/hide modal with edit form
     toggleModalView() {
-        // Toggle isEditing
         this.isEditing = !this.isEditing;
     }
 }

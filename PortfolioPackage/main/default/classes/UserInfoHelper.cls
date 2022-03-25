@@ -4,7 +4,7 @@
  * sean.whitley@revature.net
  */
 
-public with sharing class UserInfoHelper {
+public without sharing class UserInfoHelper {
 
     // Relevant relationships:
     //  Certifications__r	
@@ -20,7 +20,14 @@ public with sharing class UserInfoHelper {
      */
     @AuraEnabled(cacheable=true)
     public static User getBasicUserInfo() {
-        return [SELECT Id,Name,FullPhotoUrl FROM User LIMIT 1][0];
+        Id uid = UserInfo.getUserId();
+
+        return [
+            SELECT Id,Name,FullPhotoUrl 
+            FROM User 
+            WHERE Id =: uid
+            LIMIT 1
+        ][0];
     }
 
     @AuraEnabled(cacheable=true)
@@ -34,13 +41,12 @@ public with sharing class UserInfoHelper {
         //      Image_URL__c
         //      User__c  (User.Id)
 
-        String uid = UserInfo.getUserId();
+        Id uid = UserInfo.getUserId();
 
-        // Danger: this is VERY incomplete
         return [
-            SELECT Image_URL__c,Certification_Exam__r.Name,Date_Issued__c 
-            FROM Certification__c 
-            WHERE User__c = :uid
+            SELECT Id,Image_URL__c,Certification_Exam__r.Name,Date_Issued__c,List_Label__c 
+            FROM Certification__c
+            WHERE User__c =: uid
         ];
     }
 }

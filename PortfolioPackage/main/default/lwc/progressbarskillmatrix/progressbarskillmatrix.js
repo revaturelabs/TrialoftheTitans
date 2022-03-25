@@ -1,35 +1,46 @@
 import { LightningElement, track, api } from 'lwc';
+import setProgress from '@salesforce/apex/TestDataClass.setProgress';
 
-class ProgressBar extends LightningElement {
+export default class Progressbarskillmatrix extends LightningElement {
+
+@track isProgressModalOpen = false;
+
+////////////////////////Mountain's code//////////////////////////////
 
 @track i = 0;
 id = 0;
 @api
 width = 0;
-@api
-endwidth = 100;   
-stoploop = 0;
+@api endwidth = 100;   //null value will be replaced with default value from database
+count = 0;
+@api progressid;
+@api skillprogress;
+@api skillid;
 
 
 //function animates growth to value input by user
 move() {
     console.log('move called');
-    console.log(this.endwidth);
+    console.log(this.endwidth, "endwidth");
     if (this.i === 0) {
       this.i = 1;
       let elem = this.template.querySelector('.myBar');
+      //console.log(this.template.querySelector("." + this.valueId).innerHTML);
       let elemInnerSpan = this.template.querySelector('.score-percentage');
-      console.log(elem);
+       console.log(elem, "elem");
+    //   console.log(this.valueId);
+    //   console.log(this.progressId);
+       console.log(elemInnerSpan.innerHTML, "innerspan");
         this.id = setInterval(() => {
-            if (this.width >= this.endwidth || this.stoploop >=101) {
+            if (this.width >= this.endwidth) {
                 clearInterval(this.id);
-                console.log(this.id)
+                console.log(this.id, "id");
                 this.i = 0;
                 this.width = 0;
                 console.log('cleared');
             } else {
                 this.width++;
-                this.stoploop++;
+                console.log("updates the progress")
                 elem.style.width = this.width + '%';
                 elemInnerSpan.innerHTML = this.width;
 
@@ -40,12 +51,18 @@ move() {
     
 }
 
-
 renderedCallback() {
-    console.log('connectedCallback called');
-    this.move();
+    if(this.isProgressModalOpen == true && this.width >= this.endwidth){
+        console.log('Dont move bar.');
+    }
+    else{
+        this.move();
+    }
+    
 }
+
 updateScore() {
+    
     let inputValue = this.template.querySelector('.scoreInput').value 
     let validationMessage = this.validateScore(inputValue);
     switch (validationMessage) {
@@ -62,7 +79,15 @@ updateScore() {
         case "Valid Score":
             this.template.querySelector('.scoreInput').classList.remove('error');
             this.endwidth = inputValue;
+            /////Gabe's method//////
+            setProgress({autoNumber: this.progressid, progress: inputValue});
+            /////Gabe's method//////
+            console.log(inputValue);
+            //console.log(this.template.querySelector('.' + this.progressid).className, '********');
+            // this.count++;
             this.move();
+            //this.isProgressModalOpen = false;
+            //refreshApex(this.wireRes);
             break;
         default:
             break;
@@ -87,8 +112,16 @@ validateScore(inputValue){
     return "Valid Score";
 }
 
+////////////////////////Mountain's code//////////////////////////////////
+
+
+editProgress(){
+    this.isProgressModalOpen = true;
+}
+
+closeProgressModal(){
+    this.isProgressModalOpen = false;
+}
 
 }
 
-
-export default ProgressBar;
