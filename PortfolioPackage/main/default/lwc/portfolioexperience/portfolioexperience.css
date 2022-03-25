@@ -75,6 +75,7 @@ li.editor {
 .infoholder {
     /* border: 1px solid aqua; */
     text-align: end;
+    margin-top: 2.0vh;
 }
 p.companyName{ 
    /* border: 1px solid navy; */
@@ -83,7 +84,7 @@ p.companyName{
     margin-right:31%;
 }
 p.start {
-    margin-top: 3vh;
+    margin-top: 2vh;
     /* border: 1px solid navy; */
     font-size: 19px;
     font-weight: bold;
@@ -106,4 +107,20 @@ p.major {
 }
 p.degreetype {
     text-align:left;
+}
+.secondContainer { 
+    display: flex;
+}
+.item { 
+    flex: 1;
+    margin-top: 1.5vh;
+}
+.itemdeleter { 
+    flex: 1;
+    margin-top: 3.5vh;
+    margin-right: 15px;
+}
+.deleter { 
+    cursor: pointer;
+    margin-right: 20px;
 }

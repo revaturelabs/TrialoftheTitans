@@ -15,6 +15,7 @@ import START_DATE_FIELD from '@salesforce/schema/Experience__c.Start_Date__c';
 import END_DATE_FIELD from '@salesforce/schema/Experience__c.End_Date__c';
 
 import {refreshApex} from '@salesforce/apex';
+import { deleteRecord } from 'lightning/uiRecordApi';
 
 import RETURN_EXPERIENCE from '@salesforce/apex/GetExperienceInformation.returnExperienceList';
 export default class Portfolioexperience extends LightningElement
@@ -51,7 +52,7 @@ export default class Portfolioexperience extends LightningElement
     {
         const closeenv = new ShowToastEvent({
             title: "Canceled",
-            message: "You canceled inputting information.",
+            message: "You cancelled inputting information.",
             variant: "error"
         });
 
@@ -70,6 +71,34 @@ export default class Portfolioexperience extends LightningElement
         this.dispatchEvent(env);
         refreshApex(this.wireValue);
         this.modalChecker = false;
+    }
+
+    handleDelete(event)
+     {
+        let expId = event.currentTarget.dataset.expvalue;
+        console.log(expId);
+        deleteRecord(expId)
+            .then(() => {
+                this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Entry Has Been Deleted',
+                    variant: 'success'
+                })
+                
+            )
+            refreshApex(this.wireValue);
+            })
+            .catch(error => {
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Error While Deleting Record',
+                        message: error.message,
+                        variant: 'error',
+                    }),
+                );
+            });
+
     }
 
 }
