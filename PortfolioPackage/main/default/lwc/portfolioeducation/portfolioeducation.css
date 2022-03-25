@@ -26,9 +26,6 @@ ul {
     padding: 0;
     overflow: hidden;
 }
-li.secondone{
-    display: block;
-}
 li.logo {
     display: block;
     float: left;
@@ -98,7 +95,7 @@ p.degree{
     font-weight: bold;
     margin-right:31%;
 }
-p.time {;
+p.time {
     /* border: 1px solid navy; */
     font-size: 19px;
     font-weight: bold;
