@@ -1,3 +1,9 @@
+/*  
+    Created by Sean Whitley 3/16/22
+    cookie-crisp#3847 (Discord)
+    sean.whitley@revature.net
+*/
+
 @import "c/styleResource";
 
 .content-container {
@@ -12,7 +18,7 @@
 .image-container {
     width: var(--photo-small);
     height: var(--photo-small);
-    margin: 0 0 0 var(--space-small);
+    margin: 0 0 0 var(--space-xsmall);
 }
 
 img {
@@ -24,19 +30,39 @@ img {
     flex-direction: column;
     justify-content: end;
     align-items: flex-end;
-    padding-bottom: var(--space-small);
+    padding-bottom: var(--space-xsmall);
 }
 
 .hero-name {
     display: flex;
     align-items: baseline;
-    font-size: xx-large;
+    font-size: var(--font-size-heading);
+}
+
+.hero-title {
+    font-size: var(--font-size-subheading);
+    padding-bottom: calc(var(--space-xsmall)/4);
+}
+
+.cert-container {
+    display: flex;
+    align-items: center;
+}
+
+.cert-text {
+    font-size: var(--font-size-subheading);
+    margin: 0 calc(var(--space-xsmall)/4);
 }
 
 .edit-button {
     --sds-c-icon-color-foreground-default: var(--color-accent);
     --sds-c-icon-color-background: none;
-    /* margin-right: var(--space-small); */
+}
+
+.menu-button {
+    --sds-c-icon-color-foreground-default: var(--color-accent);
+    --sds-c-button-color-foreground-default: var(--color-accent);
+    --sds-c-button-color-background: var(--color-primary)
 }
 
 .edit-modal {
