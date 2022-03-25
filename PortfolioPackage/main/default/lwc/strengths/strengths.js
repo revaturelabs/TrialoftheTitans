@@ -13,7 +13,7 @@ export default class Strengths extends LightningElement {
     skillName = SkillName;
     skillScore = SkillScore;
     @track
-    localStrengthsObj={};
+    localStrengthsArrayOfObjs=[];
     
 
 
@@ -49,7 +49,7 @@ export default class Strengths extends LightningElement {
                 id: this.strengths[i].Id
             });
         }
-        this.localStrengthsObj = localStrengthsArrayOfObjects;
+        this.localStrengthsArrayOfObjs = localStrengthsArrayOfObjects;
     }
 
 
@@ -70,8 +70,8 @@ export default class Strengths extends LightningElement {
 
     handleUpdateSkillLevel(event) {
         // this.createLocalStrengthsArrayOfObjects();
-        console.log(this.localStrengthsObj);
-        console.log(this.localStrengthsObj[0].score);
+        console.log(this.localStrengthsArrayOfObjs);
+        console.log(this.localStrengthsArrayOfObjs[0].score);
         console.log('handleUpdateSkillLevel');
 
         let newSkillId = event.currentTarget.dataset.skillid;
@@ -87,15 +87,15 @@ export default class Strengths extends LightningElement {
         progressbarTarget.endwidth = parseInt(newSkillInputValue);
         console.log(progressbarTarget.endwidth, 'progressbarTarget.endwidth');
 
-        for (let i = 0; i < this.localStrengthsObj.length; i++) {
-            if (this.localStrengthsObj[i].id === newSkillId) {
+        for (let i = 0; i < this.localStrengthsArrayOfObjs.length; i++) {
+            if (this.localStrengthsArrayOfObjs[i].id === newSkillId) {
                 console.log('found it');
-                this.localStrengthsObj[i].score = newSkillInputValue;
+                this.localStrengthsArrayOfObjs[i].score = newSkillInputValue;
             }
         } 
         
-        console.log(this.localStrengthsObj, 'this.localStrengthsObj');
-        console.log(this.localStrengthsObj[0], 'this.localStrengthsObj[0]');
+        console.log(this.localStrengthsArrayOfObjs, 'this.localStrengthsArrayOfObjs');
+        console.log(this.localStrengthsArrayOfObjs[0], 'this.localStrengthsArrayOfObjs[0]');
         console.log(this.strengths, 'this.strengths');
 
     }
