@@ -1,0 +1,51 @@
+<template>
+    <div class="myProgress">
+        <div class="myBar"><span class="score-percentage">{skillprogress}                           
+        </span></div>
+        <div>
+                <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Edit Progress" onclick={editProgress} value={skillid}>
+                    <lightning-icon icon-name="utility:rating"
+                         alternative-text="progress"
+                         variant="inverse"
+                         size="x-small" 
+                         class="progressicon"
+                         ></lightning-icon>
+                         <span class="slds-assistive-text">Edit Progress</span>
+                 </button>
+            </div>
+        <!--encap in p tag and adjust padding on percentage--> 
+      </div>
+
+
+      <template if:true={isProgressModalOpen}>
+        <section aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container ">
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_small">Edit Your Progress</h2>
+                    <lightning-icon class="slds-modal__close" icon-name="utility:close" size="small" onclick={closeProgressModal}></lightning-icon>
+                </header>
+                <!-- <div class="slds-modal__content">
+                    <div class="slds-p-around_small">
+                    </div>
+                </div> -->
+                <div class="slds-box slds-theme_default slds-var-p-around_medium">
+                    <div class="slds-modal__content slds-align_absolute-center">
+                        <!-- Mountain's code -->
+                    <label for="progress">Enter Your Progress With This Skill: </label>
+                    <br>
+                    <br>
+                    <input type="text" name="progress" class="scoreInput">
+                </div>
+                    
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="brand" class="slds-p-around_x-small" label="Update Progress" onclick={updateScore}></lightning-button> 
+                </footer>
+                         <!-- Mountain's code -->
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+</template>
