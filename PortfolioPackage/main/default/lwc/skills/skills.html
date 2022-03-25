@@ -78,10 +78,10 @@ is used in apex controller to return each skill from each category to display.
                         <template for:each={titan.Custom_Skills__r} for:item="skill">
                             <ul key={skill.Id}>
 
-                                <li key={skill.Id} style="font-size: 1.4em;"><b>{skill.Skill_Number__c}: </b> {skill.Name}  
-                                    <div class="progressBar">
+                                <li key={skill.Id} ><b>{skill.Skill_Number__c}: </b>{skill.Name}  
+                                    <div class="progressBar slds-float_right" style="margin-right: 35px;">
                                         <br>
-                                        <div class="myProgress" style="margin-top: 3px;" id={skill.Progress__c} title={skill.Skill_Number__c}>
+                                        <div class="myProgress slds-float_right" style="margin-top: 3px;" id={skill.Progress__c} title={skill.Skill_Number__c}>
                                             <!-- <div class={skill.Skill_Number__c}
                                             style="width:0%;
                                             background-color: #00E2D5;
