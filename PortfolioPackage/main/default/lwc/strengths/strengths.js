@@ -49,12 +49,13 @@ export default class Strengths extends LightningElement {
                 id: this.strengths[i].Id
             });
         }
-        this.localStrenghtsObj = localStrengthsArrayOfObjects;
+        this.localStrengthsObj = localStrengthsArrayOfObjects;
     }
 
 
-    connectedCallback() {
+    renderedCallback() {
         this.createLocalStrengthsArrayOfObjects();
+        console.log('renderedCallback', '********');
     }
 
     //create a method
@@ -70,7 +71,7 @@ export default class Strengths extends LightningElement {
     handleUpdateSkillLevel(event) {
         // this.createLocalStrengthsArrayOfObjects();
         console.log(this.localStrengthsObj);
-        console.log(this.localStrenghtsObj[0].score);
+        console.log(this.localStrengthsObj[0].score);
         console.log('handleUpdateSkillLevel');
 
         let newSkillId = event.currentTarget.dataset.skillid;
@@ -85,10 +86,6 @@ export default class Strengths extends LightningElement {
             // console.log('newSkillLevel', newSkillLevel);
         progressbarTarget.endwidth = parseInt(newSkillInputValue);
         console.log(progressbarTarget.endwidth, 'progressbarTarget.endwidth');
-        let localStrenghtsObj = this.createLocalStrengthsArrayOfObjects();
-        console.log(localStrenghtsObj, 'localStrenghtsObj', typeof localStrenghtsObj);
-        console.log(typeof(this.strengths))
-        console.log(this.strengths[0], 'this.strengths', typeof(this.strengths[0]));  
 
         for (let i = 0; i < this.localStrengthsObj.length; i++) {
             if (this.localStrengthsObj[i].id === newSkillId) {
