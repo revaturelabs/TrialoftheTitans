@@ -36,15 +36,9 @@ export default class Strengths extends LightningElement {
     
     showEditStrengthsBoolean = false;
 
+   
 
-    // createLocalStrengthsObj() {
-    //     let localStrengthsObj = {};
-    //     for (let i = 0; i < this.strengths.length; i++) {
-    //         localStrengthsObj[this.strengths[i].Name] = this.strengths[i].Skill_Equivalency__c;
-    //     }
-    //     return localStrengthsObj;
 
-    // }
 
     createLocalStrengthsArrayOfObjects() {
         let localStrengthsArrayOfObjects = [];
@@ -59,6 +53,10 @@ export default class Strengths extends LightningElement {
     }
 
 
+    connectedCallback() {
+        this.createLocalStrengthsArrayOfObjects();
+    }
+
     //create a method
     showEditStrengthsForm() {
         console.log('showEditStrengthsForm');
@@ -70,7 +68,9 @@ export default class Strengths extends LightningElement {
     }
 
     handleUpdateSkillLevel(event) {
-        this.createLocalStrengthsArrayOfObjects();
+        // this.createLocalStrengthsArrayOfObjects();
+        console.log(this.localStrengthsObj);
+        console.log(this.localStrenghtsObj[0].score);
         console.log('handleUpdateSkillLevel');
 
         let newSkillId = event.currentTarget.dataset.skillid;
