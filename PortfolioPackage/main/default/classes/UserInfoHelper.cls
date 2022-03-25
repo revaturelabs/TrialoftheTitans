@@ -44,7 +44,7 @@ public without sharing class UserInfoHelper {
         Id uid = UserInfo.getUserId();
 
         return [
-            SELECT Id,Image_URL__c,Certification_Exam__r.Name,Date_Issued__c 
+            SELECT Id,Image_URL__c,Certification_Exam__r.Name,Date_Issued__c,List_Label__c 
             FROM Certification__c
             WHERE User__c =: uid
         ];
