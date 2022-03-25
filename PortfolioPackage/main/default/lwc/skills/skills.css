@@ -136,10 +136,13 @@
    /* font-weight: 500; */
    font-size: 1.5em;
   
-   
 }
 
 .display{
     display: block;
+}
+
+.scoreInput{
+    width: 30px;
 }
 

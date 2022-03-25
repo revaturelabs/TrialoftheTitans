@@ -1,11 +1,15 @@
-<!--Mohammed Azad-->
+<!--
+    Mohammed Azad
+    Markup for the portfolio education
+    Date: March 24 2022
+-->
 <template>
     <div class="container">
         <div class="title">
             <ul>
-                <li class="logo"><img src={hatty} /></li>
+                <li class="logo"><lightning-icon icon-name='standard:education' alternative-text='education' size='medium' title='education'></lightning-icon></li>
                 <li class="left"><p>Education</p></li>
-                <li class="editor"><img src={editiconimplementation} onclick={modalOpener} /></li>
+                <li class="editor"><lightning-icon icon-name='utility:prompt_edit' alternative-text='prompt_edit' size='medium' title='prompt_edit' onclick={modalOpener}></lightning-icon></li>
             </ul>
         </div>
         <template if:true={modalChecker}>
@@ -16,7 +20,20 @@
                         <lightning-icon class="slds-modal__close" icon-name="utility-close" size="small" onclick={modalCloser}></lightning-icon>
                     </header>
                     <div class="slds-box slds-theme_default slds-var-p-around_medium">
-                        <h1> PLACEHOLDER INFORMATION FOR THE FORM </h1>
+                        <lightning-record-edit-form
+                        object-api-name={educationObject}
+                        onsuccess={handleSuccess}>
+                        <lightning-output-field field-name={userField}> </lightning-output-field>
+                        <lightning-input-field field-name={educationField}> </lightning-input-field>
+                        <lightning-input-field field-name={majorField}> </lightning-input-field>
+                        <lightning-input-field field-name={degreeField}> </lightning-input-field>
+                        <lightning-input-field field-name={gpaField}> </lightning-input-field>
+                        <lightning-input-field field-name={dateGraduatedField}> </lightning-input-field>
+                        <div class="slds-var-m-top_medium">
+                            <lightning-button variant="brand" type="submit" label="Save">
+                            </lightning-button>
+                        </div>
+                    </lightning-record-edit-form>
                     </div>
                     <footer class="slds-modal__footer">
                         <lightning-button variant="Destructive" label="Cancel" onclick={modalCloser} class="slds-p-around_x-small"></lightning-button>
@@ -25,9 +42,23 @@
             </section>
         </template>
         <div class="information">
-            <div><c-portfolioeducationcompartment></c-portfolioeducationcompartment></div>
-            <div><c-portfolioeducationcompartment></c-portfolioeducationcompartment></div>
-            <div><c-portfolioeducationcompartment></c-portfolioeducationcompartment></div>
+            <template if:true={education}>
+                <template for:each={education} for:item="edu" class="secondInformation">
+                    <div key={edu.Id} class="first">
+                        <div class="info">
+                            <div class="infoholder">
+                                <lightning-icon icon-name='standard:approval' alternative-text='approval' size='small' title='approval' class="carbon"></lightning-icon>
+                                <!-- <img class="carbon" src={carboneducation} /> -->
+                                <p class="degree">{edu.Degree__c}</p>
+                                <p class="institution">{edu.Name}</p>
+                            </div>
+                        </div>
+                        <div class="dataholder">
+                            <p class="time">{edu.DateGraduate__c}</p>
+                        </div>
+                    </div>
+                </template>
+            </template>
         </div>
     </div>
-</template> 
+</template>

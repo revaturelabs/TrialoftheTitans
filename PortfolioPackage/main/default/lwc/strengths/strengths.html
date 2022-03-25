@@ -16,50 +16,21 @@
                  
                 </div>
             </div>
-            <div class="strengths-content-row">
-                <div class="skill-name">
-                    skill 1
+            <template for:each={strengths} for:item="skill">
+                <div key={skill.Id} class="strengths-content-row">
+                    <div class="skill-name">
+                         {skill.Name}
+                    </div>
+                    <div class="skill-level">
+                     <c-progressbar endwidth={skill.Skill_Equivalency__c}></c-progressbar>
+                    </div>
                 </div>
-                <div class="skill-level">
-                 <my-progressbar></my-progressbar>
-                </div>
-            </div>
-            <div class="strengths-content-row">
-                <div class="skill-name">
-                    skill 2
-                </div>
-                <div class="skill-level">
-                 <my-progressbar></my-progressbar>
-                </div>
-            </div>
-            <div class="strengths-content-row">
-                <div class="skill-name">
-                    skill 3
-                </div>
-                <div class="skill-level">
-                 <my-progressbar></my-progressbar>
-                </div>
-            </div>
-            <div class="strengths-content-row">
-                <div class="skill-name">
-                    skill 4
-                </div>
-                <div class="skill-level">
-                 <my-progressbar></my-progressbar>
-                </div>
-            </div>
-            <div class="strengths-content-row">
-                <div class="skill-name">
-                    skill 5
-                </div>
-                <div class="skill-level">
-                 <my-progressbar></my-progressbar>
-                </div>
-            </div>
+
+            </template>
         </div>
     </template>
 
-    <template class="showEditStrengthsForm" if:true={showEditStrengthsBoolean}>
+    <!-- <template class="showEditStrengthsForm" if:true={showEditStrengthsBoolean}>
         <lightning-record-edit-form>
             <lightning-record-edit-form-section>
                 <lightning-record-edit-form-section-header>
@@ -67,7 +38,7 @@
                         skill 1
                     </div>
                     <div class="skill-level">
-                        <my-progressbar></my-progressbar>
+                        <c-progressbar></c-progressbar>
                     </div>
                 </lightning-record-edit-form-section-header>
                 <lightning-record-edit-form-section-body>
@@ -81,7 +52,7 @@
                         skill 2
                     </div>
                     <div class="skill-level">
-                        <my-progressbar></my-progressbar>
+                        <c-progressbar></c-progressbar>
                     </div>
                 </lightning-record-edit-form-section-header>
                 <lightning-record-edit-form-section-body>
@@ -95,7 +66,7 @@
                         skill 3
                     </div>
                     <div class="skill-level">
-                        <my-progressbar></my-progressbar>
+                        <c-progressbar></c-progressbar>
                     </div>
                 </lightning-record-edit-form-section-header>
                 <lightning-record-edit-form-section-body>
@@ -109,7 +80,7 @@
                         skill 4
                     </div>
                     <div class="skill-level">
-                        <my-progressbar></my-progressbar>
+                        <c-progressbar></c-progressbar>
                     </div>
                 </lightning-record-edit-form-section-header>
                 <lightning-record-edit-form-section-body>
@@ -123,7 +94,7 @@
                         skill 5
                     </div>
                     <div class="skill-level">
-                        <my-progressbar></my-progressbar>
+                        <c-progressbar></c-progressbar>
                     </div>
                 </lightning-record-edit-form-section-header>
                 <lightning-record-edit-form-section-body>
@@ -134,5 +105,5 @@
         </lightning-record-edit-form>
 
 
-    </template>
+    </template> -->
 </template>
