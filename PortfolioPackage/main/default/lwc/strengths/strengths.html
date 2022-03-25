@@ -51,12 +51,12 @@
             <template for:each={strengths} for:item="skill">
                 <div key={skill.Id} class="strengths-content-row">
                     <div class="skill-name">
-                        {skill.Name}
+                        {skill.Name} - Current Score: {skill.Skill_Equivalency__c}
                     </div>
                     <div class="skill-level">
-                        <c-progressbar data-skillid={skill.Id} endwidth={skill.Skill_Equivalency__c}></c-progressbar>
+                        <!-- <c-progressbar data-skillid={skill.Id} endwidth={skill.Skill_Equivalency__c}></c-progressbar> -->
                         <input type="text"  data-skillid={skill.Id} class="skill-level-input">
-                        <button class="update-skill-level-button" data-skilllevel={skill.Skill_Equivalency__c} data-skillid={skill.Id} onclick={handleUpdateSkillLevel}>Update</button>
+                        <button class="update-skill-level-button" data-skilllevel={skill.Skill_Equivalency__c} data-skillid={skill.Id} onclick={handleUpdateSkillLevel}>Update Score</button>
                     </div>
                 </div>
 

@@ -30,6 +30,7 @@
   
   .header-icon-container{
      height:50px;
+  
   }
   
   .header-icon-upper-left{
@@ -58,9 +59,9 @@
       width: 80%;
   }
   .skill-name{
-    min-width: 20%;
-    font-size: 1.5em;
-    white-space: word-break;
+      min-width: 20%;
+      font-size: 1.5em;
+      white-space: word-break;
   }
   
   
