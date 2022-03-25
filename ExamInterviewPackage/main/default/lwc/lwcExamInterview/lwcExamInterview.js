@@ -137,8 +137,8 @@ export default class LwcExamInterview extends LightningElement {
         exam name, titan name, default timer
     */
     if (data) {
-      console.log("Logging data");
-      console.log(data);
+      // console.log("Logging data");
+      // console.log(data);
 
       // data's exam questions
       this.numberOfQuestions = Object.keys(data[0]).length;
@@ -161,7 +161,7 @@ export default class LwcExamInterview extends LightningElement {
       this.examName = undefined;
       this.titan = undefined;
       this.examTimeLimit = undefined;
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -175,14 +175,14 @@ export default class LwcExamInterview extends LightningElement {
       this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       questionComponent.question = this.currentQuestion;
       flagComponent.recordId = this.currentQuestion.Id;
-      console.log('All questions');
-      console.log(this.examQuestions);
-      console.log('Printing current question');
-      console.log(this.currentQuestion);
-      console.log('Printing answer');
-      console.log(this.examAnswers[`${this.questionNumber}`]);
-      console.log('Printing question state');
-      console.log(this.examQuestionsState);
+      // console.log('All questions');
+      // console.log(this.examQuestions);
+      // console.log('Printing current question');
+      // console.log(this.currentQuestion);
+      // console.log('Printing answer');
+      // console.log(this.examAnswers[`${this.questionNumber}`]);
+      // console.log('Printing question state');
+      // console.log(this.examQuestionsState);
       questionComponent.handleSetAnswer(this.examAnswers[`${this.questionNumber}`]);
     }
   }
@@ -205,8 +205,8 @@ export default class LwcExamInterview extends LightningElement {
   shuffleQuestions(questionData) {
     let shuffled = Array(this.numberOfQuestions);
     let order = this.shuffleQuestionOrder(this.numberOfQuestions);
-    console.log('Random question order');
-    console.log(order);
+    // console.log('Random question order');
+    // console.log(order);
     for(let k = 0; k < this.numberOfQuestions; k++) {
       shuffled[k] = questionData[order[k]];
     }
@@ -230,9 +230,9 @@ export default class LwcExamInterview extends LightningElement {
   }
 
   setCurrentQuestionAnsweredState() {
-    console.log('Current question state');
-    console.log(this.questionNumber);
-    console.log(this.examAnswers[`${this.questionNumber}`]);
+    // console.log('Current question state');
+    // console.log(this.questionNumber);
+    // console.log(this.examAnswers[`${this.questionNumber}`]);
     // The actual state tracker component handles hybrid states (answered and marked for review) and displaying them correctly
     if (this.examAnswers[`${this.questionNumber}`]) {
       this.examQuestionsState[this.questionNumber - 1].answered = true;
@@ -269,7 +269,7 @@ export default class LwcExamInterview extends LightningElement {
   setExamAnswerToAnswerProvided() {
     this.examAnswers[`${this.questionNumber}`] = this.answer;
     this.setCurrentQuestionAnsweredState();
-    console.log(this.examAnswers[`${this.questionNumber}`]);
+    // console.log(this.examAnswers[`${this.questionNumber}`]);
   }
 
   setCurrentAnswerToPreviouslyAnswered() {
@@ -294,7 +294,7 @@ export default class LwcExamInterview extends LightningElement {
     if (this.questionNumber < this.numberOfQuestions) {
       this.gotoQuestionNumber(this.questionNumber + 1);
     }else{
-      console.log('Last Question Next Button');
+      // console.log('Last Question Next Button');
     }
   }
 
@@ -351,8 +351,8 @@ export default class LwcExamInterview extends LightningElement {
         this.toastMessage = "Exam submitted successfully.";
         this.toastTitle = "Success!";
         this.toastVariant = "success";
-        console.log(this.toastMessage);
-        console.log(result);
+        // console.log(this.toastMessage);
+        // console.log(result);
         this.examResult = result;
         this.defaultPassingGrade = result.Exam__r.Default_Passing_Grade__c;
         this.error = undefined;
@@ -362,8 +362,8 @@ export default class LwcExamInterview extends LightningElement {
         this.toastMessage = "Error occured submitting exam " + error;
         this.toastTitle = "Oops! Error occured";
         this.toastVariant = "error";
-        console.log(this.toastMessage);
-        console.log(error);
+        // console.log(this.toastMessage);
+        // console.log(error);
         this.error = error;
       })
       .finally(() => {
@@ -407,8 +407,8 @@ export default class LwcExamInterview extends LightningElement {
         this.toastMessage = "Error occured submitting exam answers" + error.message;
         this.toastTitle = "Oops! Error occured";
         this.toastVariant = "error";
-        console.log(this.toastMessage);
-        console.error(error.message);
+        // console.log(this.toastMessage);
+        console.error(error);
         console.error("e.name => " + error.name);
         console.error("e.message => " + error.message);
         console.error("e.stack => " + error.stack);

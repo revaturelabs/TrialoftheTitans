@@ -8,14 +8,16 @@
         <span class="slds-assistive-text">Cancel and close</span>
         </button>
         <div class="slds-modal__header">
-        <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Modal header</h1>
+        <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Your Results!</h1>
         </div>
         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
         <p>You <strong> {passOrFail}</strong></p>
+        <p>You scored {counter}&#47;{totalNumQuestions}.</p>
+        <p>Your grade is <strong>{calcScore}%.</strong></p>
         </div>
         <div class="slds-modal__footer">
-        <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={closeModalTwo}>Cancel</button>
-        <button class="slds-button slds-button_brand">Save</button>
+        <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={closeModalTwo}>Close</button>
+        <!-- <button class="slds-button slds-button_brand">Save</button> -->
         </div>
         </div>
         </section>

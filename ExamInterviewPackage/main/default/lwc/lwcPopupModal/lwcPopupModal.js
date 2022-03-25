@@ -49,15 +49,15 @@ export default class LwcPopupModal extends LightningElement {
         this.defaultPassingGrade = inDpg;
         
 
-        console.log("popUp Modal set questionAnswer");
+        // console.log("popUp Modal set questionAnswer");
 
         //displaying the test values
         for(const question of this.questionList){
-            console.log(question);
-            console.log(question.Correct_Answer_s__c);
+            // console.log(question);
+            // console.log(question.Correct_Answer_s__c);
         }
         for(const question of this.answerList){
-            console.log(question);
+            // console.log(question);
         }             
         for(let i=0; i < this.questionList.length; i++){
             if(this.questionList[i] && this.answerList[i+1]){ 
@@ -66,25 +66,25 @@ export default class LwcPopupModal extends LightningElement {
                 //console.log(this.questionList[i].Correct_Answer_s__c.substring(0,1) === this.answerList[i+1].substring(0,1));
                 if(this.questionList[i].Correct_Answer_s__c.substring(0,1) === this.answerList[i+1].substring(0,1)){
                 this.counter++;
-                console.log(this.counter);
+                // console.log(this.counter);
             }   
         } 
         }
         this.result = (this.counter/this.questionList.length) * 100;
         this.result = Math.round((this.result + Number.EPSILON) * 100) / 100;
-        console.log(this.result);
+        // console.log(this.result);
 
         //checks to see if the calculated grade is greater than or equal to the passing grade override -iteration xi
         if(this.passingGradeOverride){ 
 
             if(this.result >= this.passingGradeOverride){
-                console.log("You Passed");
+                // console.log("You Passed");
                 this.calculatedGrade = this.result;
                 this.passOrFail='PASSED';
                 
             }
             else{
-                console.log("You Failed. Your Mom is Sad!");
+                // console.log("You Failed. Your Mom is Sad!");
                 this.passOrFail='FAILED';
                 
             }
@@ -93,13 +93,13 @@ export default class LwcPopupModal extends LightningElement {
         else if(this.defaultPassingGrade){
             if(this.result >= this.defaultPassingGrade){ 
 
-                console.log("You Passed with Flying Color");
+                // console.log("You Passed with Flying Color");
                 this.calculatedGrade = this.result;
                 this.passOrFail='PASSED';
                 
             } 
             else{
-                console.log("You Failed. Your Mom is VERY Sad!");
+                // console.log("You Failed. Your Mom is VERY Sad!");
                 this.passOrFail='FAILED';
             } 
 
@@ -109,13 +109,13 @@ export default class LwcPopupModal extends LightningElement {
         //if there is neither the defaultPassingGrade or passingGradeOverride, then compare the calculated score to 65 percent -iteration xi
         else{
             if(this.result >= 65){
-                console.log("You Passed with 65 or Above");
+                // console.log("You Passed with 65 or Above");
                 this.calculatedGrade = this.result;
                 this.passOrFail='PASSED';
                 
             }
             else{
-                console.log("You Failed. Your Mom is VERY VERY Sad!");
+                // console.log("You Failed. Your Mom is VERY VERY Sad!");
                 this.passOrFail='FAILED';
                 
             } 
@@ -148,6 +148,28 @@ export default class LwcPopupModal extends LightningElement {
       }
 
 
+      get totalCorrect(){
+          return this.counter;
+      }
 
+      get totalNumQuestions(){
+           if(this.questionList){
+            return Object.keys(this.questionList).length;
+           }
+          else{
+              return "Error";
+          }
+
+      }
+
+      get calcScore(){
+        //   console.log(this.result);
+          if(this.result || (this.result===0)){
+              return this.result;
+          }
+          else{
+              return "Error";
+          }
+      }
     
 }
