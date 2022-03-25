@@ -13,6 +13,7 @@
                     class="edit-button"
                     icon-name="utility:edit"
                     alternative-text="Edit"
+                    size="small"
                     onclick={handleEditName}
                 ></lightning-icon>
                 &nbsp;
@@ -35,13 +36,14 @@
                 <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
                         onclick={toggleModalView}
                 >
-                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
-                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-                    </svg>
-                    <span class="slds-assistive-text">Cancel and close</span>
+                    <lightning-icon
+                        class="close-modal-button"
+                        icon-name="utility:close"
+                        alternative-text="Cancel and close"
+                    ></lightning-icon>
                 </button>
                 <div class="slds-modal__header">
-                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Modal header</h1>
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Edit Your Name</h1>
                 </div>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                     <lightning-record-edit-form
@@ -54,10 +56,10 @@
                         </div>
                     </lightning-record-edit-form>
                 </div>
-                <div class="slds-modal__footer">
+                <!-- <div class="slds-modal__footer">
                     <button class="slds-button slds-button_neutral" aria-label="Cancel and close">Cancel</button>
                     <button class="slds-button slds-button_brand">Save</button>
-                </div>
+                </div> -->
             </div>
         </section>
         <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>

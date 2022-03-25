@@ -82,7 +82,7 @@ is used in apex controller to return each skill from each category to display.
                                         <br>
                                         <div class="myProgress" style="margin-top: 3px;">
                                             <div class={skill.Skill_Number__c}
-                                            style="display: none;
+                                            style="
                                             background-color: #00E2D5;
                                             border-radius: 10px;
                                             height: 30px;">
@@ -94,7 +94,7 @@ is used in apex controller to return each skill from each category to display.
                                     
                                           </div> 
                                           
-                                          <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Edit Progress" onclick={editProgress} value={skill.Id} name={skill.Skill_Number__c}>
+                                          <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Edit Progress" onclick={editProgress} value={skill.Id} name={skill.Skill_Number__c} id={skill.Progress__c}>
                                             <lightning-icon icon-name="utility:rating"
                                                  alternative-text="progress"
                                                  variant="inverse"
@@ -103,32 +103,38 @@ is used in apex controller to return each skill from each category to display.
                                                  value={skill.Id}></lightning-icon>
                                                  <span class="slds-assistive-text">Edit Progress</span>
                                          </button>
-                                    
+                                         <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Delete" onclick={handleDeleteSkill} value={skill.Id}>
+                                            <lightning-icon icon-name="utility:delete"
+                                                 alternative-text="delete"
+                                                 variant="inverse"
+                                                 size="x-small" 
+                                                 class="progressicon"
+                                                 value={skill.Id}></lightning-icon>
+                                                 <span class="slds-assistive-text">Delete</span>
+                                         </button>
                                     </div>
-                                
                                 </li>
-
-                                <!-- <li key={skill.Id}><b>Skill Number:</b> {skill.Skill_Number__c} </li> -->
                             </ul>
                         </template>
-
+                        <!-- skills and progress bar elements -->
                     
 
                         </div>
                     </template>
-                
+                    <!-- end for for loop through category data -->
                 <br>
                 <br>
                 <br>
                 
             </template>
-     
+            <!-- if:true category template -->
         <br>
         <br>
         <br>
    
     
-    </div>
+    </div> 
+    <!-- category container -->
     <br>
     <br>
     <br>
@@ -155,7 +161,7 @@ is used in apex controller to return each skill from each category to display.
                 <div class="slds-box slds-theme_default slds-var-p-around_medium">
                     <lightning-record-edit-form object-api-name={categoryObject} onsuccess={handleSuccess}>
                         <lightning-input-field field-name={categoryName}></lightning-input-field>
-                        <lightning-input-field field-name={categoryUser}></lightning-input-field>
+                        <!-- <lightning-input-field field-name={categoryUser}></lightning-input-field> -->
                         <!-- <lightning-input-field field-name={technology}></lightning-input-field> -->
                         <br>
                         <lightning-button variant="brand" type="submit" label="Add Category"></lightning-button>
@@ -170,10 +176,11 @@ is used in apex controller to return each skill from each category to display.
         <div class="slds-backdrop slds-backdrop_open"></div>
     </template>
 
+    <!-- This is where the category modal ends -->
 
 
 
-     <!-- This is where the skills modal begins -->
+    <!-- This is where the skills modal begins -->
 
      <template if:true={isSkillsModalOpen}>
         <section aria-modal="true" class="slds-modal slds-fade-in-open">
@@ -185,10 +192,10 @@ is used in apex controller to return each skill from each category to display.
                 <div class="slds-modal__content">
                 </div>
                 <div class="slds-box slds-theme_default slds-var-p-around_medium">
-                    <lightning-record-edit-form object-api-name={objectName} onsuccess={handleSuccess}>
+                    <lightning-record-edit-form object-api-name={objectName} onsuccess={handleSkillSuccess}>
                         <lightning-input-field field-name={nameField}></lightning-input-field>
                         <lightning-input-field field-name={skillCategory}></lightning-input-field>
-                        <lightning-input-field field-name={skillUser}></lightning-input-field>
+                        <!-- <lightning-input-field field-name={skillUser}></lightning-input-field> -->
                         <br>
                         <lightning-button variant="brand" type="submit" label="Submit Skill"></lightning-button>
                     </lightning-record-edit-form>
@@ -201,13 +208,11 @@ is used in apex controller to return each skill from each category to display.
         <div class="slds-backdrop slds-backdrop_open"></div>
     </template>
 
+    <!-- This is where the skills modal ends -->
 
 
 
-
-
-
-    <!-- This is the progress bar modal -->
+    <!-- This is where the progress bar modal begins -->
 
     <template if:true={isProgressModalOpen}>
         <section aria-modal="true" class="slds-modal slds-fade-in-open">
@@ -221,9 +226,10 @@ is used in apex controller to return each skill from each category to display.
                     </div>
                 </div> -->
                 <div class="slds-box slds-theme_default slds-var-p-around_medium">
-                    <div class="slds-modal__content">
+                    <div class="slds-modal__content slds-align_absolute-center">
                         <!-- Mountain's code -->
-                    <label for="progress">Enter Your Progress With This Skill:</label>
+                    <label for="progress">Enter Your Progress With This Skill: </label>
+                    <br>
                     <br>
                     <input type="text" name="progress" class="scoreInput">
                 </div>
@@ -237,6 +243,8 @@ is used in apex controller to return each skill from each category to display.
         </section>
         <div class="slds-backdrop slds-backdrop_open"></div>
     </template>
+
+    <!-- This is where the progress bar modal ends -->
 
 
 </template>

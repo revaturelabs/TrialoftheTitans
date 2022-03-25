@@ -9,6 +9,7 @@
     justify-content: center;
     row-gap: 1px;
     width: 600px;
+    height: auto;
 }
 
 .awards {
@@ -22,7 +23,6 @@
     display: grid;
     font-size: 30px;
     background-color: rgb(240, 245, 246);
-
 }
 
 .p {
@@ -34,47 +34,7 @@
     background-color: rgb(174, 232, 250);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-.modal-container {
-  background-color: rbg(5, 5, 5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  opacity: 0;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  transition: 0.3s;
-}
-
-.modal-container.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal {
-  background-color: rgb(240, 240, 240);
-  border-radius: 2px;
-  box-shadow: 0 2px 4px rbga(0, 0, 0, 0.2);
-  padding: 20px 20px;
-  width: 300px;
-  max-width: 100%;
-  text-align: center;
-}
-
-
-.modal p {
-  opacity: 0.8;
-  font-size: 14px;
-}
-
-button {
+/* button {
   background-color: rgb(255,255,255);
   border: 0;
   border-radius: 5px;
@@ -83,7 +43,7 @@ button {
 
 button:hover {
     background-color: rgb(230, 230, 230);
-  }
+  } */
 
 .label {
   font-size: 14px;

@@ -3,58 +3,68 @@
     Description: Card container for Honors & Awards section in Portfolio
     Created Date: 3/17/22
 -->
-
 <template>
-    <!-- Lightning Card which holds the Honors & Awards component -->
-      <lightning-card>
-                <!-- Honors & Awards container -->
-                <div class="container">
-                  <div class="awards">
-                    <p>Honors & Awards
-                      <!-- Modal Open Button -->
-                      <button id="open">
-                        Add
-                      </button>
-                    </p>
-                      <!-- Modal Container -->
-                      <div class="modal-container"
-                           id="modal_container">
-                        <div class="modal">
-                            <form>
-                            <label class ="label" for="award-type">Award Title:</label>
-                            <input type="text" id="award-type" name="award"><br><br>
-                            <label class="label" for="received-on">Received On:</label>
-                            <input type="date" id="received-on" name="received-on"><br><br>
-                            <input type="submit" value="Submit">
-                            </form>
-                            <!-- Modal Close Button -->
-                          <button id="close">
-                            X
-                          </button>
-                        </div>
-                      </div>
-                      <!-- END OF MODEL CONTAINER -->
-                  </div>
-                  <div class="awards">
-                    <p>
-                      Developer of the year
-                    </p>
-                  </div>
-                  <div class="awards">
-                    <p>Received on: </p>
-                  </div>
-                  <div class="awards">
-                    <p>Developer of the year</p>
-                  </div>
-                  <div class="awards">
-                    <p>Received on: </p>
-                  </div>
-                  <div class="awards">
-                    <p>Developer of the year</p>
-                  </div>
-                  <div class="awards">
-                    <p>Received on: </p>
-                  </div>
-                </div>
-      </lightning-card>
+  <!-- Lightning Card which holds the Honors & Awards component -->
+  <div class="container">
+    <div class="awards">
+      <p>Honors & Awards
+        <!-- Modal Open Button -->
+        <button class="open" onclick={openModal}>
+          Add
+        </button>
+      </p>
+    </div>
+    
+    <!--Placeholder text for now until I can pull info in-->
+    <template for:each={awardsList} for:item="Award">
+      <div class="awards" key={Award.Id}>
+        <p key={Award.Id}>
+          {Award.Name}
+        </p>
+      </div>
+      <div class="awards" key={Award.Id}>
+        <p key={Award.Id}>Received on: {Award.Date_Received__c}</p>
+      </div>
+    </template>
+  </div>
+
+  <!--Modal that opens on button click-->
+  <template if:true={isShowingModal}>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+      class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+          <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+          </svg>
+          <span class="slds-assistive-text">Cancel and close</span>
+        </button>
+        <div class="slds-modal__header">
+          <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Add Honors and Awards</h1>
+        </div>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+          <!--Form for submitting to database-->
+          <lightning-record-edit-form 
+            object-api-name="Award__c" onsuccess={handleSuccess}>
+
+            <lightning-input-field field-name="Name"> </lightning-input-field>
+            <lightning-input-field field-name="Date_Received__c"> </lightning-input-field>
+
+            <div class="slds-var-m-top_medium">
+              <lightning-button variant="brand" type="submit" label="Save">
+              </lightning-button>
+            </div>
+          </lightning-record-edit-form>
+
+        </div>
+        <div class="slds-modal__footer">
+          <!-- <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+            onclick={closeModal}>Cancel</button> -->
+          <!-- <button class="slds-button slds-button_brand" onclick={closeModal}>X</button> -->
+        </div>
+      </div>
+    </section>
+    <div class="slds-backdrop" role="presentation"></div>
   </template>
+</template>
