@@ -1,6 +1,7 @@
 /************************************************************
  * Done by: Mohammed Azad
- * Create a list of a person's employment history.
+ * Creates functionality to deal with the experience 
+ * component
  * Date: March 24 2022
  ************************************************************/
 
