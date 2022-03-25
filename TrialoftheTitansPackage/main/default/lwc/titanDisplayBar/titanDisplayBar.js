@@ -88,18 +88,16 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement) {
             });
 
         // Publish Titan Id
-        const payload = { recordId: this.titanExamId };
+        const payload = { titanExamId: this.titanExamId };
         publish(this.messageContext, titanSelected, payload);
 
         // Navigate to a Titan Hub page
         this[NavigationMixin.Navigate]({
-                type: 'standard__webPage',
-                attributes: {
-                    url: document.URL + 'titan-hub'
-                }
-            },
-            true
-        );
+            type: 'standard__webPage',
+            attributes: {
+                url: document.URL + 'titan-hub'
+            }
+        });
     }
 
     handleAdvance() {
