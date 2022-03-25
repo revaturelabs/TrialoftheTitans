@@ -12,8 +12,8 @@ export default class Strengths extends LightningElement {
     equivObj = EquivObj;
     skillName = SkillName;
     skillScore = SkillScore;
-    // @track
-    // localStrengthsObj = createLocalStrengthsArrayOfObjects();
+    @track
+    localStrengthsObj={};
     
 
 
@@ -55,7 +55,7 @@ export default class Strengths extends LightningElement {
                 id: this.strengths[i].Id
             });
         }
-        return localStrengthsArrayOfObjects;
+        this.localStrenghtsObj = localStrengthsArrayOfObjects;
     }
 
 
@@ -70,6 +70,9 @@ export default class Strengths extends LightningElement {
     }
 
     handleUpdateSkillLevel(event) {
+        this.createLocalStrengthsArrayOfObjects();
+        console.log('handleUpdateSkillLevel');
+
         let newSkillId = event.currentTarget.dataset.skillid;
         let newSkillLevel = event.currentTarget.dataset.skilllevel;
         let newSkillInputValue = this.template.querySelector('input[data-skillid="' + newSkillId + '"]').value;
@@ -85,20 +88,18 @@ export default class Strengths extends LightningElement {
         let localStrenghtsObj = this.createLocalStrengthsArrayOfObjects();
         console.log(localStrenghtsObj, 'localStrenghtsObj', typeof localStrenghtsObj);
         console.log(typeof(this.strengths))
-        console.log(this.strengths[0], 'this.strengths', typeof(this.strengths[0]));
-        // for (let i = 0; i < localStrenghtsObj.length; i++) {
-        //     if (localStrenghtsObj[i].id === newSkillId) {
-        //         localStrenghtsObj[i].score = newSkillLevel;
-        //     }
-        // }
-        // console.log(localStrenghtsObj, 'localStrenghtsObj');
-        // this.strengths = localStrenghtsObj;
-        // console.log(this.strengths, 'this.strengths');
+        console.log(this.strengths[0], 'this.strengths', typeof(this.strengths[0]));  
 
-
-
-
+        for (let i = 0; i < this.localStrengthsObj.length; i++) {
+            if (this.localStrengthsObj[i].id === newSkillId) {
+                console.log('found it');
+                this.localStrengthsObj[i].score = newSkillInputValue;
+            }
+        } 
         
+        console.log(this.localStrengthsObj, 'this.localStrengthsObj');
+        console.log(this.localStrengthsObj[0], 'this.localStrengthsObj[0]');
+        console.log(this.strengths, 'this.strengths');
 
     }
 
