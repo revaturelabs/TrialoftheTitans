@@ -29,7 +29,7 @@ export default class LwcPopupModal extends LightningElement {
     //passingGradeOverride is from Exam_Result__c -iteration xi
     @track passingGradeOverride;
     @track defaultPassingGrade; //defaultPassingGrade is from Exam__c and is from lookup on Exam_Result__c -iteration xi
-    passOrFail='passed.';
+    passOrFail='';
 
     //counter is amount of correct questions -iteration xi
     @track counter = 0;
@@ -49,16 +49,16 @@ export default class LwcPopupModal extends LightningElement {
         this.defaultPassingGrade = inDpg;
         
 
-        //console.log("popUp Modal set questionAnswer");
+        console.log("popUp Modal set questionAnswer");
 
         //displaying the test values
-        // for(const question of this.questionList){
-        //     console.log(question);
-        //     console.log(question.Correct_Answer_s__c);
-        // }
-        // for(const question of this.answerList){
-        //     console.log(question);
-        // }             
+        for(const question of this.questionList){
+            console.log(question);
+            console.log(question.Correct_Answer_s__c);
+        }
+        for(const question of this.answerList){
+            console.log(question);
+        }             
         for(let i=0; i < this.questionList.length; i++){
             if(this.questionList[i] && this.answerList[i+1]){ 
                 // Answers are not in random ordered and this worked. If you randomize, it will NOT work.
@@ -66,13 +66,13 @@ export default class LwcPopupModal extends LightningElement {
                 //console.log(this.questionList[i].Correct_Answer_s__c.substring(0,1) === this.answerList[i+1].substring(0,1));
                 if(this.questionList[i].Correct_Answer_s__c.substring(0,1) === this.answerList[i+1].substring(0,1)){
                 this.counter++;
-                //console.log(this.counter);
+                console.log(this.counter);
             }   
         } 
         }
         this.result = (this.counter/this.questionList.length) * 100;
         this.result = Math.round((this.result + Number.EPSILON) * 100) / 100;
-        //console.log(this.result);
+        console.log(this.result);
 
         //checks to see if the calculated grade is greater than or equal to the passing grade override -iteration xi
         if(this.passingGradeOverride){ 
@@ -80,11 +80,13 @@ export default class LwcPopupModal extends LightningElement {
             if(this.result >= this.passingGradeOverride){
                 console.log("You Passed");
                 this.calculatedGrade = this.result;
-                this.passOrFail='passed.';
+                this.passOrFail='PASSED';
+                
             }
             else{
                 console.log("You Failed. Your Mom is Sad!");
-                this.passOrFail='failed.';
+                this.passOrFail='FAILED';
+                
             }
         }
         //same as above if statement but if the passingGradeOverride does not exist, then it will use the default passing grade- iteration xi
@@ -93,14 +95,15 @@ export default class LwcPopupModal extends LightningElement {
 
                 console.log("You Passed with Flying Color");
                 this.calculatedGrade = this.result;
-                this.passOrFail='passed.';
+                this.passOrFail='PASSED';
+                
             } 
             else{
                 console.log("You Failed. Your Mom is VERY Sad!");
-                this.passOrFail='failed.';
+                this.passOrFail='FAILED';
             } 
 
-            this.sum =  Math.round((this.sum + Number.EPSILON) * 100) / 100;
+           
 
         }
         //if there is neither the defaultPassingGrade or passingGradeOverride, then compare the calculated score to 65 percent -iteration xi
@@ -108,11 +111,13 @@ export default class LwcPopupModal extends LightningElement {
             if(this.result >= 65){
                 console.log("You Passed with 65 or Above");
                 this.calculatedGrade = this.result;
-                this.passOrFail='passed.';
+                this.passOrFail='PASSED';
+                
             }
             else{
                 console.log("You Failed. Your Mom is VERY VERY Sad!");
-                this.passOrFail='failed.';
+                this.passOrFail='FAILED';
+                
             } 
         }
         // console.log(this.passingGradeOverride);
