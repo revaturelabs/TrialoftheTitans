@@ -1,11 +1,23 @@
-import { LightningElement, track, wire } from 'lwc';
+/*
+    Written by: David Labib
+    Desc: The logic for the component for the project section 
+        on the portfolio allowing the user to
+        add,edit and delete projects
 
+    Date Created: 03/25/22
+    Last Modified Date: 03/25/2021
+    Iteration XI
+*/
+
+
+import { LightningElement, track, wire } from 'lwc';
+//importing all the apex methods from the portfolioProjectHelper class
 import getProjects from '@salesforce/apex/portfolioProjectHelper.getProjects';
 import setProjects from '@salesforce/apex/portfolioProjectHelper.setProjects';
 import createProjects from '@salesforce/apex/portfolioProjectHelper.createProjects';
 import deleteProjects from '@salesforce/apex/portfolioProjectHelper.deleteProjects';
 import getAllProjects from '@salesforce/apex/portfolioProjectHelper.getALLProjects';
-
+//importing these other things to use
 import { refreshApex } from '@salesforce/apex'; 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
@@ -20,7 +32,7 @@ export default class Lwcprojects extends LightningElement {
     AllModal = false;
     newProjectNameVAR;
     AllProjects;
-
+    // wire function to get the 3 latest projects for a specific user
     @wire (getProjects)
     wirevalue(value){
         const {error,data} = value;
@@ -47,17 +59,25 @@ export default class Lwcprojects extends LightningElement {
             }
         this.wirevalue=value;
     }
-
+    //saves whatever the user writes
     handleChange(event) {
         this.projectDesc= event.target.value;
         refreshApex(this.wirevalue);
     }
     
-
+    //called when the user hits save on a project
     handleSaveProject(e){
+        //gets the project name that was clicked save on
         this.projectName = e.target.title;
+
+        //probably dont need this part, this is to check if the project exisits
+        //but it always does if the user can click save on it
+        //keeping it just in case thought
+
+        //called if the project doesnt exist
         if(!this.exist)
         {
+            //make new project
             createProjects({projectInput:this.projectDesc})
 
             .then(() => {
@@ -75,6 +95,7 @@ export default class Lwcprojects extends LightningElement {
 
         }
         else{ 
+            //update existing project with the project desc the user entered
             setProjects({projectInput : this.projectDesc, projectName: this.projectName})
             .then(() => {
                 this.dispatchEvent(
@@ -100,7 +121,7 @@ export default class Lwcprojects extends LightningElement {
         }
         
     }
-
+    //function to delete the project when user clicks delete button
     deleteProject(e){
         this.projectName = e.target.name;
         deleteProjects({projectName:this.projectName})
@@ -126,6 +147,7 @@ export default class Lwcprojects extends LightningElement {
         });
     }
 
+    //function called when the user adds a new project on the modal
     createProject(){
         this.showAddModal();
         createProjects({newProjectName:this.newProjectNameVAR})
@@ -151,14 +173,19 @@ export default class Lwcprojects extends LightningElement {
         });
     }
 
+    //function to toggel the add new project modal
     showAddModal(){
         this.AddModal = !this.AddModal;
     }
     
+    //saves the new project name the user enters
+    //this will be passed to the createProject function
     newProjectName(e){
         this.newProjectNameVAR = e.target.value;
     }
 
+    //used to toggel the show all project modal
+    //also makes apex call to get ALL of the projects the user has
     showAllModal(){
         getAllProjects({})
         .then(result => {
