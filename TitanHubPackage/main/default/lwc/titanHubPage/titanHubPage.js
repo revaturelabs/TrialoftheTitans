@@ -3,7 +3,7 @@ import { CurrentPageReference } from 'lightning/navigation';
 import {
     subscribe,
     APPLICATION_SCOPE,
-    MessageContext
+    MessageContext,
 } from 'lightning/messageService';
 import titanSelected from '@salesforce/messageChannel/TrialOfTheTitansXIChannel__c';
 export default class TitanHubPage extends LightningElement {
@@ -14,6 +14,7 @@ export default class TitanHubPage extends LightningElement {
 
     @wire(MessageContext)
     messageContext;
+    subscription = null;
 
     currentPageReference = null;
     urlStateParameters = null;
@@ -33,6 +34,12 @@ export default class TitanHubPage extends LightningElement {
         this.accountId = this.urlStateParameters.c__accountId || null;
     }
 
+    connectedCallback() {
+        this.subscribeToMessageChannel();
+    }
+
+
+    // Encapsulate logic for Lightning message service subscribe and unsubsubscribe
     subscribeToMessageChannel() {
         if (!this.subscription) {
             this.subscription = subscribe(
@@ -44,7 +51,6 @@ export default class TitanHubPage extends LightningElement {
     }
 
     handleMessage(message) {
-        console.log(message)
-
+        console.log('thisisnotatest' + message.titanExamId);
     }
 }

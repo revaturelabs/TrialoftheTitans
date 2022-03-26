@@ -91,13 +91,15 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement) {
         const payload = { titanExamId: this.titanExamId };
         publish(this.messageContext, titanSelected, payload);
 
-        // Navigate to a Titan Hub page
+        // Navigate to Titan Hub page
         this[NavigationMixin.Navigate]({
-            type: 'standard__webPage',
-            attributes: {
-                url: document.URL + 'titan-hub'
-            }
-        });
+                type: 'standard__webPage',
+                attributes: {
+                    url: document.URL + 'titan-hub'
+                }
+            },
+            true
+        );
     }
 
     handleAdvance() {
