@@ -1,20 +1,10 @@
 import { LightningElement, api, wire } from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
-import {
-    subscribe,
-    APPLICATION_SCOPE,
-    MessageContext,
-} from 'lightning/messageService';
-import titanSelected from '@salesforce/messageChannel/TrialOfTheTitansXIChannel__c';
 export default class TitanHubPage extends LightningElement {
 
     //Variables that are set from Hero Hub Component
     @api titanId;
     @api accountId;
-
-    @wire(MessageContext)
-    messageContext;
-    subscription = null;
 
     currentPageReference = null;
     urlStateParameters = null;
@@ -32,25 +22,5 @@ export default class TitanHubPage extends LightningElement {
     setParametersBasedOnUrl() {
         this.titanId = this.urlStateParameters.c__titanId || null;
         this.accountId = this.urlStateParameters.c__accountId || null;
-    }
-
-    connectedCallback() {
-        this.subscribeToMessageChannel();
-    }
-
-
-    // Encapsulate logic for Lightning message service subscribe and unsubsubscribe
-    subscribeToMessageChannel() {
-        if (!this.subscription) {
-            this.subscription = subscribe(
-                this.messageContext,
-                titanSelected,
-                (message) => this.handleMessage(message), { scope: APPLICATION_SCOPE }
-            );
-        }
-    }
-
-    handleMessage(message) {
-        console.log('thisisnotatest' + message.titanExamId);
     }
 }
