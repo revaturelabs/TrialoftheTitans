@@ -1,0 +1,125 @@
+/************************************************************
+ * Done by: Mohammed Azad
+ * Styling for a person's education history.
+ * Date: March 24 2022
+ ************************************************************/
+.container {
+    /*border: 2px dotted green;*/
+    height: 30vw;
+    width: 40vw;
+    background-color: #ffff;
+}
+.title {
+    text-align:left;
+    font-size: 32px;
+}
+.information div.first:nth-child(2n+1){ 
+    background-color: #ecfffe;
+}
+.information div.first:nth-child(2n){ 
+    background-color: #dff2f1;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+li.logo {
+    display: block;
+    float: left;
+    margin-left: 10px;
+}
+li.left{
+    display: block;
+    float: left;
+    margin-left: 2px;
+    margin-top: 15px;
+    font-weight: bold;
+} 
+li.editor { 
+    float:right;
+    margin-right: 10px;
+    margin-top: 18px;
+    cursor: pointer;
+}
+
+
+
+/* REPUTTING THE SAME INFORMATION */
+
+
+.first{
+    /*background-color:#ECFFFE;*/
+   /* border: 1px solid green;*/
+    display:flex;
+    height: 14vh;
+}
+/*.second{
+    background-color: #DFF2F1;
+    border: 1px solid red; 
+    display:flex;
+    height: 10vh;
+}*/
+.info{
+    /*border: 1px solid yellow; */
+    width: 50%;;
+    flex:1;
+}
+.dataholder{
+    flex: 1;
+    text-align: end;
+    text-align: end;
+}
+.secondContainer { 
+    display: flex;
+}
+.item { 
+    flex: 1;
+    margin-top: 3.5vh;
+}
+.itemdeleter { 
+    flex: 1;
+    margin-top: 3.5vh;
+    margin-right: 15px;
+}
+
+.infoholder {
+    /* border: 1px solid aqua; */
+    text-align: end;
+}
+p.degree{ 
+   /* border: 1px solid navy; */
+    font-size: 17px;
+    font-weight: bold;
+    margin-right:31%;
+}
+p.time {
+    /* border: 1px solid navy; */
+    font-size: 19px;
+    font-weight: bold;
+   /* margin-right: 10%;*/
+  
+}
+p.institution { 
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 31%;
+}
+p.major { 
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 31%;
+}
+.carbon { 
+    margin-top: 10px;
+    margin-right: 33%;
+}
+p.degreetype {
+    text-align:left;
+}
+.infoholder .deleter { 
+    cursor: pointer;
+    margin-right: 20px;
+}

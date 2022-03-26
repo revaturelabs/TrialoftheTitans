@@ -1,0 +1,58 @@
+/*
+    Author: Drew Williams
+    Description: Card container for Honors & Awards section in Portfolio
+    Created Date: 3/17/22
+*/
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    row-gap: 1px;
+    width: 600px;
+    height: auto;
+}
+
+.awards {
+    display: grid;
+    font-family: Palatino; 
+    background-color: rgb(212, 241, 250);
+}
+
+.awards:nth-child(1) {
+    grid-column: span 2;
+    display: grid;
+    font-size: 30px;
+    background-color: rgb(240, 245, 246);
+}
+
+.p {
+  padding-left: 10px;
+  font-family: Palatino;
+}
+
+.icon {
+    background-color: rgb(174, 232, 250);
+}
+
+/* button {
+  background-color: rgb(255,255,255);
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: rgb(230, 230, 230);
+  } */
+
+.label {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+
+}
+
+.close {
+  font-weight: bold;
+  padding-left: 30px;
+}

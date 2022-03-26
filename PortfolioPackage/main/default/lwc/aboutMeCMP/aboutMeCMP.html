@@ -1,0 +1,56 @@
+<!--****************************************************************************************************
+    Author: Gabriela Conrado
+    Description: LWC component that allows you to create an About Me section and edit existing ones. 
+    Date Created: 03/21/22
+    Modified Date: 03/25/2021
+    Iteration XI
+******************************************************************************************************-->
+
+<template>
+    <!-- Defining a lightning card-->
+     <lightning-card >
+         <span>
+              <!-- Right corner icon-->
+             <span class="main-icon" >
+                 <lightning-icon icon-name='action:user' alternative-text='user' size='x-small' title='user' variant='bare'>
+                 </lightning-icon>
+             </span>
+             <span class="text-about-me">About Me</span>
+               <!-- Left corner icon-->
+             <span class="edit-icon-about-me">
+                 <span class="slds-icon_container slds-icon-utility-announcement slds-current-color" 
+                     title="Click to edit the record.">
+                     <lightning-button-icon align="right" draggable="false" icon-name='utility:edit'
+                         alternative-text='Edit Record' size='large' onclick={handleEditIcon} title='edit'>
+                     </lightning-button-icon>
+                     <span class="slds-assistive-text"></span>
+                 </span>
+             </span>
+         </span>
+          <!-- Defining the rich text field-->
+              <lightning-card if:false={editbutton} >
+                 <span >
+                     <lightning-input-rich-text  formats="font, bold, italic, underline, strike,
+                     list, indent, align, link, clean, code, code-block, color, background, header" value={myVal} onchange={handleChange} >
+                     </lightning-input-rich-text>
+                     <br/>
+                     <!-- Cancel and save buttons-->
+                     <div align="center" draggable="false">
+                         <a class="slds-button slds-button_brand" color="#34ABD3" onclick={resetForm} onsubmit={handleSelection}  href="#">Cancel</a>
+                         <a class="slds-button slds-button_brand" color="#34ABD3" onclick={handleSaveAboutMe} 
+                             href="#">Save</a>
+                     </div>
+                 </span>
+             </lightning-card>
+             
+             <lightning-card if:true={editbutton} class="slds-card__body slds-card__body_inner"  >
+                 
+                <div class="about-me-section-background-color" >
+                     <lightning-formatted-rich-text   value={myVal}>
+                     </lightning-formatted-rich-text>
+                 </div>
+           
+             </lightning-card>
+ 
+     </lightning-card>
+ </template>
