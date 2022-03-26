@@ -25,17 +25,16 @@
             <div class="cert-container">
                 <template if:true={isCertListEmpty}>
                     <!-- Display clickable element to show/hide list of certs -->
-                    <button class="view-certs" onclick={toggleCertList}>View Certifications</button>
-
-                    <!-- If there's certifications related to user, show them -->
-                    <template if:true={isShowingCertList}>
-                        <!-- Show the list of certifications -->
+                    <lightning-button-menu 
+                            class="menu-button" alternative-text="Show Certifications"
+                            icon-size="small" icon-name="utility:ribbon">
                         <template for:each={certList} for:item="cert">
-                            <div key={cert.Id} class="cert-item">
-                                {cert.Id}
-                            </div>
+                            <lightning-menu-item 
+                                key={cert.Id} value={cert} label={cert.List_Label__c}>
+                            </lightning-menu-item>
                         </template>
-                    </template>
+                    </lightning-button-menu>
+                    <span class="cert-text">Certifications</span>
                 </template>
                 <template if:false={isCertListEmpty}>
                     <!-- No certs found for user, show greyed out -->

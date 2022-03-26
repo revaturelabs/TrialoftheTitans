@@ -1,4 +1,53 @@
-.editIconAboutMeCMP{
-  color:rgb(75, 175, 241); 
-  float:right;
+*, ::before, ::after {
+  box-sizing: border-box;
+ }
+
+.main-icon{
+float:left;
+height: auto;
+width: auto;
+margin-left: 40px;
+margin-top: 40px;
+border-radius: 0px; 
+position: relative;
+top: -30px;
+}
+
+.edit-icon-about-me{
+ float: right;
+height: 50px;
+width: 50px;
+flex: auto;
+left: 97.81%;
+right: 0.43%;
+top: 0%;
+bottom: 95.23%;
+
+/* Secondary Green */
+
+color: #00655F;
+}
+
+.text-about-me{
+/* header text */
+font-family: 'Cinzel';
+font-style: normal;
+font-weight: 700;
+font-size: 49px;
+line-height: 66px;
+text-align: right;
+}
+
+.about-me-section-background-color{
+  max-width: 1323px;
+  height: 250px;
+  margin: auto;
+  border-radius: 0px;
+  background-color:#F5F3F3;
+}
+
+:host{
+--slds-c-card-color-border:white;
+--slds-c-card-color-background:white;
+--slds-c-card-shadow:white;
 }
