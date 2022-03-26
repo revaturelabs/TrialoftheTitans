@@ -8,5 +8,5 @@
 
 .container {
     height: inherit;
-    overflow-y: scroll;
+    overflow-y: none;
 }

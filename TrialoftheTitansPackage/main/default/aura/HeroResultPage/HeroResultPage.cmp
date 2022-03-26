@@ -19,7 +19,7 @@
             <c:navbar></c:navbar>
         </div>
         <div class="slds-col slds-grid slds-grid_align-space slds-size_1-of-1 middle-container">
-            <div class="slds-col slds-size_7-of-12">
+            <div class="slds-col slds-size_7-of-12 slds-scrollable_y">
                 <c:titanViewContainer></c:titanViewContainer>
             </div>
             <div class="slds-col slds-size_4-of-12">
