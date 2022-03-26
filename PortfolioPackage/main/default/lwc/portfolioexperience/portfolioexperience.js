@@ -51,7 +51,7 @@ export default class Portfolioexperience extends LightningElement
     modalCloser() 
     {
         const closeenv = new ShowToastEvent({
-            title: "Canceled",
+            title: "Cancelled",
             message: "You cancelled inputting information.",
             variant: "error"
         });
