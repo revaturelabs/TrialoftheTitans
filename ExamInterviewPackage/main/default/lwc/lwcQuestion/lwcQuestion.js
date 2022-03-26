@@ -82,11 +82,11 @@ export default class LwcQuestion extends LightningElement {
           this.comboBoxAnswersProvided = {};
 
           var test = this.question.Options__c.split("||");
-          console.log(test);
+          // console.log(test);
           this.optionsForCombobox = test;
 
           for (let i = 0; i < test.length; i++) {
-            console.log(test[i]);
+            // console.log(test[i]);
 
             this.comboBoxAnswersProvided[test[i]] = "not matched";
           }
@@ -118,8 +118,8 @@ export default class LwcQuestion extends LightningElement {
                   .querySelectorAll("lightning-combobox")
                   .forEach((ele) => {
                     if (ele.name == objKeysComboBoxOptions[i]) {
-                      console.log("conboboxoption component found");
-                      console.log("setting to " + answerOptionList[i]);
+                      // console.log("conboboxoption component found");
+                      // console.log("setting to " + answerOptionList[i]);
                       comboOptionComponent.value = answerOptionList[i];
                     }
                   });
@@ -164,8 +164,8 @@ export default class LwcQuestion extends LightningElement {
         };
         optionsArray.push(myObject);
       }
-      console.log("optionsArray in create");
-      console.log(optionsArray);
+      // console.log("optionsArray in create");
+      // console.log(optionsArray);
       return optionsArray;
     }
   }
@@ -193,10 +193,10 @@ export default class LwcQuestion extends LightningElement {
   handleInputAnswer(event) {
     let typeOfValue = typeof event.target.value;
     var stringToSend = "";
-    console.log(typeOfValue);
+    // console.log(typeOfValue);
 
     if (typeOfValue === "object") {
-      console.log(event.target.value);
+      // console.log(event.target.value);
 
       let obj = event.target.value;
       let objLength = Object.keys(obj).length;
@@ -208,7 +208,7 @@ export default class LwcQuestion extends LightningElement {
       if (this.displayComboBox) {
         //formatting the combo box string to store for matching
         this.comboBoxAnswersProvided[event.target.name] = event.target.value;
-        console.log(this.comboBoxAnswersProvided);
+        // console.log(this.comboBoxAnswersProvided);
         var createAnswerString = "";
 
         for (
@@ -228,7 +228,7 @@ export default class LwcQuestion extends LightningElement {
           createAnswerString.length > 1
             ? createAnswerString.slice(0, -2)
             : createAnswerString;
-        console.log(createAnswerString);
+        // console.log(createAnswerString);
         stringToSend = createAnswerString;
       } else {
         stringToSend = event.target.value ? event.target.value : "";
