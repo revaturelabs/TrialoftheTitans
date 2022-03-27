@@ -2,7 +2,7 @@
 private class ApexDataFactoryBulkT {
     
     //Attempting to replace ApexDataFactoryTest that was lost//
-    @istest static void testdelete(){
+    @istest public static void testdelete() {
         ApexDataFactory.deleteStuff();
         List<Exam__c> Exams = [SELECT id FROM Exam__c];
         List<Exam_Question__c> EQs = [SELECT Id from Exam_Question__c];
@@ -68,13 +68,14 @@ private class ApexDataFactoryBulkT {
         
         //checking createCohort(). Checking if related Curriculum is valid and if the Active__c flag is set correctly
         
-          List <Cohort__c> cohortList=[SELECT Name, Curriculum__c, Cohort__c.Curriculum__r FROM Cohort__c WHERE Curriculum__c IN:curr];
+          List <Cohort__c> cohortList=[SELECT Name, Curriculum__r.Name, Active__c FROM Cohort__c WHERE Curriculum__c IN:curr];
           system.assertEquals(2, cohortList.size());
           Boolean isCorrect=False;
-        for (Cohort__c coho:cohortList){
-            
-            if (coho.Curriculum__r.Name=='Java'&& coho.Active__c==false){isCorrect=true;}else
-                if(coho.Curriculum__r.Name=='Salesforce' && coho.Active__c==true){isCorrect=true;}    
+        for (Cohort__c coho:cohortList){            
+            if (coho.Curriculum__r.Name=='Java'&& coho.Active__c==false) {
+                isCorrect=true;}
+            else if(coho.Curriculum__r.Name=='Salesforce' && coho.Active__c==true) {
+                isCorrect=true;}    
         }
         
         system.assertEquals(true,isCorrect);
@@ -105,7 +106,7 @@ private class ApexDataFactoryBulkT {
         //checking createAccount() checking if field names and look ups are valid and dataset size is as expected
         Set<String> firstNames = new Set<String>{'James', 'Mary', 'Robert', 'Patricia', 'John', 'Jennifer', 'Michael', 'Linda', 'William', 'Elizabeth', 'David', 'Barbara', 'Richard', 'Susan', 'Joeseph', 'Jessica', 'Thomas', 'Sarah', 'Charles', 'Karen', 'Christopher', 'Nancy', 'Daniel', 'Lisa', 'Matthew', 'Betty', 'Anthony', 'Margaret', 'Mark', 'Sandra', 'Donald', 'Ashley', 'Steven', 'Kimberly', 'Paul', 'Emily', 'Andrew', 'Donna', 'Seley', 'Badia', 'Joshua', 'Michelle', 'Kenneth', 'Dorothy', 'Kevin', 'Carol', 'Brian', 'Amanda', 'George', 'Melissa', 'Edward', 'Deborah', 'Ronald', 'Stephanie', 'Timothy', 'Rebecca', 'Jason', 'Sharon', 'Jeffrey', 'Laura', 'Ryan', 'Cynthia', 'Jacob', 'Kathleen', 'Gary', 'Amy', 'Nicholas', 'Shirley','Eric' , 'Angela', 'Jonathan', 'Helen', 'Mohamed', 'Sean', 'Caitlyn', 'Madeline'};
         Set<String> lastNames = new Set<String>{'Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Ali', 'Wang', 'Devi', 'Nguyen', 'Gonzalez', 'Deng', 'Ivanov', 'Silva', 'Kim', 'Mohamed', 'Wilson', 'Anderson', 'Taylor', 'Moore', 'Lee', 'White', 'Allen', 'Wright', 'Hassan', 'Freeman'};
-        List<Account> accountList =[SELECT Name, Cohort__c, Squad__c, Team__c FROM Account WHERE RecordType.Name='Hero' AND Cohort__c IN :cohort AND Team__c IN :team AND Squad__c IN :squad];
+        List<Account> accountList =[SELECT Name, Cohort__c, Squad__c, Team__c, account.squad__r.Team__c FROM Account WHERE RecordType.Name='Hero' AND Cohort__c IN :cohort AND Team__c IN :team AND Squad__c IN :squad];
         system.assertEquals(27, accountList.size());        
         List<String> fNames = new List<String>();
         List<String> lNames = new List<String>();
@@ -125,10 +126,7 @@ private class ApexDataFactoryBulkT {
         for (String l:lNames){
            system.assertEquals(true, (lNames.contains(l)));
         }
-        
-        
-        
-        
+
         
         //check CreateTitan() for validity of fields, lookups and size
         List<String> TitanNames= new List<String>{
@@ -189,41 +187,38 @@ private class ApexDataFactoryBulkT {
         String[] skillTypes = new List<String>{'Coding','Soft Skills', 'Exams', 'Data Management','Design'};
         List<Skill__c> skillList= [SELECT Name, Titan__c, Assigments__c, Skill_Breakdown__c, Skill_Type__c FROM Skill__c WHERE Skill_Type__c IN :skillTypes AND Assigments__c = 'These are the assignments' AND Skill_Breakdown__c = 'Breakdown of skills' AND Name LIKE 'Skill%' AND Titan__c IN :titan ];
         system.assertEquals(48,skillList.size());
-        
-        
-               
+                               
         //check CreateQCInterview()  check for validity of fields and look ups and size     
         
-        List<QC_Interview__c> qcInterviewList= [SELECT Name, Account__c, Cohort__c, Finalized__c, QC_Score__c FROM QC_Interview__c WHERE Name LIKE '%QCInterview%' AND Account__c IN :account AND Cohort__c IN :cohort AND Finalized__c =true AND QC_Score__c !=null];
+        List<QC_Interview__c> qcInterviewList= [SELECT Name, Account__c, Cohort__c, Finalized__c, QC_Score__c FROM QC_Interview__c WHERE Name LIKE '%QC Interview%' AND Account__c IN :account AND Finalized__c =true AND QC_Score__c !=null]; //Cohort__c IN :cohort AND
         system.assertEquals(324, qcInterviewList.size());
         
         //check CreateEducation() check for valid fields, look ups and size
         List<String> Degrees = new List<String>{'Associates', 'Bachelors'};
         String ImageURL = 'https://clipartmag.com/images/graduation-caps-clipart-9.jpg';
         List<String> Majors = new List<String>{'Biology', 'Business', 'Communications', 'Computer Science', 'Criminal Justice', 'Marketing', 'Psychology', 'Information Systems', 'General Education', 'Ancient Studies', 'Liberal Arts', 'Accounting'};
-        List<Education__c> educationList=[SELECT GPA__c, Image_URL__c, Degree__c, Major__c, Account__c FROM Education__c WHERE GPA__c !=null AND Image_URL__c= :ImageURL AND Degree__c IN :Degrees AND Major__c IN :Majors AND Account__c IN :account];
-        system.assertEquals(27,educationList.size());
+        List<Education__c> educationList=[SELECT GPA__c, Image_URL__c, Degree__c, Major__c, Account__c FROM Education__c WHERE Account__c IN :account AND GPA__c !=null AND Image_URL__c= :ImageURL AND Degree__c IN :Degrees AND Major__c IN :Majors];
+        System.assertEquals(27, educationList.size());
         
         //check CreateExam() check for valid fields, look ups and size
         
         List<Exam__c> examList= [ SELECT Name, Default_Passing_Grade__c, Default_Time_Limit__c, Titan__c FROM Exam__c WHERE Name LIKE '%Exam%' AND Default_Passing_Grade__c = .65 AND Default_Time_Limit__c = 30 AND Titan__c IN :titan ];
-        system.assertEquals(25, examList.size());
+        system.assertEquals(10, examList.size());
         
         //check CreateExamQuestion() check for valid fields, lookups and size
         List<String> Question_Types = new List<String>{'Multiple Choice', 'Multiple Choice - multiple answers', 'True-false', 'Matching', 'Numerical', 'Short Answer', 'Essay', 'Missing word'};
         List <Exam_Question__c> examQuestionList=[SELECT Name, Exam__c,Question_Type__c, Titan__c FROM Exam_Question__c WHERE Name LIKE '%: Question%' AND Exam__c IN :exams AND Question_Type__c IN :Question_Types AND Titan__c IN :Titan];
-        system.assertEquals(250,examQuestionList.size());
+        system.assertEquals(50,examQuestionList.size());
         
         //check CreateExamResult() check for valid fields, lookups and size
         
         List<String> StatusAvailable = new List<String>{'Assigned', 'Completed', 'Unassigned'};
         List<Exam_Result__c> examResultList=[SELECT Name, Account__c, Exam__c, Status__c FROM Exam_Result__c WHERE Account__c IN :account AND Exam__c IN :Exams AND Status__c IN :StatusAvailable];
-        system.assertEquals(675,examResultList.size());
-        
+        system.assertEquals(270,examResultList.size());
         
         //check CreateHeroAnswer() check for valid fields, lookups and size
-        List<Hero_Answer__c> heroAnswerList=[SELECT Exam_Question__c, Exam_Result__c, Answer_Choice__c, Correct__c FROM Hero_Answer__c WHERE Correct__c !=null AND Exam_Question__c IN :EQs AND Exam_Result__c IN :ERs];
-        system.assertEquals(6750, heroAnswerList.size());
+        List<Hero_Answer__c> heroAnswerList=[SELECT Exam_Question__c, Exam_Result__c, Answer_Choice__c, Correct__c FROM Hero_Answer__c WHERE Exam_Question__c IN :EQs AND Exam_Result__c IN :ERs];
+        system.assertEquals(1350, heroAnswerList.size());
         
         
         

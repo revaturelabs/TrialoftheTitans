@@ -10,7 +10,7 @@
 @import 'c/examStyle';
 
 lightning-layout.question_layout {
-  background-color: #BDBDBD;
+  background-color: whitesmoke;
   margin:10px;
   padding:10px;
 }

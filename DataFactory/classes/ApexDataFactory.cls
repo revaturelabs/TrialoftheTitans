@@ -21,6 +21,9 @@ public with sharing class ApexDataFactory {
         List<Team__c> team = [select id from Team__c];
         List<Cohort__c> cohort = [select id from Cohort__c];
         List<Curriculum__c> curr = [select id from Curriculum__c];
+        List<Question_Pool__c> quepo = [SELECT Id FROM Question_Pool__c];
+        List<Exam_Pool_Assignment__c> epa = [SELECT Id FROM Exam_Pool_Assignment__c];
+        // Must delete question Assignment records using Data Loader
         
         delete HAs;
         delete ERs;
@@ -35,12 +38,31 @@ public with sharing class ApexDataFactory {
         delete team;
         delete cohort;
         delete curr;
+        delete quepo;
+        delete epa;
     }
-    @AuraEnabled
+     @AuraEnabled
     public static void GenerateData(){
 	    //GenerateData is called by the LWC component to initiate the Data Factory methods
-        CreateCurriculum();
-    }
+        ApexDataFactory.CreateCurriculum();
+        ApexDataFactory.CreateCohort();
+        ApexDataFactory.CreateTeam();
+        ApexDataFactory.CreateSquad();
+        ApexDataFactory.CreateAccount();
+        ApexDataFactory.CreateTitan();
+        ApexDataFactory.CreateSkill();
+        ApexDataFactory.CreateQCInterview();
+        ApexDataFactory.CreateEducation();
+        ApexDataFactory.CreateExam();
+        ApexDataFactory.CreateExamQuestion();
+        ApexDataFactory.CreateExamResult();
+        ApexDataFactory.CreateHeroAnswer();
+        ApexDataFactory.createQuestionPool();
+        ApexDataFactory.createQuestionAssignments();  
+        ApexDataFactory.createExamPoolAssignments();
+        }
+    
+
     @AuraEnabled
     public static void CreateCurriculum(){
         //curriculum variables list
@@ -68,7 +90,7 @@ public with sharing class ApexDataFactory {
             } catch (DmlException dx) {
                 System.debug('DML Exception ' + dx.getMessage());
             }
-            CreateCohort();
+           // CreateCohort();
        // }
         
         ////////////////////////////////
@@ -99,7 +121,7 @@ public with sharing class ApexDataFactory {
         //insert the new list newcohorts
         try{
             insert newcohorts;}catch(DMLException e){system.debug(e);}
-        CreateTeam();
+        //CreateTeam();
     }
 
     @AuraEnabled
@@ -132,7 +154,7 @@ public with sharing class ApexDataFactory {
         }
         
         insert teams;
-        CreateSquad();
+       // CreateSquad();
     }
     
     @AuraEnabled
@@ -160,7 +182,7 @@ public with sharing class ApexDataFactory {
         }       
         
         insert squads;   
-        CreateAccount();
+       // CreateAccount();
     }
     
     @AuraEnabled
@@ -215,7 +237,7 @@ public with sharing class ApexDataFactory {
             }
         }
         insert accounts; 
-        CreateTitan();
+       // CreateTitan();
     }
 
     @AuraEnabled
@@ -284,7 +306,7 @@ public with sharing class ApexDataFactory {
             }
         } /*insert the new list of Titans*/
         try {insert newtitans;} catch(DMLException e){system.debug(e);}
-        CreateSkill();
+      //  CreateSkill();
     }
 
     @AuraEnabled
@@ -317,7 +339,7 @@ public with sharing class ApexDataFactory {
         }
         
         insert skills;
-        CreateQCInterview();
+     //   CreateQCInterview();
         /////////////////////////////
     }
     
@@ -355,7 +377,7 @@ public with sharing class ApexDataFactory {
         
         insert Interview;
         /////////////////////////////////
-        CreateEducation();
+       // CreateEducation();
     }
     
     @AuraEnabled
@@ -390,7 +412,7 @@ public with sharing class ApexDataFactory {
             education.add(edu);
         }
         insert education;
-        CreateExam();
+     //   CreateExam();
     }
     
     @AuraEnabled
@@ -427,10 +449,10 @@ public with sharing class ApexDataFactory {
             }
         }
         update createdExams; 
-        CreateExamQuestion();
+      //  CreateExamQuestion();
     }
     
-     @AuraEnabled
+    @AuraEnabled
     public static void CreateExamQuestion(){
         System.Debug('In create exam question');
         
@@ -478,8 +500,83 @@ public with sharing class ApexDataFactory {
         }
         system.debug(questions.size());
         insert questions;
-        CreateExamResult();
+      //  CreateExamResult();
     }	
+
+    /******************************************* 
+     * createQuestionPool method
+     * Created Date: 3/23/2022
+     * Created By: Martin Luna II, Michael Scott, Luz Orejel, Whitney Dwire
+     * 
+     * Pseudocode:
+     * Create createQuestionPool();
+     *      assign questions from createExamQuestion(); to a record within the Question_Pool__c object
+     * 
+     *******************************************/
+
+     /**
+      * Get List of Exams
+      *     Loop through exams
+      *         Create 10 Question Pools based on Exam names
+      *
+      */
+
+      @AuraEnabled
+      public static void createQuestionPool(){
+              
+              List<Exam__c> Exams = [SELECT Id, Name FROM Exam__c];
+              List<Question_Pool__c> QuestPools = new List<Question_Pool__c>();
+
+              for(Exam__c exam:Exams){
+                //for(Integer i = 0; i < 1; i++){
+                    Question_Pool__c questPool = new Question_Pool__c();
+                    questPool.Name = exam.Name + ' Pool ';
+                    QuestPools.add(questPool);
+                //}
+              }
+              insert QuestPools;
+              
+      }
+
+   /** 
+      * Get List of exam questions
+      *     Loop through each Question Pool
+      *         Loop through the exam questions
+      *             Check the Titan against the first Exam's Titan
+      *             If they Match Assign the question to the pool
+      *             If they don't match move to the next question
+      *     Move to next Question Pool
+      */
+    @AuraEnabled
+    public static void createQuestionAssignments(){
+        
+        List <Exam__c> Exam = [SELECT Id, Titan__c FROM Exam__c Limit 1];
+        List <Exam_Question__c> ExamQs = [SELECT Id, Titan__c FROM Exam_Question__c];
+        List <Question_Pool__c> QuestPools = [SELECT Id FROM Question_Pool__c];
+        List <Question_Assignment__c> QuestAssigns =  new List<Question_Assignment__c>();
+        
+        
+         for(Exam__c exa:Exam){
+             for(Question_Pool__c pool:QuestPools){
+                 for(Exam_Question__c exaQ:ExamQs){
+                     if (exa.Titan__c == exaQ.Titan__c){
+                        Question_Assignment__c questAssign = new Question_Assignment__c();
+                        questAssign.Exam_Question__c = exaq.Id;
+                        questAssign.Question_Pool__c = pool.Id;
+                        QuestAssigns.add(questAssign);
+                     }
+                    
+                 }
+                
+             }
+         }
+
+        //System.debug('Did the above System.debug logs appear?');
+        insert QuestAssigns;
+    }
+
+
+
     
     @AuraEnabled
     public static void CreateExamResult(){
@@ -519,7 +616,7 @@ public with sharing class ApexDataFactory {
         }
         
         insert Results;
-        CreateHeroAnswer();
+      //  CreateHeroAnswer();
     }
     
     
@@ -566,4 +663,29 @@ public with sharing class ApexDataFactory {
         insert Answers;
     }
     
+    @AuraEnabled
+    public static void createExamPoolAssignments(){
+        // SELECT Id FROM Exam_Pool_Assignment__c 
+        List <Exam__c> examList = [SELECT Id, Titan__c FROM Exam__c];
+        List <Question_Pool__c> qPoolList = [SELECT Id FROM Question_Pool__c];
+        List <Exam_Pool_Assignment__c> expoolAssigns =  new List<Exam_Pool_Assignment__c>();
+        
+        
+         for(Exam__c ex:examList){
+             for(Question_Pool__c qpool:qPoolList){
+                        Exam_Pool_Assignment__c exPA = new Exam_Pool_Assignment__c();
+                        exPA.Exam__c = ex.Id;
+                        exPA.Question_Pool__c = qpool.Id;
+                        expoolAssigns.add(exPA);          
+             }
+         }
+        insert expoolAssigns;
+    }
+
+    /**
+     * for every examPoolAssgnmt
+     *    if ExamPoolAssignemnt DNE
+     *      then associate ExamPoolAssignment with Exam
+     *  
+     */
 }

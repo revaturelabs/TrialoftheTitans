@@ -166,7 +166,7 @@ public class HeroHubTestUtilities {
         }
         database.insert(newQuestions);
     }
-    
+
     /*createExameResults() inserts exam results into the database for every exam */
     
     public static void createExamResults(){

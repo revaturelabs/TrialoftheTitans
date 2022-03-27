@@ -12,6 +12,8 @@
  * 1.3   02-15-2022   Conner Eilenfeldt     Submission confirmation message
  * 1.4   02-17-2022   Conner Eilenfeldt     Exam details header
  * 1.5   02-18-2022   Conner Eilenfeldt     Added exam timer
+ * 1.6   03-24-2022   Patrick Sepnio        added pass/fail modal
+ * 
  **/
 import { LightningElement, api, wire, track } from "lwc";
 //import exam from '@salesforce/schema/Exam__c';
@@ -32,6 +34,10 @@ export default class LwcExamInterview extends LightningElement {
   examName;
   titan;
   examTimeLimit;
+
+  //used for calulating pass/fail added by iteration xi
+  examResult;
+  defaultPassingGrade;
 
   //for displaying errors
   error;
@@ -58,7 +64,7 @@ export default class LwcExamInterview extends LightningElement {
   examQuestionOrder;
 
   //holds the list of user's answers
-  examAnswers = {};
+  examAnswers = [];
   
   // User-entered answer on the current question
   answer = "";
@@ -131,8 +137,8 @@ export default class LwcExamInterview extends LightningElement {
         exam name, titan name, default timer
     */
     if (data) {
-      console.log("Logging data");
-      console.log(data);
+      // console.log("Logging data");
+      // console.log(data);
 
       // data's exam questions
       this.numberOfQuestions = Object.keys(data[0]).length;
@@ -155,7 +161,7 @@ export default class LwcExamInterview extends LightningElement {
       this.examName = undefined;
       this.titan = undefined;
       this.examTimeLimit = undefined;
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -169,14 +175,14 @@ export default class LwcExamInterview extends LightningElement {
       this.currentQuestion = this.examQuestions[this.questionNumber - 1];
       questionComponent.question = this.currentQuestion;
       flagComponent.recordId = this.currentQuestion.Id;
-      console.log('All questions');
-      console.log(this.examQuestions);
-      console.log('Printing current question');
-      console.log(this.currentQuestion);
-      console.log('Printing answer');
-      console.log(this.examAnswers[`${this.questionNumber}`]);
-      console.log('Printing question state');
-      console.log(this.examQuestionsState);
+      // console.log('All questions');
+      // console.log(this.examQuestions);
+      // console.log('Printing current question');
+      // console.log(this.currentQuestion);
+      // console.log('Printing answer');
+      // console.log(this.examAnswers[`${this.questionNumber}`]);
+      // console.log('Printing question state');
+      // console.log(this.examQuestionsState);
       questionComponent.handleSetAnswer(this.examAnswers[`${this.questionNumber}`]);
     }
   }
@@ -199,8 +205,8 @@ export default class LwcExamInterview extends LightningElement {
   shuffleQuestions(questionData) {
     let shuffled = Array(this.numberOfQuestions);
     let order = this.shuffleQuestionOrder(this.numberOfQuestions);
-    console.log('Random question order');
-    console.log(order);
+    // console.log('Random question order');
+    // console.log(order);
     for(let k = 0; k < this.numberOfQuestions; k++) {
       shuffled[k] = questionData[order[k]];
     }
@@ -224,9 +230,9 @@ export default class LwcExamInterview extends LightningElement {
   }
 
   setCurrentQuestionAnsweredState() {
-    console.log('Current question state');
-    console.log(this.questionNumber);
-    console.log(this.examAnswers[`${this.questionNumber}`]);
+    // console.log('Current question state');
+    // console.log(this.questionNumber);
+    // console.log(this.examAnswers[`${this.questionNumber}`]);
     // The actual state tracker component handles hybrid states (answered and marked for review) and displaying them correctly
     if (this.examAnswers[`${this.questionNumber}`]) {
       this.examQuestionsState[this.questionNumber - 1].answered = true;
@@ -263,7 +269,7 @@ export default class LwcExamInterview extends LightningElement {
   setExamAnswerToAnswerProvided() {
     this.examAnswers[`${this.questionNumber}`] = this.answer;
     this.setCurrentQuestionAnsweredState();
-    console.log(this.examAnswers[`${this.questionNumber}`]);
+    // console.log(this.examAnswers[`${this.questionNumber}`]);
   }
 
   setCurrentAnswerToPreviouslyAnswered() {
@@ -275,7 +281,7 @@ export default class LwcExamInterview extends LightningElement {
 
   setPrevNextDisabled() {
     this.prevButtonDisabled = this.questionNumber < 2;
-    this.nextButtonDisabled = this.questionNumber + 1 > this.numberOfQuestions;
+    // this.nextButtonDisabled = this.questionNumber + 1 > this.numberOfQuestions;
   }
 
   prevClicked() {
@@ -287,6 +293,8 @@ export default class LwcExamInterview extends LightningElement {
   nextClicked() {
     if (this.questionNumber < this.numberOfQuestions) {
       this.gotoQuestionNumber(this.questionNumber + 1);
+    }else{
+      // console.log('Last Question Next Button');
     }
   }
 
@@ -297,6 +305,7 @@ export default class LwcExamInterview extends LightningElement {
   gotoQuestionNumber(qNumber) {
     this.setExamAnswerToAnswerProvided();
     this.questionNumber = qNumber;
+    //added these 3 to be on any input change, instead of only on next/previous button -iteration xi
     this.setCurrentAnswerToPreviouslyAnswered();
     this.updateQuestionComponent();
     this.setPrevNextDisabled();
@@ -342,8 +351,10 @@ export default class LwcExamInterview extends LightningElement {
         this.toastMessage = "Exam submitted successfully.";
         this.toastTitle = "Success!";
         this.toastVariant = "success";
-        console.log(this.toastMessage);
-        console.log(result);
+        // console.log(this.toastMessage);
+        // console.log(result);
+        this.examResult = result;
+        this.defaultPassingGrade = result.Exam__r.Default_Passing_Grade__c;
         this.error = undefined;
         this.handleSubmitAnswers();
       })
@@ -351,7 +362,8 @@ export default class LwcExamInterview extends LightningElement {
         this.toastMessage = "Error occured submitting exam " + error;
         this.toastTitle = "Oops! Error occured";
         this.toastVariant = "error";
-        console.log(this.toastMessage);
+        // console.log(this.toastMessage);
+        // console.log(error);
         this.error = error;
       })
       .finally(() => {
@@ -363,6 +375,10 @@ export default class LwcExamInterview extends LightningElement {
         });
         this.dispatchEvent(toastEvent);
       });
+
+
+      
+
   }
 
   //submit exam answers to the apex controller.  not sure why they did it with two separate calls at the same time... but we are not trying to change the apex controllers too much now, could be combined later.
@@ -383,19 +399,34 @@ export default class LwcExamInterview extends LightningElement {
           this.showCelebrateButton = true;
           this.fireworks();
         }
+
+      // this.showPassModal();
+
       })
       .catch((error) => {
-        this.toastMessage = "Error occured submitting exam " + error.message;
+        this.toastMessage = "Error occured submitting exam answers" + error.message;
         this.toastTitle = "Oops! Error occured";
         this.toastVariant = "error";
-        console.log(this.toastMessage);
-        console.error(error.message);
+        // console.log(this.toastMessage);
+        console.error(error);
         console.error("e.name => " + error.name);
         console.error("e.message => " + error.message);
         console.error("e.stack => " + error.stack);
         this.error = error;
+      })
+      .finally(() =>{
+        //finally block added to show the pass/fail modal, needs to contain logic to see if there is a short answer question
+        // if there is a short answer question, do not show pass/fail modal, show needs grading modal (not made yet)-iteration xi
+        this.showPassModal();
       });
   }
+      //passes list of questions, list of answers, and the passing grade thresholds to the pass/fail modal;
+      //to be calculated by the modal, without using another SOQL query- because submit answers apex does not work-iteration xi
+      showPassModal(){
+        let popUp = this.template.querySelector("c-lwc-popup-modal");
+        popUp.setQuestionAnswer(this.examQuestions,this.examAnswers, this.examResult.Passing_Grade_Override__c, this.defaultPassingGrade);
+        popUp.showModalTwo();
+      }
 
   //added some fireworks for fun to celebrate end of program, adds confetti after successful submit
   // and a displays a button to play it again.  A little pizzazz
@@ -427,6 +458,8 @@ export default class LwcExamInterview extends LightningElement {
         );
         this.confettiAvailable = false;
       });
+
+      // this.showPassModal();
   }
 
   fireworks() {

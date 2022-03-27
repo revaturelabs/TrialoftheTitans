@@ -18,12 +18,7 @@ import getUserNextExam from "@salesforce/apex/titanDisplayController.getUserNext
 import getNumberOfExamResultsOfUser from "@salesforce/apex/titanDisplayController.getNumberOfExamResultsOfUser";
 import { NavigationMixin } from 'lightning/navigation';
 
-//d3 imports
-import { ShowToastEvent } from "lightning/platformShowToastEvent";
-import { loadScript } from "lightning/platformResourceLoader";
-import D3 from "@salesforce/resourceUrl/DJS3";
-import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
-export default class TitanDisplayBar extends NavigationMixin(LightningElement)  {
+export default class TitanDisplayBar extends NavigationMixin(LightningElement) {
     @track disableOverview = false;
     @track disableAdvance = false;
     @api titanId;
@@ -36,7 +31,7 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
     @track titanName;
 
     renderedCallback() {
-        
+
     }
 
     connectedCallback() {
@@ -53,27 +48,26 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
 
             let userExams = getUserExams({ titanId: slicedId, userId: this.currentUser.Id });
             userExams.then((res) => {
-                if (Object.keys(res).length != null){
-                    this.passedExams = Object.keys(res).length;
-                }
-                else{
+                    if (Object.keys(res).length != null) {
+                        this.passedExams = Object.keys(res).length;
+                    } else {
+                        this.passedExams = 0;
+                    }
+                    this.userExamsLoaded = true;
+                })
+                .catch((error) => {
+                    console.log('error:', error);
                     this.passedExams = 0;
-                }
-                this.userExamsLoaded = true;
-            })
-            .catch((error) => {
-                console.log('error:', error);
-                this.passedExams = 0;
-                this.userExamsLoaded = true;
-            });
+                    this.userExamsLoaded = true;
+                });
 
             let numExams = getNumberOfTitanExams({ titanId: slicedId });
             numExams.then((res) => {
                 this.totalExams = res;
 
-                getNumberOfExamResultsOfUser({titanId : slicedId, userId : this.currentUser.Id})
+                getNumberOfExamResultsOfUser({ titanId: slicedId, userId: this.currentUser.Id })
                     .then((result) => {
-                        if(this.totalExams == result)
+                        if (this.totalExams == result)
                             this.disableAdvance = true;
                     })
                     .catch((error) => {
@@ -82,7 +76,7 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
             });
 
         });
-        
+
     }
 
     //Navigate to the Titan Hub Page
@@ -92,13 +86,13 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
         this[NavigationMixin.Navigate]({
             type: "comm__namedPage",
             attributes: {
-                name: "Titan_Hub__c"//API name of the page to navigate to
+                name: "Titan_Hub__c" //API name of the page to navigate to
             },
-             state: {
+            state: {
                 c__titanId: slicedId,
                 c__accountId: this.currentUser.Id //Added account id
 
-             }
+            }
         });
     }
 
@@ -107,21 +101,21 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
     handleAdvance() {
 
         let slicedId = this.id.slice(0, 18);
-        
-        getUserNextExam({titanId : slicedId, userId : this.currentUser.Id})
+
+        getUserNextExam({ titanId: slicedId, userId: this.currentUser.Id })
             .then((result) => {
 
                 this[NavigationMixin.Navigate]({
                     type: "comm__namedPage",
                     attributes: {
-                        name: "Exam_Interview__c"//API name of the page to navigate to
+                        name: "Exam_Interview__c" //API name of the page to navigate to
                     },
-                     state: {
-                         c__examId: result,
-                         c__accId: this.currentUser.Id
-                     },
+                    state: {
+                        c__examId: result,
+                        c__accId: this.currentUser.Id
+                    },
                 });
-                
+
 
             })
             .catch((error) => {
@@ -129,6 +123,6 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement)  
                 console.log(error);
             });
 
-        
+
     }
 }

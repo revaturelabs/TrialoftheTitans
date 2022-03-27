@@ -12,6 +12,7 @@
   1.3   02-15-2022   Conner Eilenfeldt     Submission confirmation message
   1.4   02-17-2022   Conner Eilenfeldt     Exam details header
   1.5   02-18-2022   Conner Eilenfeldt     Added exam timer
+  1.6   03-24-2022   Patrick Sepnio        added pass/fail modal popup
 -->
 <template>
   <div class="slds-p-around_x-small exam_layout">
@@ -43,9 +44,11 @@
           <c-lwc-mark-for-review
             class="slds-float_right"
             onmarkreview={markForReviewCurrentQuestion}
+            style = "margin-right: 14px;"
           ></c-lwc-mark-for-review>
         </div>
-        
+
+      <div class = "slds-p-vertical_xxx-small"></div>
         <!--Current question to flag for corrections-->
         <div class="slds-col">
           <c-lwc-question-flag
@@ -131,4 +134,11 @@
     confirm-button-label="Yes, I'm ready."
     onconfirmationclick={handleConfirmSubmit}
   ></c-lwc-slds-modal>
+
+  <!-- iteration xi pass/fail modal -->
+  <c-lwc-popup-modal
+    has-passing-grade = "true"
+    close-button-label="No, Not Yet! Take me back!"
+  >
+  </c-lwc-popup-modal>
 </template>

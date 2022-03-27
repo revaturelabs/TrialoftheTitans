@@ -1,6 +1,5 @@
 {
-    "packageDirectories": [
-        {
+    "packageDirectories": [{
             "path": "TrialoftheTitansPackage",
             "package": "TrialOfTheTitansPackage",
             "versionName": "ver 0.1",
@@ -8,7 +7,7 @@
             "default": true,
             "dependencies": [
                 {
-                    "package": "ChartPackage@1.0.0-1"
+                "package": "ChartPackage@1.0.0-1"
                 }
             ]
         },

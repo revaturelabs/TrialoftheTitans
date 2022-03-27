@@ -1,0 +1,226 @@
+<!-- Objects required: 
+Custom_Skills__c
+Category__c
+project
+experience
+equivalency
+
+
+Author: Gabriel Anton
+Date: 3/18/22
+Description: The skills matrix displays the skill categories corresponding to the user
+and gives the user the ability to add new categories as well as update their skills 
+
+Each Edit and Add button opens modals where they can add new skills or add a new category.
+
+Using Custom_Skill__c and Category__c as custom objects. Have master-detail relationship that
+is used in apex controller to return each skill from each category to display.
+-->
+
+<template>
+
+<div class="matrixContainer">
+
+    <div class="headerContainer">
+        <div style="display: inline-flex">
+    <lightning-icon icon-name='standard:skill_requirement' alternative-text='skills' size='medium' title='Skill Matrix'></lightning-icon>
+    <br>
+    <h1 class="slds-float_left slds-text-heading_large" style="padding-left: 7px;">Skills Matrix</h1>
+    </div>
+    <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Add Category" onclick={openModal}>
+       <lightning-icon icon-name="utility:add"
+            alternative-text="add"
+            variant="inverse"
+            size="medium" 
+            class="icon"></lightning-icon>
+            <span class="slds-assistive-text">Add Category</span>
+    </button>
+
+    <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Add Skill" onclick={openSkillsModal}>
+        <lightning-icon icon-name="utility:edit"
+             alternative-text="add"
+             variant="inverse"
+             size="medium" 
+             class="icon"></lightning-icon>
+             <span class="slds-assistive-text">Add Skill</span>
+     </button>
+
+    </div>
+    
+    <hr>
+    <br>
+    
+
+    <div class="categoryContainer" style="display:flex; justify-content: normal; flex-wrap: wrap; margin-right:1.5em;">
+
+    
+            <template if:true={category}>
+                
+                
+                    <template for:each={category} for:item="titan">
+                        <div key={titan.Id} class="recordContainer">
+                        <header key={titan.Id} class="recordHeader">
+                            {titan.Name} 
+                         
+                         <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Delete" onclick={handleDelete} value={titan.Id}>
+                            <lightning-icon icon-name="utility:delete"
+                                 alternative-text="delete"
+                                 variant="inverse"
+                                 size="x-small" 
+                                 class="headericon"
+                                 value={titan.Id}></lightning-icon>
+                                 <span class="slds-assistive-text">Delete</span>
+                         </button>
+                       
+                        </header>
+
+                        
+                        <template for:each={titan.Custom_Skills__r} for:item="skill">
+                            <ul key={skill.Id}>
+
+                                <li key={skill.Id} ><b>{skill.Skill_Number__c}: </b>{skill.Name}  
+                                    <div class="progressBar slds-float_right" style="margin-right: 35px;">
+                                        <br>
+                                        <div class="myProgress slds-float_right" style="margin-top: 3px;" id={skill.Progress__c} title={skill.Skill_Number__c}>
+                                            <!-- <div class={skill.Skill_Number__c}
+                                            style="width:0%;
+                                            background-color: #00E2D5;
+                                            border-radius: 10px;
+                                            height: 30px;">
+                                            <span class={skill.Id} 
+                                            style="padding-left: 5px;
+                                            /* font-weight: 500; */
+                                            font-size: 1.5em;" key={skill.Id}>{skill.Progress__c}</span></div> -->
+                                            <c-progressbarskillmatrix endwidth={skill.Progress__c} progressid={skill.Skill_Number__c} skillprogress={skill.Progress__c} skillid={skill.Id}></c-progressbarskillmatrix>
+                                            <!--encap in p tag and adjust padding on percentage--> 
+                                    
+                                          </div> 
+                                          
+                                          <!-- <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Edit Progress" onclick={editProgress} value={skill.Id} name={skill.Skill_Number__c} id={skill.Progress__c}>
+                                            <lightning-icon icon-name="utility:rating"
+                                                 alternative-text="progress"
+                                                 variant="inverse"
+                                                 size="x-small" 
+                                                 class="progressicon"
+                                                 value={skill.Id}></lightning-icon>
+                                                 <span class="slds-assistive-text">Edit Progress</span>
+                                         </button> -->
+                                         <button class="delete_button slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Delete" onclick={handleDeleteSkill} value={skill.Id}>
+                                            <lightning-icon icon-name="utility:delete"
+                                                 alternative-text="delete"
+                                                 variant="inverse"
+                                                 size="x-small" 
+                                                 class="progressicon"
+                                                 value={skill.Id}></lightning-icon>
+                                                 <span class="slds-assistive-text">Delete</span>
+                                         </button>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </template>
+                        <!-- skills and progress bar elements -->
+                    
+
+                        </div>
+                    </template>
+                    <!-- end for for loop through category data -->
+                <br>
+                <br>
+                <br>
+                
+            </template>
+            <!-- if:true category template -->
+        <br>
+        <br>
+        <br>
+   
+    
+    </div> 
+    <!-- category container -->
+    <br>
+    <br>
+    <br>
+
+
+</div>
+    
+    
+ 
+
+    <!-- This is where the category modal begins -->
+
+    <template if:true={isModalOpen}>
+        <section aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container ">
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_small">Add New Skill Category</h2>
+                    <lightning-icon class="slds-modal__close" icon-name="utility:close" size="small" onclick={closeModal}></lightning-icon>
+                </header>
+                <!-- <div class="slds-modal__content">
+                    <div class="slds-p-around_small">
+                    </div>
+                </div> -->
+                <div class="slds-box slds-theme_default slds-var-p-around_medium">
+                    <lightning-record-edit-form object-api-name={categoryObject} onsuccess={handleSuccess}>
+                        <lightning-input-field field-name={categoryName}></lightning-input-field>
+                        <!-- <lightning-input-field field-name={categoryUser}></lightning-input-field> -->
+                        <!-- <lightning-input-field field-name={technology}></lightning-input-field> -->
+                        <br>
+                        <lightning-button variant="brand" type="submit" label="Add Category"></lightning-button>
+                    </lightning-record-edit-form>
+                </div>
+                
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="brand" label="Cancel" onclick={closeModal} class="slds-p-around_x-small"></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <!-- This is where the category modal ends -->
+
+
+
+    <!-- This is where the skills modal begins -->
+
+     <template if:true={isSkillsModalOpen}>
+        <section aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container ">
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_small">Add New Skill</h2>
+                    <lightning-icon class="slds-modal__close" icon-name="utility:close" size="small" onclick={closeSkillsModal}></lightning-icon>
+                </header>
+                <div class="slds-modal__content">
+                </div>
+                <div class="slds-box slds-theme_default slds-var-p-around_medium">
+                    <lightning-record-edit-form object-api-name={objectName} onsuccess={handleSkillSuccess}>
+                        <lightning-input-field field-name={nameField}></lightning-input-field>
+                        <lightning-input-field field-name={skillCategory}></lightning-input-field>
+                        <lightning-input-field field-name={skillProgress}></lightning-input-field>
+                        <!-- <lightning-input-field field-name={skillUser}></lightning-input-field> -->
+                        <br>
+                        <lightning-button variant="brand" type="submit" label="Submit Skill"></lightning-button>
+                    </lightning-record-edit-form>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="brand" label="Cancel" onclick={closeSkillsModal} class="slds-p-around_x-small"></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <!-- This is where the skills modal ends -->
+
+
+
+    <!-- This is where the progress bar modal begins -->
+
+    
+
+    <!-- This is where the progress bar modal ends -->
+
+
+</template>

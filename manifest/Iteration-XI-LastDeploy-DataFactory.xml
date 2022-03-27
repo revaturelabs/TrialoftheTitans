@@ -79,5 +79,9 @@
         <members>Education__c.All</members>
         <name>ListView</name>
     </types>
+    <types>
+        <members>TrialOfTheTitansXIChannel</members>
+        <name>LightningMessageChannel</name>
+    </types>
     <version>53.0</version>
 </Package>
