@@ -3,7 +3,7 @@ import getEquivalencies from '@salesforce/apex/GetEquivalencies.getEq';
 import EquivObj from '@salesforce/schema/Equivalency__c';
 import SkillName from '@salesforce/schema/Equivalency__c.Name';
 import SkillScore from '@salesforce/schema/Equivalency__c.Skill_Equivalency__c';
-import setEquivalencies from '@salesforce/apex/GetEquivalencies.setEq';
+// import setEquivalencies from '@salesforce/apex/GetEquivalencies.setEq';
 import {refreshApex} from '@salesforce/apex';
 
 
@@ -46,45 +46,49 @@ export default class Strengths extends LightningElement {
 
     //create a method
     showEditStrengthsForm() {
+        // Notes: custom event not necessary as we are operating within same component 
+        // Flip the boolean
         console.log('showEditStrengthsForm');
-        this.showEditStrengthsBoolean = true;
+        this.showEditStrengthsBoolean = !this.showEditStrengthsBoolean;
+
         //create an event
-        const showEditStrengthsEvent = new CustomEvent('showeditstrengthsform');
+        // const showEditStrengthsEvent = new CustomEvent('showeditstrengthsform');
         //dispatch the event
-        this.dispatchEvent(showEditStrengthsEvent);
+        // this.dispatchEvent(showEditStrengthsEvent);
     }
 
-    handleShowEditStrengthsForm() {
-        console.log('handleShowEditStrengthsForm');
-        this.showEditStrengthsBoolean = true;
-    }
-    
+    handleUpdateSkillLevel() {
+        // Note: Using lightning-record-*-form is preferred for manipulating records
+        //          on the org from LWC. Wire service is good for GET requests, but not 
+        //          recommended for other CRUD operations.
+        console.log('handleUpdateSkillLevel');
+        refreshApex(this.wireStrengthsValue).then(() => {
+            this.showEditStrengthsBoolean = !this.showEditStrengthsBoolean;
+        });
 
-    handleUpdateSkillLevel(event) {
 
         // this.createLocalStrengthsArrayOfObjects();
-        console.log(this.localStrengthsArrayOfObjs);
-        console.log(this.localStrengthsArrayOfObjs[0].score);
-        console.log('handleUpdateSkillLevel');
+        // console.log(this.localStrengthsArrayOfObjs);
+        // console.log(this.localStrengthsArrayOfObjs[0].score);
+        
+        // let newSkillId = event.currentTarget.dataset.skillid;
+        // console.log(newSkillId, 'newSkillId');
+        // let newSkillLevel = event.currentTarget.dataset.skilllevel;
+        // let newSkillInputValue = this.template.querySelector('input[data-skillid="' + newSkillId + '"]').value;
+        // let progressbarTarget = this.template.querySelector('c-progressbar[data-skillid="' + newSkillId + '"]');
+        //     console.log(progressbarTarget, 'progressbarTarget');
+        // console.log(progressbarTarget.endwidth, 'progressbarTarget.endwidth');
 
-        let newSkillId = event.currentTarget.dataset.skillid;
-        console.log(newSkillId, 'newSkillId');
-        let newSkillLevel = event.currentTarget.dataset.skilllevel;
-        let newSkillInputValue = this.template.querySelector('input[data-skillid="' + newSkillId + '"]').value;
-        let progressbarTarget = this.template.querySelector('c-progressbar[data-skillid="' + newSkillId + '"]');
-            console.log(progressbarTarget, 'progressbarTarget');
-        console.log(progressbarTarget.endwidth, 'progressbarTarget.endwidth');
+        // // newSkillInputValue = parseInt(newSkillInputValue);
 
-        // newSkillInputValue = parseInt(newSkillInputValue);
+        // setEquivalencies({eq: newSkillInputValue, eqId: newSkillId});
 
-        setEquivalencies({eq: newSkillInputValue, eqId: newSkillId});
-        refreshApex(this.wireStrengthsValue);
 
             // console.log('newSkillInputValue', newSkillInputValue);
             // console.log('newSkillId', newSkillId);
             // console.log('newSkillLevel', newSkillLevel);
-        progressbarTarget.endwidth = parseInt(newSkillInputValue);
-        console.log(progressbarTarget.endwidth, 'progressbarTarget.endwidth');
+        // progressbarTarget.endwidth = parseInt(newSkillInputValue);
+        // console.log(progressbarTarget.endwidth, 'progressbarTarget.endwidth');
 
         // for (let i = 0; i < this.localStrengthsArrayOfObjs.length; i++) {
         //     if (this.localStrengthsArrayOfObjs[i].id === newSkillId) {
