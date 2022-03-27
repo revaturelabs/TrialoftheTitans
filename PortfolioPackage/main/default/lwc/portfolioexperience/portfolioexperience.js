@@ -1,7 +1,14 @@
 /************************************************************
  * Done by: Mohammed Azad
- * Creates functionality to deal with the experience 
- * component
+ * Interacts with the experience components:
+ * Allows the user to 
+ *  - Create an entry that contains their experience: 
+ *      - Company Name
+ *      - Date Started 
+ *      - Date Ended
+ *      - Position
+ *  - Delete an entry that the user feels is a mistake. 
+ *
  * Date: March 24 2022
  ************************************************************/
 
