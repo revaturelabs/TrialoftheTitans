@@ -54,7 +54,14 @@ export default class Strengths extends LightningElement {
         this.dispatchEvent(showEditStrengthsEvent);
     }
 
+    handleShowEditStrengthsForm() {
+        console.log('handleShowEditStrengthsForm');
+        this.showEditStrengthsBoolean = true;
+    }
+
+
     handleUpdateSkillLevel(event) {
+
         // this.createLocalStrengthsArrayOfObjects();
         console.log(this.localStrengthsArrayOfObjs);
         console.log(this.localStrengthsArrayOfObjs[0].score);
@@ -62,7 +69,7 @@ export default class Strengths extends LightningElement {
 
         let newSkillId = event.currentTarget.dataset.skillid;
         console.log(newSkillId, 'newSkillId');
-        let newSkillLevel = event.currentTarget.dataset.skilllevel;
+        // let newSkillLevel = event.currentTarget.dataset.skilllevel;
         let newSkillInputValue = this.template.querySelector('input[data-skillid="' + newSkillId + '"]').value;
         let progressbarTarget = this.template.querySelector('c-progressbar[data-skillid="' + newSkillId + '"]');
             console.log(progressbarTarget, 'progressbarTarget');

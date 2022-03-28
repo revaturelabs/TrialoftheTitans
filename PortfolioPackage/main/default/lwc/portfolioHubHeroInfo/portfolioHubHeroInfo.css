@@ -1,3 +1,9 @@
+/*  
+    Created by Sean Whitley 3/16/22
+    cookie-crisp#3847 (Discord)
+    sean.whitley@revature.net
+*/
+
 @import "c/styleResource";
 
 .content-container {
@@ -30,11 +36,11 @@ img {
 .hero-name {
     display: flex;
     align-items: baseline;
-    font-size: xx-large;
+    font-size: var(--font-size-heading);
 }
 
 .hero-title {
-    font-size: large;
+    font-size: var(--font-size-subheading);
     padding-bottom: calc(var(--space-xsmall)/4);
 }
 
@@ -44,7 +50,7 @@ img {
 }
 
 .cert-text {
-    font-size: medium;
+    font-size: var(--font-size-subheading);
     margin: 0 calc(var(--space-xsmall)/4);
 }
 

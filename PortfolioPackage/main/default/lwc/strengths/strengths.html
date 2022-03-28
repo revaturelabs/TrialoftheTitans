@@ -10,8 +10,8 @@
                     </div>
                 </div> <!-- header-icon-container -->
                 <div class="edit-icon edit-icon-float-right">
-                    <img src="../resources/edit.png" alt="">
-
+                    <span class="edit-icon-link" onclick={handleShowEditStrengthsForm}><img src="../resources/edit.png"
+                            alt=""></span>
                 </div>
             </div>
             <template for:each={strengths} for:item="skill">
@@ -48,22 +48,28 @@
 
                 </div>
             </div>
+
             <template for:each={strengths} for:item="skill">
                 <div key={skill.Id} class="strengths-content-row">
                     <div class="skill-name">
                         {skill.Name} - Current Score: {skill.Skill_Equivalency__c}
                     </div>
-                    <div class="skill-level">
+                    <div>
                         <!-- <c-progressbar data-skillid={skill.Id} endwidth={skill.Skill_Equivalency__c}></c-progressbar> -->
-                        <input type="text"  data-skillid={skill.Id} class="skill-level-input">
-                        <button class="update-skill-level-button" data-skilllevel={skill.Skill_Equivalency__c} data-skillid={skill.Id} onclick={handleUpdateSkillLevel}>Update Score</button>
+                        <div class="skill-level float-inputs-right">
+                            <input type="text" data-skillid={skill.Id} class="skill-level-input">
+                            <button class="update-skill-level-button" data-skilllevel={skill.Skill_Equivalency__c}
+                                data-skillid={skill.Id} onclick={handleUpdateSkillLevel}>Update Score</button>
+
+                        </div>
+
                     </div>
                 </div>
 
             </template>
         </div>
     </template>
-<!-- 
+    <!-- 
     <template class="showEditStrengthsForm" if:false={showEditStrengthsBoolean}>
         <lightning-record-edit-form object-api-name={equivObj}>
 

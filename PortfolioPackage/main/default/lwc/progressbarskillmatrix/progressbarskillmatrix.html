@@ -6,14 +6,14 @@ skill.
 -->
 
 <template>
-
+<div style="display:inline;">
+                
+            
     <div class="myProgress">
         <div class="myBar"><span class="score-percentage">{skillprogress}                           
         </span></div>
         
-      </div>
-      <div>
-                <button class="edit_button slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Edit Progress" onclick={editProgress} value={skillid}>
+      </div><button class="edit_button slds-button slds-button_icon slds-button_icon-inverse" title="Edit Progress" onclick={editProgress} value={skillid}>
                     <lightning-icon icon-name="utility:edit"
                          alternative-text="progress"
                          variant="inverse"
@@ -22,8 +22,8 @@ skill.
                          ></lightning-icon>
                          <span class="slds-assistive-text">Edit Progress</span>
                  </button>
-            </div>
-    
+      
+    </div>
 
       <template if:true={isProgressModalOpen}>
         <section aria-modal="true" class="slds-modal slds-fade-in-open">
@@ -42,7 +42,7 @@ skill.
                     <label for="progress">Enter Your Progress With This Skill: </label>
                     <br>
                     <br>
-                    <input type="text" name="progress" class="scoreInput">
+                    <input type="text" class="scoreInput">
                 </div>
                     
                 </div>
