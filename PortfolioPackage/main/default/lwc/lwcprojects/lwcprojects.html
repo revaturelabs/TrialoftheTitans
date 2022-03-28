@@ -20,7 +20,7 @@
                      variant='bare'>
                  </lightning-icon>
              </span>
-             <span class="slds-text-title_caps" style="font-weight: bold; font-size: 32px; margin-left:1%;">Projects</span>
+             <span class="slds-text-title_caps header">Projects</span>
              <!-- Button to add a new project -->
              <lightning-icon onclick={showAddModal} style="float:right; margin-right: 2%; cursor: pointer;" icon-name='utility:add' alternative-text='add' size='large' title='add'></lightning-icon>
          </span>
@@ -30,7 +30,7 @@
               <template for:each={projects} for:item="project">
                 <lightning-card key={project.Id}>
                     <!-- Name of project and Delete button -->
-                    <h1 class="slds-text-title_caps" style="font-weight: bold; margin-left: 2%; font-size: 24px; display:inline-block">{project.Name}</h1>
+                    <h1 class="slds-text-title_caps subheader">{project.Name}</h1>
                     <lightning-icon style="cursor: pointer; margin-left:1%;" icon-name='utility:delete' alternative-text='delete' size='medium' title='delete' onclick={deleteProject} name={project.Name}></lightning-icon>
                     <br><br>
                     <span>
