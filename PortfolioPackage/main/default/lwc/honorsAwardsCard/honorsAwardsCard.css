@@ -72,9 +72,10 @@ lightning-icon:hover {
 .package-icon {
   float: left;
   background-color: var(--color-primary); 
-  --sds-c-icon-color-foreground: black;
-  padding: 5px 5px;
+  --sds-c-icon-color-foreground: rgba(0, 101, 95, 0.35);
+  padding-left: 5px;
   border: 0;
+
 }
 
 .package-icon:hover {
@@ -88,4 +89,11 @@ lightning-icon:hover {
   --sds-c-icon-color-foreground: black;
   padding: 5px 5px;
   border: 0;
+}
+
+.alt-colors div.awards:nth-child(2n+1){ 
+  background-color: #ecfffe;
+}
+.alt-colors div.awards:nth-child(2n){ 
+  background-color: #dff2f1;
 }
