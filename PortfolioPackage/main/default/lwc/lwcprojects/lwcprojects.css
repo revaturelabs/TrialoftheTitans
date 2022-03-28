@@ -1,4 +1,14 @@
+@import "c/styleResource";
 .projectDesc{
     padding: 8px;
     font-size: 16px;
+}
+.header{
+    font-size: var(--font-size-heading);
+    margin-left:1%;
+}
+.subheader{
+    font-size: var(--font-size-subheading);
+    margin-left: 2%; 
+    display:inline-block
 }

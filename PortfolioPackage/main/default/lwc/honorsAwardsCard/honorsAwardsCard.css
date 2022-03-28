@@ -3,56 +3,90 @@
     Description: Card container for Honors & Awards section in Portfolio
     Created Date: 3/17/22
 */
+@import "c/styleResource"; 
+
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
     row-gap: 1px;
-    width: 600px;
+    width: 100%; 
     height: auto;
+}
+
+.header {
+  font-weight: bold;
+  font-size: var(--font-size-heading);
+  color:black;
+  background-color: var(--color-primary); 
+  grid-column: span 2;
+  display: grid;
 }
 
 .awards {
     display: grid;
-    font-family: Palatino; 
-    background-color: rgb(212, 241, 250);
+    font-size: var(--font-size-subheading);
+    font-weight: bold;
+    color:black;
+    background-color: var(--color-secondary); 
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 30px;
 }
 
-.awards:nth-child(1) {
-    grid-column: span 2;
-    display: grid;
-    font-size: 30px;
-    background-color: rgb(240, 245, 246);
-}
-
-.p {
-  padding-left: 10px;
-  font-family: Palatino;
+p {
+  padding-left: 5px;
 }
 
 .icon {
     background-color: rgb(174, 232, 250);
 }
 
-/* button {
-  background-color: rgb(255,255,255);
-  border: 0;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-button:hover {
-    background-color: rgb(230, 230, 230);
-  } */
+lightning-icon:hover {
+  cursor: pointer;
+  }
 
 .label {
   font-size: 14px;
   font-weight: bold;
-  font-family: sans-serif;
-
 }
 
 .close {
   font-weight: bold;
   padding-left: 30px;
+}
+
+.addButton {
+  float: right;
+  --sds-c-icon-color-foreground: black;
+  padding: 5px 5px;
+}
+
+.deleteButton {
+  float: right;
+  --sds-c-icon-color-foreground: black;
+  padding: 5px 5px;
+}
+
+/* Left header icon */
+.package-icon {
+  float: left;
+  background-color: var(--color-secondary); 
+  --sds-c-icon-color-foreground: rgba(0, 101, 95, 0.35);
+  padding-left: 5px;
+  border: 0;
+
+}
+
+.package-icon:hover {
+  cursor: default;
+}
+
+/* Delete icon */
+.slds-button_text-destructive {
+  float: right;
+  background-color: var(--color-secondary); 
+  --sds-c-icon-color-foreground: black;
+  padding: 5px 5px;
+  border: 0;
 }
