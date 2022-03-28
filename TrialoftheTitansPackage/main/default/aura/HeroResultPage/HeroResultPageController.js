@@ -5,25 +5,25 @@
 //////////////////////////////////////////
 ({
     onInit: function (cmp, event, helper) {
-        helper.init(cmp, event)        
+        // helper.init(cmp, event)
     },
-    onCAClick: function(component, event, helper) {
-		helper.start(component, event, helper);
-	},
+    onCAClick: function (component, event, helper) {
+        // helper.start(component, event, helper);
+    },
     onExamClick: function (cmp, event, helper) {
-        helper.fireExamIdEvent(cmp, event)
+        // helper.fireExamIdEvent(cmp, event)
     },
     onTitanClick: function (cmp, event, helper) {
-        helper.markActiveTab(cmp, event)
-        helper.filterExamList(cmp, event)
+        // helper.markActiveTab(cmp, event)
+        // helper.filterExamList(cmp, event)
     },
     onBackBtnClick: function (cmp, event, helper) {
-        helper.navBackToExams(cmp, event)
+        // helper.navBackToExams(cmp, event)
     },
-    onBackDetailBtnClick: function(cmp, event, helper) {
-        helper.navBackToSingleExam(cmp, event)
+    onBackDetailBtnClick: function (cmp, event, helper) {
+        // helper.navBackToSingleExam(cmp, event)
     },
     onPbpClick: function (cmp, event, helper) {
-        helper.showPbp(cmp, event)
+        // helper.showPbp(cmp, event)
     }
-})
+});

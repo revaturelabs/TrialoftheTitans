@@ -1,0 +1,19 @@
+<!--
+    Name: updatedSquadLeaderboard
+    Author: Tobias Diaz, Raksha Jha
+    Created: 1/20/22
+    Last Updated: 1/25/22
+    Description: Our updatedSquadLeaderboard component. This displays the top three squad members in the logged in 
+    user's squad with the highest arete amount in a lightning-datatable
+-->
+
+<template>
+    <lightning-card title={squadName} icon-name="utility:activity">
+        <div if:true={accounts}>
+            <lightning-datatable data={accounts}
+            columns={columns}
+            key-field="id"
+            hide-checkbox-column="true"></lightning-datatable>
+        </div>
+</lightning-card>
+</template>

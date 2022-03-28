@@ -15,7 +15,7 @@
     <aura:attribute name="contextInfo" type="UserContextInfo"/>
     <aura:attribute name="currentTitanExams" type="List"/>
     <aura:attribute name="currentChart" type="String" default="Titan Progress" />
-    <aura:attribute name="takingExam" type="Boolean" default="false"/>
+    <aura:attribute name="takingExam" type="Boolean" default="true"/>
     <!-- todo: Set the examId here when user clicks Exam.  -->
     <aura:attribute name="examId" type="String" default="" />
     <aura:handler name="changeChart" event="c:changeChartEvent" action="{!c.changeChart}" />
@@ -65,7 +65,7 @@
                     <c:GamePath active="{!v.active}" contextInfo="{!v.contextInfo}" currentExams="{!v.currentTitanExams}"/>
                 </aura:if>
                     <aura:if isTrue = "{!v.takingExam}">
-                        <c:ExamInterview />
+                        <c:lwcExamInterview />
                     </aura:if>
                 </div>
                 <!-- Game Path Display -->

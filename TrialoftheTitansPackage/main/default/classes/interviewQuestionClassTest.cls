@@ -56,7 +56,7 @@ public class interviewQuestionClassTest {
         Id mocId = null;
         System.runAs(u){
         mocId = interviewQuestionClass.saveInterview(myQues, true, 'asd');
-        Feedback__c myFeedback = new Feedback__c(Type__c='Self', Confidence__c=1, Fluency__c=2, Eye_Contact__c=3, Body_Language__c=4);
+        Feedback__c myFeedback = new Feedback__c(Type__c='Self', Confidence__c=1, Fluence__c=2, Eye_Contact__c=3, Body_Language__c=4);
         interviewQuestionClass.saveSelfFeedback(mocId, myFeedback);
         mock = interviewQuestionClass.getMyInterview();
         feed = interviewQuestionClass.getAllFeedback();

@@ -1,0 +1,32 @@
+.sidebar-container {
+    display: flex;
+    background-color: #c4c4c4;
+    padding: 10px; 
+    margin-bottom: 20px;
+    margin-top: 12px;
+    border-radius: 5px;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 5px;
+    left: -1px;
+    margin: 10px;
+    padding: 10px; 
+    max-height: 700px;
+    overflow:scroll;
+    overflow-x:hidden;
+
+}
+
+.background{
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #fbe3e3;
+}
+
+
+
+:host {
+    --sds-c-card-color-background:  #fbe3e3;
+}
+
+

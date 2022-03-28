@@ -3,6 +3,9 @@
 
 # .forceignore v2
 
+# GitHub Readme
+**/README.md
+
 # LWC configuration files
 **/jsconfig.json
 **/.eslintrc.json
@@ -10,7 +13,7 @@
 # LWC Jest
 **/__tests__/**
 
-# Fixes error to get rid of it ¯\_(ツ)_/¯
+# Fixes error to get rid of it ¯/_(ツ)_/¯
 **/appMenus
 **/sites
 **/networks
@@ -19,6 +22,13 @@
 **/navigationMenus
 **/audience
 #**/staticresources
+TrialoftheTitansPackage/main/default/profiles/Admin.profile-meta.xml
+#TrialoftheTitansPackage/main/default/profiles/Hero.profile-meta.xml
+TrialoftheTitansPackage/main/default/profiles/TitanTrainer.profile-meta.xml
+TrialoftheTitansPackage/main/default/profiles/Trial of the Titans Profile.profile-meta.xml
+TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
+TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-meta.xml
+
 
 
 #All this stuff you may want to enable to disable
@@ -38,7 +48,6 @@
 #**/flows
 #**/flexipages
 
-
 **/flexipages/Exam_Home.flexipage-meta.xml
 **/flexipages/Exam_Record_Page.flexipage-meta.xml
 **/flexipages/Exam_Record_Page1.flexipage-meta.xml
@@ -52,7 +61,18 @@
 **/flexipages/Question_Pool_Record_Page.flexipage-meta.xml
 **/flexipages/Trainer_Hub.flexipage-meta.xml
 **/flexipages/TrainerHub_Home.flexipage-meta.xml
+**/objects/Feedback__c
+**/objects/Mock_Interview_Self__c
+**/objects/One_on_One__C
+**/objects/QC_Flag__c
+**/objects/QC_Question_Deck__c
 
-
+# **/HeroHubPackage
 
 **/ExamQuestionFlagPackage
+**/tabs/standard-home.tab-meta.xml
+
+#ChartPackage/main/default/ 
+#HeroHubPackage/main/default/ 
+#TitanHubPackage/main/default/
+TitanHubPackage/main/default/profiles/Admin.profile-meta.xml

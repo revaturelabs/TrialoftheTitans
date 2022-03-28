@@ -42,7 +42,7 @@ public class UserAccountSetup {
         
         insert userContacts;
         
-        Profile heroProfile = [SELECT Id FROM Profile WHERE Name = 'Hero' LIMIT 1];
+        Profile heroProfile = [SELECT Id FROM Profile WHERE Name = 'Hero' LIMIT 1][0];
         
         List<User> users = new List<User>();
         

@@ -1,27 +1,76 @@
 @isTest
 public class ExamInterviewApexControllerTestClass {
-    /*@TestSetup
+    @TestSetup
     static void makeData(){
         Titan__c tTitan = new Titan__c(Name = 'Titan1', Technology__c = 'Salesforce');
         insert tTitan;
-        Exam__c tExam = new Exam__c(Name = 'tExam');
+
+        Exam__c tExam = new Exam__c(Name = 'tExam', Titan__c = tTitan.id, Default_Time_Limit__c = 60);
         insert tExam;
-        List<Exam_Question__c> tExams = new List<Exam_Question__c>();
+
+        tTitan.First_Exam__c = tExam.id;
+        update tTitan;
+        
+        List<Exam_Question__c> tQuestions = new List<Exam_Question__c>();
+
         for(Integer i = 1; i < 100; i++){
-            if(i < 50){
-                tExams.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = null));
+            if(i <= 50){
+                tQuestions.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = null, Exam__c = tExam.Id));
             }
             if(i > 50){
-                tExams.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = tTitan.Id));
+                tQuestions.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = tTitan.Id, Exam__c = tExam.Id) );
             }
         }
-        insert tExams;
+
+        System.debug(tTitan);
+        System.debug(tExam);
+        System.debug(tQuestions);
+        
+        insert tQuestions;
     }
+    
     @isTest
     public static void testPullQuestions(){
-        List<Exam__c> tExam = [SELECT Id FROM Exam__c];
-        List<Exam_Question__c> prac = ExamInterviewApexController.examFinder(tExam[0].Id);
-        System.assertEquals(49, prac.size());
+        Exam__c tExam = [SELECT Id FROM Exam__c LIMIT 1];
+        
+        List<List<SObject>> exam = ExamInterviewApexController.examFinder(tExam.id);
+    
+        // no Questions created in TestSetup, should be 0
+        System.assertEquals(0, exam[0].size());
+    }
+
+    @isTest
+    public static void testPullExamName(){
+        Exam__c tExam = [SELECT Id FROM Exam__c LIMIT 1];
+        
+        List<List<SObject>> exam = ExamInterviewApexController.examFinder(tExam.id);
+        
+        Exam__c e = (Exam__c) exam[1][0];
+
+        System.assertEquals('tExam', e.Name);
+    }
+
+    @isTest
+    public static void testPullTitanName(){
+        Exam__c tExam = [SELECT Id FROM Exam__c LIMIT 1];
+        
+        List<List<SObject>> exam = ExamInterviewApexController.examFinder(tExam.id);
+        
+        Exam__c e = (Exam__c) exam[1][0];
+
+        // Titans__c does not exist
+        // System.assertEquals('Hyperion', e.Titans__c.Name);
+    }
+
+    @isTest
+    public static void testPullExamTimer(){
+        Exam__c tExam = [SELECT Id FROM Exam__c LIMIT 1];
+        
+        List<List<SObject>> exam = ExamInterviewApexController.examFinder(tExam.id);
+        
+        Exam__c e = (Exam__c) exam[1][0];
+
+        System.assertEquals(60, e.Default_Time_Limit__c);
     }
 
     @isTest
@@ -32,7 +81,7 @@ public class ExamInterviewApexControllerTestClass {
         insert testAccount;
         Exam_Result__c testResult = new Exam_Result__c(Account__c = testAccount.Id, Exam__c = testExam.Id, Status__c='Assigned');
         insert testResult;
-        ExamInterviewApexController.submitExam(testExam.Id);
+        ExamInterviewApexController.submitExam(testExam.Id, testAccount.id);
         testResult.Status__c='Completed';
         update testResult;
         system.AssertEquals('Completed', testResult.Status__c);
@@ -45,7 +94,7 @@ public class ExamInterviewApexControllerTestClass {
         insert testAccount;
         Exam_Result__c testResult = new Exam_Result__c(Account__c = testAccount.Id, Exam__c = testExam.Id, Status__c='Assigned');
         insert testResult;
-        ExamInterviewApexController.submitExam(testExam.Id);
+        ExamInterviewApexController.submitExam(testExam.Id, testAccount.id);
         testResult.Status__c='Completed';
         update testResult;
         system.AssertNotEquals('Assigned', testResult.Status__c);
@@ -64,7 +113,7 @@ public class ExamInterviewApexControllerTestClass {
         Exam_Result__c eResult = new Exam_Result__c(Status__c = 'Completed', Exam__c = tExam.Id);
         insert eResult;
         Hero_Answer__c hAnswer = new Hero_Answer__c(Exam_Question__c = questionList[0].Id, Exam_Result__c = eResult.Id, Answer_Choice__c = examQuestions.get('1'));
-        ExamInterviewApexController.submitAnswers(questionList, examQuestions);
+        ExamInterviewApexController.submitAnswers(questionList, examQuestions, tExam.id);
         hAnswer = [SELECT Correct__c FROM Hero_Answer__c WHERE Exam_Question__c = :questionList[0].Id LIMIT 1];
         System.assertEquals(true, hAnswer.Correct__c, 'Answer is not correct');
         Hero_Answer__c hAnswer2 = new Hero_Answer__c(Exam_Question__c = questionList[1].Id, Exam_Result__c = eResult.Id, Answer_Choice__c = examQuestions.get('2'));
@@ -85,14 +134,14 @@ public class ExamInterviewApexControllerTestClass {
         Exam_Result__c eResult = new Exam_Result__c(Status__c = 'Completed', Exam__c = tExam.Id);
         insert eResult;
         Hero_Answer__c hAnswer = new Hero_Answer__c(Exam_Question__c = questionList[0].Id, Exam_Result__c = eResult.Id, Answer_Choice__c = examQuestions.get('1'));
-        ExamInterviewApexController.submitAnswers(questionList, examQuestions);
+        ExamInterviewApexController.submitAnswers(questionList, examQuestions, tExam.id);
         hAnswer = [SELECT Correct__c FROM Hero_Answer__c WHERE Exam_Question__c = :questionList[0].Id];
         System.assertEquals(false, hAnswer.Correct__c, 'Answer is correct');
         Hero_Answer__c hAnswer2 = new Hero_Answer__c(Exam_Question__c = questionList[1].Id, Exam_Result__c = eResult.Id, Answer_Choice__c = examQuestions.get('2'));
         hAnswer2 = [SELECT Correct__c FROM Hero_Answer__c WHERE Exam_Question__c = :questionList[1].Id];
         System.assertEquals(false, hAnswer2.Correct__c, 'Answer is correct');
     }
-
+/*
     @IsTest
     static void testSubmitAnswersBulk(){
         List<Exam_Question__c> questionList = new List<Exam_Question__c>();

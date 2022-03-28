@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Notes__c</fullName>
+    <deprecated>false</deprecated>
     <description>Details for score given</description>
     <externalId>false</externalId>
     <label>Notes</label>

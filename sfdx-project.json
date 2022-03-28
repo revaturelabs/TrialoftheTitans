@@ -5,7 +5,48 @@
             "package": "TrialOfTheTitansPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true
+            "default": true,
+            "dependencies": [
+                {
+                    "package": "ChartPackage@1.0.0-1"
+                }
+            ]
+        },
+        {
+            "path": "HeroHubPackage",
+            "package": "Hero Hub Package",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        },
+        {
+            "path": "ExamInterviewPackage",
+            "package": "Exam Intervew Package",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        },
+        {
+            "path": "ChartPackage",
+            "package": "ChartPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        },
+        {
+            "path": "TitanHubPackage",
+            "package": "Titan Hub Package",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
+        },
+        {
+            "path": "PortfolioPackage",
+            "default": false
+        },
+        {
+            "path": "DataFactory",
+            "default": false
         }
     ],
     "namespace": "",
@@ -15,7 +56,11 @@
         "TrialOfTheTitansPackage": "0Ho5f000000Cb2cCAC",
         "TrialOfTheTitansPackage@0.1.0-1": "04t5f000000GrxdAAC",
         "TrialOfTheTitansPackage@0.1.0-2": "04t5f000000Gry2AAC",
+        "ChartPackage": "0Ho5f0000010wY3CAI",
+        "ExperienceCloudPackage": "0Ho5f0000010wYDCAY",
         "TrialOfTheTitansPackage@0.1.0-3": "04t5f000000GsI1AAK",
-        "TrialOfTheTitansPackage@0.1.0-5": "04t5f000000GsMdAAK"
+        "TrialOfTheTitansPackage@0.1.0-5": "04t5f000000GsMdAAK",
+        "Hero Hub Package": "0Ho5f0000010wXyCAI",
+        "Titan Hub Package": "0Ho5f0000010wYXCAY"
     }
 }

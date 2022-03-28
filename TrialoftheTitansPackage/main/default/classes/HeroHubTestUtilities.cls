@@ -8,12 +8,13 @@
 //  
 //
 ///////////////////////////////////////////////////
-@isTest
+
 public class HeroHubTestUtilities {
     
     //fullSetup calls upon a few functions in the class for easy set up.
-    @isTest
+    
     public static void fullSetup(){
+        createAccount();
         createTitans();
         createExams();
         createQuestions();
@@ -21,9 +22,15 @@ public class HeroHubTestUtilities {
         createAnswers();
     }
     
+
+    public static void createAccount()
+    {
+        Account a = new Account(Name='TestUser');
+        insert a;
+    }
     /*createUsers() creates an adminUser and then uses that user to create a new user.
     Both users are inserted into the database at the end.*/
-    @isTest
+    
     public static void createUsers(){
         Profile adminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1];
         UserRole customerManager = [SELECT Id FROM UserRole WHERE Name = 'Customer Manager' LIMIT 1];
@@ -46,16 +53,20 @@ public class HeroHubTestUtilities {
         //Create teams as the adminUser
         System.runAs(adminUser){
             Team__c newTeam = new Team__c(Name = 'TestTeam');
-            Squad__c newSquad = new Squad__c(Name = 'TestSquad', Team__c = newTeam.Id);                
-            Cohort__c newcohort = new Cohort__c(Name = 'Testcohort');                
-            Account newAccount = new Account(name='User', Team__c = newTeam.Id, Squad__c = newSquad.Id, Cohort__c = newCohort.Id);        
-            Contact newContact = new Contact(lastName='User', AccountId = newAccount.id);
-
             database.insert(newTeam);
-            database.insert(newSquad);
-            database.insert(newcohort);
-            database.insert(newAccount);       
+
+            Squad__c newSquad = new Squad__c(Name = 'TestSquad', Team__c = newTeam.Id);
+            database.insert(newSquad);                
+
+            Cohort__c newcohort = new Cohort__c(Name = 'Testcohort');
+            database.insert(newcohort);                
+
+            Account newAccount = new Account(name='User', Team__c = newTeam.Id, Squad__c = newSquad.Id, Cohort__c = newCohort.Id);
+            database.insert(newAccount);           
+
+            Contact newContact = new Contact(lastName='User', AccountId = newAccount.id);
             database.insert(newContact);
+            
             
             // Get Hero profile from database to use for Users
             Profile heroProfile = [SELECT Id FROM Profile WHERE Name = 'Hero' LIMIT 1];
@@ -85,11 +96,12 @@ public class HeroHubTestUtilities {
     }
     
     /*createWrongUser() inserts trainers into the database to test some negative cases */
-    @isTest
+    
     public static void createWrongUser(){
         //Create new trainer account
         Account newAccount = new Account(name='Trainer' );
         insert newAccount;
+        
         
         // Get Hero profile from database to use for Users
         Profile trainerProfile = [SELECT Id FROM Profile WHERE Name = 'TitanTrainer' LIMIT 1];
@@ -109,7 +121,7 @@ public class HeroHubTestUtilities {
     }
 
     /*createTitans() creates three titans for Process Automation, Data Modeling, and Apex */
-    @isTest
+    
     public static void createTitans(){
         // Create curriculum and Titans for Exams
         Curriculum__c newCurriculum = new Curriculum__c(Name='Salesforce');
@@ -127,7 +139,7 @@ public class HeroHubTestUtilities {
     }
     
     /*createExams() inserts three exams into the database for testing. */
-    @isTest
+    
     public static void createExams(){
         List<Titan__c> titans = [SELECT Id, Name FROM Titan__c];
         List<Exam__c> newExams = new List<Exam__c>();
@@ -144,7 +156,7 @@ public class HeroHubTestUtilities {
     
 
     /*createQuestions() inserts five questiosn in the database to be used in testing */
-    @isTest
+    
     public static void createQuestions(){
 		List<Exam_Question__c> newQuestions = new List<Exam_Question__C>();
 
@@ -156,9 +168,9 @@ public class HeroHubTestUtilities {
     }
     
     /*createExameResults() inserts exam results into the database for every exam */
-    @isTest
+    
     public static void createExamResults(){
-        Account testAccount = [SELECT Id FROM Account WHERE Name = 'User' LIMIT 1];
+        Account testAccount = [SELECT Id FROM Account WHERE Name = 'TestUser' LIMIT 1][0];
        	List<Exam__c> testExams = [SELECT Id FROM Exam__c];
         List<Exam_Result__c> newResults = new List<Exam_Result__c>();
         
@@ -180,7 +192,7 @@ public class HeroHubTestUtilities {
     
     
     /* createAnswers inserts an answer for every exam question and for every exam result*/
-    @isTest
+    
     public static void createAnswers(){
         //Query list of exam questions and results
         List<Exam_Question__c> newQuestions = [SELECT Id FROM Exam_Question__c];
@@ -203,13 +215,13 @@ public class HeroHubTestUtilities {
     /*createTeams() inserts test teams for Amplifire, Alchemy, Synergy, and Vanquish
     before inserting them into the database.*/
 
-    @isTest
+    
     public static void createTeams(){
         List<Team__c> teamList = new List<Team__c>();
         
         Team__c Amplifire = new Team__c(
             Name='Amplifire', Slogan__c = 'Who\'s ready to rock?!?!?!', 
-            Primary_Color__c = '#ef6363', Secondary_Color__c = '#c324747'
+            Primary_Color__c = '#ef6363', Secondary_Color__c = '#c34747'
             );
         Team__c Alchemy = new Team__c(
             Name='Alchemy', Slogan__c = 'Wizards Unite!', 
@@ -233,7 +245,7 @@ public class HeroHubTestUtilities {
     }
 
     /*createSquads inserts at least one squad for each team made.  */    
-    @isTest
+    
     public static void createSquads(){
         List<Squad__c> squadList = new List<Squad__c>();
         List<Team__c> teamList = [SELECT Id, Name FROM Team__c];

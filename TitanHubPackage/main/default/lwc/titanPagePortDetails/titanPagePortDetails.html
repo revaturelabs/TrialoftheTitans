@@ -1,0 +1,42 @@
+
+<!--
+Created by: Andy Emond
+Description: HTML for Titan Porfolio Details LWC.
+Date Created: 1/25/2022
+-->
+
+<template>
+    <div hidden >                      <!--Used for Wire Purposes. Allows renderedCallback to work-->
+        {skillInfo.data}
+        {equivInfo.data}
+        {examInfo.data}
+        {projectInfo.data}
+    </div>
+    <lightning-card  title="Portfolio Details">                          <!--Display the data, refers to the variables in JS-->      
+        <p class="slds-p-horizontal_small">{skillName}</p>            
+        <p class="slds-p-horizontal_small">{skillType}</p>
+        <p class="slds-p-horizontal_small">{skillDesc}</p>
+        <!--<lightning-combobox                                     Igonore this combobox, I used an LDS instead--><!--
+            name="progress"
+            class="slds-size_2-of-4 slds-p-horizontal_small"
+            label="Personal Confortability"
+            value={value}
+            placeholder="Select your comfortability with this skill"
+            options={options}
+            onchange={handleChange} ></lightning-combobox>-->
+        <p class="slds-p-horizontal_small">{inputEquiv}</p>
+        <p class="slds-p-horizontal_small">{trueEquiv}</p>
+        <lightning-record-edit-form object-api-name={objectApiName} record-id={equivId} onsubmit={handleSubmit}
+        onsuccess={handleSuccess}
+        onerror={handleError}>              <!--LDS record edit form so a Hero can update their equivalency-->
+            <lightning-input-field field-name={equiv} class="slds-p-horizontal_small"></lightning-input-field>
+            <lightning-button
+            class="slds-m-top_small"
+            variant="brand"
+            type="submit"
+            name="update"
+            label="Update">
+        </lightning-button>
+        </lightning-record-edit-form>
+    </lightning-card>
+</template>
