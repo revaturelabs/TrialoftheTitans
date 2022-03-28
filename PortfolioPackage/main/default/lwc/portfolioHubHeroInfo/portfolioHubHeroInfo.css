@@ -36,7 +36,7 @@ img {
 .hero-name {
     display: flex;
     align-items: baseline;
-    font-size: var(--font-size-heading);
+    font-size: var(--font-size-name);
 }
 
 .hero-title {

@@ -15,9 +15,8 @@
 }
 
 .header {
-  font-weight: bold;
   font-size: var(--font-size-heading);
-  color:black;
+  color: var(--color-accent);
   background-color: var(--color-primary); 
   grid-column: span 2;
   display: grid;
@@ -58,7 +57,7 @@ lightning-icon:hover {
 
 .addButton {
   float: right;
-  --sds-c-icon-color-foreground: black;
+  --sds-c-icon-color-foreground: var(--color-accent);
   padding: 5px 5px;
 }
 

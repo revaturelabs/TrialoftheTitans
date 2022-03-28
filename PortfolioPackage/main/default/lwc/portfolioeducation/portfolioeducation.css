@@ -3,15 +3,19 @@
  * Styling for a person's education history.
  * Date: March 24 2022
  ************************************************************/
+
+@import "c/styleResource";
+
 .container {
     /*border: 2px dotted green;*/
-    height: 30vw;
-    width: 40vw;
+    /* height: 30vw; */
+    width: 100%;
     background-color: #ffff;
 }
 .title {
     text-align:left;
-    font-size: 32px;
+    font-size: var(--font-size-heading);
+    color: var(--color-accent);
 }
 .information div.first:nth-child(2n+1){ 
     background-color: #ecfffe;
@@ -29,20 +33,23 @@ ul {
 li.logo {
     display: block;
     float: left;
-    margin-left: 10px;
+    /* margin-left: 10px; */
+    /* margin-left: 2px;
+    margin-top: 15px; */
 }
 li.left{
     display: block;
     float: left;
-    margin-left: 2px;
-    margin-top: 15px;
-    font-weight: bold;
+    /* margin-left: 2px;
+    margin-top: 15px; */
+    
 } 
 li.editor { 
     float:right;
-    margin-right: 10px;
     margin-top: 18px;
+    margin-right: 4px;
     cursor: pointer;
+    --sds-c-icon-color-foreground: var(--color-accent);
 }
 
 

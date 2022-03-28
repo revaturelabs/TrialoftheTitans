@@ -7,12 +7,21 @@
   <!-- Lightning Card which holds the Honors & Awards component -->
   <div class="container">
     <div class="header">
-      <p>
+      <h1>
+        <lightning-icon icon-name='custom:custom48' 
+        alternative-text='honors and awards' 
+        size='medium' 
+        title='Honors And Awards'></lightning-icon>
         Honors & Awards
         <!--Add New Award-->
-        <lightning-icon icon-name="utility:add" alternative-text="add" variant="inverse" size="x-small"
-          class="addButton" onclick={openModal}></lightning-icon>
-      </p>
+        <lightning-icon 
+        icon-name="utility:add" 
+        alternative-text="add" 
+        variant="inverse" 
+        size="medium"
+        class="addButton" 
+        onclick={openModal}></lightning-icon>
+      </h1>
     </div>
 
     <!--Pulls awards in after they are created-->

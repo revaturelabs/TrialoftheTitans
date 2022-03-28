@@ -16,6 +16,7 @@
     --color-accent: #576464;
 
     /* Fonts */
-    --font-size-heading: 3em;
+    --font-size-name: 3em;
+    --font-size-heading: 2.3em;
     --font-size-subheading: 1.5em;
 }

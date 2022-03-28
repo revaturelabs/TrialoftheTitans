@@ -12,25 +12,38 @@
 
 <template>
     <!-- Defining a lightning card-->
-     <lightning-card >
-         <span class="slds-c-badge-color-background">
+     <!-- <lightning-card > -->
+         <div class="headerContainer">
+         <!-- <span class="slds-c-badge-color-background"> -->
               <!-- Right corner icon-->
-             <span class="mainIcon" style="margin-left: 15px;">
-                 <lightning-icon icon-name='standard:employee_job_position' alternative-text='user' size='large' title='user'
+             <span class="mainIcon">
+                 <lightning-icon icon-name='standard:employee_job_position' alternative-text='user' size='medium' title='user'
                      variant='bare'>
                  </lightning-icon>
              </span>
-             <span class="slds-text-title_caps header">Projects</span>
+             <div class="header"><h1>Projects</h1></div>
              <!-- Button to add a new project -->
-             <lightning-icon onclick={showAddModal} style="float:right; margin-right: 2%; cursor: pointer;" icon-name='utility:add' alternative-text='add' size='large' title='add'></lightning-icon>
-         </span>
+             <div class="icons">
+             <lightning-icon onclick={showAddModal} style="float:right; cursor: pointer;" icon-name='utility:add' alternative-text='add' size='medium' title='add'></lightning-icon>
+         <!-- </span> -->
+         <!-- Button to show the modal of all the projects -->
+          <a onclick={showAllModal}>
+              <lightning-icon 
+              icon-name='utility:list' 
+              alternative-text='list' 
+              size='medium' 
+              title='list'></lightning-icon>
+          </a>
+        </div>
+         </div>
           <!-- Checking if theres any projects returned -->
           <template if:true={exist}>
               <!-- Loop through the projects list -->
               <template for:each={projects} for:item="project">
-                <lightning-card key={project.Id}>
+                <!-- <lightning-card key={project.Id}> -->
                     <!-- Name of project and Delete button -->
-                    <h1 class="slds-text-title_caps subheader">{project.Name}</h1>
+                    <div key={project.Id}>
+                    <h1 class="subheader">{project.Name}</h1>
                     <lightning-icon style="cursor: pointer; margin-left:1%;" icon-name='utility:delete' alternative-text='delete' size='medium' title='delete' onclick={deleteProject} name={project.Name}></lightning-icon>
                     <br><br>
                     <span>
@@ -44,12 +57,12 @@
                                 href="#">Save</a>
                         </div>
                     </span>
-                </lightning-card>
+                </div>
+                <!-- </lightning-card> -->
               </template>
           </template>
-          <!-- Button to show the modal of all the projects -->
-          <a class="slds-button slds-button_brand" color="#34ABD3" onclick={showAllModal}>Show All Projects</a>
-        </lightning-card>
+          
+        <!-- </lightning-card> -->
 
     <!-- The modal to add a new project -->
     <template if:true={AddModal}>

@@ -63,6 +63,10 @@ export default class Strengths extends LightningElement {
         //          recommended for other CRUD operations.
         console.log('handleUpdateSkillLevel');
         refreshApex(this.wireStrengthsValue).then(() => {
+            for(let strength of this.strengths ){
+                progressbarTarget.endwidth = parseInt(strength.Skill_Equivalency__c);
+            }
+            
             this.showEditStrengthsBoolean = !this.showEditStrengthsBoolean;
         });
 
@@ -87,7 +91,7 @@ export default class Strengths extends LightningElement {
             // console.log('newSkillInputValue', newSkillInputValue);
             // console.log('newSkillId', newSkillId);
             // console.log('newSkillLevel', newSkillLevel);
-        // progressbarTarget.endwidth = parseInt(newSkillInputValue);
+         
         // console.log(progressbarTarget.endwidth, 'progressbarTarget.endwidth');
 
         // for (let i = 0; i < this.localStrengthsArrayOfObjs.length; i++) {

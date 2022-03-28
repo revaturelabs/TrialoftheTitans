@@ -114,6 +114,11 @@ export default class Skills extends LightningElement {
 
     }
 
+    // handleRefresh(){
+    //     console.log("refresh apex");
+    //     refreshApex(this.wireRes);
+    // }
+
 
     // editProgress(event){
     //     this.isProgressModalOpen = true;

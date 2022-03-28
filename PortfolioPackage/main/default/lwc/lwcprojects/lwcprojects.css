@@ -5,10 +5,22 @@
 }
 .header{
     font-size: var(--font-size-heading);
-    margin-left:1%;
+    /* margin-left:1%; */
+    color: var(--color-accent);
 }
 .subheader{
     font-size: var(--font-size-subheading);
-    margin-left: 2%; 
+    /* margin-left: 2%;  */
     display:inline-block
+}
+
+
+.icons{
+    margin-left: auto;
+}
+
+.headerContainer{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
 }

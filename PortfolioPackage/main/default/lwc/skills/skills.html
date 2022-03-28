@@ -22,12 +22,31 @@ is used in apex controller to return each skill from each category to display.
 <div class="matrixContainer">
 
     <div class="headerContainer">
-        <div style="display: inline-flex">
-    <lightning-icon icon-name='standard:skill_requirement' alternative-text='skills' size='medium' title='Skill Matrix'></lightning-icon>
-    <br>
-    <h1 class="slds-float_left slds-text-heading_large" style="padding-left: 7px;">Skills Matrix</h1>
-    </div>
-    <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Add Category" onclick={openModal}>
+
+    <!-- <div style="display: inline-flex"> -->
+    <lightning-icon 
+    icon-name='standard:skill_requirement' 
+    alternative-text='skills' 
+    size='medium' 
+    title='Skill Matrix' 
+    class="icon-logo"></lightning-icon>
+    <!-- <br> -->
+    <h1 class=" slds-text-heading_large heading">Skills Matrix</h1>
+    
+    <!-- </div> -->
+    <div class="icons">
+   
+
+    <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Add Skill" onclick={openSkillsModal}>
+        <lightning-icon icon-name="utility:edit"
+             alternative-text="add"
+             variant="inverse"
+             size="medium" 
+             class="icon"></lightning-icon>
+             <span class="slds-assistive-text">Add Skill</span>
+     </button> 
+     
+     <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Add Category" onclick={openModal}>
        <lightning-icon icon-name="utility:add"
             alternative-text="add"
             variant="inverse"
@@ -35,19 +54,10 @@ is used in apex controller to return each skill from each category to display.
             class="icon"></lightning-icon>
             <span class="slds-assistive-text">Add Category</span>
     </button>
-
-    <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Add Skill" onclick={openSkillsModal}>
-        <lightning-icon icon-name="utility:edit"
-             alternative-text="add"
-             variant="inverse"
-             size="medium" 
-             class="icon"></lightning-icon>
-             <span class="slds-assistive-text">Add Skill</span>
-     </button>
-
+</div>
     </div>
     
-    <hr>
+    
     <br>
     
 
@@ -125,22 +135,15 @@ is used in apex controller to return each skill from each category to display.
                         </div>
                     </template>
                     <!-- end for for loop through category data -->
-                <br>
-                <br>
-                <br>
+
                 
             </template>
             <!-- if:true category template -->
-        <br>
-        <br>
-        <br>
+
    
     
     </div> 
     <!-- category container -->
-    <br>
-    <br>
-    <br>
 
 
 </div>
@@ -214,13 +217,6 @@ is used in apex controller to return each skill from each category to display.
 
     <!-- This is where the skills modal ends -->
 
-
-
-    <!-- This is where the progress bar modal begins -->
-
-    
-
-    <!-- This is where the progress bar modal ends -->
 
 
 </template>
