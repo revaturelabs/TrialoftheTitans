@@ -11,13 +11,10 @@ Date: 3/18/22
 Description: The skills matrix displays the skill categories corresponding to the user
 and gives the user the ability to add new categories as well as update their skills 
 
-Each Edit and Add button opens modals where they can edit their skills or add a new category.
+Each Edit and Add button opens modals where they can add new skills or add a new category.
 
-Edit: For now, Account data is being used for testing, but an Apex Controller will be used
-to query the specific skills onto the page as well as give the category name
-
-We should add a new field called category if it's not already there that will only be present
-on the Add New Category Modal. 
+Using Custom_Skill__c and Category__c as custom objects. Have master-detail relationship that
+is used in apex controller to return each skill from each category to display.
 -->
 
 <template>
@@ -25,9 +22,11 @@ on the Add New Category Modal.
 <div class="matrixContainer">
 
     <div class="headerContainer">
-
-    <h1 class="slds-float_left slds-text-heading_large">Skills Matrix</h1>
-    
+        <div style="display: inline-flex">
+    <lightning-icon icon-name='standard:skill_requirement' alternative-text='skills' size='medium' title='Skill Matrix'></lightning-icon>
+    <br>
+    <h1 class="slds-float_left slds-text-heading_large" style="padding-left: 7px;">Skills Matrix</h1>
+    </div>
     <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Add Category" onclick={openModal}>
        <lightning-icon icon-name="utility:add"
             alternative-text="add"
@@ -48,17 +47,13 @@ on the Add New Category Modal.
 
     </div>
     
-    <br>
     <hr>
     <br>
     
 
     <div class="categoryContainer" style="display:flex; justify-content: normal; flex-wrap: wrap; margin-right:1.5em;">
 
-    <!-- <div class="slds-grid slds-gutters">
-
-        <div class="slds-col"> -->
-        <!-- <lightning-card class="card-body"> -->
+    
             <template if:true={category}>
                 
                 
@@ -82,30 +77,67 @@ on the Add New Category Modal.
                         
                         <template for:each={titan.Custom_Skills__r} for:item="skill">
                             <ul key={skill.Id}>
-                                <li key={skill.Id}><b>{skill.Skill_Number__c}: </b> {skill.Name} </li>
-                                <!-- <li key={skill.Id}><b>Skill Number:</b> {skill.Skill_Number__c} </li> -->
+
+                                <li key={skill.Id} ><b>{skill.Skill_Number__c}: </b>{skill.Name}  
+                                    <div class="progressBar slds-float_right" style="margin-right: 35px;">
+                                        <br>
+                                        <div class="myProgress slds-float_right" style="margin-top: 3px;" id={skill.Progress__c} title={skill.Skill_Number__c}>
+                                            <!-- <div class={skill.Skill_Number__c}
+                                            style="width:0%;
+                                            background-color: #00E2D5;
+                                            border-radius: 10px;
+                                            height: 30px;">
+                                            <span class={skill.Id} 
+                                            style="padding-left: 5px;
+                                            /* font-weight: 500; */
+                                            font-size: 1.5em;" key={skill.Id}>{skill.Progress__c}</span></div> -->
+                                            <c-progressbarskillmatrix endwidth={skill.Progress__c} progressid={skill.Skill_Number__c} skillprogress={skill.Progress__c} skillid={skill.Id}></c-progressbarskillmatrix>
+                                            <!--encap in p tag and adjust padding on percentage--> 
+                                    
+                                          </div> 
+                                          
+                                          <!-- <button class="slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Edit Progress" onclick={editProgress} value={skill.Id} name={skill.Skill_Number__c} id={skill.Progress__c}>
+                                            <lightning-icon icon-name="utility:rating"
+                                                 alternative-text="progress"
+                                                 variant="inverse"
+                                                 size="x-small" 
+                                                 class="progressicon"
+                                                 value={skill.Id}></lightning-icon>
+                                                 <span class="slds-assistive-text">Edit Progress</span>
+                                         </button> -->
+                                         <button class="delete_button slds-button slds-button_icon slds-button_icon-inverse slds-float_right" title="Delete" onclick={handleDeleteSkill} value={skill.Id}>
+                                            <lightning-icon icon-name="utility:delete"
+                                                 alternative-text="delete"
+                                                 variant="inverse"
+                                                 size="x-small" 
+                                                 class="progressicon"
+                                                 value={skill.Id}></lightning-icon>
+                                                 <span class="slds-assistive-text">Delete</span>
+                                         </button>
+
+                                    </div>
+                                </li>
                             </ul>
                         </template>
-
+                        <!-- skills and progress bar elements -->
                     
 
                         </div>
                     </template>
-                
+                    <!-- end for for loop through category data -->
                 <br>
                 <br>
                 <br>
                 
             </template>
-        <!-- </lightning-card> -->
+            <!-- if:true category template -->
         <br>
         <br>
         <br>
-    <!-- </div>
-
-    </div> -->
+   
     
-    </div>
+    </div> 
+    <!-- category container -->
     <br>
     <br>
     <br>
@@ -132,6 +164,7 @@ on the Add New Category Modal.
                 <div class="slds-box slds-theme_default slds-var-p-around_medium">
                     <lightning-record-edit-form object-api-name={categoryObject} onsuccess={handleSuccess}>
                         <lightning-input-field field-name={categoryName}></lightning-input-field>
+                        <!-- <lightning-input-field field-name={categoryUser}></lightning-input-field> -->
                         <!-- <lightning-input-field field-name={technology}></lightning-input-field> -->
                         <br>
                         <lightning-button variant="brand" type="submit" label="Add Category"></lightning-button>
@@ -146,10 +179,11 @@ on the Add New Category Modal.
         <div class="slds-backdrop slds-backdrop_open"></div>
     </template>
 
+    <!-- This is where the category modal ends -->
 
 
 
-     <!-- This is where the skills modal begins -->
+    <!-- This is where the skills modal begins -->
 
      <template if:true={isSkillsModalOpen}>
         <section aria-modal="true" class="slds-modal slds-fade-in-open">
@@ -161,9 +195,11 @@ on the Add New Category Modal.
                 <div class="slds-modal__content">
                 </div>
                 <div class="slds-box slds-theme_default slds-var-p-around_medium">
-                    <lightning-record-edit-form object-api-name={objectName} onsuccess={handleSuccess}>
+                    <lightning-record-edit-form object-api-name={objectName} onsuccess={handleSkillSuccess}>
                         <lightning-input-field field-name={nameField}></lightning-input-field>
-                        <lightning-input-field field-name={skillcategory}></lightning-input-field>
+                        <lightning-input-field field-name={skillCategory}></lightning-input-field>
+                        <lightning-input-field field-name={skillProgress}></lightning-input-field>
+                        <!-- <lightning-input-field field-name={skillUser}></lightning-input-field> -->
                         <br>
                         <lightning-button variant="brand" type="submit" label="Submit Skill"></lightning-button>
                     </lightning-record-edit-form>
@@ -176,7 +212,15 @@ on the Add New Category Modal.
         <div class="slds-backdrop slds-backdrop_open"></div>
     </template>
 
+    <!-- This is where the skills modal ends -->
 
+
+
+    <!-- This is where the progress bar modal begins -->
+
+    
+
+    <!-- This is where the progress bar modal ends -->
 
 
 </template>
