@@ -88,6 +88,7 @@ updateScore() {
             this.move();
             //this.isProgressModalOpen = false;
             //refreshApex(this.wireRes);
+            window.location.reload();
             break;
         default:
             break;

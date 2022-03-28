@@ -5,10 +5,10 @@
  */
 
 import { LightningElement, wire, track } from 'lwc';
-import getBasicUserInfo from "@salesforce/apex/UserInfoHelper.getBasicUserInfo";
-import getCertifications from "@salesforce/apex/UserInfoHelper.getCertifications";
 import NAME_FIELD from "@salesforce/schema/User.Name";
 import { refreshApex } from "@salesforce/apex";
+import getBasicUserInfo from "@salesforce/apex/UserInfoHelper.getBasicUserInfo";
+import getCertifications from "@salesforce/apex/UserInfoHelper.getCertifications";
 
 export default class PortfolioHub_HeroInfoComponent extends LightningElement {
 

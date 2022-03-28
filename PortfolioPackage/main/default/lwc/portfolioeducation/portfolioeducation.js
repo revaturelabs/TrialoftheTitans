@@ -1,7 +1,15 @@
 /************************************************************
  * Done by: Mohammed Azad
- * Contains functionality to deal with the education
- * component
+ * Interacts with the education components:
+ * Allows the user to 
+ *  - Create an entry that contains their education: 
+ *      - Degree
+ *      - Date Graduated 
+ *      - Degree
+ *      - Institution Name
+ *      - GPA 
+ *      - Major 
+ *  - Delete an entry that the user feels is a mistake. 
  * Date: March 24 2022
  ************************************************************/
 
@@ -61,7 +69,7 @@ export default class Portfolioeducation extends LightningElement
     modalCloser() 
     {
         const closeenv = new ShowToastEvent({
-            title: "Canceled",
+            title: "Cancelled",
             message: "You cancelled inputting information.",
             variant: "error"
         });
