@@ -35,8 +35,6 @@ export default class TitanPagePortDetails extends LightningElement {
     examCalc = 0;
     objectApiName = equivObject;
     equiv = equivField;
-    skillEquiv;
-
 
     renderedCallback() { //For displaying the data when the component loads in
         if (this.skillInfo.data && this.equivInfo.data && this.projectInfo.data) { //to prevent JS errors from using renderedCallback
@@ -45,14 +43,8 @@ export default class TitanPagePortDetails extends LightningElement {
             if (this.examInfo.data) { //If you dont pull any exams(or the class is broken) it doesnt break the whole component
                 this.examCalc = this.examInfo.data.length * 2; // Also used for calculating equivalency. I wanted to iron out these more. Bad pieces because they are not related
             } // to the skill or titan, just the user. With more time I wanted to change the data model for better relationships.
-            //this.equivId = this.equivInfo.data[0].Id; // A lot of data binding for the HTML.      
-            //console.log(this.equivId);
-            if (this.equivInfo.data[0])
-                this.equivId = this.equivInfo.data[0].Id;
-            if (this.equivInfo.Skill_Equivalency__c == null)
-                this.skillEquiv = 0;
-            else
-                this.skillEquiv = this.equivInfo.data[0].Skill_Equivalency__c;
+            this.equivId = this.equivInfo.data[0].Id; // A lot of data binding for the HTML.      
+            console.log(this.equivId);
 
             this.tEquivCalc = this.projectCalc + this.examCalc;
             this.skillName = "Titan Skill: " + this.skillInfo.data[0].Name;
