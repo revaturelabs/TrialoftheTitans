@@ -1,4 +1,3 @@
-<!-- Mountain's Amazing Component Bundle -->
 <template>
     <template class="showEditStrengthsForm" if:false={showEditStrengthsBoolean}>
         <div class="strengths-container">
@@ -10,8 +9,8 @@
                     </div>
                 </div> <!-- header-icon-container -->
                 <div class="edit-icon edit-icon-float-right">
-                    <span class="edit-icon-link" onclick={handleShowEditStrengthsForm}><img src="../resources/edit.png"
-                            alt=""></span>
+                    <img src="../resources/edit.png" alt="" onclick={showEditStrengthsForm}>
+
                 </div>
             </div>
             <template for:each={strengths} for:item="skill">
@@ -34,7 +33,7 @@
     skillName = SkillName;
     skillScore = SkillScore; -->
 
-    <template class="showEditStrengthsForm" if:false={showEditStrengthsBoolean}>
+    <template class="showEditStrengthsForm" if:true={showEditStrengthsBoolean}>
         <div class="strengths-container">
             <div class="strengths-header-row">
                 <div class="header-icon-container">
@@ -44,42 +43,43 @@
                     </div>
                 </div> <!-- header-icon-container -->
                 <div class="edit-icon edit-icon-float-right">
-                    <img src="../resources/edit.png" alt="">
+                    <img src="../resources/edit.png" alt="" onclick={showEditStrengthsForm}>
 
                 </div>
             </div>
-
             <template for:each={strengths} for:item="skill">
                 <div key={skill.Id} class="strengths-content-row">
-                    <div class="skill-name">
+                    <!-- <div class="skill-name">
                         {skill.Name} - Current Score: {skill.Skill_Equivalency__c}
-                    </div>
-                    <div>
+                    </div> -->
+                    <lightning-record-edit-form
+                            object-api-name="Equivalency__c"
+                            record-id={skill.Id}>
+                        <lightning-output-field field-name={skillName}> </lightning-output-field>
+                        <lightning-output-field field-name={skillScore}> </lightning-output-field>
+                        <lightning-input-field class="skill-level-input" field-name={skillScore}> </lightning-input-field>
+                        <lightning-button 
+                            variant="brand" type="submit" label="Save" onclick={handleUpdateSkillLevel}>
+                        </lightning-button>
+                    </lightning-record-edit-form>
+                    <!-- <div class="skill-level"> -->
                         <!-- <c-progressbar data-skillid={skill.Id} endwidth={skill.Skill_Equivalency__c}></c-progressbar> -->
-                        <div class="skill-level float-inputs-right">
-                            <input type="text" data-skillid={skill.Id} class="skill-level-input">
-                            <button class="update-skill-level-button" data-skilllevel={skill.Skill_Equivalency__c}
-                                data-skillid={skill.Id} onclick={handleUpdateSkillLevel}>Update Score</button>
-
-                        </div>
-
-                    </div>
+                        <!-- <input type="text"  data-skillid={skill.Id} class="skill-level-input">
+                        <button class="update-skill-level-button" data-skilllevel={skill.Skill_Equivalency__c} data-skillid={skill.Id} onclick={handleUpdateSkillLevel}>Update Score</button> -->
+                    <!-- </div> -->
                 </div>
 
             </template>
         </div>
     </template>
-    <!-- 
+<!-- 
     <template class="showEditStrengthsForm" if:false={showEditStrengthsBoolean}>
         <lightning-record-edit-form object-api-name={equivObj}>
-
             <lightning-input-field label="Name" name="Name" required maxlength="255" placeholder="Enter Name"
                 field-name={skillName}></lightning-input-field>
             <lightning-input-field label="Skill Equivalency" name="Skill_Equivalency__c" required maxlength="255"
                 placeholder="Enter Skill Equivalency" field-name={skillScore}></lightning-input-field>
-
             <lightning-button label="Save" variant="brand" type="submit"></lightning-button>
-
         </lightning-record-edit-form>
     </template> -->
 </template>
