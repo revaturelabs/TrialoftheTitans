@@ -1,0 +1,82 @@
+<!-- 
+    Created by Sean Whitley 3/16/22 
+    cookie-crisp#3847 
+    sean.whitley@revature.net 
+-->
+
+<template>
+    <div class="content-container">
+        <div class="info-container">
+            <!-- hero info from org -->
+            <div class="hero-name">
+                <lightning-icon
+                    class="edit-button"
+                    icon-name="utility:edit"
+                    alternative-text="Edit"
+                    size="small"
+                    onclick={handleEditName}
+                ></lightning-icon>
+                &nbsp;
+                <p>{heroName}</p>
+            </div>
+            <div class="hero-title">
+                <p>{heroTitle}</p>
+            </div>
+            <div class="cert-container">
+                <template if:true={isCertListEmpty}>
+                    <!-- Display clickable element to show/hide list of certs -->
+                    <lightning-button-menu 
+                            class="menu-button" alternative-text="Show Certifications"
+                            icon-size="small" icon-name="utility:ribbon">
+                        <template for:each={certList} for:item="cert">
+                            <lightning-menu-item 
+                                key={cert.Id} value={cert} label={cert.List_Label__c}>
+                            </lightning-menu-item>
+                        </template>
+                    </lightning-button-menu>
+                    <span class="cert-text">Certifications</span>
+                </template>
+                <template if:false={isCertListEmpty}>
+                    <!-- No certs found for user, show greyed out -->
+                    <p class="no-certs-text">No certifications to show</p>
+                </template>
+            </div>
+        </div>
+        <div class="image-container">
+            <!-- Profile Image -->
+            <!-- Get src from org (wire method) -->
+            <img src={profileImgSrc} alt="Profile Image">
+        </div>
+    </div>
+    <!-- Name editing functionality -->
+    <template if:true={isEditing}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        onclick={toggleModalView}
+                >
+                    <lightning-icon
+                        class="close-modal-button"
+                        icon-name="utility:close"
+                        alternative-text="Cancel and close"
+                    ></lightning-icon>
+                </button>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Edit Your Name</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-record-edit-form
+                            object-api-name={objectApiName}
+                            record-id={recordId}>
+                        <lightning-input-field field-name={nameField}></lightning-input-field>
+                        <div class="slds-var-m-top_medium">
+                            <lightning-button variant="brand" type="submit" label="Save" onclick={handleSubmit}>
+                            </lightning-button>
+                        </div>
+                    </lightning-record-edit-form>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+</template>

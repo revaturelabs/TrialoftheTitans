@@ -1,14 +1,22 @@
+/////////////////////////////////////////////////////////////////////////////////
+//
+// Name: titanDisplayBar
+// Author(s): Matthew Lewandowski, Andrew Emond, Todd Gooch
+// Created: 01/13/2022
+// Updated: 01/25/2022
+// Description: A display bar for the titan view that displays info/ has buttons
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 import { LightningElement, track, api } from "lwc";
 import getTitanById from "@salesforce/apex/titanDisplayController.getTitanById";
 import getCurrentUser from "@salesforce/apex/titanDisplayController.getCurrentUser";
 import getNumberOfTitanExams from "@salesforce/apex/titanDisplayController.getNumberOfTitanExams";
 import getUserExams from "@salesforce/apex/titanDisplayController.getUserExams";
-import { NavigationMixin } from 'lightning/navigation';
 
-//d3 imports
-import { ShowToastEvent } from "lightning/platformShowToastEvent";
-import { loadScript } from "lightning/platformResourceLoader";
-import D3 from "@salesforce/resourceUrl/DJS3";
+import getUserNextExam from "@salesforce/apex/titanDisplayController.getUserNextExam";
+import getNumberOfExamResultsOfUser from "@salesforce/apex/titanDisplayController.getNumberOfExamResultsOfUser";
+import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 export default class TitanDisplayBar extends NavigationMixin(LightningElement) {
     @track disableOverview = false;
     @track disableAdvance = false;
@@ -21,8 +29,9 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement) {
     @api id;
     @track titanName;
 
-    renderedCallback() {
+    connectedCallback() {
         let slicedId = this.id.slice(0, 18);
+
         let titan = getTitanById({ identifier: slicedId });
         titan.then((res) => {
             this.titanName = res[0].Name;
@@ -46,35 +55,69 @@ export default class TitanDisplayBar extends NavigationMixin(LightningElement) {
                     this.passedExams = 0;
                     this.userExamsLoaded = true;
                 });
+
+            let numExams = getNumberOfTitanExams({ titanId: slicedId });
+            numExams.then((res) => {
+                this.totalExams = res;
+
+                getNumberOfExamResultsOfUser({ titanId: slicedId, userId: this.currentUser.Id })
+                    .then((result) => {
+                        if (this.totalExams == result)
+                            this.disableAdvance = true;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            });
+
         });
 
-        let numExams = getNumberOfTitanExams({ titanId: slicedId });
-        numExams.then((res) => {
-            this.totalExams = res;
-        });
     }
 
-    connectedCallback() {
-        // Store the PageReference to Titan Hub page in a variable
-        this.titanHubPage = ({
-            type: 'standard__webPage',
+    //Navigate to the Titan Hub Page
+    //Recieve Titan ID
+    handleOverview() {
+        let slicedId = this.id.slice(0, 18);
+        this[NavigationMixin.Navigate]({
+            type: "comm__namedPage",
             attributes: {
-                url: 'https://trialofthetitans11-developer-edition.na213.force.com/s/titan-hub'
+                name: "Titan_Hub__c" //API name of the page to navigate to
+            },
+            state: {
+                c__titanId: slicedId,
+                c__accountId: this.currentUser.Id //Added account id
+
             }
         });
-        this[NavigationMixin.GenerateUrl](this.titanHubPage)
-            .then(url => this.url = url);
     }
 
-    handleOverview(evt) {
-        this.disableOverview = true;
-        evt.preventDefault();
-        evt.stopPropagation();
-        // Navigate to the Titab Hub page
-        this[NavigationMixin.Navigate](this.titanHubPage);
-    }
-
+    //Navigate to the Exam Interview Page
+    //Recieve ExamId and AccountId
     handleAdvance() {
+
+        let slicedId = this.id.slice(0, 18);
+
+        getUserNextExam({ titanId: slicedId, userId: this.currentUser.Id })
+            .then((result) => {
+
+                this[NavigationMixin.Navigate]({
+                    type: "comm__namedPage",
+                    attributes: {
+                        name: "Exam_Interview__c" //API name of the page to navigate to
+                    },
+                    state: {
+                        c__examId: result,
+                        c__accId: this.currentUser.Id
+                    },
+                });
+
+
+            })
+            .catch((error) => {
+                this.error = error;
+                console.log(error);
+            });
+
 
     }
 }

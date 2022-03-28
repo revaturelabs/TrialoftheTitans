@@ -36,6 +36,18 @@
     --slds-c-button-color-border: #c4c4c4;
 }
 
+.b-correct {
+    --sds-c-button-color-background: #9BCE73;
+    --sds-c-button-text-color: black;
+    --slds-c-button-color-border: #9BCE73;
+}
+
+.b-incorrect {
+    --sds-c-button-color-background: #CC6363;
+    --sds-c-button-text-color: black;
+    --slds-c-button-color-border: #CC6363;
+}
+
 .flagged {
     background-color: #f7c3b1;
     background-color: #3c89d0;
@@ -69,6 +81,29 @@
     background-color:#c4c4c4;
     border-radius: 5px;
 }
+
+.correct {
+    text-align:center;
+    background-color:#9BCE73;
+    border-radius: 5px;
+}
+
+.incorrect {
+    text-align:center;
+    background-color:#CC6363;
+    border-radius: 5px;
+}
+
+.l-correct {
+    --sds-c-button-brand-color-background: #9BCE73;
+    --slds-c-button-brand-color-border: #9BCE73;
+}
+
+.l-incorrect {
+    --sds-c-button-brand-color-background: #CC6363;
+    --slds-c-button-brand-color-border: #CC6363;
+}
+
 
 .l-answered {
     --sds-c-button-brand-color-background: #cfdcff;

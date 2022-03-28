@@ -21,6 +21,9 @@ public with sharing class ApexDataFactory {
         List<Team__c> team = [select id from Team__c];
         List<Cohort__c> cohort = [select id from Cohort__c];
         List<Curriculum__c> curr = [select id from Curriculum__c];
+        List<Question_Pool__c> quepo = [SELECT Id FROM Question_Pool__c];
+        List<Exam_Pool_Assignment__c> epa = [SELECT Id FROM Exam_Pool_Assignment__c];
+        // Must delete question Assignment records using Data Loader
         
         delete HAs;
         delete ERs;
@@ -35,6 +38,8 @@ public with sharing class ApexDataFactory {
         delete team;
         delete cohort;
         delete curr;
+        delete quepo;
+        delete epa;
     }
      @AuraEnabled
     public static void GenerateData(){
@@ -51,7 +56,10 @@ public with sharing class ApexDataFactory {
         ApexDataFactory.CreateExam();
         ApexDataFactory.CreateExamQuestion();
         ApexDataFactory.CreateExamResult();
-        ApexDataFactory.CreateHeroAnswer();  
+        ApexDataFactory.CreateHeroAnswer();
+        ApexDataFactory.createQuestionPool();
+        ApexDataFactory.createQuestionAssignments();  
+        ApexDataFactory.createExamPoolAssignments();
         }
     
 
@@ -498,74 +506,74 @@ public with sharing class ApexDataFactory {
     /******************************************* 
      * createQuestionPool method
      * Created Date: 3/23/2022
-     * Created By: Martin Luna II (add whoever helps name here)
+     * Created By: Martin Luna II, Michael Scott, Luz Orejel, Whitney Dwire
      * 
      * Pseudocode:
      * Create createQuestionPool();
      *      assign questions from createExamQuestion(); to a record within the Question_Pool__c object
      * 
-     * Possible archival of Exam Pool Assignment object due to Exam questions and Exams already containing lookup fields to the Titan Object
-     *          Exams can pull Questions from the QP object based on the Titan Lookup Field. 
      *******************************************/
 
-     @AuraEnabled
-     public static void createQuestionPool(){
-         try {
+     /**
+      * Get List of Exams
+      *     Loop through exams
+      *         Create 10 Question Pools based on Exam names
+      *
+      */
 
-            /**Create list of Question Assigment
-             * Create list of all exams        
-             *       Loop through each exam
-             *              create list that Gets questions by offset and limit = question
-             *              Create a number of QP record with name of exam that we're looping through
-             *       Insert QP
-             *       Loop through list of QA
-             *          Assign Id of Question and Exam to the lookup fields on QA Record based on the QP
-             *          Add new instance to Question Assignment list
-             * 
-             * Dml insert List into QA Object
-             * Update QP IDs
-             */
+      @AuraEnabled
+      public static void createQuestionPool(){
+              
+              List<Exam__c> Exams = [SELECT Id, Name FROM Exam__c];
+              List<Question_Pool__c> QuestPools = new List<Question_Pool__c>();
 
-            //Creation of lists.
-            List<Question_Assignment__c> questionAssign = [SELECT Id, Name FROM Question_Assignment__c];
-            List<Exam__c> Exam = [SELECT Id, Name FROM Exam_c];
-            
+              for(Exam__c exam:Exams){
+                //for(Integer i = 0; i < 1; i++){
+                    Question_Pool__c questPool = new Question_Pool__c();
+                    questPool.Name = exam.Name + ' Pool ';
+                    QuestPools.add(questPool);
+                //}
+              }
+              insert QuestPools;
+              
+      }
 
-            Integer numbOfExams = 5;
-            //Loop through each exam
-            for(Integer i=0; i < numbOfExams; i++){
-                Integer count = 1;
-                //Each if else statement increases the offset by 10 so only 10 records are ever returned during a single loop.
-                if(count == 1){
-                    List<Exam_Question__c> exQuestP1 = [SELECT Id, Name FROM Exam_Question__c Limit 10];
-                    //Create QP Exams 
-                }else if (count == 2){
-                    List<Exam_Question__c> exQuestP2 = [SELECT Id, Name FROM Exam_Question__c Limit 10 Offset 10]; 
-                    //Create QP Exams
-                }else if (count == 3){
-                    List<Exam_Question__c> exQuestP3 = [SELECT Id, Name FROM Exam_Question__c Limit 10 Offset 20]; 
-                    //Create QP Exams
-                }else if (count == 4){
-                    List<Exam_Question__c> exQuestP4 = [SELECT Id, Name FROM Exam_Question__c Limit 10 Offset 30]; 
-                    //Create QP Exams
-                }else if (count == 5){
-                    List<Exam_Question__c> exQuestP5 = [SELECT Id, Name FROM Exam_Question__c Limit 10 Offset 40]; 
-                    //Create QP Exams
-                }
-                count++;
-            }
-            //Insert QP
-
-
-            
-             
-         } catch (Exception e) {
-             throw new AuraHandledException(e.getMessage());
+   /** 
+      * Get List of exam questions
+      *     Loop through each Question Pool
+      *         Loop through the exam questions
+      *             Check the Titan against the first Exam's Titan
+      *             If they Match Assign the question to the pool
+      *             If they don't match move to the next question
+      *     Move to next Question Pool
+      */
+    @AuraEnabled
+    public static void createQuestionAssignments(){
+        
+        List <Exam__c> Exam = [SELECT Id, Titan__c FROM Exam__c Limit 1];
+        List <Exam_Question__c> ExamQs = [SELECT Id, Titan__c FROM Exam_Question__c];
+        List <Question_Pool__c> QuestPools = [SELECT Id FROM Question_Pool__c];
+        List <Question_Assignment__c> QuestAssigns =  new List<Question_Assignment__c>();
+        
+        
+         for(Exam__c exa:Exam){
+             for(Question_Pool__c pool:QuestPools){
+                 for(Exam_Question__c exaQ:ExamQs){
+                     if (exa.Titan__c == exaQ.Titan__c){
+                        Question_Assignment__c questAssign = new Question_Assignment__c();
+                        questAssign.Exam_Question__c = exaq.Id;
+                        questAssign.Question_Pool__c = pool.Id;
+                        QuestAssigns.add(questAssign);
+                     }
+                    
+                 }
+                
+             }
          }
-     }
 
-
-
+        //System.debug('Did the above System.debug logs appear?');
+        insert QuestAssigns;
+    }
 
 
 
@@ -655,4 +663,29 @@ public with sharing class ApexDataFactory {
         insert Answers;
     }
     
+    @AuraEnabled
+    public static void createExamPoolAssignments(){
+        // SELECT Id FROM Exam_Pool_Assignment__c 
+        List <Exam__c> examList = [SELECT Id, Titan__c FROM Exam__c];
+        List <Question_Pool__c> qPoolList = [SELECT Id FROM Question_Pool__c];
+        List <Exam_Pool_Assignment__c> expoolAssigns =  new List<Exam_Pool_Assignment__c>();
+        
+        
+         for(Exam__c ex:examList){
+             for(Question_Pool__c qpool:qPoolList){
+                        Exam_Pool_Assignment__c exPA = new Exam_Pool_Assignment__c();
+                        exPA.Exam__c = ex.Id;
+                        exPA.Question_Pool__c = qpool.Id;
+                        expoolAssigns.add(exPA);          
+             }
+         }
+        insert expoolAssigns;
+    }
+
+    /**
+     * for every examPoolAssgnmt
+     *    if ExamPoolAssignemnt DNE
+     *      then associate ExamPoolAssignment with Exam
+     *  
+     */
 }

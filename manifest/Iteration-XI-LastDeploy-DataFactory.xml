@@ -78,6 +78,6 @@
         <members>Cohort__c.All</members>
         <members>Education__c.All</members>
         <name>ListView</name>
-    </types>
+    </types>   
     <version>53.0</version>
 </Package>

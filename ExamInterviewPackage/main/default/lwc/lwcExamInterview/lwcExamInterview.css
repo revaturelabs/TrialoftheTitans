@@ -14,7 +14,7 @@
 }
 
 .exam_layout {
-    background-color: #112537;
+    background-color: #E3E9F0;
 }
 
 .button_container {
@@ -37,8 +37,12 @@
     text-align: center;
     font-weight: bold;
     font-size: larger;
+    color:white !important;
 }
 
 :host .header {
     --slds-c-card-header-spacing-block-start: 0;
+    --sds-c-card-color-background: #2F4050;
+    
 }
+

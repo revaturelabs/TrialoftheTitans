@@ -9,7 +9,7 @@
 
 <template>
     <!-- This component allows the user to flag a question for review. -->
-        <lightning-button label="Flag Question" variant="brand" onclick={flagButtonClicked} alternative-text="Flag for Review" title="Flag for Review"></lightning-button>
+        <lightning-button label="Flag this Question" variant="brand" onclick={flagButtonClicked} alternative-text="Flag for Review" title="Flag for Review" class = "slds-var-m-around_medium slds-var-m-*_medium"></lightning-button>
     <template if:true={isModalOpen}>
         <!-- Modal/Popup Box LWC starts here -->
     <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
