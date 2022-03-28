@@ -15,10 +15,10 @@ public class ExamInterviewApexControllerTestClass {
 
         for(Integer i = 1; i < 100; i++){
             if(i <= 50){
-                tQuestions.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = null));
+                tQuestions.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = null, Exam__c = tExam.Id));
             }
             if(i > 50){
-                tQuestions.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = tTitan.Id));
+                tQuestions.add(new Exam_Question__c(Name = 'exam ' + i, Titan__c = tTitan.Id, Exam__c = tExam.Id) );
             }
         }
 
