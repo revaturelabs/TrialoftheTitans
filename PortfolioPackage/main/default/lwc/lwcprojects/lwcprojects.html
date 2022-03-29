@@ -36,6 +36,8 @@
           </a>
         </div>
          </div>
+         <br>
+         <br>
           <!-- Checking if theres any projects returned -->
           <template if:true={exist}>
               <!-- Loop through the projects list -->
@@ -44,13 +46,14 @@
                     <!-- Name of project and Delete button -->
                     <div key={project.Id}>
                     <h1 class="subheader">{project.Name}</h1>
-                    <lightning-icon style="cursor: pointer; margin-left:1%;" icon-name='utility:delete' alternative-text='delete' size='medium' title='delete' onclick={deleteProject} name={project.Name}></lightning-icon>
+                    <lightning-icon style="cursor: pointer; margin-left:1%;" icon-name='utility:delete' alternative-text='delete' size='x-small' title='delete' onclick={deleteProject} name={project.Name}></lightning-icon>
                     <br><br>
                     <span>
                         <!-- Defining the rich text field-->
                         <lightning-input-rich-text formats="font, bold, italic, underline, strike,
                  list, indent, align, link, clean, code, code-block, color, background, header" value={project.Description__c} onchange={handleChange}>
                         </lightning-input-rich-text>
+                        <br>
                         <div align="center" draggable="false">
                             <!-- Save Button -->
                             <a class="slds-button slds-button_brand" color="#34ABD3" onclick={handleSaveProject} onformchange={handleSelection} title={project.Name}
@@ -58,6 +61,7 @@
                         </div>
                     </span>
                 </div>
+                <hr key={project.Id}>
                 <!-- </lightning-card> -->
               </template>
           </template>

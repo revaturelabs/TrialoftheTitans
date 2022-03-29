@@ -27,6 +27,7 @@
     <!--Pulls awards in after they are created-->
 
     <template for:each={awardsList} for:item="Award">
+      
       <div class="awards" key={Award.Id}>
         <p key={Award.Id}>
           <lightning-icon icon-name="standard:thanks" alternative-text="package" variant="inverse" size="medium"
@@ -39,12 +40,13 @@
           <!--Delete Last Award-->
           <a class="slds-button slds-button_text-destructive" href="#" key={Award.Id} onclick={handleDelete}
             data-awardvalue={Award.Id} value={Award.Name}>
-            <lightning-icon icon-name="utility:delete" alternative-text="delete" variant="inverse" size="x-small">
+            <lightning-icon icon-name="utility:delete" alternative-text="delete" variant="inverse" size="x-small" class="deleteicon">
             </lightning-icon>
           </a>
         </p>
 
       </div>
+    
     </template>
 
   </div>

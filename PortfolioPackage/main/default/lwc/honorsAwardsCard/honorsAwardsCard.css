@@ -26,7 +26,7 @@
     display: grid;
     font-size: var(--font-size-subheading);
     font-weight: bold;
-    color:black;
+    color:var(--color-accent);
     background-color: var(--color-secondary); 
     padding-top: 5px;
     padding-bottom: 5px;
@@ -39,6 +39,10 @@ p {
 
 .icon {
     background-color: rgb(174, 232, 250);
+}
+
+.deleticon{
+  color: white;
 }
 
 lightning-icon:hover {
@@ -63,8 +67,8 @@ lightning-icon:hover {
 
 .deleteButton {
   float: right;
-  --sds-c-icon-color-foreground: black;
-  padding: 5px 5px;
+  --sds-c-icon-color-foreground: white;
+  /* padding: 5px 5px; */
 }
 
 /* Left header icon */
@@ -85,7 +89,8 @@ lightning-icon:hover {
 .slds-button_text-destructive {
   float: right;
   background-color: var(--color-secondary); 
-  --sds-c-icon-color-foreground: black;
-  padding: 5px 5px;
+  --sds-c-icon-color-foreground: var(--color-accent);
+  /* padding: 5px 5px; */
   border: 0;
+  /* margin-right: 8px; */
 }
