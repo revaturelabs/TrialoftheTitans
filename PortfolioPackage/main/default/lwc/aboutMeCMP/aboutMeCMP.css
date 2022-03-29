@@ -1,3 +1,5 @@
+@import "c/styleResource";
+
 *, ::before, ::after {
   box-sizing: border-box;
  }
@@ -6,22 +8,23 @@
 float:left;
 height: auto;
 width: auto;
-margin-left: 40px;
-margin-top: 40px;
+/* margin-left: 40px; */
+/* margin-top: 40px; */
 border-radius: 0px; 
-position: relative;
-top: -30px;
+/* position: relative; */
+/* top: -30px; */
 }
 
 .edit-icon-about-me{
- float: right;
-height: 50px;
-width: 50px;
-flex: auto;
-left: 97.81%;
+ /* float: right; */
+/* height: 50px;
+width: 50px; */
+/* flex: auto; */
+/* left: 97.81%;
 right: 0.43%;
 top: 0%;
-bottom: 95.23%;
+bottom: 95.23%; */
+margin-left: auto;
 
 /* Secondary Green */
 
@@ -30,24 +33,35 @@ color: #00655F;
 
 .text-about-me{
 /* header text */
-font-family: 'Cinzel';
-font-style: normal;
-font-weight: 700;
-font-size: 49px;
-line-height: 66px;
-text-align: right;
+/* font-family: 'Cinzel';
+font-style: normal; */
+/* font-weight: 700; */
+font-size: var(--font-size-heading);
+/* line-height: 66px; */
+text-align: left;
+/* float: left; */
+color: var(--color-accent);
 }
 
 .about-me-section-background-color{
   max-width: 1323px;
-  height: 250px;
+  height: 150px;
   margin: auto;
   border-radius: 0px;
   background-color:#F5F3F3;
+  padding: 10px;
+  max-height: auto;
+
 }
 
 :host{
 --slds-c-card-color-border:white;
 --slds-c-card-color-background:white;
 --slds-c-card-shadow:white;
+}
+
+.headerContainer{
+  display: flex; 
+    flex-direction: row; 
+    align-items: center;
 }

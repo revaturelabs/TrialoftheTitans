@@ -6,6 +6,7 @@
     /* Padding, margin, other distances */
     --space-xsmall: 1em;
     --space-small: 2em;
+    --space-medium: 3em;
     --component-width: 60vw;
     --list-row-height: 6em;
 
@@ -16,6 +17,11 @@
     --color-accent: #576464;
 
     /* Fonts */
-    --font-size-heading: 3em;
+    --font-size-name: 3em;
+    --font-size-heading: 2.3em;
     --font-size-subheading: 1.5em;
+}
+
+lightning-icon {
+    margin: 0 var(--space-xsmall)
 }

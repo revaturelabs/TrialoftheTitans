@@ -6,26 +6,49 @@
 <template>
   <!-- Lightning Card which holds the Honors & Awards component -->
   <div class="container">
-    <div class="awards">
-      <p>Honors & Awards
-        <!-- Modal Open Button -->
-        <button class="open" onclick={openModal}>
-          Add
-        </button>
-      </p>
+    <div class="header">
+      <h1>
+        <lightning-icon icon-name='custom:custom48' 
+        alternative-text='honors and awards' 
+        size='medium' 
+        title='Honors And Awards'></lightning-icon>
+        Honors & Awards
+        <!--Add New Award-->
+        <lightning-icon 
+        icon-name="utility:add" 
+        alternative-text="add" 
+        variant="inverse" 
+        size="medium"
+        class="addButton" 
+        onclick={openModal}></lightning-icon>
+      </h1>
     </div>
-    
-    <!--Placeholder text for now until I can pull info in-->
+
+    <!--Pulls awards in after they are created-->
+
     <template for:each={awardsList} for:item="Award">
+      
       <div class="awards" key={Award.Id}>
         <p key={Award.Id}>
+          <lightning-icon icon-name="standard:thanks" alternative-text="package" variant="inverse" size="medium"
+            class="package-icon"></lightning-icon>
           {Award.Name}
         </p>
       </div>
       <div class="awards" key={Award.Id}>
-        <p key={Award.Id}>Received on: {Award.Date_Received__c}</p>
+        <p key={Award.Id}>Received on: {Award.Date_Received__c}
+          <!--Delete Last Award-->
+          <a class="slds-button slds-button_text-destructive" href="#" key={Award.Id} onclick={handleDelete}
+            data-awardvalue={Award.Id} value={Award.Name}>
+            <lightning-icon icon-name="utility:delete" alternative-text="delete" variant="inverse" size="x-small" class="deleteicon">
+            </lightning-icon>
+          </a>
+        </p>
+
       </div>
+    
     </template>
+
   </div>
 
   <!--Modal that opens on button click-->
@@ -45,23 +68,21 @@
         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
 
           <!--Form for submitting to database-->
-          <lightning-record-edit-form 
-            object-api-name="Award__c" onsuccess={handleSuccess}>
+          <lightning-record-edit-form object-api-name="Award__c" onsuccess={handleSuccess}>
 
             <lightning-input-field field-name="Name"> </lightning-input-field>
             <lightning-input-field field-name="Date_Received__c"> </lightning-input-field>
-
+            <!--Save button-->
             <div class="slds-var-m-top_medium">
               <lightning-button variant="brand" type="submit" label="Save">
               </lightning-button>
             </div>
           </lightning-record-edit-form>
-
         </div>
+        <!--Cancel button-->
         <div class="slds-modal__footer">
-          <!-- <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
-            onclick={closeModal}>Cancel</button> -->
-          <!-- <button class="slds-button slds-button_brand" onclick={closeModal}>X</button> -->
+          <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+            onclick={closeModal}>Cancel</button>
         </div>
       </div>
     </section>

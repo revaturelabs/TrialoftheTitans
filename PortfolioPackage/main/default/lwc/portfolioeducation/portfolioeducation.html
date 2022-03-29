@@ -10,8 +10,8 @@
         <div class="title">
             <ul>
                 <li class="logo"><lightning-icon icon-name='standard:education' alternative-text='education' size='medium' title='education'></lightning-icon></li>
-                <li class="left"><p>Education</p></li>
-                <li class="editor"><lightning-icon icon-name='utility:prompt_edit' alternative-text='prompt_edit' size='medium' title='prompt_edit' onclick={modalOpener}></lightning-icon></li>
+                <li class="left"><h1>Education</h1></li>
+                <li class="editor"><lightning-icon icon-name='utility:add' alternative-text='prompt_edit' size='medium' title='prompt_edit' onclick={modalOpener}></lightning-icon></li>
             </ul>
         </div>
         <template if:true={modalChecker}>
@@ -59,7 +59,7 @@
                         <div class="dataholder">
                             <div class="secondContainer">
                                 <div class="item"><p class="time">{edu.DateGraduate__c}</p></div>
-                                <div class="itemdeleter"><lightning-icon icon-name='action:delete' alternative-text='delete' size='x-small' title='delete' onclick={handleDelete} key={edu.Id} data-eduvalue={edu.Id} value={edu.Name} class="deleter"></lightning-icon></div>
+                                <div class="itemdeleter"><lightning-icon icon-name='utility:delete' alternative-text='delete' size='x-small' title='delete' onclick={handleDelete} key={edu.Id} data-eduvalue={edu.Id} value={edu.Name} class="deleter"></lightning-icon></div>
                              </div>
                          </div>
                     </div> 

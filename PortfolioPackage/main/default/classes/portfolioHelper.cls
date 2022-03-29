@@ -5,16 +5,16 @@ public with sharing class portfolioHelper {
     public static void getSkillMatrix(){
     	id uid = '0058c00000BOwWJAA1';
         
-		List<SM_Category__c> skills = [
+		List<Category__c> skills = [
             SELECT Name,
-            (SELECT Name FROM SM_Skills__r)
-            FROM SM_Category__c
+            (SELECT Name FROM Custom_Skills__r)
+            FROM Category__c
         ];
         System.debug(skills);
         
-        for(SM_Category__c req :skills){
+        for(Category__c req :skills){
             List<String> skillNames = new List<String>{};
-                for(SM_Skill__c a : req.SM_Skills__r){               
+                for(Custom_Skill__c a : req.Custom_Skills__r){               
                     skillNames.add(a.Name);
                 }
             System.debug(skillNames);

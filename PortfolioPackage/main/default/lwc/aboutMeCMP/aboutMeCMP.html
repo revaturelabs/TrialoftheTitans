@@ -9,24 +9,25 @@
 <template>
     <!-- Defining a lightning card-->
      <lightning-card >
-         <span>
+         <div class="headerContainer">
               <!-- Right corner icon-->
              <span class="main-icon" >
-                 <lightning-icon icon-name='action:user' alternative-text='user' size='x-small' title='user' variant='bare'>
+                 <lightning-icon icon-name='standard:user' alternative-text='user' size='medium' title='user' variant='bare'>
                  </lightning-icon>
              </span>
-             <span class="text-about-me">About Me</span>
+             <span class="text-about-me"><h1>About Me</h1></span>
                <!-- Left corner icon-->
-             <span class="edit-icon-about-me">
-                 <span class="slds-icon_container slds-icon-utility-announcement slds-current-color" 
-                     title="Click to edit the record.">
-                     <lightning-button-icon align="right" draggable="false" icon-name='utility:edit'
-                         alternative-text='Edit Record' size='large' onclick={handleEditIcon} title='edit'>
-                     </lightning-button-icon>
+             <div class="edit-icon-about-me">
+                 <!-- <span class="slds-icon_container slds-icon-utility-announcement slds-current-color" 
+                     title="Click to edit the record."> -->
+                     <lightning-icon align="right" draggable="false" icon-name='utility:edit'
+                         alternative-text='Edit Record' size='medium' onclick={handleEditIcon} title='edit'>
+                     </lightning-icon>
                      <span class="slds-assistive-text"></span>
-                 </span>
-             </span>
-         </span>
+                 <!-- </span> -->
+                    </div>
+            </div>
+
           <!-- Defining the rich text field-->
               <lightning-card if:false={editbutton} >
                  <span >
@@ -46,7 +47,7 @@
              <lightning-card if:true={editbutton} class="slds-card__body slds-card__body_inner"  >
                  
                 <div class="about-me-section-background-color" >
-                     <lightning-formatted-rich-text   value={myVal}>
+                     <lightning-formatted-rich-text   value={myVal} onclick ={handleEditIcon}>
                      </lightning-formatted-rich-text>
                  </div>
            

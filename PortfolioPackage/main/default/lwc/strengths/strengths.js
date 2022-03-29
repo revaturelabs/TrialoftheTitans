@@ -46,7 +46,7 @@ export default class Strengths extends LightningElement {
 
     //create a method
     showEditStrengthsForm() {
-        // Notes: custom event not necessary as we are operating within same component 
+        // Note: custom event not necessary as we are operating within same component 
         // Flip the boolean
         console.log('showEditStrengthsForm');
         this.showEditStrengthsBoolean = !this.showEditStrengthsBoolean;
@@ -75,7 +75,6 @@ export default class Strengths extends LightningElement {
         // console.log(newSkillId, 'newSkillId');
         // let newSkillLevel = event.currentTarget.dataset.skilllevel;
         // let newSkillInputValue = this.template.querySelector('input[data-skillid="' + newSkillId + '"]').value;
-        // let progressbarTarget = this.template.querySelector('c-progressbar[data-skillid="' + newSkillId + '"]');
         //     console.log(progressbarTarget, 'progressbarTarget');
         // console.log(progressbarTarget.endwidth, 'progressbarTarget.endwidth');
 
@@ -87,7 +86,7 @@ export default class Strengths extends LightningElement {
             // console.log('newSkillInputValue', newSkillInputValue);
             // console.log('newSkillId', newSkillId);
             // console.log('newSkillLevel', newSkillLevel);
-        // progressbarTarget.endwidth = parseInt(newSkillInputValue);
+         
         // console.log(progressbarTarget.endwidth, 'progressbarTarget.endwidth');
 
         // for (let i = 0; i < this.localStrengthsArrayOfObjs.length; i++) {
@@ -99,7 +98,4 @@ export default class Strengths extends LightningElement {
         
 
     }
-
-
-
 }

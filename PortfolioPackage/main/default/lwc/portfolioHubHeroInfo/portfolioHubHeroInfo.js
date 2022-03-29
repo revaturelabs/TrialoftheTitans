@@ -58,6 +58,7 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
             } else {
                 this.heroTitle  = 'Hero-in-Training';
             }
+            console.log(this.heroTitle);
         } else if (error) {
             this.error = error;
             console.log(error);

@@ -49,7 +49,7 @@
  }
 
  .icon{
-     --sds-c-icon-color-foreground: black;
+     --sds-c-icon-color-foreground: var(--color-accent);
  }
 
  .headericon{
@@ -62,8 +62,7 @@
 }
 
  .matrixContainer{
-     padding: 1.6em;
-     margin: 2px;
+     /* padding: 1.6em; */
      background-color: var(--color-primary);
      /* width: var(--component-width); */
  }
@@ -103,6 +102,30 @@
  /* .delete_button{
      padding-left: 6px;
  } */
+
+ .heading{
+    /* padding-left: 7px;  */
+    position: relative;
+    font-size: var(--font-size-heading);
+    color: var(--color-accent);
+    /* top: 10px; */
+ }
+
+ /* .icon-logo{
+    margin-left: 2px;
+    margin-top: 15px;
+    
+ } */
+
+ .headerContainer{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+ }
+
+ .icons{
+    margin-left: auto;
+}
 
 
 

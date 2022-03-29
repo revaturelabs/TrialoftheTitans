@@ -89,6 +89,9 @@ updateScore() {
             //this.isProgressModalOpen = false;
             //refreshApex(this.wireRes);
             window.location.reload();
+            // const refreshPage = new CustomEvent('refresh', {detail: 'Refresh Page'});
+            // this.dispatchEvent(refreshPage);
+            // console.log("refresh page.")
             break;
         default:
             break;
