@@ -46,7 +46,7 @@ export default class Strengths extends LightningElement {
 
     //create a method
     showEditStrengthsForm() {
-        // Notes: custom event not necessary as we are operating within same component 
+        // Note: custom event not necessary as we are operating within same component 
         // Flip the boolean
         console.log('showEditStrengthsForm');
         this.showEditStrengthsBoolean = !this.showEditStrengthsBoolean;
@@ -63,10 +63,6 @@ export default class Strengths extends LightningElement {
         //          recommended for other CRUD operations.
         console.log('handleUpdateSkillLevel');
         refreshApex(this.wireStrengthsValue).then(() => {
-            for(let strength of this.strengths ){
-                progressbarTarget.endwidth = parseInt(strength.Skill_Equivalency__c);
-            }
-            
             this.showEditStrengthsBoolean = !this.showEditStrengthsBoolean;
         });
 
@@ -79,7 +75,6 @@ export default class Strengths extends LightningElement {
         // console.log(newSkillId, 'newSkillId');
         // let newSkillLevel = event.currentTarget.dataset.skilllevel;
         // let newSkillInputValue = this.template.querySelector('input[data-skillid="' + newSkillId + '"]').value;
-        // let progressbarTarget = this.template.querySelector('c-progressbar[data-skillid="' + newSkillId + '"]');
         //     console.log(progressbarTarget, 'progressbarTarget');
         // console.log(progressbarTarget.endwidth, 'progressbarTarget.endwidth');
 
