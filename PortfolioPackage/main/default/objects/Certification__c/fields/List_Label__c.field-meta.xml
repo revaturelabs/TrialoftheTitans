@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>List_Label__c</fullName>
     <externalId>false</externalId>
-    <formula>Certification_Exam__r.Name &amp; &quot; -- &quot; &amp; TEXT(Date_Issued__c)</formula>
+    <formula>Name &amp; &quot; -- &quot; &amp; TEXT(Date_Issued__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>List Label</label>
     <required>false</required>

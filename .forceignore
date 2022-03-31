@@ -76,3 +76,7 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 #HeroHubPackage/main/default/ 
 #TitanHubPackage/main/default/
 TitanHubPackage/main/default/profiles/Admin.profile-meta.xml
+
+#IterationXI
+DataFactory/ReadMe
+HeroHubPackage/main/default/**.pdf

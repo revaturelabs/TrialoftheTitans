@@ -12,6 +12,7 @@ public without sharing class UserInfoHelper {
     //  Equivalencies__r	
     //  Experiences__r	    
     //  Projects__r 
+    //  !!!!!!!
 
     /**
      * Returns info for the currently logged in Hero (User)
@@ -44,7 +45,7 @@ public without sharing class UserInfoHelper {
         Id uid = UserInfo.getUserId();
 
         return [
-            SELECT Id,Image_URL__c,Certification_Exam__r.Name,Date_Issued__c,List_Label__c 
+            SELECT Id,Date_Issued__c,Name,List_Label__c 
             FROM Certification__c
             WHERE User__c =: uid
         ];

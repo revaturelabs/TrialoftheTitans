@@ -1,5 +1,6 @@
 {
-    "packageDirectories": [{
+    "packageDirectories": [
+        {
             "path": "TrialoftheTitansPackage",
             "package": "TrialOfTheTitansPackage",
             "versionName": "ver 0.1",
@@ -7,7 +8,7 @@
             "default": true,
             "dependencies": [
                 {
-                "package": "ChartPackage@1.0.0-1"
+                    "package": "ChartPackage@1.0.0-1"
                 }
             ]
         },
@@ -41,7 +42,15 @@
         },
         {
             "path": "PortfolioPackage",
-            "default": false
+            "default": false,
+            "package": "PortfolioPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "dependencies": [
+                {
+                    "package": "TrialOfTheTitansPackage@0.1.0-5"
+                }
+            ]
         },
         {
             "path": "DataFactory",
@@ -60,6 +69,9 @@
         "TrialOfTheTitansPackage@0.1.0-3": "04t5f000000GsI1AAK",
         "TrialOfTheTitansPackage@0.1.0-5": "04t5f000000GsMdAAK",
         "Hero Hub Package": "0Ho5f0000010wXyCAI",
-        "Titan Hub Package": "0Ho5f0000010wYXCAY"
+        "Titan Hub Package": "0Ho5f0000010wYXCAY",
+        "PortfolioHub": "0Ho8c000000CaljCAC",
+        "PortfolioPackage": "0Ho8c000000CaloCAC",
+        "PortfolioPackage@0.1.0-1": "04t8c000000Bq37AAC"
     }
 }
