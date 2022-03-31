@@ -155,9 +155,8 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Certification</label>
     <nameField>
-        <displayFormat>C-{0000}</displayFormat>
         <label>Certification Name</label>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Certifications</pluralLabel>
     <searchLayouts/>
