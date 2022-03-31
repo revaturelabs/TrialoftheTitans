@@ -16,6 +16,7 @@
         <members>lwcQuestion</members>
         <members>lwcQuestionFlag</members>
         <members>lwcSldsModal</members>
+        <members>lwcPopupModal</members>
         <name>LightningComponentBundle</name>
     </types>
     <version>53.0</version>
