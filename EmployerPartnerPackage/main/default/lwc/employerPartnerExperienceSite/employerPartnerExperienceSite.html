@@ -1,0 +1,39 @@
+<!--
+  @description       : Creates a page to display portfoloios for empoyers with search fucntions
+  @author            : Carlos Concepcion, Johnny Tran, Daniel Alcala, Theodore Moore, Quan Nguyen
+  @group             : 
+  @last modified on  : 05-09-2022
+  @last modified by  : Theodore Moore
+  Modifications Log
+  Ver   Date         Author                Modification
+  1.0   09-30-2021   Theodore Moore          Initial Version
+-->
+<template>
+
+    <template if:true ={heroes}>
+        <!-- This is going to be where the indivual cards show up -->
+        <template for:each={heroes} for:item="hero">
+          <lightning-card key={hero.id}>
+            <img src={hero.link} />
+            <div>{hero.Name}</div>
+            <div>{hero.Title}</div>
+            <div>{hero.Location}</div>
+            <lightning-button>
+            </lightning-button>
+            <div>
+              Arete: {hero.Arete}
+            </div>
+          </lightning-card>
+        </template>
+        <!-- Left and right buttons-->
+        <lightning-button>
+        </lightning-button>
+        <lightning-button>
+        </lightning-button>
+        <!--This will be where we can select our page number-->
+        <lightning-combobox>
+        </lightning-combobox>
+
+    </template>
+    
+</template>
