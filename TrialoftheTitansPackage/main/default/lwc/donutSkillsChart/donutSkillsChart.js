@@ -1,33 +1,55 @@
 import { LightningElement, track, wire} from 'lwc';
 import chartjs from '@salesforce/resourceUrl/ChartJs';
+import chartPlugin from '@salesforce/resourceUrl/chartPlugin';
 import { loadScript } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getDonutData from '@salesforce/apex/getDataForDonut.getDonutData';
 
 
 export default class MyCustomChart extends LightningElement {
-    @wire(getDonutData) wiredl1;
+    @wire (getDonutData) skillList({error,data})
+    {
+       if(data)
+       {
+          for(var key in data)
+           {
+              this.updateChart(data[key]);
+              //console.log(skillList);
+              console.log(data[key]);
+           }
+          this.error=undefined;
+       }
+      else if(error)
+      {
+         this.error = error;
+         this.skillList = undefined;
+      }
+    }
+    
     
     @track isChartJsInitialized;
     chart;
     config = {
         type: "doughnut",
         data: {
-            datasets: [{
-            data: [200, 450, 300, 50, 100, 30, 50, 60, 45, 90],
-            labels: ['hi', 'hello', 'hola', 'good', 'bad', 'skill', 'this works', 'bye', 'goodbye', 'how'] 
-         } ]
+        datasets: [
+        {
+        data: [],
+        backgroundColor: []
+        }
+        ],
+        labels: []
         }
     };
 
     renderedCallback() {
-        console.log(this.l1);
+        
         if (this.isChartJsInitialized) {
             return;
         }
         this.isChartJsInitialized = true;
         Promise.all([
-            loadScript(this, chartjs)
+            loadScript(this, chartjs), loadScript(this, chartPlugin)
         ]).then(() => {
             const ctx = this.template.querySelector('canvas.linechart').getContext('2d');
             this.chart = new window.Chart(ctx, this.config);
@@ -42,7 +64,16 @@ export default class MyCustomChart extends LightningElement {
                 }),
             );
         });
-        console.log(this.l1);
+        console.log(this.skillList);
+    }
+
+    updateChart(label) {
+
+        this.chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(label);
+            this.chart.update();
+        });
+        this.chart.update();
     }
 
 }

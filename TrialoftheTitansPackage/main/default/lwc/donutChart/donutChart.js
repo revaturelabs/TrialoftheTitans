@@ -4,10 +4,18 @@ import { loadScript } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 
-export default class MyCustomChart extends ChartDataProvider ( LightningElement ) {
+export default class Chart extends LightningElement {
 
     @track isChartJsInitialized;
     chart;
+
+    addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+        });
+        chart.update();
+    }
 
     config = {
         type: "doughnut",
