@@ -1,0 +1,8 @@
+<template>
+    <lightning-card title="Donut Chart" icon-name="utility:chart">
+        <div if:true={isChartJsInitialized}>
+            <canvas class="myChart" lwc:dom="manual"></canvas>
+            This should show up
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,9 @@
+<template>
+    <lightning-card title="Donut Chart" icon-name="utility:chart">
+        <div if:true={isChartJsInitialized}>
+            <div if:true={l1.data}>
+            <canvas class="linechart" lwc:dom="manual"></canvas>
+            </div>
+        </div>
+    </lightning-card>
+</template>
