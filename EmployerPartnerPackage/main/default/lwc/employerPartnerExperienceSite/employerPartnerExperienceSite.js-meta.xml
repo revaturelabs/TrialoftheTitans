@@ -3,7 +3,7 @@
     <apiVersion>52.0</apiVersion>
     <isExposed>true</isExposed>
     <targets>
-         <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Page</target>
         <target>lightningCommunity__Page_Layout</target>
         <target>lightningCommunity__Default</target>
         <target>lightning__AppPage</target>
