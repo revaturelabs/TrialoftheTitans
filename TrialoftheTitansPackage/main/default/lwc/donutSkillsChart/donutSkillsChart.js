@@ -1,57 +1,56 @@
-import { LightningElement, track, wire} from 'lwc';
+import { LightningElement, track, wire } from 'lwc';
 import chartjs from '@salesforce/resourceUrl/ChartJs';
-import chartPlugin from '@salesforce/resourceUrl/chartPlugin';
 import { loadScript } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getDonutData from '@salesforce/apex/getDataForDonut.getDonutData';
 
 
 export default class MyCustomChart extends LightningElement {
-    @wire (getDonutData) skillList({error,data})
-    {
-       if(data)
-       {
-          for(var key in data)
-           {
-              this.updateChart(data[key]);
-              //console.log(skillList);
-              console.log(data[key]);
-           }
-          this.error=undefined;
-       }
-      else if(error)
-      {
-         this.error = error;
-         this.skillList = undefined;
-      }
+    @wire(getDonutData) skillList({error,data}) {
+
+        if(data) {
+            for(var key in data) {
+                this.chart.data.datasets[0].data[key] = 1;
+                this.chart.data.labels.push(data[key]);
+            }
+            this.chart.update();
+
+            this.error=undefined;
+        }
+        else if(error) {
+            this.error = error;
+            this.skillList = undefined;
+        }
     }
-    
-    
+
     @track isChartJsInitialized;
     chart;
+    
     config = {
         type: "doughnut",
+        labels: [],
         data: {
-        datasets: [
-        {
-        data: [],
-        backgroundColor: []
-        }
-        ],
-        labels: []
+            datasets: [{
+                data: [],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ]
+            }]
         }
     };
 
     renderedCallback() {
-        
         if (this.isChartJsInitialized) {
             return;
         }
         this.isChartJsInitialized = true;
+
         Promise.all([
-            loadScript(this, chartjs), loadScript(this, chartPlugin)
+            loadScript(this, chartjs)
         ]).then(() => {
-            const ctx = this.template.querySelector('canvas.linechart').getContext('2d');
+            const ctx = this.template.querySelector('canvas.donutchart').getContext('2d');
             this.chart = new window.Chart(ctx, this.config);
             this.chart.canvas.parentNode.style.height = '100%';
             this.chart.canvas.parentNode.style.width = '100%';
@@ -64,16 +63,6 @@ export default class MyCustomChart extends LightningElement {
                 }),
             );
         });
-        console.log(this.skillList);
-    }
-
-    updateChart(label) {
-
-        this.chart.data.datasets.forEach((dataset) => {
-            dataset.data.push(label);
-            this.chart.update();
-        });
-        this.chart.update();
     }
 
 }

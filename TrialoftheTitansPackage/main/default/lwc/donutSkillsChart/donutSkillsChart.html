@@ -1,7 +1,9 @@
 <template>
     <lightning-card title="Donut Chart" icon-name="utility:chart">
+        
         <div if:true={isChartJsInitialized}>
-            <canvas class="linechart" lwc:dom="manual"></canvas>
+            <canvas class="donutchart"></canvas>
         </div>
+
     </lightning-card>
 </template>
