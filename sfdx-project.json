@@ -56,8 +56,7 @@
             "path": "DataFactory",
             "default": false
         },
-        
-        {
+      {
             "path": "EmployerPartnerPackage",
             "package": "EmployerPartnerPackage",
             "versionName": "ver 0.1",
