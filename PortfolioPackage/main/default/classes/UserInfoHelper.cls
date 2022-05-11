@@ -32,6 +32,23 @@ public without sharing class UserInfoHelper {
     }
 
     @AuraEnabled(cacheable=true)
+    public static List<String> getDonutData(User u) {
+        Id uid = u.Id;
+
+        Account userAcc = [SELECT Name, UserId FROM Account WHERE UserId = :uid LIMIT 1];
+
+        List<User_Skill__c> userSkills = [SELECT Skill__c, Account__c FROM User_Skill__c WHERE Account__c = :userAcc.Id];
+        
+        List<String> names = new List<String>();
+
+        for(User_Skill__c skill : userSkills) {
+            names.add(skill.Skill__c.Name);
+        }
+
+        return names;
+    }
+
+    @AuraEnabled(cacheable=true)
     public static List<Certification__c> getCertifications() {
 
         // Relevant feilds:
