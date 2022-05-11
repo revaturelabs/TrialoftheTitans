@@ -1,5 +1,6 @@
 import { LightningElement, track, wire } from 'lwc';
 import chartjs from '@salesforce/resourceUrl/ChartJs';
+import dataLabels from '@salesforce/resourceUrl/DataLabels'
 import { loadScript } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getDonutData from '@salesforce/apex/getDataForDonut.getDonutData';
@@ -28,16 +29,23 @@ export default class MyCustomChart extends LightningElement {
     
     config = {
         type: "doughnut",
-        labels: [],
         data: {
             datasets: [{
-                data: [],
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)'
-                ]
+                data: []
             }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            plugins: {
+                datalabels: {
+                    display: true,
+                    formatter: (val, ctx) => {
+                        return ctx.chart.data.labels[ctx.dataIndex];
+                    }
+                }
+            }
         }
     };
 
@@ -48,7 +56,7 @@ export default class MyCustomChart extends LightningElement {
         this.isChartJsInitialized = true;
 
         Promise.all([
-            loadScript(this, chartjs)
+            loadScript(this, chartjs), loadScript(this, dataLabels)
         ]).then(() => {
             const ctx = this.template.querySelector('canvas.donutchart').getContext('2d');
             this.chart = new window.Chart(ctx, this.config);
