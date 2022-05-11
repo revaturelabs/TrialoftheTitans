@@ -9,7 +9,7 @@ export default class HeroSearch extends LightningElement {
     @track remote;
     @track relocate;
     msg = 'lol';
-    search = {queryTerm, remote, relocate};
+    search = {search:"queryTerm", remote:"remote",relocate:"relocate"};
 
     handleKeyUp(evt) {
         const isEnterKey = evt.keyCode === 13;
@@ -26,7 +26,7 @@ export default class HeroSearch extends LightningElement {
     testEvent(){
         this.msg = 'dumb';
         this.dispatchEvent(new CustomEvent('testevent', {
-            detail : search
+            detail : 'caca'
         }));
         
         
@@ -35,7 +35,7 @@ export default class HeroSearch extends LightningElement {
     handleCustomEvent(evt){
         const textTest = evt.detail;
         this.msg = textTest;
-        this.msg = 'lololol'
+        
     }
 
     buttonStatefulState = false;
