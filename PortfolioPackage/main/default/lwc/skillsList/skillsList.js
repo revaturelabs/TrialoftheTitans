@@ -1,5 +1,5 @@
 import { LightningElement, wire} from 'lwc';
-import getSkills from '@salesforce/apex/SkillsController.getSkills'
+import getSkills from '@salesforce/apex/getDataForDonut.getDonutData'
 
 export default class FeatsList extends LightningElement {
     @wire (getSkills) skills;
