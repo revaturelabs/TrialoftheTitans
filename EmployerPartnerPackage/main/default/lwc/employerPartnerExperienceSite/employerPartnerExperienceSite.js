@@ -3,8 +3,9 @@ import getHeroInfo from '@salesforce/apex/EmployerPartnerExperienceSiteHelper.ge
 export default class EmployerPartnerExperienceSite extends LightningElement {
     
     @track heroes=[];
+    @track queryTerm;
     @wire (getHeroInfo)     
-    wiredAccount({ error, data }) {
+    wiredHero({ error, data }) {
         if (data) {
             for (let i = 0; i < data.length; i++) {
                 this.heroes.push(JSON.parse(data[i]));
