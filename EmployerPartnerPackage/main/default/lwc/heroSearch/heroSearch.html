@@ -38,9 +38,7 @@
        
     <lightning-input class="detailOne" type="checkbox" value={remote} label="Include Remote Workers" name="input1" onchange={advDetailChange} ></lightning-input>
 
-    <p if:true={search.query}>
-        Searched for {search.query}!
-    </p>
+    
 
     <template if:true={remote}>
         <p class="searchParam"> Search will include Heroes that work remotely. No distance is too great for these extraordinary individuals!</p> 
