@@ -2,7 +2,7 @@
     <div class="slds-grid slds-wrap">
         <template for:each={skills.data} for:item="skill">
             <div class="slds-col slds-size_1-of-5" key={skill}>
-                <lightning-badge label={skill}></lightning-badge>
+                <lightning-badge data-id={skill} label={skill} onclick={clickEvent}></lightning-badge>
             </div>
         </template>
     </div>

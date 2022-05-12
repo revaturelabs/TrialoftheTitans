@@ -32,6 +32,30 @@ public without sharing class UserInfoHelper {
     }
 
     @AuraEnabled(cacheable=true)
+    public static List<String> getDonutData() {
+        Id uid = UserInfo.getUserId();
+        List<String> names = new List<String>();
+
+        try{
+            User user = [SELECT Id, contactId FROM User WHERE Id = :uid];
+        	Contact userContact = [SELECT Id, AccountId FROM Contact WHERE Id = :user.ContactId];
+        	Account userAccount = [SELECT Id FROM Account WHERE Id = :userContact.AccountId];
+         
+            List<Hero_Skill__c> userSkills = [SELECT Skill__r.Name, Account__c FROM Hero_Skill__c WHERE Account__c = :userAccount.Id];
+            
+            for(Hero_Skill__c skill : userSkills) {
+                names.add(skill.Skill__r.Name);
+            }
+            
+        } catch(Exception e){
+                System.debug('Error retrieving account skills');
+                return null;
+        }
+
+        return names;
+    }
+
+    @AuraEnabled(cacheable=true)
     public static List<Certification__c> getCertifications() {
 
         // Relevant feilds:

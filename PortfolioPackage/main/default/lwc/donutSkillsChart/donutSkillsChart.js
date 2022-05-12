@@ -4,7 +4,7 @@ import dataLabels from '@salesforce/resourceUrl/DataLabels'
 import colorSchemes from '@salesforce/resourceUrl/ColorSchemes'
 import { loadScript } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import getDonutData from '@salesforce/apex/getDataForDonut.getDonutData';
+import getDonutData from '@salesforce/apex/UserInfoHelper.getDonutData';
 
 
 export default class MyCustomChart extends LightningElement {
@@ -53,16 +53,13 @@ export default class MyCustomChart extends LightningElement {
                     scheme: 'brewer.Spectral11'
                 }
             }
-
         }
     };
-
     renderedCallback() {
         if (this.isChartJsInitialized) {
             return;
         }
         this.isChartJsInitialized = true;
-
         Promise.all([
             loadScript(this, chartjs), loadScript(this, dataLabels), loadScript(this, colorSchemes)
         ]).then(() => {
@@ -80,5 +77,4 @@ export default class MyCustomChart extends LightningElement {
             );
         });
     }
-
 }

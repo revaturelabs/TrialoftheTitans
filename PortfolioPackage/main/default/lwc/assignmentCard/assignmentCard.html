@@ -1,0 +1,10 @@
+<template>
+
+    <template for:each={Exams.data} for:item="test">
+     <lightning-card  title={test.Skill__r.Name} key={test.id}>
+          <p class="slds-p-horizontal_small">{test.Exam__r.Name}</p>
+          <p slot="footer"></p>
+      </lightning-card>
+    </template>
+    
+</template>
