@@ -7,5 +7,6 @@
         <target>lightningCommunity__Page_Layout</target>
         <target>lightningCommunity__Default</target>
         <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
     </targets>
 </LightningComponentBundle>

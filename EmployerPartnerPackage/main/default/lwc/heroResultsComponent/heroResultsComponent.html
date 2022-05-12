@@ -1,9 +1,18 @@
 <template>
                 <lightning-button label="test Search" onclick={initializeSearch}>
               </lightning-button>
-       <!--<template >-->
+       
         <!-- This is going to be where the indivual cards show up -->
+
+        <c-hero-search ontestevent={handleCustomEvent} msg={msg}></c-hero-search>
+        <p>{msg} Hello {relocate}{remote}</p>
+
+        
+
+       
+
         <template for:each={currentHeroes} for:item="hero">
+
           <lightning-card key={hero.id}>
               <img src={hero.link} />
               <div>{hero.Name}</div>
@@ -15,6 +24,7 @@
             </div>
           </lightning-card>
         </template>
+       
         <lightning-button label="<" onclick={previousPage}></lightning-button>
         <lightning-combobox            
             label="Page Number"
@@ -25,6 +35,6 @@
             </lightning-combobox>
         <lightning-button label=">" onclick={nextPage}></lightning-button>
 
-    <!--</template>-->
+    
     
 </template>
