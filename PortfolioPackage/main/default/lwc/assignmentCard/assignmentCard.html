@@ -1,35 +1,33 @@
 <template>
-    <!--Use template if:true to display/hide popup based on isModalOpen value--> 
-    <template if:true ={isModalOpen}>
-        <!-- Modal/Popup Box LWC starts here -->
-        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
-            <div class="slds-modal__container">
-              <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
-                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
-                  <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
-                </svg>
-                <span class="slds-assistive-text">Cancel and close</span>
-              </button>
-              <div class="slds-modal__header">
-                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Modal header</h1>
-              </div>
-              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                <template for:each={Exams.data} for:item="test">
-                    <lightning-card  title={test.Skill__r.Name} key={test.id}>
-                         <p class="slds-p-horizontal_small">{test.Exam__r.Name}</p>
-                         <p slot="footer"></p>
-                     </lightning-card>
-                   </template>
-              </div>
-              <lightning-button variant="brand"
-                    label="Close"
-                    title="Close"
-                    onclick={closeModal}
-                    class="slds-m-left_x-small">
-                </lightning-button>
-            </div>
-          </section>
-          <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
-    </template>
+    <!--Use template if:true to display/hide popup based on isModalOpen value-->
+  <!-- Modal/Popup Box LWC starts here -->
+  <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+          <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+          </svg>
+          <span class="slds-assistive-text">Cancel and close</span>
+        </button>
+        <div class="slds-modal__header">
+          <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Modal header</h1>
+        </div>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+          <template for:each={Exams.data} for:item="test">
+              <lightning-card  title={test.Skill__r.Name} key={test.id}>
+                    <p class="slds-p-horizontal_small">{test.Exam__r.Name}</p>
+                    <p slot="footer"></p>
+                </lightning-card>
+              </template>
+        </div>
+        <lightning-button variant="brand"
+              label="Close"
+              title="Close"
+              onclick={closeModal}
+              class="slds-m-left_x-small">
+          </lightning-button>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
  </template>
 

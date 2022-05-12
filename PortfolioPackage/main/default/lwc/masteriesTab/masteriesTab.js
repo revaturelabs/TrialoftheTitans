@@ -1,14 +1,18 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, track } from 'lwc';
 
 export default class MasteriesTab extends LightningElement {
-    loadModal = false;
-    skillToLoad = null;
+    @track loadModal = false;
+    @track skillToLoad;
+
     handleClick(event) {
-        this.loadModal = true;
+        console.log(event.detail);
         this.skillToLoad = event.detail;
+        //console.log(skillToLoad);
+        this.loadModal = true;
+        console.log('Hello');
     }
-    closeModal() {
-        loadModal = false;
+    closeModal(event) {
+        this.loadModal = false;
     }
 
 }
