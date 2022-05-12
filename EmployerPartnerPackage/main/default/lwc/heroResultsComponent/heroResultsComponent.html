@@ -3,7 +3,15 @@
               </lightning-button>
        <!--<template >-->
         <!-- This is going to be where the indivual cards show up -->
+
+
+        <c-hero-search ontestevent={handleCustomEvent}></c-hero-search>
+        <p>{msg}</p>
+
+        <template for:each={heroes} for:item="hero">
+
         <template for:each={currentHeroes} for:item="hero">
+
           <lightning-card key={hero.id}>
               <img src={hero.link} />
               <div>{hero.Name}</div>
