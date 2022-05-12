@@ -6,10 +6,10 @@ export default class HeroSearch extends LightningElement {
     input1;
     input2;
     @api msg;
-    remote = false;
-    relocate = false;
+    @track remote = false;
+    @track relocate = false;
     
-    @track search = {'query': this.queryTerm, 'remote': this.remote, 'relocate': this.relocate};
+    search = {'query': this.queryTerm, 'remote': this.remote, 'relocate': this.relocate};
 
     handleKeyUp(evt) {
         const isEnterKey = evt.keyCode === 13;
@@ -32,7 +32,7 @@ export default class HeroSearch extends LightningElement {
             alert("Try to search for a name, technology, or location.");
         }else{
         this.search.query = this.template.querySelector(".searchTerm").value;
-         this.search.remote = this.remote;
+        this.search.remote = this.remote;
         this.search.relocate = this.relocate;
         this.dispatchEvent(new CustomEvent('testevent', {
             detail : this.search

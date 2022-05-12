@@ -9,6 +9,14 @@
   1.0   09-30-2021   Theodore Moore          Initial Version
 -->
 <template>
-   <!-- <c-filter-button unfilteredheroes={heroes}></c-filter-button>-->
+
+
+  <!-- <c-filter-button on={handleCustomEvent}></c-filter-button> -->
+  <c-filter-button unfilteredheroes={heroes} onfilterevent={handleFilterEvent}></c-filter-button>
+  <c-hero-results-component heroes={filteredHeroes}></c-hero-results-component>
+
+   
+
    <c-hero-results-component heroes={filteredHeroes}></c-hero-results-component>
+
 </template>
