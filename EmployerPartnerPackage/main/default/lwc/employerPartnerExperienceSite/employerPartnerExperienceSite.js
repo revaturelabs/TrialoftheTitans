@@ -5,9 +5,7 @@ export default class EmployerPartnerExperienceSite extends LightningElement {
     @track heroes=[];
     @track filteredHeroes;
     @track queryTerm;
-    @track pages={};
-    @track currentPage=1;
-    @track currentHeroes=[];
+
 
 
     @wire (getHeroInfo)     
@@ -21,5 +19,4 @@ export default class EmployerPartnerExperienceSite extends LightningElement {
             this.filteredHeroes= this.heroes;
         }
     }
-    
 }
