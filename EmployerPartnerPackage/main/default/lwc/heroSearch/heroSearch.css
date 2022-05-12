@@ -1,0 +1,13 @@
+.searchComponent {
+    margin:auto;
+    width : 700px;
+    height : 350px;
+    background-color: bisque;
+    border-style:groove;
+    border-radius: 2%;
+}
+.searchParam{
+    font-size: large;
+    color:red;
+    
+}

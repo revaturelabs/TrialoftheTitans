@@ -51,13 +51,14 @@
             "path": "DataFactory",
             "default": false
         },
-        {
+      {
             "path": "EmployerPartnerPackage",
             "package": "EmployerPartnerPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
             "default": false
         }
+
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
@@ -76,5 +77,6 @@
         "PortfolioPackage": "0Ho8c000000CaloCAC",
         "PortfolioPackage@0.1.0-1": "04t8c000000Bq37AAC",
         "EmployerPartnerPackage": "0HoIY00000000FL0AY"
+
     }
 }
