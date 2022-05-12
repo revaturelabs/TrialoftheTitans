@@ -4,14 +4,11 @@ import dataLabels from '@salesforce/resourceUrl/DataLabels'
 import colorSchemes from '@salesforce/resourceUrl/ColorSchemes'
 import { loadScript } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import getDonutData from '@salesforce/apex/getDataForDonut.getDonutData';
-import getBasicUserInfo from '@salesforce/apex/UserInfoHelper.getBasicUserInfo';
+import getDonutData from '@salesforce/apex/UserInfoHelper.getDonutData';
 
 
 export default class MyCustomChart extends LightningElement {
-    @wire(getBasicUserInfo) userInfo;
-    
-    @wire(getDonutData, {userInfo}) skillList({error,data}) {
+    @wire(getDonutData) skillList({error,data}) {
 
         if(data) {
             for(var key in data) {
