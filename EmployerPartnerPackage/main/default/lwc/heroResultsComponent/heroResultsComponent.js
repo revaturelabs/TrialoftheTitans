@@ -6,7 +6,7 @@ export default class HeroResultsComponent extends LightningElement {
     //This is being grabbed from employerPartnerExperience
 
     @api heroes;
-    @track msg = 'newest';
+    @track msg = 'newer';
     @track pages={};
     @track currentPage=1;
     @track currentHeroes;
