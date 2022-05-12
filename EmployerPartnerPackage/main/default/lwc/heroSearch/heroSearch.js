@@ -1,21 +1,22 @@
 import { LightningElement, track, api } from 'lwc';
 
 export default class HeroSearch extends LightningElement {
-    
+    hasSearched;
     isAdvancedSearch;
     input1;
     input2;
     @api msg;
-    @track remote = false;
-    @track relocate = false;
+    remote = false;
+    relocate = false;
     
-    search = {'query': this.queryTerm, 'remote': this.remote, 'relocate': this.relocate};
+    @track search = {'query': this.queryTerm, 'remote': this.remote, 'relocate': this.relocate};
 
     handleKeyUp(evt) {
         const isEnterKey = evt.keyCode === 13;
         if (isEnterKey) {
            
             this.search.query = evt.target.value;
+            this.hasSearched = true;
             this.search.remote = this.remote;
             this.search.relocate = this.relocate;
             this.dispatchEvent(new CustomEvent('testevent', {
@@ -26,6 +27,7 @@ export default class HeroSearch extends LightningElement {
     }
     handleSearchButton() {
         this.search.query = this.template.querySelector(".searchTerm").value;
+        this.hasSearched = true;
         this.search.remote = this.remote;
         this.search.relocate = this.relocate;
         this.dispatchEvent(new CustomEvent('testevent', {
