@@ -6,7 +6,7 @@ export default class FilterButton extends LightningElement {
     @api unfilteredheroes;
 
     //shallow copy of heroes list
-    @track filterHeroes = this.unfilteredheroes;
+    @track filteredHeroes = this.unfilteredheroes;
     // picklist values in a list
 
     // options to display in the picklist
@@ -25,9 +25,9 @@ export default class FilterButton extends LightningElement {
         })
 
         Location.forEach(element => {
-                returnList.push({ label: 'Location: ' + element, value: 'Location ' + element });
-            })
-            //console.log(returnList);
+            returnList.push({ label: 'Location: ' + element, value: 'Location ' + element });
+        })
+
         return returnList;
     }
 
@@ -35,10 +35,10 @@ export default class FilterButton extends LightningElement {
     handleChange(event) {
         //console.log(this.unfilteredheroes);
         let value = event.detail.value;
-        this.filterHeroes = this.unfilteredheroes;
+        this.filteredHeroes = this.unfilteredheroes;
         let indexes = [];
 
-        this.filterHeroes.forEach((element, index) => {
+        this.filteredHeroes.forEach((element, index) => {
             if (value.substring(0, 10) === 'Technology' && element.Technology !== value.substring(11)) {
                 indexes.push(index);
             } else if (value.substring(0, 8) === 'Location' && element.Location !== value.substring(9)) {
@@ -48,10 +48,10 @@ export default class FilterButton extends LightningElement {
 
         if (indexes != null) {
             for (var i = indexes.length - 1; i >= 0; i--) {
-                this.filterHeroes.splice(indexes[i], 1);
+                this.filteredHeroes.splice(indexes[i], 1);
             }
             this.dispatchEvent(new CustomEvent('filterEvent', {
-                detail: this.filterHeroes
+                detail: this.filteredHeroes
             }));
         }
 
