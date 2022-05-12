@@ -14,8 +14,9 @@ export default class EmployerPartnerExperienceSite extends LightningElement {
     wiredHero({ error, data }) {
         if (data) {
             for (let i = 0; i < data.length; i++) {
+                
                 this.heroes.push(JSON.parse(data[i]));
-                console.log(JSON.parse(data[i]));
+
             }
             this.filteredHeroes= this.heroes;
         }
