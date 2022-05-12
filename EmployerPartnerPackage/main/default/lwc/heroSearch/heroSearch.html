@@ -36,8 +36,8 @@
     </div>
  </template>
  <template if:true={isAdvancedSearch}>
-    <p if:true={queryTerm}>
-        Searched for {queryTerm}!
+    <p if:true={search.query}>
+        Searched for {search.query}!
     </p>
     <template if:true={remote}>
         <p class="searchParam"> Search includes Heroes that work remotely. No distance is too great for these extraordinary individuals!</p> 
