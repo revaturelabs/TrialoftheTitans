@@ -1,37 +1,39 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 
 export default class HeroSearch extends LightningElement {
-    queryTerm;
+    
     isAdvancedSearch;
     input1;
     input2;
-    @track msg
-    @track remote;
-    @track relocate;
-    msg = 'lol';
-    search = {search:"queryTerm", remote:"remote",relocate:"relocate"};
+    @api msg;
+    @track remote = false;
+    @track relocate = false;
+    
+    search = {'query': this.queryTerm, 'remote': this.remote, 'relocate': this.relocate};
 
     handleKeyUp(evt) {
         const isEnterKey = evt.keyCode === 13;
         if (isEnterKey) {
-            this.queryTerm = evt.target.value;
+           
+            this.search.query = evt.target.value;
+            this.search.remote = this.remote;
+            this.search.relocate = this.relocate;
+            this.dispatchEvent(new CustomEvent('testevent', {
+                detail : this.search
+            }));
+            
             }
     }
     handleSearchButton() {
-        this.queryTerm = this.template.querySelector(".searchTerm").value;
-            
-            
-        
-    }
-    testEvent(){
-        this.msg = 'dumb';
+        this.search.query = this.template.querySelector(".searchTerm").value;
+        this.search.remote = this.remote;
+        this.search.relocate = this.relocate;
         this.dispatchEvent(new CustomEvent('testevent', {
-            detail : 'caca'
+            detail : this.search
         }));
         
+        }
         
-        
-    }
     handleCustomEvent(evt){
         const textTest = evt.detail;
         this.msg = textTest;
