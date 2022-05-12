@@ -1,16 +1,10 @@
 <template>
-    
     <div class="searchComponent">
-    <p> HeroSearch Component</p>
-    <div class="slds-m-around_medium">
-        <h1 class="slds-text-heading_small">Hero Search Component</h1>
-        
-    </div>
     <div onkeyup={handleKeyUp}>
         <lightning-input
             class="searchTerm"
             name="enter-search"
-            label="Hero Search"
+            
             type="search"
             placeholder="Search Name, Technology, or Location"
             
@@ -27,8 +21,8 @@
 
         <!-- Button group: simple buttons -->
         
-            <lightning-button label="Search" onclick={handleSearchButton} variant="brand" ></lightning-button>
-            <lightning-button label="Advanced Search" variant="destructive" onclick={handleAdvancedClick}></lightning-button>
+            <lightning-button label="Search" onclick={handleSearchButton} variant="success" ></lightning-button>
+            <lightning-button label="Advanced Search" variant="brand" onclick={handleAdvancedClick}></lightning-button>
            
         
        <!-- <lightning-button label="testEvent" onclick={testEvent}></lightning-button>
@@ -36,22 +30,32 @@
     </div>
  </template>
  <template if:true={isAdvancedSearch}>
+
+    
+     <p if:true={search.query}>
+        Searched for {search.query}!
+    </p>
+       
+    <lightning-input class="detailOne" type="checkbox" value={remote} label="Include Remote Workers" name="input1" onchange={advDetailChange} ></lightning-input>
+
     <p if:true={search.query}>
         Searched for {search.query}!
     </p>
+
     <template if:true={remote}>
-        <p class="searchParam"> Search includes Heroes that work remotely. No distance is too great for these extraordinary individuals!</p> 
+        <p class="searchParam"> Search will include Heroes that work remotely. No distance is too great for these extraordinary individuals!</p> 
       </template>  
-      <template if:true={relocate}>
-        <p class="searchParam"> Search includes Heroes that are willing to relocate. They fear not where their journey might take them!</p> 
-      </template>  
-    <lightning-input type="checkbox" value={remote} label="Include Remote Workers" name="input1" onchange={advDetailChange}></lightning-input>
-    <lightning-input type="checkbox" value={relocate} label="Willing to Relocate" name="input2" onchange={advDetailChangeTwo}></lightning-input>
+    <lightning-input class="detailTwo" type="checkbox" value={relocate} label="Willing to Relocate" name="input2" onchange={advDetailChangeTwo} ></lightning-input>
+    <template if:true={relocate}>
+        <p class="searchParam"> Search will include Heroes that are willing to relocate. They fear not where their journey might take them!</p> 
+      </template> 
    
    
- 
-    <lightning-button label="Search" onclick={handleSearchButton} variant="brand"></lightning-button>
-    <lightning-button label="Back to Quick Search" onclick={handleQuickClick}></lightning-button>
+ <div class="slds-grid slds-grid_align-spread">
+    <lightning-button label="Search" onclick={handleSearchButton} variant="success"></lightning-button>
+    
+    <lightning-button label="Back to Quick Search" onclick={handleQuickClick} variant="brand"></lightning-button>
+</div>
 
 
 

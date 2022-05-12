@@ -5,8 +5,13 @@ import { LightningElement, track , api} from 'lwc';
 export default class HeroResultsComponent extends LightningElement {
     //This is being grabbed from employerPartnerExperience
 
+
+    @track msg = 'new';
+    @track pages={};
+
     @api heroes=[];
-    @track msg = 'newest';
+    
+
     @track currentPage=1;
     @track remote;
     @track relocate;
