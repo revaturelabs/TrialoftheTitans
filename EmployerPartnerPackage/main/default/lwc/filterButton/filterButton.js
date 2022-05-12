@@ -1,45 +1,41 @@
-import { LightningElement, wire, track, api} from 'lwc';
+import { LightningElement, wire, track, api } from 'lwc';
 //import getHeroInfo from '@salesforce/apex/EmployerPartnerExperienceSiteHelper.getHeroInfo';
 export default class FilterButton extends LightningElement {
 
-    @track heroes=[];
-    
-    @api set unfilteredheroes (value){
-    console.log(this.value);
-    this.heroes=this.value;
-    let Technology = new Set();
-    let Location = new Set();
+    //@track heroes = [];
+    @api unfilteredheroes;
 
-    this.heroes.forEach(element => {
-        Technology.add(element.Technology);
-        Location.add(element.Location);
-
-    });
-
-    Technology.forEach(element => {
-        this.returnList.push({ label: 'Technology: ' + element, value: 'Technology ' + element });
-    })
-
-    Location.forEach(element => {
-        this.returnList.push({ label: 'Location: ' + element, value: 'Location ' + element });
-    })
-    }
     //shallow copy of heroes list
-    @track filterHeroes = this.heroes.slice();
+    @track filterHeroes = this.unfilteredheroes;
     // picklist values in a list
-     returnList = [{ label: 'Default', value: 'default default' }];
-
-
 
     // options to display in the picklist
     get options() {
-        return this.returnList;
+        let returnList = [{ label: 'Default', value: 'default default' }];
+        let Technology = new Set();
+        let Location = new Set();
+
+        this.unfilteredheroes.forEach(element => {
+            Technology.add(element.Technology);
+            Location.add(element.Location);
+        });
+
+        Technology.forEach(element => {
+            returnList.push({ label: 'Technology: ' + element, value: 'Technology ' + element });
+        })
+
+        Location.forEach(element => {
+                returnList.push({ label: 'Location: ' + element, value: 'Location ' + element });
+            })
+            //console.log(returnList);
+        return returnList;
     }
 
     // handle change on the picklist value
     handleChange(event) {
+        //console.log(this.unfilteredheroes);
         let value = event.detail.value;
-        this.filterHeroes = this.heroes.slice();
+        this.filterHeroes = this.unfilteredheroes;
         let indexes = [];
 
         this.filterHeroes.forEach((element, index) => {
@@ -54,7 +50,11 @@ export default class FilterButton extends LightningElement {
             for (var i = indexes.length - 1; i >= 0; i--) {
                 this.filterHeroes.splice(indexes[i], 1);
             }
+            this.dispatchEvent(new CustomEvent('filterEvent', {
+                detail: this.filterHeroes
+            }));
         }
+
     }
 
     // @wire (getHeroInfo)     
