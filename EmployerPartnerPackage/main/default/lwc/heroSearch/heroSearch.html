@@ -18,9 +18,9 @@
     </div>
     <template if:false={isAdvancedSearch}>
    
-    <p if:true={queryTerm}>
-        Searched for {queryTerm}!
-    </p>
+        <p if:true={search.query}>
+            Searched for {search.query}!
+        </p>
 
     <div class="slds-m-top_medium slds-m-bottom_x-large">
         
