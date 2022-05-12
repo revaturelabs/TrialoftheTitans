@@ -3,9 +3,9 @@ import getExams from '@salesforce/apex/AssignmentController.getExams';
 
 export default class assignmentCard extends LightningElement {
     @api skill;
-    @wire(getExams) Exams;
+    @wire(getExams, {skill:"$skill"}) Exams;
    
     closeModal(event) {
         this.dispatchEvent(new CustomEvent('closemodal'));
-    }
+    }    
 }
