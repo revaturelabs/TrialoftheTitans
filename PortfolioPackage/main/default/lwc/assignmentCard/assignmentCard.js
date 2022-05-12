@@ -9,10 +9,12 @@ export default class assignmentCard extends LightningElement {
     openModal(event) {
        
         this.isModalOpen = true;
+
     }
     closeModal(event) {
         
         this.isModalOpen = false;
+        this.dispatchEvent(new CustomEvent('closemodal'));
     }
 }
 

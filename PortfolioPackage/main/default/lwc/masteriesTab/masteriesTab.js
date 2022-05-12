@@ -7,5 +7,8 @@ export default class MasteriesTab extends LightningElement {
         this.loadModal = true;
         this.skillToLoad = event.detail;
     }
+    closeModal() {
+        loadModal = false;
+    }
 
 }

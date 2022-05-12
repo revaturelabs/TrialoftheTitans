@@ -6,11 +6,11 @@
 
     <c-donut-skills-chart></c-donut-skills-chart>    
     <br/>
-    
+
     <c-skills-list onskillclick={handleClick}></c-skills-list>
 
     <template if:true={loadModal}>
-        <c-assignment-card skill={skillToLoad}></c-assignment-card>
+        <c-assignment-card skill={skillToLoad} onclosemodal={closeModal}></c-assignment-card>
     </template>
 
 </template>
