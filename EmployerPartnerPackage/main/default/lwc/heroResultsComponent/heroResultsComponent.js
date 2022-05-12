@@ -37,7 +37,7 @@ handleCustomEvent(evt){
     
 }
     @track currentHeroes=[];
-    @api heroes =[];
+    
     @track pages= [];
     @track currentPage=1;
     nextPage(event){

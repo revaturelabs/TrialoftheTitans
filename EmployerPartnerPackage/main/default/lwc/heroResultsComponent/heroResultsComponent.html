@@ -1,7 +1,7 @@
 <template>
                 <lightning-button label="test Search" onclick={initializeSearch}>
               </lightning-button>
-       <!--<template >-->
+       
         <!-- This is going to be where the indivual cards show up -->
 
         <c-hero-search ontestevent={handleCustomEvent} msg={msg}></c-hero-search>
@@ -10,7 +10,7 @@
         <c-hero-search ontestevent={handleCustomEvent}></c-hero-search>
         <p>{msg}</p>
 
-        <template for:each={heroes} for:item="hero">
+       
 
         <template for:each={currentHeroes} for:item="hero">
 
@@ -36,6 +36,6 @@
             </lightning-combobox>
         <lightning-button label=">" onclick={nextPage}></lightning-button>
 
-    <!--</template>-->
+    
     
 </template>
