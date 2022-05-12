@@ -16,29 +16,23 @@
             
         ></lightning-input>
     </div>
+    <p if:true={search.query}>
+        Searched for {search.query}!
+    </p>
     <template if:false={isAdvancedSearch}>
-   
-        <p if:true={search.query}>
-            Searched for {search.query}!
-        </p>
-
-    <div class="slds-m-top_medium slds-m-bottom_x-large">
+   <div class="slds-m-top_medium slds-m-bottom_x-large">
         
-
-        <!-- Button group: simple buttons -->
+        
         
             <lightning-button label="Search" onclick={handleSearchButton} variant="brand" ></lightning-button>
             <lightning-button label="Advanced Search" variant="destructive" onclick={handleAdvancedClick}></lightning-button>
            
         
-       <!-- <lightning-button label="testEvent" onclick={testEvent}></lightning-button>
-        <input type="text" value={msg} ontestevent={handleCustomEvent} />-->
+       
     </div>
  </template>
  <template if:true={isAdvancedSearch}>
-    <p if:true={search.query}>
-        Searched for {search.query}!
-    </p>
+    
     <template if:true={remote}>
         <p class="searchParam"> Search includes Heroes that work remotely. No distance is too great for these extraordinary individuals!</p> 
       </template>  
