@@ -1,63 +1,35 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire, track, api} from 'lwc';
 //import getHeroInfo from '@salesforce/apex/EmployerPartnerExperienceSiteHelper.getHeroInfo';
 export default class FilterButton extends LightningElement {
 
-    //this is a dummy heroes list
-    @track heroes = [{
-            "Id": 1,
-            "Link": "Dummy Link",
-            "Name": "Anderson White",
-            "Title": "CEO",
-            "Location": "New York",
-            "Technology": "Salesforce",
-            "Favorite": false,
-            "Arete": "56"
-        },
-        {
-            "Id": 2,
-            "Link": "Dummy Link",
-            "Name": "John Smith",
-            "Title": "VP",
-            "Location": "Miami",
-            "Technology": "Salesforce",
-            "Favorite": false,
-            "Arete": "56"
-        },
-        {
-            "Id": 3,
-            "Link": "Dummy Link",
-            "Name": "Joe Burrow",
-            "Title": "COO",
-            "Location": "Cincinnati",
-            "Technology": "Java",
-            "Favorite": false,
-            "Arete": "56"
-        }
-    ];
+    @track heroes=[];
+    
+    @api set unfilteredheroes (value){
+    console.log(this.value);
+    this.heroes=this.value;
+    let Technology = new Set();
+    let Location = new Set();
 
-    //shallow copy of heroes list
-    filterHeroes = this.heroes.slice();
-    // picklist values in a list
-    returnList = [{ label: 'Default', value: 'default default' }];
+    this.heroes.forEach(element => {
+        Technology.add(element.Technology);
+        Location.add(element.Location);
 
-    //retrieve all Technology and Location and add them to the picklist.
-    connectedCallback() {
-        let Technology = new Set();
-        let Location = new Set();
+    });
 
-        this.heroes.forEach(element => {
-            Technology.add(element.Technology);
-            Location.add(element.Location);
-        });
+    Technology.forEach(element => {
+        this.returnList.push({ label: 'Technology: ' + element, value: 'Technology ' + element });
+    })
 
-        Technology.forEach(element => {
-            this.returnList.push({ label: 'Technology: ' + element, value: 'Technology ' + element });
-        })
-
-        Location.forEach(element => {
-            this.returnList.push({ label: 'Location: ' + element, value: 'Location ' + element });
-        })
+    Location.forEach(element => {
+        this.returnList.push({ label: 'Location: ' + element, value: 'Location ' + element });
+    })
     }
+    //shallow copy of heroes list
+    @track filterHeroes = this.heroes.slice();
+    // picklist values in a list
+     returnList = [{ label: 'Default', value: 'default default' }];
+
+
 
     // options to display in the picklist
     get options() {
