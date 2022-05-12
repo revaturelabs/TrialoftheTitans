@@ -16,7 +16,7 @@
             
         ></lightning-input>
     </div>
-    <p if:true={hasSearched}>
+    <p if:true={search.query}>
         Searched for {search.query}!
     </p>
     <template if:false={isAdvancedSearch}>

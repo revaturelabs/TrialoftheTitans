@@ -1,7 +1,7 @@
 import { LightningElement, track, api } from 'lwc';
 
 export default class HeroSearch extends LightningElement {
-    hasSearched;
+    
     isAdvancedSearch;
     input1;
     input2;
@@ -16,7 +16,6 @@ export default class HeroSearch extends LightningElement {
         if (isEnterKey) {
            
             this.search.query = evt.target.value;
-            this.hasSearched = true;
             this.search.remote = this.remote;
             this.search.relocate = this.relocate;
             this.dispatchEvent(new CustomEvent('testevent', {
@@ -27,8 +26,7 @@ export default class HeroSearch extends LightningElement {
     }
     handleSearchButton() {
         this.search.query = this.template.querySelector(".searchTerm").value;
-        this.hasSearched = true;
-        this.search.remote = this.remote;
+         this.search.remote = this.remote;
         this.search.relocate = this.relocate;
         this.dispatchEvent(new CustomEvent('testevent', {
             detail : this.search
