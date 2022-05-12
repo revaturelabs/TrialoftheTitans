@@ -2,12 +2,8 @@ import { LightningElement, wire, track, api } from 'lwc';
 //import getHeroInfo from '@salesforce/apex/EmployerPartnerExperienceSiteHelper.getHeroInfo';
 export default class FilterButton extends LightningElement {
 
-    //@track heroes = [];
-    @api unfilteredheroes;
 
-    //shallow copy of heroes list
     @track filteredHeroes = this.unfilteredheroes;
-    // picklist values in a list
 
     // options to display in the picklist
     get options() {
@@ -33,7 +29,6 @@ export default class FilterButton extends LightningElement {
 
     // handle change on the picklist value
     handleChange(event) {
-        //console.log(this.unfilteredheroes);
         let value = event.detail.value;
         this.filteredHeroes = this.unfilteredheroes;
         let indexes = [];
@@ -54,17 +49,6 @@ export default class FilterButton extends LightningElement {
                 detail: this.filteredHeroes
             }));
         }
-
     }
-
-    // @wire (getHeroInfo)     
-    // wiredAccount({ error, data }) {
-    //     if (data) {
-    //         for (let i = 0; i < data.length; i++) {
-    //             this.heroes.push(JSON.parse(data[i]));
-    //             console.log(JSON.parse(data[i]));
-    //         }
-    //     }
-    // }
 
 }
