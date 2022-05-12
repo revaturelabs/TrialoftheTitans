@@ -17,7 +17,7 @@ public without sharing class portfolioProjectHelper {
         
         //query to get the latest 3 projects related to the logged in user
         List<Project__c> projects = [
-            SELECT Name, Description__c
+            SELECT Id, Name, Description__c, Role__c
             FROM Project__c
             WHERE User__c = :uid
             ORDER BY CreatedDate DESC
@@ -25,6 +25,25 @@ public without sharing class portfolioProjectHelper {
         ];
         System.debug(projects);
         return projects;
+    }
+
+    //this method gets the latest 3 projects for the logged in user
+    @AuraEnabled(cacheable=true)    
+    public static List<Responsibility__c> getResponsibilities(String projectId){
+        //use the builtin UserInfo class to get the id (and other info) about the logged in user
+        
+        
+        //SELECT Id, Description__c FROM Responsibility__c WHERE Project__r.Id ='a0LIY000000CfSG2A0'
+        //query to get the latest 3 responsibilities related to the project
+        List<Responsibility__c> responsibilities = [
+            SELECT Description__c, Skills__c
+            FROM Responsibility__c
+            WHERE Project__r.Id =:projectId
+            ORDER BY CreatedDate DESC
+            LIMIT 3
+        ];
+        System.debug(responsibilities);
+        return responsibilities;
     }
 
     //method returns a list of all projects related to a user

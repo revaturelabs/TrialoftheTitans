@@ -5,7 +5,7 @@
             "package": "TrialOfTheTitansPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true,
+            "default": false,
             "dependencies": [
                 {
                     "package": "ChartPackage@1.0.0-1"
@@ -42,7 +42,7 @@
         },
         {
             "path": "PortfolioPackage",
-            "default": false,
+            "default": true,
             "package": "PortfolioPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
