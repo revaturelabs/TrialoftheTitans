@@ -1,3 +1,7 @@
+//Authors: Adam Baird, Alberto Vergara
+//Date: 5/9/22
+
+//Imports for resources
 import { LightningElement, track, wire } from 'lwc';
 import chartjs from '@salesforce/resourceUrl/ChartJs';
 import dataLabels from '@salesforce/resourceUrl/DataLabels'
@@ -6,8 +10,9 @@ import { loadScript } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getDonutData from '@salesforce/apex/UserInfoHelper.getDonutData';
 
-
+//Class sets up the Donut Chart that displays the skills for the portfolio
 export default class MyCustomChart extends LightningElement {
+    //Grabbing the skill list and setting them into the donut chart
     @wire(getDonutData) skillList({error,data}) {
 
         if(data) {
@@ -27,7 +32,7 @@ export default class MyCustomChart extends LightningElement {
 
     @track isChartJsInitialized;
     chart;
-    
+    //configures the donut shape and color
     config = {
         type: "doughnut",
         data: {
@@ -55,6 +60,8 @@ export default class MyCustomChart extends LightningElement {
             }
         }
     };
+
+    //Rendered Callback for scripts
     renderedCallback() {
         if (this.isChartJsInitialized) {
             return;
