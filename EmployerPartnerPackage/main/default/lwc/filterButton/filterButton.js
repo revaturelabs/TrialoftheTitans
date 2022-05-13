@@ -1,16 +1,17 @@
 import { LightningElement, wire, track, api } from 'lwc';
 //import getHeroInfo from '@salesforce/apex/EmployerPartnerExperienceSiteHelper.getHeroInfo';
 export default class FilterButton extends LightningElement {
+    @api unfilteredheroes=[];
 
-
-    @track filteredHeroes = this.unfilteredheroes;
+    @track filteredHeroes = [];
 
     // options to display in the picklist
     get options() {
+        
         let returnList = [{ label: 'Default', value: 'default default' }];
         let Technology = new Set();
         let Location = new Set();
-
+        
         this.unfilteredheroes.forEach(element => {
             Technology.add(element.Technology);
             Location.add(element.Location);
@@ -29,25 +30,29 @@ export default class FilterButton extends LightningElement {
 
     // handle change on the picklist value
     handleChange(event) {
+        this.filteredHeroes=this.unfilteredheroes.slice();
         let value = event.detail.value;
-        this.filteredHeroes = this.unfilteredheroes;
         let indexes = [];
-
+        let filteringHeroes=[];
+        
         this.filteredHeroes.forEach((element, index) => {
-            if (value.substring(0, 10) === 'Technology' && element.Technology !== value.substring(11)) {
+            if (value.substring(0, 10) === 'Technology' && element.Technology == value.substring(11)) {
+                
                 indexes.push(index);
-            } else if (value.substring(0, 8) === 'Location' && element.Location !== value.substring(9)) {
+            } else if (value.substring(0, 8) === 'Location' && element.Location == value.substring(9)) {
                 indexes.push(index);
             }
         })
 
         if (indexes != null) {
             for (var i = indexes.length - 1; i >= 0; i--) {
-                this.filteredHeroes.splice(indexes[i], 1);
+                filteringHeroes.push(this.filteredHeroes[indexes[i]]);
             }
-            this.dispatchEvent(new CustomEvent('filterEvent', {
+            this.filteredHeroes=filteringHeroes;
+            this.dispatchEvent(new CustomEvent('filterevent', {
                 detail: this.filteredHeroes
             }));
+            
         }
     }
 

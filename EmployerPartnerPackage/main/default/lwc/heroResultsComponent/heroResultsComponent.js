@@ -14,14 +14,15 @@ export default class HeroResultsComponent extends LightningElement {
     
 
     get currentHeroes(){
-            try{let theseHeroes=[];
+        try{
+            let theseHeroes=[];
             let start= 9*(this.currentPage-1);
             let end = (9*this.currentPage);
             for (let i = start; i < this.heroes.length && i< end; i++) {
                 theseHeroes.push(this.heroes[i]); 
             }
             return theseHeroes;
-            }
+        }
             catch{
                 return[];
             }

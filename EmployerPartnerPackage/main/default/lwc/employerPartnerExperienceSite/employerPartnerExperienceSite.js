@@ -5,13 +5,6 @@ export default class EmployerPartnerExperienceSite extends LightningElement {
     @track heroes = [];
     @track filteredHeroes;
     @track queryTerm;
-<<<<<<< HEAD
-    @track pages = {};
-    @track currentPage = 1;
-    @track currentHeroes = [];
-=======
-
->>>>>>> 02c22b4efe4eb6343557819edb673f018ed40fcd
 
 
     @wire(getHeroInfo)
@@ -22,14 +15,11 @@ export default class EmployerPartnerExperienceSite extends LightningElement {
                 this.heroes.push(JSON.parse(data[i]));
 
             }
-            this.filteredHeroes = this.heroes;
+            this.filteredHeroes = this.heroes.slice();
         }
     }
-<<<<<<< HEAD
 
     handleFilterEvent(event) {
         this.filteredHeroes = event.detail;
     }
-=======
->>>>>>> 02c22b4efe4eb6343557819edb673f018ed40fcd
 }
