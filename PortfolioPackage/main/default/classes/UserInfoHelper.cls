@@ -50,4 +50,10 @@ public without sharing class UserInfoHelper {
             WHERE User__c =: uid
         ];
     }
+
+    //Grabs the primary color of the team associated with the user
+    @AuraEnabled(cacheable=true)
+    public static Account getTeamThemePrimaryColor() {
+            return [SELECT name, TEAM__r.Primary_Color__c FROM Account];
+    }
 }
