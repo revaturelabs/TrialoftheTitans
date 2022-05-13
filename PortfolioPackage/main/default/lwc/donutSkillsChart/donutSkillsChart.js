@@ -1,5 +1,8 @@
-//Authors: Adam Baird, Alberto Vergara
+//Authors: Adam Baird, Alberto Vergara, Tim Hinga, Austin McElrone
 //Date: 5/9/22
+//Purpose: Creates a donut chart for the profile page of the user
+//         of the skills they have earned. Uses ChartJS.
+//         Static resources are in the main/default/ folder.
 
 //Imports for resources
 import { LightningElement, track, wire } from 'lwc';

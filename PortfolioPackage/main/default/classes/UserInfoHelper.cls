@@ -31,6 +31,12 @@ public without sharing class UserInfoHelper {
         ][0];
     }
 
+    /**
+     * Created by Adam Baird, Alberto Vergara, Tim Hinga, Austin McElrone
+     * Date: 5/10/22
+     * Purpose: Returns the list of skills that the logged in user has
+     *           in order to populate the donut chart
+     */
     @AuraEnabled(cacheable=true)
     public static List<String> getDonutData() {
         Id uid = UserInfo.getUserId();
