@@ -10,7 +10,6 @@
                 <template for:each={Exams.data} for:item="test">
                     <div class="slds-card slds-card_boundary" key={test.id}>
                       <p><img src={logo} alt="Exam logo">&emsp;Exam: {test.Exam__r.Name}</p> 
-                      <!-- <p class="slds-p-horizontal_small">{test.Exam__r.Name}</p> -->
                          <p slot="footer"></p> 
                     </div>
                    </template>
@@ -25,9 +24,4 @@
           </section>
           <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
  </template>
-
- <!-- <lightning-card title="Exam" key={test.id}> 
-  <p class="slds-p-horizontal_small">{test.Exam__r.Name}</p>
-     <p slot="footer"></p> 
- </lightning-card> -->
 
