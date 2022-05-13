@@ -6,9 +6,7 @@ export default class HeroResultsComponent extends LightningElement {
     //This is being grabbed from employerPartnerExperience
 
 
-    @track msg = '';
-    @track pages={};
-
+    @api msg = '';
     @api heroes=[];
     @track searchedHeroes=[];
 
@@ -17,6 +15,7 @@ export default class HeroResultsComponent extends LightningElement {
     @track relocate;
     @track viewable= false;
     
+
 
     get currentHeroes(){
         try{
@@ -60,49 +59,20 @@ export default class HeroResultsComponent extends LightningElement {
     }
     get pages(){
         try{
-
             let tempPages=[];
             let tempPage=1;
         for (let k = 0; k < this.searchedHeroes.length; k= k+9) {
             tempPages.push({ label: tempPage, value: tempPage });
             tempPage++;
             }
+
             return tempPages;
         }
         catch{
             return [{ label: "1", value: "1" }];
         }
     }
-    handleCustomEvent(evt){
-    
-        this.msg = evt.detail.query;
-        this.remote = evt.detail.remote;
-        this.relocate = evt.detail.relocate;
-       /* this.searchedHeroes = [];
-        
-        this.heroes.forEach(hero => {
-            let hasName= false;
-            let hasLocation= false;
-            if(hero.Name.toLowerCase().includes(this.msg.toLowerCase())){
-                this.searchedHeroes.push(hero);
-                hasName= true;
-            }
-            if(hero.Location!=null && !hasName){
-                if(hero.Location.toLowerCase().includes(this.msg.toLowerCase())){
-                    this.searchedHeroes.push(hero);
-                    hasLocation= true;
-                }
-            }
-            if(hero.Technology!=null && !hasName && !hasLocation){
-                if(hero.Technology.toLowerCase().includes(this.msg.toLowerCase())) {
-                    this.searchedHeroes.push(hero);
-                    console.log(hero.Technology);
-                }
-            }
-        });*/
-    
-    
-    }    
+
     nextPage(event){
         
         if((this.currentPage)*9<this.searchedHeroes.length){

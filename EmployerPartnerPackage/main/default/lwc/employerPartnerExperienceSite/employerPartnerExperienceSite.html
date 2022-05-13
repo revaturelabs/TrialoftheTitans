@@ -2,13 +2,16 @@
   @description       : Creates a page to display portfoloios for empoyers with search fucntions
   @author            : Carlos Concepcion, Johnny Tran, Daniel Alcala, Theodore Moore, Quan Nguyen
   @group             : 
-  @last modified on  : 05-09-2022
-  @last modified by  : Theodore Moore
+  @last modified on  : 05-12-2022
+  @last modified by  : Quan Nguyen
   Modifications Log
   Ver   Date         Author                Modification
   1.0   09-30-2021   Theodore Moore          Initial Version
+  1.0   05-12-2022   Quan Nguyen             Add filter component and handleFilterEvent method
 -->
 <template>
+  <c-hero-search ontestevent={handleCustomEvent} msg={msg}></c-hero-search>
   <c-filter-button unfilteredheroes={heroes} onfilterevent={handlefilterevent}></c-filter-button> 
-  <c-hero-results-component heroes={filteredHeroes}></c-hero-results-component>
+  <c-hero-results-component heroes={filteredHeroes} msg={msg} ></c-hero-results-component>
+
 </template>

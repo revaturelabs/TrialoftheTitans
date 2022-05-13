@@ -5,6 +5,9 @@ export default class EmployerPartnerExperienceSite extends LightningElement {
     @track heroes = [];
     @track filteredHeroes;
     @track queryTerm;
+    @track msg = '';
+    @track remote;
+    @track relocate;
 
 
     @wire(getHeroInfo)
@@ -21,5 +24,13 @@ export default class EmployerPartnerExperienceSite extends LightningElement {
 
     handlefilterevent(event) {
         this.filteredHeroes = event.detail;
+
     }
+        handleCustomEvent(evt){
+    
+        this.msg = evt.detail.query;
+        this.remote = evt.detail.remote;
+        this.relocate = evt.detail.relocate;
+    
+    }    
 }

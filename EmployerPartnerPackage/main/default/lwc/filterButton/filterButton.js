@@ -18,11 +18,15 @@ export default class FilterButton extends LightningElement {
         });
 
         Technology.forEach(element => {
+         if (element !== null) {
             returnList.push({ label: 'Technology: ' + element, value: 'Technology ' + element });
+         }
         })
 
         Location.forEach(element => {
-            returnList.push({ label: 'Location: ' + element, value: 'Location ' + element });
+             if (element !== null) {
+                returnList.push({ label: 'Location: ' + element, value: 'Location ' + element });
+             }
         })
 
         return returnList;
@@ -30,7 +34,7 @@ export default class FilterButton extends LightningElement {
 
     // handle change on the picklist value
     handleChange(event) {
-        this.filteredHeroes=this.unfilteredheroes.slice();
+        this.filteredHeroes = Object.assign([], this.unfilteredheroes);
         let value = event.detail.value;
         let indexes = [];
         let filteringHeroes=[];
@@ -48,12 +52,17 @@ export default class FilterButton extends LightningElement {
             for (var i = indexes.length - 1; i >= 0; i--) {
                 filteringHeroes.push(this.filteredHeroes[indexes[i]]);
             }
-            this.filteredHeroes=filteringHeroes;
-            this.dispatchEvent(new CustomEvent('filterevent', {
-                detail: this.filteredHeroes
-            }));
+            if(value != 'default default'){
+                this.filteredHeroes=filteringHeroes;
+            }
+            else{
+                this.filteredHeroes= Object.assign([], this.unfilteredheroes);
+            }
             
         }
+        this.dispatchEvent(new CustomEvent('filterevent', {
+                detail: this.filteredHeroes
+            }));
     }
 
 }
