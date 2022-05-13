@@ -1,47 +1,7 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire, track, api } from 'lwc';
 
 export default class SortButton extends LightningElement {
-    @track heroes = [{
-            "Id": 1,
-            "Link": "Dummy Link",
-            "Name": "Anderson White",
-            "Title": "CEO",
-            "Location": "New York",
-            "Technology": "Salesforce",
-            "Favorite": false,
-            "Arete": "60"
-        },
-        {
-            "Id": 2,
-            "Link": "Dummy Link",
-            "Name": "John Smith",
-            "Title": "VP",
-            "Location": "Miami",
-            "Technology": "Salesforce",
-            "Favorite": false,
-            "Arete": "65"
-        },
-        {
-            "Id": 3,
-            "Link": "Dummy Link",
-            "Name": "Joe Burrow",
-            "Title": "COO",
-            "Location": "Cincinnati",
-            "Technology": "Java",
-            "Favorite": false,
-            "Arete": "70"
-        },
-        {
-            "Id": 4,
-            "Link": "Dummy Link",
-            "Name": "Burton Guster",
-            "Title": "CSR",
-            "Location": "Los Angeles",
-            "Technology": "C++",
-            "Favorite": false,
-            "Arete": "80"
-        }
-    ];
+    @api heroes = [];
     
     // Togglable Buttons, Untogglable Sorting
     // Sorts 1 state at a time
@@ -68,6 +28,9 @@ export default class SortButton extends LightningElement {
         for(var n = 0; n < this.heroes.length; n++){
             this.sortHeroes.push(this.heroes[n]);
         }
+        this.dispatchEvent(new CustomEvent('sortevent', {
+            detail : this.sortHeroes
+        }));
     }
 
     // Orders heroes by Id, followed by Top-most Arete scores
@@ -86,6 +49,9 @@ export default class SortButton extends LightningElement {
         for(var n = 0; n < this.heroes.length; n++){
             this.sortHeroes.push(this.heroes[n]);
         }
+        this.dispatchEvent(new CustomEvent('sortevent', {
+            detail : this.sortHeroes
+        }));
     }
 
     // Orders heroes by Id, followed by Alphabetical locations
@@ -104,5 +70,8 @@ export default class SortButton extends LightningElement {
         for(var n = 0; n < this.heroes.length; n++){
             this.sortHeroes.push(this.heroes[n]);
         }
+        this.dispatchEvent(new CustomEvent('sortevent', {
+            detail : this.sortHeroes
+        }));
     }
 }

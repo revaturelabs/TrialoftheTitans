@@ -21,14 +21,5 @@
         alternative-text="Sort Alphabetical Locations">
     </lightning-button-icon-stateful>
     
-    <template for:each={sortHeroes} for:item="hero">
-        <lightning-card key={hero.Id}>
-            <img src={hero.Link} />
-            <div>{hero.Name}</div>
-            <div>{hero.Location}</div>
-            <lightning-button>
-            </lightning-button>
-            <div>Arete: {hero.Arete}</div>
-        </lightning-card>
-    </template>
+
 </template>
