@@ -1,13 +1,26 @@
 .searchComponent {
     margin:auto;
-    width : 700px;
-    height : 350px;
-    background-color: bisque;
-    border-style:groove;
-    border-radius: 2%;
+    width : 80%;
+    
+    
+    background-color: transparent;
+    
+    border-top-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    border-color: white;
+    padding:20px;
+    box-shadow: 10px 5px 5px black;
+    
+    
+    
+
+    border-style:groove double;
+    
+    
+    z-index:100;
 }
 .searchParam{
-    font-size: large;
-    color:red;
+    font-size: small;
+    color:beige;
     
 }
