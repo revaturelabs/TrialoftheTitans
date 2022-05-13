@@ -10,7 +10,7 @@ export default class HeroResultsComponent extends LightningElement {
     @track pages={};
 
     @api heroes=[];
-    
+    @track searchedHeroes=[];
 
     @track currentPage=1;
     @track remote;
@@ -23,8 +23,8 @@ export default class HeroResultsComponent extends LightningElement {
             let theseHeroes=[];
             let start= 9*(this.currentPage-1);
             let end = (9*this.currentPage);
-            for (let i = start; i < this.heroes.length && i< end; i++) {
-                theseHeroes.push(this.heroes[i]); 
+            for (let i = start; i < this.searchedHeroes.length && i< end; i++) {
+                theseHeroes.push(this.searchedHeroes[i]); 
             }
             return theseHeroes;
         }
@@ -36,7 +36,7 @@ export default class HeroResultsComponent extends LightningElement {
         try{
             let tempPages=[];
             let tempPage=1;
-        for (let k = 0; k < this.heroes.length; k= k+9) {
+        for (let k = 0; k < this.searchedHeroes.length; k= k+9) {
             tempPages.push({ label: tempPage, value: tempPage });
             tempPage++;
             }
@@ -51,11 +51,17 @@ export default class HeroResultsComponent extends LightningElement {
         this.msg = evt.detail.query;
         this.remote = evt.detail.remote;
         this.relocate = evt.detail.relocate;
+        this.searchedHeroes = [];
+        this.heroes.forEach(hero => {
+            if(this.msg==hero.Name||this.msg==hero.Location||this.msg==hero.Technology){
+                this.searchedHeroes.push(hero);
+            }
+        });
     
     }    
     nextPage(event){
         
-        if((this.currentPage)*9<this.heroes.length){
+        if((this.currentPage)*9<this.searchedHeroes.length){
 
             this.currentPage++;
 
