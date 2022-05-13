@@ -9,7 +9,7 @@ export default class HeroSearch extends LightningElement {
     @track remote = false;
     @track relocate = false;
     
-    search = {'query': this.queryTerm, 'remote': this.remote, 'relocate': this.relocate};
+    @track search = {'query': this.queryTerm, 'remote': this.remote, 'relocate': this.relocate};
 
     handleKeyUp(evt) {
         const isEnterKey = evt.keyCode === 13;

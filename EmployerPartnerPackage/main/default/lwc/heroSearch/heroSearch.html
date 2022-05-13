@@ -10,11 +10,12 @@
             
         ></lightning-input>
     </div>
+    <p if:true={search.query}>
+        Searched for {search.query}!
+    </p>
     <template if:false={isAdvancedSearch}>
    
-        <p if:true={search.query}>
-            Searched for {search.query}!
-        </p>
+        
 
     <div class="slds-m-top_medium slds-m-bottom_x-large">
         
@@ -32,14 +33,9 @@
  <template if:true={isAdvancedSearch}>
 
     
-     <p if:true={search.query}>
-        Searched for {search.query}!
-    </p>
+     
        
     <lightning-input class="detailOne" type="checkbox" value={remote} label="Include Remote Workers" name="input1" onchange={advDetailChange} ></lightning-input>
-
-    
-
     <template if:true={remote}>
         <p class="searchParam"> Search will include Heroes that work remotely. No distance is too great for these extraordinary individuals!</p> 
       </template>  
