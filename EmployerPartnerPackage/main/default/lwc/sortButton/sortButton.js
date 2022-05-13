@@ -42,11 +42,12 @@ export default class SortButton extends LightningElement {
             "Arete": "80"
         }
     ];
-
+    
     // Togglable Buttons, Untogglable Sorting
     // Sorts 1 state at a time
     @track sortNameState = false;
     @track sortAreteState = false;
+    @track sortLocationState = false;
 
     // Sets default list of heroes
     sortHeroes = this.heroes;
@@ -81,6 +82,24 @@ export default class SortButton extends LightningElement {
             return ((a.Arete == b.Arete) ? 0 : ((a.Arete < b.Arete) ? 1 : -1 ));
         }
         this.heroes.sort(SortByArete);
+        this.sortHeroes = [];
+        for(var n = 0; n < this.heroes.length; n++){
+            this.sortHeroes.push(this.heroes[n]);
+        }
+    }
+
+    // Orders heroes by Id, followed by Alphabetical locations
+    handleLocationClick(){
+        this.sortLocationState = !this.sortLocationState;
+        this.sortHeroes = this.heroes;
+
+        function SortByID(a, b) {
+            return a.Id - b.Id; 
+        }
+        function SortByLocation(a, b) {
+            return ((a.Location == b.Location) ? 0 : ((a.Location > b.Location) ? 1 : -1 ));
+        }
+        this.heroes.sort(SortByLocation);
         this.sortHeroes = [];
         for(var n = 0; n < this.heroes.length; n++){
             this.sortHeroes.push(this.heroes[n]);

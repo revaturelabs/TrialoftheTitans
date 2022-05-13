@@ -13,7 +13,14 @@
         onclick= {handleAreteClick}
         alternative-text="Sort Top Aretes">
     </lightning-button-icon-stateful>
-
+    <lightning-button-icon-stateful
+        icon-name="utility:travel_and_places"
+        variant="brand"
+        selected={sortLocationState}
+        onclick= {handleLocationClick}
+        alternative-text="Sort Alphabetical Locations">
+    </lightning-button-icon-stateful>
+    
     <template for:each={sortHeroes} for:item="hero">
         <lightning-card key={hero.Id}>
             <img src={hero.Link} />
