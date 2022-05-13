@@ -44,33 +44,4 @@ export default class Feats_projects extends LightningElement {
         this.wirevalue = value;
     }
 
-    //responsibilities
-    // wire function to get the 3 latest responsibilities for a project
-
-    // @wire (getResponsibilities)
-    // responsibilitiesWireValue(value){
-    //     const {error,data} = value;
-    //     console.log('wire fire');
-    //         if(data){
-    //             this.responsibilities = data;
-    //             //Verifying if the record exists.
-    //             if(data.length<1){
-    //                 this.exist=false;
-    //                 console.log('no projects available');
-    //                 console.log(this.responsibilities)
-    //             }
-    //             else {
-    //                 this.exist=true;
-    //                 this.responsibilities = data;
-    //                 console.log(this.responsibilities, "mydata");
-    //             }
-    //         }
-    //         else if( error) {
-    //             console.log('wire fail');
-    //             this.error=error;
-    //             console.log(this.error);
-
-    //         }
-    //     this.responsibilitiesWireValue=value;
-    // }
 }
