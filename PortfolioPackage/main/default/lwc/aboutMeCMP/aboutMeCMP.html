@@ -10,11 +10,11 @@
     <!-- Defining a lightning card-->
      <lightning-card >
          <div class="headerContainer">
-              <!-- Right corner icon-->
+              <!-- Right corner icon
              <span class="main-icon" >
                  <lightning-icon icon-name='standard:user' alternative-text='user' size='medium' title='user' variant='bare'>
                  </lightning-icon>
-             </span>
+             </span>-->
              <span class="text-about-me"><h1>About Me</h1></span>
                <!-- Left corner icon-->
              <div class="edit-icon-about-me">
@@ -26,6 +26,24 @@
                      <span class="slds-assistive-text"></span>
                  <!-- </span> -->
                     </div>
+            </div>
+
+            <!--chackbox for relocate and remote-->
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" id="checkbox-unique-id-81" value="checkbox-unique-id-81" checked="" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-81">
+                      <span class="slds-checkbox_faux"></span>
+                      <div class="slds-form-element__label">Willing to relocate</div>
+                    </label>
+                    <input type="checkbox" name="options" id="checkbox-unique-id-80" value="checkbox-unique-id-81" checked="" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-80">
+                      <span class="slds-checkbox_faux"></span>
+                      <div class="slds-form-element__label">Willing to work remote</div>
+                    </label>
+                  </div>
+                </div>
             </div>
 
           <!-- Defining the rich text field-->
@@ -44,7 +62,7 @@
                  </span>
              </lightning-card>
              
-             <lightning-card if:true={editbutton} class="slds-card__body slds-card__body_inner"  >
+             <lightning-card if:true={editbutton} class="slds-card__body"  >
                  
                 <div class="about-me-section-background-color" >
                      <lightning-formatted-rich-text   value={myVal} onclick ={handleEditIcon}>
