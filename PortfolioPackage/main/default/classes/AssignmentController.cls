@@ -5,4 +5,9 @@ public without sharing class AssignmentController {
             FROM ExamtoSkill__c 
             WHERE Skill__r.Name =: skill];       
     }
+
+    @AuraEnabled(cacheable=true)
+    public static String getTitanName(String skill) {
+        return [SELECT Titan__r.Name FROM Skill__c WHERE name =: skill][0].Titan__r.Name;
+    }
 }

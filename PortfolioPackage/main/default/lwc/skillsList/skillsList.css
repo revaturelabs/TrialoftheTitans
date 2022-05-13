@@ -1,6 +1,15 @@
 .slds-badge {
     width:90%;
+    font-size:large;
     margin-bottom: 5px;
     justify-content:center;
+    background-color:#eba254;
     cursor:pointer;
 }
+
+.slds-badge:hover {
+    background-color:#8cc5de;
+}
+
+
+

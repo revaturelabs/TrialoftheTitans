@@ -4,14 +4,15 @@
         <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container">
               <div class="slds-modal__header">
-                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Modal header</h1>
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{titanName.data}</h1>
               </div>
               <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                 <template for:each={Exams.data} for:item="test">
-                    <lightning-card  title={test.Skill__r.Name} key={test.id}>
-                         <p class="slds-p-horizontal_small">{test.Exam__r.Name}</p>
-                         <p slot="footer"></p>
-                     </lightning-card>
+                    <div class="slds-card slds-card_boundary" key={test.id}>
+                      <p><img src={logo} alt="Exam logo">&emsp;Exam: {test.Exam__r.Name}</p> 
+                      <!-- <p class="slds-p-horizontal_small">{test.Exam__r.Name}</p> -->
+                         <p slot="footer"></p> 
+                    </div>
                    </template>
               </div>
               <lightning-button variant="brand"
@@ -24,4 +25,9 @@
           </section>
           <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
  </template>
+
+ <!-- <lightning-card title="Exam" key={test.id}> 
+  <p class="slds-p-horizontal_small">{test.Exam__r.Name}</p>
+     <p slot="footer"></p> 
+ </lightning-card> -->
 
