@@ -13,8 +13,7 @@ function highlight(id) {
 
     buttonClicked = document.getElementById(id);
     buttonClicked.style.background =  "#87ceeb";
-    buttonClicked.style.color =  "white";    
-
+    buttonClicked.style.color =  "white";
 }
 
 function filterSkills(){
