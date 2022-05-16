@@ -1,80 +1,60 @@
 <template>
-        <!-- This is going to be where the indivual cards show up -->
-  <div class="slds-grid slds-wrap">
-    <template for:each={currentHeroes} for:item="hero">
-      <article key={hero.id} class="slds-card slds-size_1-of-4 cardstyling">
-        <div class="slds-card__body slds-card__body_inner slds-grid">
-          <div class="slds-size_1-of-6">
-            <img src={hero.Link} alt="No Image" />
-          </div>
-          <div class="slds-size_4-of-6 centerText">
-            <div>{hero.Name}</div>
-            <div>{hero.Title}</div>
-            <div>{hero.Location}</div>
-          </div>
-          <div class="slds-size_1-of-6">
-            <c-favorite-star></c-favorite-star>
-            <div>Arete: {hero.Arete}</div>
-          </div>
-          
+  
+  <!--Use template if:true to display/hide popup based on isModalOpen value -->
+  <!-- Modal/Popup Box LWC starts here -->
+  <template if:true={viewableModal}>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+        <div class="slds-modal__header">
+          <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Here Goes the Profile!</h1>
         </div>
-      </article>
-    </template>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+          Here goes information in the Profile
+        </div>
+        <lightning-button variant="brand"
+              label="Close"
+              title="Close"
+              onclick={openModal}
+              class="slds-m-left_x-small">
+          </lightning-button>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+  </template>
+
+<!-- This is going to be where the indivual cards show up -->
+<div class="slds-grid slds-wrap slds-grid_align-center">
+    <template for:each={currentHeroes} for:item="hero">
+      <article key={hero.id} class="slds-card slds-size_1-of-4 cardstyling" >
+        <div class="slds-card__body slds-card__body_inner slds-grid">
+          <div class="slds-size_1-of-6 zoomable" onclick={openModal}>
+            <template if:true={hero.Link}>
+              <img src={hero.Link} alt="No Image" />
+            </template>
+    <template if:false={hero.Link}>
+              <img src={noImageAltURL} alt="No Image" />
+            </template>
 </div>
-
-<lightning-button label="<" onclick={previousPage}></lightning-button>
-<lightning-combobox label="Page Number" value={currentPage} placeholder={currentPage} options={pages} onchange={pageSelect}>
-</lightning-combobox>
-<lightning-button label=">" onclick={nextPage}></lightning-button>
-
-
-
-<!--Use template if:true to display/hide popup based on isModalOpen value -->
-<!-- Modal/Popup Box LWC starts here -->
-<template if:true={viewableModal}>
-        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
-          <div class="slds-modal__container">
-            <div class="slds-modal__header">
-              <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Here Goes the Profile!</h1>
-            </div>
-            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-               Here goes information in the Profile
-            </div>
-            <lightning-button variant="brand"
-                  label="Close"
-                  title="Close"
-                  onclick={openModal}
-                  class="slds-m-left_x-small">
-              </lightning-button>
-          </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
-        </template>
-
-<template for:each={currentHeroes} for:item="hero" class="slds-grid slds-wrap">
-          <article key={hero.id} class="slds-card slds-size_1-of-4 cardstyling">
-            <div onclick={openModal} class="slds-card__body slds-card__body_inner">
-                <img src={hero.link} alt="No Image"/>
-                <div>{hero.Name}</div>
-                <div>{hero.Title}</div>
-                <div>{hero.Location}</div>
-                <c-favorite-star></c-favorite-star>
-                <div>Arete: {hero.Arete}</div>
-              <!--<lightning-button variant="brand"
-                    label="Preview Profile"
-                    title="Close"
-                    onclick={openModal}
-                    class="slds-m-left_x-small">
-                </lightning-button>-->
-              </div>
-          </article>
-        </template>
-
-<lightning-button label="<" onclick={previousPage}></lightning-button>
-<lightning-combobox label="Page Number" value={currentPage} placeholder={currentPage} options={pages} onchange={pageSelect}>
-</lightning-combobox>
-<lightning-button label=">" onclick={nextPage}></lightning-button>
-
+<div class="slds-size_4-of-6 centerText zoomable" onclick={openModal}>
+    <div><strong>{hero.Name}</strong></div>
+    <div>{hero.Title}</div>
+    <div>{hero.Location}</div>
+</div>
+<div class="slds-size_1-of-6">
+    <c-favorite-star></c-favorite-star>
+    <div class="zoomable customFont" onclick={openModal}>Arete: {hero.Arete}</div>
+</div>
+</div>
+</article>
+</template>
+</div>
+<div class="slds-grid slds-m-top_x-large">
+    <div class="slds-size_10-of-12"></div>
+    <button onclick={previousPage} class="slds-size_1-of-12 slds-button slds-button_neutral slds-p-horizontal_none blockDisplay customWidth">{specialChar}</button>
+    <button onclick={nextPage} class="slds-size_1-of-12 slds-button slds-button_neutral slds-p-horizontal_none blockDisplay customWidth">></button>
+    <!-- <lightning-button label=">" onclick={nextPage} class="slds-size_1-of-12 blockDisplay"></lightning-button> -->
+    <lightning-combobox variant="label-hidden" class="slds-size_1-of-12 slds-m-left_xx-small customWidth" value={currentPage} placeholder={currentPage} options={pages} onchange={pageSelect}></lightning-combobox>
+</div>
 
 
 </template>

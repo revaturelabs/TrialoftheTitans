@@ -18,7 +18,7 @@ public with sharing class EmployerPartnerExperienceSiteHelper {
             for (Contact con : contacts) {
                 Map<String, String> heroMap = new Map<String, String>();
                 heroMap.put('Id',acc.Id);
-                heroMap.put('Link','Dummy Link');
+                heroMap.put('Link','');
                 heroMap.put('Name', con.Name);
                 heroMap.put('Title', con.Title);
                 heroMap.put('Location', con.MailingCity);
