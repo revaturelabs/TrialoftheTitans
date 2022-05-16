@@ -12,10 +12,19 @@
                 <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{titanName.data}</h1>
               </div>
               <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                <template for:each={Exams.data} for:item="test">
+                <template for:each={assignments.data} for:item="test">
                     <div class="slds-card slds-card_boundary" key={test.id}>
-                      <p><img src={logo} alt="Exam logo">&emsp;Exam: {test.Exam__r.Name}</p> 
-                         <p slot="footer"></p> 
+                      <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-5">
+                          <img src={logo} alt="Exam logo">
+                        </div>
+                        <div class="slds-col slds-size_4-of-5">
+                          <p><b>{test.Name}</b></p> 
+                          <p>Completed on: {test.Date_Completed__c}</p>
+                          <p>{test.Description__c}</p>
+                        </div>
+                      </div>
+                    <p slot="footer"></p> 
                     </div>
                    </template>
               </div>
