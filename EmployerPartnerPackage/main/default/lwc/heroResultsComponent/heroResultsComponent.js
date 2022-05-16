@@ -8,8 +8,14 @@ export default class HeroResultsComponent extends LightningElement {
     noImageAltURL = IMG;
 
     @api msg = '';
+<<<<<<< HEAD
     @api heroes = [];
     @track searchedHeroes = [];
+=======
+    @api heroes=[];
+    @track searchedHeroes=[];
+    @track viewableModal = false;
+>>>>>>> e277f7ef5a90e1194fd09d5936c04a9703b45731
 
     @track currentPage = 1;
     @track remote;
@@ -92,7 +98,14 @@ export default class HeroResultsComponent extends LightningElement {
         this.currentPage = event.detail.value;
 
     }
+<<<<<<< HEAD
 
+=======
+    openModal(){
+     this.viewableModal = !this.viewableModal;
+    }
+    
+>>>>>>> e277f7ef5a90e1194fd09d5936c04a9703b45731
 
 
 

@@ -1,0 +1,27 @@
+.circleImage {
+    border-radius: 50%;
+    outline: 1rem solid gray;
+    height: 120px;
+    width: 120px;
+  }
+  
+  .projectDisplayComponent {
+    outline: 1rem solid gray;
+    background-color: lightGray;
+    height: 80px;
+    width: 70%;
+    margin-top: 2%;
+    z-index: -2;
+  }
+  
+  .projectComponent {
+    display: flex;
+    width: 80%;
+    margin-top: 20px;
+    margin: 2%;
+  }
+  
+  .btn {
+    margin: 2rem;
+  }
+  

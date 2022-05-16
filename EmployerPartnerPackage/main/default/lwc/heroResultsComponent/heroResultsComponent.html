@@ -27,4 +27,54 @@
 </lightning-combobox>
 <lightning-button label=">" onclick={nextPage}></lightning-button>
 
+
+
+<!--Use template if:true to display/hide popup based on isModalOpen value -->
+<!-- Modal/Popup Box LWC starts here -->
+<template if:true={viewableModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+          <div class="slds-modal__container">
+            <div class="slds-modal__header">
+              <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Here Goes the Profile!</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+               Here goes information in the Profile
+            </div>
+            <lightning-button variant="brand"
+                  label="Close"
+                  title="Close"
+                  onclick={openModal}
+                  class="slds-m-left_x-small">
+              </lightning-button>
+          </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </template>
+
+<template for:each={currentHeroes} for:item="hero" class="slds-grid slds-wrap">
+          <article key={hero.id} class="slds-card slds-size_1-of-4 cardstyling">
+            <div onclick={openModal} class="slds-card__body slds-card__body_inner">
+                <img src={hero.link} alt="No Image"/>
+                <div>{hero.Name}</div>
+                <div>{hero.Title}</div>
+                <div>{hero.Location}</div>
+                <c-favorite-star></c-favorite-star>
+                <div>Arete: {hero.Arete}</div>
+              <!--<lightning-button variant="brand"
+                    label="Preview Profile"
+                    title="Close"
+                    onclick={openModal}
+                    class="slds-m-left_x-small">
+                </lightning-button>-->
+              </div>
+          </article>
+        </template>
+
+<lightning-button label="<" onclick={previousPage}></lightning-button>
+<lightning-combobox label="Page Number" value={currentPage} placeholder={currentPage} options={pages} onchange={pageSelect}>
+</lightning-combobox>
+<lightning-button label=">" onclick={nextPage}></lightning-button>
+
+
+
 </template>
