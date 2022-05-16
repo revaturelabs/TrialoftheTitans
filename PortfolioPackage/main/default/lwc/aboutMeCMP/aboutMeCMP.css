@@ -45,12 +45,13 @@ color: var(--color-accent);
 
 .about-me-section-background-color{
   max-width: 1323px;
-  height: 150px;
+  height:fit-content;
   margin: auto;
   border-radius: 0px;
-  background-color:#F5F3F3;
+  background-color:#f7f8f2;
   padding: 10px;
   max-height: auto;
+
 
 }
 

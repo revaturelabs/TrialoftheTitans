@@ -4,10 +4,12 @@
             "package": "TrialOfTheTitansPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true,
-            "dependencies": [{
-                "package": "ChartPackage@1.0.0-1"
-            }]
+            "default": false,
+            "dependencies": [
+                {
+                    "package": "ChartPackage@1.0.0-1"
+                }
+            ]
         },
         {
             "path": "HeroHubPackage",
@@ -39,7 +41,7 @@
         },
         {
             "path": "PortfolioPackage",
-            "default": false,
+            "default": true,
             "package": "PortfolioPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",

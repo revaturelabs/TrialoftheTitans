@@ -1,0 +1,7 @@
+.skillButtons {
+    --slds-c-button-brand-color-background: var(--lwc-palettePurple50); 
+    --slds-c-button-brand-color-background-hover: var(--lwc-palettePurple30);
+    --slds-c-button-brand-color-border: var(--lwc-palettePurple50); 
+    --slds-c-button-brand-color-border-hover: var(--lwc-palettePurple30); 
+    --slds-c-button-brand-text-color: var(--lwc-paletteNeutral100); 
+}
