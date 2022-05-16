@@ -1,35 +1,30 @@
 <template>
         <!-- This is going to be where the indivual cards show up -->
+  <div class="slds-grid slds-wrap">
+    <template for:each={currentHeroes} for:item="hero">
+      <article key={hero.id} class="slds-card slds-size_1-of-4 cardstyling">
+        <div class="slds-card__body slds-card__body_inner slds-grid">
+          <div class="slds-size_1-of-6">
+            <img src={hero.Link} alt="No Image" />
+          </div>
+          <div class="slds-size_4-of-6 centerText">
+            <div>{hero.Name}</div>
+            <div>{hero.Title}</div>
+            <div>{hero.Location}</div>
+          </div>
+          <div class="slds-size_1-of-6">
+            <c-favorite-star></c-favorite-star>
+            <div>Arete: {hero.Arete}</div>
+          </div>
+          
+        </div>
+      </article>
+    </template>
+</div>
 
+<lightning-button label="<" onclick={previousPage}></lightning-button>
+<lightning-combobox label="Page Number" value={currentPage} placeholder={currentPage} options={pages} onchange={pageSelect}>
+</lightning-combobox>
+<lightning-button label=">" onclick={nextPage}></lightning-button>
 
-        
-
-       
-
-        <template for:each={currentHeroes} for:item="hero">
-
-          <lightning-card key={hero.id}>
-              <img src={hero.link} />
-              <div>{hero.Name}</div>
-              <div>{hero.Title}</div>
-              <div>{hero.Location}</div>
-                <c-favorite-star></c-favorite-star>
-            <div>
-              Arete: {hero.Arete}
-            </div>
-          </lightning-card>
-        </template>
-       
-        <lightning-button label="<" onclick={previousPage}></lightning-button>
-        <lightning-combobox            
-            label="Page Number"
-            value={currentPage}
-            placeholder={currentPage}
-            options={pages}
-            onchange={pageSelect}>
-            </lightning-combobox>
-        <lightning-button label=">" onclick={nextPage}></lightning-button>
-
-    
-    
 </template>
