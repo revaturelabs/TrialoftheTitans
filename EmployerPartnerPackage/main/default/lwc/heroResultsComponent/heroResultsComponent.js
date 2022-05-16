@@ -9,6 +9,7 @@ export default class HeroResultsComponent extends LightningElement {
     @api msg = '';
     @api heroes=[];
     @track searchedHeroes=[];
+    @track viewableModal = false;
 
     @track currentPage=1;
     @track remote;
@@ -93,6 +94,9 @@ export default class HeroResultsComponent extends LightningElement {
     pageSelect(event){
         this.currentPage = event.detail.value;
 
+    }
+    openModal(){
+     this.viewableModal = !this.viewableModal;
     }
     
 
