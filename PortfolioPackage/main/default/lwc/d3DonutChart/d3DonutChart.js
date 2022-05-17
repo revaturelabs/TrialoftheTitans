@@ -2,12 +2,12 @@ import { LightningElement, wire } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import D3 from '@salesforce/resourceUrl/d3v67';
-//import D3 from '@salesforce/resourceUrl/D3_v3'
-//import getDonutData from '@salesforce/apex/UserInfoHelper.getDonutData';
 import DonutResource from '@salesforce/resourceUrl/DonutChart'
+import getSkills from '@salesforce/apex/AssignmentController.getCompletedAssignmentsSkillMap';
+
 
 export default class D3DonutChart extends LightningElement {
-    dat = {a: 9, b: 20, c:30, d:8, e:12}
+    @wire(getSkills) dat;
 
     renderedCallback() {
         console.log('****after d3Init******')
