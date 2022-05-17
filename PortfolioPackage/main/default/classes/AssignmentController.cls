@@ -13,4 +13,25 @@
         return [SELECT Name, Date_Completed__c, Description__c, Assignment_Type__c FROM Completed_Assignment__c WHERE Account__r.Id =: userAcc.id AND Skill__r.Name =: skill];
     }
 
-}
+    public static List<Completed_Assignment__c> getCompletedAssignmentsSkillMap(String skill) {
+        Id uid = UserInfo.getUserId();
+        User user = [SELECT Id, contactId FROM User WHERE Id = :uid];
+        Contact userCon = [SELECT Id, AccountId FROM Contact WHERE Id = :user.ContactId];
+        Account userAcc = [SELECT Id FROM Account WHERE Id = :userCon.AccountId];
+        let assignments = [SELECT Skill__r.Name FROM Completed_Assignment__c WHERE Account__r.Id =: userAcc.id];
+        Map<String, Integer> skills = new Map<String, Integer>();
+
+        for (Completed_Assignment__c ass : assignments) {
+            if (skills.containsKey(ass.Skill__r.Name)) {
+                skills.put(ass.Skill__r.Name, skills.get(ass.Skill__r.Name) + 1);
+            }
+            else {
+                skills.put(ass.Skill__r.Name, 1);
+            }
+        }
+
+        return skills;
+
+
+    }
+
