@@ -27,7 +27,18 @@ export default class SortButton extends LightningElement {
             return a.Id - b.Id; 
         }
         
-        if (this.value == "score") {
+        if (this.value == "relevance") {
+			// Relevancy determined by profile distance from location plus the Arete score
+			// **Default to Arete score while geolocation is being tested
+            function SortByArete(a, b) {
+                return ((a.Arete == b.Arete) ? 0 : ((a.Arete < b.Arete) ? 1 : -1 ));
+            }
+            this.heroes.sort(SortByArete);
+            this.sortHeroes = [];
+            for(var n = 0; n < this.heroes.length; n++){
+                this.sortHeroes.push(this.heroes[n]);
+            }
+        } else if (this.value == "score") {
             function SortByArete(a, b) {
                 return ((a.Arete == b.Arete) ? 0 : ((a.Arete < b.Arete) ? 1 : -1 ));
             }
