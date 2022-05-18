@@ -34,7 +34,7 @@ public without sharing class UserInfoHelper {
     @AuraEnabled(cacheable=true)
     public static List<Certification__c> getCertifications() {
 
-        // Relevant feilds:
+        // Relevant fields:
         //      Assessor__c
         //      Candidate__r.Name  (Contact)
         //      Certification_Exam__r.Name  (Certification_Exam__c)

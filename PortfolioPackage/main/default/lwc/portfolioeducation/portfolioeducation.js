@@ -40,7 +40,7 @@ import { deleteRecord } from 'lightning/uiRecordApi';
 
 //APEX CLASS
 import RETURN_EDUCATION from '@salesforce/apex/GetEducationInformation.returnEducationList';
-import RETURN_CERTIFICATION from '@salesforce/apex/getCertifications.Certifications';
+import RETURN_CERTIFICATION from '@salesforce/apex/getCertificationInfo.Certifications';
 
 //import HATICON from '@salesforce/resourceUrl/hat';
 //import EDITICON from '@salesforce/resourceUrl/editicon';
@@ -65,6 +65,7 @@ export default class Portfolioeducation extends LightningElement
 
     @track education;
     @track wireValue;
+    @track wireCer;
     @track certification;
 
     cerObject=CERTIFICATION_OBJECT;
@@ -96,7 +97,7 @@ export default class Portfolioeducation extends LightningElement
         }
         else if(error) {console.log(error);}
         console.log(this.certification);
-        this.wireValue = value;
+        this.wireCer = value;
     }
 
     
@@ -158,7 +159,7 @@ export default class Portfolioeducation extends LightningElement
         });
 
         this.dispatchEvent(env1);
-        refreshApex(this.wireValue);
+        refreshApex(this.wireCer);
         this.modalChecker1 = false;
     }
 
