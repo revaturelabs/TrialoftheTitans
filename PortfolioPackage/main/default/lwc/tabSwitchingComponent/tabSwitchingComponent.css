@@ -23,7 +23,6 @@
 
 .projectComponentContent{
   width: 70%;
-  /* padding-top: 2rem; */
   padding: 2rem .5rem 1rem .5rem;
   background-color: lightGray;
 
@@ -44,12 +43,11 @@
 .title{
   padding: 0 15px;
   position: absolute;
-  bottom: 78%;
-  left: 10%;
+  top: -15px;
+  left: 150px;
   background-color: #333333;
   color: white;
   font-size: 2rem;
-
 }
 
 .projectBody{
