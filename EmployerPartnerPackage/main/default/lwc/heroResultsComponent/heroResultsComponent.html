@@ -9,12 +9,13 @@
           <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Here Goes the Profile!</h1>
         </div>
         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-          Here goes information in the Profile
+          <c-read-only-portfolio uid={currentHero}></c-read-only-portfolio>
         </div>
         <lightning-button variant="brand"
               label="Close"
               title="Close"
               onclick={openModal}
+              id=""
               class="slds-m-left_x-small">
           </lightning-button>
       </div>
@@ -27,26 +28,26 @@
     <template for:each={currentHeroes} for:item="hero">
       <article key={hero.id} class="slds-card slds-size_1-of-4 cardstyling" >
         <div class="slds-card__body slds-card__body_inner slds-grid">
-          <div class="slds-size_1-of-6 zoomable" onclick={openModal}>
+          <div class="slds-size_1-of-6 zoomable" onclick={openModal} id={hero.Id}>
             <template if:true={hero.Link}>
-              <img src={hero.Link} alt="No Image" />
+              <img src={hero.Link} alt="No Image" id={hero.Id}/>
             </template>
-    <template if:false={hero.Link}>
-              <img src={noImageAltURL} alt="No Image" />
+            <template if:false={hero.Link}>
+              <img src={noImageAltURL} alt="No Image" id={hero.Id} />
             </template>
-</div>
-<div class="slds-size_4-of-6 centerText zoomable" onclick={openModal}>
-    <div><strong>{hero.Name}</strong></div>
-    <div>{hero.Title}</div>
-    <div>{hero.Location}</div>
-</div>
-<div class="slds-size_1-of-6">
-    <c-favorite-star></c-favorite-star>
-    <div class="zoomable customFont" onclick={openModal}>Arete: {hero.Arete}</div>
-</div>
-</div>
-</article>
-</template>
+          </div>
+          <div class="slds-size_4-of-6 centerText zoomable" onclick={openModal} id={hero.Id}>
+            <div id={hero.Id}><strong id={hero.Id}>{hero.Name}</strong></div>
+          <div id={hero.Id}>{hero.Title}</div>
+          <div id={hero.Id}>{hero.Location}</div>
+          </div>
+          <div class="slds-size_1-of-6">
+            <c-favorite-star></c-favorite-star>
+            <div class="zoomable customFont" onclick={openModal} id={hero.Id}>Arete: {hero.Arete}</div>
+          </div>
+        </div>
+      </article>
+    </template>
 </div>
 <div class="slds-grid slds-m-top_x-large">
     <div class="slds-size_10-of-12"></div>

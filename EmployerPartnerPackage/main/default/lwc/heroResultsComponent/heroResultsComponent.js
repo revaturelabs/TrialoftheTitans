@@ -18,6 +18,7 @@ export default class HeroResultsComponent extends LightningElement {
     @track relocate;
     @track viewable = false;
 
+    @track currentHero;
 
 
     get currentHeroes() {
@@ -94,8 +95,11 @@ export default class HeroResultsComponent extends LightningElement {
         this.currentPage = event.detail.value;
 
     }
-    openModal() {
+    openModal(event) {
         this.viewableModal = !this.viewableModal;
+        this.currentHero=event.srcElement.id;
+       
+        console.log(this.currentHero);
     }
 
 

@@ -31,7 +31,7 @@ getHeroInfo(value) {
             console.log(data);
             
             this.userID       = data.Id;
-            this.heroName       = data.Name;
+            this.heroName       = data.FirstName+ ' '+ data.LastName;
             this.profileImgSrc  = data.FullPhotoUrl;
 
             if (data.Title) {
@@ -39,7 +39,7 @@ getHeroInfo(value) {
             } else {
                 this.heroTitle  = 'Hero-in-Training';
             }
-            console.log(this.heroTitle);
+
         } else if (error) {
             this.error = error;
             console.log(error);
