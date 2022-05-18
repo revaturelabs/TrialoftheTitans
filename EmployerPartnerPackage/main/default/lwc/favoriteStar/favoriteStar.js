@@ -29,8 +29,8 @@ export default class FavoriteStar extends LightningElement {
     favoriteToast(){
         const event = new ShowToastEvent({
             title: 'Favorite Added!',
-            message: 'User: ' + currenthero + ' has been added to your favorite(s) list!',
-            //message: 'This user has been added to your favorite(s) list!',
+            //message: 'User: ' + currenthero + ' has been added to your favorite(s) list!',
+            message: 'This user has been added to your favorite(s) list!',
             variant: 'success',
             mode: 'dismissable'
         });
@@ -40,16 +40,11 @@ export default class FavoriteStar extends LightningElement {
     unfavoriteToast(){
         const event = new ShowToastEvent({
             title: 'Favorite Removed!',
-            message: 'User: ' + currenthero + ' has been removed from your favorite(s) list!',
-            //message: 'This user has been removed from your favorite(s) list!',
+            //message: 'User: ' + currenthero + ' has been removed from your favorite(s) list!',
+            message: 'This user has been removed from your favorite(s) list!',
             variant: 'info',
             mode: 'dismissable'
         });
         this.dispatchEvent(event);
-    }
-
-    //New way: pass parent data (name of favorited) try a SOQL or SOSL query search to retrieve actual record. @return??
-    getFavoriteResults(currenthero){
-
     }
 }
