@@ -2,6 +2,7 @@ import { LightningElement, wire } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import D3 from '@salesforce/resourceUrl/d3v67';
+//import getDonutData from '@salesforce/apex/UserInfoHelper.getDonutData';
 import DonutResource from '@salesforce/resourceUrl/DonutChart'
 import getSkills from '@salesforce/apex/AssignmentController.getCompletedAssignmentsSkillMap';
 
@@ -14,8 +15,6 @@ export default class D3DonutChart extends LightningElement {
     }
 
     renderedCallback() {
-        console.log('****after d3Init******')
-
         loadScript(this, D3 + '/d3.v6.js')
         .then(() => {
             getSkills;
@@ -30,31 +29,20 @@ export default class D3DonutChart extends LightningElement {
                     })
             })
             .catch(error => {
-                console.log("******error*******")
                 console.error(error);
             });
     }
 
    renderDonutChart(chartData) {
-        
-        var width = 450;
-        var height = 450;
-        var margin = 40;
 
-        var radius = Math.min(width, height) / 2 - margin;
+    let donutData = [{name: "Skill 1", value: 2}, {name: "Skill 2", value: 3}, {name: "Skill 3", value: 1}]
 
-        var color = d3.scaleOrdinal()
-            .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"])
-
-        var donutChartOptions = {
-            w: width,
-            h: height,
-            margin: margin,
-            radius: radius,
-            color: color
-        }
-        console.log('this is the dat: ' + this.dat);
-        DonutChart(this.template.querySelector('div.d3'), this.dat, donutChartOptions)
+        DonutChart(this.template.querySelector('div.d3'), donutData, {
+            name: d => d.name,
+            value: d => d.value,
+            width: 500,
+            height: 500
+          })
 
    }
 
