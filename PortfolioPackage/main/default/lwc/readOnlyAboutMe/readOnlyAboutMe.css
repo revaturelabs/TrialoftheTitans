@@ -1,0 +1,54 @@
+@import "c/styleResource";
+
+*, ::before, ::after {
+  box-sizing: border-box;
+ }
+
+.main-icon{
+float:left;
+height: auto;
+width: auto;
+/* margin-left: 40px; */
+/* margin-top: 40px; */
+border-radius: 0px; 
+/* position: relative; */
+/* top: -30px; */
+}
+
+
+
+.text-about-me{
+/* header text */
+/* font-family: 'Cinzel';
+font-style: normal; */
+/* font-weight: 700; */
+font-size: var(--font-size-heading);
+/* line-height: 66px; */
+text-align: left;
+/* float: left; */
+color: var(--color-accent);
+}
+
+.about-me-section-background-color{
+  max-width: 1323px;
+  height:fit-content;
+  margin: auto;
+  border-radius: 0px;
+  background-color:#f7f8f2;
+  padding: 10px;
+  max-height: auto;
+
+
+}
+
+:host{
+--slds-c-card-color-border:white;
+--slds-c-card-color-background:white;
+--slds-c-card-shadow:white;
+}
+
+.headerContainer{
+  display: flex; 
+    flex-direction: row; 
+    align-items: center;
+}
