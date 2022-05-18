@@ -7,7 +7,11 @@ import getSkills from '@salesforce/apex/AssignmentController.getCompletedAssignm
 
 
 export default class D3DonutChart extends LightningElement {
-    @wire(getSkills) dat;
+    @wire(getSkills) dat ({error,data}) {
+        if(data) {
+            this.renderDonutChart(data);
+        }
+    }
 
     renderedCallback() {
         console.log('****after d3Init******')
@@ -31,7 +35,7 @@ export default class D3DonutChart extends LightningElement {
             });
     }
 
-   renderDonutChart() {
+   renderDonutChart(chartData) {
         
         var width = 450;
         var height = 450;
