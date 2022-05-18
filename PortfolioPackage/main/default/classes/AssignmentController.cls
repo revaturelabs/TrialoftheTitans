@@ -1,4 +1,7 @@
-
+/* Authors: Adam Baird, Timothy Hinga, Alberto Vergara, Austin McElrone
+   Date: 5/18/22
+   Description: Controller for d3DonutChart, skillsList, assignmentCard and masteriesTab LWC's
+*/
 public without sharing class AssignmentController {
 
     @AuraEnabled(cacheable=true)
@@ -16,6 +19,7 @@ public without sharing class AssignmentController {
         return [SELECT Name, Date_Completed__c, Description__c, Assignment_Type__c FROM Completed_Assignment__c WHERE Account__r.Id =: userAcc.id AND Skill__r.Name =: skill];
     }
 
+    //Returns a skills map of the skills needed for the donut chart
     @AuraEnabled(cacheable=true)
     public static Map<String, Integer> getCompletedAssignmentsSkillMap() {
         Id uid = UserInfo.getUserId();
