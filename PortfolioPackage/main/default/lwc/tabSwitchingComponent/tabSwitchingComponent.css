@@ -3,7 +3,7 @@
   outline: 1rem solid gray;
   height: 120px;
   width: 120px;
-
+  z-index: 1;
 }
 
 .projectDisplayComponent {
@@ -12,6 +12,20 @@
   height: 80px;
   width: 70%;
   margin-top: 2%;
+  z-index: -2;
+}
+
+.projectContentContainer{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.projectComponentContent{
+  width: 70%;
+  /* padding-top: 2rem; */
+  padding: 2rem .5rem 1rem .5rem;
+  background-color: lightGray;
 
 }
 
@@ -20,7 +34,7 @@
   position: relative;
   width: 80%;
   margin-top: 20px;
-  margin: 10% 3%;
+  margin: 5%;
 }
 
 .btn {
@@ -35,5 +49,9 @@
   background-color: #333333;
   color: white;
   font-size: 2rem;
-  
+
+}
+
+.projectBody{
+  flex-direction: column;
 }
