@@ -40,7 +40,7 @@ import { deleteRecord } from 'lightning/uiRecordApi';
 
 //APEX CLASS
 import RETURN_EDUCATION from '@salesforce/apex/GetEducationInformation.returnEducationList';
-import RETURN_CERTIFICATION from '@salesforce/apex/getCertifications.Certifications';
+import RETURN_CERTIFICATION from '@salesforce/apex/getCertificationInfo.Certifications';
 
 //import HATICON from '@salesforce/resourceUrl/hat';
 //import EDITICON from '@salesforce/resourceUrl/editicon';
@@ -66,6 +66,7 @@ export default class Portfolioeducation extends LightningElement
 
     @track education;
     @track wireValue;
+    @track wireCer;
     @track certification;
     @track wireCer; 
 
