@@ -1,3 +1,8 @@
+//Authors: Adam Baird, Alberto Vergara, Tim Hinga
+//Date: 5/16/22
+//Purpose: Creates a donut chart using D3 for the profile page
+//         of the user of the skills they have earned.
+//         This file gets zipped and put in the org as a static resource.
 
 window.DonutChart = function(id, data, {
 		name = ([x]) => x,  // given d in data, returns the (ordinal) label
