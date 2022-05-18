@@ -1,12 +1,16 @@
 <template>
-
+    <!-- Project components are individual components that contain project, project image, skills, and a collaspable header -->
     <div class="projectComponent">
      <span class="title">Project Title</span>
       
+      <!-- Profile image -->
       <img src={mountainUrl} alt="circle image" class="circleImage imgbody">
       <div class="projectBody">
+
+        <!-- Project display component is the clickable area for collaspable header -->
         <div class="projectDisplayComponent">
 
+          <!-- Buttons that filter out the responsibilities -->
           <button class="btn" type="button">Skill</button>
           <button class="btn" type="button">Skill</button>
           <button class="btn" type="button">Skill</button>
@@ -15,7 +19,11 @@
           <button class="btn" type="button">Skill</button>
           <button class="btn" type="button">Skill</button>
         </div>
+
+        <!-- This is the container that hides the content. Needs to be here for CSS and javascript to work properly -->
         <div class="projectContentContainer">
+
+          <!-- This is the container for content within the collaspable -->
           <div class="projectComponentContent">
 
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra convallis dui. Donec elementum libero metus, feugiat fermentum odio semper id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
@@ -33,6 +41,7 @@
       </div>
     </div>
 
+    <!-- Copy of a new project component -->
     <div class="projectComponent">
       <span class="title">Project Title</span>
       <img src={mountainUrl} alt="circle image" class="circleImage imgbody">
