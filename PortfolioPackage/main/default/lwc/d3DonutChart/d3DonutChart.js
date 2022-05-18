@@ -13,12 +13,16 @@ export default class D3DonutChart extends LightningElement {
         console.log('****after d3Init******')
 
         loadScript(this, D3 + '/d3.v6.js')
-            .then(() => {
+        .then(() => {
+            getSkills;
+
+        }).then(() => {
                 console.log('*****in first .then*****')
                 loadScript(this, `${DonutResource}/donutChart.js`)
                     .then(() => {
                         console.log('****in second .then*****');
                         this.renderDonutChart();
+                        console.log(dat);
                     })
             })
             .catch(error => {
@@ -45,7 +49,7 @@ export default class D3DonutChart extends LightningElement {
             radius: radius,
             color: color
         }
-
+        console.log('this is the dat: ' + this.dat);
         DonutChart(this.template.querySelector('div.d3'), this.dat, donutChartOptions)
 
    }
