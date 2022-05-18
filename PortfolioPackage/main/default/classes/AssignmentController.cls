@@ -28,7 +28,7 @@ public without sharing class AssignmentController {
         Account userAcc = [SELECT Id FROM Account WHERE Id = :userCon.AccountId];
         List<Completed_Assignment__c> assignments = [SELECT Skill__r.Name FROM Completed_Assignment__c WHERE Account__r.Id =: userAcc.id];
         Map<String, Integer> skills = new Map<String, Integer>();
-
+c
         for (Completed_Assignment__c ass : assignments) {
             if (skills.containsKey(ass.Skill__r.Name)) {
                 skills.put(ass.Skill__r.Name, skills.get(ass.Skill__r.Name) + 1);
