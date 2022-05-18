@@ -37,7 +37,6 @@ public without sharing class AssignmentController {
                 skills.put(ass.Skill__r.Name, 1);
             }
         }
-        System.debug(skills);
         return skills;
 
 
