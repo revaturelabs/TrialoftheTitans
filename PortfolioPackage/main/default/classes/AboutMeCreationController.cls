@@ -7,7 +7,7 @@
     public with sharing class AboutMeCreationController {
 
         // This method allows the user to create a new record in the database.
-         @AuraEnabled 
+         @AuraEnabled
          public static void createAboutMeSection(String aboutMeRecInput){
              Id userId = UserInfo.getUserId();
              About_Me_Record__c aboutmeRecord= new About_Me_Record__c(About_Me__c = aboutMeRecInput, User__c=userId);

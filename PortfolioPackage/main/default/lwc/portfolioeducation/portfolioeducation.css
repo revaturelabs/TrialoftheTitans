@@ -50,7 +50,7 @@ li.left{
 li.editor { 
     float:right;
     margin-top: 18px;
-    margin-right: 4px;
+    margin-right: 150px;
     cursor: pointer;
     --sds-c-icon-color-foreground: var(--color-accent);
 }
@@ -76,6 +76,11 @@ li.editor {
     /*border: 1px solid yellow; */
     width: 50%;;
     flex:1;
+}
+
+.imagecontainer{
+    width: 50%;
+    height: 80%;
 }
 .dataholder{
     flex: 1;

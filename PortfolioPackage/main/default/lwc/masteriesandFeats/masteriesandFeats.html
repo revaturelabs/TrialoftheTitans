@@ -1,4 +1,5 @@
 <template >
+    
     <div class="slds-tabs_scoped slds-tabs_large  tabContainer">
         <ul class="slds-tabs_scoped__nav slds-grid slds-wrap slds-border-radius-xx-large tabsListCss" role="tablist">
             <!--Template for the tabs-->
@@ -15,7 +16,12 @@
          <template for:each={tabs} for:item="layer">
              <div id={layer.ariaControls} class={layer.cssClass}  data-id={layer.Id} role="tabpanel" aria-labelledby={layer.Id}
                  key={layer.Id}>
-                 {layer.Content}
+                 <template if:true={layer.Content}>
+                    <c-masteries-tab></c-masteries-tab>
+                 </template>
+                 <template if:false={layer.Content}>
+                    <!--<c-feats_projects></c-feats_projects>-->
+                 </template>
              </div>
             </template>
         

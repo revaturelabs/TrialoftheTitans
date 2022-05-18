@@ -53,6 +53,7 @@ export default class Portfolioeducation extends LightningElement
     @api recordId;
     @api objectApiName;
     @track modalChecker = false;
+    @track modalChecker1 = false; 
     educationObject = EDUCATION_OBJECT;
     userField = USER_FIELD;
     educationField = EDUCATION_FIELD;
@@ -66,6 +67,7 @@ export default class Portfolioeducation extends LightningElement
     @track education;
     @track wireValue;
     @track certification;
+    @track wireCer; 
 
     cerObject=CERTIFICATION_OBJECT;
     cerExam=CER_EXAM;
@@ -91,12 +93,12 @@ export default class Portfolioeducation extends LightningElement
     certificationList(value) {
         const {error, data} = value;
         if(data) {
-            console.log('inside certification')
+            console.log('inside certification');
             this.certification = data;
         }
         else if(error) {console.log(error);}
         console.log(this.certification);
-        this.wireValue = value;
+        this.wireCer = value;
     }
 
     
@@ -158,7 +160,7 @@ export default class Portfolioeducation extends LightningElement
         });
 
         this.dispatchEvent(env1);
-        refreshApex(this.wireValue);
+        refreshApex(this.wireCer);
         this.modalChecker1 = false;
     }
 

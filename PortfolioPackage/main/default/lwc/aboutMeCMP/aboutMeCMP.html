@@ -7,6 +7,7 @@
 ******************************************************************************************************-->
 
 <template>
+      <c-about-me-checkboxes></c-about-me-checkboxes>
     <!-- Defining a lightning card-->
      <lightning-card >
          <div class="headerContainer">
@@ -26,24 +27,6 @@
                      <span class="slds-assistive-text"></span>
                  <!-- </span> -->
                     </div>
-            </div>
-
-            <!--chackbox for relocate and remote-->
-            <div class="slds-form-element">
-                <div class="slds-form-element__control">
-                  <div class="slds-checkbox">
-                    <input type="checkbox" name="options" id="checkbox-unique-id-81" value="checkbox-unique-id-81" checked="" />
-                    <label class="slds-checkbox__label" for="checkbox-unique-id-81">
-                      <span class="slds-checkbox_faux"></span>
-                      <div class="slds-form-element__label">Willing to relocate</div>
-                    </label>
-                    <input type="checkbox" name="options" id="checkbox-unique-id-80" value="checkbox-unique-id-81" checked="" />
-                    <label class="slds-checkbox__label" for="checkbox-unique-id-80">
-                      <span class="slds-checkbox_faux"></span>
-                      <div class="slds-form-element__label">Willing to work remote</div>
-                    </label>
-                  </div>
-                </div>
             </div>
 
           <!-- Defining the rich text field-->
@@ -68,8 +51,6 @@
                      <lightning-formatted-rich-text   value={myVal} onclick ={handleEditIcon}>
                      </lightning-formatted-rich-text>
                  </div>
-           
              </lightning-card>
- 
      </lightning-card>
  </template>
