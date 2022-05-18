@@ -10,7 +10,7 @@ window.DonutChart = function(id, data, {
 		title, // given d in data, returns the title text
 		width = 640, // outer width, in pixels
 		height = 400, // outer height, in pixels
-		innerRadius = Math.min(width, height) / 3, // inner radius of pie, in pixels (non-zero for donut)
+		innerRadius = Math.min(width, height) / 4, // inner radius of pie, in pixels (non-zero for donut)
 		outerRadius = Math.min(width, height) / 2, // outer radius of pie, in pixels
 		labelRadius = (innerRadius + outerRadius) / 2, // center radius of labels
 		format = ",", // a format specifier for values (in the label)
@@ -72,7 +72,7 @@ window.DonutChart = function(id, data, {
    
 	 svg.append("g")
 		 .attr("font-family", "sans-serif")
-		 .attr("font-size", 10)
+		 .attr("font-size", 16)
 		 .attr("text-anchor", "middle")
 	   .selectAll("text")
 	   .data(arcs)
