@@ -11,7 +11,8 @@ export default class skillsList extends LightningElement {
         if (data) {
             //Push each skill from returned Map to the skills array
             for (let key in data) {
-                this.skills.push(key);
+                if (key != null)
+                    this.skills.push(key);
             }
         }
     }
