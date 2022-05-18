@@ -19,12 +19,12 @@ export default class D3DonutChart extends LightningElement {
             for (let key in data) 
                 skillsMap.push({name: key, value: data[key]});
 
-                DonutChart(this.template.querySelector('div.d3'), skillsMap, { //call function to create the donut chart
-                    name: d => d.name,
-                    value: d => d.value,
-                    width: 500,
-                    height: 500
-                  })
+            DonutChart(this.template.querySelector('div.d3'), skillsMap, { //call function to create the donut chart
+                name: d => d.name,
+                value: d => d.value,
+                width: 500,
+                height: 500
+            })
         }
     }
 
