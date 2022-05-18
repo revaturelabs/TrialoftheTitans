@@ -1,25 +1,11 @@
 <template>
-    <lightning-button-icon-stateful
-        icon-name="utility:user"
-        variant="brand"
-        selected={sortNameState}
-        onclick= {handleNameClick}
-        alternative-text="Sort Alphabetical Names">
-    </lightning-button-icon-stateful>
-    <lightning-button-icon-stateful
-        icon-name="utility:trailhead"
-        variant="brand"
-        selected={sortAreteState}
-        onclick= {handleAreteClick}
-        alternative-text="Sort Top Aretes">
-    </lightning-button-icon-stateful>
-    <lightning-button-icon-stateful
-        icon-name="utility:travel_and_places"
-        variant="brand"
-        selected={sortLocationState}
-        onclick= {handleLocationClick}
-        alternative-text="Sort Alphabetical Locations">
-    </lightning-button-icon-stateful>
-    
-
+	<span class="sortButton">
+		<lightning-combobox 
+			name="sorter"
+			value={value}
+			placeholder="Select Sort by"
+			options={options}
+			onchange={handleChange}>
+		</lightning-combobox>
+	</span>
 </template>

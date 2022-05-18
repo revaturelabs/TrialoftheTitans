@@ -3,7 +3,6 @@
     /*background-color: lightpink;
     height: 168px; */
     margin: 10px;
-    cursor: zoom-in;
 }
 
 img {
@@ -15,4 +14,20 @@ img {
 
 .centerText {
     text-align: center;
+}
+
+.zoomable {
+    cursor: zoom-in;
+}
+
+.customFont {
+    font-size: x-small;
+}
+
+.customWidth {
+    width: 4%;
+}
+
+.blockDisplay {
+    display: inline-block;
 }
