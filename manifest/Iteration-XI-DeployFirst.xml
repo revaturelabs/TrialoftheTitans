@@ -9,6 +9,7 @@
     </types>
     <types>
         <members>D3_v3</members>
+        <members>d3v67</members>
         <members>RadarChart</members>
         <members>RadarImage</members>
         <name>StaticResource</name>
