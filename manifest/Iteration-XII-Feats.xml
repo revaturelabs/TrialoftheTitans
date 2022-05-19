@@ -6,10 +6,12 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
+
 		<members>featsHarnessApp</members>
 		<members>skillButtons</members>
 		<members>lwcResponsibilities</members>
 		<members>tabSwitchingComponent</members>
+
 		<name>LightningComponentBundle</name>
 	</types>
 	<types>

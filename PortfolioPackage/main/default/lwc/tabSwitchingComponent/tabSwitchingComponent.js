@@ -1,14 +1,12 @@
 import { LightningElement, track, wire, api } from 'lwc';
-
 import getProjects from "@salesforce/apex/portfolioProjectHelper.getProjects";
 import getResponsibilities from "@salesforce/apex/portfolioProjectHelper.getProjects";
-
-
 import mountainStaticImg from '@salesforce/resourceUrl/mountainStaticImg';
+
 export default class TabSwitchingComponent extends LightningElement {
 
-    // allows for use of mountain static image
-    mountainUrl = mountainStaticImg;
+    //allows for use of mountain static image
+    //mountainUrl = mountainStaticImg;
 
     error;
     @track wirevalue;
