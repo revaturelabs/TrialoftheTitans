@@ -17,5 +17,9 @@
 		<members>ResponsibilitiesController</members>
 		<name>ApexClass</name>
 	</types>
+	<types>
+	<members>mountainStaticImg</members>
+	<name>StaticResource</name>
+	</types>
 	<version>54.0</version>
 </Package>
