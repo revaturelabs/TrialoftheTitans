@@ -1,7 +1,17 @@
-.skillButtons {
-    --slds-c-button-brand-color-background: var(--lwc-palettePurple50); 
-    --slds-c-button-brand-color-background-hover: var(--lwc-palettePurple30);
-    --slds-c-button-brand-color-border: var(--lwc-palettePurple50); 
-    --slds-c-button-brand-color-border-hover: var(--lwc-palettePurple30); 
-    --slds-c-button-brand-text-color: var(--lwc-paletteNeutral100); 
+div {
+    display: flex;
+    justify-content: center;
+
 }
+
+lightning-button {
+    padding: 10px 20px;
+    margin: 5px;
+    color: black;
+    border: none;
+    outline: none; 
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
