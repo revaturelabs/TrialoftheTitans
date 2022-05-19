@@ -16,8 +16,10 @@ export default class D3DonutChart extends LightningElement {
     @wire(getSkills) dat ({error,data}) {
         if(data) {
             let skillsMap = []; //converts apex map to JS array
-            for (let key in data) 
-                skillsMap.push({name: key, value: data[key]});
+            for (let key in data) {
+                if (key != null) 
+                    skillsMap.push({name: key, value: data[key]});
+            }
 
             DonutChart(this.template.querySelector('div.d3'), skillsMap, { //call function to create the donut chart
                 name: d => d.name,
