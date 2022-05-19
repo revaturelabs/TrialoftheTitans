@@ -1,10 +1,11 @@
 import { LightningElement } from 'lwc';
-import mountainStaticImg from '@salesforce/resourceUrl/mountainStaticImg';
+//import mountainStaticImg from '@salesforce/resourceUrl/mountainStaticImg';
 export default class TabSwitchingComponent extends LightningElement {
 
-    // allows for use of mountain static image
-    mountainUrl = mountainStaticImg;
+    //allows for use of mountain static image
+    //mountainUrl = mountainStaticImg;
 
+    mountainUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg/1920px-Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg";
     renderedCallback(){
 
         // selects all projectdisplaycomponents in the template
