@@ -4,10 +4,9 @@
     <isExposed>true</isExposed>
     <targets>
         <target>lightningCommunity__Page</target>
-       <target>lightningCommunity__Page_Layout</target>
-       <target>lightningCommunity__Default</target>
-       <target>lightning__AppPage</target>
-       <target>lightning__RecordPage</target>
-       <target>lightning__HomePage</target>
+        <target>lightningCommunity__Default</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
    </targets>
 </LightningComponentBundle>
