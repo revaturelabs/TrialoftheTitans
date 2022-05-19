@@ -1,0 +1,24 @@
+<template>
+    <template for:each={responsibilities} for:item="responsibility">
+        <div key={responsibility.Id}>
+            <lightning-card title="Responsibilities">
+            <div>
+                {responsibility.Description__c}
+            </div>
+            </lightning-card>
+        </div>
+    </template>
+</template>
+
+<!-- <template>
+    <lightning-datatable key-field="id" data={data} columns={columns}></lightning-datatable>
+
+<div>
+    <lightning-card  title="Responsibilities">
+        <p class ="slds-p-horizontal_small">{data}</p>
+        <p class="slds-p-horizontal_small">This will be a responsibility name</p>
+        <p slot="footer">Card Footer</p>
+    </lightning-card>
+</div>
+</template>
+-->
