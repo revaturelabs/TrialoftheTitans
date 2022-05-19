@@ -6,15 +6,22 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>featsHarness</members>
-		<members>feats_projects</members>
+
+		<members>featsHarnessApp</members>
 		<members>skillButtons</members>
+		<members>lwcResponsibilities</members>
+		<members>tabSwitchingComponent</members>
+
 		<name>LightningComponentBundle</name>
 	</types>
 	<types>
 		<members>portfolioProjectHelper</members>
 		<members>ResponsibilitiesController</members>
 		<name>ApexClass</name>
+	</types>
+	<types>
+	<members>mountainStaticImg</members>
+	<name>StaticResource</name>
 	</types>
 	<version>54.0</version>
 </Package>
