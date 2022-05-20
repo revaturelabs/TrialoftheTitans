@@ -4,7 +4,7 @@ export default class SortButton extends LightningElement {
     @api heroes = [];
 
     // Sets default list of heroes
-    sortHeroes = this.heroes;
+    sortedHeroes = this.heroes;
 	
 	// Default sorting by relevance
 	value = 'relevance';
@@ -21,7 +21,7 @@ export default class SortButton extends LightningElement {
     // Orders heroes by Id, followed by sorting option
 	handleChange(event) {
         this.value = event.detail.value;
-        this.sortHeroes = this.heroes;
+        this.sortedHeroes = this.heroes;
 
         function SortByID(a, b) {
             return a.Id - b.Id; 
@@ -34,40 +34,40 @@ export default class SortButton extends LightningElement {
                 return ((a.Arete == b.Arete) ? 0 : ((a.Arete < b.Arete) ? 1 : -1 ));
             }
             this.heroes.sort(SortByArete);
-            this.sortHeroes = [];
+            this.sortedHeroes = [];
             for(var n = 0; n < this.heroes.length; n++){
-                this.sortHeroes.push(this.heroes[n]);
+                this.sortedHeroes.push(this.heroes[n]);
             }
         } else if (this.value == "score") {
             function SortByArete(a, b) {
                 return ((a.Arete == b.Arete) ? 0 : ((a.Arete < b.Arete) ? 1 : -1 ));
             }
             this.heroes.sort(SortByArete);
-            this.sortHeroes = [];
+            this.sortedHeroes = [];
             for(var n = 0; n < this.heroes.length; n++){
-                this.sortHeroes.push(this.heroes[n]);
+                this.sortedHeroes.push(this.heroes[n]);
             }
         } else if (this.value == "location") {
             function SortByLocation(a, b) {
                 return ((a.Location == b.Location) ? 0 : ((a.Location > b.Location) ? 1 : -1 ));
             }
             this.heroes.sort(SortByLocation);
-            this.sortHeroes = [];
+            this.sortedHeroes = [];
             for(var n = 0; n < this.heroes.length; n++){
-                this.sortHeroes.push(this.heroes[n]);
+                this.sortedHeroes.push(this.heroes[n]);
             }
         } else if (this.value == "alphabetical") {
             function SortByName(a, b) {
                 return ((a.Name == b.Name) ? 0 : ((a.Name > b.Name) ? 1 : -1 ));
             }
             this.heroes.sort(SortByName);
-            this.sortHeroes = [];
+            this.sortedHeroes = [];
             for(var n = 0; n < this.heroes.length; n++){
-                this.sortHeroes.push(this.heroes[n]);
+                this.sortedHeroes.push(this.heroes[n]);
             }
         }
         this.dispatchEvent(new CustomEvent('sortevent', {
-            detail : this.sortHeroes
+            detail : this.sortedHeroes
         }));
     }
 }
