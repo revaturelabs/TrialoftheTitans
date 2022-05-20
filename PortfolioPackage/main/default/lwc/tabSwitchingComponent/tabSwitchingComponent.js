@@ -6,7 +6,7 @@ import mountainStaticImg from '@salesforce/resourceUrl/mountainStaticImg';
 export default class TabSwitchingComponent extends LightningElement {
 
     //allows for use of mountain static image
-    //mountainUrl = mountainStaticImg;
+    mountainUrl = mountainStaticImg;
 
     error;
     @track wirevalue;

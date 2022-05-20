@@ -12,28 +12,16 @@
              
          </template>
      </ul>
-        <!--Template for the content area-->
-         <template for:each={tabs} for:item="layer">
-             <div id={layer.ariaControls} class={layer.cssClass}  data-id={layer.Id} role="tabpanel" aria-labelledby={layer.Id}
-                 key={layer.Id}>
-                 <template if:true={layer.Content}>
-                    <c-masteries-tab></c-masteries-tab>
-                 </template>
-                 <template if:false={layer.Content}>
-                    <!--<c-feats_projects></c-feats_projects>-->
-                 </template>
-             </div>
-            </template>
-        </ul>
+
         <!--Template for the content area-->
         <template for:each={tabs} for:item="layer">
             <div id={layer.ariaControls} class={layer.cssClass}  data-id={layer.Id} role="tabpanel" aria-labelledby={layer.Id}
                  key={layer.Id}>
                 <template if:true={layer.Content}>
-                    <c-about-me-c-m-p></c-about-me-c-m-p>
+                    <c-masteries-tab></c-masteries-tab>
                 </template>
                 <template if:false={layer.Content}>
-                    <c-portfolio-hub-hero-info></c-portfolio-hub-hero-info>
+                    <c-feats-harness-app></c-feats-harness-app>
                 </template>
             </div>
         </template>     
