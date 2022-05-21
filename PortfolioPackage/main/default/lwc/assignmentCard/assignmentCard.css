@@ -7,7 +7,7 @@
 }
 img {
     height: 100px;
-    width: 100%;
+    max-width: 105px;
 }
 
 .slds-col p {
