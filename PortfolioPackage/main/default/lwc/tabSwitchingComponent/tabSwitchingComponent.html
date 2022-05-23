@@ -1,5 +1,4 @@
 <template>
- 
   <template for:each={projects} for:item="project">
     <div key={project.Id}>
         <!-- <lightning-card> -->
@@ -24,7 +23,7 @@
  
            <!-- This is the container for content within the collaspable -->
            <div class="projectComponentContent">
-               <c-lwc-responsibilities></c-lwc-responsibilities>
+               <c-lwc-responsibilities get-projectid-from-parent={project.Id}></c-lwc-responsibilities>
            </div>
          </div>
        </div>
@@ -32,5 +31,4 @@
     <!-- </lightning-card> -->
     </div>
   </template>
-
 </template>
