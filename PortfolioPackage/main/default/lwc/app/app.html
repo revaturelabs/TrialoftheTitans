@@ -1,26 +1,11 @@
 <template>
+    <c-header></c-header>
+    <c-portfolio-navbar></c-portfolio-navbar>
     <c-portfolio-hub-hero-info></c-portfolio-hub-hero-info>
-    <hr>
     <c-about-me-c-m-p></c-about-me-c-m-p>
-    
-    <hr>
-    
-    <c-strengths></c-strengths>
-    <hr>
-    <c-skills></c-skills>
-    
-    <hr>
-    
-    <c-portfolioeducation></c-portfolioeducation>
-    <hr>
-    <c-portfolioexperience></c-portfolioexperience>
-    <hr>
-    <c-honors-awards-card></c-honors-awards-card>
-   
-    <hr>
-    
-    <c-lwcprojects></c-lwcprojects>
-    <br>
-    <br>
-    
+    <div class="slds-grid">
+        <c-portfolioeducation class="slds-col slds-size_2-of-3"></c-portfolioeducation>
+        <c-accomplishments class="slds-col slds-size_1-of-3"></c-accomplishments>
+    </div>
+    <c-masteriesand-feats></c-masteriesand-feats>
 </template>

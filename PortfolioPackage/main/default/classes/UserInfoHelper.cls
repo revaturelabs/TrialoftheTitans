@@ -34,7 +34,7 @@ public without sharing class UserInfoHelper {
     @AuraEnabled(cacheable=true)
     public static List<Certification__c> getCertifications() {
 
-        // Relevant feilds:
+        // Relevant fields:
         //      Assessor__c
         //      Candidate__r.Name  (Contact)
         //      Certification_Exam__r.Name  (Certification_Exam__c)
@@ -49,5 +49,11 @@ public without sharing class UserInfoHelper {
             FROM Certification__c
             WHERE User__c =: uid
         ];
+    }
+
+    //Grabs the primary color of the team associated with the user
+    @AuraEnabled(cacheable=true)
+    public static Account getTeamThemePrimaryColor() {
+            return [SELECT name, TEAM__r.Primary_Color__c FROM Account];
     }
 }

@@ -1,19 +1,87 @@
-<!--
-    Mohammed Azad
-    Markup for the Education Component
-    Contains a modal with a lightning record edit form
-    Interacts with the Education__c object
-    Date: March 24 2022
--->
+<!--****************************************************************************************************
+    Author: Mohammed Azad
+    Last modified by: Deepika Chandran
+    Description: Markup for the Education Component Contains a modal with a lightning record edit form Interacts with the Education__c object
+    Date Created: 03/24/2022
+    Modified Date: 05/23/2022
+    Iteration XI
+******************************************************************************************************-->
 <template>
     <div class="container">
         <div class="title">
             <ul>
-                <li class="logo"><lightning-icon icon-name='standard:education' alternative-text='education' size='medium' title='education'></lightning-icon></li>
-                <li class="left"><h1>Education</h1></li>
-                <li class="editor"><lightning-icon icon-name='utility:add' alternative-text='prompt_edit' size='medium' title='prompt_edit' onclick={modalOpener}></lightning-icon></li>
+                <li class="left"><h1>Honors</h1></li>
+                <li class="editor"></li>
             </ul>
+                <lightning-button-menu alternative-text="Show menu" size='medium' variant="border-filled" icon-name="utility:add" class="slds-m-left_large">
+                    <lightning-menu-item value="MenuItemOne" label="Education" onclick={modalOpener}></lightning-menu-item>
+                    <lightning-menu-item value="MenuItemTwo" label="Certification" onclick={modalOpener1}></lightning-menu-item>
+                </lightning-button-menu>
         </div>
+
+        <br>
+        
+        <template if:true={modalChecker1}>
+            <section aria-modal="false" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_small">Insert Your Certification Information</h2>
+                        <lightning-icon class="slds-modal__close" icon-name="utility-close" size="small" onclick={modalCloser1}></lightning-icon>
+                    </header>
+                    <div class="slds-box slds-theme_default slds-var-p-around_medium">
+                        <lightning-record-edit-form object-api-name={cerObject} onsubmit={handleSuccess1}>
+                        <lightning-input-field field-name={cerName}> </lightning-input-field>
+                        <lightning-input-field field-name={cerCandidate}> </lightning-input-field>
+                        <lightning-input-field field-name={cerExam}> </lightning-input-field>
+                        <lightning-input-field field-name={verSite}> </lightning-input-field>
+                        <lightning-input-field field-name={dateIssued}> </lightning-input-field>
+                        <lightning-input-field field-name={cerUser}> </lightning-input-field>
+                        <lightning-input-field field-name={assessor}> </lightning-input-field>
+                        <div class="slds-var-m-top_medium">
+                            <lightning-button variant="brand" type="submit" label="Save">
+                            </lightning-button>
+                        </div>
+                    </lightning-record-edit-form>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button variant="Destructive" label="Cancel" onclick={modalCloser1} class="slds-p-around_x-small"></lightning-button>
+                    </footer>
+                </div>
+            </section>
+        </template>
+
+        <div class="information">
+            <template if:true={certification}>
+                <template for:each={certification} for:item="cer" class="secondInformation">
+                    <div key={cer.Id} class="first">
+                        <!--we decided to hard code in an image, one hard coded image for a education, one for a certfication-->
+                        <img src="https://clipartmag.com/images/graduation-caps-clipart-9.jpg" width="100" height="100" alt="Image Not Found">
+                        <div class="info">
+
+
+                            <div class="infoholder">
+                                <lightning-icon icon-name='standard:approval' alternative-text='approval' size='small' title='approval' class="carbon"></lightning-icon>
+                                <p class="institution">{cer.Name}</p>
+                                <p class="degree">{cer.Verification_Site__c}</p>
+
+                                <p class="major">{cer.Major__c}</p>
+
+                            </div>
+                        </div>
+                        <div class="dataholder">
+                            <div class="secondContainer">
+                                <div class="item">
+                                <p class="time">{cer.Date_Issued__c}</p>
+                                </div>
+
+                                <div class="itemdeleter"><lightning-icon icon-name='utility:delete' alternative-text='delete' size='x-small' title='delete' onclick={handleDelete} key={edu.Id} data-eduvalue={edu.Id} value={edu.Name} class="deleter"></lightning-icon></div>
+                             </div>
+                         </div>
+                    </div> 
+                </template>
+            </template>
+        </div>
+
         <template if:true={modalChecker}>
             <section aria-modal="true" class="slds-modal slds-fade-in-open">
                 <div class="slds-modal__container">
@@ -23,19 +91,19 @@
                     </header>
                     <div class="slds-box slds-theme_default slds-var-p-around_medium">
                         <lightning-record-edit-form
-                        object-api-name={educationObject}
-                        onsuccess={handleSuccess}>
-                        <lightning-output-field field-name={userField}> </lightning-output-field>
-                        <lightning-input-field field-name={educationField}> </lightning-input-field>
-                        <lightning-input-field field-name={majorField}> </lightning-input-field>
-                        <lightning-input-field field-name={degreeField}> </lightning-input-field>
-                        <lightning-input-field field-name={gpaField}> </lightning-input-field>
-                        <lightning-input-field field-name={dateGraduatedField}> </lightning-input-field>
-                        <div class="slds-var-m-top_medium">
-                            <lightning-button variant="brand" type="submit" label="Save">
-                            </lightning-button>
-                        </div>
-                    </lightning-record-edit-form>
+                            object-api-name={educationObject}
+                            onsuccess={handleSuccess}>
+                            <lightning-output-field field-name={userField}> </lightning-output-field>
+                            <lightning-input-field field-name={educationField}> </lightning-input-field>
+                            <lightning-input-field field-name={majorField}> </lightning-input-field>
+                            <lightning-input-field field-name={degreeField}> </lightning-input-field>
+                            <lightning-input-field field-name={gpaField}> </lightning-input-field>
+                            <lightning-input-field field-name={dateGraduatedField}> </lightning-input-field>
+                            <div class="slds-var-m-top_medium">
+                                <lightning-button variant="brand" type="submit" label="Save">
+                                </lightning-button>
+                            </div>
+                        </lightning-record-edit-form>
                     </div>
                     <footer class="slds-modal__footer">
                         <lightning-button variant="Destructive" label="Cancel" onclick={modalCloser} class="slds-p-around_x-small"></lightning-button>
@@ -47,10 +115,11 @@
             <template if:true={education}>
                 <template for:each={education} for:item="edu" class="secondInformation">
                     <div key={edu.Id} class="first">
+                        <!--we decided to hard code in an image, one hard coded image for a education, different one for a certfication-->
+                        <img src="https://clipartmag.com/images/graduation-caps-clipart-9.jpg" alt="Image Not Found" class="imagecontainer" style="width:100px" >
                         <div class="info">
                             <div class="infoholder">
                                 <lightning-icon icon-name='standard:approval' alternative-text='approval' size='small' title='approval' class="carbon"></lightning-icon>
-                                <!-- <img class="carbon" src={carboneducation} /> -->
                                 <p class="degree">{edu.Degree__c}</p>
                                 <p class="institution">{edu.Name}</p>
                                 <p class="major">{edu.Major__c}</p>

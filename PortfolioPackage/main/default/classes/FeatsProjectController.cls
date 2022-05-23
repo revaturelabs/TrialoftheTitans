@@ -6,7 +6,7 @@
     Iteration XII */
 
 public with sharing class FeatsProjectController {
-
+    /*
     @AuraEnabled
     public static string getProjects(){
         try {
@@ -17,5 +17,5 @@ public with sharing class FeatsProjectController {
     }
     public FeatsProjectController() {
 
-    }
+    }*/
 }

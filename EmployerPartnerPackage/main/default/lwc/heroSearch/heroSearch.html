@@ -1,0 +1,58 @@
+<template>
+    <div class="searchComponent">
+    <div onkeyup={handleKeyUp}>
+        <lightning-input
+            class="searchTerm"
+            name="enter-search"
+            
+            type="search"
+            placeholder="Search Name, Technology, or Location"
+            
+        ></lightning-input>
+    </div>
+    <p if:true={search.query}>
+        Searched for {search.query}!
+    </p>
+    <template if:false={isAdvancedSearch}>
+   
+        
+
+    <div class="slds-m-top_medium slds-m-bottom_x-large">
+        
+
+        <!-- Button group: simple buttons -->
+        
+            <lightning-button label="Search" onclick={handleSearchButton} variant="success" ></lightning-button>
+            <lightning-button label="Advanced Search" variant="brand" onclick={handleAdvancedClick}></lightning-button>
+           
+        
+       <!-- <lightning-button label="testEvent" onclick={testEvent}></lightning-button>
+        <input type="text" value={msg} ontestevent={handleCustomEvent} />-->
+    </div>
+ </template>
+ <template if:true={isAdvancedSearch}>
+
+    
+     
+       
+    <lightning-input class="detailOne" type="checkbox" value={remote} label="Include Remote Workers" name="input1" onchange={advDetailChange} ></lightning-input>
+    <template if:true={remote}>
+        <p class="searchParam"> Search will include Heroes that work remotely. No distance is too great for these extraordinary individuals!</p> 
+      </template>  
+    <lightning-input class="detailTwo" type="checkbox" value={relocate} label="Willing to Relocate" name="input2" onchange={advDetailChangeTwo} ></lightning-input>
+    <template if:true={relocate}>
+        <p class="searchParam"> Search will include Heroes that are willing to relocate. They fear not where their journey might take them!</p> 
+      </template> 
+   
+   
+ <div class="slds-grid slds-grid_align-spread">
+    <lightning-button label="Search" onclick={handleSearchButton} variant="success"></lightning-button>
+    
+    <lightning-button label="Back to Quick Search" onclick={handleQuickClick} variant="brand"></lightning-button>
+</div>
+
+
+
+ </template>
+</div>
+</template>

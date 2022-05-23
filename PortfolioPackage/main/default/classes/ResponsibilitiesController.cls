@@ -12,7 +12,7 @@
   //  }
 //}
    //method that returns a list of all responsibilities related to a project
-   public with sharing class ResponsibilitiesController{
+   public without sharing class ResponsibilitiesController{
      
     @AuraEnabled (cacheable=true) 
     public static List<Responsibility__c> getResponsibilities(String projectID){
