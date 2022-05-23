@@ -1,3 +1,9 @@
+// Created by: Theodore Moore
+// Updated by: Theodore Moore, Quan Nguyen, Carlos Concepcion
+// Description: Display Heroes Component.
+// Date Created: 5/13/2022
+// Date Updated: 5/20/2022  
+
 import hero from '@salesforce/resourceUrl/hero';
 import { LightningElement, track, api } from 'lwc';
 import IMG from '@salesforce/resourceUrl/NoAltImages';
@@ -97,8 +103,8 @@ export default class HeroResultsComponent extends LightningElement {
     }
     openModal(event) {
         this.viewableModal = !this.viewableModal;
-        this.currentHero=event.srcElement.id;
-       
+        this.currentHero = event.srcElement.id;
+
         console.log(this.currentHero);
     }
 
