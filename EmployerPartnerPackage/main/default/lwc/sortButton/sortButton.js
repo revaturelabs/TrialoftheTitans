@@ -28,12 +28,12 @@ export default class SortButton extends LightningElement {
         }
         
         if (this.value == "relevance") {
-			// Relevancy determined by profile distance from location plus the Arete score
-			// **Default to Arete score while geolocation is being tested
-            function SortByArete(a, b) {
-                return ((a.Arete == b.Arete) ? 0 : ((a.Arete < b.Arete) ? 1 : -1 ));
+            // Relevancy determined by profile distance from location plus the Arete score
+            // Alernate sort by Arete score and location name
+            function SortByMultiple(a, b) {
+                return b.Arete.localeCompare(a.Arete) || b.Location - a.Location;
             }
-            this.heroes.sort(SortByArete);
+            this.heroes.sort(SortByMultiple);
             this.sortedHeroes = [];
             for(var n = 0; n < this.heroes.length; n++){
                 this.sortedHeroes.push(this.heroes[n]);
