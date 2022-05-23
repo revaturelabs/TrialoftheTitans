@@ -26,13 +26,12 @@
  
  
         System.debug('finished getting the responsibilities list' + responsibilityList.size());
-        //List<Responsibility__c> retList = new List<Responsibility__c>();
-        
-       //  for(Responsibility__c r : responsibilityList){
-       //      if(r.Project__r.Id == pid){
-       //          retList.add(r);
-       //      }
-       //  }
-        return responsibilityList;
+           List<Responsibility__c> retList = new List<Responsibility__c>();
+            for(Responsibility__c r : responsibilityList){
+             if(r.Project__r.Id == pid){
+                 retList.add(r);
+             }
+         }
+        return retList;
     }
    }
