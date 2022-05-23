@@ -1,11 +1,11 @@
 <!--
-  Created By Theodore Moore @Theodore#1829 on Discord
-  Last Edited: 5/23/2022 for Documentation
-
-  This component is meant to take the results and show them using an API of heroes
-  It also inputs the search result and process any searched 
-    
+Created by: Theodore Moore
+Updated by: Theodore Moore, Quan Nguyen, Carlos Concepcion
+Description: HTML for Display Heroes Component.
+Date Created: 5/13/2022
+Date Updated: 5/20/2022  
 -->
+
 <template>
   
   <!--Use template if:true to display/hide popup based on isModalOpen value -->
@@ -45,22 +45,22 @@
             <template if:true={hero.Link}>
               <img src={hero.Link} alt="No Image" id={hero.Id}/>
             </template>
-            <template if:false={hero.Link}>
+    <template if:false={hero.Link}>
               <img src={noImageAltURL} alt="No Image" id={hero.Id} />
             </template>
-          </div>
-          <div class="slds-size_4-of-6 centerText zoomable" onclick={openModal} id={hero.Id}>
-            <div id={hero.Id}><strong id={hero.Id}>{hero.Name}</strong></div>
-          <div id={hero.Id}>{hero.Title}</div>
-          <div id={hero.Id}>{hero.Location}</div>
-          </div>
-          <div class="slds-size_1-of-6">
-            <c-favorite-star></c-favorite-star>
-            <div class="zoomable customFont" onclick={openModal} id={hero.Id}>Arete: {hero.Arete}</div>
-          </div>
-        </div>
-      </article>
-    </template>
+</div>
+<div class="slds-size_4-of-6 centerText zoomable" onclick={openModal} id={hero.Id}>
+    <div id={hero.Id}><strong id={hero.Id}>{hero.Name}</strong></div>
+    <div id={hero.Id}>{hero.Title}</div>
+    <div id={hero.Id}>{hero.Location}</div>
+</div>
+<div class="slds-size_1-of-6">
+    <c-favorite-star></c-favorite-star>
+    <div class="zoomable customFont" onclick={openModal} id={hero.Id}>Arete: {hero.Arete}</div>
+</div>
+</div>
+</article>
+</template>
 </div>
 <!-- These are the buttons for user input to switch the page -->
 <div class="slds-grid slds-m-top_x-large">
