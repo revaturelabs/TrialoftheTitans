@@ -26,7 +26,6 @@ import getResponsibilities from '@salesforce/apex/ResponsibilitiesController.get
 export default class LwcResponsibilities extends LightningElement {
 
     @api getProjectidFromParent;
-    @api projectID;
     @track responsibilities;
     @track filteredResponsibilities;
     @track wirevalue;
@@ -41,7 +40,7 @@ export default class LwcResponsibilities extends LightningElement {
         this.templateOne = this.templateOne ===true ? false : true;
     }
 
-    @wire(getResponsibilities, {projectID: '$getProjectidFromParent'})
+    @wire(getResponsibilities/*, {projectID: '$getProjectidFromParent'}*/)
     wirevalue(value) {
        
         const { error, data } = value;

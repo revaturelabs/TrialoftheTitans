@@ -71,4 +71,3 @@ export default class TabSwitchingComponent extends LightningElement {
     
 
 }
-

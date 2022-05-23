@@ -1,10 +1,11 @@
 <template>
+ 
   <template for:each={projects} for:item="project">
     <div key={project.Id}>
         <!-- <lightning-card> -->
             <!-- Project components are individual components that contain project, project image, skills, and a collaspable header -->
     <div class="projectComponent">
-      <span class="title">Project Title</span>
+      <span class="title">{project.Name}</span>
        
        <!-- Profile image -->
        <img src={mountainUrl} alt="circle image" class="circleImage imgbody">
@@ -23,7 +24,9 @@
  
            <!-- This is the container for content within the collaspable -->
            <div class="projectComponentContent">
-               <c-lwc-responsibilities get-projectid-from-parent={project.Id}></c-lwc-responsibilities>
+              Roles: {project.Role__c}
+              Responsibilities: 
+               <c-lwc-responsibilities></c-lwc-responsibilities>
            </div>
          </div>
        </div>
@@ -31,4 +34,5 @@
     <!-- </lightning-card> -->
     </div>
   </template>
+
 </template>
