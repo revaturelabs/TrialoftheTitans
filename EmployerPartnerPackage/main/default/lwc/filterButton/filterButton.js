@@ -1,8 +1,17 @@
+// Created by: Quan Nguyen
+// Updated by: Quan Nguyen
+// Description: Filter Button component for Employer Partner Experience Site.
+// Date Created: 5/11/2022
+// Date Updated: 5/20/2022
+
+
 import { LightningElement, wire, track, api } from 'lwc';
 //import getHeroInfo from '@salesforce/apex/EmployerPartnerExperienceSiteHelper.getHeroInfo';
 export default class FilterButton extends LightningElement {
+    // the list of unfiltered heroes retrieved from employer partner site..
     @api unfilteredheroes = [];
 
+    //list to keep track of filtered heroes.
     @track filteredHeroes = [];
 
     // options to display in the picklist
@@ -32,7 +41,7 @@ export default class FilterButton extends LightningElement {
         return returnList;
     }
 
-    // handle change on the picklist value
+    // handle changes on the picklist value
     handleChange(event) {
         this.filteredHeroes = Object.assign([], this.unfilteredheroes);
         let value = event.detail.value;
@@ -58,6 +67,8 @@ export default class FilterButton extends LightningElement {
             }
 
         }
+
+        //Event up filteredHeroes list to employer partner site.
         this.dispatchEvent(new CustomEvent('filterevent', {
             detail: this.filteredHeroes
         }));

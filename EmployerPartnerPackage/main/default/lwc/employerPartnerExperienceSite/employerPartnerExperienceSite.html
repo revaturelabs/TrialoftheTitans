@@ -13,9 +13,9 @@
 <template>
   <c-hero-search ontestevent={handleCustomEvent} msg={msg} ></c-hero-search>
   <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-end slds-m-vertical_x-large">
-    <c-sort-button onsortevent={handlesortevent} ></c-sort-button>
+    <c-sort-button onsortevent={handlesortevent} heroes={filteredHeroes}></c-sort-button>
     <c-filter-button unfilteredheroes={heroes} onfilterevent={handlefilterevent}></c-filter-button>
   </div>
-  <c-hero-results-component heroes={filteredHeroes} msg={msg} ></c-hero-results-component>
+  <c-hero-results-component heroes={sortedHeroes} msg={msg} ></c-hero-results-component>
 
 </template>

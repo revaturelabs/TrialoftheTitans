@@ -1,5 +1,19 @@
+/**
+Created by Theodore Moore @Theodore#1829 on Discord
+
+
+Helper class for Read only Portfolio 
+Needs to be combined with the normal one
+All components in normal one rely on the user being 
+the owner of portfolio, this helper is to prevent it from being seen in that context
+
+*/
+
 public without sharing class UserInfoReadOnlyHelper {
     @AuraEnabled(cacheable=true)
+        /**
+        Grabs the user info based on input of userID string
+    */
     public static User getBasicUserInfo(String uid) {
     Id userID = Id.valueOf(uid.substring(0,18));
         return [
@@ -9,17 +23,10 @@ public without sharing class UserInfoReadOnlyHelper {
             LIMIT 1
         ][0];
     }
-
+    //Grabs certifications based on userID input
     @AuraEnabled(cacheable=true)
     public static List<Certification__c> getCertifications(String uid) {
 
-        // Relevant fields:
-        //      Assessor__c
-        //      Candidate__r.Name  (Contact)
-        //      Certification_Exam__r.Name  (Certification_Exam__c)
-        //      Date_Issued__c
-        //      Image_URL__c
-        //      User__c  (User.Id)
 
         Id userID = Id.valueOf(uid.substring(0,18));
         return [
@@ -28,7 +35,7 @@ public without sharing class UserInfoReadOnlyHelper {
             WHERE User__c =: userID
         ];
     }
-
+    //Grabs Technologies based on userID input
     @AuraEnabled(cacheable=true)
     public static Curriculum__c getTechInfo(String uid){
         Id userID = Id.valueOf(uid.substring(0,18));
@@ -41,7 +48,7 @@ public without sharing class UserInfoReadOnlyHelper {
         return [ SELECT name,Technology__c,Id FROM Curriculum__c WHERE Id=: curId LIMIT 1];
 
     }
-
+    //grabs about me based on userID record
     @AuraEnabled(cacheable=true) 
     public static List<About_Me_Record__c> getAboutMeRecord(String uid){
         Id userID = Id.valueOf(uid.substring(0,18));
