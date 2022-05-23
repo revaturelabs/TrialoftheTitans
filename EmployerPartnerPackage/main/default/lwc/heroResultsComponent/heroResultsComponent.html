@@ -1,3 +1,11 @@
+<!--
+  Created By Theodore Moore @Theodore#1829 on Discord
+  Last Edited: 5/23/2022 for Documentation
+
+  This component is meant to take the results and show them using an API of heroes
+  It also inputs the search result and process any searched 
+    
+-->
 <template>
   
   <!--Use template if:true to display/hide popup based on isModalOpen value -->
@@ -9,6 +17,7 @@
           <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Here Goes the Profile!</h1>
         </div>
         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+        <!-- This is the component for our read only portfolio and this needs to be fixed -->
           <c-read-only-portfolio uid={currentHero}></c-read-only-portfolio>
         </div>
         <lightning-button variant="brand"
@@ -23,8 +32,12 @@
     <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
   </template>
 
-<!-- This is going to be where the indivual cards show up -->
+<!-- This is where the indivual cards show up -->
 <div class="slds-grid slds-wrap slds-grid_align-center">
+  <!--This for each is what creates the cards we have to populate 9 on a page -->
+  <!-- Right now there is no image being grabbed and the arete is not implemented 
+  In project as of iteration-xii and this needs to be fixed when it is
+   -->
     <template for:each={currentHeroes} for:item="hero">
       <article key={hero.id} class="slds-card slds-size_1-of-4 cardstyling" >
         <div class="slds-card__body slds-card__body_inner slds-grid">
@@ -49,6 +62,7 @@
       </article>
     </template>
 </div>
+<!-- These are the buttons for user input to switch the page -->
 <div class="slds-grid slds-m-top_x-large">
     <div class="slds-size_10-of-12"></div>
     <button onclick={previousPage} class="slds-size_1-of-12 slds-button slds-button_neutral slds-p-horizontal_none blockDisplay customWidth">{specialChar}</button>
