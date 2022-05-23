@@ -2,7 +2,7 @@
     Author: Gabriela Conrado
     Description: LWC component that allows you to create an About Me section and edit existing ones. 
     Date Created: 03/21/22
-    Modified Date: 03/25/2021
+    Modified Date: 05/23/2022
     Iteration XI
 ******************************************************************************************************-->
 
@@ -11,16 +11,9 @@
     <!-- Defining a lightning card-->
      <lightning-card >
          <div class="headerContainer">
-              <!-- Right corner icon
-             <span class="main-icon" >
-                 <lightning-icon icon-name='standard:user' alternative-text='user' size='medium' title='user' variant='bare'>
-                 </lightning-icon>
-             </span>-->
              <span class="text-about-me"><h1>About Me</h1></span>
                <!-- Left corner icon-->
              <div class="edit-icon-about-me">
-                 <!-- <span class="slds-icon_container slds-icon-utility-announcement slds-current-color" 
-                     title="Click to edit the record."> -->
                      <lightning-icon align="right" draggable="false" icon-name='utility:edit'
                          alternative-text='Edit Record' size='medium' onclick={handleEditIcon} title='edit'>
                      </lightning-icon>

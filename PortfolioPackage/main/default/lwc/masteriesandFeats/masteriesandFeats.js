@@ -1,3 +1,10 @@
+/****************************************************************************************************
+    Author: Dalton Faber
+    Description: LWC component that adds the tabs to show the masteries or feats sections
+    Date Created: 05/11/2022
+    Modified Date: 05/23/2022
+    Iteration XII
+******************************************************************************************************/
 import { LightningElement } from 'lwc';
   
     export default class masteriesandFeats extends LightningElement {
