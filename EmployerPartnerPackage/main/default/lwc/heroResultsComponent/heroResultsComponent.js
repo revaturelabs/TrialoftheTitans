@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 /**
 Created By Theodore Moore @Theodore#1829 on Discord
+Updated by: Theodore Moore, Quan Nguyen, Carlos Concepcion
 Last Edited: 5/23/2022 for Documentation
 
 This component is meant to take the results and show them using an API of heroes
@@ -12,14 +12,6 @@ To do:
 
 
 **/
-=======
-// Created by: Theodore Moore
-// Updated by: Theodore Moore, Quan Nguyen, Carlos Concepcion
-// Description: Display Heroes Component.
-// Date Created: 5/13/2022
-// Date Updated: 5/20/2022  
-
->>>>>>> 748266666c84760087d71d682f870a8e2199651f
 import hero from '@salesforce/resourceUrl/hero';
 import { LightningElement, track, api } from 'lwc';
 import IMG from '@salesforce/resourceUrl/NoAltImages';
@@ -161,14 +153,8 @@ export default class HeroResultsComponent extends LightningElement {
     */
     openModal(event) {
         this.viewableModal = !this.viewableModal;
-<<<<<<< HEAD
         this.currentHero=event.srcElement.id;
        
-=======
-        this.currentHero = event.srcElement.id;
-
-        console.log(this.currentHero);
->>>>>>> 748266666c84760087d71d682f870a8e2199651f
     }
 
 
