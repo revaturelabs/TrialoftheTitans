@@ -1,4 +1,46 @@
-<!--LWC for 'Favorite' funtionality, will be a button (probably a child to hero profiles displayed) from utility that depicts a star.-->
+<!--
+    AUTHOR: Daniel Alcala (Github: @dalcala94)
+    CREATED: 2022-05-12
+    LAST MODIFIED: 2022-05-23
+    
+    LWC for 'Favorite' funtionality, will be a button from 'utility' that depicts a star.
+    Nested in Parent component: heroResultsComponent.html (inside LWC's {currentHeroes} for-loop)
+
+    WORKING:
+        Base functionality is implemented and working. This component involves a Boolean variable, favoriteState, which tracks state changes for each hero(user) object.
+        Once this component is clicked, a success toast message appears informing Employer users of their favorite selection(s) being recognized and processed.
+        Once this component is UNCLICKED, an informational toast message appears informing Employer users of their favorite de-selection(s) being recognized and processed.
+
+        Can be found as an custom LWC inside the web-builder for Experience Cloud.
+        Can also be found as an custom LWC inside Lightning App Buildier.
+    
+    
+    TO-DO: Processing Favorites, combination of Salesforce administration + programming responsibilities.
+
+        PROGRAMMATICALLY:
+                        -Utilizing variable, currenthero, to successfully be passed parent, heroResultsComponent, iteration data to hold and be able to access all necessary hero
+                            data.
+
+                        -With the hero object data being inside currenthero -- either utilize an existing/or create an APEX class that will handle a DML insertion when a favorite is
+                            clicked + recognized (hero object data will need to be seen by this apex class or vice-versa). Or if possible, just utilize JavaScript to do this.
+                            Same thing will need to be done for UNFAVORITE funtionality -- utilizing APEX to remove this hero from an employer's favorite list.
+
+                        -All functionality should be handled in method: handleFavoriteClick(). Helper methods are recommended for cleaner code.
+
+                        -Uncomment & utilize favoriteToast() and unfavoriteToast() message variant to actually use hero data (possibly just the name) in display message.
+                         Right now it is a default message to show user interaction success. Can delete this or just comment out.
+        
+    
+        SF ADMINISTRATIVE WORK:
+                        -Need to create an Employer user type. Was gonna base it off of the Hero user but with access to a custom object called FavoritesList.
+
+                        -Make sure Employer user has access to all APEX classes -- should follow the same steps as setting up a Titan and Hero user.
+
+                        -Setup up custom object FavoritesList, and - for now - only let the Employer have read/viewing access. Was thinking this will be a Lookup relationship on the
+                         Employer(Contact object with Employer license).
+                        
+                        -Make sure all necessary DML events correctly insert or remove the favorited hero from the Employer's personal FavoritesList.
+-->
 <template>
     <lightning-button-icon-stateful
         icon-name="utility:favorite"
