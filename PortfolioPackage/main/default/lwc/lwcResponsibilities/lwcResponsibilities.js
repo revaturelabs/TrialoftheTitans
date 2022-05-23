@@ -40,7 +40,7 @@ export default class LwcResponsibilities extends LightningElement {
         this.templateOne = this.templateOne ===true ? false : true;
     }
 
-    @wire(getResponsibilities/*, {projectID: '$getProjectidFromParent'}*/)
+    @wire(getResponsibilities, {projectID: '$getProjectidFromParent'})
     wirevalue(value) {
        
         const { error, data } = value;
