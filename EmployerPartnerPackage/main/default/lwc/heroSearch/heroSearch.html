@@ -1,5 +1,13 @@
+<!--
+Created by Carlos Concepcion
+This component creates a search input and propagates it to the other components  on the page. Shows and Hides Advanced Search.
+
+->>
 <template>
+
+
     <div class="searchComponent">
+        <!-- Search input-->
     <div onkeyup={handleKeyUp}>
         <lightning-input
             class="searchTerm"
@@ -20,7 +28,7 @@
     <div class="slds-m-top_medium slds-m-bottom_x-large">
         
 
-        <!-- Button group: simple buttons -->
+        <!-- Search buttons-->
         
             <lightning-button label="Search" onclick={handleSearchButton} variant="success" ></lightning-button>
             <lightning-button label="Advanced Search" variant="brand" onclick={handleAdvancedClick}></lightning-button>
@@ -34,7 +42,7 @@
 
     
      
-       
+       <!-- Advanced search checkboxes-->
     <lightning-input class="detailOne" type="checkbox" value={remote} label="Include Remote Workers" name="input1" onchange={advDetailChange} ></lightning-input>
     <template if:true={remote}>
         <p class="searchParam"> Search will include Heroes that work remotely. No distance is too great for these extraordinary individuals!</p> 
