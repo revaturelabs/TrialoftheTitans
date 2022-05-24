@@ -77,6 +77,8 @@ Technologies used for this project include: **Salesforce, Apex, Lightning Aura C
 * Cohort Page
 * Portfolio Hub
 * QC Hub
+* Employer Partner Experience Site
+* User Profile "Saga" Page
 
 ## Wireframes
 | Screen | Wireframes |
