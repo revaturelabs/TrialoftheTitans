@@ -1,0 +1,75 @@
+<!--
+Created by: Theodore Moore
+Updated by: Theodore Moore, Quan Nguyen, Carlos Concepcion
+Description: HTML for Display Heroes Component.
+Date Created: 5/13/2022
+Date Updated: 5/20/2022  
+-->
+
+<template>
+  
+  <!--Use template if:true to display/hide popup based on isModalOpen value -->
+  <!-- Modal/Popup Box LWC starts here -->
+  <template if:true={viewableModal}>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+        <div class="slds-modal__header">
+          <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Here Goes the Profile!</h1>
+        </div>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+        <!-- This is the component for our read only portfolio and this needs to be fixed -->
+          <c-read-only-portfolio uid={currentHero}></c-read-only-portfolio>
+        </div>
+        <lightning-button variant="brand"
+              label="Close"
+              title="Close"
+              onclick={openModal}
+              id=""
+              class="slds-m-left_x-small">
+          </lightning-button>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+  </template>
+
+<!-- This is where the indivual cards show up -->
+<div class="slds-grid slds-wrap slds-grid_align-center">
+  <!--This for each is what creates the cards we have to populate 9 on a page -->
+  <!-- Right now there is no image being grabbed and the arete is not implemented 
+  In project as of iteration-xii and this needs to be fixed when it is
+   -->
+    <template for:each={currentHeroes} for:item="hero">
+      <article key={hero.id} class="slds-card slds-size_1-of-4 cardstyling" >
+        <div class="slds-card__body slds-card__body_inner slds-grid">
+          <div class="slds-size_1-of-6 zoomable" onclick={openModal} id={hero.Id}>
+            <template if:true={hero.Link}>
+              <img src={hero.Link} alt="No Image" id={hero.Id}/>
+            </template>
+    <template if:false={hero.Link}>
+              <img src={noImageAltURL} alt="No Image" id={hero.Id} />
+            </template>
+</div>
+<div class="slds-size_4-of-6 centerText zoomable" onclick={openModal} id={hero.Id}>
+    <div id={hero.Id}><strong id={hero.Id}>{hero.Name}</strong></div>
+    <div id={hero.Id}>{hero.Title}</div>
+    <div id={hero.Id}>{hero.Location}</div>
+</div>
+<div class="slds-size_1-of-6">
+    <c-favorite-star></c-favorite-star>
+    <div class="zoomable customFont" onclick={openModal} id={hero.Id}>Arete: {hero.Arete}</div>
+</div>
+</div>
+</article>
+</template>
+</div>
+<!-- These are the buttons for user input to switch the page -->
+<div class="slds-grid slds-m-top_x-large">
+    <div class="slds-size_10-of-12"></div>
+    <button onclick={previousPage} class="slds-size_1-of-12 slds-button slds-button_neutral slds-p-horizontal_none blockDisplay customWidth">{specialChar}</button>
+    <button onclick={nextPage} class="slds-size_1-of-12 slds-button slds-button_neutral slds-p-horizontal_none blockDisplay customWidth">></button>
+    <!-- <lightning-button label=">" onclick={nextPage} class="slds-size_1-of-12 blockDisplay"></lightning-button> -->
+    <lightning-combobox variant="label-hidden" class="slds-size_1-of-12 slds-m-left_xx-small customWidth" value={currentPage} placeholder={currentPage} options={pages} onchange={pageSelect}></lightning-combobox>
+</div>
+
+
+</template>

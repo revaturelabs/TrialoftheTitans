@@ -13,7 +13,7 @@
  import UPDATEABOUTME from '@salesforce/apex/AboutMeCreationController.updateAboutMeSection'; //Importing method from Apex class.
  import { refreshApex } from '@salesforce/apex'; 
  import { ShowToastEvent } from 'lightning/platformShowToastEvent';
- 
+
  
  export default class AboutMeCMP extends LightningElement {
      //****Declaring variables****//
@@ -28,7 +28,7 @@
          Name: NAME,
          About_Me__c: ABOUTME 
      };
- 
+
          //****Streaming data to the component through wire service****//
          @wire (GETABOUTME)
          wirevalue(value){

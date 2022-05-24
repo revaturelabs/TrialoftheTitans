@@ -1,0 +1,41 @@
+<template>
+    <div style={colorForBack} class="content-container">
+
+        <div class="image-container">
+            <!-- Profile Image -->
+            <!-- Get src from org (wire method) -->
+            <img src={profileImgSrc} alt="Profile Image">
+        </div>
+        <div class="info-container">
+            <!-- hero info from org -->
+            <div class="hero-name">
+                <p>{heroName}</p>
+            </div>
+            <div class="hero-title">
+                <p>{heroTitle}</p>
+            </div>
+           
+           <div class="cert-container">
+                <template if:true={isCertListEmpty}>
+                    <!-- Display clickable element to show/hide list of certs -->
+                
+                    <lightning-button-menu 
+                            class="menu-button" alternative-text="Show Certifications"
+                            icon-size="small" icon-name="utility:ribbon">
+                        <template for:each={certList} for:item="cert">
+                            <lightning-menu-item 
+                                key={cert.Id} value={cert} label={cert.List_Label__c}>
+                            </lightning-menu-item>
+                        </template>
+                    </lightning-button-menu>
+                    <span class="cert-text">Certifications</span>
+                </template>
+                <template if:false={isCertListEmpty}>
+                    <!-- No certs found for user, show greyed out -->
+                    <p class="no-certs-text">No certifications to show</p>
+                </template>
+               
+            </div>
+        </div>
+    </div>
+</template>

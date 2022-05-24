@@ -1,0 +1,10 @@
+.slds-card {   
+    font-size:large;
+    padding:5px;
+    margin:10px;
+    background-color:lightgray;
+}
+img {
+    height: 60px;
+    width: 60px;
+}

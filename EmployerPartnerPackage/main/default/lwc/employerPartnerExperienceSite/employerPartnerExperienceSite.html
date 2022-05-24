@@ -1,0 +1,21 @@
+<!--
+  @description       : Creates a page to display portfoloios for empoyers with search fucntions
+  @author            : Carlos Concepcion, Johnny Tran, Daniel Alcala, Theodore Moore, Quan Nguyen
+  @group             : 
+  @last modified on  : 05-12-2022
+  @last modified by  : Quan Nguyen
+  Modifications Log
+  Ver   Date         Author                Modification
+  1.0   05-10-2022   Theodore Moore          Initial Version
+  1.1   05-12-2022   Quan Nguyen             Add filter component and handleFilterEvent method
+  1.2   05-13-2022   Theodore Moore          Add search bar and unworking sort buttons
+-->
+<template>
+  <c-hero-search ontestevent={handleCustomEvent} msg={msg} ></c-hero-search>
+  <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-end slds-m-vertical_x-large">
+    <c-sort-button onsortevent={handlesortevent} heroes={filteredHeroes}></c-sort-button>
+    <c-filter-button unfilteredheroes={heroes} onfilterevent={handlefilterevent}></c-filter-button>
+  </div>
+  <c-hero-results-component heroes={sortedHeroes} msg={msg} ></c-hero-results-component>
+
+</template>

@@ -1,0 +1,41 @@
+/* 
+Created by: Theodore Moore
+Updated by: Quan Nguyen
+Description: CSS for Display Heroes.
+Date Created: 5/13/2022
+Date Updated: 5/20/2022 
+*/
+
+.cardstyling {
+    display: inline-block;
+    /*background-color: lightpink;
+    height: 168px; */
+    margin: 10px;
+}
+
+img {
+    border-color: gray;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.zoomable {
+    cursor: zoom-in;
+}
+
+.customFont {
+    font-size: x-small;
+}
+
+.customWidth {
+    width: 4%;
+}
+
+.blockDisplay {
+    display: inline-block;
+}
