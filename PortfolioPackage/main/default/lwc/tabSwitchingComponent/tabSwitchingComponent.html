@@ -24,9 +24,9 @@
  
            <!-- This is the container for content within the collaspable -->
            <div class="projectComponentContent">
-              Roles: {project.Role__c}
-              Responsibilities: 
-               <c-lwc-responsibilities></c-lwc-responsibilities>
+              <p>Roles: {project.Role__c}</p>
+              <p>Responsibilities:</p>
+               <c-lwc-responsibilities get-projectid-from-parent={project.Id}></c-lwc-responsibilities>
            </div>
          </div>
        </div>
