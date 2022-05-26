@@ -1,0 +1,62 @@
+/* Whole component */
+.projectComponent {
+  display: flex;
+  position: relative;
+  width: 80%;
+  margin-top: 20px;
+  margin: 5%;
+}
+
+.title{
+  padding: 0 15px;
+  position: absolute;
+  top: -15px;
+  left: 150px;
+  background-color: #333333;
+  color: white;
+  font-size: 2rem;
+}
+
+.circleImage {
+  border-radius: 50%;
+  outline: 1rem solid gray;
+  height: 120px;
+  width: 120px;
+  z-index: 1;
+}
+
+.projectBody{
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Clickable container that contains the button */
+.projectDisplayComponent {
+  outline: 1rem solid gray;
+  background-color: lightGray;
+  min-height: 80px;
+  min-width: 70%;
+  margin-top: 2%;
+  z-index: -2;
+}
+
+/* Hides the content with transition */
+.projectContentContainer{
+  max-height: 0;
+
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+/* Content of the collaspable */
+.projectComponentContent{
+  min-width: 100%;
+  padding: 2rem .5rem 1rem .5rem;
+  background-color: lightGray;
+
+}
+
+/* Skill Buttons */
+.btn {
+  margin: 3%;
+}

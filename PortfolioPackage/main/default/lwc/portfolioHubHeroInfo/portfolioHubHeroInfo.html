@@ -5,7 +5,12 @@
 -->
 
 <template>
-    <div class="content-container">
+    <div style={colorForBack} class="content-container">
+        <div class="image-container">
+            <!-- Profile Image -->
+            <!-- Get src from org (wire method) -->
+            <img src={profileImgSrc} alt="Profile Image">
+        </div>
         <div class="info-container">
             <!-- hero info from org -->
             <div class="hero-name">
@@ -41,11 +46,6 @@
                     <p class="no-certs-text">No certifications to show</p>
                 </template>
             </div>
-        </div>
-        <div class="image-container">
-            <!-- Profile Image -->
-            <!-- Get src from org (wire method) -->
-            <img src={profileImgSrc} alt="Profile Image">
         </div>
     </div>
     <!-- Name editing functionality -->
