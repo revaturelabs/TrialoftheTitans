@@ -8,11 +8,11 @@
 
 .content-container {
     display: flex;
-    justify-content: flex-start;
-    /*background-color: #FFC0CB;*/
-    /*background-image: linear-gradient(to right, rgba(0,0,0,0), var(--color-secondary));
+    justify-content: flex-end;
+    background-color: none;
+    background-image: linear-gradient(to right, rgba(0,0,0,0), var(--color-secondary));
     /* Round right corners to align with the profile picture */
-    /*border-radius: 0 calc(var(--photo-small)/2) calc(var(--photo-small)/2) 0; */
+    border-radius: 0 calc(var(--photo-small)/2) calc(var(--photo-small)/2) 0;
 }
 
 .image-container {

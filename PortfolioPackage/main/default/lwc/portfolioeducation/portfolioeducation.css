@@ -12,9 +12,6 @@
     width: 100%;
     background-color: #ffff;
 }
-.imagecontainer{
-    border-radius: 50%;
-}
 .title {
     text-align:left;
     font-size: var(--font-size-heading);
@@ -31,7 +28,7 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 li.logo {
     display: block;
@@ -50,7 +47,7 @@ li.left{
 li.editor { 
     float:right;
     margin-top: 18px;
-    margin-right: 150px;
+    margin-right: 4px;
     cursor: pointer;
     --sds-c-icon-color-foreground: var(--color-accent);
 }
@@ -76,11 +73,6 @@ li.editor {
     /*border: 1px solid yellow; */
     width: 50%;;
     flex:1;
-}
-
-.imagecontainer{
-    width: 50%;
-    height: 80%;
 }
 .dataholder{
     flex: 1;
