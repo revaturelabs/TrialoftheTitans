@@ -1,0 +1,17 @@
+    <!--Masteries tab for portfolio page
+        Written by: Adam Baird, Austin McElrone, Alberto Vergara, & Tim Hinga
+        Date Written: May 12, 2022
+    -->
+<template>
+    <c-d3-donut-chart></c-d3-donut-chart>    
+
+    <br/>
+    <br/>
+    <br/>
+    <c-skills-list onskillclick={handleClick}></c-skills-list>
+
+    <template if:true={loadModal}>
+        <c-assignment-card skill={skillToLoad} onclosemodal={closeModal}></c-assignment-card>
+    </template>
+
+</template>

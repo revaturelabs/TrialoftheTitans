@@ -1,7 +1,7 @@
 /* Author: Gabriela Conrado
     Description: LWC component that allows you to create an About Me section and edit existing ones. 
     Date Created: 03/21/22
-    Modified Date: 03/25/2021
+    Modified Date: 05/23/2022
     Iteration XI */
 
  //Importing Objects and Fields from @salesforce/schema 
