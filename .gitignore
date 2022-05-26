@@ -9,12 +9,6 @@
 # LWC VSCode autocomplete
 **/lwc/jsconfig.json
 
-# scripts folder
-scripts
-
-# LWR config file
-**/lwr.config.json
-
 # LWC Jest coverage reports
 coverage/
 

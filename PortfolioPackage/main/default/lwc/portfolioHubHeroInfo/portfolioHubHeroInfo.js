@@ -9,8 +9,6 @@ import NAME_FIELD from "@salesforce/schema/User.Name";
 import { refreshApex } from "@salesforce/apex";
 import getBasicUserInfo from "@salesforce/apex/UserInfoHelper.getBasicUserInfo";
 import getCertifications from "@salesforce/apex/UserInfoHelper.getCertifications";
-import getTeamInfo from '@salesforce/apex/headerHelper.getTeamInfo';
-import getTechInfo from '@salesforce/apex/headerHelper.getTechInfo';   
 
 export default class PortfolioHub_HeroInfoComponent extends LightningElement {
 
@@ -18,11 +16,6 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
     isEditing = false;
     isShowingCertList = false;
     isCertListEmpty = true;
-
-    //to change the background color behind the hero info section
-    teamName;
-    teamColor;
-    colorForBack="background-color: gray;";
 
     // record-edit-form
     objectApiName = 'User';
@@ -96,10 +89,6 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
         }
     }
 
-    //to change the background color behind the hero info section
-    @wire(getTeamInfo) teamInfo;
-    @wire(getTechInfo) techInfo;
-        
     // Handle edit button for name
     handleEditName() {
         this.toggleModalView();
@@ -119,15 +108,5 @@ export default class PortfolioHub_HeroInfoComponent extends LightningElement {
     // Show/hide modal with edit form
     toggleModalView() {
         this.isEditing = !this.isEditing;
-    }
-
-    //rendered callback function to change the background color of the about me section
-    renderedCallback(){
-        if(this.teamInfo.data && this.techInfo){
-            console.log('test');
-            this.teamName=this.teamInfo.data[0].Name
-            this.teamColor=this.teamInfo.data[0].Primary_Color__c
-            this.colorForBack="background-color: "+this.teamColor +";";
-        }  
     }
 }

@@ -1,8 +1,0 @@
-@import "c/styleResource";
-
-/*Creates the border and sets backgrount color for container */
-.tabContainer{
-    background-color:rgb(167, 164, 164);
-    padding: 25px;
-    border-radius: 20px;
-}

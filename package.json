@@ -26,5 +26,18 @@
     "lint-staged": "^10.0.7",
     "prettier": "2.5.1",
     "prettier-plugin-apex": "^1.10.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
+      "prettier --write"
+    ],
+    "**/{aura|lwc}/**": [
+      "eslint"
+    ]
   }
 }
