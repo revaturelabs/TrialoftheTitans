@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>User_Story__c</members>
+        <members>Skill_Responsibility__c</members>
+        <members>Responsibility__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Project__c.Wireframe__c</members>
+        <members>Project__c.Video__c</members>
+        <members>Project__c.Github__c</members>
+        <members>Custom_Skill__c.Project__c</members>
+        <members>Custom_Skill__c.User_Story__c</members>
+        <name>CustomField</name>
+    </types>
+    <version>53.0</version>
+</Package>
