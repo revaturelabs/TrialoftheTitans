@@ -1,0 +1,17 @@
+div { /*body (under title)*/
+    --background-color: #ffffff;
+    font-family: futura-pt;
+    font-size: 1.3 em;
+}
+  
+.container {
+    background-color: var(--background-color);
+}
+  
+lightning-card { /*title (above body)*/
+    --sds-c-card-color-background: var(--background-color);
+    --sds-c-card-text-color: #f26925;
+    font-family: futurabold;
+    font-size: 2 em;
+}
+  

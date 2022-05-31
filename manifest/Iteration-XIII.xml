@@ -14,5 +14,9 @@
         <members>Custom_Skill__c.User_Story__c</members>
         <name>CustomField</name>
     </types>
+    <types>
+        <members>projectOverviewPage</members>
+        <name>LightningComponentBundle</name>
+    </types>
     <version>53.0</version>
 </Package>
