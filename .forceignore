@@ -71,9 +71,9 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 TrialoftheTitansPackage/main/default
 PortfolioPackage/main/default
 DataFactory
-ExamInterviewPackage/lwc
-TitanHubPackage/main/default
-!TitanHubPackage/main/default/objects/user_story__c
+#ExamInterviewPackage/lwc
+#TitanHubPackage/main/default
+#!TitanHubPackage/main/default/objects/user_story__c
 **/ExamQuestionFlagPackage
 **/tabs/standard-home.tab-meta.xml
 
