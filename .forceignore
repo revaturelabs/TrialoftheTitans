@@ -5,7 +5,7 @@
 
 # GitHub Readme
 **/README.md
-
+**.pdf
 # LWC configuration files
 **/jsconfig.json
 **/.eslintrc.json
@@ -34,19 +34,19 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 #All this stuff you may want to enable to disable
 #depending on what you are wanting to pull/push
 
-#**/aura
-#**/components
-#**/pages
-#**/classes
+**/aura
+**/components
+**/pages
+**/classes
 #!**/profiles/Admin.profile-meta.xml
 #!**/profiles/Hero.profile-meta.xml
-#!**/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
+#**/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
 #!**/profiles/Trial-of-the-Titans-User.profile-meta.xml
-#**/profiles
-#**/layouts
-#**/applications
-#**/flows
-#**/flexipages
+**/profiles
+**/layouts
+**/applications
+**/flows
+**/flexipages
 
 **/flexipages/Exam_Home.flexipage-meta.xml
 **/flexipages/Exam_Record_Page.flexipage-meta.xml
@@ -67,13 +67,18 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 **/objects/QC_Flag__c
 **/objects/QC_Question_Deck__c
 
-# **/HeroHubPackage
-
+**/HeroHubPackage
+TrialoftheTitansPackage/main/default
+PortfolioPackage/main/default
+DataFactory
+#ExamInterviewPackage/lwc
+#TitanHubPackage/main/default
+#!TitanHubPackage/main/default/objects/user_story__c
 **/ExamQuestionFlagPackage
 **/tabs/standard-home.tab-meta.xml
 
-#ChartPackage/main/default/ 
-#HeroHubPackage/main/default/ 
+ChartPackage/main/default/ 
+HeroHubPackage/main/default/ 
 #TitanHubPackage/main/default/
 TitanHubPackage/main/default/profiles/Admin.profile-meta.xml
 

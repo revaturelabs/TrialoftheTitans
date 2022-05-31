@@ -17,7 +17,7 @@ public without sharing class portfolioProjectHelper {
         
         //query to get the latest 3 projects related to the logged in user
         List<Project__c> projects = [
-            SELECT Id, Name, Description__c, Role__c
+            SELECT Name, Description__c
             FROM Project__c
             WHERE User__c = :uid
             ORDER BY CreatedDate DESC
