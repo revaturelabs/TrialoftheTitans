@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Skill__c</fullName>
+    <externalId>false</externalId>
+    <label>Skill</label>
+    <referenceTo>Skill__c</referenceTo>
+    <relationshipLabel>ExamtoSkills</relationshipLabel>
+    <relationshipName>ExamtoSkills</relationshipName>
+    <relationshipOrder>1</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

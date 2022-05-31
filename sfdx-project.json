@@ -1,11 +1,10 @@
 {
-    "packageDirectories": [
-        {
+    "packageDirectories": [{
             "path": "TrialoftheTitansPackage",
             "package": "TrialOfTheTitansPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": true,
+            "default": false,
             "dependencies": [
                 {
                     "package": "ChartPackage@1.0.0-1"
@@ -42,20 +41,26 @@
         },
         {
             "path": "PortfolioPackage",
-            "default": false,
+            "default": true,
             "package": "PortfolioPackage",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "dependencies": [
-                {
-                    "package": "TrialOfTheTitansPackage@0.1.0-5"
-                }
-            ]
+            "dependencies": [{
+                "package": "TrialOfTheTitansPackage@0.1.0-5"
+            }]
         },
         {
             "path": "DataFactory",
             "default": false
+        },
+      {
+            "path": "EmployerPartnerPackage",
+            "package": "EmployerPartnerPackage",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": false
         }
+
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
@@ -72,6 +77,8 @@
         "Titan Hub Package": "0Ho5f0000010wYXCAY",
         "PortfolioHub": "0Ho8c000000CaljCAC",
         "PortfolioPackage": "0Ho8c000000CaloCAC",
-        "PortfolioPackage@0.1.0-1": "04t8c000000Bq37AAC"
+        "PortfolioPackage@0.1.0-1": "04t8c000000Bq37AAC",
+        "EmployerPartnerPackage": "0HoIY00000000FL0AY"
+
     }
 }

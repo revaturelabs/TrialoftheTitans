@@ -12,6 +12,9 @@
     width: 100%;
     background-color: #ffff;
 }
+.imagecontainer{
+    border-radius: 50%;
+}
 .title {
     text-align:left;
     font-size: var(--font-size-heading);
@@ -28,7 +31,7 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 li.logo {
     display: block;

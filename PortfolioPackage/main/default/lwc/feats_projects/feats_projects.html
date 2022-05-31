@@ -1,0 +1,42 @@
+
+<template>
+    <!-- <p class="slds-text-heading_small">{activeSectionMessage}</p> -->
+    <lightning-accordion class="example-accordion" onsectiontoggle={handleToggleSection}>
+
+            <!-- Checking if theres any projects returned -->
+            <template if:true={exist}>
+                <!-- Loop through the projects list -->
+                <template for:each={projects} for:item="project">
+                    <div key={project.Id}>
+                        <lightning-card>
+                            <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+                                <lightning-layout>
+                                    <lightning-layout-item padding="around-small">
+                                        <div class="custom-box slds-box slds-p-around_medium slds-text-align_center">Skill 1</div>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item padding="around-small">
+                                        <div class="custom-box slds-box slds-p-around_medium slds-text-align_center">Skill 2</div>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item padding="around-small">
+                                        <div class="custom-box slds-box slds-p-around_medium slds-text-align_center">Skill 3</div>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item padding="around-small">
+                                        <div class="custom-box slds-box slds-p-around_medium slds-text-align_center">Skill 4</div>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            </div>
+                            <lightning-accordion-section name={project.Id} label={project.Name}>
+                                <div>Role: {project.Role__c}</div>
+
+                                <!-- display Chris' responsibilities component here -->
+
+                            </lightning-accordion-section>
+                    </lightning-card>
+                    </div>
+                </template>
+            </template>
+    </lightning-accordion>
+
+
+    <!-- 2nd implmentation -->
+</template>
