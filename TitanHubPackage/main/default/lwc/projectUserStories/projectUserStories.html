@@ -1,0 +1,14 @@
+<template>
+    <template if:true={hasUserStories}>
+        <lightning-accordion>
+            <template for:each={filteredUserStories} for:item="userStory">
+                <lightning-accordion-section key={userStory.Id} label={userStory.Name}>
+                    {userStory.Description__c}
+                </lightning-accordion-section>
+            </template>
+        </lightning-accordion>
+    </template>
+    <template if:false={hasUserStories}>
+        <div class="slds-text-heading_medium">There are currently no user stories associated with this project.</div>
+    </template>
+</template>
