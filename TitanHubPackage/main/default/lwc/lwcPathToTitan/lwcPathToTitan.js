@@ -15,6 +15,7 @@ import { NavigationMixin } from 'lightning/navigation';
 import getAccount from "@salesforce/apex/PathToTitanController.getAccount";
 import getSquad from "@salesforce/apex/PathToTitanController.getSquad";
 import getExamAndResultsList from "@salesforce/apex/PathToTitanController.getExamAndResultsList";
+import getProjectInfo from '@salesforce/apex/UserStoryController.getProjectInfo';
 
 export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
 
@@ -32,6 +33,10 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
     @wire(getAccount) accInfo;
     @wire(getSquad) squadInfo;
 
+    // adding project info and titan id
+   @wire(getProjectInfo, {titanId: '$titanId'})
+    projectStorage;
+    
     // Wire function to get all the Exam Results associated with the provided Titan and Account Id
     @wire(getExamAndResultsList, {titanId: '$titanId', accountId:'$accountId'}) 
     examAndResultsList;

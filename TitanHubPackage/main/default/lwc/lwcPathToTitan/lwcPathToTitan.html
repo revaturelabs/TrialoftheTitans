@@ -14,6 +14,8 @@
      
         <!-- Dynamic Path Chart -->
         <div class="child-container2">
+            <!--<button name="projectButton">{projectStorage.data.Id}</button> -->
+            {projectStorage.Name}
             <!-- Iterator to Generate Columns if data exists -->
             <template if:true={examAndResultsList.data}>
                 <template for:each={examAndResultsList.data} for:item="examTile">

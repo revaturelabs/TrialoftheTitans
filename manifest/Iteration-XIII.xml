@@ -16,6 +16,7 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>lwcPathToTitan</members>
         <members>projectOverviewPage</members>
         <members>projectUserStories</members>
         <name>LightningComponentBundle</name>
