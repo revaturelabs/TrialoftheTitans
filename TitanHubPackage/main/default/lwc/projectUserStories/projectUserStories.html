@@ -1,9 +1,30 @@
-<template>
+<template>    
     <template if:true={hasUserStories}>
         <lightning-accordion>
+            <!-- Lightning accordion has to have one section open by default,
+                but all user stories should be collapsed unless opened by user,
+                so this hidden accordion section is a workaround -->
+            <lightning-accordion-section class="hidden-accordion"></lightning-accordion-section>
             <template for:each={filteredUserStories} for:item="userStory">
                 <lightning-accordion-section key={userStory.Id} label={userStory.Name}>
                     {userStory.Description__c}
+                    <div class="slds-grid">
+                        <template if:true={userStory.Wireframe__c}>
+                            <div class="slds-col">
+                                <a class="slds-button slds-button_neutral" href={userStory.Wireframe__c}>Wireframe</a>
+                            </div>
+                        </template>
+                        <template if:true={userStory.Github__c}>
+                            <div class="slds-col">
+                                <a class="slds-button slds-button_neutral" href={userStory.Github__c}>GitHub</a>
+                            </div>
+                        </template>
+                        <template if:true={userStory.Video__c}>
+                            <div class="slds-col">
+                                <a class="slds-button slds-button_neutral" href={userStory.Video__c}>Video</a>
+                            </div>
+                        </template>
+                    </div>
                 </lightning-accordion-section>
             </template>
         </lightning-accordion>

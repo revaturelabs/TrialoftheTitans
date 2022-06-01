@@ -15,7 +15,7 @@ export default class ProjectUserStories extends LightningElement {
         if (data) {
             this.allUserStories = data;
             this.filteredUserStories = [...this.allUserStories];
-            if (this.allUserStories.length > 0) {
+            if (this.allUserStories) {
                 this.hasUserStories = true;
             }
         }
