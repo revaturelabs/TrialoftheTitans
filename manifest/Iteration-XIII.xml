@@ -20,5 +20,9 @@
         <members>projectUserStories</members>
         <name>LightningComponentBundle</name>
     </types>
+    <types>
+        <members>UserStoryController</members>
+        <name>ApexClass</name>
+    </types>
     <version>53.0</version>
 </Package>
