@@ -10,6 +10,7 @@
         <members>Project__c.Wireframe__c</members>
         <members>Project__c.Video__c</members>
         <members>Project__c.Github__c</members>
+        <members>Project__c.Titan__c</members>
         <members>Custom_Skill__c.Project__c</members>
         <members>Custom_Skill__c.User_Story__c</members>
         <name>CustomField</name>
