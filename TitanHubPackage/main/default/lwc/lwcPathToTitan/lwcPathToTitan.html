@@ -15,7 +15,11 @@
         <!-- Dynamic Path Chart -->
         <div class="child-container2">
             <!--<button name="projectButton">{projectStorage.data.Id}</button> -->
-            {projectStorage.Name}
+            <template if:true={projectStorage.data}>
+                <div class="slds-col tile_holder">
+                    <button class="Assigned">{projectStorage.data.Name}</button>
+                </div>
+            </template>
             <!-- Iterator to Generate Columns if data exists -->
             <template if:true={examAndResultsList.data}>
                 <template for:each={examAndResultsList.data} for:item="examTile">
