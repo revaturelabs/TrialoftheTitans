@@ -2,11 +2,13 @@
     <div class="container">
         <div>filtering area</div>
 
-        <div>show user stories</div>
+        <div id="user-stories">
+            <c-project-user-stories></c-project-user-stories>
+        </div>
 
         <div>
-            <button class="slds-button slds-button_neutral">Back to Titan</button>
-            <button class="slds-button slds-button_neutral">Submit</button>
+            <lightning-button label="Back To Titan" title="" onclick={handleBackToTitanClick} class="slds-m-left_x-small"></lightning-button>
+            <lightning-button label="Submit Project" title="" onclick={handleSubmitProjectClick} class="slds-m-left_x-small"></lightning-button>
         </div>
     </div>
 </template>

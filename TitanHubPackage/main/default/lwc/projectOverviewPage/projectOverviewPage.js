@@ -1,3 +1,11 @@
-import { LightningElement } from 'lwc';
+import { api, LightningElement, wire } from 'lwc';
+export default class ProjectOverviewPage extends LightningElement {
+    /* button handlers */
+    handleBackToTitanClick() {
+        //nothing here yet
+    }
 
-export default class ProjectOverviewPage extends LightningElement {}
+    handleSubmitProjectClick() {
+        //nothing here yet
+    }
+}
