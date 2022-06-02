@@ -9,12 +9,12 @@ public with sharing class ProjectController {
 
     // get responsibilities
     public static List<Responsibility__c> getResponsibilities(Id projectId) {
-        return [SELECT Name FROM Responsibility__c WHERE Project__r = :projectId];
+        return [SELECT Name FROM Responsibility__c WHERE Project__c = :projectId];
     }
 
     // get skills
     public static List<Skill_Responsibility__c> getSkills(Id responId) {
-        return [SELECT Name FROM Skill_Responsibility__c WHERE Responsibility__r = :responId];
+        return [SELECT Name FROM Skill_Responsibility__c WHERE Responsibility__c = :responId];
     }
 
     // get roles

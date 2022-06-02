@@ -18,11 +18,12 @@
     <types>
         <members>projectOverviewPage</members>
         <members>projectUserStories</members>
+        <members>projectResponsiblity</members>
         <name>LightningComponentBundle</name>
-        <members>projectResponsibility</members>
     </types>
     <types>
         <members>UserStoryController</members>
+        <members>ProjectController</members>
         <name>ApexClass</name>
     </types>
     <version>53.0</version>
