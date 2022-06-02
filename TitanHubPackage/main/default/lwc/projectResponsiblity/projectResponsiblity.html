@@ -1,3 +1,49 @@
+<!-- 
+  Name: Project Responsibility section 
+  Author: Rhys Kim
+  Created: 6/1/2022
+  Updated: 6/2/2022
+  Description: An editable Lightning Web Component that displays a project's responsibilities
+-->
+
 <template>
-  
+  <template if:true={hasResponsibility}>
+    <lightning-card>
+      <lightning-button-icon icon-name="utility:delete" icon-class="slds-button__icon_medium" onclick={openModal}>
+        <span class="slds-assistive-text">Delete responsibility</span>
+      </lightning-button-icon>
+
+      <h1>Responsibility</h1>
+      <lightning-input-rich-text 
+        disabled-categories="FORMAT_FONT,FORMAT_TEXT,ALIGN_TEXT,INSERT_CONTENT"
+      >
+      </lightning-input-rich-text>
+
+      <!-- skills component here -->
+
+      <!-- prompt modal -->
+      <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-label="Confirm to delete responsibility" class="slds-modal slds-fade-in-open">
+          <div class="slds-modal__container">
+            <lightning-button-icon
+              class="slds-modal__close slds-button__icon-inverse"
+              icon-name="utility:close"
+              icon-class="slds-button__icon_large"
+            >
+              <span class="slds-assistive-text">Cancel and close</span>
+            </lightning-button-icon>
+            <div class="slds-modal__content slds-p-around_medium slds-modal__content_headless" id="modal-content-id-1">
+              <p>Are you sure you want to delete this responsibility?</p>
+            </div>
+            <div class="slds-modal__footer">
+              <lightning-button variant="neutral" onclick={closeModal}>No</lightning-button>
+              <lightning-button variant="destructive" onclick={confirmDelete}>Yes</lightning-button>
+            </div>
+          </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+      </template>
+
+    </lightning-card>
+  </template>
 </template>
