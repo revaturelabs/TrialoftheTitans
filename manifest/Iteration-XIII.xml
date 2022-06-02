@@ -33,6 +33,9 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
+        <members>projectOverview</members>
+        <name>LightningMessageChannel</name>
+    <types>
         <members>UserStoryController</members>
         <name>ApexClass</name>
     </types>
