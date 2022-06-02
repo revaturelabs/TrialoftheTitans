@@ -22,6 +22,6 @@ export default class TitanSummary extends LightningElement {
     }
 
     handleMessage(message) {
-        this.displayProject = true;
+        this.displayProject = message.displayProjectOverview;
     }
 }
