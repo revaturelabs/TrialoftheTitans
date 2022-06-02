@@ -8,13 +8,20 @@
 // 
 /////////////////////////////////////////////////////////////////////////////////
 
-
+import projectOverview from '@salesforce/messageChannel/projectOverview__c';
+import { subscribe, publish, MessageContext } from 'lightning/messageService';
 import { LightningElement, api } from 'lwc';
 
 export default class TitanSummary extends LightningElement {
     @api
-    testing;
-    
-    @api
     displayProject;
+    connectedCallback() {
+        this.subscription = subscribe(
+            this.context, myChannel, (message) => this.handleMessage(message)
+        );
+    }
+
+    handleMessage(message) {
+        this.displayProject = true;
+    }
 }

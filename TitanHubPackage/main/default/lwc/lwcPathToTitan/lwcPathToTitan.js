@@ -35,7 +35,8 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
     //Wire functions to get Account and Squad Information based on current user
     @wire(getAccount) accInfo;
     @wire(getSquad) squadInfo;
-
+    @wire(MessageContext) context;
+    
     // adding project info and titan id for button 
    @wire(getProjectInfo, {titanId: '$titanId'})
    getProject({error, data}) {
@@ -82,9 +83,8 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
     }
 
     // function to display the project and user info in container 
-    switchToProject(event) {
-        event.preventDefault();
-        const switchEvent = new CustomEvent('switch', {detail: this.projectId});
-        this.dispatchEvent(switchEvent);
+    switchToProject() {
+        data = {projectId: this.projectId, displayProjectOverview: true};
+        publish(this.context, projectOwverview, data);
     }
 }
