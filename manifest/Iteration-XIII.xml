@@ -4,6 +4,7 @@
         <members>User_Story__c</members>
         <members>Skill_Responsibility__c</members>
         <members>Responsibility__c</members>
+        <members>User_Story_Skill_Junction__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -12,6 +13,7 @@
         <members>Responsibility__c-Responsibility Layout</members>
         <members>Project__c-Project Layout</members>
         <members>Custom_Skill__c-Custom_Skill Layout</members>
+        <members>User_Story_Skill_Junction__c-User Story Skill Junction Layout</members>
         <name>Layout</name>
     </types>
     <types>
@@ -20,7 +22,7 @@
         <members>Project__c.Github__c</members>
         <members>Project__c.Titan__c</members>
         <members>Custom_Skill__c.Project__c</members>
-        <members>Custom_Skill__c.User_Story__c</members>
+        <members>User_Story__c.Project__c</members>
         <name>CustomField</name>
     </types>
     <types>
