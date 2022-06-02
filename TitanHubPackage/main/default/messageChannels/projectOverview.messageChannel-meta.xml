@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>This message channel is for events related to the Project Overview comopnents.</description>
+    <description>This message channel is for events related to the Project Overview components.</description>
     <isExposed>false</isExposed>
     <lightningMessageFields>
         <description>Project ID</description>

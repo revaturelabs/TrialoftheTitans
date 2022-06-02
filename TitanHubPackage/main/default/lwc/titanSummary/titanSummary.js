@@ -10,11 +10,14 @@
 
 import projectOverview from '@salesforce/messageChannel/projectOverview__c';
 import { subscribe, MessageContext } from 'lightning/messageService';
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 
 export default class TitanSummary extends LightningElement {
     displayProject;
 
+    @wire(MessageContext)
+    context;
+    
     connectedCallback() {
         this.subscription = subscribe(
             this.context, projectOverview, (message) => this.handleMessage(message)
