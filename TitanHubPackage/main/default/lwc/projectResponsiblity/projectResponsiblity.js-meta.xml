@@ -3,9 +3,9 @@
     <apiVersion>54.0</apiVersion>
     <isExposed>true</isExposed>
     <targets>
-        <target>lightning__AppPage</target>
-        <target>lightning__RecordPage</target>
+        <target>lightning__Tab</target>
         <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Page_Layout</target>
         <target>lightningCommunity__Default</target>
     </targets>
 </LightningComponentBundle>
