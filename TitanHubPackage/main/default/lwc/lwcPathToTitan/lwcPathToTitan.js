@@ -85,6 +85,6 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
     // function to display the project and user info in container 
     switchToProject() {
         data = {projectId: this.projectId, displayProjectOverview: true};
-        publish(this.context, projectOwverview, data);
+        publish(this.context, projectOverview, data);
     }
 }
