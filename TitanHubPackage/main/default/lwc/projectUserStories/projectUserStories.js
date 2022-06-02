@@ -5,9 +5,6 @@ export default class ProjectUserStories extends LightningElement {
     hasUserStories = false;
     allUserStories;
     filteredUserStories;
-
-    //temporarily hard-coded value until path to titan is updated
-    @api
     projectId;
 
     @wire(getUserStories, {projectId: '$projectId'})

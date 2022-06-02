@@ -1,7 +1,10 @@
 <template>
+    <template if:true={testing}>
+        {testing}
+    </template>
     <template if:true={displayProject}>
         <div class="container">
-        <c-project-overview-page></c-project-overview-page>
+            <c-project-overview-page></c-project-overview-page>
         </div>
     </template>
     <template if:false={displayProject}>

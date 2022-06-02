@@ -13,5 +13,8 @@ import { LightningElement, api } from 'lwc';
 
 export default class TitanSummary extends LightningElement {
     @api
+    testing;
+    
+    @api
     displayProject;
 }

@@ -23,10 +23,4 @@ export default class TitanHubPage extends LightningElement {
         this.titanId = this.urlStateParameters.c__titanId || null;
         this.accountId = this.urlStateParameters.c__accountId || null;
     }
-
-    loadProject(event) {
-        const projectId = event.detail;
-        this.template.querySelector('c-project-user-stories').projectId = projectId;
-        this.template.querySelector('c-titan-summary').displayProject = true;
-    }
 }
