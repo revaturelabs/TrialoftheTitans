@@ -1,0 +1,50 @@
+<!--
+    Created by: Kyle Stetz
+    Date Last Modified: 6/1/2022
+    Description: Pop-up Modal for when the submit button is clicked on the project overview page
+-->
+<template>
+    <template if:true={showModal}>
+        <section
+        role = "dialog"
+        tabindex="-1"
+        aria-labelledby="Roles and Responsibilites Pop-up"
+        aria-modal="true"
+        aria-describedby="Roles and Responsibilities id"
+        class="slds-modal slds-fade-in-open"
+        >
+        <div class = "container">
+            <header class="slds-modal_header">
+                <lightning-button-icon 
+                class="slds-modal_close"
+                title="Close"
+                icon-name="utility:close"
+                icon-class="slds-button_icon_inverse"
+                onclick={handleDialogClose}
+                ></lightning-button-icon>
+                <h2 class="slds-text-heading_medium slds-hyphenate"></h2>
+                <!--Add Header stuff here-->
+            </header>
+            <div
+            class="slds-modal_content slds-p-around_medium"
+            id="modal-content-id-1"
+            >
+            <h2>Roles:</h2>
+
+<!--Add Body components here-->
+            
+                <lightning-button-icon
+                    icon-name="utility:add"
+                    variant="bare"
+                    onclick={addResponsibility}
+                    alternative-text="Add Responsibility"
+                    class="slds-m-left_xx-medium"
+                    title="Add Responsibility"
+                ></lightning-button-icon>
+            </div>
+        </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+</template>
