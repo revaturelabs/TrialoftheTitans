@@ -15,9 +15,9 @@
         <!-- Dynamic Path Chart -->
         <div class="child-container2">
             <!--<button name="projectButton">{projectStorage.data.Id}</button> -->
-            <template if:true={projectStorage.data}>
+            <template if:true={projectName}>
                 <div class="slds-col tile_holder">
-                    <button class="Assigned">{projectStorage.data.Name}</button>
+                    <button class="Assigned" onclick={switchToProject}>{projectName}</button>
                 </div>
             </template>
             <!-- Iterator to Generate Columns if data exists -->

@@ -1,5 +1,10 @@
 <template>
-
+    <template if:true={displayProject}>
+        <div class="container">
+        <c-project-overview-page></c-project-overview-page>
+        </div>
+    </template>
+    <template if:false={displayProject}>
         <div class="container">
             <lightning-tabset class="tabset">
 
@@ -16,5 +21,5 @@
                 </lightning-tab>
             </lightning-tabset>
         </div>
-
+    </template>
 </template>

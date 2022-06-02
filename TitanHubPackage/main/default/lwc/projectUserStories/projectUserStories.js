@@ -8,7 +8,7 @@ export default class ProjectUserStories extends LightningElement {
 
     //temporarily hard-coded value until path to titan is updated
     @api
-    projectId = 'a0L7z0000004KbFEAU';
+    projectId;
 
     @wire(getUserStories, {projectId: '$projectId'})
     fetchUserStories({error, data}) {

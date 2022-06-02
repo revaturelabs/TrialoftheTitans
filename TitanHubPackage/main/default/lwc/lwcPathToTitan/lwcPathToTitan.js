@@ -24,6 +24,8 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
     heroTitle;
     heroName;
     squadName;
+    projectId;
+    projectName;
 
     //Variables to receive from Hero Hub Component
     @api titanId;
@@ -33,9 +35,18 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
     @wire(getAccount) accInfo;
     @wire(getSquad) squadInfo;
 
-    // adding project info and titan id
+    // adding project info and titan id for button 
    @wire(getProjectInfo, {titanId: '$titanId'})
-    projectStorage;
+   getProject({error, data}) {
+    if (data) {
+        this.projectId = data.Id;
+        this.projectName = data.Name;
+    }
+    else if (error) {
+        console.error(error);
+    }
+   }
+    
     
     // Wire function to get all the Exam Results associated with the provided Titan and Account Id
     @wire(getExamAndResultsList, {titanId: '$titanId', accountId:'$accountId'}) 
@@ -67,5 +78,12 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
                 c__accId: this.accountId
              }
         });
+    }
+
+    // function to display the project and user info in container 
+    switchToProject(event) {
+        event.preventDefault();
+        const switchEvent = new CustomEvent('switch', {detail: this.projectId});
+        this.dispatchEvent(switchEvent);
     }
 }
