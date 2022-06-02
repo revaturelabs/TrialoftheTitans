@@ -16,7 +16,8 @@ import getAccount from "@salesforce/apex/PathToTitanController.getAccount";
 import getSquad from "@salesforce/apex/PathToTitanController.getSquad";
 import getExamAndResultsList from "@salesforce/apex/PathToTitanController.getExamAndResultsList";
 import getProjectInfo from '@salesforce/apex/UserStoryController.getProjectInfo';
-import projectOverview from '@salesforce/messageChannel/projectOverview';
+import projectOverview from '@salesforce/messageChannel/projectOverview__c';
+import { subscribe, publish, MessageContext } from 'lightning/messageService';
 export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
 
     // Variables to Display Hero Details at Top of Component
