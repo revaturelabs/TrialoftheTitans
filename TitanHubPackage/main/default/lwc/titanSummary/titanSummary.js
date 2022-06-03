@@ -8,9 +8,9 @@
 // 
 /////////////////////////////////////////////////////////////////////////////////
 
+import { LightningElement, api, wire } from 'lwc';
 import projectOverview from '@salesforce/messageChannel/projectOverview__c';
 import { subscribe, MessageContext } from 'lightning/messageService';
-import { LightningElement, api, wire } from 'lwc';
 
 export default class TitanSummary extends LightningElement {
     displayProject;
