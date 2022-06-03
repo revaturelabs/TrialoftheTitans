@@ -35,6 +35,7 @@
     <types>
         <members>projectOverview</members>
         <name>LightningMessageChannel</name>
+    </types>
     <types>
         <members>UserStoryController</members>
         <name>ApexClass</name>
