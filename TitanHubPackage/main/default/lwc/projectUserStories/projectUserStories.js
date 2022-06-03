@@ -5,7 +5,6 @@ import getProjectSkill from '@salesforce/apex/UserStoryController.getProjectSkil
 
 export default class ProjectUserStories extends LightningElement {
     allUserStories;
-
     filteredUserStories;
 
     skillList;
@@ -30,7 +29,7 @@ export default class ProjectUserStories extends LightningElement {
         if (data) {
             this.skillMap = data;
             this.skillList = Object.keys(data);
-            //console.error(data);
+            //console.log(data);
         }
         else if (error) {
             console.error(error);
@@ -39,9 +38,8 @@ export default class ProjectUserStories extends LightningElement {
 
     skillcheck(event){
         console.log(event.target.dataset.name);
-        console.log(this.filteredUserStories);
+        //console.log(this.filteredUserStories);
+        console.log(this.skillMap);
         this.filteredUserStories = this.skillMap.get(event.target.dataset.name);
-        
     }
-
 }

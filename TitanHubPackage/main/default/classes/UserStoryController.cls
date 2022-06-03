@@ -11,28 +11,35 @@ public without sharing class UserStoryController {
     }
 
     @AuraEnabled(cacheable=true)
-    public static Map<String, List<String>> getProjectSkill(ID projectId) {
-        List<User_Story_Skill_Junction__c> storySkills =  [SELECT Name, Custom_Skill__r.name, User_Story__r.name 
+    public static Map<String, List<User_Story__c>> getProjectSkill(ID projectId) {
+        List<User_Story_Skill_Junction__c> storySkills =  [SELECT Name, Custom_Skill__r.name, User_Story__r.id 
                                                            FROM User_Story_Skill_Junction__c 
                                                            WHERE User_Story__r.Project__r.Id= :projectId];
+        
+        List<User_Story__c> userStoryList =  getUserStories(projectId);
 
-        Map<String, List<String>> skillMap = new Map<String, List<String>>();
+        Map<String, List<User_Story__c>> skillMap = new Map<String, List<User_Story__c>>();
 
         for(User_Story_Skill_Junction__c item : storySkills){
             
             String skillName = item.Custom_Skill__r.name;
-            String storyName = item.User_Story__r.name;
+            User_Story__c userStoryObj;
 
-            //System.debug(skillName + ' ' + storyName);
+            for(User_Story__c storyItem : userStoryList){
+                if(storyItem.Id == item.User_Story__r.id){
+                    userStoryObj = storyItem;
+                    break;
+                }
+            }
 
             if(!skillMap.containsKey(skillName)){
-                skillMap.put(skillName, new List<String>());
+                skillMap.put(skillName, new List<User_Story__c>());
                 
             }
-            skillMap.get(skillName).add(storyName);
+            skillMap.get(skillName).add(userStoryObj);
         }
     
-        //System.debug(skillMap);
+        System.debug(skillMap);
 
         return skillMap;
     }
