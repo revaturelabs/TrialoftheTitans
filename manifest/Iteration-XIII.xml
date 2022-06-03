@@ -19,6 +19,7 @@
         <members>projectOverviewPage</members>
         <members>projectUserStories</members>
         <members>projectResponsiblity</members>
+        <members>rolesModal</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
