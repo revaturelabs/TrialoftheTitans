@@ -9,7 +9,6 @@
   padding: 10px;
   border-radius: 5px;
   background-color: white;
-
 }
 
 .tabset {
@@ -25,3 +24,12 @@
   background-color: #bbbbbb;
 }
 
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+c-project-overview-page {
+  width: 100%;
+}

@@ -15,7 +15,9 @@ import { NavigationMixin } from 'lightning/navigation';
 import getAccount from "@salesforce/apex/PathToTitanController.getAccount";
 import getSquad from "@salesforce/apex/PathToTitanController.getSquad";
 import getExamAndResultsList from "@salesforce/apex/PathToTitanController.getExamAndResultsList";
-
+import getProjectInfo from '@salesforce/apex/UserStoryController.getProjectInfo';
+import projectOverview from '@salesforce/messageChannel/projectOverview__c';
+import { publish, MessageContext } from 'lightning/messageService';
 export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
 
     // Variables to Display Hero Details at Top of Component
@@ -23,6 +25,8 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
     heroTitle;
     heroName;
     squadName;
+    projectId;
+    projectName;
 
     //Variables to receive from Hero Hub Component
     @api titanId;
@@ -31,7 +35,20 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
     //Wire functions to get Account and Squad Information based on current user
     @wire(getAccount) accInfo;
     @wire(getSquad) squadInfo;
-
+    @wire(MessageContext) context;
+    
+    // adding project info and titan id for button 
+   @wire(getProjectInfo, {titanId: '$titanId'})
+   getProject({error, data}) {
+    if (data) {
+        this.projectId = data.Id;
+        this.projectName = data.Name;
+    }
+    else if (error) {
+        console.error(error);
+    }
+   }
+    
     // Wire function to get all the Exam Results associated with the provided Titan and Account Id
     @wire(getExamAndResultsList, {titanId: '$titanId', accountId:'$accountId'}) 
     examAndResultsList;
@@ -62,5 +79,11 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
                 c__accId: this.accountId
              }
         });
+    }
+
+    // function to display the project and user info in container 
+    switchToProject() {
+        const data = {projectId: this.projectId, displayProjectOverview: true};
+        publish(this.context, projectOverview, data);
     }
 }

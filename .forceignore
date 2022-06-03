@@ -43,7 +43,7 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 #**/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
 #!**/profiles/Trial-of-the-Titans-User.profile-meta.xml
 **/profiles
-**/layouts
+#**/layouts
 **/applications
 **/flows
 **/flexipages
