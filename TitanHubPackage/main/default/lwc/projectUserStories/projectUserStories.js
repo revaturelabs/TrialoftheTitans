@@ -27,6 +27,7 @@ export default class ProjectUserStories extends LightningElement {
     @wire(getProjectSkill, {projectId: '$projectId'})
     fetchProjectSkills({error, data}) {
         if (data) {
+            
             this.skillMap = data;
             this.skillList = Object.keys(data);
             //console.log(data);
@@ -37,9 +38,9 @@ export default class ProjectUserStories extends LightningElement {
     }
 
     skillcheck(event){
-        console.log(event.target.dataset.name);
+        console.log();
         //console.log(this.filteredUserStories);
-        console.log(this.skillMap);
-        this.filteredUserStories = this.skillMap.get(event.target.dataset.name);
+        console.log(JSON.stringify(this.skillMap));
+        this.filteredUserStories = this.skillMap[event.target.dataset.name];
     }
 }
