@@ -17,7 +17,7 @@ import getSquad from "@salesforce/apex/PathToTitanController.getSquad";
 import getExamAndResultsList from "@salesforce/apex/PathToTitanController.getExamAndResultsList";
 import getProjectInfo from '@salesforce/apex/UserStoryController.getProjectInfo';
 import projectOverview from '@salesforce/messageChannel/projectOverview__c';
-import { subscribe, publish, MessageContext } from 'lightning/messageService';
+import { publish, MessageContext } from 'lightning/messageService';
 export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
 
     // Variables to Display Hero Details at Top of Component
@@ -48,7 +48,6 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
         console.error(error);
     }
    }
-    
     
     // Wire function to get all the Exam Results associated with the provided Titan and Account Id
     @wire(getExamAndResultsList, {titanId: '$titanId', accountId:'$accountId'}) 
@@ -84,7 +83,7 @@ export default class LwcPathToTitan extends NavigationMixin(LightningElement) {
 
     // function to display the project and user info in container 
     switchToProject() {
-        data = {projectId: this.projectId, displayProjectOverview: true};
+        const data = {projectId: this.projectId, displayProjectOverview: true};
         publish(this.context, projectOverview, data);
     }
 }
