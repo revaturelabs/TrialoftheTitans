@@ -1,5 +1,5 @@
 <template>    
-    <template if:true={hasUserStories}>
+    <template if:true={filteredUserStories}>
         <lightning-accordion>
             <!-- Lightning accordion has to have one section open by default,
                 but all user stories should be collapsed unless opened by user,
@@ -28,8 +28,5 @@
                 </lightning-accordion-section>
             </template>
         </lightning-accordion>
-    </template>
-    <template if:false={hasUserStories}>
-        <div class="slds-text-heading_medium">There are currently no user stories associated with this project.</div>
     </template>
 </template>
