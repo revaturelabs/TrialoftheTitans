@@ -3,7 +3,6 @@ import getUserStories from '@salesforce/apex/UserStoryController.getUserStories'
 export default class ProjectUserStories extends LightningElement {
     allUserStories;
     filteredUserStories;
-
     @api
     projectId;
 
@@ -17,4 +16,20 @@ export default class ProjectUserStories extends LightningElement {
             console.error(error);
         }
     }
+
+    @wire(getProjectSkill, {projectId: '$projectId'})
+    fetchProjectSkills({error, data}) {
+        if (data) {
+            this.skillList = data[0].Custom_Skills__r;
+        }
+        else if (error) {
+            console.error(error);
+        }
+    }
+
+    skillcheck(){
+        
+        
+    }
+    
 }

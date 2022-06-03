@@ -1,5 +1,14 @@
-<template>    
-    <template if:true={filteredUserStories}>
+<template>
+
+    <lightning-card  title="filtering area">
+            <template for:each={skillList} for:item="skill">
+                
+                <lightning-button key={skill.id} label={skill.Name} onclick={skillcheck}></lightning-button>
+                
+            </template>
+    </lightning-card>
+        
+    <template if:true={hasUserStories}>
         <lightning-accordion>
             <!-- Lightning accordion has to have one section open by default,
                 but all user stories should be collapsed unless opened by user,
