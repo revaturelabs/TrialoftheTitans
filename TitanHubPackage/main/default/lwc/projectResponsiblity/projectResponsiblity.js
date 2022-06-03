@@ -21,6 +21,11 @@ export default class ProjectResponsiblity extends LightningElement {
     }
   }
 
+  // save user input and submit it to the server
+  saveInfo() {
+
+  }
+
   // modal code
   @track isModalOpen = false;
 

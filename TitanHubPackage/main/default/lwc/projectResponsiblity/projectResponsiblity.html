@@ -1,33 +1,47 @@
 <!-- 
   Name: Project Responsibility section 
-  Author: Rhys Kim
+  Author: Rhys Kim, Kyle Stetz
   Created: 6/1/2022
-  Updated: 6/2/2022
+  Updated: 6/3/2022
   Description: An editable Lightning Web Component that displays a project's responsibilities
 -->
 
 <template>
-    <lightning-card>
-      <lightning-button-icon icon-name="utility:delete" icon-class="slds-button__icon_medium" onclick={openModal}>
+    <lightning-card title="Responsibilities">
+      <lightning-button-icon
+        slot="actions"
+        icon-name="utility:delete"
+        icon-class="slds-button__icon_medium"
+        onclick={openModal}
+      >
         <span class="slds-assistive-text">Delete responsibility</span>
       </lightning-button-icon>
 
-      <h1>Responsibilities</h1>
-      <lightning-input-rich-text 
-        disabled-categories="FORMAT_FONT,FORMAT_TEXT,ALIGN_TEXT,INSERT_CONTENT"
-      >
-      </lightning-input-rich-text>
+      <!-- users can edit their responsibilities here -->
+      <lightning-textarea></lightning-textarea>
 
       <!-- skills component here -->
+      <div>skill components here</div>
+
+      <!-- save or submit button here -->
+      <lightning-button-stateful
+        label-when-hover="Saving..."
+        label-when-off="Save"
+        onclick={saveInfo}
+        variant="brand"
+      >
+      </lightning-button-stateful>
 
       <!-- prompt modal -->
       <template if:true={isModalOpen}>
         <section role="dialog" tabindex="-1" aria-modal="true" aria-label="Confirm to delete responsibility" class="slds-modal slds-fade-in-open">
           <div class="slds-modal__container">
             <lightning-button-icon
-              class="slds-modal__close slds-button__icon-inverse"
+              class="slds-modal__close slds-button_icon-inverse"
               icon-name="utility:close"
               icon-class="slds-button__icon_large"
+              variant="container"
+              onclick={closeModal}
             >
               <span class="slds-assistive-text">Cancel and close</span>
             </lightning-button-icon>
@@ -40,7 +54,7 @@
             </div>
           </div>
         </section>
-        <div class="slds-backdrop slds-backdrop_open"></div>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
       </template>
 
     </lightning-card>
