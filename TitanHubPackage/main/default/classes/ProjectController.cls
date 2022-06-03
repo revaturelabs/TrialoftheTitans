@@ -18,4 +18,10 @@ public with sharing class ProjectController {
     }
 
     // get roles
+    @AuraEnabled(cacheable=true)
+    public static Project__c getRole(Id projectId){
+        Project__c role = new Project__c();
+        role = [SELECT Roles_Responsibilities__c FROM Project__c WHERE Id = :projectId Limit 1];
+        return role;
+    }
 }
