@@ -66,6 +66,11 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
+        <fields>Custom_Skill__c.NAME</fields>
+        <fields>NAME</fields>
+        <relatedList>User_Story_Skill_Junction__c.User_Story__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>ACTIVITY.TASK</fields>
@@ -90,7 +95,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h7z0000005Xo9</masterLabel>
+        <masterLabel>00h7z0000005b0Z</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
