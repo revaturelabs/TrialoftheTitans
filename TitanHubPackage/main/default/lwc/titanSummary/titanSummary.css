@@ -9,7 +9,6 @@
   padding: 10px;
   border-radius: 5px;
   background-color: white;
-
 }
 
 .tabset {
@@ -23,4 +22,10 @@
   margin: 5px;
   padding: 5px;
   background-color: #bbbbbb;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

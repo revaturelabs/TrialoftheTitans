@@ -17,7 +17,7 @@
             <!--<button name="projectButton">{projectStorage.data.Id}</button> -->
             <template if:true={projectName}>
                 <div class="slds-col tile_holder">
-                    <button class="Assigned" onclick={switchToProject}>{projectName}</button>
+                    <button class="Assigned" id="project-button" onclick={switchToProject}>{projectName}</button>
                 </div>
             </template>
             <!-- Iterator to Generate Columns if data exists -->

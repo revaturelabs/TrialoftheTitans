@@ -14,10 +14,11 @@ import { LightningElement, api, wire } from 'lwc';
 
 export default class TitanSummary extends LightningElement {
     displayProject;
+    projectId;
 
     @wire(MessageContext)
     context;
-    
+
     connectedCallback() {
         this.subscription = subscribe(
             this.context, projectOverview, (message) => this.handleMessage(message)
@@ -26,5 +27,6 @@ export default class TitanSummary extends LightningElement {
 
     handleMessage(message) {
         this.displayProject = message.displayProjectOverview;
+        this.projectId = message.projectId;
     }
 }
