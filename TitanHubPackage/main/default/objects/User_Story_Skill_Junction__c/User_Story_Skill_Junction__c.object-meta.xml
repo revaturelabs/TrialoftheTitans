@@ -155,9 +155,10 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>User Story Skill Junction</label>
     <nameField>
+        <displayFormat>A-{0000}</displayFormat>
         <label>User Story Skill Junction Name</label>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>User Story Skill Junctions</pluralLabel>
     <searchLayouts></searchLayouts>
