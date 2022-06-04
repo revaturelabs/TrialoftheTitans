@@ -5,6 +5,8 @@
     <columns>About_Me__c</columns>
     <columns>User__c</columns>
     <columns>CREATED_DATE</columns>
+    <columns>Relocation__c</columns>
+    <columns>Remote__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

@@ -21,8 +21,10 @@
         <members>Project__c.Video__c</members>
         <members>Project__c.Github__c</members>
         <members>Project__c.Titan__c</members>
+        <members>Project__c.Role__c</members>
         <members>Custom_Skill__c.Project__c</members>
         <members>User_Story__c.Project__c</members>
+        <members>Responsibility__c.Description__c</members>
         <name>CustomField</name>
     </types>
     <types>
