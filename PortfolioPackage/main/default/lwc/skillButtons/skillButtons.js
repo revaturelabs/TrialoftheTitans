@@ -1,68 +1,20 @@
-import SystemModstamp from '@salesforce/schema/Account.SystemModstamp';
-import { LightningElement } from 'lwc';
-
+import { LightningElement, wire, api } from 'lwc';
+import getSkills from '@salesforce/apex/portfolioHelper.getSkills';
 export default class SkillButtons extends LightningElement {
-  
-    
-    handleClick(event){
-        const label = event.target.label;
-        console.log('button clicked1' + label + typeof(label));
+    @api projectId;
+    skills;
 
-        if (label == 'JavaScript'){
-            btnJS.style.backgroundColor = '#4cae4c';
-            btnJava.style.backgroundColor = 'c9302c';
-            btnHTML.style.backgroundColor = 'c9302c'; 
-            btnCSS.style.backgroundColor = 'c9302c';
+    @wire(getSkills, {projectId: '$projectId'})
+    fetchSkillNames({error, data}) {
+        if (data) {
+            this.skills = data;
         }
-        if (label == 'Java'){
-            btnJava.style.backgroundColor='#4cae4c', btnJavaScript.style.backgroundColor = 'c9302c', btnHTML.style.backgroundColor = 'c9302c', btnCSS.style.backgroundColor = 'c9302c';
-        }
-        if (label == 'HTML'){
-            btnHTML.style.backgroundColor='#4cae4c', btnJavaScript.style.backgroundColor = 'c9302c', btnJava.style.backgroundColor = 'c9302c', btnCSS.style.backgroundColor = 'c9302c';
-        }
-        if (label == 'CSS'){
-            btnCSS.style.backgroundColor='#4cae4c', btnJavaScript.style.backgroundColor = 'c9302c', btnJava.style.backgroundColor = 'c9302c', btnHTML.style.backgroundColor = 'c9302c';            
+        else if (error) {
+            console.error(error);
         }
     }
+
+    handleClick(event){
+        const label = event.target.label;
+    }
 }
-
-
-//window.onload = function(){}
-
-//Changes background color of buttons to green
-/*
-    let btnJavaScript = document.querySelector('.btnJS');
-    let btnJava = document.querySelector(".btnJava");
-    let btnHTML = document.querySelector('.btnHTML');
-    let btnCSS = document.querySelector('.btnCSS');
-
-    btnJavaScript.addEventListener('click', () => btnJavaScript.style.backgroundColor='#4cae4c', btnJava.style.backgroundColor = 'c9302c', btnHTML.style.backgroundColor = 'c9302c', btnCSS.style.backgroundColor = 'c9302c');
-    btnJava.addEventListener('click', () => btnJava.style.backgroundColor='#4cae4c', btnJavaScript.style.backgroundColor = 'c9302c', btnHTML.style.backgroundColor = 'c9302c', btnCSS.style.backgroundColor = 'c9302c');
-    btnHTML.addEventListener('click', () => btnHTML.style.backgroundColor='#4cae4c', btnJavaScript.style.backgroundColor = 'c9302c', btnJava.style.backgroundColor = 'c9302c', btnCSS.style.backgroundColor = 'c9302c');
-    btnCSS.addEventListener('click', () => btnCSS.style.backgroundColor='#4cae4c', btnJavaScript.style.backgroundColor = 'c9302c', btnJava.style.backgroundColor = 'c9302c', btnHTML.style.backgroundColor = 'c9302c');
-    */
-
-//Appends responsibilites associated with a button to a list
-/*
-    const button = document.getElementById("btn");
-    const list = document.getElementById("list");
-
-    list.style.display = "none";
-
-    btnJavaScript.addEventListener("click", (event) => {
-        list.style.display = "block";
-    });
-
-    btnJava.addEventListener("click", (event) => {
-        list.style.display = "block";
-    });
-
-    btnHTML.addEventListener("click", (event) => {
-        list.style.display = "block";
-    });
-
-    btnCSS.addEventListener("click", (event) => {
-        list.style.display = "block";
-    });
-
-*/

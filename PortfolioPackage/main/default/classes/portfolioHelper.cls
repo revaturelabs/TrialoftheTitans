@@ -1,4 +1,4 @@
-public with sharing class portfolioHelper {
+public without sharing class portfolioHelper {
     /* I got rid of the hard-coded ID for this method, but this method 
     is not returning or changing anything, and a grep tells me it's not being
     used anywhere. Just leaving it here in case future iterations find a use for it. */
@@ -15,7 +15,13 @@ public with sharing class portfolioHelper {
             }
         }        
     }
-    
+
+    //get all skills associated with a project
+    @AuraEnabled(cacheable=true)
+    public static List<Custom_Skill__c> getSkills(Id projectId) {
+        return [SELECT ID, Name FROM Custom_Skill__c WHERE Project__r.Id = :projectId];
+    }
+
     public static void getEduc(){
         Id uid = UserInfo.getUserId();
         List<Education__c> education = 
