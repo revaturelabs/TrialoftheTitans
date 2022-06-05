@@ -1,6 +1,7 @@
 import { LightningElement, track, wire, api} from 'lwc';
-import viewList from './lwcResponsibilities.html';
 import getResponsibilities from '@salesforce/apex/ResponsibilitiesController.getResponsibilities';
+import skillChannel from '@salesforce/messageChannel/skillChannel__c';
+import { subscribe, MessageContext } from 'lightning/messageService';
 
 export default class LwcResponsibilities extends LightningElement {
 
@@ -8,15 +9,31 @@ export default class LwcResponsibilities extends LightningElement {
     responsibilities;
     filteredResponsibilities;
 
+    //used for filtering
+    skillSelected;
+
+    @wire(MessageContext)
+    context;
+
+    connectedCallback() {
+        this.subscription = subscribe(
+            this.context, skillChannel, (message) => this.handleMessage(message)
+        );
+    }
+
     @wire(getResponsibilities, {projectID: '$projectId'})
     fetchResponsibilities({error, data}) {
         if (data) {
-            console.log('This is working');
             this.responsibilities = data;
             this.filteredResponsibilities = [...this.responsibilities];
         } else if (error) { 
-            console.log('This is not working');
             console.error(error);
         }
-    }    
+    }
+
+    handleMessage(message) {
+        if (message.projectId === this.projectId) {
+            this.skillSelected = message.skillName;
+        }
+    }
 }

@@ -32,13 +32,19 @@
         <members>lwcPathToTitan</members>
         <members>projectOverviewPage</members>
         <members>projectUserStories</members>
+        <members>lwcResponsibilities</members>
+        <members>masteriesandFeats</members>
+        <members>skillButtons</members>
+        <members>tabSwitchingComponent</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
         <members>projectOverview</members>
+        <members>skillChannel</members>
         <name>LightningMessageChannel</name>
     </types>
     <types>
+        <members>portfolioHelper</members>
         <members>UserStoryController</members>
         <name>ApexClass</name>
     </types>

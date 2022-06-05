@@ -69,7 +69,7 @@ TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-m
 
 **/HeroHubPackage
 TrialoftheTitansPackage/main/default
-PortfolioPackage/main/default
+#PortfolioPackage/main/default
 DataFactory
 #ExamInterviewPackage/lwc
 #TitanHubPackage/main/default
