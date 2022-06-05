@@ -1,0 +1,15 @@
+.slds-card {   
+    font-size:large;
+    padding:5px;
+    margin:10px;
+    background-color:lightgray;
+    min-height:100px;
+}
+img {
+    height: 100px;
+    max-width: 105px;
+}
+
+.slds-col p {
+    text-align:center;
+}

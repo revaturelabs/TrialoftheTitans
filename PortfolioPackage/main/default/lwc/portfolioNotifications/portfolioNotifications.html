@@ -1,0 +1,19 @@
+<!--****************************************************************************************************
+ Author: Mark Snyder
+The markup for the notifications to go on the navbar
+ Date Created: 03/10/2022
+ Modified Date: 05/23/2022
+ Iteration XII
+******************************************************************************************************-->
+<template>
+    <div onclick={clickHandler} class="notificationBell">
+        <img src={notification} alt="Notification Bell Icon" class="notificationIcon">
+        <sup class="sup">1</sup>
+    </div>
+
+    <template if:true={showDropdown}>
+        <div class="dropdownLists">
+            <h1>test</h1>
+        </div>
+    </template>
+</template>
