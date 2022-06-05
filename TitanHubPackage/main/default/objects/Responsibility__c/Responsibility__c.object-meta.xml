@@ -155,9 +155,10 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Responsibility</label>
     <nameField>
-        <label>Responsibility Name</label>
+        <displayFormat>R-{0000}</displayFormat>
+        <label>Responsibility ID</label>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Responsibilities</pluralLabel>
     <searchLayouts></searchLayouts>
