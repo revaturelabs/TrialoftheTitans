@@ -1,10 +1,7 @@
 <template>
- 
   <template for:each={projects} for:item="project">
-    <div key={project.Id}>
-        <!-- <lightning-card> -->
-            <!-- Project components are individual components that contain project, project image, skills, and a collaspable header -->
-    <div class="projectComponent">
+    <!-- Project components are individual components that contain project, project image, skills, and a collaspable header -->
+    <div key={project.Id} class="projectComponent">
       <span class="title">{project.Name}</span>
        
        <!-- Profile image -->
@@ -18,21 +15,21 @@
 
            <c-skill-buttons></c-skill-buttons>
          </div>
- 
-         <!-- This is the container that hides the content. Needs to be here for CSS and javascript to work properly -->
-         <div class="projectContentContainer">
- 
-           <!-- This is the container for content within the collaspable -->
-           <div class="projectComponentContent">
-              <p>Roles: {project.Role__c}</p>
-              <p>Responsibilities:</p>
-               <c-lwc-responsibilities get-projectid-from-parent={project.Id}></c-lwc-responsibilities>
-           </div>
-         </div>
+            
+          <div class="projectComponentContent">
+            <p class="slds-text-heading_medium">Role:&nbsp;
+              <span if:true={project.Role__c} class="slds-text-heading_small">
+                {project.Role__c}
+              </span>
+              <span if:false={project.Role__c} class="slds-text-heading_small">
+                No role has been specified for this project.
+              </span>
+            </p>
+            <p class="slds-text-heading_medium">Responsibilities</p>
+            <c-lwc-responsibilities project-id={project.Id}></c-lwc-responsibilities>
+          </div>
        </div>
      </div>
-    <!-- </lightning-card> -->
-    </div>
   </template>
 
 </template>

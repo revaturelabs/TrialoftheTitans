@@ -40,15 +40,6 @@
   z-index: -2;
 }
 
-/* Hides the content with transition */
-.projectContentContainer{
-  max-height: 0;
-
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-
-/* Content of the collaspable */
 .projectComponentContent{
   min-width: 100%;
   padding: 2rem .5rem 1rem .5rem;

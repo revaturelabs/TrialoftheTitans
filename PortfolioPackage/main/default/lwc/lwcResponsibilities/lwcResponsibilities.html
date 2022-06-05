@@ -1,13 +1,14 @@
 <!--Chris Pavur-->
 
 <template>
-    <template for:each={responsibilities} for:item="responsibility">
-        <div key={responsibility.Id}>
-            <lightning-card>
-            <div>
-                {responsibility.Description__c}
+    <template if:true={filteredResponsibilities}>
+        <template for:each={filteredResponsibilities} for:item="responsibility">
+            <div key={responsibility.Id} class="responsibility-item">
+                    {responsibility.Description__c}
             </div>
-            </lightning-card>
-        </div>
+        </template>
+    </template>
+    <template if:false={filteredResponsibilities}>
+        No responsibilities have been specified for this project.
     </template>
 </template>
