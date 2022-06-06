@@ -7,6 +7,7 @@ export default class ProjectUserStories extends LightningElement {
     allUserStories;
     filteredUserStories;
 
+    filterSelected;
     skillList;
     skillMap;
     
@@ -37,10 +38,16 @@ export default class ProjectUserStories extends LightningElement {
         }
     }
 
-    skillcheck(event){
+    showFilter(event){
         //console.log();
         //console.log(this.filteredUserStories);
         //console.log(JSON.stringify(this.skillMap));
+        this.filterSelected = true;
         this.filteredUserStories = this.skillMap[event.target.dataset.name];
+    }
+
+    showAllStories(){
+        this.filterSelected = false;
+        this.filteredUserStories = this.allUserStories;
     }
 }

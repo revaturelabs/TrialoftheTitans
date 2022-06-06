@@ -39,36 +39,4 @@ public without sharing class ResponsibilitiesController{
 
       return skillMap;
   }
-
-  // @AuraEnabled(cacheable=true)
-  // public static Map<String, List<Responsibility__c>> getResponsibilitySkill(ID projectId) {
-  //     List<Skill_Responsibility__c> resSkills =  [SELECT Name, Skill__r.name, Responsibility__r.id 
-  //                                                         FROM Skill_Responsibility__c 
-  //                                                         WHERE Responsibility__r.Project__r.Id= :projectId];
-      
-  //     List<Responsibility__c> resList = getResponsibilities(projectId);
-
-  //     Map<String, List<Responsibility__c>> skillMap = new Map<String, List<Responsibility__c>>();
-
-  //     for(Skill_Responsibility__c item : resSkills){
-          
-  //         String skillName = item.Skill__r.name;
-  //         Responsibility__c rAbilityObj;
-
-  //         for(Responsibility__c resItem : resList){
-  //             if(resItem.Id == item.Responsibility__r.id){
-  //               rAbilityObj = resItem;
-  //               break;
-  //             }
-  //         }
-
-  //         if(!skillMap.containsKey(skillName)){
-  //           skillMap.put(skillName, new List<Responsibility__c>());
-              
-  //         }
-  //         skillMap.get(skillName).add(rAbilityObj);
-  //     }
-
-  //     return skillMap;
-  // }
 }

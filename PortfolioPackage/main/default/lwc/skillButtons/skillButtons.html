@@ -4,6 +4,9 @@
             <template for:each={skills} for:item="skill">
                 <lightning-button key={skill.Id} variant='neutral' label={skill.Name} onclick={handleClick}></lightning-button>
             </template>
+            <template if:true={skillSelected}>
+                <lightning-button variant='neutral' label="Clear Filter" onclick={clearFilter}></lightning-button>
+            </template>
         </template>
         <template if:false={skills}>
             No skills have been specified for this project.

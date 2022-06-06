@@ -5,6 +5,7 @@ import { publish, MessageContext } from 'lightning/messageService';
 export default class SkillButtons extends LightningElement {
     @api projectId;
     skills;
+    skillSelected;
 
     @wire(MessageContext)
     context;
@@ -20,7 +21,15 @@ export default class SkillButtons extends LightningElement {
     }
 
     handleClick(event){
+        this.skillSelected = true;
         const data = {projectId: this.projectId, skillName: event.target.label};
         publish(this.context, skillChannel, data);
     }
+
+    clearFilter(event){
+        this.skillSelected = false;
+        
+        const data = {projectId: this.projectId, skillName: "clear"};
+        publish(this.context, skillChannel, data);
+    }   
 }

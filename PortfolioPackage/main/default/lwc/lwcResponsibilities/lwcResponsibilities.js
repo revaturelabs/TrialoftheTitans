@@ -9,7 +9,7 @@ export default class LwcResponsibilities extends LightningElement {
     @api 
     projectId;
 
-    responsibilities;
+    allResponsibilities;
     filteredResponsibilities;
 
     //used for filtering
@@ -29,8 +29,8 @@ export default class LwcResponsibilities extends LightningElement {
     fetchResponsibilities({error, data}) {
         if (data) {
             //console.log(data);
-            this.responsibilities = data;
-            this.filteredResponsibilities = [...this.responsibilities];
+            this.allResponsibilities = data;
+            this.filteredResponsibilities = [...this.allResponsibilities];
         } else if (error) { 
             console.error(error);
         }
@@ -49,8 +49,13 @@ export default class LwcResponsibilities extends LightningElement {
 
     handleMessage(message) {
         if (message.projectId === this.projectId) {
-            console.log(this.resMap);
-            this.filteredResponsibilities = this.resMap[message.skillName];
+            if(message.skillName === "clear"){
+                this.filteredResponsibilities = this.allResponsibilities;
+            }
+            else{
+                console.log(this.resMap);
+                this.filteredResponsibilities = this.resMap[message.skillName];
+            }
         }
     }
 }
