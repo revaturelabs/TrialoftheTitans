@@ -32,6 +32,7 @@
         <members>projectUserStories</members>
         <members>projectResponsiblity</members>
         <members>rolesModal</members>
+        <members>lwcSkills</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>

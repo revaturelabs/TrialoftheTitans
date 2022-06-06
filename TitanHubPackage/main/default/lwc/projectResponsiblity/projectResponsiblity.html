@@ -12,14 +12,15 @@
         <span class="slds-assistive-text">Delete responsibility</span>
       </lightning-button-icon>
 
-      <h1>Responsibilities</h1>
-      <lightning-input-rich-text 
-        disabled-categories="FORMAT_FONT,FORMAT_TEXT,ALIGN_TEXT,INSERT_CONTENT"
-      >
-      </lightning-input-rich-text>
-
+      <h1>Responsibility</h1>
+      <lightning-record-edit-form object-api-name="Responsibility__c" record-id={projectId}>
+        <lightning-input-field field-name="Name"></lightning-input-field>
+      </lightning-record-edit-form>
+      
+<div>
       <!-- skills component here -->
-
+      <c-lwc-Skills></c-lwc-Skills>
+</div>
       <!-- prompt modal -->
       <template if:true={isModalOpen}>
         <section role="dialog" tabindex="-1" aria-modal="true" aria-label="Confirm to delete responsibility" class="slds-modal slds-fade-in-open">

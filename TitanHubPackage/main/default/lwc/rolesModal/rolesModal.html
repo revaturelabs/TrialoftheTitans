@@ -29,8 +29,11 @@
             class="slds-modal_content slds-p-around_medium"
             id="modal-content-id-1"
             >
-            <h2>Roles: {role}</h2>
-            <c-project-Responsiblity></c-project-Responsiblity>
+            <lightning-record-edit-form object-api-name="Project__c" record-id={projectId}>
+                <h2><lightning-input-field field-name="Roles_Responsibilities__c"></lightning-input-field></h2>
+              </lightning-record-edit-form>
+            <h2>Roles: {role} </h2>
+            <c-project-Responsiblity project-id={projectId}></c-project-Responsiblity>
 
 <!--Add Body components here-->
             
