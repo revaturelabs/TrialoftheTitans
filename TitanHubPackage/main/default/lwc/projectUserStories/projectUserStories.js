@@ -38,9 +38,9 @@ export default class ProjectUserStories extends LightningElement {
     }
 
     skillcheck(event){
-        console.log();
+        //console.log();
         //console.log(this.filteredUserStories);
-        console.log(JSON.stringify(this.skillMap));
+        //console.log(JSON.stringify(this.skillMap));
         this.filteredUserStories = this.skillMap[event.target.dataset.name];
     }
 }
