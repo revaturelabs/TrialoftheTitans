@@ -1,87 +1,87 @@
-# List files or directories below to ignore them when running force:source:push, force:source:pull, and force:source:status
-# More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
+# # List files or directories below to ignore them when running force:source:push, force:source:pull, and force:source:status
+# # More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
 
-# .forceignore v2
+# # .forceignore v2
 
-# GitHub Readme
-**/README.md
-**.pdf
-# LWC configuration files
-**/jsconfig.json
-**/.eslintrc.json
+# # GitHub Readme
+# **/README.md
+# **.pdf
+# # LWC configuration files
+# **/jsconfig.json
+# **/.eslintrc.json
 
-# LWC Jest
-**/__tests__/**
+# # LWC Jest
+# **/__tests__/**
 
-# Fixes error to get rid of it ¯/_(ツ)_/¯
-**/appMenus
-**/sites
-**/networks
-**/networkBranding
-**/experiences
-**/navigationMenus
-**/audience
-#**/staticresources
-TrialoftheTitansPackage/main/default/profiles/Admin.profile-meta.xml
-#TrialoftheTitansPackage/main/default/profiles/Hero.profile-meta.xml
-TrialoftheTitansPackage/main/default/profiles/TitanTrainer.profile-meta.xml
-TrialoftheTitansPackage/main/default/profiles/Trial of the Titans Profile.profile-meta.xml
-TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
-TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-meta.xml
+# # Fixes error to get rid of it ¯/_(ツ)_/¯
+# **/appMenus
+# **/sites
+# **/networks
+# **/networkBranding
+# **/experiences
+# **/navigationMenus
+# **/audience
+# #**/staticresources
+# TrialoftheTitansPackage/main/default/profiles/Admin.profile-meta.xml
+# #TrialoftheTitansPackage/main/default/profiles/Hero.profile-meta.xml
+# TrialoftheTitansPackage/main/default/profiles/TitanTrainer.profile-meta.xml
+# TrialoftheTitansPackage/main/default/profiles/Trial of the Titans Profile.profile-meta.xml
+# TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
+# TrialoftheTitansPackage/main/default/profiles/Trial-of-the-Titans-User.profile-meta.xml
 
 
 
-#All this stuff you may want to enable to disable
-#depending on what you are wanting to pull/push
+# #All this stuff you may want to enable to disable
+# #depending on what you are wanting to pull/push
 
-**/aura
-**/components
-**/pages
-#**/classes
-#!**/profiles/Admin.profile-meta.xml
-#!**/profiles/Hero.profile-meta.xml
-#**/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
-#!**/profiles/Trial-of-the-Titans-User.profile-meta.xml
-**/profiles
-#**/layouts
-**/applications
-**/flows
-**/flexipages
+# **/aura
+# **/components
+# **/pages
+# #**/classes
+# #!**/profiles/Admin.profile-meta.xml
+# #!**/profiles/Hero.profile-meta.xml
+# #**/profiles/Trial-of-the-Titans-Profile.profile-meta.xml
+# #!**/profiles/Trial-of-the-Titans-User.profile-meta.xml
+# **/profiles
+# #**/layouts
+# **/applications
+# **/flows
+# **/flexipages
 
-**/flexipages/Exam_Home.flexipage-meta.xml
-**/flexipages/Exam_Record_Page.flexipage-meta.xml
-**/flexipages/Exam_Record_Page1.flexipage-meta.xml
-**/flexipages/Home_Page_Default.flexipage-meta.xml
-**/flexipages/Home_Page_Default1.flexipage-meta.xml
-**/flexipages/Home_Page_Default2.flexipage-meta.xml
-**/flexipages/Home_Page_Default3.flexipage-meta.xml
-**/flexipages/Previous_Cohorts.flexipage-meta.xml
-**/flexipages/projectManagement.flexipage-meta.xml
-**/flexipages/QC_Hub_Home.flexipage-meta.xml
-**/flexipages/Question_Pool_Record_Page.flexipage-meta.xml
-**/flexipages/Trainer_Hub.flexipage-meta.xml
-**/flexipages/TrainerHub_Home.flexipage-meta.xml
-**/objects/Feedback__c
-**/objects/Mock_Interview_Self__c
-**/objects/One_on_One__C
-**/objects/QC_Flag__c
-**/objects/QC_Question_Deck__c
+# **/flexipages/Exam_Home.flexipage-meta.xml
+# **/flexipages/Exam_Record_Page.flexipage-meta.xml
+# **/flexipages/Exam_Record_Page1.flexipage-meta.xml
+# **/flexipages/Home_Page_Default.flexipage-meta.xml
+# **/flexipages/Home_Page_Default1.flexipage-meta.xml
+# **/flexipages/Home_Page_Default2.flexipage-meta.xml
+# **/flexipages/Home_Page_Default3.flexipage-meta.xml
+# **/flexipages/Previous_Cohorts.flexipage-meta.xml
+# **/flexipages/projectManagement.flexipage-meta.xml
+# **/flexipages/QC_Hub_Home.flexipage-meta.xml
+# **/flexipages/Question_Pool_Record_Page.flexipage-meta.xml
+# **/flexipages/Trainer_Hub.flexipage-meta.xml
+# **/flexipages/TrainerHub_Home.flexipage-meta.xml
+# **/objects/Feedback__c
+# **/objects/Mock_Interview_Self__c
+# **/objects/One_on_One__C
+# **/objects/QC_Flag__c
+# **/objects/QC_Question_Deck__c
 
-**/HeroHubPackage
-TrialoftheTitansPackage/main/default
-PortfolioPackage/main/default
-DataFactory
-#ExamInterviewPackage/lwc
-#TitanHubPackage/main/default
-#!TitanHubPackage/main/default/objects/user_story__c
-**/ExamQuestionFlagPackage
-**/tabs/standard-home.tab-meta.xml
+# **/HeroHubPackage
+# TrialoftheTitansPackage/main/default
+# PortfolioPackage/main/default
+# DataFactory
+# #ExamInterviewPackage/lwc
+# #TitanHubPackage/main/default
+# #!TitanHubPackage/main/default/objects/user_story__c
+# **/ExamQuestionFlagPackage
+# **/tabs/standard-home.tab-meta.xml
 
-ChartPackage/main/default/ 
-HeroHubPackage/main/default/ 
-#TitanHubPackage/main/default/
-TitanHubPackage/main/default/profiles/Admin.profile-meta.xml
+# ChartPackage/main/default/ 
+# HeroHubPackage/main/default/ 
+# #TitanHubPackage/main/default/
+# TitanHubPackage/main/default/profiles/Admin.profile-meta.xml
 
-#IterationXI
-DataFactory/ReadMe
-HeroHubPackage/main/default/**.pdf
+# #IterationXI
+# DataFactory/ReadMe
+# HeroHubPackage/main/default/**.pdf
