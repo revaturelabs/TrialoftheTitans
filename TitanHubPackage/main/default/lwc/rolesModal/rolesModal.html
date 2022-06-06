@@ -32,7 +32,6 @@
             <lightning-record-edit-form object-api-name="Project__c" record-id={projectId}>
                 <h2><lightning-input-field field-name="Role__c"></lightning-input-field></h2>
               </lightning-record-edit-form>
-            <h2>Roles: {role} {projectId} </h2>
 
 <!--Add Body components here-->
 <!--Put Responsibility component here-->
@@ -41,8 +40,8 @@
                 <span class="slds-assistive-text">Delete responsibility</span>
                 </lightning-button-icon>
 
-                <h1>Responsibility</h1>
-                <lightning-record-edit-form object-api-name="Responsibility__c" record-id={projectId}>
+                <h1>Responsibility 1.{response.Id} 2.{response.Name} 3.{projectId}</h1>
+                <lightning-record-edit-form object-api-name="Responsibility__c" record-id={responseId}>
                 <lightning-input-field field-name="Name"></lightning-input-field>
                 </lightning-record-edit-form>
                 

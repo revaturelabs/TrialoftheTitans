@@ -4,14 +4,17 @@ import getRole from '@salesforce/apex/ProjectController.getRole';
 import projectOverview from '@salesforce/messageChannel/projectOverview__c';
 import { subscribe, MessageContext } from 'lightning/messageService'
 import getProjectInfo from "@salesforce/apex/UserStoryController.getProjectInfo";
+import getResponsibilities from '@salesforce/apex/ProjectController.getResponsibilities';
 const CSS_CLASS = "modal-hidden";
 export default class RolesModal extends LightningElement {
     
     role;
     @wire(MessageContext)
     context;
-    projectId;
+    @api projectId;
     @api titanId;
+    @track response;
+    @track responseId;
 
 
     //modal controls
@@ -47,26 +50,24 @@ export default class RolesModal extends LightningElement {
     addResponsibility(){
         
     }
-    connectedCallback() {
-        this.subscription = subscribe(
-            this.context, projectOverview, (message) => this.handleMessage(message)
-        );
-    }
-
-    handleMessage(message) {
-        
-        this.projectId = message.projectId;
-        console.log('test');
-    }
     @wire(getRole, {projectId: '$projectId'})
     fetchRole({error, data}){
         if(data){
-            this.role = data.Role__c.slice(3,-4);
+            this.role = data.Role__c;
         }
         else if(error){
             console.error(error);
         }
     }
+    @wire(getResponsibilities, {projectId:'$projectId'}) response;
+    // fetchResponsibilities({error, data}) {
+    //     if (data) {
+    //         this.responseId = data.Id;
+    //         this.response = data.Name;
+    //     } else {
+    //         console.error(error);
+    //     }
+    // }
     
 
     
