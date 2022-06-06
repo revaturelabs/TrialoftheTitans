@@ -1,69 +1,61 @@
-//import { LightningElement, track, wire } from "lwc";
-//import getSomeAccounts from "@salesforce/apex/ResponsibilitiesController.getSomeAccounts";
-//export default class LwcResponsibilities extends LightningElement {
- //   @track data
- //   @track columns = [
-       // { label: 'Responsibilities', fieldName: 'Name', type: 'text'},
-       // { label: 'Label', fieldName: 'Trainer__r.Name', type: 'text'},
-        // {label: 'Label', fieldName: 'Name', type: 'text'},
-        //{ label: 'Phone', fieldName: 'Phone', type: 'phone'},
-       // { label: 'Industry', fieldName: 'Industry', type: 'text'},
-    //];
-   // @wire (getSomeAccounts) accountRecords({error,data}){
-      //  if(data){
-      //      this.data = data;
-      //  }
-      //  else if (error){
-     //       this.data = undefined;
-     //   }
-  //  }
-//}
-
 import { LightningElement, track, wire, api} from 'lwc';
-import viewList from './lwcResponsibilities.html';
 import getResponsibilities from '@salesforce/apex/ResponsibilitiesController.getResponsibilities';
+import getResponsibilitySkill from '@salesforce/apex/ResponsibilitiesController.getResponsibilitySkill';
+import skillChannel from '@salesforce/messageChannel/skillChannel__c';
+import { subscribe, MessageContext } from 'lightning/messageService';
 
 export default class LwcResponsibilities extends LightningElement {
 
-    @api getProjectidFromParent;
-    @track responsibilities;
-    @track filteredResponsibilities;
-    @track wirevalue;
-    filtered = false;
+    @api 
+    projectId;
 
-    templateOne = false;
-    render(){
-        return this.templateOne === false? viewList:viewList;
+    allResponsibilities;
+    filteredResponsibilities;
+
+    //used for filtering
+    skillSelected;
+    resMap;
+
+    @wire(MessageContext)
+    context;
+
+    connectedCallback() {
+        this.subscription = subscribe(
+            this.context, skillChannel, (message) => this.handleMessage(message)
+        );
     }
 
-    click(){
-        this.templateOne = this.templateOne ===true ? false : true;
-    }
-
-    @wire(getResponsibilities, {projectID: '$getProjectidFromParent'})
-    wirevalue(value) {
-       
-        const { error, data } = value;
-        console.log("wire fire");
+    @wire(getResponsibilities, {projectID: '$projectId'})
+    fetchResponsibilities({error, data}) {
         if (data) {
-            this.responsibilities = data;
-            //Verifying if the record exists.
-            if (data.length < 1) {
-                console.log("no responsibilities available");
-                console.log(this.responsibilities);
-            } else {
-                this.responsibilities = data;
-                console.log(this.responsibilities, "mydata");
-            }
-        } else if (error) {
-            console.log("wire fail");
-            this.error = error;
-            console.log(this.error);
+            //console.log(data);
+            this.allResponsibilities = data;
+            this.filteredResponsibilities = [...this.allResponsibilities];
+        } else if (error) { 
+            console.error(error);
         }
     }
 
-    //handler for filtered display
-    //removes any responsibilityIDs that are not selected
-    //sets filtered to true;
-    
+    @wire(getResponsibilitySkill, {projectID: '$projectId'})
+    fetchResponsibilitySkill({error, data}) {
+        if (data) {
+            console.log(JSON.stringify(data));
+            this.resMap = data;
+        }
+        else if (error) {
+            console.error(error);
+        }
+    }
+
+    handleMessage(message) {
+        if (message.projectId === this.projectId) {
+            if(message.skillName === "clear"){
+                this.filteredResponsibilities = this.allResponsibilities;
+            }
+            else{
+                console.log(this.resMap);
+                this.filteredResponsibilities = this.resMap[message.skillName];
+            }
+        }
+    }
 }

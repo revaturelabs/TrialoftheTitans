@@ -1,9 +1,12 @@
 <template>
-    <lightning-card  title="Skills">
+    <div  class="skills">
         <template for:each={skillList} for:item="skill">
-            <lightning-button key={skill} label={skill} data-name={skill} onclick={skillcheck}></lightning-button>
+            <lightning-button key={skill} label={skill} data-name={skill} onclick={showFilter}></lightning-button>
         </template>
-    </lightning-card>
+        <template if:true={filterSelected}>
+            <lightning-button label="All User Stories" onclick={showAllStories}></lightning-button>
+        </template>
+    </div>
     <template if:true={filteredUserStories}>
         <lightning-accordion>
             <!-- Lightning accordion has to have one section open by default,

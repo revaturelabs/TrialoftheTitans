@@ -15,7 +15,7 @@ public without sharing class portfolioProjectHelper {
         //use the builtin UserInfo class to get the id (and other info) about the logged in user
         id uid = UserInfo.getUserId();
         
-        //query to get the latest 3 projects related to the logged in user
+        //query to get the projects related to the logged in user
         List<Project__c> projects = [
             SELECT Id, Name, Role__c, Description__c, Roles_Responsibilities__c
             FROM Project__c
@@ -23,15 +23,14 @@ public without sharing class portfolioProjectHelper {
             ORDER BY CreatedDate DESC
             LIMIT 3
         ];
-        System.debug(projects);
         return projects;
     }
 
     //method returns a list of all projects related to a user
     @AuraEnabled   
-    public static List<Project__c> getALLProjects(){
+    public static List<Project__c> getAllProjects(){
         //use the builtin UserInfo class to get the id (and other info) about the logged in user
-        id uid = UserInfo.getUserId();
+        Id uid = UserInfo.getUserId();
         
         //query to get ALL projects related to the logged in user
         List<Project__c> projects = [
@@ -67,7 +66,7 @@ public without sharing class portfolioProjectHelper {
         projectName = '%' + projectName + '%'; 
         
         //query to get the project being updated
-        project = [SELECT  Name 
+        project = [SELECT Name 
                         FROM Project__c
                         WHERE User__c = :userId 
                         AND Name 
