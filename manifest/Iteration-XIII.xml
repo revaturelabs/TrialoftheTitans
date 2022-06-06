@@ -32,10 +32,6 @@
         <members>lwcPathToTitan</members>
         <members>projectOverviewPage</members>
         <members>projectUserStories</members>
-        <members>lwcResponsibilities</members>
-        <members>masteriesandFeats</members>
-        <members>skillButtons</members>
-        <members>tabSwitchingComponent</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
