@@ -1,3 +1,4 @@
+
 import { api, LightningElement, wire, track } from 'lwc';
 import getRole from '@salesforce/apex/ProjectController.getRole';
 //import getProjectInfo from "@salesforce/apex/UserStoryController.getProjectInfo";
@@ -54,11 +55,13 @@ export default class RolesModal extends LightningElement {
     fetchRole({error, data}){
         if(data){
             this.role = data.Role__c;
+
         }
         else if(error){
             console.error(error);
         }
     }
+
     @wire(getResponsibilities, {projectId:'$projectId'}) response;
     // fetchResponsibilities({error, data}) {
     //     if (data) {
