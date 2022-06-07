@@ -46,12 +46,15 @@
                     <h1 class="slds-text-color_default">Responsibility</h1>
                     <div class="skills">
                         <div class="skill-list default-skills">
-                            <template for:each={defaultSkills} for:item="skill">                                
-                                <span key={skill.Id} class="slds-pill slds-pill_link">
-                                    <a href="#" class="slds-pill__action" onclick={selectSkill}>
-                                        <span class="slds-pill__label">{skill.Name}</span>
-                                    </a>
-                                </span>
+                            <template for:each={defaultSkills} for:item="skill">
+                                <button key={skill.Id}
+                                        data-respid={it.value.Id} 
+                                        data-skillid={skill.Id}
+                                        data-skillname={skill.Name}
+                                        class="slds-button slds-button_neutral" 
+                                        onclick={selectSkill}>
+                                        {skill.Name}
+                                </button>
                             </template>
                         </div>
                     </div>
