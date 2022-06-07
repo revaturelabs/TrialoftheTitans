@@ -30,4 +30,26 @@ public without sharing class ProjectController {
     public static Project__c getRole(Id projectId){
         return [SELECT Role__c FROM Project__c WHERE Id = :projectId];
     }
+
+    @AuraEnabled
+    public static void saveSkillResponsibilities(Responsibility__c resp) {
+        //List<Custom_Skill__c> skillsToInsert = new List<Custom_Skill__c>();
+        //List<Skill_Responsibility__c> skillRespsToInsert = new List<Skill_Responsibility__c>();
+        
+        insert resp;
+
+        // for (Custom_Skill__c skill : skills) {
+        //     if(skill.Id == null) {
+        //         skillsToInsert.add(skill);
+        //     }
+        // }
+
+        // insert skillsToInsert;
+
+        // for (Custom_Skill__c skill : skills) {
+        //     Skill_Responsibility__c skillResp = new Skill_Responsibility__c(Responsibility__c = resp.Id, 
+        //                                                                     Custom_Skill__c = skill.Id);
+        //     skillRespsToInsert.add(skillResp);
+        // }
+    }
 }

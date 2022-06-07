@@ -1,7 +1,9 @@
 import { api, LightningElement, wire, track } from 'lwc';
 import getRole from '@salesforce/apex/ProjectController.getRole';
 import getSkills from '@salesforce/apex/portfolioHelper.getSkills';
+import saveSkillResponsibilities from '@salesforce/apex/ProjectController.saveSkillResponsibilities';
 const CSS_CLASS = "modal-hidden";
+
 export default class RolesModal extends LightningElement {
     
     role;
@@ -25,6 +27,7 @@ export default class RolesModal extends LightningElement {
         this.showModal = false;
     }
 
+    //delete responsibility modal functions
     openModal() {
         this.isModalOpen = true;
     }
@@ -41,9 +44,7 @@ export default class RolesModal extends LightningElement {
     addResponsibility() {
         this.respSkillId++;
         this._respSkillId = this.respSkillId;
-        console.log('ID: ' + this.respSkillId);
         const respSkill = { Id: this.respSkillId, skills: []};
-        console.log('respSkill: ' + respSkill);
         this.respSkills.push(respSkill);
     }
 
@@ -65,9 +66,27 @@ export default class RolesModal extends LightningElement {
     }
 
     save() {
-        
+        for (let i=0; i < this.respSkills.length; i++) {
+            let selectorStr = "lightning-input[data-id='" + this.respSkills[i].Id + "']";
+            let description = this.template.querySelector(selectorStr).value;
+            this.saveData(i, description);
+        }
+        this.handleDialogClose();
     }
 
+    saveData(index, description) {
+        let respRecord = { 'sobjectType': "Responsibility__c" };
+        respRecord.Description__c = description;
+        respRecord.Project__c = this.projectId;
+        saveSkillResponsibilities({ resp: respRecord})
+            .then(result => {
+                console.log('Success: ' + result);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+    
     @wire(getSkills, {projectId: '$projectId'})
     fetchSkills({error, data}) {
         if (data) {
