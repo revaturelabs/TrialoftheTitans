@@ -1,11 +1,21 @@
 <template>
-    <div class="skills">
-        <template for:each={skillList} for:item="skill">
-            <lightning-button key={skill.Id} label={skill.Name} data-name={skill.Name} onclick={showFilter}></lightning-button>
-        </template>
-        <template if:true={filterSelected}>
-            <lightning-button label="All User Stories" onclick={showAllStories}></lightning-button>
-        </template>
+    <div class="projectComponent">
+        <span class="title">{projectName}</span>
+         
+         <div class="projectBody">
+   
+           <!-- Project display component is the clickable area for collaspable header -->
+           <div class="projectDisplayComponent">
+                <div class="skills">
+                    <template for:each={skillList} for:item="skill">
+                        <lightning-button key={skill.Id} label={skill.Name} data-name={skill.Name} onclick={showFilter}></lightning-button>
+                    </template>
+                    <template if:true={filterSelected}>
+                        <lightning-button label="All User Stories" onclick={showAllStories}></lightning-button>
+                    </template>
+                </div>
+            </div>
+        </div>
     </div>
     <template if:true={filteredUserStories}>
         <lightning-accordion>
