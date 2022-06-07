@@ -1,7 +1,7 @@
 <template>
-    <div  class="skills">
+    <div class="skills">
         <template for:each={skillList} for:item="skill">
-            <lightning-button key={skill} label={skill} data-name={skill} onclick={showFilter}></lightning-button>
+            <lightning-button key={skill.Id} label={skill.Name} data-name={skill.Name} onclick={showFilter}></lightning-button>
         </template>
         <template if:true={filterSelected}>
             <lightning-button label="All User Stories" onclick={showAllStories}></lightning-button>
