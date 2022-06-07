@@ -15,6 +15,7 @@ export default class ProjectOverviewPage extends LightningElement {
     }
 
     handleSubmitProjectClick() {
-        //nothing here yet
+        const modal = this.template.querySelector("c-roles-modal");
+        modal.show();
     }
 }

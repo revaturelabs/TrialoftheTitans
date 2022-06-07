@@ -25,6 +25,7 @@
         <members>Custom_Skill__c.Project__c</members>
         <members>User_Story__c.Project__c</members>
         <members>Responsibility__c.Description__c</members>
+        <members>Custom_Skill__c.User_Created__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -32,6 +33,7 @@
         <members>lwcPathToTitan</members>
         <members>projectOverviewPage</members>
         <members>projectUserStories</members>
+        <members>rolesModal</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
@@ -40,8 +42,8 @@
         <name>LightningMessageChannel</name>
     </types>
     <types>
-        <members>portfolioHelper</members>
         <members>UserStoryController</members>
+        <members>ProjectController</members>
         <name>ApexClass</name>
     </types>
     <version>53.0</version>
