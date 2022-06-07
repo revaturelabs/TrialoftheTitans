@@ -38,6 +38,10 @@ export default class RolesModal extends LightningElement {
 
     confirmDelete() {
         this.isModalOpen = false;
+        this.respSkillId--;
+        this._respSkillId = this.respSkillId;
+        const respSkill = { Id: this.respSkillId, skills: []};
+        this.respSkills.pop(respSkill);
         // responsibility should be destroyed here
     }
 
