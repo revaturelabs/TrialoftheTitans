@@ -92,7 +92,6 @@ export default class RolesModal extends LightningElement {
                 this.respSkills[index].skills.splice(i, 1);
             }
         }
-        console.log('remove: ' + this.respSkills[index].skills)
     }
 
     save() {

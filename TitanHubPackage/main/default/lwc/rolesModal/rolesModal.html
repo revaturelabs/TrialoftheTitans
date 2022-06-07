@@ -30,11 +30,8 @@
             class="slds-modal__content slds-p-around_medium"
             id="modal-content-id-1"
             >
-            <lightning-record-edit-form object-api-name="Project__c" record-id={projectId}>
-                <h2><lightning-input-field field-name="Role__c"></lightning-input-field></h2>
-            </lightning-record-edit-form>
-            <h2>Roles: {role}</h2>
-
+            <h2>Roles:</h2>
+            <lightning-input data-name="role-input" value={role}></lightning-input>
 <!--Add Body components here-->
 <!--Put Responsibility component here-->
             <template iterator:it={respSkills}>
