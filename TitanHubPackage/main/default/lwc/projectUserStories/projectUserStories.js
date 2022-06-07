@@ -1,7 +1,8 @@
 import { LightningElement, api, wire} from 'lwc';
 import getUserStories from '@salesforce/apex/UserStoryController.getUserStories';
 import getProjectSkill from '@salesforce/apex/UserStoryController.getProjectSkill';
-
+import getProjectName from '@salesforce/apex/UserStoryController.getProjectName';
+import getSkills from '@salesforce/apex/portfolioHelper.getSkills';
 
 export default class ProjectUserStories extends LightningElement {
     allUserStories;
@@ -13,6 +14,29 @@ export default class ProjectUserStories extends LightningElement {
     
     @api
     projectId;
+
+    projectName;
+
+    @wire(getProjectName, {projectId: '$projectId'})
+    fetchProjectName({error, data}) {
+        if (data) {
+            console.log('getProjectName: ' + data);
+            this.projectName = data;
+        }
+        else if (error) {
+            console.error(error);
+        }
+    }
+
+    @wire(getSkills, {projectId: '$projectId'})
+    fetchProjectSkills({error, data}) {
+        if(data) {
+            this.skillList = data;
+        }
+        else if (error) {
+            console.error(error);
+        }
+    }
 
     @wire(getUserStories, {projectId: '$projectId'})
     fetchUserStories({error, data}) {
@@ -26,12 +50,9 @@ export default class ProjectUserStories extends LightningElement {
     }
 
     @wire(getProjectSkill, {projectId: '$projectId'})
-    fetchProjectSkills({error, data}) {
-        if (data) {
-            
+    fetchProjectSkillMap({error, data}) {
+        if (data) {            
             this.skillMap = data;
-            this.skillList = Object.keys(data);
-            //console.log(data);
         }
         else if (error) {
             console.error(error);
@@ -39,9 +60,6 @@ export default class ProjectUserStories extends LightningElement {
     }
 
     showFilter(event){
-        //console.log();
-        //console.log(this.filteredUserStories);
-        //console.log(JSON.stringify(this.skillMap));
         this.filterSelected = true;
         this.filteredUserStories = this.skillMap[event.target.dataset.name];
     }

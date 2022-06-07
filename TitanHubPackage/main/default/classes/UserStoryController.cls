@@ -43,4 +43,10 @@ public without sharing class UserStoryController {
 
         return skillMap;
     }
+
+    @AuraEnabled(cacheable=true)
+    public static String getProjectName(Id projectId) {
+        Project__c project = [SELECT Name FROM Project__c WHERE Id = :projectId LIMIT 1];
+        return project.Name;
+    }
 }
