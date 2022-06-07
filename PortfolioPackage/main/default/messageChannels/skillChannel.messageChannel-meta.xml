@@ -3,12 +3,12 @@
     <description>This message channel is used for sending the skill name selected.</description>
     <isExposed>true</isExposed>
     <lightningMessageFields>
-        <description>Project ID</description>
-        <fieldName>projectId</fieldName>
-    </lightningMessageFields>
-    <lightningMessageFields>
         <description>Skill Name</description>
         <fieldName>skillName</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>Project ID</description>
+        <fieldName>projectId</fieldName>
     </lightningMessageFields>
     <masterLabel>skillChannel</masterLabel>
 </LightningMessageChannel>

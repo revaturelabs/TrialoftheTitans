@@ -1,18 +1,18 @@
 import { api, LightningElement, wire, track } from 'lwc';
 import getRole from '@salesforce/apex/ProjectController.getRole';
-//import getProjectInfo from "@salesforce/apex/UserStoryController.getProjectInfo";
-import projectOverview from '@salesforce/messageChannel/projectOverview__c';
-import { subscribe, MessageContext } from 'lightning/messageService'
-import getProjectInfo from "@salesforce/apex/UserStoryController.getProjectInfo";
+import getSkills from '@salesforce/apex/portfolioHelper.getSkills';
 const CSS_CLASS = "modal-hidden";
 export default class RolesModal extends LightningElement {
     
     role;
-    @wire(MessageContext)
-    context;
-    projectId;
+    @api projectId;
     @api titanId;
-
+    defaultSkills;
+    showInputBox = false;
+    @track respSkills = [];
+    @track respSkillId = 0;
+    @track userSkills = [];
+    @track userSkillId = 0;
 
     //modal controls
     showModal = false;
@@ -20,9 +20,11 @@ export default class RolesModal extends LightningElement {
     @api show(){
         this.showModal = true;
     }
+
     handleDialogClose(){
         this.showModal = false;
     }
+
     openModal() {
         this.isModalOpen = true;
     }
@@ -30,46 +32,58 @@ export default class RolesModal extends LightningElement {
     closeModal() {
         this.isModalOpen = false;
     }
+
     confirmDelete() {
         this.isModalOpen = false;
         // responsibility should be destroyed here
     }
-    //get project info and Id
-    @wire(getProjectInfo,{titanId: '$titanId'})
-    getProject({error, data}) {
-        if (data) {
-            this.projectId = data.Id;
-        }
-        else if (error) {
-            console.error(error);
-        }
-    }
-    addResponsibility(){
-        
-    }
-    connectedCallback() {
-        this.subscription = subscribe(
-            this.context, projectOverview, (message) => this.handleMessage(message)
-        );
+
+    addResponsibility() {
+        this.respSkillId++;
+        this._respSkillId = this.respSkillId;
+        console.log('ID: ' + this.respSkillId);
+        const respSkill = { Id: this.respSkillId, skills: []};
+        console.log('respSkill: ' + respSkill);
+        this.respSkills.push(respSkill);
     }
 
-    handleMessage(message) {
+    addSkill() {
+        this.showInputBox = true;
+    }
+
+    inputSkill(event) {
+        if(event.keyCode === 13) {
+            this.showInputBox = false;
+            this.userSkillId++;
+            const userSkill = {Id: this.userSkillId, Name: event.target.value};
+            this.userSkills.push(userSkill);
+        }
+    }
+
+    selectSkill() {
+
+    }
+
+    save() {
         
-        this.projectId = message.projectId;
-        console.log('test');
+    }
+
+    @wire(getSkills, {projectId: '$projectId'})
+    fetchSkills({error, data}) {
+        if (data) {
+            this.defaultSkills = data;
+        }
+        else if(error) {
+            console.error(error);
+        }
     }
     @wire(getRole, {projectId: '$projectId'})
     fetchRole({error, data}){
         if(data){
-            this.role = data.Role__c.slice(3,-4);
+            this.role = data.Role__c;
         }
         else if(error){
             console.error(error);
         }
     }
-    
-
-    
-    
-    
 }

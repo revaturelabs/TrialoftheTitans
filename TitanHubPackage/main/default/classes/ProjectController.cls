@@ -4,7 +4,7 @@
 // Updated: TBA
 // Descripton: Controller for a single project
 
-public with sharing class ProjectController {
+public without sharing class ProjectController {
 
     // get responsibilities
     @AuraEnabled(cacheable=true)
@@ -25,11 +25,9 @@ public with sharing class ProjectController {
         return [SELECT Id, Name, Project__c FROM Custom_Skill__c WHERE Project__c = :projectId];
     }
 
-    // get roles
+    // get role
     @AuraEnabled(cacheable=true)
     public static Project__c getRole(Id projectId){
-        Project__c role = new Project__c();
-        role = [SELECT Role__c FROM Project__c WHERE Id = :projectId Limit 1];
-        return role;
+        return [SELECT Role__c FROM Project__c WHERE Id = :projectId];
     }
 }
