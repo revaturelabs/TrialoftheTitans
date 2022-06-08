@@ -24,6 +24,10 @@ export default class RolesModal extends LightningElement {
     wireframe;
     video;
 
+    connectedCallback() {
+        this.addResponsibility();
+    }
+
     //modal controls
     showModal = false;
     showResourceModal = false;
