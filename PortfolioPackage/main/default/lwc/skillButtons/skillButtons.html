@@ -1,15 +1,19 @@
 <template>
-    <div class="button">
         <template if:true={skills}>
-            <template for:each={skills} for:item="skill">
-                <lightning-button key={skill.Id} variant='neutral' label={skill.Name} onclick={handleClick}></lightning-button>
-            </template>
-            <template if:true={skillSelected}>
-                <lightning-button variant='neutral' label="Clear Filter" onclick={clearFilter}></lightning-button>
-            </template>
+            <div class="slds-grid slds-grid_align-center slds-gutters_xxx-small slds-wrap">
+                <template for:each={skills} for:item="skill">
+                    <div key={skill.Id} class="slds-col slds-m-around_small slds-grow-none slds-shrink-none">
+                        <lightning-button variant='neutral' label={skill.Name} onclick={handleClick}></lightning-button>
+                    </div>
+                </template>
+                <template if:true={skillSelected}>
+                    <div class="slds-col slds-m-around_small slds-grow-none slds-shrink-none">
+                        <lightning-button variant='neutral' label="Clear Filter" onclick={clearFilter}></lightning-button>
+                    </div>
+                </template>
+            </div>
         </template>
         <template if:false={skills}>
             No skills have been specified for this project.
         </template>
-    </div>
 </template>

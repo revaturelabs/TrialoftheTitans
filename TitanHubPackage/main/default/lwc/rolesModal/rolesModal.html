@@ -44,18 +44,22 @@
                     <div class="skills">
                         <div class="skill-list default-skills">
                             <template for:each={defaultSkills} for:item="skill">
-                                <button key={skill.Id}
+                                <lightning-button key={skill.Id}
                                         data-respid={it.value.Id} 
                                         data-skillid={skill.Id}
                                         data-skillname={skill.Name}
-                                        class="slds-button slds-button_neutral" 
+                                        variant="neutral"
+                                        label={skill.Name}
                                         onclick={selectSkill}>
-                                        {skill.Name}
-                                </button>
+                                </lightning-button>
                             </template>
                         </div>
                     </div>
-                    <lightning-input class="responsibility-input" data-id={it.value.Id}></lightning-input>
+                    <lightning-input 
+                        class="responsibility-input" 
+                        data-respid={it.value.Id} 
+                        value={it.value.description} 
+                        onchange={updateDescription}></lightning-input>
                     
                     <!-- deletion confirmation prompt modal -->
                     <template if:true={isModalOpen}>
@@ -73,7 +77,7 @@
                             </div>
                             <div class="slds-modal__footer">
                                 <lightning-button label="No" variant="neutral" onclick={closeModal}></lightning-button>
-                                <lightning-button label="Yes" variant="destructive" onclick={confirmDelete}></lightning-button>
+                                <lightning-button label="Yes" variant="destructive" data-respid={it.value.Id} onclick={confirmDelete}></lightning-button>
                             </div>
                             </div>
                         </section>

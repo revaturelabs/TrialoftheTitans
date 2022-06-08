@@ -32,6 +32,12 @@ public without sharing class ProjectController {
     }
 
     @AuraEnabled
+    public static void saveProject(Project__c project) {
+        project.User__c = UserInfo.getUserId();
+        update project;
+    }
+
+    @AuraEnabled
     public static void saveSkillResponsibilities(Responsibility__c resp, List<Custom_Skill__c> skills) {
         List<Custom_Skill__c> skillsToInsert = new List<Custom_Skill__c>();
         List<Skill_Responsibility__c> skillRespsToInsert = new List<Skill_Responsibility__c>();

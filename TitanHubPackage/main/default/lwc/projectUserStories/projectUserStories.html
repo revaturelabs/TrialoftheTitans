@@ -1,6 +1,8 @@
 <template>
     <div class="projectComponent">
-        <span class="title">{projectName}</span>
+        <div class="title">
+            <span class="slds-text-heading_large">{projectName}</span>
+        </div>
          
          <div class="projectBody">
    
@@ -25,7 +27,7 @@
             <lightning-accordion-section class="hidden-accordion"></lightning-accordion-section>
             <template for:each={filteredUserStories} for:item="userStory">
                 <lightning-accordion-section key={userStory.Id} label={userStory.Name}>
-                    {userStory.Description__c}
+                    <span class="slds-text-body_regular">{userStory.Description__c}</span>
                     <div class="slds-grid">
                         <template if:true={userStory.Wireframe__c}>
                             <div class="slds-col">
