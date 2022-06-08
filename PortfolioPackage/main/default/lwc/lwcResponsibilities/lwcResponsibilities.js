@@ -28,7 +28,6 @@ export default class LwcResponsibilities extends LightningElement {
     @wire(getResponsibilities, {projectID: '$projectId'})
     fetchResponsibilities({error, data}) {
         if (data) {
-            //console.log(data);
             this.allResponsibilities = data;
             this.filteredResponsibilities = [...this.allResponsibilities];
         } else if (error) { 
@@ -52,8 +51,7 @@ export default class LwcResponsibilities extends LightningElement {
             if(message.skillName === "clear"){
                 this.filteredResponsibilities = this.allResponsibilities;
             }
-            else{
-                console.log(this.resMap);
+            else {
                 this.filteredResponsibilities = this.resMap[message.skillName];
             }
         }
