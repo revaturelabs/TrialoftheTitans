@@ -13,7 +13,7 @@
                         <lightning-button key={skill.Id} label={skill.Name} data-name={skill.Name} onclick={showFilter}></lightning-button>
                     </template>
                     <template if:true={filterSelected}>
-                        <lightning-button label="Clear Filter" onclick={showAllStories}></lightning-button>
+                        <lightning-button variant="destructive" label="Clear Filter" onclick={showAllStories}></lightning-button>
                     </template>
                 </div>
             </div>
