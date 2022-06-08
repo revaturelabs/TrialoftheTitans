@@ -2,6 +2,8 @@ import { api, LightningElement, wire, track } from 'lwc';
 import getRole from '@salesforce/apex/ProjectController.getRole';
 import getSkills from '@salesforce/apex/portfolioHelper.getSkills';
 import saveSkillResponsibilities from '@salesforce/apex/ProjectController.saveSkillResponsibilities';
+import saveProject from '@salesforce/apex/ProjectController.saveProject';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 const CSS_CLASS = "modal-hidden";
 
 export default class RolesModal extends LightningElement {
@@ -63,17 +65,15 @@ export default class RolesModal extends LightningElement {
     }
 
     selectSkill(event) {
-        let selected = 'rgb(230, 255, 234)';
-        let unSelected = 'rgb(255, 255, 255)';
         let respId = event.target.dataset.respid;
         let skillId = event.target.dataset.skillid;
         let skillName = event.target.dataset.skillname;
-        if(event.target.style.backgroundColor === selected) {
-            event.target.style.backgroundColor = unSelected;
+        if(event.target.variant === "brand") {
+            event.target.variant = "neutral";
             this.unlinkSkill(respId, skillId, skillName);
         }
         else {
-            event.target.style.backgroundColor = selected;
+            event.target.variant = "brand";
             this.linkSkill(respId, skillId);
         }
     }
@@ -96,19 +96,32 @@ export default class RolesModal extends LightningElement {
     }
 
     save() {
+        this.handleDialogClose();
         for (let i=0; i < this.respSkills.length; i++) {
             let selectorStr = "lightning-input[data-id='" + this.respSkills[i].Id + "']";
             let description = this.template.querySelector(selectorStr).value;
             this.saveData(i, description);
         }
-        this.handleDialogClose();
+        let projectRecord = { 'sobjectType': 'Project__c'};
+        this.role = this.template.querySelector("[data-name='role-input']").value;
+        projectRecord.Id = this.projectId;
+        if (this.role) {
+            projectRecord.Role__c = this.role;
+        }
+        saveProject({ project: projectRecord })
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 
     saveData(index, description) {
         let respRecord = { 'sobjectType': 'Responsibility__c'};
         respRecord.Description__c = description;
         respRecord.Project__c = this.projectId;
-        saveSkillResponsibilities({ resp: respRecord, skills: this.respSkills[index].skills})
+        saveSkillResponsibilities({ resp: respRecord, skills: this.respSkills[index].skills })
             .then(result => {
                 console.log('Success: ' + result);
             })
@@ -116,6 +129,7 @@ export default class RolesModal extends LightningElement {
                 console.error(error);
             });
     }
+
     
     @wire(getSkills, {projectId: '$projectId'})
     fetchSkills({error, data}) {
