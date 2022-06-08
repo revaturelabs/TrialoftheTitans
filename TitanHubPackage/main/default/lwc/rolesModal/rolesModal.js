@@ -38,17 +38,35 @@ export default class RolesModal extends LightningElement {
         this.isModalOpen = false;
     }
 
-    confirmDelete() {
+    confirmDelete(event) {
+        let respId = parseInt(event.target.dataset.respid);
+        this.deleteResponsibility(respId);
         this.closeModal();
-        this.respSkillId--;
-        this.respSkills.pop();
     }
 
     addResponsibility() {
         this.respSkillId++;
-        this._respSkillId = this.respSkillId;
-        const respSkill = { Id: this.respSkillId, skills: []};
+        const respSkill = { Id: this.respSkillId, description: '', skills: []};
         this.respSkills.push(respSkill);
+    }
+
+    deleteResponsibility(respId) {
+        let i = this.findRespIndex(respId);
+        this.respSkills.splice(i, 1);
+    }
+
+    updateDescription(event) {
+        let respId = parseInt(event.target.dataset.respid);
+        let i = this.findRespIndex(respId);
+        this.respSkills[i].description = event.target.value;
+    }
+
+    findRespIndex(respId) {
+        for (let i = 0; i < this.respSkills.length; i++) {
+            if (this.respSkills[i].Id == respId) {
+                return i;
+            }
+        }
     }
 
     addSkill() {
@@ -65,42 +83,42 @@ export default class RolesModal extends LightningElement {
     }
 
     selectSkill(event) {
-        let respId = event.target.dataset.respid;
+        let respId = parseInt(event.target.dataset.respid);
         let skillId = event.target.dataset.skillid;
         let skillName = event.target.dataset.skillname;
         if(event.target.variant === "brand") {
             event.target.variant = "neutral";
-            this.unlinkSkill(respId, skillId, skillName);
+            this.unlinkSkill(respId, skillId);
         }
         else {
             event.target.variant = "brand";
-            this.linkSkill(respId, skillId);
+            this.linkSkill(respId, skillId, skillName);
         }
     }
 
     linkSkill(respId, skillId, skillName) {
-        let index = respId - 1;
+        let i = this.findRespIndex(respId);
         let skill = {'sobjectType': 'Custom_Skill__c'};
         skill.Id = skillId;
         skill.Name = skillName;
-        this.respSkills[index].skills.push(skill);
+        this.respSkills[i].skills.push(skill);
     }
 
     unlinkSkill(respId, skillId) {
-        let index = respId - 1;
-        for(let i = 0; i < this.respSkills[index].skills.length; i++) {
-            if (this.respSkills[index].skills[i] === skillId) {
-                this.respSkills[index].skills.splice(i, 1);
-            }
+        let i = this.findRespIndex(respId);
+        for(let j = 0; j < this.respSkills[i].skills.length; j++) {
+            if (this.respSkills[i].skills[j].Id === skillId) {
+                this.respSkills[i].skills.splice(j, 1);
+            }        
         }
     }
 
     save() {
         this.handleDialogClose();
-        for (let i=0; i < this.respSkills.length; i++) {
-            let selectorStr = "lightning-input[data-id='" + this.respSkills[i].Id + "']";
-            let description = this.template.querySelector(selectorStr).value;
-            this.saveData(i, description);
+        for (let i = 0; i < this.respSkills.length; i++) {
+            if (this.respSkills[i].description) {
+                this.saveRespSkillData(i);
+            }
         }
         let projectRecord = { 'sobjectType': 'Project__c'};
         this.role = this.template.querySelector("[data-name='role-input']").value;
@@ -117,9 +135,9 @@ export default class RolesModal extends LightningElement {
             });
     }
 
-    saveData(index, description) {
+    saveRespSkillData(index) {
         let respRecord = { 'sobjectType': 'Responsibility__c'};
-        respRecord.Description__c = description;
+        respRecord.Description__c = this.respSkills[index].description;
         respRecord.Project__c = this.projectId;
         saveSkillResponsibilities({ resp: respRecord, skills: this.respSkills[index].skills })
             .then(result => {
