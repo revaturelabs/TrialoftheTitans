@@ -2,12 +2,12 @@
         <template if:true={skills}>
             <div class="slds-grid slds-grid_align-center slds-gutters_xxx-small slds-wrap">
                 <template for:each={skills} for:item="skill">
-                    <div key={skill.Id} class="slds-col slds-grow-none slds-shrink-none">
+                    <div key={skill.Id} class="slds-col slds-m-around_small slds-grow-none slds-shrink-none">
                         <lightning-button variant='neutral' label={skill.Name} onclick={handleClick}></lightning-button>
                     </div>
                 </template>
                 <template if:true={skillSelected}>
-                    <div class="slds-col slds-grow-none slds-shrink-none">
+                    <div class="slds-col slds-m-around_small slds-grow-none slds-shrink-none">
                         <lightning-button variant='neutral' label="Clear Filter" onclick={clearFilter}></lightning-button>
                     </div>
                 </template>

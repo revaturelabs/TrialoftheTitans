@@ -1,10 +1,6 @@
 lightning-button {
-    padding: 10px 20px;
-    margin: 5px;
     color: black;
     border: none;
     outline: none; 
     border-radius: 5px;
-    display: flex;
-    justify-content: center;
 }
