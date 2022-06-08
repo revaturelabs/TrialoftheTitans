@@ -127,8 +127,13 @@ export default class RolesModal extends LightningElement {
             projectRecord.Role__c = this.role;
         }
         saveProject({ project: projectRecord })
-            .then(result => {
-                console.log(result);
+            .then(() => {
+                const toastEvent = new ShowToastEvent({
+                    title: 'Success!',
+                    message: 'Project and responsibilities successfully saved!',
+                    variant: 'success'
+                });
+                this.dispatchEvent(toastEvent);
             })
             .catch(error => {
                 console.error(error);
