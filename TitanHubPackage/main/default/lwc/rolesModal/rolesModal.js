@@ -18,8 +18,19 @@ export default class RolesModal extends LightningElement {
     @track userSkills = [];
     @track userSkillId = 0;
 
+    resourceInputType;
+    resourceLabel;
+    github;
+    wireframe;
+    video;
+
+    connectedCallback() {
+        this.addResponsibility();
+    }
+
     //modal controls
     showModal = false;
+    showResourceModal = false;
     @track isModalOpen = false;
     @api show(){
         this.showModal = true;
@@ -42,6 +53,42 @@ export default class RolesModal extends LightningElement {
         let respId = parseInt(event.target.dataset.respid);
         this.deleteResponsibility(respId);
         this.closeModal();
+    }
+
+    resourceHandler(event) {
+        if (event.target.label === "Wireframes") {
+            this.resourceInputType = "Wireframes";
+            this.resourceLabel = "Wireframe link"
+        }
+        else if (event.target.label === "Github") {
+            this.resourceInputType = "Github";
+            this.resourceLabel = "Github link";
+        }
+        else {
+            this.resourceInputType = "Video";
+            this.resourceLabel = "Video link";
+        }
+        this.showResourceModal = true;
+    }
+
+    closeResourceModal() {
+        this.showResourceModal = false;
+        this.template.querySelector("[data-name='resource-input'").value = '';
+    }
+
+    saveResource() {
+        const inputVal = this.template.querySelector("[data-name='resource-input'").value;
+        if (this.resourceInputType === "Wireframes") {
+            this.wireframe = inputVal;
+        }
+        else if (this.resourceInputType === "Github") {
+            this.github = inputVal;
+        }
+        else {
+            this.video = inputVal;
+        }
+        this.closeResourceModal();
+        inputVal = '';
     }
 
     addResponsibility() {
@@ -125,6 +172,15 @@ export default class RolesModal extends LightningElement {
         projectRecord.Id = this.projectId;
         if (this.role) {
             projectRecord.Role__c = this.role;
+        }
+        if (this.github) {
+            projectRecord.Github__c = this.github;
+        }
+        if (this.wireframe) {
+            projectRecord.Wireframe__c = this.wireframe;
+        }
+        if (this.video) {
+            projectRecord.Video__c = this.video;
         }
         saveProject({ project: projectRecord })
             .then(() => {
